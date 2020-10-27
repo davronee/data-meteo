@@ -10,5 +10,6 @@ composer install
 npm install && npm run dev
 composer dump-autoload
 php artisan optimize:clear
+php artisan migrate
 php artisan db:seed
 ```
