@@ -13,3 +13,10 @@ php artisan optimize:clear
 php artisan migrate
 php artisan db:seed
 ```
+
+### 29.10.2020 00:10 ###
+```
+composer dump-autoload --ignore-platform-reqs
+php artisan optimize:clear
+php artisan migrate
+```
