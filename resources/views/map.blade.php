@@ -186,19 +186,30 @@
                 //create an empty geojson layer
                 //with a style and a popup on click
                 var geojson = L.topoJson(null, {
-                    onEachFeature: function(feature, layer) {
-                        layer.bindPopup('<p>'+feature.properties.tuman_nomi+'</p>')
+                    style: function (feature) {
+                        return {
+                            fillOpacity: 0.1,
+                            weight: 0.4,
+                            stroke: true,
+
+                        }
+                    },
+                    onEachFeature: function (feature, layer) {
+                        layer.bindPopup('<p>' + feature.properties.tuman_nomi + '</p>')
                     }
                 }).addTo(map);
 
                 var geojsonSnow = L.topoJson(null, {
-                    style: function(feature){
+                    style: function (feature) {
                         return {
                             color: "grey",
+                            fillOpacity: 0.5,
                             fillColor: 'grey',
+                            stroke: true,
+                            weight: 2
                         }
                     },
-                    onEachFeature: function(feature, layer) {
+                    onEachFeature: function (feature, layer) {
                         // layer.bindPopup('<p>'+feature.properties.NAME+'</p>')
                     }
                 }).addTo(map);
@@ -228,128 +239,128 @@
 
 
 
-{{--// Begin Amudaryo--}}
-{{--                var Kafernigan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kafernigan.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Kafernigan.addTo(map);--}}
+                {{--// Begin Amudaryo--}}
+                {{--                var Kafernigan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kafernigan.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Kafernigan.addTo(map);--}}
 
-{{--                var Kashkad = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kashkad.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Kashkad.addTo(map);--}}
+                {{--                var Kashkad = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kashkad.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Kashkad.addTo(map);--}}
 
-{{--                var Qunduz = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Qunduz.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Qunduz.addTo(map);--}}
+                {{--                var Qunduz = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Qunduz.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Qunduz.addTo(map);--}}
 
-{{--                var Surhan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Surhan.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Surhan.addTo(map);--}}
+                {{--                var Surhan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Surhan.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Surhan.addTo(map);--}}
 
-{{--                var Vakhsh = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Vakhsh.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Vakhsh.addTo(map);--}}
+                {{--                var Vakhsh = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Vakhsh.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Vakhsh.addTo(map);--}}
 
-{{--                //Amudaryo end--}}
-{{--                //Sirdaryo begin--}}
+                {{--                //Amudaryo end--}}
+                {{--                //Sirdaryo begin--}}
 
-{{--                var Ferg_North = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_North.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Ferg_North.addTo(map);--}}
+                {{--                var Ferg_North = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_North.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Ferg_North.addTo(map);--}}
 
-{{--                var Ferg_Sourth = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_Sourth.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Ferg_Sourth.addTo(map);--}}
+                {{--                var Ferg_Sourth = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_Sourth.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Ferg_Sourth.addTo(map);--}}
 
-{{--                var Pskem = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Pskem.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.5,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "grey", // Lines in between countries.--}}
-{{--                            weight: 2--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Pskem.addTo(map);--}}
+                {{--                var Pskem = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Pskem.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.5,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "grey", // Lines in between countries.--}}
+                {{--                            weight: 2--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Pskem.addTo(map);--}}
 
-{{--                var Ugam = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ugam.geojson')}}", {--}}
-{{--                    style: function (feature) {--}}
-{{--                        return {--}}
-{{--                            fillColor: "grey", // Default color of countries.--}}
-{{--                            fillOpacity: 0.1,--}}
-{{--                            stroke: true,--}}
-{{--                            color: "#57A0F3", // Lines in between countries.--}}
-{{--                            weight: 0.5--}}
-{{--                        };--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                Ugam.addTo(map);--}}
+                {{--                var Ugam = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ugam.geojson')}}", {--}}
+                {{--                    style: function (feature) {--}}
+                {{--                        return {--}}
+                {{--                            fillColor: "grey", // Default color of countries.--}}
+                {{--                            fillOpacity: 0.1,--}}
+                {{--                            stroke: true,--}}
+                {{--                            color: "#57A0F3", // Lines in between countries.--}}
+                {{--                            weight: 0.5--}}
+                {{--                        };--}}
+                {{--                    }--}}
+                {{--                });--}}
+                {{--                Ugam.addTo(map);--}}
 
-{{--                //Sirdaryo end--}}
+                {{--                //Sirdaryo end--}}
 
 
             },
