@@ -7,18 +7,19 @@
     <meta charset="utf-8">
     <!-- Favicon -->
 {{--    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}">--}}
-    <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /> -->
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /> -->
     <!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" /> -->
-    <link rel="stylesheet" href="{{asset('assets/css/leaflet.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}" />
-    <!--[if lte IE 8]><link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
-    <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/leaflet.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/><![endif]-->
+    <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}"/>
     <script src="{{asset('asset/js/leaflet.js')}}"></script>
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('assets/css/table.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/table.css')}}"/>
 
 
     <style>
@@ -52,7 +53,6 @@
 </div>
 
 
-
 <!--  <a href="#"><img style="position: fixed; top: 0; right: 0; border: 0;" src="../images/ribbon.png" alt="βeta version"></a> -->
 <script src="{{asset('assets/js/leaflet.js')}}"></script>
 <script src="{{asset('asset/js/leaflet.ajax.js')}}"></script>
@@ -74,10 +74,8 @@
 
 
     Vue.component('validation-errors', {
-        data(){
-            return {
-
-            }
+        data() {
+            return {}
         },
         props: ['errors'],
         template: `<div v-if="validationErrors">
@@ -86,7 +84,7 @@
                         </ul>
                     </div>`,
         computed: {
-            validationErrors(){
+            validationErrors() {
                 let errors = Object.values(this.errors);
                 errors = errors.flat();
                 return errors;
@@ -105,7 +103,7 @@
             category: 1,
             sentence: '',
             proposed_financing: '',
-            validationErrors:"",
+            validationErrors: "",
 
             area: '',
             address: '',
@@ -115,12 +113,9 @@
             file: '',
 
 
-
-
         },
         methods: {
-            InitialMap: function() {
-
+            InitialMap: function () {
 
 
                 // initialize the map
@@ -133,20 +128,18 @@
 
                 }
 
-                    {{--var kmlLayer = new L.KML("{{asset('asset/js/--1984.kml')}}", { async: false });--}}
-                    {{--map.addLayer(kmlLayer);--}}
+                {{--var kmlLayer = new L.KML("{{asset('asset/js/--1984.kml')}}", { async: false });--}}
+                {{--map.addLayer(kmlLayer);--}}
 
-                    var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");
-                geojsonLayer.addTo(map);
+
 
                 // load a tile layer  http://map.ygk.uz/tile/{z}/{x}/{y}.png OpenStreetMap харита
-                osm =  L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
+                osm = L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
                     // osm =  L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
                     attribution: 'data.meteo.uz'
                 }).addTo(map);
 
                 drawnItems = L.featureGroup().addTo(map);
-
 
 
                 var scale = L.control.scale({
@@ -161,33 +154,147 @@
                     'Google харита': L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
                         attribution: 'data.meteo.uz'
                     })
-                }, {}, { position: 'topright', collapsed: false }).addTo(map);
+                }, {}, {position: 'topright', collapsed: false}).addTo(map);
 
-                // var popup = L.popup();
-                //
-                // function onMapClick(e) {
-                //     popup
-                //         .setLatLng(e.latlng)
-                //         .setContent("Сиз танлаган ер участкаси коорданаталари:  " + e.latlng.toString() + "<br> <hr><button onclick='ClickButton()' class='form-control btn btn-success'  data-toggle='modal' data-target='#taklif'    >Таклиф жунатиш</button>")
-                //         .openOn(map);
-                // }
-                //
-                // map.on('click', onMapClick);
+                var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");
+                geojsonLayer.addTo(map);
+// Begin Amudaryo
+                var Kafernigan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kafernigan.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#E5B636", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Kafernigan.addTo(map);
+
+                var Kashkad = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kashkad.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#E15989", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Kashkad.addTo(map);
+
+                var Qunduz = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Qunduz.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#729B6F", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Qunduz.addTo(map);
+
+                var Surhan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Surhan.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#729B6F", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Surhan.addTo(map);
+
+                var Vakhsh = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Vakhsh.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#729B6F", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Vakhsh.addTo(map);
+
+                //Amudaryo end
+                //Sirdaryo begin
+
+                var Ferg_North = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_North.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#32B2B6", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Ferg_North.addTo(map);
+
+                var Ferg_Sourth = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_Sourth.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#32B2B6", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Ferg_Sourth.addTo(map);
+
+                var Pskem = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Pskem.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#32B2B6", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Pskem.addTo(map);
+
+                var Ugam = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ugam.geojson')}}", {
+                    style: function (feature) {
+                        return {
+                            fillColor: "#32B2B6", // Default color of countries.
+                            fillOpacity: 0.5,
+                            stroke: true,
+                            color: "grey", // Lines in between countries.
+                            weight: 2
+                        };
+                    }
+                });
+                Ugam.addTo(map);
+
+                //Sirdaryo end
+
+
             },
 
 
-
-
             {{--},--}}
-            getElement: function(area, area_id, map_id) {
+            getElement: function (area, area_id, map_id) {
                 app.area = area;
                 app.area_id = area_id;
                 app.map_id = map_id;
             },
-            getLocation: function() {
+            getLocation: function () {
 
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
                         app.latitude = position.coords.latitude;
                         app.longitude = position.coords.longitude;
 
@@ -197,8 +304,9 @@
                     });
 
 
-                    navigator.geolocation.watchPosition(function(position) {},
-                        function(error) {
+                    navigator.geolocation.watchPosition(function (position) {
+                        },
+                        function (error) {
                             if (error.code == error.PERMISSION_DENIED) {
                                 app.InitialMap();
 
@@ -210,7 +318,7 @@
                 }
 
             },
-            showError: function(error) {
+            showError: function (error) {
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
                         alert("User denied the request for Geolocation.");
@@ -226,11 +334,9 @@
                         break;
                 }
             },
-            showPosition: function(position) {
+            showPosition: function (position) {
                 console.log('Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude);
             }
-
-
 
 
         },
@@ -238,10 +344,10 @@
             this.getLocation();
 
         },
-        mounted() {}
+        mounted() {
+        }
 
     });
-
 
 
     function ClickButton() {
@@ -277,10 +383,10 @@
         store: 'session',
         storeKey: 'simple-tree-table-basic'
     });
-    $('#open1').on('click', function() {
+    $('#open1').on('click', function () {
         $('#basic').data('simple-tree-table').openByID("1");
     });
-    $('#close1').on('click', function() {
+    $('#close1').on('click', function () {
         $('#basic').data('simple-tree-table').closeByID("1");
     });
 </script>
