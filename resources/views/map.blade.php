@@ -162,7 +162,7 @@
                 var Kafernigan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kafernigan.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#E5B636", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -175,7 +175,7 @@
                 var Kashkad = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kashkad.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#E15989", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -188,7 +188,7 @@
                 var Qunduz = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Qunduz.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#729B6F", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -201,7 +201,7 @@
                 var Surhan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Surhan.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#729B6F", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -214,7 +214,7 @@
                 var Vakhsh = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Vakhsh.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#729B6F", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -230,7 +230,7 @@
                 var Ferg_North = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_North.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#32B2B6", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -243,7 +243,7 @@
                 var Ferg_Sourth = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_Sourth.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#32B2B6", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -256,7 +256,7 @@
                 var Pskem = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Pskem.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#32B2B6", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -269,7 +269,7 @@
                 var Ugam = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ugam.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "#32B2B6", // Default color of countries.
+                            fillColor: "grey", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
