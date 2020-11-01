@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/><![endif]-->
     <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}"/>
-    <script src="{{asset('asset/js/leaflet.js')}}"></script>
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/table.css')}}"/>
@@ -55,6 +54,8 @@
 
 <!--  <a href="#"><img style="position: fixed; top: 0; right: 0; border: 0;" src="../images/ribbon.png" alt="βeta version"></a> -->
 <script src="{{asset('assets/js/leaflet.js')}}"></script>
+<script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+
 <script src="{{asset('asset/js/leaflet.ajax.js')}}"></script>
 
 <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
@@ -156,13 +157,76 @@
                     })
                 }, {}, {position: 'topright', collapsed: false}).addTo(map);
 
-                var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");
-                geojsonLayer.addTo(map);
+                {{--var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");--}}
+                {{--geojsonLayer.addTo(map);--}}
+
+
+
+
+                //extend Leaflet to create a GeoJSON layer from a TopoJSON file
+                L.TopoJSON = L.GeoJSON.extend({
+                    addData: function (data) {
+                        var geojson, key;
+                        if (data.type === "Topology") {
+                            for (key in data.objects) {
+                                if (data.objects.hasOwnProperty(key)) {
+                                    geojson = topojson.feature(data, data.objects[key]);
+                                    L.GeoJSON.prototype.addData.call(this, geojson);
+                                }
+                            }
+                            return this;
+                        }
+                        L.GeoJSON.prototype.addData.call(this, data);
+                        return this;
+                    }
+                });
+                L.topoJson = function (data, options) {
+                    return new L.TopoJSON(data, options);
+                };
+                //create an empty geojson layer
+                //with a style and a popup on click
+                var geojson = L.topoJson(null, {
+                    style: function(feature){
+                        return {
+                            color: "#000",
+                            opacity: 0.5,
+                            weight: 1,
+                            fillColor: '#35495d',
+                            fillOpacity: 0.8
+                        }
+                    },
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup('<p>'+feature.properties.tuman_nomi+'</p>')
+                    }
+                }).addTo(map);
+                //fill: #317581;
+                //define a function to get and parse geojson from URL
+                async function getGeoData(url) {
+                    let response = await fetch(url);
+                    let data = await response.json();
+                    return data;
+                }
+
+                //fetch the geojson and add it to our geojson layer
+                getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Begin Amudaryo
                 var Kafernigan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kafernigan.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -175,7 +239,7 @@
                 var Kashkad = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kashkad.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -188,7 +252,7 @@
                 var Qunduz = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Qunduz.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -201,7 +265,7 @@
                 var Surhan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Surhan.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -214,7 +278,7 @@
                 var Vakhsh = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Vakhsh.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -230,7 +294,7 @@
                 var Ferg_North = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_North.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -243,7 +307,7 @@
                 var Ferg_Sourth = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_Sourth.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -256,7 +320,7 @@
                 var Pskem = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Pskem.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
+                            fillColor: "#57A0F3", // Default color of countries.
                             fillOpacity: 0.5,
                             stroke: true,
                             color: "grey", // Lines in between countries.
@@ -269,11 +333,11 @@
                 var Ugam = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ugam.geojson')}}", {
                     style: function (feature) {
                         return {
-                            fillColor: "grey", // Default color of countries.
-                            fillOpacity: 0.5,
+                            fillColor: "#57A0F3", // Default color of countries.
+                            fillOpacity: 0.1,
                             stroke: true,
-                            color: "grey", // Lines in between countries.
-                            weight: 2
+                            color: "#57A0F3", // Lines in between countries.
+                            weight: 0.5
                         };
                     }
                 });
