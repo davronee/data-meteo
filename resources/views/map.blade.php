@@ -186,15 +186,6 @@
                 //create an empty geojson layer
                 //with a style and a popup on click
                 var geojson = L.topoJson(null, {
-                    style: function(feature){
-                        return {
-                            color: "#000",
-                            opacity: 0.5,
-                            weight: 1,
-                            fillColor: '#35495d',
-                            fillOpacity: 0.8
-                        }
-                    },
                     onEachFeature: function(feature, layer) {
                         layer.bindPopup('<p>'+feature.properties.tuman_nomi+'</p>')
                     }
