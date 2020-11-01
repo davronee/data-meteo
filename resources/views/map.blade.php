@@ -121,7 +121,7 @@
 
                 // initialize the map
                 if (app.latitude == 0 && app.longitude == 0) {
-                    map = L.map('map').setView([41.315514, 69.246097], 15);
+                    map = L.map('map').setView([41.315514, 69.246097], 6);
 
                 } else {
                     map = L.map('map').setView([app.latitude, app.longitude], 15);
