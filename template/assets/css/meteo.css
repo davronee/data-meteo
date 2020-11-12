@@ -17217,6 +17217,13 @@ body {
     opacity: .75;
 }
 
+.nav-sidebar .nav-link i {
+    width: 17px;
+    height: 17px;
+    margin-right: 8px;
+    opacity: .75;
+}
+
 .nav-sidebar .nav-link.with-sub::after {
     content: '';
     position: absolute;
@@ -17666,6 +17673,36 @@ body {
     color: #06072d;
 }
 
+
+.header-right i {
+    width: 18px;
+    height: 18px;
+}
+
+@media (min-width: 992px) {
+    .header-right i {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.header-right .header-help-link i {
+    transition: all 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-right .header-help-link i {
+        transition: none;
+    }
+}
+
+.header-right .header-help-link:hover i,
+.header-right .header-help-link:focus i {
+    transform: scale(1.15);
+}
+
+
+
 .header-right svg {
     width: 18px;
     height: 18px;
@@ -17761,7 +17798,7 @@ body {
 
 @media (min-width: 992px) {
     .header-right .dropdown-notification .dropdown-menu {
-        margin-top: 31.5px;
+        margin-top: 22px;
     }
 }
 

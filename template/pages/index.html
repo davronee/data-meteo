@@ -10,7 +10,7 @@
     <meta name="author" content="Метеоинфосистем">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
-    <title>Meteo|UZ</title>
+    <title>METEO|DC</title>
     <!-- icons css -->
     <link href="../lib/fontawesome5/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
@@ -29,32 +29,75 @@
         <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="../assets/img/gidrometeo.svg"></a></div><!-- sidebar-header -->
         <div id="dpSidebarBody" class="sidebar-body">
             <ul class="nav nav-sidebar">
-                <li class="nav-label"><label class="content-label">Мониторинг и анализ</label></li>
+                <li class="nav-label"><label class="content-label">Прогноз погоды</label></li>
                 <li class="nav-item">
-                    <a href="" class="nav-link active"><i data-feather="box"></i> Рабочий стол</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link with-sub"><i data-feather="layout"></i> Сбор данных</a>
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Общего пользования</a>
                     <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link">Метеорология</a>
-                        <a href="#" class="nav-sub-link">Гидрология</a>
-                        <a href="#" class="nav-sub-link">Загрязнение</a>
+                        <a href="#" class="nav-sub-link">Наукастинг(фактическая)</a>
+                        <a href="#" class="nav-sub-link">Сверхкраткосрочный</a>
+                        <a href="#" class="nav-sub-link">Краткосрочный</a>
+                        <a href="#" class="nav-sub-link">Среднесрочный</a>
+                        <a href="#" class="nav-sub-link">С расширенным сроком</a>
+                        <a href="#" class="nav-sub-link">Долгосрочный</a>
+                    </nav>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plane-departure"></i> Авиационные</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
+                <li class="nav-label"><label class="content-label">Наблюдения и мониторинг</label></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-eye"></i> Мониторинг</a></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-layer-group"></i> Сбор данных</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Источники</a>
+                        <a href="#" class="nav-sub-link">Метеостанции</a>
+                        <a href="#" class="nav-sub-link">Виджеты</a>
+                        <a href="#" class="nav-sub-link">Метео карты</a>
                     </nav>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link with-sub"><i data-feather="lock"></i> Анализ</a>
+                    <a href="" class="nav-link with-sub"><i class="fas fa-chart-area"></i> Анализ</a>
                     <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link">Прогноз обстановки</a>
-                        <a href="#" class="nav-sub-link">Обработка данных</a>
+                        <a href="#" class="nav-sub-link">Синоптический анализ</a>
                         <a href="#" class="nav-sub-link">Анализ и объяснение</a>
+                        <a href="#" class="nav-sub-link">Фактическая погода</a>
+                        <a href="#" class="nav-sub-link">Данные об условиях погоды</a>
                     </nav>
                 </li>
-            
+                <li class="nav-label"><label class="content-label">Интеграция</label></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="pie-chart"></i> Обмен данными</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Визуализация данных</a>
+                        <a href="#" class="nav-sub-link">В виде таблиц</a>
+                        <a href="#" class="nav-sub-link">Экспорт на Excel</a>
+                        <a href="#" class="nav-sub-link">Экспорт на XML</a>
+                    </nav>
+                </li>
+                <li class="nav-label"><label class="content-label">Настройки</label></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-cogs"></i> Структурные</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Виды прогнозы погоды</a>
+                        <a href="#" class="nav-sub-link">Тип прогнозы погоды</a>
+                        <a href="#" class="nav-sub-link">Масштаб прогнозы погоды</a>
+                        <a href="#" class="nav-sub-link">Станции</a>
+                        <a href="#" class="nav-sub-link">Пункт назначении</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-user-cog"></i> Пользователи</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Группа пользователей</a>
+                        <a href="#" class="nav-sub-link">Роль пользователи</a>
+                        <a href="#" class="nav-sub-link">Пользователи</a>
+                    </nav>
+                </li>
             </ul>
             <hr class="mg-t-30 mg-b-25">
             <ul class="nav nav-sidebar">
-                <li class="nav-item"><a href="../docs.html" class="nav-link"><i data-feather="help-circle"></i> Помощь</a></li>
-                <li class="nav-item"><a href="#offCanvas3" class="nav-link off-canvas-menu"><i data-feather="info"></i> О системе</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user"></i> Личный кабинет</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-question-circle"></i> Помощь</a></li>
+                <li class="nav-item"><a href="#offCanvas3" class="nav-link off-canvas-menu"><i class="fas fa-info-circle"></i> О системе</a></li>
             </ul>
         </div><!-- sidebar-body -->
     </div><!-- sidebar -->
@@ -69,7 +112,7 @@
             </div><!-- header-left -->
             <div class="header-right">
                 <div class="dropdown dropdown-notification">
-                    <a href="" class="dropdown-link new" data-toggle="dropdown"><i data-feather="bell"></i></a>
+                    <a href="" class="dropdown-link new" data-toggle="dropdown"><i class="far fa-bell fa-lg"></i></a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-menu-header">
                             <h6>Уведомления</h6>
@@ -77,17 +120,31 @@
                         </div><!-- dropdown-menu-header -->
                         <div class="dropdown-menu-body">
                             <a href="" class="dropdown-item">
-                                <div class="avatar"><i class="wi wi-snow-wind"></i></div>
+                                <div class="avatar"><span class="avatar-initial rounded-circle text-primary bg-primary-light">s</span></div>
                                 <div class="dropdown-item-body">
-                                    <p><strong>В областях</strong> ожидается снег.</p>
+                                    <p><strong>Socrates Itumay</strong> marked the task as completed.</p>
                                     <span>5 hours ago</span>
                                 </div>
                             </a>
                             <a href="" class="dropdown-item">
-                                <div class="avatar"><i class="wi wi-cloudy"></i></div>
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-pink bg-pink-light">r</span></div>
                                 <div class="dropdown-item-body">
-                                    <p><strong>В Хорезме</strong> погода ясно.</p>
+                                    <p><strong>Reynante Labares</strong> marked the task as incomplete.</p>
                                     <span>8 hours ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-success bg-success-light">d</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Dyanne Aceron</strong> responded to your comment on this <strong>post</strong>.</p>
+                                    <span>a day ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-indigo bg-indigo-light">k</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Kirby Avendula</strong> marked the task as incomplete.</p>
+                                    <span>2 days ago</span>
                                 </div>
                             </a>
                         </div><!-- dropdown-menu-body -->
@@ -97,7 +154,7 @@
                     </div><!-- dropdown-menu -->
                 </div>
                 <div class="dropdown dropdown-loggeduser">
-                    <a href="" class="dropdown-link" data-toggle="dropdown" style="font-size: 17px;"> <i class="fas fa-user-cog"></i></a>
+                    <a href="" class="dropdown-link" data-toggle="dropdown"> <i class="fas fa-user-cog fa-lg"></i></a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-menu-header">
                             <h6>Данные профиля </h6>
@@ -105,7 +162,7 @@
                         <div class="dropdown-menu-body">
                             <a href="" class="dropdown-item"><i class="fas fa-user-edit"></i> Редактировать профиль</a>
                             <a href="" class="dropdown-item"><i class="fas fa-cog"></i> Настройки учетной записи</a>
-                            <a href="page-signin.html" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Выход</a>
+                            <a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Выход</a>
                         </div>
                     </div><!-- dropdown-menu -->
                 </div>
@@ -116,7 +173,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Анализ и мониторинг</li>
+                        <li class="breadcrumb-item active" aria-current="page">Виджеты</li>
                     </ol>
                 </nav>
             </div>
