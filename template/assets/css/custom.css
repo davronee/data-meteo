@@ -1,0 +1,44 @@
+/*TEXT-COLORS*/
+
+.i-color-0061D9 {
+    color: #0061D9 !important;
+}
+
+.no-shadow {
+    box-shadow: none !important;
+}
+
+.no-border {
+    border: none;
+}
+
+.bd-r-l-1 {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.w-icon {
+    font-size: 35px;
+    vertical-align: middle;
+}
+
+.header-right .dropdown-loggeduser .dropdown-item i {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5px;
+    margin-right: 12px;
+    color: #06072d;
+}
+
+.bg-0 {
+    background: none;
+    background-color: transparent;
+}
+
+.bg-day{
+  background: linear-gradient(to top, #ffffff 20%, #75c6f3);
+}
+
+.bg-day-head{
+  background: #75c6f3;
+}
