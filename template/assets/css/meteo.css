@@ -60789,6 +60789,11 @@ button.bg-twitter:focus,
 }
 
 /* ###### 9.8 Typography   ###### */
+
+.tx-meteo {
+    color: #03A9F4 !important;
+}
+
 .tx-white {
     color: #fff;
 }
