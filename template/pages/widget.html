@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta -->
+    <meta name="description" content="Единая система анализа и обработки гидрометеорологических наблюдений">
+    <meta name="author" content="Метеоинфосистем">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
+    <title>METEO|DC</title>
+    <!-- icons css -->
+    <link href="../lib/fontawesome5/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/ionicons.min.css">
+    <!-- vendor css -->
+    <link href="../lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link href="../lib/select2/css/select2.min.css" rel="stylesheet">
+    <!-- template css -->
+    <link rel="stylesheet" href="../assets/css/meteo.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/weather-panel.css">
+</head>
+
+<body data-spy="scroll" data-target="#navSection" data-offset="100">
+    <div class="sidebar">
+        <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="../assets/img/gidrometeo.svg"></a></div><!-- sidebar-header -->
+        <div id="dpSidebarBody" class="sidebar-body">
+            <ul class="nav nav-sidebar">
+                <li class="nav-label"><label class="content-label">Прогноз погоды</label></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Общего пользования</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Наукастинг(фактическая)</a>
+                        <a href="#" class="nav-sub-link">Сверхкраткосрочный</a>
+                        <a href="#" class="nav-sub-link">Краткосрочный</a>
+                        <a href="#" class="nav-sub-link">Среднесрочный</a>
+                        <a href="#" class="nav-sub-link">С расширенным сроком</a>
+                        <a href="#" class="nav-sub-link">Долгосрочный</a>
+                    </nav>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plane-departure"></i> Авиационные</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
+                <li class="nav-label"><label class="content-label">Наблюдения и мониторинг</label></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-eye"></i> Мониторинг</a></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-database"></i> Сбор данных</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Источники</a>
+                        <a href="#" class="nav-sub-link">Метеостанции</a>
+                        <a href="#" class="nav-sub-link">Метео карты</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-chart-line"></i> Анализ</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Синоптический анализ</a>
+                        <a href="#" class="nav-sub-link">Анализ и объяснение</a>
+                        <a href="#" class="nav-sub-link">Фактическая погода</a>
+                        <a href="#" class="nav-sub-link">Данные об условиях погоды</a>
+                    </nav>
+                </li>
+                <li class="nav-label"><label class="content-label">Визуализация данных</label></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-chart-area"></i> Визуализация данных</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-layer-group"></i> Виджеты</a></li>
+                <li class="nav-label"><label class="content-label">Интеграция</label></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-code"></i> Обмен данными</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">В виде таблиц</a>
+                        <a href="#" class="nav-sub-link">Экспорт на Excel</a>
+                        <a href="#" class="nav-sub-link">Экспорт на XML</a>
+                    </nav>
+                </li>
+                <li class="nav-label"><label class="content-label">Справочники и классификаторы</label></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-cogs"></i> Справочники</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Прогнозы погоды</a>
+                        <a href="#" class="nav-sub-link">Метеостанции</a>
+                        <a href="#" class="nav-sub-link">Пункты назначений</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-user-cog"></i> Пользователи</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Группа пользователей</a>
+                        <a href="#" class="nav-sub-link">Роль пользователи</a>
+                        <a href="#" class="nav-sub-link">Пользователи</a>
+                    </nav>
+                </li>
+                <li class="nav-label"><label class="content-label">Персональные данные</label></li>
+                <li class="nav-item"><a href="#" class="nav-link with-sub"><i class="fas fa-user"></i> Кабинет пользователя</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Почта</a>
+                        <a href="#" class="nav-sub-link">Чат</a>
+                        <a href="#" class="nav-sub-link">Настройка</a>
+                        <a href="page-signin.html" class="nav-sub-link">Выход</a>
+                    </nav>
+                </li>
+            </ul>
+            <hr class="mg-t-30 mg-b-25">
+            <ul class="nav nav-sidebar">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-question-circle"></i> Помощь</a></li>
+                <li class="nav-item"><a href="#offCanvas3" class="nav-link off-canvas-menu"><i class="fas fa-info-circle"></i> О системе</a></li>
+            </ul>
+        </div><!-- sidebar-body -->
+    </div><!-- sidebar -->
+    <div class="content content-page">
+        <div class="header">
+            <div class="header-left">
+                <a href="" class="burger-menu"><i data-feather="menu"></i></a>
+                <div class="header-search">
+                    <i data-feather="search"></i>
+                    <input type="search" class="form-control" placeholder="Что вы ищете?">
+                </div><!-- header-search -->
+            </div><!-- header-left -->
+            <div class="header-right">
+                <div class="dropdown dropdown-notification">
+                    <a href="" class="dropdown-link new" data-toggle="dropdown"><i class="far fa-bell fa-lg"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu-header">
+                            <h6>Уведомления</h6>
+                            <a href=""><i data-feather="more-vertical"></i></a>
+                        </div><!-- dropdown-menu-header -->
+                        <div class="dropdown-menu-body">
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle text-primary bg-primary-light">s</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Socrates Itumay</strong> marked the task as completed.</p>
+                                    <span>5 hours ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-pink bg-pink-light">r</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Reynante Labares</strong> marked the task as incomplete.</p>
+                                    <span>8 hours ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-success bg-success-light">d</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Dyanne Aceron</strong> responded to your comment on this <strong>post</strong>.</p>
+                                    <span>a day ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-indigo bg-indigo-light">k</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Kirby Avendula</strong> marked the task as incomplete.</p>
+                                    <span>2 days ago</span>
+                                </div>
+                            </a>
+                        </div><!-- dropdown-menu-body -->
+                        <div class="dropdown-menu-footer">
+                            <a href="">Просмотреть все уведомления</a>
+                        </div>
+                    </div><!-- dropdown-menu -->
+                </div>
+            </div><!-- header-right -->
+        </div><!-- header -->
+        <div class="content-header justify-content-between">
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Виджеты</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="d-none d-sm-flex">
+                <a href="" class="btn btn-white"><i class="fas fa-sync"></i> Обновить</a>
+            </div>
+        </div><!-- content-header -->
+        <div class="content-body">
+            <div class="row row-sm">
+                <div class="col-xl-12">
+                    <div class="card card-hover card-analytics-one">
+                        <div class="card-body">
+                            <div class="row row-sm">
+                                <div class="col-sm-12 col-md-8">
+                                    <div class="card-chart-weather">
+                                        <div class="card-header bg-transparent d-flex">
+                                            <div class="pd-10 flex-grow-1">
+                                                <h6 class="card-title mg-b-0 d-sm-none d-none">Фактическая погода</h6>
+                                            </div>
+                                            <div class="pd-10">
+                                                <div class="btn-group"><button class="inline-wi legend-label temp-label">Температура</button>
+                                                    <button class="inline-wi legend-label wind-label label-off">Ветер</button>
+                                                    <button class="inline-wi legend-label rain-label label-off">Осадки</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-chart-header">
+                                                <div class="chart-legend">
+                                                    <!--  <h6 class="current-temp inline-wi"></h6> -->
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button class="temp-format celsius">°C</button>
+                                                    <button class="temp-format faren">°F</button>
+                                                </div><!-- btn-group -->
+                                            </div><!-- card-chart-header -->
+                                            <div class="chart-wrapper">
+                                                <div class="graph">
+                                                    <canvas id="temp-chart" class="temp-chart"></canvas>
+                                                </div>
+                                                <div class="graph">
+                                                    <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
+                                                </div>
+                                                <div class="graph">
+                                                    <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- card -->
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="d-flex mg-b-20 mg-t-40">
+                                        <select class="custom-select custom-select-sm tx-12">
+                                            <option value="1703">Андижанская область</option>
+                                            <option value="1706">Бухарская область</option>
+                                            <option value="1708">Джизакская область</option>
+                                            <option value="1710">Кашкадарьинская область</option>
+                                            <option value="1712">Навоийская область</option>
+                                            <option value="1714">Наманганская область</option>
+                                            <option value="1718">Самаркандская область</option>
+                                            <option value="1722">Сурхандарьинская область</option>
+                                            <option value="1724">Сырдарьинская область</option>
+                                            <option value="1726" selected="">г. Ташкент</option>
+                                            <option value="1727">Ташкентская область</option>
+                                            <option value="1730">Ферганская область</option>
+                                            <option value="1733">Хорезмская область</option>
+                                            <option value="1735">Республика Каракалпакстан</option>
+                                            <option value="1">Ташкенткая область</option>
+                                        </select>
+                                        <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i class="fas fa-download"></i></button>
+                                    </div>
+                                    <label class="content-label content-label-xs pull-right" id="datetime"></label>
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h2 class="card-value mg-b-0 tx-dark tx-semibold current-temp">3</h2>
+                                        <span class="card-value-sub tx-meteo mg-l-10 tx-md-16 tx-lg-18"><i data-feather="trending-up" class="svg-12"></i> 1&deg;</span>
+                                    </div>
+                                    <p class="card-value-desc mg-l-10 tx-md-12 tx-lg-14 tx-lx-16"></p>
+                                    <hr>
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <ul class="list-group tx-md-16 tx-lg-17 tx-lx-16">
+                                            <li class="list-group-item d-flex align-items-center no-border no-shadow">
+                                                <span class="wd-60 mg-r-15 tx-dark tx-semibold precip"></span>
+                                                <div class="pull-right">
+                                                    <span class="d-block tx-12 tx-danger"><i data-feather="trending-down" class="svg-12"></i> 20%</span>
+                                                    <h6 class="tx-14 tx-normal mg-b-0">Влажность</h6>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item d-flex align-items-center no-border no-shadow">
+                                                <span class="wd-60 mg-r-15 tx-dark tx-semibold wind"></span>
+                                                <div>
+                                                    <span class="d-block tx-12 tx-meteo"><i data-feather="git-commit" class="svg-12"></i> 1 м/с</span>
+                                                    <h6 class="tx-14 tx-normal mg-b-0">Ветер</h6>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item d-flex align-items-center no-border no-shadow">
+                                                <span class="wd-60 mg-r-15 tx-dark tx-semibold clouds"></span>
+                                                <div>
+                                                    <span class="d-block  tx-12 tx-danger"><i data-feather="trending-down" class="svg-12"></i> 30%</span>
+                                                    <h6 class="tx-14 tx-normal mg-b-0">Осадка</h6>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p class="mg-l-10 tx-md-10 tx-lg-11 tx-lx-12">Вид облаков нижнего яруса: <span class="tx-medium tx-meteo">слоисто-кучевые</span></p>
+                                </div><!-- col -->
+                            </div><!-- row -->
+                        </div>
+                    </div><!-- card -->
+                </div><!-- col -->
+            </div>
+            <div class="row row-sm">
+                <!-- ДРУГИЕ ИСТОЧНИК -->
+                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-weather-one bg-weather-panel">
+                        <div class="card-header bg-transparent pd-t-15 pd-l-20 pd-r-15 pd-b-0 bd-b-0">
+                             <p class="card-title mg-b-0">AccuWeather.com</p>
+                            <nav class="nav">
+                                <a href="" class="tx-white"><i data-feather="help-circle" class="svg-16"></i></a>
+                            </nav>
+                        </div>
+                        <div class="card-body pd-t-0">
+                            <div>
+                                <h1 class="card-value"><span class="current-temp"></span></h1>
+                                <div class="d-flex align-items-center tx-teal">
+                                    <i data-feather="arrow-up-circle" class="svg-12 fill-teal"></i>
+                                    <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
+                                </div>
+                            </div>
+                            <div class="flot-chart mgt-30"> <img src="../assets/weather/03/200.svg" class="svg-color"></div>
+                        </div><!-- card-body -->
+                    </div><!-- card -->
+                </div><!-- col -->
+                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-weather-one bg-weather-panel">
+                        <div class="card-header bg-transparent pd-t-15 pd-l-20 pd-r-15 pd-b-0 bd-b-0">
+                            <p class="card-title mg-b-0">Total Profit</p>
+                            <nav class="nav">
+                                <a href="" class="tx-white"><i data-feather="help-circle" class="svg-16"></i></a>
+                            </nav>
+                        </div>
+                        <div class="card-body pd-t-0">
+                            <div>
+                                <h1 class="card-value"><span class="current-temp"></span></h1>
+                                <div class="d-flex align-items-center tx-teal">
+                                    <i data-feather="arrow-up-circle" class="svg-12 fill-teal"></i>
+                                    <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
+                                </div>
+                            </div>
+                             <div class="flot-chart mgt-30"> <img src="../assets/weather/03/201.svg" class="svg-color"></div>
+                        </div><!-- card-body -->
+                    </div><!-- card -->
+                </div><!-- col -->
+                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-weather-one bg-weather-panel">
+                        <div class="card-header bg-transparent pd-t-15 pd-l-20 pd-r-15 pd-b-0 bd-b-0">
+                             <p class="card-title mg-b-0">Total Profit</p>
+                            <nav class="nav">
+                                <a href="" class="tx-white"><i data-feather="help-circle" class="svg-16"></i></a>
+                            </nav>
+                        </div>
+                        <div class="card-body pd-t-0">
+                            <div>
+                                <h1 class="card-value"><span class="current-temp"></span></h1>
+                                <div class="d-flex align-items-center tx-teal">
+                                    <i data-feather="arrow-up-circle" class="svg-12 fill-teal"></i>
+                                    <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
+                                </div>
+                            </div>
+                            <div class="flot-chart mgt-30"> <img src="../assets/weather/03/202.svg" class="svg-color"></div>
+                        </div><!-- card-body -->
+                    </div><!-- card -->
+                </div><!-- col -->
+            </div>
+            <div class="row row-sm mg-t-15 mg-sm-t-20">
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-current-weather">
+                        <div class="card-header bg-transparent no-border pd-lg-y-15">
+                            <div class="d-flex">
+                                <div class="pd-10 flex-grow-1">
+                                    <div class="btn-group">
+                                        <button class="btn btn-outline-light btn-sm active"><i class="wi wi-day-sunny"></i> Днем</button>
+                                        <button class="btn btn-outline-light btn-sm"><i class="wi wi-night-clear"></i> Ночью</button>
+                                    </div>
+                                </div>
+                                <div class="pd-10 mg-l-auto">
+                                    <div class="d-flex">
+                                        <select class="custom-select custom-select-sm tx-12">
+                                            <option value="1703">Андижанская область</option>
+                                            <option value="1706">Бухарская область</option>
+                                            <option value="1708">Джизакская область</option>
+                                            <option value="1710">Кашкадарьинская область</option>
+                                            <option value="1712">Навоийская область</option>
+                                            <option value="1714">Наманганская область</option>
+                                            <option value="1718">Самаркандская область</option>
+                                            <option value="1722">Сурхандарьинская область</option>
+                                            <option value="1724">Сырдарьинская область</option>
+                                            <option value="1726" selected="">г. Ташкент</option>
+                                            <option value="1727">Ташкентская область</option>
+                                            <option value="1730">Ферганская область</option>
+                                            <option value="1733">Хорезмская область</option>
+                                            <option value="1735">Республика Каракалпакстан</option>
+                                            <option value="1">Ташкенткая область</option>
+                                        </select>
+                                        <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i class="fas fa-arrow-down"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- card-header -->
+                        <div class="card-body">
+                            <div class="row row-sm">
+                                <div class="col-sm">
+                                    <!-- бугун -->
+                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
+                                        <div class="card-body">
+                                            <h1 class="card-value current-temp tx-meteo">0</h1>
+                                            <div class="w-icon"> <i class="wi wi-snow-wind"></i> </div>
+                                        </div><!-- card-body -->
+                                        <h6 class="card-title tx-center">15.11.2020</h6>
+                                    </div><!-- card -->
+                                </div>
+                                <div class="col-sm">
+                                    <!-- эртага -->
+                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
+                                        <div class="card-body">
+                                            <h1 class="card-value current-temp tx-meteo">0</h1>
+                                            <div class="w-icon"><i class="wi wi-snow-wind"></i> </div>
+                                        </div><!-- card-body -->
+                                        <h6 class="card-title tx-center">15.11.2020</h6>
+                                    </div><!-- card -->
+                                </div>
+                                <div class="col-sm">
+                                    <!-- индинга -->
+                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
+                                        <div class="card-body">
+                                            <h1 class="card-value current-temp tx-meteo">0</h1>
+                                            <div class="w-icon"><i class="wi wi-snow-wind"></i></div>
+                                        </div><!-- card-body -->
+                                        <h6 class="card-title tx-center">15.11.2020</h6>
+                                    </div><!-- card -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 col-sm">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <i class="wi-wi wi wi-raindrop"></i>
+                                        <h4 class="tx-numeric tx-normal precip"></h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Влажность</label>
+                                </div><!-- col -->
+                                <div class="col-md-4 col-sm">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <i class="wi-wi wi wi-strong-wind"></i>
+                                        <h4 class="tx-numeric tx-normal wind"></h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Ветер</label>
+                                </div><!-- col -->
+                                <div class="col-md-4 col-sm mg-t-15 mg-sm-t-0">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <i class="wi-wi wi wi-cloudy"></i>
+                                        <h4 class="tx-numeric tx-normal clouds"></h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Осадка</label>
+                                </div><!-- col -->
+                            </div><!-- row -->
+                        </div><!-- card-footer -->
+                    </div><!-- card -->
+                </div><!-- col -->
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-chart-weather">
+                        <div class="card-header bg-transparent d-flex">
+                            <div class="pd-10 flex-grow-1">
+                                <h6 class="card-title mg-b-0 current-temp"></h6>
+                            </div>
+                            <div class="pd-10">
+                                <div class="btn-group"><button class="inline-wi legend-label temp-label">Температура</button>
+                                    <button class="inline-wi legend-label wind-label label-off">Ветер</button>
+                                    <button class="inline-wi legend-label rain-label label-off">Осадки</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-chart-header">
+                                <div class="chart-legend">
+                                    <!--  <h6 class="current-temp inline-wi"></h6> -->
+                                </div>
+                                <div class="btn-group">
+                                    <button class="temp-format celsius">°C</button>
+                                    <button class="temp-format faren">°F</button>
+                                </div><!-- btn-group -->
+                            </div><!-- card-chart-header -->
+                            <div class="chart-wrapper">
+                                <div class="graph">
+                                    <canvas id="temp-chart" class="temp-chart"></canvas>
+                                </div>
+                                <div class="graph">
+                                    <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
+                                </div>
+                                <div class="graph">
+                                    <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- card -->
+                </div><!-- col -->
+            </div>
+            <div class="row row-sm mg-t-15 mg-sm-t-20">
+                <div class="col-md-12 col-xl-12 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-weather-location">
+                        <div class="card-header bg-transparent">
+                            <div>
+                                <h6 class="card-title mg-b-0">Погода по регионам</h6>
+                            </div>
+                            <nav class="nav">
+                                <div class="btn-group">
+                                    <button class="btn btn-white btn-xs">Сегодня</button>
+                                    <button class="btn btn-white btn-xs">Завтра</button>
+                                    <button class="btn btn-white btn-xs active">После завтра</button>
+                                </div>
+                            </nav>
+                        </div><!-- card-header -->
+                        <div class="card-body">
+                            <div class="list-group-wrapper order-2 order-md-0 mg-t-20 mg-sm-t-30 mg-md-t-0">
+                                <ul class="list-group list-group-flush mg-b-15">
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Андижан</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Фергана</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Наманган</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Ташкентская обл.</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>г. Ташкент</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Сирдарья</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                </ul>
+                                <a href="" class="d-flex align-items-center tx-12">Подробнее <i class="icon ion-android-arrow-forward mg-l-5"></i></a>
+                            </div>
+                            <div class="vmap-wrapper bd-sm-l">
+                                <div id="vmap" class="vmap order-1 order-md-0"></div>
+                            </div>
+                        </div><!-- card-body -->
+                    </div><!-- card -->
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- content-body -->
+    </div><!-- content -->
+    <div id="offCanvas3" class="off-canvas off-canvas-overlay off-canvas-right">
+        <a href="#" class="close"><i data-feather="x"></i></a>
+        <div class="pd-30 ht-100p">
+            <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="../assets/img/gidrometeo.svg"></a></div>
+            <h6 class="tx-colo-01 tx-semibold mg-t-50 mg-b-25">О системе</h6>
+            <p class="mg-b-25 tx-color-03 tx-justify">Система для автоматизации основных этапов прикладной обработки и анализа гидрометерологических данных Узгидромета</p>
+        </div>
+    </div><!-- off-canvas -->
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/feather-icons/feather.min.js"></script>
+    <script src="../lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../lib/js-cookie/js.cookie.js"></script>
+    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.stack.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.threshold.js"></script>
+    <script src="../lib/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../lib/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="../lib/select2/js/select2.min.js"></script>
+    <script src="../assets/js/meteo.js"></script>
+    <script src="../assets/js/canvas.js"></script>
+    <script src="../assets/js/flot.sampledata.js"></script>
+    <script src="../assets/js/vmap.sampledata.js"></script>
+    <!-- weather-panel -->
+    <script src="../assets/js/weather-panel.js"></script>
+    <script>
+    var dt = new Date();
+    document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2));
+
+    </script>
+    <script>
+    $(function() {
+
+        'use strict'
+
+        $.plot('#flotChart1', [{
+            data: df1,
+            color: '#38c4fa'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 1.5,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
+                },
+                points: {
+                    show: false,
+                    radius: 2,
+                    lineWidth: 1.5
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0,
+            },
+            yaxis: { show: false },
+            xaxis: {
+                show: false,
+                min: 40,
+                max: 80
+            }
+        });
+
+        $.plot('#flotChart2', [{
+            data: df1,
+            color: '#22d273'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 1.5,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
+                },
+                points: {
+                    show: false,
+                    radius: 2,
+                    lineWidth: 1.5
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0,
+            },
+            yaxis: { show: false },
+            xaxis: {
+                show: false,
+                min: 20,
+                max: 60
+            }
+        });
+
+        $.plot('#flotChart3', [{
+            data: df1,
+            color: '#e83e8c'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 1.5,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
+                },
+                points: {
+                    show: false,
+                    radius: 2,
+                    lineWidth: 1.5
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0,
+            },
+            yaxis: { show: false },
+            xaxis: {
+                show: false,
+                min: 60,
+                max: 100
+            }
+        });
+
+        $.plot('#flotChart4', [{
+            data: df1,
+            color: '#fd7e14'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 1.5,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
+                },
+                points: {
+                    show: false,
+                    radius: 2,
+                    lineWidth: 1.5
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0,
+            },
+            yaxis: { show: false },
+            xaxis: {
+                show: false,
+                min: 100,
+                max: 140
+            }
+        });
+
+        // card-calendar-one widget
+        $('#datepicker1').datepicker({
+            showOtherMonths: true
+        });
+
+    })
+
+    </script>
+</body>
+
+</html>

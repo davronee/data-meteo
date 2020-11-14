@@ -11463,7 +11463,13 @@ a.badge-danger-light:focus {
 
 @media (min-width: 576px) {
     .card-header {
-        padding: 20px;
+        padding: 5px;
+    }
+}
+
+@media (min-width: 425px) {
+    .card-header {
+        padding: 5px;
     }
 }
 
@@ -14823,6 +14829,15 @@ textarea.form-control {
 .fill-pink {
     fill: rgba(232, 62, 140, 0.15);
 }
+
+.fill-red {
+    fill: rgba(232, 62, 140, 0.15);
+}
+
+.fill-green {
+    fill: rgba(232, 62, 140, 0.15);
+}
+
 
 .stroke-base {
     stroke-width: 2px;
@@ -21436,14 +21451,14 @@ body {
 .card-weather-one .card-value {
     font-family: "Oswald", sans-serif;
     font-weight: 400;
-    font-size: 26px;
+    font-size: 20px;
     color: #637382;
     margin-bottom: 5px;
 }
 
 @media (min-width: 1200px) {
     .card-weather-one .card-value {
-        font-size: 28px;
+        font-size: 22px;
     }
 }
 

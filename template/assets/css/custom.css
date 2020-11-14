@@ -42,3 +42,19 @@
 .bg-day-head{
   background: #75c6f3;
 }
+.pull-right{
+    float: right !important;
+}
+
+.flot-chart svg{
+    color: #ddd !important;
+}
+
+.bg-weather-panel{
+    background: linear-gradient(to top, #ffffff 15%, #45c7fa 100%) !important;
+    border-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.mgt-30{
+    margin-top: -30px !important;
+}
