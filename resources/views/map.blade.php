@@ -224,8 +224,8 @@
 
                 //fetch the geojson and add it to our geojson layer
                 getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
-                getGeoData('{{asset('asset/geojson/sirdaryo.topojson')}}').then(data => geojsonSnow.addData(data));
-                getGeoData('{{asset('asset/geojson/amudaryo.topojson')}}').then(data => geojsonSnow.addData(data));
+                getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+{{--                getGeoData('{{asset('asset/geojson/amudaryo.topojson')}}').then(data => geojsonSnow.addData(data));--}}
 
 
 
