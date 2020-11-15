@@ -17280,7 +17280,7 @@ body {
     color: #575d78;
     font-size: 13px;
     display: block;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .nav-sidebar .nav-sub-link:hover,
