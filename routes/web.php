@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['set_locale']], function() {
     Route::get('/', function () {
-        return view('map');
+        return view('pages.map');
     });
+
+    Route::prefix('widget')->group(function () {
+        Route::get('/', [App\Http\Controllers\WidgetController::class, 'index'])->name('home');
+
+    });
+
     Auth::routes(['register' => false]);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
