@@ -240,7 +240,7 @@
                                 <span class="tx-medium current-temp">0</span>
                             </li>
                             <li class="list-group-item">
-                                <span id="1"><a href="#">Ташкенткая область</span>
+                                <span id="1"><a href="#">Ташкенткая область</a></span>
                                 <span class="tx-medium current-temp">0</span>
                             </li>
                         </ul>

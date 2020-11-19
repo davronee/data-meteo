@@ -16,17 +16,20 @@ $(document).ready(function() {
     }
 
     //get location
-    navigator.geolocation.getCurrentPosition(success, error, {
-        timeout: 20000,
-        maximumAge: 0,
-        enableHighAccuracy: false
-    });
+    // navigator.geolocation.getCurrentPosition(success, error, {
+    //     timeout: 20000,
+    //     maximumAge: 0,
+    //     enableHighAccuracy: false
+    // });
 
     // extract longitude and latitude
-    function success(position) {
+    // function success(position) {
         $(".loading-display").css("visibility", "hidden");
-        var longitude = position.coords.longitude.toFixed(4);
-        var latitude = position.coords.latitude.toFixed(4);
+        // var longitude = position.coords.longitude.toFixed(4);
+        // var latitude = position.coords.latitude.toFixed(4);
+
+        var latitude = 41.315514;
+        var longitude = 69.246097;
         console.log(
             "Координаты - долгота: " + longitude + " широта: " + latitude
         );
@@ -191,7 +194,7 @@ $(document).ready(function() {
                 createChart();
             });
         });
-    }
+    // }
 
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
