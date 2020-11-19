@@ -248,7 +248,8 @@
                         <a href="" class="d-flex pull-right tx-12">Подробнее <i class="icon ion-android-arrow-forward mg-l-5"></i></a>
                     </div>
                     <div class="vmap-wrapper bd-sm-l">
-                        <div id="vmap" class="vmap order-1 order-md-0"></div>
+{{--                        <div id="vmap" class="vmap order-1 order-md-0"></div>--}}
+                        <iframe src="{{asset('template/map/index.html')}}" frameborder="0" width="1340" height="600"></iframe>
                     </div>
                 </div><!-- card-body -->
             </div><!-- card -->
