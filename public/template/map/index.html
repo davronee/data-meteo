@@ -26,8 +26,8 @@
     <style>
         .myCSSClass {
             background: none;
-            border:none;
-            box-shadow:none;
+            border: none;
+            box-shadow: none;
             color: #000;
             text-stroke: #fff;
             text-stroke-width: 0.5px;
@@ -60,20 +60,18 @@
                 //https://api.mapbox.com/styles/v1/YOUR_USERNAME/YOUR_STYLE_ID/tiles/256/{z}/{x}/{y}?access_token=YOUR_ACCESS_TOKEN
                 //mapbox://styles/davronee/ckhg7kbst17k219p7rul6h6cl
                 mapbox://styles/davronee/ckhn6i7z60kh419pgczbzn33i
-                L.tileLayer('https://api.mapbox.com/styles/v1/davronee/ckhn6i7z60kh419pgczbzn33i/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2cm9uZWUiLCJhIjoiY2p1bzF0dXd1MHNicTN5bHQ3c2g4czhscCJ9.u8YChrboWwmmUmcsQyw2bQ', {
-                    attribution: 'Map data',
-                    maxZoom: 18,
-                    id: 'mapbox/satellite-streets-v11',
-                    tileSize: 512,
-                    zoomOffset: -1,
-                    accessToken: 'pk.eyJ1IjoiZGF2cm9uZWUiLCJhIjoiY2p1bzF0dXd1MHNicTN5bHQ3c2g4czhscCJ9.u8YChrboWwmmUmcsQyw2bQ'
-                }).addTo(mymap);
+                    L.tileLayer('https://api.mapbox.com/styles/v1/davronee/ckhn6i7z60kh419pgczbzn33i/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2cm9uZWUiLCJhIjoiY2p1bzF0dXd1MHNicTN5bHQ3c2g4czhscCJ9.u8YChrboWwmmUmcsQyw2bQ', {
+                        attribution: 'Map data',
+                        maxZoom: 18,
+                        id: 'mapbox/satellite-streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1,
+                        accessToken: 'pk.eyJ1IjoiZGF2cm9uZWUiLCJhIjoiY2p1bzF0dXd1MHNicTN5bHQ3c2g4czhscCJ9.u8YChrboWwmmUmcsQyw2bQ'
+                    }).addTo(mymap);
 
                 // L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
                 //     attribution: ' Тадбиркорлик учун бўш ер участкалари харитаси'
                 // }).addTo(mymap);
-
-
 
 
             },
@@ -84,13 +82,13 @@
                         if (response.data.weather_code == 'clear') {
                             this.icon = L.icon({
                                 iconUrl: 'quyoshli.png',
-                                iconSize: [42,42],
+                                iconSize: [42, 42],
 
                             });
-                            if (response.data.air_t > 0)
-                                this.weather = "+" + response.data.air_t;
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
                             else
-                                this.weather = response.data.air_t;
+                                this.weather = Math.floor(response.data.air_t);
                             L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
                                 {
                                     permanent: true,
@@ -104,14 +102,14 @@
                             response.data.weather_code == 'mostly_cloudy') {
                             this.icon = L.icon({
                                 iconUrl: 'quyosh_bulut.png',
-                                iconSize: [82,82],
+                                iconSize: [82, 82],
 
 
                             });
-                            if (response.data.air_t > 0)
-                                this.weather = "+" + response.data.air_t;
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
                             else
-                                this.weather = response.data.air_t;
+                                this.weather = Math.floor(response.data.air_t);
                             L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
                                 {
                                     permanent: true,
@@ -124,13 +122,13 @@
                             response.data.weather_code == 'fog') {
                             this.icon = L.icon({
                                 iconUrl: 'bulutli.png',
-                                iconSize: [82,82],
+                                iconSize: [82, 82],
 
                             });
-                            if (response.data.air_t > 0)
-                                this.weather = "+" + response.data.air_t;
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
                             else
-                                this.weather = response.data.air_t;
+                                this.weather = Math.floor(response.data.air_t);
                             L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
                                 {
                                     permanent: true,
@@ -145,13 +143,13 @@
                         ) {
                             this.icon = L.icon({
                                 iconUrl: 'yomgir.png',
-                                iconSize: [82,82],
+                                iconSize: [82, 82],
 
                             });
-                            if (response.data.air_t > 0)
-                                this.weather = "+" + response.data.air_t;
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
                             else
-                                this.weather = response.data.air_t;
+                                this.weather = Math.floor(response.data.air_t);
                             L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
                                 {
                                     permanent: true,
@@ -162,13 +160,13 @@
                         } else {
                             this.icon = L.icon({
                                 iconUrl: 'qor.png',
-                                iconSize: [82,82],
+                                iconSize: [82, 82],
 
                             });
-                            if (response.data.air_t > 0)
-                                this.weather = "+" + response.data.air_t;
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
                             else
-                                this.weather = response.data.air_t;
+                                this.weather = Math.floor(response.data.air_t);
                             L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
                                 {
                                     permanent: true,

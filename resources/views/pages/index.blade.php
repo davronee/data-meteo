@@ -12,7 +12,8 @@
                                         <h6 class="card-title mg-b-0 d-sm-none d-none">Фактическая погода</h6>
                                     </div>
                                     <div class="pd-10">
-                                        <div class="btn-group"><button class="inline-wi legend-label temp-label">Температура</button>
+                                        <div class="btn-group">
+                                            <button class="inline-wi legend-label temp-label">Температура</button>
                                             <button class="inline-wi legend-label wind-label label-off">Ветер</button>
                                             <button class="inline-wi legend-label rain-label label-off">Осадки</button>
                                         </div>
@@ -61,12 +62,14 @@
                                     <option value="1735">Республика Каракалпакстан</option>
                                     <option value="1">Ташкенткая область</option>
                                 </select>
-                                <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i class="fas fa-download"></i></button>
+                                <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i
+                                        class="fas fa-download"></i></button>
                             </div>
                             <label class="content-label content-label-xs pull-right" id="datetime"></label>
                             <div class="d-flex align-items-baseline mg-b-5">
                                 <h2 class="card-value mg-b-0 tx-dark tx-semibold current-temp">3</h2>
-                                <span class="card-value-sub tx-meteo mg-l-10 tx-md-16 tx-lg-18"><i data-feather="trending-up" class="svg-12"></i> 1&deg;</span>
+                                <span class="card-value-sub tx-meteo mg-l-10 tx-md-16 tx-lg-18"><i
+                                        data-feather="trending-up" class="svg-12"></i> 1&deg;</span>
                             </div>
                             <p class="card-value-desc mg-l-10 tx-md-12 tx-lg-14 tx-lx-16"></p>
                             <hr>
@@ -75,27 +78,31 @@
                                     <li class="list-group-item d-flex align-items-center no-border no-shadow">
                                         <span class="wd-60 mg-r-15 tx-dark tx-semibold precip"></span>
                                         <div class="pull-right">
-                                            <span class="d-block tx-12 tx-danger"><i data-feather="trending-down" class="svg-12"></i> 20%</span>
+                                            <span class="d-block tx-12 tx-danger"><i data-feather="trending-down"
+                                                                                     class="svg-12"></i> 20%</span>
                                             <h6 class="tx-14 tx-normal mg-b-0">Влажность</h6>
                                         </div>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center no-border no-shadow">
                                         <span class="wd-60 mg-r-15 tx-dark tx-semibold wind"></span>
                                         <div>
-                                            <span class="d-block tx-12 tx-meteo"><i data-feather="git-commit" class="svg-12"></i> 1 м/с</span>
+                                            <span class="d-block tx-12 tx-meteo"><i data-feather="git-commit"
+                                                                                    class="svg-12"></i> 1 м/с</span>
                                             <h6 class="tx-14 tx-normal mg-b-0">Ветер</h6>
                                         </div>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center no-border no-shadow">
                                         <span class="wd-60 mg-r-15 tx-dark tx-semibold clouds"></span>
                                         <div>
-                                            <span class="d-block  tx-12 tx-danger"><i data-feather="trending-down" class="svg-12"></i> 30%</span>
+                                            <span class="d-block  tx-12 tx-danger"><i data-feather="trending-down"
+                                                                                      class="svg-12"></i> 30%</span>
                                             <h6 class="tx-14 tx-normal mg-b-0">Осадка</h6>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
-                            <p class="mg-l-10 tx-md-10 tx-lg-11 tx-lx-12">Вид облаков нижнего яруса: <span class="tx-medium tx-meteo">слоисто-кучевые</span></p>
+                            <p class="mg-l-10 tx-md-10 tx-lg-11 tx-lx-12">Вид облаков нижнего яруса: <span
+                                    class="tx-medium tx-meteo">слоисто-кучевые</span></p>
                         </div><!-- col -->
                     </div><!-- row -->
                 </div>
@@ -120,7 +127,8 @@
                             <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
                         </div>
                     </div>
-                    <div class="flot-chart mgt-30"> <img src="{{asset('template/assets/weather/03/200.svg')}}" class="svg-color"></div>
+                    <div class="flot-chart mgt-30"><img src="{{asset('template/assets/weather/03/200.svg')}}"
+                                                        class="svg-color"></div>
                 </div><!-- card-body -->
             </div><!-- card -->
         </div><!-- col -->
@@ -140,7 +148,8 @@
                             <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
                         </div>
                     </div>
-                    <div class="flot-chart mgt-30"> <img src="{{asset('template/assets/weather/03/201.svg')}}" class="svg-color"></div>
+                    <div class="flot-chart mgt-30"><img src="{{asset('template/assets/weather/03/201.svg')}}"
+                                                        class="svg-color"></div>
                 </div><!-- card-body -->
             </div><!-- card -->
         </div><!-- col -->
@@ -160,7 +169,8 @@
                             <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
                         </div>
                     </div>
-                    <div class="flot-chart mgt-30"> <img src="{{asset('template/assets/weather/03/202.svg')}}" class="svg-color"></div>
+                    <div class="flot-chart mgt-30"><img src="{{asset('template/assets/weather/03/202.svg')}}"
+                                                        class="svg-color"></div>
                 </div><!-- card-body -->
             </div><!-- card -->
         </div><!-- col -->
@@ -180,12 +190,12 @@
        </div> -->
                     </nav>
                 </div><!-- card-header -->
-                <div class="card-body">
+                <div class="card-body" id="apps">
                     <div class="list-group-wrapper order-2 order-md-0 mg-t-20 mg-sm-t-30 mg-md-t-0">
                         <ul class="list-group list-group-flush mg-b-15">
                             <li class="list-group-item">
                                 <span id="1703"><a href="#">Андижанская область</a></span>
-                                <span class="tx-medium current-temp">0</span>
+                                <span class="tx-medium current-temp-andijan"0</span>
                             </li>
                             <li class="list-group-item">
                                 <span id="1706"><a href="#">Бухарская область</a></span>
@@ -245,14 +255,20 @@
                             </li>
                         </ul>
                         <br>
-                        <a href="" class="d-flex pull-right tx-12">Подробнее <i class="icon ion-android-arrow-forward mg-l-5"></i></a>
+                        <a href="" class="d-flex pull-right tx-12">Подробнее <i
+                                class="icon ion-android-arrow-forward mg-l-5"></i></a>
                     </div>
                     <div class="vmap-wrapper bd-sm-l">
-{{--                        <div id="vmap" class="vmap order-1 order-md-0"></div>--}}
-                        <iframe src="{{asset('template/map/index.html')}}" frameborder="0" width="1340" height="600"></iframe>
+                        {{--                        <div id="vmap" class="vmap order-1 order-md-0"></div>--}}
+                        <iframe src="{{asset('template/map/index.html')}}" frameborder="0" width="1340"
+                                height="600"></iframe>
                     </div>
                 </div><!-- card-body -->
             </div><!-- card -->
         </div><!-- col -->
     </div><!-- row -->
-    @endsection
+@endsection
+@section('js')
+
+
+@endsection

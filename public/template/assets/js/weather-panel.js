@@ -7,6 +7,7 @@ $(document).ready(function() {
     var metric = true;
     var date;
     var json;
+    var jsonRegion;
     //check that geolocation feature supported by browser
     if ("geolocation" in navigator) {
         console.log("Геолокация поддерживается");
@@ -36,104 +37,135 @@ $(document).ready(function() {
 
         //get weather data from DarkSky as JSON array
         var darkSkyURL =
-            "https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/";
+            // "https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/";
+            "http://www.meteo.uz/api/v2/weather/current.json?city=tashkent&language=ru";
         var callback = "?callback=?"; // makes it a jsonP request
 
-        var requestURL = darkSkyURL + latitude + "," + longitude + callback;
+        var requestURL = darkSkyURL;// + latitude + "," + longitude + callback;
         console.log(requestURL);
         // fetch json data from Dark Sky API
         $.getJSON(requestURL, function(result) {
             json = result;
             // split timezone array, format is Country/city
-            var locArray = json.timezone.split("/");
+            // var locArray = json.timezone.split("/");
 
-            $(".loc-name").html(locArray[1] + ", " + locArray[0]);
+            // $(".loc-name").html(locArray[1] + ", " + locArray[0]);
             $(".coordinates").html(
                 "Широта: " + latitude + " и долгота: " + longitude
             );
             //show icons
             $(".small-icon").css("visibility", "visible");
             //get temperature
-            setTemp(json.currently.temperature, metric);
+            setTemp(json.air_t, metric);
 
             //get description
-            var currDesc = json.currently.summary;
+            var currDesc = json.cloud_amount;
             $(".curr-description").html(currDesc);
 
-            var iconDesc = json.currently.icon;
+            var iconDesc = json.weather_code;
             console.log("DS: " + iconDesc);
             switch (iconDesc) {
-                case "clear-day":
+                case "clear":
                     {
                         iconDesc = "day-sunny";
                         $(".wi").css("color", "rgb(246, 195, 87)");
                         break;
                     }
-                case "clear-night":
-                    {
-                        iconDesc = "night-clear";
-                        break;
-                    }
-                case "rain":
-                    {
-                        iconDesc = "rain";
-                        $(".wi-wi").css("color", "rgb(183 ,219 ,241)");
-                        break;
-                    }
-                case "snow":
-                    {
-                        iconDesc = "now";
-                        break;
-                    }
-                case "sleet":
-                    {
-                        iconDesc = "sleet";
-                        break;
-                    }
+                case "mostly-clear":
+                {
+                    iconDesc = "day-cloudy";
+                    $(".wi").css("color", "rgb(246, 195, 87)");
+                    break;
+                }
+                case "partly-cloudy":
+                {
+                    iconDesc = "day-cloudy";
+                    break;
+                }
+                case "mostly-cloudy":
+                {
+                    iconDesc = "day-cloudy";
+                    break;
+                }
+                case "overcast":
+                {
+                    iconDesc = "cloudy";
+                    break;
+                }
                 case "fog":
-                    {
-                        iconDesc = "fog";
-                        break;
-                    }
-                case "cloudy":
-                    {
-                        iconDesc = "cloudy";
-                        break;
-                    }
-                case "partly-cloudy-day":
-                    {
-                        iconDesc = "day-cloudy";
-                        break;
-                    }
-                case "partly-cloudy-night":
-                    {
-                        iconDesc = "night-cloudy";
-                        break;
-                    }
-                case "hail":
-                    {
-                        iconDesc = "hail";
-                        break;
-                    }
+                {
+                    iconDesc = "fog";
+                    break;
+                }
+                case "light-rain":
+                {
+                    iconDesc = "rain";
+                    break;
+                }
+                case "rain":
+                {
+                    iconDesc = "rain";
+                    break;
+                }
+                case "heavy-rain":
+                {
+                    iconDesc = "rain";
+                    break;
+                }
+                case "heavy-rain":
+                {
+                    iconDesc = "rain";
+                    break;
+                }
                 case "thunderstorm":
-                    {
-                        iconDesc = "thunderstorm";
-                        break;
-                    }
-                case "tornado":
-                    {
-                        iconDesc = "tornado";
-                        break;
-                    }
+                {
+                    iconDesc = "thunderstorm";
+                    break;
+                }
+                case "light-sleet":
+                {
+                    iconDesc = "sleet";
+                    break;
+                }
+                case "sleet":
+                {
+                    iconDesc = "sleet";
+                    break;
+                }
+                case "heavy-sleet":
+                {
+                    iconDesc = "sleet";
+                    break;
+                }
+                case "heavy-sleet":
+                {
+                    iconDesc = "sleet";
+                    break;
+                }
+                case "light-snow":
+                {
+                    iconDesc = "now";
+                    break;
+                }
+                case "snow":
+                {
+                    iconDesc = "now";
+                    break;
+                }
+                case "heavy-snow":
+                {
+                    iconDesc = "now";
+                    break;
+                }
                 default:
                     iconDesc = "day-sunny";
             }
             $(".wi-wi").addClass("wi-" + iconDesc);
             $(".wi-wi").css("visibility", "visible");
-            $(".hour-description").html(json.hourly.summary);
+            $(".hour-description").html(json.time_of_day);
 
             //get time
-            date = new Date(json.currently.time * 1000);
+            date = new Date(json.datetime);
             var month = date.getMonth();
             var monthNames = [
                 "Январь",
@@ -154,21 +186,21 @@ $(document).ready(function() {
             );
 
             // get chance of rain
-            $(".precip").html(
-                json.currently.precipProbability.toFixed(1) * 100 + "%"
-            );
+            // $(".precip").html(
+            //     json.currently.precipProbability.toFixed(1) * 100 + "%"
+            // );
 
             // wind speed
-            $(".wind").html((json.currently.windSpeed / 3.6).toFixed(1) + " м/с");
+            // $(".wind").html((json.currently.windSpeed / 3.6).toFixed(1) + " м/с");
 
             //sunset time
-            var sunsetTime = new Date(json.daily.data[0].sunsetTime * 1000);
-            $(".sunset").html(
-                (sunsetTime.getHours() % 12) + ":" + sunsetTime.getMinutes()
-            );
-
-            //cloud cover
-            $(".clouds").html(json.currently.cloudCover.toFixed(1) * 100 + "%");
+            // var sunsetTime = new Date(json.daily.data[0].sunsetTime * 1000);
+            // $(".sunset").html(
+            //     (sunsetTime.getHours() % 12) + ":" + sunsetTime.getMinutes()
+            // );
+            //
+            // //cloud cover
+            // $(".clouds").html(json.currently.cloudCover.toFixed(1) * 100 + "%");
 
             // Create Weather Chart
             createChart();
@@ -181,7 +213,7 @@ $(document).ready(function() {
                 metric = false;
                 $(".faren").css({ color: "grey", "pointer-events": "none" });
                 $(".celsius").css({ color: "#b3b3b3", "pointer-events": "auto" });
-                setTemp(json.currently.temperature, metric);
+                setTemp(json.air_t, metric);
                 createChart();
             });
 
@@ -190,7 +222,7 @@ $(document).ready(function() {
                 metric = true;
                 $(".celsius").css({ color: "grey", "pointer-events": "none" });
                 $(".faren").css({ color: "#b3b3b3", "pointer-events": "auto" });
-                setTemp(json.currently.temperature, metric);
+                setTemp(json.air_t, metric);
                 createChart();
             });
         });
@@ -206,12 +238,20 @@ $(document).ready(function() {
     // function that toggles temperature display for selected temp scale.
     function setTemp(temp, metric) {
         if (metric) {
-            temp = (((temp - 32) * 5) / 9).toFixed(0) + "°C";
+            temp = Math.floor(temp) + "°C";
         } else {
-            temp = temp.toFixed(0) + "°F";
+            temp = (((temp - 32) * 5) / 9).toFixed(0) + "°C";
         }
         $(".current-temp").html(temp);
+        $(".current-temp-andijan").html(getRegionWeather('gulistan') + '°C');
         $(".temp-format").css("visibility", "visible");
+    }
+
+    function getRegionWeather(city) {
+        $.getJSON("http://www.meteo.uz/api/v2/weather/current.json?city="+ city +"&language=ru", function(result) {
+           return  result;
+        });
+
     }
 
     function createChart() {
@@ -230,13 +270,13 @@ $(document).ready(function() {
                 twhour += " am";
             }
             hourLabels[i] = twhour;
-            var hTemp = json.hourly.data[i].temperature;
-            if (metric) {
-                hTemp = ((hTemp - 32) * 5) / 9;
-            }
-            tempData[i] = hTemp.toFixed(2);
-            rainData[i] = json.hourly.data[i].precipProbability * 100;
-            windData[i] = (json.hourly.data[i].windSpeed / 3.6).toFixed(3);
+            // var hTemp = json.hourly.data[i].temperature;
+            // if (metric) {
+            //     hTemp = ((hTemp - 32) * 5) / 9;
+            // }
+            // tempData[i] = hTemp.toFixed(2);
+            // rainData[i] = json.hourly.data[i].precipProbability * 100;
+            // windData[i] = (json.hourly.data[i].windSpeed / 3.6).toFixed(3);
         }
         var tempEl = document.getElementById("temp-chart");
         var rainEl = document.getElementById("rain-chart");
