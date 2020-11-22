@@ -203,7 +203,8 @@ $(document).ready(function() {
             // $(".clouds").html(json.currently.cloudCover.toFixed(1) * 100 + "%");
 
             // Create Weather Chart
-            createChart();
+            if($('#temp-chart').length > 0 && $('#rain-chart').length > 0 && $('#wind-chart').length > 0)
+                createChart();
 
             // reveal chart labels
             $(".graph-legend").css("visibility", "visible");
