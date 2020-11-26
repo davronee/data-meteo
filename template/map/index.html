@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+    <style>
+        #mapid {
+            height: 97vh;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <style>
+        .myCSSClass {
+            background: none;
+            border: none;
+            box-shadow: none;
+            color: #000;
+            text-stroke: #fff;
+            text-stroke-width: 0.5px;
+            -webkit-text-stroke-color: #fff;
+            -webkit-text-stroke-width: 0.3px;
+        }
+
+        h2 {
+            text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+        }
+
+    </style>
+    <div id="mapid"></div>
+
+</div>
+
+<script>
+    var mymap = '';
+
+    let app = new Vue({
+        el: '#mapid',
+        data: {
+            icon: '',
+            weather: '',
+        },
+
+        methods: {
+            InitialMap: function () {
+                mymap = L.map('mapid').setView([42.153223, 63.544258], 6);
+                //https://api.mapbox.com/styles/v1/YOUR_USERNAME/YOUR_STYLE_ID/tiles/256/{z}/{x}/{y}?access_token=YOUR_ACCESS_TOKEN
+                //mapbox://styles/davronee/ckhg7kbst17k219p7rul6h6cl
+                mapbox://styles/davronee/ckhn6i7z60kh419pgczbzn33i
+                    L.tileLayer('https://api.mapbox.com/styles/v1/davronee/ckhn6i7z60kh419pgczbzn33i/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2cm9uZWUiLCJhIjoiY2p1bzF0dXd1MHNicTN5bHQ3c2g4czhscCJ9.u8YChrboWwmmUmcsQyw2bQ', {
+                        attribution: 'Map data',
+                        maxZoom: 18,
+                        id: 'mapbox/satellite-streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1,
+                        accessToken: 'pk.eyJ1IjoiZGF2cm9uZWUiLCJhIjoiY2p1bzF0dXd1MHNicTN5bHQ3c2g4czhscCJ9.u8YChrboWwmmUmcsQyw2bQ'
+                    }).addTo(mymap);
+
+                // L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
+                //     attribution: ' Тадбиркорлик учун бўш ер участкалари харитаси'
+                // }).addTo(mymap);
+
+
+            },
+            getIcon: function (city, lat, lang) {
+                axios.get('http://www.meteo.uz/api/v2/weather/current.json?city=' + city + '&language=ru')
+                    .then(function (response) {
+                        // handle success
+                        if (response.data.weather_code == 'clear') {
+                            this.icon = L.icon({
+                                iconUrl: 'quyoshli.png',
+                                iconSize: [42, 42],
+
+                            });
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
+                            else
+                                this.weather = Math.floor(response.data.air_t);
+                            L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
+                                {
+                                    permanent: true,
+                                    opacity: 1,
+                                    direction: 'top',
+                                    className: 'myCSSClass'
+                                });
+                        } else if (
+                            response.data.weather_code == 'mostly_clear' ||
+                            response.data.weather_code == 'partly_cloudy' ||
+                            response.data.weather_code == 'mostly_cloudy') {
+                            this.icon = L.icon({
+                                iconUrl: 'quyosh_bulut.png',
+                                iconSize: [82, 82],
+
+
+                            });
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
+                            else
+                                this.weather = Math.floor(response.data.air_t);
+                            L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
+                                {
+                                    permanent: true,
+                                    opacity: 1,
+                                    direction: 'top',
+                                    className: 'myCSSClass'
+                                });
+                        } else if (
+                            response.data.weather_code == 'overcast' ||
+                            response.data.weather_code == 'fog') {
+                            this.icon = L.icon({
+                                iconUrl: 'bulutli.png',
+                                iconSize: [82, 82],
+
+                            });
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
+                            else
+                                this.weather = Math.floor(response.data.air_t);
+                            L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
+                                {
+                                    permanent: true,
+                                    opacity: 1,
+                                    direction: 'top',
+                                    className: 'myCSSClass'
+                                });
+                        } else if (
+                            response.data.weather_code == 'light_rain' ||
+                            response.data.weather_code == 'rain' ||
+                            response.data.weather_code == 'heavy_rain'
+                        ) {
+                            this.icon = L.icon({
+                                iconUrl: 'yomgir.png',
+                                iconSize: [82, 82],
+
+                            });
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
+                            else
+                                this.weather = Math.floor(response.data.air_t);
+                            L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
+                                {
+                                    permanent: true,
+                                    opacity: 1,
+                                    direction: 'top',
+                                    className: 'myCSSClass'
+                                });
+                        } else {
+                            this.icon = L.icon({
+                                iconUrl: 'qor.png',
+                                iconSize: [82, 82],
+
+                            });
+                            if (Math.floor(response.data.air_t) > 0)
+                                this.weather = "+" + Math.floor(response.data.air_t);
+                            else
+                                this.weather = Math.floor(response.data.air_t);
+                            L.marker([lat, lang], {icon: this.icon}).addTo(mymap).bindTooltip("<h2>" + this.weather + "</h2>",
+                                {
+                                    permanent: true,
+                                    opacity: 1,
+                                    direction: 'top',
+                                    className: 'myCSSClass'
+                                });
+                        }
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+            },
+
+        },
+        mounted() {
+            this.InitialMap();
+            this.getIcon('tashkent', 41.311081, 69.240562)
+            this.getIcon('andijan', 40.768810, 72.236282)
+            this.getIcon('bukhara', 39.77472, 64.42861)
+            this.getIcon('fergana', 40.38421, 71.78432)
+            this.getIcon('gulistan', 40.48972, 68.78417)
+            this.getIcon('jizzakh', 40.11583, 67.84222)
+            this.getIcon('namangan', 40.9983, 71.67257)
+            this.getIcon('navoiy', 40.08444, 65.37917)
+            this.getIcon('nurafshon', 41.042916, 69.357849)
+            this.getIcon('urgench', 41.559978, 60.640011)
+            this.getIcon('termez', 37.22417, 67.27833)
+            this.getIcon('samarkand', 39.652451, 66.970139)
+            this.getIcon('nukus', 42.45306, 59.61028)
+            this.getIcon('qarshi', 38.86056, 65.78905)
+        }
+    });
+
+
+</script>
+</body>
+</html>
