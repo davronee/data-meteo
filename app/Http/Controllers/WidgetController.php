@@ -9,7 +9,7 @@ class WidgetController extends Controller
     public function index(Request  $request)
     {
 
-        return view('pages.index');
+        return view('widget.index');
 
     }
 }

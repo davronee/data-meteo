@@ -28,7 +28,7 @@ $(document).ready(function() {
         var longitude = position.coords.longitude.toFixed(4);
         var latitude = position.coords.latitude.toFixed(4);
         console.log(
-            "Координаты - долгота: " + longitude + " широта: " + latitude
+            "Координаты - долгота: " + longitude + " широта:    " + latitude
         );
 
         //get weather data from DarkSky as JSON array
