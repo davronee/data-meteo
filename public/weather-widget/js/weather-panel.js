@@ -56,7 +56,6 @@ $(document).ready(function() {
         //show icons
         $(".small-icon").css("visibility", "visible");
         //get temperature
-        setTemp(json.air_t, metric);
 
         //get description
         var currDesc = json.cloud_amount;
@@ -203,7 +202,7 @@ $(document).ready(function() {
         // $(".clouds").html(json.currently.cloudCover.toFixed(1) * 100 + "%");
 
         // Create Weather Chart
-        createChart();
+        // createChart();
 
         // reveal chart labels
         $(".graph-legend").css("visibility", "visible");
@@ -213,8 +212,7 @@ $(document).ready(function() {
             metric = false;
             $(".faren").css({ color: "grey", "pointer-events": "none" });
             $(".celsius").css({ color: "#b3b3b3", "pointer-events": "auto" });
-            setTemp(json.air_t, metric);
-            createChart();
+            // createChart();
         });
 
         // when C button pressed, change to Celsius
@@ -222,8 +220,7 @@ $(document).ready(function() {
             metric = true;
             $(".celsius").css({ color: "grey", "pointer-events": "none" });
             $(".faren").css({ color: "#b3b3b3", "pointer-events": "auto" });
-            setTemp(json.air_t, metric);
-            createChart();
+            // createChart();
         });
     });
     // }
@@ -235,167 +232,150 @@ $(document).ready(function() {
         );
     }
 
-    // function that toggles temperature display for selected temp scale.
-    function setTemp(temp, metric) {
-        if (metric) {
-            temp = Math.floor(temp) + "°C";
-        } else {
-            temp = (((temp - 32) * 5) / 9).toFixed(0) + "°C";
-        }
-        $(".current-temp").html(temp);
-        $(".current-temp-andijan").html(getRegionWeather('gulistan') + '°C');
-        $(".temp-format").css("visibility", "visible");
-    }
 
-    function getRegionWeather(city) {
-        $.getJSON("http://www.meteo.uz/api/v2/weather/current.json?city="+ city +"&language=ru", function(result) {
-            return  result;
-        });
 
-    }
-
-    function createChart() {
-        var hour = date.getHours();
-        var hourLabels = [0, 0, 0, 0, 0, 0, 0, 0];
-        var tempData = [0, 0, 0, 0, 0, 0, 0, 0];
-        var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
-        var windData = [0, 0, 0, 0, 0, 0, 0, 0];
-
-        for (var i = 0; i < hourLabels.length; i++) {
-            var tfhour = (hour + i) % 24;
-            var twhour = tfhour % 12;
-            if (tfhour > 11 && tfhour != 24) twhour += " pm";
-            else {
-                if (tfhour == 0) twhour = 12;
-                twhour += " am";
-            }
-            hourLabels[i] = twhour;
-            // var hTemp = json.hourly.data[i].temperature;
-            // if (metric) {
-            //     hTemp = ((hTemp - 32) * 5) / 9;
-            // }
-            // tempData[i] = hTemp.toFixed(2);
-            // rainData[i] = json.hourly.data[i].precipProbability * 100;
-            // windData[i] = (json.hourly.data[i].windSpeed / 3.6).toFixed(3);
-        }
-        var tempEl = document.getElementById("temp-chart");
-        var rainEl = document.getElementById("rain-chart");
-        var windEl = document.getElementById("wind-chart");
-
-        var tempChart = new Chart(tempEl, {
-            type: "line",
-            data: {
-                labels: hourLabels,
-                datasets: [{
-                    label: "temp",
-                    data: tempData,
-                    borderColor: "rgb(246 ,  191 ,  77 )",
-                    borderWidth: 1,
-                    backgroundColor: "rgba(246 ,191 ,  77 , 0.2)"
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    boxWidth: 0,
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontSize: 10
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: " ",
-                            fontSize: 10
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            fontSize: 10
-                        }
-                    }]
-                }
-            }
-        });
-        var rainChart = new Chart(rainEl, {
-            type: "line",
-            data: {
-                labels: hourLabels,
-                datasets: [{
-                    label: "Дождь",
-                    data: rainData,
-                    borderColor: "#55AADD",
-                    borderWidth: 1,
-                    backgroundColor: "rgba(85,170,221, 0.2)"
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    boxWidth: 0,
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontSize: 10
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: "%",
-                            fontSize: 10
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            fontSize: 10
-                        }
-                    }]
-                }
-            }
-        });
-        var windChart = new Chart(windEl, {
-            type: "line",
-            data: {
-                labels: hourLabels,
-                datasets: [{
-                    label: "Ветер",
-                    data: windData,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    boxWidth: 0,
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontSize: 10,
-                            stepSize: 1
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: "м/с",
-                            fontSize: 10
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            fontSize: 10
-                        }
-                    }]
-                }
-            }
-        });
-    }
+    // function createChart() {
+    //     var hour = date.getHours();
+    //     var hourLabels = [1, 2, 3, 4, 5, 6, 7, 8];
+    //     var tempData = [1, 2, 3, 4, 5, 6, 7, 8];
+    //     var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
+    //     var windData = [0, 0, 0, 0, 0, 0, 0, 0];
+    //
+    //     for (var i = 0; i < hourLabels.length; i++) {
+    //         var tfhour = (hour + i) % 24;
+    //         var twhour = tfhour % 12;
+    //         if (tfhour > 11 && tfhour != 24) twhour += " pm";
+    //         else {
+    //             if (tfhour == 0) twhour = 12;
+    //             twhour += " am";
+    //         }
+    //         hourLabels[i] = twhour;
+    //         // var hTemp = json.hourly.data[i].temperature;
+    //         // if (metric) {
+    //         //     hTemp = ((hTemp - 32) * 5) / 9;
+    //         // }
+    //         // tempData[i] = hTemp.toFixed(2);
+    //         // rainData[i] = json.hourly.data[i].precipProbability * 100;
+    //         // windData[i] = (json.hourly.data[i].windSpeed / 3.6).toFixed(3);
+    //     }
+    //     var tempEl = document.getElementById("temp-chart");
+    //     var rainEl = document.getElementById("rain-chart");
+    //     var windEl = document.getElementById("wind-chart");
+    //
+    //     var tempChart = new Chart(tempEl, {
+    //         type: "line",
+    //         data: {
+    //             labels: hourLabels,
+    //             datasets: [{
+    //                 label: "temp",
+    //                 data: tempData,
+    //                 borderColor: "rgb(246 ,  191 ,  77 )",
+    //                 borderWidth: 1,
+    //                 backgroundColor: "rgba(246 ,191 ,  77 , 0.2)"
+    //             }]
+    //         },
+    //         options: {
+    //             responsive: true,
+    //             maintainAspectRatio: false,
+    //             legend: {
+    //                 boxWidth: 0,
+    //                 display: false
+    //             },
+    //             scales: {
+    //                 yAxes: [{
+    //                     ticks: {
+    //                         fontSize: 10
+    //                     },
+    //                     scaleLabel: {
+    //                         display: true,
+    //                         labelString: " ",
+    //                         fontSize: 10
+    //                     }
+    //                 }],
+    //                 xAxes: [{
+    //                     ticks: {
+    //                         fontSize: 10
+    //                     }
+    //                 }]
+    //             }
+    //         }
+    //     });
+    //     var rainChart = new Chart(rainEl, {
+    //         type: "line",
+    //         data: {
+    //             labels: hourLabels,
+    //             datasets: [{
+    //                 label: "Дождь",
+    //                 data: rainData,
+    //                 borderColor: "#55AADD",
+    //                 borderWidth: 1,
+    //                 backgroundColor: "rgba(85,170,221, 0.2)"
+    //             }]
+    //         },
+    //         options: {
+    //             responsive: true,
+    //             maintainAspectRatio: false,
+    //             legend: {
+    //                 boxWidth: 0,
+    //                 display: false
+    //             },
+    //             scales: {
+    //                 yAxes: [{
+    //                     ticks: {
+    //                         fontSize: 10
+    //                     },
+    //                     scaleLabel: {
+    //                         display: true,
+    //                         labelString: "%",
+    //                         fontSize: 10
+    //                     }
+    //                 }],
+    //                 xAxes: [{
+    //                     ticks: {
+    //                         fontSize: 10
+    //                     }
+    //                 }]
+    //             }
+    //         }
+    //     });
+    //     var windChart = new Chart(windEl, {
+    //         type: "line",
+    //         data: {
+    //             labels: hourLabels,
+    //             datasets: [{
+    //                 label: "Ветер",
+    //                 data: windData,
+    //                 borderWidth: 1
+    //             }]
+    //         },
+    //         options: {
+    //             responsive: true,
+    //             maintainAspectRatio: false,
+    //             legend: {
+    //                 boxWidth: 0,
+    //                 display: false
+    //             },
+    //             scales: {
+    //                 yAxes: [{
+    //                     ticks: {
+    //                         fontSize: 10,
+    //                         stepSize: 1
+    //                     },
+    //                     scaleLabel: {
+    //                         display: true,
+    //                         labelString: "м/с",
+    //                         fontSize: 10
+    //                     }
+    //                 }],
+    //                 xAxes: [{
+    //                     ticks: {
+    //                         fontSize: 10
+    //                     }
+    //                 }]
+    //             }
+    //         }
+    //     });
+    // }
 
     // toggle visibility of graphs in bottom container
     $(".wind-label").on("click", function() {
