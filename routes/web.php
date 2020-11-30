@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['set_locale']], function() {
-    Route::get('/', function () {
+    Route::get('/data', function () {
         return view('pages.map');
     });
+    Route::get('/', [App\Http\Controllers\WidgetController::class, 'index'])->name('home');
 
-    Route::prefix('widget')->group(function () {
-        Route::get('/', [App\Http\Controllers\WidgetController::class, 'index'])->name('home');
 
-    });
+//    Route::prefix('widget')->group(function () {
+//        Route::get('/', [App\Http\Controllers\WidgetController::class, 'index'])->name('home');
+//
+//    });
 
     Auth::routes(['register' => false]);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
