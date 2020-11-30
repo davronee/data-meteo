@@ -95,7 +95,7 @@
                         <div class="card-body">
                             <div class="flot-wrapper" style="margin-left: -30px;">
                                 <div class="">
-                                    <canvas id="temp-chart" class="temp-chart"></canvas>
+                                    <h3><canvas id="temp-chart" class="temp-chart"></canvas></h3>
                                 </div>
                                 <!--<div class="graph">
                                     <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
