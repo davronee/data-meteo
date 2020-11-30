@@ -381,71 +381,71 @@
 
                          app.forcastdate = response.data;
 
-                        if (response.data[4].icon == 'clear')
-                            app.current_weather_code = 'ясно, безоблачно';
-                        else if (response.data[4].icon == 'mostly_clear')
-                            app.current_weather_code = 'небольшая, незначительная облачность';
-                        else if (response.data[4].icon == 'partly_cloudy')
-                            app.current_weather_code = 'переменная облачность';
-                        else if (response.data[4].icon == 'mostly_cloudy')
-                            app.current_weather_code = 'значительная облачность';
-                        else if (response.data[4].icon == 'overcast')
-                            app.current_weather_code = 'облачно, пасмурно';
-                        else if (response.data[4].icon == 'fog')
-                            app.current_weather_code = 'туман, дымка, мгла';
-                        else if (response.data[4].icon == 'light_rain')
-                            app.current_weather_code = 'небольшой, слабый дождь';
-                        else if (response.data[4].icon == 'rain')
-                            app.current_weather_code = 'дождь';
-                        else if (response.data[4].icon == 'heavy_rain')
-                            app.current_weather_code = 'сильный, ливневый дождь';
-                        else if (response.data[4].icon == 'thunderstorm')
-                            app.current_weather_code = 'гроза';
-                        else if (response.data[4].icon == 'light-sleet')
-                            app.current_weather_code = 'небольшие, слабые осадки (дождь, снег)';
-                        else if (response.data[4].icon == 'sleet')
-                            app.current_weather_code = 'осадки (дождь, снег)';
-                        else if (response.data[4].icon == 'heavy_sleet')
-                            app.current_weather_code = 'сильные осадки (дождь, снег)';
-                        else if (response.data[4].icon == 'light_snow')
-                            app.current_weather_code = 'небольшой, слабый снег';
-                        else if (response.data[4].icon == 'snow')
-                            app.current_weather_code = 'снег';
-                        else if (response.data[4].icon == 'heavy_snow')
-                            app.current_weather_code = 'сильный снег';
+                        if (response.data[6].icon == 'clear')
+                            app.forecast_day_code = 'ясно, безоблачно';
+                        else if (response.data[6].icon == 'mostly_clear')
+                            app.forecast_day_code = 'небольшая, незначительная облачность';
+                        else if (response.data[6].icon == 'partly_cloudy')
+                            app.forecast_day_code = 'переменная облачность';
+                        else if (response.data[6].icon == 'mostly_cloudy')
+                            app.forecast_day_code = 'значительная облачность';
+                        else if (response.data[6].icon == 'overcast')
+                            app.forecast_day_code = 'облачно, пасмурно';
+                        else if (response.data[6].icon == 'fog')
+                            app.forecast_day_code = 'туман, дымка, мгла';
+                        else if (response.data[6].icon == 'light_rain')
+                            app.forecast_day_code = 'небольшой, слабый дождь';
+                        else if (response.data[6].icon == 'rain')
+                            app.forecast_day_code = 'дождь';
+                        else if (response.data[6].icon == 'heavy_rain')
+                            app.forecast_day_code = 'сильный, ливневый дождь';
+                        else if (response.data[6].icon == 'thunderstorm')
+                            app.forecast_day_code = 'гроза';
+                        else if (response.data[6].icon == 'light-sleet')
+                            app.forecast_day_code = 'небольшие, слабые осадки (дождь, снег)';
+                        else if (response.data[6].icon == 'sleet')
+                            app.forecast_day_code = 'осадки (дождь, снег)';
+                        else if (response.data[6].icon == 'heavy_sleet')
+                            app.forecast_day_code = 'сильные осадки (дождь, снег)';
+                        else if (response.data[6].icon == 'light_snow')
+                            app.forecast_day_code = 'небольшой, слабый снег';
+                        else if (response.data[6].icon == 'snow')
+                            app.forecast_day_code = 'снег';
+                        else if (response.data[6].icon == 'heavy_snow')
+                            app.forecast_day_code = 'сильный снег';
 
 
-                        if (response.data[5].icon == 'clear')
+                        if (response.data[7].icon == 'clear')
                             app.forecast_night_code = 'ясно, безоблачно';
-                        else if (response.data[5].icon == 'mostly_clear')
+                        else if (response.data[7].icon == 'mostly_clear')
                             app.forecast_night_code = 'небольшая, незначительная облачность';
-                        else if (response.data[5].icon == 'partly_cloudy')
+                        else if (response.data[7].icon == 'partly_cloudy')
                             app.forecast_night_code = 'переменная облачность';
-                        else if (response.data[5].icon == 'mostly_cloudy')
+                        else if (response.data[7].icon == 'mostly_cloudy')
                             app.forecast_night_code = 'значительная облачность';
-                        else if (response.data[5].icon == 'overcast')
+                        else if (response.data[7].icon == 'overcast')
                             app.forecast_night_code = 'облачно, пасмурно';
-                        else if (response.data[5].icon == 'fog')
+                        else if (response.data[7].icon == 'fog')
                             app.forecast_night_code = 'туман, дымка, мгла';
-                        else if (response.data[5].icon == 'light_rain')
+                        else if (response.data[7].icon == 'light_rain')
                             app.forecast_night_code = 'небольшой, слабый дождь';
-                        else if (response.data[5].icon == 'rain')
+                        else if (response.data[7].icon == 'rain')
                             app.forecast_night_code = 'дождь';
-                        else if (response.data[5].icon == 'heavy_rain')
+                        else if (response.data[7].icon == 'heavy_rain')
                             app.forecast_night_code = 'сильный, ливневый дождь';
-                        else if (response.data[5].icon == 'thunderstorm')
+                        else if (response.data[7].icon == 'thunderstorm')
                             app.forecast_night_code = 'гроза';
-                        else if (response.data[5].icon == 'light-sleet')
+                        else if (response.data[7].icon == 'light-sleet')
                             app.forecast_night_code = 'небольшие, слабые осадки (дождь, снег)';
-                        else if (response.data[5].icon == 'sleet')
+                        else if (response.data[7].icon == 'sleet')
                             app.forecast_night_code = 'осадки (дождь, снег)';
-                        else if (response.data[5].icon == 'heavy_sleet')
+                        else if (response.data[7].icon == 'heavy_sleet')
                             app.forecast_night_code = 'сильные осадки (дождь, снег)';
-                        else if (response.data[5].icon == 'light_snow')
+                        else if (response.data[7].icon == 'light_snow')
                             app.forecast_night_code = 'небольшой, слабый снег';
-                        else if (response.data[5].icon == 'snow')
+                        else if (response.data[7].icon == 'snow')
                             app.forecast_night_code = 'снег';
-                        else if (response.data[5].icon == 'heavy_snow')
+                        else if (response.data[7].icon == 'heavy_snow')
                             app.forecast_night_code = 'сильный снег';
 
 
