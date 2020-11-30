@@ -486,7 +486,7 @@
                             data: {
                                 labels: hourLabels,
                                 datasets: [{
-                                    label: "temp",
+                                    label: 'C',
                                     data: tempData,
                                     borderColor: "rgb(246 ,  191 ,  77 )",
                                     borderWidth: 1,
@@ -514,8 +514,11 @@
                                     xAxes: [{
                                         ticks: {
                                             fontSize: 10
-                                        }
-                                    }]
+                                        },
+                                        display: false,
+                                    }],
+
+
                                 }
                             }
                         });
