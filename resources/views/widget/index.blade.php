@@ -448,6 +448,9 @@
                         else if (response.data[5].icon == 'heavy_snow')
                             app.forecast_night_code = 'сильный снег';
 
+                        var hourLabels = [app.forcastdate[7].date + ' 00:00', app.forcastdate[6].date + ' 12:00', app.forcastdate[5].date + ' 00:00', app.forcastdate[4].date + ' 12:00',app.forcastdate[3].date + ' 00:00', app.forcastdate[2].date + ' 12:00', app.forcastdate[1].date + ' 00:00', app.forcastdate[0].date + ' 12:00'];
+                        var tempData = [app.forcastdate[7].air_t_min, app.forcastdate[6].air_t_min, app.forcastdate[5].air_t_min, app.forcastdate[4].air_t_min,app.forcastdate[3].air_t_min, app.forcastdate[2].air_t_min, app.forcastdate[1].air_t_min, app.forcastdate[0].air_t_min];
+
 
                         var metric = true;
                         var date;
@@ -469,9 +472,7 @@
                             "Декабрь"
                         ];
                         var hour = date.getHours();
-                        var hourLabels = [app.forcastdate[7].date + ' 00:00', app.forcastdate[6].date + ' 12:00', app.forcastdate[5].date + ' 00:00', app.forcastdate[4].date + ' 12:00',app.forcastdate[3].date + ' 00:00', app.forcastdate[2].date + ' 12:00', app.forcastdate[1].date + ' 00:00', app.forcastdate[0].date + ' 12:00'];
-                        var tempData = [app.forcastdate[7].air_t_min, app.forcastdate[6].air_t_min, app.forcastdate[5].air_t_min, app.forcastdate[4].air_t_min,app.forcastdate[3].air_t_min, app.forcastdate[2].air_t_min, app.forcastdate[1].air_t_min, app.forcastdate[0].air_t_min];
-                        var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
+                                               var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
                         var windData = [0, 0, 0, 0, 0, 0, 0, 0];
 
 
