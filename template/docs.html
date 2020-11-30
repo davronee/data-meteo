@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta -->
+    <meta name="description" content="Единая система анализа и обработки гидрометеорологических наблюдений">
+    <meta name="author" content="Метеоинфосистем">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
+    <title>Meteo|UZ</title>
+    <!-- icons css -->
+    <link href="../lib/fontawesome5/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/ionicons.min.css">
+    <!-- vendor css -->
+    <link href="../lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link href="../lib/select2/css/select2.min.css" rel="stylesheet">
+    <!-- template css -->
+    <link rel="stylesheet" href="../assets/css/meteo.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/weather-panel.css">
+</head>
+
+<body data-spy="scroll" data-target="#navSection" data-offset="100">
+    <div class="sidebar">
+        <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="../assets/img/gidrometeo.svg"></a></div><!-- sidebar-header -->
+        <div id="dpSidebarBody" class="sidebar-body">
+            <ul class="nav nav-sidebar">
+                <li class="nav-label"><label class="content-label">Мониторинг и анализ</label></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link active"><i data-feather="box"></i> Рабочий стол</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="layout"></i> Сбор данных</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Метеорология</a>
+                        <a href="#" class="nav-sub-link">Гидрология</a>
+                        <a href="#" class="nav-sub-link">Загрязнение</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-analytics"></i> Анализ</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Прогноз обстановки</a>
+                        <a href="#" class="nav-sub-link">Обработка данных</a>
+                        <a href="#" class="nav-sub-link">Анализ и объяснение</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="x-circle"></i> Error Pages</a>
+                    <nav class="nav nav-sub">
+                        <a href="page-404.html" class="nav-sub-link">Page Not Found</a>
+                        <a href="page-500.html" class="nav-sub-link">Internal Server Error</a>
+                        <a href="page-503.html" class="nav-sub-link">Service Unavailable</a>
+                        <a href="page-505.html" class="nav-sub-link">Forbidden Access</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="user"></i> User Pages</a>
+                    <nav class="nav nav-sub">
+                        <a href="page-profile.html" class="nav-sub-link">User Profile</a>
+                        <a href="page-timeline.html" class="nav-sub-link">Timeline</a>
+                        <a href="page-people.html" class="nav-sub-link">People</a>
+                        <a href="page-settings.html" class="nav-sub-link">Profile Settings</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="file-text"></i> Extras</a>
+                    <nav class="nav nav-sub">
+                        <a href="page-invoice.html" class="nav-sub-link">Invoice</a>
+                        <a href="page-pricing.html" class="nav-sub-link">Pricing</a>
+                    </nav>
+                </li>
+                <li class="nav-label"><label class="content-label">Мониторинг снежного покрова и запаса</label></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="book"></i> Content</a>
+                    <nav class="nav nav-sub">
+                        <a href="../components/con-grid.html" class="nav-sub-link">Grid System</a>
+                        <a href="../components/con-icons.html" class="nav-sub-link">Icons</a>
+                        <a href="../components/con-images.html" class="nav-sub-link">Images</a>
+                        <a href="../components/con-typography.html" class="nav-sub-link">Typography</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="layers"></i> Components</a>
+                    <nav class="nav nav-sub">
+                        <a href="../components/com-accordion.html" class="nav-sub-link">Accordion</a>
+                        <a href="../components/com-alerts.html" class="nav-sub-link">Alerts</a>
+                        <a href="../components/com-avatar.html" class="nav-sub-link">Avatar</a>
+                        <a href="../components/com-badge.html" class="nav-sub-link">Badge</a>
+                        <a href="../components/com-breadcrumbs.html" class="nav-sub-link">Breadcrumbs</a>
+                        <a href="../components/com-buttons.html" class="nav-sub-link">Buttons</a>
+                        <a href="../components/com-button-groups.html" class="nav-sub-link">Button Groups</a>
+                        <a href="../components/com-cards.html" class="nav-sub-link">Cards</a>
+                        <a href="../components/com-carousel.html" class="nav-sub-link">Carousel</a>
+                        <a href="../components/com-collapse.html" class="nav-sub-link">Collapse</a>
+                        <a href="../components/com-dropdown.html" class="nav-sub-link">Dropdown</a>
+                        <a href="../components/com-list-group.html" class="nav-sub-link">List Group</a>
+                        <a href="../components/com-marker.html" class="nav-sub-link">Marker</a>
+                        <a href="../components/com-media-object.html" class="nav-sub-link">Media Object</a>
+                        <a href="../components/com-modal.html" class="nav-sub-link">Modal</a>
+                        <a href="../components/com-navs.html" class="nav-sub-link">Navs</a>
+                        <a href="../components/com-navbar.html" class="nav-sub-link">Navbar</a>
+                        <a href="../components/com-off-canvas.html" class="nav-sub-link">Off-Canvas</a>
+                        <a href="../components/com-pagination.html" class="nav-sub-link">Pagination</a>
+                        <a href="../components/com-placeholder.html" class="nav-sub-link">Placeholder</a>
+                        <a href="../components/com-popovers.html" class="nav-sub-link">Popovers</a>
+                        <a href="../components/com-progress.html" class="nav-sub-link">Progress</a>
+                        <a href="../components/com-steps.html" class="nav-sub-link">Steps</a>
+                        <a href="../components/com-scrollbar.html" class="nav-sub-link">Scrollbar</a>
+                        <a href="../components/com-scrollspy.html" class="nav-sub-link">Scrollspy</a>
+                        <a href="../components/com-spinners.html" class="nav-sub-link">Spinners</a>
+                        <a href="../components/com-tab.html" class="nav-sub-link">Tab</a>
+                        <a href="../components/com-toast.html" class="nav-sub-link">Toast </a>
+                        <a href="../components/com-tooltips.html" class="nav-sub-link">Tooltips</a>
+                        <a href="../components/com-table-basic.html" class="nav-sub-link">Table Basic</a>
+                        <a href="../components/com-table-advanced.html" class="nav-sub-link">Table (Datatable)</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="monitor"></i> Utilities</a>
+                    <nav class="nav nav-sub">
+                        <a href="../components/util-animation.html" class="nav-sub-link">Animation</a>
+                        <a href="../components/util-background.html" class="nav-sub-link">Background</a>
+                        <a href="../components/util-border.html" class="nav-sub-link">Border</a>
+                        <a href="../components/util-display.html" class="nav-sub-link">Display</a>
+                        <a href="../components/util-divider.html" class="nav-sub-link">Divider</a>
+                        <a href="../components/util-flex.html" class="nav-sub-link">Flex</a>
+                        <a href="../components/util-height.html" class="nav-sub-link">Height</a>
+                        <a href="../components/util-margin.html" class="nav-sub-link">Margin</a>
+                        <a href="../components/util-padding.html" class="nav-sub-link">Padding</a>
+                        <a href="../components/util-position.html" class="nav-sub-link">Position</a>
+                        <a href="../components/util-typography.html" class="nav-sub-link">Typography</a>
+                        <a href="../components/util-width.html" class="nav-sub-link">Width</a>
+                        <a href="../components/util-extras.html" class="nav-sub-link">Extras</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="life-buoy"></i> Forms</a>
+                    <nav class="nav nav-sub">
+                        <a href="../components/form-elements.html" class="nav-sub-link">Form Elements</a>
+                        <a href="../components/form-input-group.html" class="nav-sub-link">Input Group</a>
+                        <a href="../components/form-input-tags.html" class="nav-sub-link">Input Tags</a>
+                        <a href="../components/form-input-masks.html" class="nav-sub-link">Input Masks</a>
+                        <a href="../components/form-validation.html" class="nav-sub-link">Form Validation</a>
+                        <a href="../components/form-wizard.html" class="nav-sub-link">Form Wizard</a>
+                        <a href="../components/form-text-editor.html" class="nav-sub-link">Text Editor</a>
+                        <a href="../components/form-rangeslider.html" class="nav-sub-link">Range Slider</a>
+                        <a href="../components/form-datepicker.html" class="nav-sub-link">Date Pickers</a>
+                        <a href="../components/form-select2.html" class="nav-sub-link">Select2</a>
+                        <a href="../components/form-search.html" class="nav-sub-link">Search</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="pie-chart"></i> Диаграммы</a>
+                    <nav class="nav nav-sub">
+                        <a href="../components/chart-flot.html" class="nav-sub-link">Flot</a>
+                        <a href="../components/chart-chartjs.html" class="nav-sub-link">ChartJS</a>
+                        <a href="../components/chart-peity.html" class="nav-sub-link">Peity</a>
+                        <a href="../components/chart-sparkline.html" class="nav-sub-link">Sparkline</a>
+                        <a href="../components/chart-morris.html" class="nav-sub-link">Morris</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i data-feather="map-pin"></i> Maps</a>
+                    <nav class="nav nav-sub">
+                        <a href="../components/map-google.html" class="nav-sub-link">Google Maps</a>
+                        <a href="../components/map-leaflet.html" class="nav-sub-link">Leaflet Maps</a>
+                        <a href="../components/map-vector.html" class="nav-sub-link">Vector Maps</a>
+                    </nav>
+                </li>
+            </ul>
+            <hr class="mg-t-30 mg-b-25">
+            <ul class="nav nav-sidebar">
+                <li class="nav-item"><a href="../docs.html" class="nav-link"><i data-feather="help-circle"></i> Помощь</a></li>
+                <li class="nav-item"><a href="#offCanvas3" class="nav-link off-canvas-menu"><i data-feather="info"></i> О системе</a></li>
+            </ul>
+        </div><!-- sidebar-body -->
+    </div><!-- sidebar -->
+    <div class="content content-page">
+        <div class="header">
+            <div class="header-left">
+                <a href="" class="burger-menu"><i data-feather="menu"></i></a>
+                <div class="header-search">
+                    <i data-feather="search"></i>
+                    <input type="search" class="form-control" placeholder="Что вы ищете?">
+                </div><!-- header-search -->
+            </div><!-- header-left -->
+            <div class="header-right">
+                <div class="dropdown dropdown-notification">
+                    <a href="" class="dropdown-link new" data-toggle="dropdown"><i data-feather="bell"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu-header">
+                            <h6>Уведомления</h6>
+                            <a href=""><i data-feather="more-vertical"></i></a>
+                        </div><!-- dropdown-menu-header -->
+                        <div class="dropdown-menu-body">
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle text-primary bg-primary-light">s</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Socrates Itumay</strong> marked the task as completed.</p>
+                                    <span>5 hours ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-pink bg-pink-light">r</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Reynante Labares</strong> marked the task as incomplete.</p>
+                                    <span>8 hours ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-success bg-success-light">d</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Dyanne Aceron</strong> responded to your comment on this <strong>post</strong>.</p>
+                                    <span>a day ago</span>
+                                </div>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <div class="avatar"><span class="avatar-initial rounded-circle tx-indigo bg-indigo-light">k</span></div>
+                                <div class="dropdown-item-body">
+                                    <p><strong>Kirby Avendula</strong> marked the task as incomplete.</p>
+                                    <span>2 days ago</span>
+                                </div>
+                            </a>
+                        </div><!-- dropdown-menu-body -->
+                        <div class="dropdown-menu-footer">
+                            <a href="">Просмотреть все уведомления</a>
+                        </div>
+                    </div><!-- dropdown-menu -->
+                </div>
+                <div class="dropdown dropdown-loggeduser">
+                    <a href="" class="dropdown-link" data-toggle="dropdown" style="font-size: 17px;"> <i class="fas fa-user-cog"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu-header">
+                            <h6>Данные профиля </h6>
+                        </div><!-- dropdown-menu-header -->
+                        <div class="dropdown-menu-body">
+                            <a href="" class="dropdown-item"><i class="fas fa-user-edit"></i> Редактировать профиль</a>
+                            <a href="" class="dropdown-item"><i class="fas fa-cog"></i> Настройки учетной записи</a>
+                            <a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Выход</a>
+                        </div>
+                    </div><!-- dropdown-menu -->
+                </div>
+            </div><!-- header-right -->
+        </div><!-- header -->
+        <div class="content-header justify-content-between">
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Анализ и мониторинг</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="d-none d-sm-flex">
+                <a href="" class="btn btn-white"><i class="fas fa-sync"></i> Обновить</a>
+            </div>
+        </div><!-- content-header -->
+        <div class="content-body">
+            <div class="row row-sm">
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-current-weather">
+                        <div class="card-header bg-transparent no-border pd-lg-y-15">
+                            <div class="d-flex">
+                                <div class="pd-10 flex-grow-1">
+                                    <div class="btn-group">
+                                        <button class="btn btn-outline-light btn-sm active"><i class="wi wi-day-sunny"></i> Днем</button>
+                                        <button class="btn btn-outline-light btn-sm"><i class="wi wi-night-clear"></i> Ночью</button>
+                                    </div>
+                                </div>
+                                <div class="pd-10 mg-l-auto">
+                                    <div class="d-flex">
+                                        <select class="custom-select custom-select-sm tx-12">
+                                            <option value="1703">Андижанская область</option>
+                                            <option value="1706">Бухарская область</option>
+                                            <option value="1708">Джизакская область</option>
+                                            <option value="1710">Кашкадарьинская область</option>
+                                            <option value="1712">Навоийская область</option>
+                                            <option value="1714">Наманганская область</option>
+                                            <option value="1718">Самаркандская область</option>
+                                            <option value="1722">Сурхандарьинская область</option>
+                                            <option value="1724">Сырдарьинская область</option>
+                                            <option value="1726" selected="">г. Ташкент</option>
+                                            <option value="1727">Ташкентская область</option>
+                                            <option value="1730">Ферганская область</option>
+                                            <option value="1733">Хорезмская область</option>
+                                            <option value="1735">Республика Каракалпакстан</option>
+                                            <option value="1">Ташкенткая область</option>
+                                        </select>
+                                        <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i class="fas fa-arrow-down"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- card-header -->
+                        <div class="card-body">
+                            <div class="row row-sm">
+                                <div class="col-sm">
+                                    <!-- бугун -->
+                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
+                                        <div class="card-body">
+                                            <h1 class="card-value current-temp">823</h1>
+                                            <div class="w-icon"> <i class="wi wi-snow-wind"></i> </div>
+                                        </div><!-- card-body -->
+                                        <h6 class="card-title tx-center">15.11.2020</h6>
+                                    </div><!-- card -->
+                                </div>
+                                <div class="col-sm">
+                                    <!-- эртага -->
+                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
+                                        <div class="card-body">
+                                            <h1 class="card-value current-temp">823</h1>
+                                            <div class="w-icon"><i class="wi wi-snow-wind"></i> </div>
+                                        </div><!-- card-body -->
+                                        <h6 class="card-title tx-center">15.11.2020</h6>
+                                    </div><!-- card -->
+                                </div>
+                                <div class="col-sm">
+                                    <!-- индинга -->
+                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
+                                        <div class="card-body">
+                                            <h1 class="card-value current-temp">823</h1>
+                                            <div class="w-icon"><i class="wi wi-snow-wind"></i></div>
+                                        </div><!-- card-body -->
+                                        <h6 class="card-title tx-center">15.11.2020</h6>
+                                    </div><!-- card -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 col-sm">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <i class="wi-wi wi wi-raindrop"></i>
+                                        <h4 class="tx-numeric tx-normal precip"></h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Влажность</label>
+                                </div><!-- col -->
+                                <div class="col-md-4 col-sm">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <i class="wi-wi wi wi-strong-wind"></i>
+                                        <h4 class="tx-numeric tx-normal wind"></h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Ветер</label>
+                                </div><!-- col -->
+                                <div class="col-md-4 col-sm mg-t-15 mg-sm-t-0">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <i class="wi-wi wi wi-cloudy"></i>
+                                        <h4 class="tx-numeric tx-normal clouds"></h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Осадка</label>
+                                </div><!-- col -->
+                            </div><!-- row -->
+                        </div><!-- card-footer -->
+                    </div><!-- card -->
+                </div><!-- col -->
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-chart-weather">
+                        <div class="card-header bg-transparent d-flex">
+                            <div class="pd-10 flex-grow-1">
+                                <h6 class="card-title mg-b-0 current-temp"></h6>
+                            </div>
+                            <div class="pd-10">
+                                <div class="btn-group"><button class="inline-wi legend-label temp-label">Температура</button>
+                                    <button class="inline-wi legend-label wind-label label-off">Ветер</button>
+                                    <button class="inline-wi legend-label rain-label label-off">Осадки</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-chart-header">
+                                <div class="chart-legend">
+                                    <!--  <h6 class="current-temp inline-wi"></h6> -->
+                                </div>
+                                <div class="btn-group">
+                                    <button class="temp-format celsius">°C</button>
+                                    <button class="temp-format faren">°F</button>
+                                </div><!-- btn-group -->
+                            </div><!-- card-chart-header -->
+                            <div class="chart-wrapper">
+                                <div class="graph">
+                                    <canvas id="temp-chart" class="temp-chart"></canvas>
+                                </div>
+                                <div class="graph">
+                                    <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
+                                </div>
+                                <div class="graph">
+                                    <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- card -->
+                </div><!-- col -->
+            </div>
+            <div class="row row-sm mg-t-15 mg-sm-t-20">
+                <div class="col-md-12 col-xl-12 mg-t-15 mg-sm-t-20">
+                    <div class="card card-hover card-weather-location">
+                        <div class="card-header bg-transparent">
+                            <div>
+                                <h6 class="card-title mg-b-0">Погода по регионам</h6>
+                            </div>
+                            <nav class="nav">
+                                <div class="btn-group">
+                                    <button class="btn btn-white btn-xs">Сегодня</button>
+                                    <button class="btn btn-white btn-xs">Завтра</button>
+                                    <button class="btn btn-white btn-xs active">После завтра</button>
+                                </div>
+                            </nav>
+                        </div><!-- card-header -->
+                        <div class="card-body">
+                            <div class="list-group-wrapper order-2 order-md-0 mg-t-20 mg-sm-t-30 mg-md-t-0">
+                                <ul class="list-group list-group-flush mg-b-15">
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Андижан</span>
+                                         <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Фергана</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Наманган</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Ташкентская обл.</span>
+                                        <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>г. Ташкент</span>
+                                         <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span></span>
+                                        <span>Сирдарья</span>
+                                         <span class="tx-medium current-temp">0</span>
+                                    </li>
+                                </ul>
+                                <a href="" class="d-flex align-items-center tx-12">Подробнее <i class="icon ion-android-arrow-forward mg-l-5"></i></a>
+                            </div>
+                            <div class="vmap-wrapper bd-sm-l">
+                                <div id="vmap" class="vmap order-1 order-md-0"></div>
+                            </div>
+                        </div><!-- card-body -->
+                    </div><!-- card -->
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- content-body -->
+    </div><!-- content -->
+    <div id="offCanvas3" class="off-canvas off-canvas-overlay off-canvas-right">
+        <a href="#" class="close"><i data-feather="x"></i></a>
+        <div class="pd-30 ht-100p">
+            <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="../assets/img/gidrometeo.svg"></a></div>
+            <h6 class="tx-colo-01 tx-semibold mg-t-50 mg-b-25">О системе</h6>
+            <p class="mg-b-25 tx-color-03 tx-justify">Система для автоматизации основных этапов прикладной обработки и анализа гидрометерологических данных Узгидромета</p>
+        </div>
+    </div><!-- off-canvas -->
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/feather-icons/feather.min.js"></script>
+    <script src="../lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../lib/js-cookie/js.cookie.js"></script>
+    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.stack.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.threshold.js"></script>
+    <script src="../lib/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../lib/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="../lib/select2/js/select2.min.js"></script>
+    <script src="../assets/js/meteo.js"></script>
+    <script src="../assets/js/canvas.js"></script>
+    <script src="../assets/js/flot.sampledata.js"></script>
+    <script src="../assets/js/vmap.sampledata.js"></script>
+    <!-- weather-panel -->
+    <script src="../assets/js/weather-panel.js"></script>
+</body>
+
+</html>
