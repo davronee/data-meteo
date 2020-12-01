@@ -91,34 +91,18 @@
             <div class="row row-sm mg-b-20">
                 <div class="col-lg-9" style="border: 1px solid #ddd;">
                     <div class="card-chart-weather pd-5">
-                        <div class="card-header bg-transparent d-flex">
-                            <div class="pd-5 flex-grow-1">
-                                <div class="chart-legend">
-                                    <div class="btn-group">
-                                        <button class="temp-format celsius">°C</button>
-                                        <button class="temp-format faren">°F</button>
-                                    </div><!-- btn-group -->
-                                </div>
-                            </div>
-                            <div class="pd-5">
-                                <div class="btn-group">
-                                    <button class="inline-wi legend-label temp-label">Температура</button>
-                                    {{--                                    <button class="inline-wi legend-label wind-label label-off">Ветер</button>--}}
-                                    {{--                                    <button class="inline-wi legend-label rain-label label-off">Осадки</button>--}}
-                                </div>
-                            </div>
-                        </div>
+             
                         <div class="card-body">
-                            <div class="chart-wrapper" style="margin-left: -30px;">
-                                <div class="graph">
-                                    <canvas id="temp-chart" class="temp-chart"></canvas>
+                            <div class="flot-wrapper" style="margin-left: -30px;">
+                                <div class="">
+                                    <h3><canvas id="temp-chart" class="temp-chart"></canvas></h3>
                                 </div>
-                                <div class="graph">
+                                <!--<div class="graph">
                                     <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
                                 </div>
                                 <div class="graph">
                                     <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div><!-- card -->
@@ -486,11 +470,11 @@
                             data: {
                                 labels: hourLabels,
                                 datasets: [{
-                                    label: "temp",
+                                    label: 'C',
                                     data: tempData,
-                                    borderColor: "rgb(246 ,  191 ,  77 )",
+                                    borderColor: "rgb(246, 191, 77)",
                                     borderWidth: 1,
-                                    backgroundColor: "rgba(246 ,191 ,  77 , 0.2)"
+                                    backgroundColor: "rgba(246, 191,  77, 0.2)"
                                 }]
                             },
                             options: {
@@ -514,8 +498,11 @@
                                     xAxes: [{
                                         ticks: {
                                             fontSize: 10
-                                        }
-                                    }]
+                                        },
+                                        display: false,
+                                    }],
+
+
                                 }
                             }
                         });
