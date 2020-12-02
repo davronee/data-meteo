@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRegionForeinKey extends Migration
+class AddWeatherCodeForeinKey extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddRegionForeinKey extends Migration
     public function up()
     {
         Schema::table('meteos', function (Blueprint $table) {
-            $table->foreign('city_id')
-                ->references('weather_regionid')->on('weather_regions')
+            $table->foreign('weather_code')
+                ->references('code')->on('weather_codes')
                 ->onDelete('cascade');
         });
     }
@@ -28,8 +28,7 @@ class AddRegionForeinKey extends Migration
     public function down()
     {
         Schema::table('meteos', function (Blueprint $table) {
-            $table->dropForeign('meteos_city_id_foreign');
+            $table->dropForeign('meteos_weather_code_foreign');
         });
-
     }
 }
