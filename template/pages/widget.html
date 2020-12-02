@@ -22,129 +22,22 @@
     <link rel="stylesheet" href="../assets/css/meteo.css">
     <link rel="stylesheet" href="../assets/css/custom.css">
     <link rel="stylesheet" href="../assets/css/weather-panel.css">
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navSection" data-offset="100">
-    <div class="sidebar">
-        <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="../assets/img/gidrometeo.svg"></a></div><!-- sidebar-header -->
-        <div id="dpSidebarBody" class="sidebar-body">
-            <ul class="nav nav-sidebar">
-                <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Прогноз погоды</a>
-                    <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link">Наукастинг(фактическая)</a>
-                        <a href="#" class="nav-sub-link">Сверхкраткосрочный</a>
-                        <a href="#" class="nav-sub-link">Краткосрочный</a>
-                        <a href="#" class="nav-sub-link">Среднесрочный</a>
-                        <a href="#" class="nav-sub-link">С расширенным сроком</a>
-                        <a href="#" class="nav-sub-link">Долгосрочный</a>
-                    </nav>
-                </li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plane-departure"></i> Авиационные</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
-                <li class="nav-label"><label class="content-label">Наблюдения и мониторинг</label></li>
-                <li class="nav-item">
-                    <a href="" class="nav-link with-sub"><i class="fas fa-temperature-high"></i> Температура</a>
-                    <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link">Min. С&deg; воздуха и почвы</a>
-                        <a href="#" class="nav-sub-link">Max. С&deg; воздуха</a>
-                    </nav>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link with-sub"><i class="fas fa-cloud-rain"></i> Количество осадков</a>
-                    <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link">За прошедшие сутки</a>
-                        <a href="#" class="nav-sub-link">За прошедший день</a>
-                    </nav>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link with-sub"><i class="fas fa-chart-area"></i> Визуализация</a>
-                    <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link">Метеограммы Европейского центра</a>
-                        <a href="#" class="nav-sub-link">Спутниковые снимки</a>
-                        <a href="#" class="nav-sub-link">МРЛ-снимки</a>
-                    </nav>
-                </li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-cloud-showers-heavy"></i>Снежный покров</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-poo-storm"></i> Информация о штормовых явлениях</a></li>
-                <li class="nav-label"><label class="content-label"></label></li>
-                <li class="nav-item"><a href="#" class="nav-link text-danger"><i class="fas fa-exclamation-triangle"></i> Экстренная сообщения</a></li>
-            </ul>
-            <hr class="mg-t-30 mg-b-25">
-            <ul class="nav nav-sidebar">
-                <li class="nav-item">
-                    <a href="#" class="nav-link with-sub"><i class="fas fa-info-circle"></i> Справочники</a>
-                    <nav class="nav nav-sub">
-                        <a href="#" class="nav-sub-link">Норма и стандарты</a>
-                    </nav>
-                </li>
-                <li class="nav-item"><a href="#offCanvas3" class="nav-link off-canvas-menu"><i class="fas fa-question-circle"></i> О системе</a></li>
-            </ul>
-        </div><!-- sidebar-body -->
-    </div><!-- sidebar -->
-    <div class="content content-page">
+<body>
+    <div class="container" style="box-shadow: 0px 0px 2px 2px rgba(60, 70, 83, 0.07);">
         <div class="header">
             <div class="header-left">
-                <a href="" class="burger-menu"><i data-feather="menu"></i></a>
-                <div class="header-search">
-                    <i data-feather="search"></i>
-                    <input type="search" class="form-control" placeholder="Что вы ищете?">
-                </div><!-- header-search -->
+                <img src="../assets/img/gidrometeo.svg"></a>
             </div><!-- header-left -->
             <div class="header-right">
-                <div class="dropdown dropdown-notification">
-                    <a href="" class="dropdown-link new" data-toggle="dropdown"><i class="far fa-bell fa-lg"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-menu-header">
-                            <h6>Уведомления</h6>
-                            <a href=""><i data-feather="more-vertical"></i></a>
-                        </div><!-- dropdown-menu-header -->
-                        <div class="dropdown-menu-body">
-                            <a href="" class="dropdown-item">
-                                <div class="avatar"><span class="avatar-initial rounded-circle text-primary bg-primary-light">s</span></div>
-                                <div class="dropdown-item-body">
-                                    <p><strong>Socrates Itumay</strong> marked the task as completed.</p>
-                                    <span>5 hours ago</span>
-                                </div>
-                            </a>
-                            <a href="" class="dropdown-item">
-                                <div class="avatar"><span class="avatar-initial rounded-circle tx-pink bg-pink-light">r</span></div>
-                                <div class="dropdown-item-body">
-                                    <p><strong>Reynante Labares</strong> marked the task as incomplete.</p>
-                                    <span>8 hours ago</span>
-                                </div>
-                            </a>
-                            <a href="" class="dropdown-item">
-                                <div class="avatar"><span class="avatar-initial rounded-circle tx-success bg-success-light">d</span></div>
-                                <div class="dropdown-item-body">
-                                    <p><strong>Dyanne Aceron</strong> responded to your comment on this <strong>post</strong>.</p>
-                                    <span>a day ago</span>
-                                </div>
-                            </a>
-                            <a href="" class="dropdown-item">
-                                <div class="avatar"><span class="avatar-initial rounded-circle tx-indigo bg-indigo-light">k</span></div>
-                                <div class="dropdown-item-body">
-                                    <p><strong>Kirby Avendula</strong> marked the task as incomplete.</p>
-                                    <span>2 days ago</span>
-                                </div>
-                            </a>
-                        </div><!-- dropdown-menu-body -->
-                        <div class="dropdown-menu-footer">
-                            <a href="">Просмотреть все уведомления</a>
-                        </div>
-                    </div><!-- dropdown-menu -->
-                </div>
             </div><!-- header-right -->
         </div><!-- header -->
         <div class="content-header justify-content-between">
             <div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Фактическая погода</li>
-                    </ol>
-                </nav>
+                <h4 class="content-title content-title-xs">Welcome to Dashboard</h4>
             </div>
             <div class="d-none d-sm-flex">
                 <a href="" class="btn btn-white"><i class="fas fa-sync"></i> Обновить</a>
@@ -153,258 +46,72 @@
         <div class="content-body">
             <div class="row row-sm">
                 <div class="col-xl-12">
-                    <div class="card card-hover card-analytics-one">
+                    <div class="card card-hover card-analytics-one no-shadow">
                         <div class="card-body">
                             <div class="row row-sm">
-                                <div class="col-sm-12 col-md-8">
-                                    <div class="card-chart-weather">
-                                        <div class="card-header bg-transparent d-flex">
-                                            <div class="pd-10 flex-grow-1">
-                                                <h6 class="card-title mg-b-0 d-sm-none d-none">Фактическая погода</h6>
-                                            </div>
-                                            <div class="pd-10">
-                                                <div class="btn-group"><button class="inline-wi legend-label temp-label">Температура</button>
-                                                    <button class="inline-wi legend-label wind-label label-off">Ветер</button>
-                                                    <button class="inline-wi legend-label rain-label label-off">Осадки</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="card-chart-header">
-                                                <div class="chart-legend">
-                                                    <!--  <h6 class="current-temp inline-wi"></h6> -->
-                                                </div>
-                                                <div class="btn-group">
-                                                    <button class="temp-format celsius">°C</button>
-                                                    <button class="temp-format faren">°F</button>
-                                                </div><!-- btn-group -->
-                                            </div><!-- card-chart-header -->
-                                            <div class="chart-wrapper">
-                                                <div class="graph">
-                                                    <canvas id="temp-chart" class="temp-chart"></canvas>
-                                                </div>
-                                                <div class="graph">
-                                                    <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
-                                                </div>
-                                                <div class="graph">
-                                                    <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- card -->
+                                <div class="col-sm-8 col-md-8">
+                                    <label class="tx-medium tx-14 tx-color-01 mg-b-2">Organic Visits &amp; Conversions</label>
+                                    <p class="tx-12 tx-color-03 mg-b-20">Detailed breakdown is available on your report page. <a href="" class="link-05">Learn more</a></p>
+                                    <div class="chart-wrapper">
+                                        <canvas id="temp-chart" class="temp-chart"></canvas>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="d-flex mg-b-20 mg-t-40">
+                                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-0">
+                                    <div class="d-flex mg-b-20">
                                         <select class="custom-select custom-select-sm tx-12">
-                                            <option value="1703">Андижанская область</option>
-                                            <option value="1706">Бухарская область</option>
-                                            <option value="1708">Джизакская область</option>
-                                            <option value="1710">Кашкадарьинская область</option>
-                                            <option value="1712">Навоийская область</option>
-                                            <option value="1714">Наманганская область</option>
-                                            <option value="1718">Самаркандская область</option>
-                                            <option value="1722">Сурхандарьинская область</option>
-                                            <option value="1724">Сырдарьинская область</option>
-                                            <option value="1726" selected="">г. Ташкент</option>
-                                            <option value="1727">Ташкентская область</option>
-                                            <option value="1730">Ферганская область</option>
-                                            <option value="1733">Хорезмская область</option>
-                                            <option value="1735">Республика Каракалпакстан</option>
-                                            <option value="1">Ташкенткая область</option>
+                                            <option selected="">Last 30 days</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
                                         </select>
-                                        <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i class="fas fa-download"></i></button>
+                                        <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i data-feather="download"></i></button>
                                     </div>
-                                    <label class="content-label content-label-xs pull-right" id="datetime"></label>
+                                    <label class="content-label content-label-xs">Conversion Rate</label>
                                     <div class="d-flex align-items-baseline mg-b-5">
-                                        <h2 class="card-value mg-b-0 tx-dark tx-semibold current-temp">3</h2>
-                                        <span class="card-value-sub tx-meteo mg-l-10 tx-md-16 tx-lg-18"><i data-feather="trending-up" class="svg-12"></i> 1&deg;</span>
+                                        <h2 class="card-value mg-b-0"></h2>
+                                        <span class="card-value-sub"></span>
                                     </div>
-                                    <p class="card-value-desc mg-l-10 tx-md-12 tx-lg-14 tx-lx-16"></p>
-                                    <hr>
+                                    <p class="card-value-desc">Measures the ratio of a website’s visitors to conversions.</p>
+                                    <hr class="mg-y-10 op-0">
+                                    <label class="content-label content-label-xs">Conversion Value</label>
                                     <div class="d-flex align-items-baseline mg-b-5">
-                                        <ul class="list-group tx-md-16 tx-lg-17 tx-lx-16">
-                                            <li class="list-group-item d-flex align-items-center no-border no-shadow">
-                                                <span class="wd-60 mg-r-15 tx-dark tx-semibold precip"></span>
-                                                <div class="pull-right">
-                                                    <span class="d-block tx-12 tx-danger"><i data-feather="trending-down" class="svg-12"></i> 20%</span>
-                                                    <h6 class="tx-14 tx-normal mg-b-0">Влажность</h6>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex align-items-center no-border no-shadow">
-                                                <span class="wd-60 mg-r-15 tx-dark tx-semibold wind"></span>
-                                                <div>
-                                                    <span class="d-block tx-12 tx-meteo"><i data-feather="git-commit" class="svg-12"></i> 1 м/с</span>
-                                                    <h6 class="tx-14 tx-normal mg-b-0">Ветер</h6>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex align-items-center no-border no-shadow">
-                                                <span class="wd-60 mg-r-15 tx-dark tx-semibold clouds"></span>
-                                                <div>
-                                                    <span class="d-block  tx-12 tx-danger"><i data-feather="trending-down" class="svg-12"></i> 30%</span>
-                                                    <h6 class="tx-14 tx-normal mg-b-0">Осадка</h6>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <h2 class="card-value mg-b-0">1,368</h2>
                                     </div>
-                                    <p class="mg-l-10 tx-md-10 tx-lg-11 tx-lx-12">Вид облаков нижнего яруса: <span class="tx-medium tx-meteo">слоисто-кучевые</span></p>
+                                    <p class="card-value-desc">Refers to the financial worth of the securities obtained.</p>
                                 </div><!-- col -->
                             </div><!-- row -->
                         </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal"><span>$</span>134.10</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Total Cost</label>
+                                </div><!-- col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal">874</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Impressions</label>
+                                </div><!-- col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal">30</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Total Clicks</label>
+                                </div><!-- col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal">4.8%</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Click-Through Rate</label>
+                                </div><!-- col -->
+                            </div><!-- row -->
+                        </div><!-- card-footer -->
                     </div><!-- card -->
                 </div><!-- col -->
             </div>
-            <div class="row row-sm">
-                <!-- ДРУГИЕ ИСТОЧНИК -->
-                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-20">
-                    <div class="card card-hover card-weather-one bg-weather-panel">
-                        <div class="card-header bg-transparent pd-t-15 pd-l-20 pd-r-15 pd-b-0 bd-b-0">
-                            <p class="card-title mg-b-0">AccuWeather.com</p>
-                            <nav class="nav">
-                                <a href="" class="tx-white"><i data-feather="help-circle" class="svg-16"></i></a>
-                            </nav>
-                        </div>
-                        <div class="card-body pd-t-0">
-                            <div>
-                                <h1 class="card-value"><span class="current-temp"></span></h1>
-                                <div class="d-flex align-items-center tx-teal">
-                                    <i data-feather="arrow-up-circle" class="svg-12 fill-teal"></i>
-                                    <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
-                                </div>
-                            </div>
-                            <div class="flot-chart mgt-30"> <img src="../assets/weather/03/200.svg" class="svg-color"></div>
-                        </div><!-- card-body -->
-                    </div><!-- card -->
-                </div><!-- col -->
-                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-20">
-                    <div class="card card-hover card-weather-one bg-weather-panel">
-                        <div class="card-header bg-transparent pd-t-15 pd-l-20 pd-r-15 pd-b-0 bd-b-0">
-                            <p class="card-title mg-b-0">OpenWeather.com</p>
-                            <nav class="nav">
-                                <a href="" class="tx-white"><i data-feather="help-circle" class="svg-16"></i></a>
-                            </nav>
-                        </div>
-                        <div class="card-body pd-t-0">
-                            <div>
-                                <h1 class="card-value"><span class="current-temp"></span></h1>
-                                <div class="d-flex align-items-center tx-teal">
-                                    <i data-feather="arrow-up-circle" class="svg-12 fill-teal"></i>
-                                    <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
-                                </div>
-                            </div>
-                            <div class="flot-chart mgt-30"> <img src="../assets/weather/03/201.svg" class="svg-color"></div>
-                        </div><!-- card-body -->
-                    </div><!-- card -->
-                </div><!-- col -->
-                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-20">
-                    <div class="card card-hover card-weather-one bg-weather-panel">
-                        <div class="card-header bg-transparent pd-t-15 pd-l-20 pd-r-15 pd-b-0 bd-b-0">
-                            <p class="card-title mg-b-0">Total Profit</p>
-                            <nav class="nav">
-                                <a href="" class="tx-white"><i data-feather="help-circle" class="svg-16"></i></a>
-                            </nav>
-                        </div>
-                        <div class="card-body pd-t-0">
-                            <div>
-                                <h1 class="card-value"><span class="current-temp"></span></h1>
-                                <div class="d-flex align-items-center tx-teal">
-                                    <i data-feather="arrow-up-circle" class="svg-12 fill-teal"></i>
-                                    <span class="mg-l-5 tx-numeric tx-11">28.68%</span>
-                                </div>
-                            </div>
-                            <div class="flot-chart mgt-30"> <img src="../assets/weather/03/202.svg" class="svg-color"></div>
-                        </div><!-- card-body -->
-                    </div><!-- card -->
-                </div><!-- col -->
-            </div>
-            <div class="row row-sm mg-t-15 mg-sm-t-20">
-                <div class="col-md-12 col-xl-12 mg-t-15 mg-sm-t-20">
-                    <div class="card card-hover card-weather-location">
-                        <div class="card-header bg-transparent">
-                            <div>
-                                <h6 class="card-title mg-b-0">Фактическая погода по областным центрам</h6>
-                            </div>
-                            <nav class="nav">
-                                                 <!-- <div class="btn-group">
-                                    <button class="btn btn-white btn-xs active">Сегодня</button>
-                                    <button class="btn btn-white btn-xs">Завтра</button>
-                                    <button class="btn btn-white btn-xs">После завтра</button>
-                                </div> -->
-                            </nav>
-                        </div><!-- card-header -->
-                        <div class="card-body">
-                            <div class="list-group-wrapper order-2 order-md-0 mg-t-20 mg-sm-t-30 mg-md-t-0">
-                                <ul class="list-group list-group-flush mg-b-15">
-                                    <li class="list-group-item">
-                                        <span id="1703"><a href="#">Андижанская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1706"><a href="#">Бухарская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1708"><a href="#">Джизакская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1710"><a href="#">Кашкадарьинская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1712"><a href="#">Навоийская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1714"><a href="#">Наманганская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1718"><a href="#">Самаркандская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1722"><a href="#">Сурхандарьинская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1724"><a href="#">Сырдарьинская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1726"><a href="#">г. Ташкент</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1727"><a href="#">Ташкентская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1730"><a href="#">Ферганская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1733"><a href="#">Хорезмская область</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1735"><a href="#">Республика Каракалпакстан</a></span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span id="1"><a href="#">Ташкенткая область</span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                </ul>
-                                <br>
-                                <a href="" class="d-flex pull-right tx-12">Подробнее <i class="icon ion-android-arrow-forward mg-l-5"></i></a>
-                            </div>
-                            <div class="vmap-wrapper bd-sm-l">
-                                <div id="vmap" class="vmap order-1 order-md-0"></div>
-                            </div>
-                        </div><!-- card-body -->
-                    </div><!-- card -->
-                </div><!-- col -->
-            </div><!-- row -->
         </div><!-- content-body -->
     </div><!-- content -->
     <div id="offCanvas3" class="off-canvas off-canvas-overlay off-canvas-right">
@@ -433,7 +140,6 @@
     <script src="../assets/js/canvas.js"></script>
     <script src="../assets/js/flot.sampledata.js"></script>
     <script src="../assets/js/vmap.sampledata.js"></script>
-    <!-- weather-panel -->
     <script src="../assets/js/weather-panel.js"></script>
     <script>
     var dt = new Date();
@@ -441,136 +147,384 @@
 
     </script>
     <script>
-    $(function() {
-
-        'use strict'
-
-        $.plot('#flotChart1', [{
-            data: df1,
-            color: '#38c4fa'
-        }], {
-            series: {
-                shadowSize: 0,
-                lines: {
-                    show: true,
-                    lineWidth: 1.5,
-                    fill: true,
-                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
-                },
-                points: {
-                    show: false,
-                    radius: 2,
-                    lineWidth: 1.5
-                }
-            },
-            grid: {
-                borderWidth: 0,
-                labelMargin: 0,
-            },
-            yaxis: { show: false },
-            xaxis: {
-                show: false,
-                min: 40,
-                max: 80
+    let app = new Vue({
+        el: "#app",
+        data: {
+            forecast_day: 0,
+            forecast_night: 0,
+            forecast_day_code: '',
+            forecast_night_code: '',
+            city: 'tashkent',
+            current: 0,
+            current_weather_code: '',
+            forcastdate: []
+        },
+        filters: {
+            capitalize: function(value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.slice(1)
             }
-        });
+        },
+        methods: {
+            init: function() {
+                $(function() {
+                    'use strict'
 
-        $.plot('#flotChart2', [{
-            data: df1,
-            color: '#22d273'
-        }], {
-            series: {
-                shadowSize: 0,
-                lines: {
-                    show: true,
-                    lineWidth: 1.5,
-                    fill: true,
-                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
-                },
-                points: {
-                    show: false,
-                    radius: 2,
-                    lineWidth: 1.5
-                }
+                    // Datepicker
+                    $('.fc-datepicker').datepicker({
+                        showOtherMonths: true,
+                        selectOtherMonths: true
+                    });
+
+                    $('#datepickerNoOfMonths').datepicker({
+                        showOtherMonths: true,
+                        selectOtherMonths: true,
+                        numberOfMonths: 2
+                    });
+
+                    $(document).ready(function() {
+                        $('.select2').select2({
+                            placeholder: 'Выберите'
+                        });
+
+                        $('.select2-no-search').select2({
+                            minimumResultsForSearch: Infinity,
+                            placeholder: 'Выберите'
+                        });
+                    });
+
+                    // MAP
+
+                    $('#vmap').vectorMap({
+                        map: 'uz-uz',
+                        backgroundColor: '#fff',
+                        enableZoom: false,
+                        color: '#ffffff',
+                        hoverOpacity: 0.1,
+                        showTooltip: false,
+                        scaleColors: ['#e9ecef', '#dee2e6'],
+                        borderWidth: 1,
+                        borderColor: '#fff',
+                        values: sample_data,
+                        normalizeFunction: 'polynomial'
+                    });
+
+                    // We use an inline data source in the example, usually data would
+                    // be fetched from a server
+                    var data = [];
+                    var totalPoints = 150;
+
+                    function getRandomData() {
+                        if (data.length > 0)
+                            data = data.slice(1);
+
+                        // Do a random walk
+                        while (data.length < totalPoints) {
+                            var prev = data.length > 0 ? data[data.length - 1] : 50;
+                            var y = prev + Math.random() * 10 - 5;
+
+                            if (y < 0) {
+                                y = 0;
+                            } else if (y > 100) {
+                                y = 100;
+                            }
+
+                            data.push(y);
+                        }
+
+                        // Zip the generated y values with the x values
+                        var res = [];
+                        for (var i = 0; i < data.length; ++i) {
+                            res.push([i, data[i]])
+                        }
+
+                        return res;
+                    }
+
+                    var plot = $.plot('#flotChart', [getRandomData()], {
+                        series: {
+                            color: '#03A9F4',
+                            shadowSize: 0,
+                            lines: {
+                                show: true,
+                                lineWidth: 2,
+                                fill: true,
+                                fillColor: { colors: [{ opacity: 0 }, { opacity: 0.8 }] }
+                            }
+                        },
+                        crosshair: {
+                            mode: 'x',
+                            color: '#f10075'
+                        },
+                        grid: { borderWidth: 0 },
+                        yaxis: {
+                            min: 0,
+                            max: 100,
+                            color: 'rgba(0,0,0,.08)',
+                            font: {
+                                size: 10,
+                                color: '#ddd',
+                                family: 'Arial'
+                            },
+                            tickSize: 15
+                        },
+                        xaxis: { show: false }
+                    });
+
+                    function update() {
+                        plot.setData([getRandomData()]);
+
+                        // Since the axes don't change, we don't need to call plot.setupGrid()
+                        plot.draw();
+                        setTimeout(update, 2000);
+                    }
+
+                    update();
+
+                });
+                var dt = new Date();
+                document.getElementById("only_date").innerHTML = dt.toLocaleDateString();
+                var dt = new Date();
+                document.getElementById("only_time").innerHTML = dt.toLocaleTimeString();
             },
-            grid: {
-                borderWidth: 0,
-                labelMargin: 0,
+            forecast: function() {
+                axios.get('https://www.meteo.uz/index.php/forecast/city', {
+                        params: {
+                            city: this.city,
+                            expand: 'city',
+                        }
+                    })
+                    .then(function(response) {
+                        app.forecast_day = response.data[6];
+                        app.forecast_night = response.data[7];
+                        // console.log(response.data[7]);
+
+                        app.forcastdate = response.data;
+
+                        if (response.data[6].icon == 'clear')
+                            app.forecast_day_code = 'ясно, безоблачно';
+                        else if (response.data[6].icon == 'mostly_clear')
+                            app.forecast_day_code = 'небольшая, незначительная облачность';
+                        else if (response.data[6].icon == 'partly_cloudy')
+                            app.forecast_day_code = 'переменная облачность';
+                        else if (response.data[6].icon == 'mostly_cloudy')
+                            app.forecast_day_code = 'значительная облачность';
+                        else if (response.data[6].icon == 'overcast')
+                            app.forecast_day_code = 'облачно, пасмурно';
+                        else if (response.data[6].icon == 'fog')
+                            app.forecast_day_code = 'туман, дымка, мгла';
+                        else if (response.data[6].icon == 'light_rain')
+                            app.forecast_day_code = 'небольшой, слабый дождь';
+                        else if (response.data[6].icon == 'rain')
+                            app.forecast_day_code = 'дождь';
+                        else if (response.data[6].icon == 'heavy_rain')
+                            app.forecast_day_code = 'сильный, ливневый дождь';
+                        else if (response.data[6].icon == 'thunderstorm')
+                            app.forecast_day_code = 'гроза';
+                        else if (response.data[6].icon == 'light-sleet')
+                            app.forecast_day_code = 'небольшие, слабые осадки (дождь, снег)';
+                        else if (response.data[6].icon == 'sleet')
+                            app.forecast_day_code = 'осадки (дождь, снег)';
+                        else if (response.data[6].icon == 'heavy_sleet')
+                            app.forecast_day_code = 'сильные осадки (дождь, снег)';
+                        else if (response.data[6].icon == 'light_snow')
+                            app.forecast_day_code = 'небольшой, слабый снег';
+                        else if (response.data[6].icon == 'snow')
+                            app.forecast_day_code = 'снег';
+                        else if (response.data[6].icon == 'heavy_snow')
+                            app.forecast_day_code = 'сильный снег';
+
+
+                        if (response.data[7].icon == 'clear')
+                            app.forecast_night_code = 'ясно, безоблачно';
+                        else if (response.data[7].icon == 'mostly_clear')
+                            app.forecast_night_code = 'небольшая, незначительная облачность';
+                        else if (response.data[7].icon == 'partly_cloudy')
+                            app.forecast_night_code = 'переменная облачность';
+                        else if (response.data[7].icon == 'mostly_cloudy')
+                            app.forecast_night_code = 'значительная облачность';
+                        else if (response.data[7].icon == 'overcast')
+                            app.forecast_night_code = 'облачно, пасмурно';
+                        else if (response.data[7].icon == 'fog')
+                            app.forecast_night_code = 'туман, дымка, мгла';
+                        else if (response.data[7].icon == 'light_rain')
+                            app.forecast_night_code = 'небольшой, слабый дождь';
+                        else if (response.data[7].icon == 'rain')
+                            app.forecast_night_code = 'дождь';
+                        else if (response.data[7].icon == 'heavy_rain')
+                            app.forecast_night_code = 'сильный, ливневый дождь';
+                        else if (response.data[7].icon == 'thunderstorm')
+                            app.forecast_night_code = 'гроза';
+                        else if (response.data[7].icon == 'light-sleet')
+                            app.forecast_night_code = 'небольшие, слабые осадки (дождь, снег)';
+                        else if (response.data[7].icon == 'sleet')
+                            app.forecast_night_code = 'осадки (дождь, снег)';
+                        else if (response.data[7].icon == 'heavy_sleet')
+                            app.forecast_night_code = 'сильные осадки (дождь, снег)';
+                        else if (response.data[7].icon == 'light_snow')
+                            app.forecast_night_code = 'небольшой, слабый снег';
+                        else if (response.data[7].icon == 'snow')
+                            app.forecast_night_code = 'снег';
+                        else if (response.data[7].icon == 'heavy_snow')
+                            app.forecast_night_code = 'сильный снег';
+
+
+                        var metric = true;
+                        var date;
+                        var json;
+                        date = new Date();
+                        var month = date.getMonth();
+                        var monthNames = [
+                            "Январь",
+                            "Февраль",
+                            "Март",
+                            "Апрель",
+                            "Май",
+                            "Июнь",
+                            "Июль",
+                            "Август",
+                            "Сентябрь",
+                            "Октябрь",
+                            "Ноябрь",
+                            "Декабрь"
+                        ];
+                        var hour = date.getHours();
+                        var hourLabels = [app.forcastdate[7].date + ' 00:00', app.forcastdate[6].date + ' 12:00', app.forcastdate[5].date + ' 00:00', app.forcastdate[4].date + ' 12:00', app.forcastdate[3].date + ' 00:00', app.forcastdate[2].date + ' 12:00', app.forcastdate[1].date + ' 00:00', app.forcastdate[0].date + ' 12:00'];
+                        var tempData = [app.forcastdate[7].air_t_min, app.forcastdate[6].air_t_min, app.forcastdate[5].air_t_min, app.forcastdate[4].air_t_min, app.forcastdate[3].air_t_min, app.forcastdate[2].air_t_min, app.forcastdate[1].air_t_min, app.forcastdate[0].air_t_min];
+                        var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
+                        var windData = [0, 0, 0, 0, 0, 0, 0, 0];
+
+
+                        $(".time").html(
+                            date.getDay() + " " + monthNames[month] + " " + date.getFullYear()
+                        );
+                        var tempEl = document.getElementById("temp-chart");
+
+
+                        var tempChart = new Chart(tempEl, {
+                            type: "line",
+                            data: {
+                                labels: hourLabels,
+                                datasets: [{
+                                    label: 'C',
+                                    data: tempData,
+                                    borderColor: "rgb(246, 191, 77)",
+                                    borderWidth: 1,
+                                    backgroundColor: "rgba(246, 191,  77, 0.2)"
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    boxWidth: 0,
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            fontSize: 10
+                                        },
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: " ",
+                                            fontSize: 10
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            fontSize: 10
+                                        },
+                                        display: false,
+                                    }],
+
+
+                                }
+                            }
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    })
+                    .then(function() {
+                        // always executed
+                    });
+
             },
-            yaxis: { show: false },
-            xaxis: {
-                show: false,
-                min: 20,
-                max: 60
+            getCurrent: function() {
+                axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
+                        params: {
+                            city: this.city,
+                            language: 'ru',
+                        }
+                    })
+                    .then(function(response) {
+                        app.current = Math.floor(response.data.air_t);
+
+                        if (response.data.weather_code == 'clear')
+                            app.current_weather_code = 'ясно, безоблачно';
+                        else if (response.data.weather_code == 'mostly_clear')
+                            app.current_weather_code = 'небольшая, незначительная облачность';
+                        else if (response.data.weather_code == 'partly_cloudy')
+                            app.current_weather_code = 'переменная облачность';
+                        else if (response.data.weather_code == 'mostly_cloudy')
+                            app.current_weather_code = 'значительная облачность';
+                        else if (response.data.weather_code == 'overcast')
+                            app.current_weather_code = 'облачно, пасмурно';
+                        else if (response.data.weather_code == 'fog')
+                            app.current_weather_code = 'туман, дымка, мгла';
+                        else if (response.data.weather_code == 'light_rain')
+                            app.current_weather_code = 'небольшой, слабый дождь';
+                        else if (response.data.weather_code == 'rain')
+                            app.current_weather_code = 'дождь';
+                        else if (response.data.weather_code == 'heavy_rain')
+                            app.current_weather_code = 'сильный, ливневый дождь';
+                        else if (response.data.weather_code == 'thunderstorm')
+                            app.current_weather_code = 'гроза';
+                        else if (response.data.weather_code == 'light-sleet')
+                            app.current_weather_code = 'небольшие, слабые осадки (дождь, снег)';
+                        else if (response.data.weather_code == 'sleet')
+                            app.current_weather_code = 'осадки (дождь, снег)';
+                        else if (response.data.weather_code == 'heavy_sleet')
+                            app.current_weather_code = 'сильные осадки (дождь, снег)';
+                        else if (response.data.weather_code == 'light_snow')
+                            app.current_weather_code = 'небольшой, слабый снег';
+                        else if (response.data.weather_code == 'snow')
+                            app.current_weather_code = 'снег';
+                        else if (response.data.weather_code == 'heavy_snow')
+                            app.current_weather_code = 'сильный снег';
+
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    })
+                    .then(function() {
+                        // always executed
+                    });
+            },
+            createChart: function() {
+
+
             }
-        });
+        },
+        created() {
 
-        $.plot('#flotChart3', [{
-            data: df1,
-            color: '#e83e8c'
-        }], {
-            series: {
-                shadowSize: 0,
-                lines: {
-                    show: true,
-                    lineWidth: 1.5,
-                    fill: true,
-                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
-                },
-                points: {
-                    show: false,
-                    radius: 2,
-                    lineWidth: 1.5
-                }
-            },
-            grid: {
-                borderWidth: 0,
-                labelMargin: 0,
-            },
-            yaxis: { show: false },
-            xaxis: {
-                show: false,
-                min: 60,
-                max: 100
-            }
-        });
+        },
+        mounted() {
+            this.init();
+            this.forecast();
+            this.getCurrent();
+            this.createChart();
+        }
+    });
 
-        $.plot('#flotChart4', [{
-            data: df1,
-            color: '#fd7e14'
-        }], {
-            series: {
-                shadowSize: 0,
-                lines: {
-                    show: true,
-                    lineWidth: 1.5,
-                    fill: true,
-                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.5 }] }
-                },
-                points: {
-                    show: false,
-                    radius: 2,
-                    lineWidth: 1.5
-                }
-            },
-            grid: {
-                borderWidth: 0,
-                labelMargin: 0,
-            },
-            yaxis: { show: false },
-            xaxis: {
-                show: false,
-                min: 100,
-                max: 140
-            }
-        });
-
-        // card-calendar-one widget
-        $('#datepicker1').datepicker({
-            showOtherMonths: true
-        });
-
-    })
+    $('#city').on("change", function() {
+        app.city = $(this).val();
+        app.forecast();
+        app.getCurrent();
+        // console.log('Name : ' + $(this).val());
+    });
 
     </script>
 </body>
