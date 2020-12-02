@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta -->
+    <meta name="description" content="Единая система анализа и обработки гидрометеорологических наблюдений">
+    <meta name="author" content="Метеоинфосистем">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
+    <title>METEO|DC</title>
+    <!-- icons css -->
+    <link href="../lib/fontawesome5/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/ionicons.min.css">
+    <!-- vendor css -->
+    <link href="../lib/select2/css/select2.min.css" rel="stylesheet">
+    <!-- template css -->
+    <link rel="stylesheet" href="../assets/css/meteo.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/weather-panel.css">
+</head>
+
+<body>
+    <div class="container" style="box-shadow: 0px 0px 2px 2px rgba(60, 70, 83, 0.07);">
+        <div class="header">
+            <div class="header-left">
+                <img src="../assets/img/gidrometeo.svg"></a>
+            </div><!-- header-left -->
+            <div class="header-right">
+            </div><!-- header-right -->
+        </div><!-- header -->
+        <div class="content-header justify-content-between">
+            <div>
+                <h4 class="content-title content-title-xs">Welcome to Dashboard</h4>
+            </div>
+            <div class="d-none d-sm-flex">
+                <span class="btn btn-info" id="only_date"></a>
+            </div>
+        </div><!-- content-header -->
+        <div class="content-body">
+            <div class="row row-sm">
+                <div class="col-xl-12">
+                    <div class="card card-hover card-analytics-one no-shadow">
+                        <div class="card-body">
+                            <div class="row row-sm">
+                                <div class="col-sm-8 col-md-8">
+                                    <div class="chart-wrapper">
+                                        <canvas id="temp-chart" class="temp-chart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-0">
+                                    <div class="d-flex mg-b-20">
+                                        <select class="custom-select custom-select-sm tx-12">
+                                            <option label="Регион"></option>
+                                            <option value="1703">Андижанская область</option>
+                                            <option value="1706">Бухарская область</option>
+                                            <option value="1708">Джизакская область</option>
+                                            <option value="1710">Кашкадарьинская область</option>
+                                            <option value="1712">Навоийская область</option>
+                                            <option value="1714">Наманганская область</option>
+                                            <option value="1718">Самаркандская область</option>
+                                            <option value="1722">Сурхандарьинская область</option>
+                                            <option value="1724">Сырдарьинская область</option>
+                                            <option value="1726" selected="">г. Ташкент</option>
+                                            <option value="1727">Ташкентская область</option>
+                                            <option value="1730">Ферганская область</option>
+                                            <option value="1733">Хорезмская область</option>
+                                            <option value="1735">Республика Каракалпакстан</option>
+                                            <option value="1">Ташкенткая область</option>
+                                        </select>
+                                    </div>
+                                    <label class="content-label content-label-xs">Conversion Rate</label>
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h2 class="card-value mg-b-0"></h2>
+                                        <span class="card-value-sub"></span>
+                                    </div>
+                                    <p class="card-value-desc">Measures the ratio of a website’s visitors to conversions.</p>
+                                    <hr class="mg-y-10 op-0">
+                                    <label class="content-label content-label-xs">Conversion Value</label>
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h2 class="card-value mg-b-0">1,368</h2>
+                                    </div>
+                                    <p class="card-value-desc">Refers to the financial worth of the securities obtained.</p>
+                                </div><!-- col -->
+                            </div><!-- row -->
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal"><span>$</span>134.10</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Total Cost</label>
+                                </div><!-- col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal">874</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Impressions</label>
+                                </div><!-- col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="d-flex align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal">30</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Total Clicks</label>
+                                </div><!-- col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="align-items-baseline mg-b-5">
+                                        <h4 class="tx-numeric tx-normal">4.8%</h4>
+                                    </div>
+                                    <label class="content-label content-label-xs">Click-Through Rate</label>
+                                </div><!-- col -->
+                            </div><!-- row -->
+                        </div><!-- card-footer -->
+                    </div><!-- card -->
+                </div><!-- col -->
+            </div>
+        </div><!-- content-body -->
+    </div><!-- content -->
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/feather-icons/feather.min.js"></script>
+    <script src="../lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../lib/js-cookie/js.cookie.js"></script>
+    <script src="../lib/select2/js/select2.min.js"></script>
+    <!--  <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.stack.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.threshold.js"></script>
+    <script src="../lib/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../lib/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="../assets/js/canvas.js"></script>
+    <script src="../assets/js/flot.sampledata.js"></script>
+    <script src="../assets/js/vmap.sampledata.js"></script>
+    <script src="../assets/js/weather-panel.js"></script> -->
+    <script>
+    var dt = new Date();
+    document.getElementById("only_date").innerHTML = dt.toLocaleDateString();
+
+    </script>
+    <!-- TIME -->
+    <script>
+    var dt = new Date();
+    document.getElementById("only_time").innerHTML = dt.toLocaleTimeString();
+
+    </script>
+</body>
+
+</html>
