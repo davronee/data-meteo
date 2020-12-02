@@ -16,517 +16,328 @@
     <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
     <link rel="stylesheet" href="../assets/css/ionicons.min.css">
     <!-- vendor css -->
-    <link href="../lib/jqvmap/jqvmap.min.css" rel="stylesheet">
     <link href="../lib/select2/css/select2.min.css" rel="stylesheet">
     <!-- template css -->
     <link rel="stylesheet" href="../assets/css/meteo.css">
     <link rel="stylesheet" href="../assets/css/custom.css">
     <link rel="stylesheet" href="../assets/css/weather-panel.css">
-    <script src="../assets/js/vue.js"></script>
-    <script src="../assets/js/axios.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/meteo-weather.css">
+    <link rel="stylesheet" href="../assets/css/easy-responsive-tabs.css">
 </head>
 
-<body>
+<body onload="startTime()">
     <div class="container" style="box-shadow: 0px 0px 2px 2px rgba(60, 70, 83, 0.07);">
         <div class="header">
-            <div class="header-left">
+            <div class="header-left sidebar-logo">
                 <img src="../assets/img/gidrometeo.svg"></a>
             </div><!-- header-left -->
             <div class="header-right">
             </div><!-- header-right -->
         </div><!-- header -->
-        <div class="content-header justify-content-between">
-            <div>
-                <h4 class="content-title content-title-xs">Welcome to Dashboard</h4>
-            </div>
-            <div class="d-none d-sm-flex">
-                <a href="" class="btn btn-white"><i class="fas fa-sync"></i> Обновить</a>
-            </div>
-        </div><!-- content-header -->
-        <div class="content-body">
-            <div class="row row-sm">
-                <div class="col-xl-12">
-                    <div class="card card-hover card-analytics-one no-shadow">
-                        <div class="card-body">
-                            <div class="row row-sm">
-                                <div class="col-sm-8 col-md-8">
-                                    <label class="tx-medium tx-14 tx-color-01 mg-b-2">Organic Visits &amp; Conversions</label>
-                                    <p class="tx-12 tx-color-03 mg-b-20">Detailed breakdown is available on your report page. <a href="" class="link-05">Learn more</a></p>
-                                    <div class="chart-wrapper">
-                                        <canvas id="temp-chart" class="temp-chart"></canvas>
+        <div class="content-body mg-t-20">
+            <div class="card card-hover no-shadow">
+                <div class="card-body">
+                    <div class="main">
+                        <select class="custom-select custom-select-sm tx-12 mg-b-10">
+                            <option value="1703">Андижанская область</option>
+                            <option value="1706">Бухарская область</option>
+                            <option value="1708">Джизакская область</option>
+                            <option value="1710">Кашкадарьинская область</option>
+                            <option value="1712">Навоийская область</option>
+                            <option value="1714">Наманганская область</option>
+                            <option value="1718">Самаркандская область</option>
+                            <option value="1722">Сурхандарьинская область</option>
+                            <option value="1724">Сырдарьинская область</option>
+                            <option value="1726" selected="">г. Ташкент</option>
+                            <option value="1727">Ташкентская область</option>
+                            <option value="1730">Ферганская область</option>
+                            <option value="1733">Хорезмская область</option>
+                            <option value="1735">Республика Каракалпакстан</option>
+                            <option value="1">Ташкенткая область</option>
+                        </select>
+                        <div class="w3_agile_main_grids">
+                            <div class="w3layouts_main_grid">
+                                <div class="w3layouts_main_grid_left">
+                                    <h2>Ташкент</h2>
+                                    <p>Дождь</p>
+                                    <h3>Сейчас</h3>
+                                    <h4>10<span>°с</span></h4>
+                                </div>
+                                <div class="w3layouts_main_grid_right">
+                                    <div id="w3time"></div>
+                                    <div class="w3layouts_date_year">
+                                        <!-- date -->
+                                        <script type="text/javascript">
+                                        var mydate = new Date()
+                                        var year = mydate.getYear()
+                                        if (year < 1000)
+                                            year += 1900
+                                        var day = mydate.getDay()
+                                        var month = mydate.getMonth()
+                                        var daym = mydate.getDate()
+                                        if (daym < 10)
+                                            daym = "0" + daym
+                                        var dayarray = new Array("Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота")
+                                        var montharray = new Array("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
+                                        document.write("" + dayarray[day] + ", " + montharray[month] + " " + daym + ", " + year + "")
+
+                                        </script>
+                                        <!-- //date -->
                                     </div>
                                 </div>
-                                <div class="col-sm-4 col-md-4 mg-t-15 mg-sm-t-0">
-                                    <div class="d-flex mg-b-20">
-                                        <select class="custom-select custom-select-sm tx-12">
-                                            <option selected="">Last 30 days</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                        <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i data-feather="download"></i></button>
+                                <div class="clear"> </div>
+                            </div>
+                            <div class="agileits_w3layouts_main_grid">
+                                <div class="agile_main_grid_left">
+                                    <div class="wthree_main_grid_left_grid">
+                                        <div class="w3ls_main_grid_left_grid1">
+                                            <div class="w3l_main_grid_left_grid1_left">
+                                                <h3>МЕСТАМИ СОЛНЕЧНО</h3>
+                                                <p>3 <span>%</span></p>
+                                            </div>
+                                            <div class="w3l_main_grid_left_grid1_right">
+                                                <canvas id="partly-cloudy-day" width="45" height="45"></canvas>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                        <div class="w3ls_main_grid_left_grid1">
+                                            <div class="w3l_main_grid_left_grid1_left">
+                                                <h3>Осадка</h3>
+                                                <p>38 <span>%</span></p>
+                                            </div>
+                                            <div class="w3l_main_grid_left_grid1_right">
+                                                <canvas id="cloudy" width="45" height="45"></canvas>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                        <div class="w3ls_main_grid_left_grid1">
+                                            <div class="w3l_main_grid_left_grid1_left">
+                                                <h3>Ветер</h3>
+                                                <p>14 <span>Km/h</span></p>
+                                            </div>
+                                            <div class="w3l_main_grid_left_grid1_right">
+                                                <canvas id="wind" width="45" height="45"></canvas>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
                                     </div>
-                                    <label class="content-label content-label-xs">Conversion Rate</label>
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <h2 class="card-value mg-b-0"></h2>
-                                        <span class="card-value-sub"></span>
+                                </div>
+                                <div class="w3_agileits_main_grid_right">
+                                    <div class="agileinfo_main_grid_right_grid">
+                                        <div id="parentHorizontalTab">
+                                            <ul class="resp-tabs-list hor_1">
+                                                <li>Сегодня</li>
+                                                <li>Неделя</li>
+                                                <li>Месяц</li>
+                                            </ul>
+                                            <div class="resp-tabs-container hor_1">
+                                                <div class="w3_agileits_tabs">
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>02:00</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>15&deg;C<span>Cloudy</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>05:00</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>16&deg;C<span>Clear</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>08:00</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>18&deg;C<span>Cear</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>11:00</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>12&deg;C<span>Partly Cloudy</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="w3_agileits_tabs">
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>Monday</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>14&deg;C<span>Clear</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>Tuesday</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>16&deg;C<span>Cloudy</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>Wednesday</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>11&deg;C<span>Rainy</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>Thursday</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>18&deg;C<span>Sunny</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="w3_agileits_tabs">
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>January</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>18&deg;C<span>Cloudy</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>February</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>14&deg;C<span>Clear</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>March</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>18&deg;C<span>Cear</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <div class="w3_main_grid_right_grid1">
+                                                        <div class="w3_main_grid_right_grid1_left">
+                                                            <p>April</p>
+                                                        </div>
+                                                        <div class="w3_main_grid_right_grid1_right">
+                                                            <p>12&deg;C<span>Partly Cloudy</span></p>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p class="card-value-desc">Measures the ratio of a website’s visitors to conversions.</p>
-                                    <hr class="mg-y-10 op-0">
-                                    <label class="content-label content-label-xs">Conversion Value</label>
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <h2 class="card-value mg-b-0">1,368</h2>
-                                    </div>
-                                    <p class="card-value-desc">Refers to the financial worth of the securities obtained.</p>
-                                </div><!-- col -->
-                            </div><!-- row -->
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <h4 class="tx-numeric tx-normal"><span>$</span>134.10</h4>
-                                    </div>
-                                    <label class="content-label content-label-xs">Total Cost</label>
-                                </div><!-- col -->
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <h4 class="tx-numeric tx-normal">874</h4>
-                                    </div>
-                                    <label class="content-label content-label-xs">Impressions</label>
-                                </div><!-- col -->
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <h4 class="tx-numeric tx-normal">30</h4>
-                                    </div>
-                                    <label class="content-label content-label-xs">Total Clicks</label>
-                                </div><!-- col -->
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="align-items-baseline mg-b-5">
-                                        <h4 class="tx-numeric tx-normal">4.8%</h4>
-                                    </div>
-                                    <label class="content-label content-label-xs">Click-Through Rate</label>
-                                </div><!-- col -->
-                            </div><!-- row -->
-                        </div><!-- card-footer -->
-                    </div><!-- card -->
-                </div><!-- col -->
-            </div>
+                    </div>
+                </div>
+            </div><!-- card -->
         </div><!-- content-body -->
     </div><!-- content -->
-    <div id="offCanvas3" class="off-canvas off-canvas-overlay off-canvas-right">
-        <a href="#" class="close"><i data-feather="x"></i></a>
-        <div class="pd-30 ht-100p">
-            <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="../assets/img/gidrometeo.svg"></a></div>
-            <h6 class="tx-colo-01 tx-semibold mg-t-50 mg-b-25">О системе</h6>
-            <p class="mg-b-25 tx-color-03 tx-justify">Система для автоматизации основных этапов прикладной обработки и анализа гидрометерологических данных Узгидромета</p>
-        </div>
-    </div><!-- off-canvas -->
     <script src="../lib/jquery/jquery.min.js"></script>
     <script src="../lib/jqueryui/jquery-ui.min.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/feather-icons/feather.min.js"></script>
     <script src="../lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../lib/js-cookie/js.cookie.js"></script>
-    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
-    <script src="../lib/jquery.flot/jquery.flot.js"></script>
-    <script src="../lib/jquery.flot/jquery.flot.stack.js"></script>
-    <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
-    <script src="../lib/jquery.flot/jquery.flot.threshold.js"></script>
-    <script src="../lib/jqvmap/jquery.vmap.min.js"></script>
-    <script src="../lib/jqvmap/maps/jquery.vmap.world.js"></script>
     <script src="../lib/select2/js/select2.min.js"></script>
-    <script src="../assets/js/meteo.js"></script>
-    <script src="../assets/js/canvas.js"></script>
-    <script src="../assets/js/flot.sampledata.js"></script>
-    <script src="../assets/js/vmap.sampledata.js"></script>
-    <script src="../assets/js/weather-panel.js"></script>
+    <script src="../assets/js/skycons.js"></script>
+    <script src="../assets/js/easyResponsiveTabs.js"></script>
+    <!-- sky-icons -->
     <script>
-    var dt = new Date();
-    document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2));
+    var icons = new Skycons({ "color": "#36a6e5" }),
+        list = [
+            "sleet"
+        ],
+        i;
+
+    for (i = list.length; i--;)
+        icons.set(list[i], list[i]);
+
+    icons.play();
 
     </script>
     <script>
-    let app = new Vue({
-        el: "#app",
-        data: {
-            forecast_day: 0,
-            forecast_night: 0,
-            forecast_day_code: '',
-            forecast_night_code: '',
-            city: 'tashkent',
-            current: 0,
-            current_weather_code: '',
-            forcastdate: []
-        },
-        filters: {
-            capitalize: function(value) {
-                if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
+    var icons = new Skycons({ "color": "#36a6e5" }),
+        list = [
+            "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "clear-day", "snow", "wind",
+            "fog"
+        ],
+        i;
+
+    for (i = list.length; i--;)
+        icons.set(list[i], list[i]);
+
+    icons.play();
+
+    </script>
+    <!-- //sky-icons -->
+    <!-- tabs -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //Horizontal Tab
+        $('#parentHorizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true, // 100% fit in a container
+            tabidentify: 'hor_1', // The tab groups identifier
+            activate: function(event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#nested-tabInfo');
+                var $name = $('span', $info);
+                $name.text($tab.text());
+                $info.show();
             }
-        },
-        methods: {
-            init: function() {
-                $(function() {
-                    'use strict'
-
-                    // Datepicker
-                    $('.fc-datepicker').datepicker({
-                        showOtherMonths: true,
-                        selectOtherMonths: true
-                    });
-
-                    $('#datepickerNoOfMonths').datepicker({
-                        showOtherMonths: true,
-                        selectOtherMonths: true,
-                        numberOfMonths: 2
-                    });
-
-                    $(document).ready(function() {
-                        $('.select2').select2({
-                            placeholder: 'Выберите'
-                        });
-
-                        $('.select2-no-search').select2({
-                            minimumResultsForSearch: Infinity,
-                            placeholder: 'Выберите'
-                        });
-                    });
-
-                    // MAP
-
-                    $('#vmap').vectorMap({
-                        map: 'uz-uz',
-                        backgroundColor: '#fff',
-                        enableZoom: false,
-                        color: '#ffffff',
-                        hoverOpacity: 0.1,
-                        showTooltip: false,
-                        scaleColors: ['#e9ecef', '#dee2e6'],
-                        borderWidth: 1,
-                        borderColor: '#fff',
-                        values: sample_data,
-                        normalizeFunction: 'polynomial'
-                    });
-
-                    // We use an inline data source in the example, usually data would
-                    // be fetched from a server
-                    var data = [];
-                    var totalPoints = 150;
-
-                    function getRandomData() {
-                        if (data.length > 0)
-                            data = data.slice(1);
-
-                        // Do a random walk
-                        while (data.length < totalPoints) {
-                            var prev = data.length > 0 ? data[data.length - 1] : 50;
-                            var y = prev + Math.random() * 10 - 5;
-
-                            if (y < 0) {
-                                y = 0;
-                            } else if (y > 100) {
-                                y = 100;
-                            }
-
-                            data.push(y);
-                        }
-
-                        // Zip the generated y values with the x values
-                        var res = [];
-                        for (var i = 0; i < data.length; ++i) {
-                            res.push([i, data[i]])
-                        }
-
-                        return res;
-                    }
-
-                    var plot = $.plot('#flotChart', [getRandomData()], {
-                        series: {
-                            color: '#03A9F4',
-                            shadowSize: 0,
-                            lines: {
-                                show: true,
-                                lineWidth: 2,
-                                fill: true,
-                                fillColor: { colors: [{ opacity: 0 }, { opacity: 0.8 }] }
-                            }
-                        },
-                        crosshair: {
-                            mode: 'x',
-                            color: '#f10075'
-                        },
-                        grid: { borderWidth: 0 },
-                        yaxis: {
-                            min: 0,
-                            max: 100,
-                            color: 'rgba(0,0,0,.08)',
-                            font: {
-                                size: 10,
-                                color: '#ddd',
-                                family: 'Arial'
-                            },
-                            tickSize: 15
-                        },
-                        xaxis: { show: false }
-                    });
-
-                    function update() {
-                        plot.setData([getRandomData()]);
-
-                        // Since the axes don't change, we don't need to call plot.setupGrid()
-                        plot.draw();
-                        setTimeout(update, 2000);
-                    }
-
-                    update();
-
-                });
-                var dt = new Date();
-                document.getElementById("only_date").innerHTML = dt.toLocaleDateString();
-                var dt = new Date();
-                document.getElementById("only_time").innerHTML = dt.toLocaleTimeString();
-            },
-            forecast: function() {
-                axios.get('https://www.meteo.uz/index.php/forecast/city', {
-                        params: {
-                            city: this.city,
-                            expand: 'city',
-                        }
-                    })
-                    .then(function(response) {
-                        app.forecast_day = response.data[6];
-                        app.forecast_night = response.data[7];
-                        // console.log(response.data[7]);
-
-                        app.forcastdate = response.data;
-
-                        if (response.data[6].icon == 'clear')
-                            app.forecast_day_code = 'ясно, безоблачно';
-                        else if (response.data[6].icon == 'mostly_clear')
-                            app.forecast_day_code = 'небольшая, незначительная облачность';
-                        else if (response.data[6].icon == 'partly_cloudy')
-                            app.forecast_day_code = 'переменная облачность';
-                        else if (response.data[6].icon == 'mostly_cloudy')
-                            app.forecast_day_code = 'значительная облачность';
-                        else if (response.data[6].icon == 'overcast')
-                            app.forecast_day_code = 'облачно, пасмурно';
-                        else if (response.data[6].icon == 'fog')
-                            app.forecast_day_code = 'туман, дымка, мгла';
-                        else if (response.data[6].icon == 'light_rain')
-                            app.forecast_day_code = 'небольшой, слабый дождь';
-                        else if (response.data[6].icon == 'rain')
-                            app.forecast_day_code = 'дождь';
-                        else if (response.data[6].icon == 'heavy_rain')
-                            app.forecast_day_code = 'сильный, ливневый дождь';
-                        else if (response.data[6].icon == 'thunderstorm')
-                            app.forecast_day_code = 'гроза';
-                        else if (response.data[6].icon == 'light-sleet')
-                            app.forecast_day_code = 'небольшие, слабые осадки (дождь, снег)';
-                        else if (response.data[6].icon == 'sleet')
-                            app.forecast_day_code = 'осадки (дождь, снег)';
-                        else if (response.data[6].icon == 'heavy_sleet')
-                            app.forecast_day_code = 'сильные осадки (дождь, снег)';
-                        else if (response.data[6].icon == 'light_snow')
-                            app.forecast_day_code = 'небольшой, слабый снег';
-                        else if (response.data[6].icon == 'snow')
-                            app.forecast_day_code = 'снег';
-                        else if (response.data[6].icon == 'heavy_snow')
-                            app.forecast_day_code = 'сильный снег';
-
-
-                        if (response.data[7].icon == 'clear')
-                            app.forecast_night_code = 'ясно, безоблачно';
-                        else if (response.data[7].icon == 'mostly_clear')
-                            app.forecast_night_code = 'небольшая, незначительная облачность';
-                        else if (response.data[7].icon == 'partly_cloudy')
-                            app.forecast_night_code = 'переменная облачность';
-                        else if (response.data[7].icon == 'mostly_cloudy')
-                            app.forecast_night_code = 'значительная облачность';
-                        else if (response.data[7].icon == 'overcast')
-                            app.forecast_night_code = 'облачно, пасмурно';
-                        else if (response.data[7].icon == 'fog')
-                            app.forecast_night_code = 'туман, дымка, мгла';
-                        else if (response.data[7].icon == 'light_rain')
-                            app.forecast_night_code = 'небольшой, слабый дождь';
-                        else if (response.data[7].icon == 'rain')
-                            app.forecast_night_code = 'дождь';
-                        else if (response.data[7].icon == 'heavy_rain')
-                            app.forecast_night_code = 'сильный, ливневый дождь';
-                        else if (response.data[7].icon == 'thunderstorm')
-                            app.forecast_night_code = 'гроза';
-                        else if (response.data[7].icon == 'light-sleet')
-                            app.forecast_night_code = 'небольшие, слабые осадки (дождь, снег)';
-                        else if (response.data[7].icon == 'sleet')
-                            app.forecast_night_code = 'осадки (дождь, снег)';
-                        else if (response.data[7].icon == 'heavy_sleet')
-                            app.forecast_night_code = 'сильные осадки (дождь, снег)';
-                        else if (response.data[7].icon == 'light_snow')
-                            app.forecast_night_code = 'небольшой, слабый снег';
-                        else if (response.data[7].icon == 'snow')
-                            app.forecast_night_code = 'снег';
-                        else if (response.data[7].icon == 'heavy_snow')
-                            app.forecast_night_code = 'сильный снег';
-
-
-                        var metric = true;
-                        var date;
-                        var json;
-                        date = new Date();
-                        var month = date.getMonth();
-                        var monthNames = [
-                            "Январь",
-                            "Февраль",
-                            "Март",
-                            "Апрель",
-                            "Май",
-                            "Июнь",
-                            "Июль",
-                            "Август",
-                            "Сентябрь",
-                            "Октябрь",
-                            "Ноябрь",
-                            "Декабрь"
-                        ];
-                        var hour = date.getHours();
-                        var hourLabels = [app.forcastdate[7].date + ' 00:00', app.forcastdate[6].date + ' 12:00', app.forcastdate[5].date + ' 00:00', app.forcastdate[4].date + ' 12:00', app.forcastdate[3].date + ' 00:00', app.forcastdate[2].date + ' 12:00', app.forcastdate[1].date + ' 00:00', app.forcastdate[0].date + ' 12:00'];
-                        var tempData = [app.forcastdate[7].air_t_min, app.forcastdate[6].air_t_min, app.forcastdate[5].air_t_min, app.forcastdate[4].air_t_min, app.forcastdate[3].air_t_min, app.forcastdate[2].air_t_min, app.forcastdate[1].air_t_min, app.forcastdate[0].air_t_min];
-                        var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
-                        var windData = [0, 0, 0, 0, 0, 0, 0, 0];
-
-
-                        $(".time").html(
-                            date.getDay() + " " + monthNames[month] + " " + date.getFullYear()
-                        );
-                        var tempEl = document.getElementById("temp-chart");
-
-
-                        var tempChart = new Chart(tempEl, {
-                            type: "line",
-                            data: {
-                                labels: hourLabels,
-                                datasets: [{
-                                    label: 'C',
-                                    data: tempData,
-                                    borderColor: "rgb(246, 191, 77)",
-                                    borderWidth: 1,
-                                    backgroundColor: "rgba(246, 191,  77, 0.2)"
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                legend: {
-                                    boxWidth: 0,
-                                    display: false
-                                },
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            fontSize: 10
-                                        },
-                                        scaleLabel: {
-                                            display: true,
-                                            labelString: " ",
-                                            fontSize: 10
-                                        }
-                                    }],
-                                    xAxes: [{
-                                        ticks: {
-                                            fontSize: 10
-                                        },
-                                        display: false,
-                                    }],
-
-
-                                }
-                            }
-                        });
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                    })
-                    .then(function() {
-                        // always executed
-                    });
-
-            },
-            getCurrent: function() {
-                axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
-                        params: {
-                            city: this.city,
-                            language: 'ru',
-                        }
-                    })
-                    .then(function(response) {
-                        app.current = Math.floor(response.data.air_t);
-
-                        if (response.data.weather_code == 'clear')
-                            app.current_weather_code = 'ясно, безоблачно';
-                        else if (response.data.weather_code == 'mostly_clear')
-                            app.current_weather_code = 'небольшая, незначительная облачность';
-                        else if (response.data.weather_code == 'partly_cloudy')
-                            app.current_weather_code = 'переменная облачность';
-                        else if (response.data.weather_code == 'mostly_cloudy')
-                            app.current_weather_code = 'значительная облачность';
-                        else if (response.data.weather_code == 'overcast')
-                            app.current_weather_code = 'облачно, пасмурно';
-                        else if (response.data.weather_code == 'fog')
-                            app.current_weather_code = 'туман, дымка, мгла';
-                        else if (response.data.weather_code == 'light_rain')
-                            app.current_weather_code = 'небольшой, слабый дождь';
-                        else if (response.data.weather_code == 'rain')
-                            app.current_weather_code = 'дождь';
-                        else if (response.data.weather_code == 'heavy_rain')
-                            app.current_weather_code = 'сильный, ливневый дождь';
-                        else if (response.data.weather_code == 'thunderstorm')
-                            app.current_weather_code = 'гроза';
-                        else if (response.data.weather_code == 'light-sleet')
-                            app.current_weather_code = 'небольшие, слабые осадки (дождь, снег)';
-                        else if (response.data.weather_code == 'sleet')
-                            app.current_weather_code = 'осадки (дождь, снег)';
-                        else if (response.data.weather_code == 'heavy_sleet')
-                            app.current_weather_code = 'сильные осадки (дождь, снег)';
-                        else if (response.data.weather_code == 'light_snow')
-                            app.current_weather_code = 'небольшой, слабый снег';
-                        else if (response.data.weather_code == 'snow')
-                            app.current_weather_code = 'снег';
-                        else if (response.data.weather_code == 'heavy_snow')
-                            app.current_weather_code = 'сильный снег';
-
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                    })
-                    .then(function() {
-                        // always executed
-                    });
-            },
-            createChart: function() {
-
-
-            }
-        },
-        created() {
-
-        },
-        mounted() {
-            this.init();
-            this.forecast();
-            this.getCurrent();
-            this.createChart();
-        }
-    });
-
-    $('#city').on("change", function() {
-        app.city = $(this).val();
-        app.forecast();
-        app.getCurrent();
-        // console.log('Name : ' + $(this).val());
+        });
     });
 
     </script>
+    <!-- //tabs -->
+    <!-- time -->
+    <script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('w3time').innerHTML =
+            h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i }; // add zero in front of numbers < 10
+        return i;
+    }
+
+    </script>
+    <!-- //time -->
 </body>
 
 </html>
