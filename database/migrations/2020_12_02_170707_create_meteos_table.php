@@ -26,14 +26,15 @@ class CreateMeteosTable extends Migration
             $table->tinyInteger('region_id')->nullable();
             $table->string('city_name')->nullable();
             $table->boolean('is_regional_center')->default(false);
-            $table->point('latitude')->nullable();
-            $table->point('longitude')->nullable();
+            $table->decimal('latitude',10,8)->nullable();
+            $table->decimal('longitude',11,8)->nullable();
             $table->tinyInteger('has_data')->nullable();
             $table->tinyInteger('has_climatic_data')->nullable();
             $table->tinyInteger('is_visible')->nullable();
             $table->string('title')->nullable();
             $table->string('time_of_day')->nullable();
             $table->timestamps();
+
         });
     }
 
