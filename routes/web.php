@@ -18,6 +18,7 @@ Route::group(['middleware' => ['set_locale']], function() {
         return view('pages.map');
     });
     Route::get('/', [App\Http\Controllers\WidgetController::class, 'index'])->name('home');
+    Route::get('/test', [App\Http\Controllers\WidgetController::class, 'test'])->name('test');
 
 
 //    Route::prefix('widget')->group(function () {
