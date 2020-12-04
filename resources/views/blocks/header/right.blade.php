@@ -45,18 +45,17 @@
         <a href="" class="btn dropdown-link" data-toggle="dropdown"><i class="far fa-user fa-lg"></i></a>
         <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-menu-body">
-                <a href="" class="dropdown-item">
-                    <div class="dropdown-item-body">
-                        <p>Изменить данные</p>
-                    </div>
-                </a>
+                <a href="#" class="dropdown-item">Изменить данные</a>
             </div>
             <div class="dropdown-menu-body">
-                <a href="" class="dropdown-item">
-                    <div class="dropdown-item-body">
-                        <p>Выйти</p>
-                    </div>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    @lang('Logout')
                 </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
         </div><!-- dropdown-menu -->
     </div>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b911390bb5b0e9821c9ba375e8229d4",
+    "content-hash": "9351b5909539aff3c265b5476e0bfb73",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -882,6 +882,44 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.7.0"
             },
             "time": "2020-09-30T07:37:11+00:00"
+        },
+        {
+            "name": "infureal/artisan-gui",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inFureal/artisan-gui.git",
+                "reference": "7ae11c809868197abe63718ed0a673b7607de5aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inFureal/artisan-gui/zipball/7ae11c809868197abe63718ed0a673b7607de5aa",
+                "reference": "7ae11c809868197abe63718ed0a673b7607de5aa",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.0",
+                "php": "^7.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Infureal\\Providers\\GuiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Infureal\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Beautiful package for [laravel:artisan] gui for cool kids.",
+            "time": "2020-11-22T08:38:40+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7619,5 +7657,5 @@
         "php": "^7.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

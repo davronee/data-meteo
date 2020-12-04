@@ -20,3 +20,11 @@ composer dump-autoload --ignore-platform-reqs
 php artisan optimize:clear
 php artisan migrate
 ```
+
+### 24.11.2020 ###
+```
+composer dump-autoload --ignore-platform-reqs
+php artisan optimize:clear
+php artisan migrate
+php artisan db:seed --class="ImportRegionAndDistrictSeeder"
+```
