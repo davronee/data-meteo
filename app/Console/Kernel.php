@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('meteo:get')->daily()->at('21:40');
         // $schedule->command('inspire')->hourly();
         $schedule->command('meteo:get')->daily()->at('02:15');
         $schedule->command('meteo:get')->daily()->at('05:15');
