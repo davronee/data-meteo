@@ -4636,6 +4636,7 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 576px) {
+    
     .navbar-expand-sm {
         flex-flow: row nowrap;
         justify-content: flex-start;
@@ -15101,7 +15102,7 @@ table.dataTable thead .sorting::after {
 }
 
 table.dataTable tbody td.sorting_1 {
-    background-color: #f9f9fb;
+  /*  background-color: #f9f9fb;*/
 }
 
 table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child::before,
@@ -19343,7 +19344,7 @@ body {
 .mail-body-content {
     background-color: #fff;
     border: 1px solid rgba(224, 225, 235, 0.85);
-    box-shadow: 0 4px 12px 0 rgba(131, 146, 165, 0.15), 2px 2px 5px 0 rgba(60, 70, 83, 0.04);
+    /*box-shadow: 0 4px 12px 0 rgba(131, 146, 165, 0.15), 2px 2px 5px 0 rgba(60, 70, 83, 0.04);*/
     height: calc(100% - 45px);
 }
 

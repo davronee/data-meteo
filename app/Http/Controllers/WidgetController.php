@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class WidgetController extends Controller
 {
-    public function index(Request  $request)
+    public function index(Request $request)
     {
 
         return view('widget.index');
-
     }
+
 }

@@ -89,24 +89,39 @@
                 </div>
             </div><!-- az-dashboard-one-title -->
             <div class="row row-sm mg-b-20">
-                <div class="col-lg-9" style="border: 1px solid #ddd;">
-                    <div class="card-chart-weather pd-5">
-             
-                        <div class="card-body">
-                            <div class="flot-wrapper" style="margin-left: -30px;">
-                                <div class="">
-                                    <h3><canvas id="temp-chart" class="temp-chart"></canvas></h3>
+                 <div class="col-lg-9" style="border: 1px solid #ddd;">
+                        <div class="card-chart-weather pd-5">
+                            <div class="card-header bg-transparent d-flex">
+                                <div class="pd-5 flex-grow-1">
+                                    <div class="chart-legend">
+                                        <div class="btn-group">
+                                            <button class="temp-format celsius">°C</button>
+                                            <button class="temp-format faren">°F</button>
+                                        </div><!-- btn-group -->
+                                    </div>
                                 </div>
-                                <!--<div class="graph">
-                                    <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
+                                <div class="pd-5">
+                                    <div class="btn-group"><button class="inline-wi legend-label temp-label">Температура</button>
+                                        <button class="inline-wi legend-label wind-label label-off">Ветер</button>
+                                        <button class="inline-wi legend-label rain-label label-off">Осадки</button>
+                                    </div>
                                 </div>
-                                <div class="graph">
-                                    <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
-                                </div>-->
                             </div>
-                        </div>
-                    </div><!-- card -->
-                </div><!-- col -->
+                            <div class="card-body">
+                                <div class="chart-wrapper" style="margin-left: -30px;">
+                                    <div class="graph">
+                                        <canvas id="temp-chart" class="temp-chart"></canvas>
+                                    </div>
+                                    <div class="graph">
+                                        <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
+                                    </div>
+                                    <div class="graph">
+                                        <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- card -->
+                    </div><!-- col -->
                 <div class="col-lg-3 mg-t-20 mg-lg-t-0">
                     <div class="card card-dashboard-ten mg-sm-b-5 card-current">
                         <h6 class="az-content-label tx-dark tx-semibold">Сейчас</h6>
@@ -432,6 +447,9 @@
                         else if (response.data[7].icon == 'heavy_snow')
                             app.forecast_night_code = 'сильный снег';
 
+                        var hourLabels = [app.forcastdate[7].date + ' 00:00', app.forcastdate[6].date + ' 12:00', app.forcastdate[5].date + ' 00:00', app.forcastdate[4].date + ' 12:00',app.forcastdate[3].date + ' 00:00', app.forcastdate[2].date + ' 12:00', app.forcastdate[1].date + ' 00:00', app.forcastdate[0].date + ' 12:00'];
+                        var tempData = [app.forcastdate[7].air_t_min, app.forcastdate[6].air_t_min, app.forcastdate[5].air_t_min, app.forcastdate[4].air_t_min,app.forcastdate[3].air_t_min, app.forcastdate[2].air_t_min, app.forcastdate[1].air_t_min, app.forcastdate[0].air_t_min];
+
 
                         var metric = true;
                         var date;
@@ -453,9 +471,7 @@
                             "Декабрь"
                         ];
                         var hour = date.getHours();
-                        var hourLabels = [app.forcastdate[7].date + ' 00:00', app.forcastdate[6].date + ' 12:00', app.forcastdate[5].date + ' 00:00', app.forcastdate[4].date + ' 12:00',app.forcastdate[3].date + ' 00:00', app.forcastdate[2].date + ' 12:00', app.forcastdate[1].date + ' 00:00', app.forcastdate[0].date + ' 12:00'];
-                        var tempData = [app.forcastdate[7].air_t_min, app.forcastdate[6].air_t_min, app.forcastdate[5].air_t_min, app.forcastdate[4].air_t_min,app.forcastdate[3].air_t_min, app.forcastdate[2].air_t_min, app.forcastdate[1].air_t_min, app.forcastdate[0].air_t_min];
-                        var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
+                                               var rainData = [0, 0, 0, 0, 0, 0, 0, 0];
                         var windData = [0, 0, 0, 0, 0, 0, 0, 0];
 
 

@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesPermsSeeder::class,
             DefaultUsersSeeder::class,
+            AddWeatherCode::class,
+            AddWeatherRegions::class,
         ]);
     }
 }
