@@ -18,6 +18,10 @@
     <!-- vendor css -->
     <link href="../lib/jqvmap/jqvmap.min.css" rel="stylesheet">
     <link href="../lib/select2/css/select2.min.css" rel="stylesheet">
+    <link href="../lib/quill/quill.core.css" rel="stylesheet">
+    <link href="../lib/quill/quill.snow.css" rel="stylesheet">
+    <link href="../lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet">
     <!-- template css -->
     <link rel="stylesheet" href="../assets/css/meteo.css">
     <link rel="stylesheet" href="../assets/css/custom.css">
@@ -91,7 +95,7 @@
                         <a href="#" class="nav-sub-link">Пользователи</a>
                     </nav>
                 </li>
-                 <li class="nav-label"><label class="content-label">Персональные данные</label></li>
+                <li class="nav-label"><label class="content-label">Персональные данные</label></li>
                 <li class="nav-item"><a href="#" class="nav-link with-sub"><i class="fas fa-user"></i> Кабинет пользователя</a>
                     <nav class="nav nav-sub">
                         <a href="#" class="nav-sub-link">Почта</a>
@@ -108,7 +112,7 @@
             </ul>
         </div><!-- sidebar-body -->
     </div><!-- sidebar -->
-    <div class="content content-page">
+    <div class="content">
         <div class="header">
             <div class="header-left">
                 <a href="" class="burger-menu"><i data-feather="menu"></i></a>
@@ -162,212 +166,100 @@
                 </div>
             </div><!-- header-right -->
         </div><!-- header -->
-        <div class="content-header justify-content-between">
-            <div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Виджеты</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="d-none d-sm-flex">
-                <a href="" class="btn btn-white"><i class="fas fa-sync"></i> Обновить</a>
-            </div>
-        </div><!-- content-header -->
-        <div class="content-body">
-            <div class="row row-sm">
-                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mg-t-15 mg-sm-t-20">
-                    <div class="card card-hover card-current-weather">
-                        <div class="card-header bg-transparent no-border pd-lg-y-15">
-                            <div class="d-flex">
-                                <div class="pd-10 flex-grow-1">
-                                    <div class="btn-group">
-                                        <button class="btn btn-outline-light btn-sm active"><i class="wi wi-day-sunny"></i> Днем</button>
-                                        <button class="btn btn-outline-light btn-sm"><i class="wi wi-night-clear"></i> Ночью</button>
-                                    </div>
+        <div class="content-body content-body-profile">
+            <div class="profile-body mg-t-10 no-shadow">
+                <div class="card-title">
+                    <nav class="navbar navbar-expand-lg pos-relative">
+                        <button class="navbar-toggler order-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i data-feather="sliders" class="wd-20 ht-20"></i>
+                        </button>
+                        <div class="collapse navbar-collapse order-2" id="navbarSupportedContent">
+                            <form class="form-inline mg-t-10 mg-l-5">
+                                <select class="form-control custom-select">
+                                    <option value="1703">Андижанская область</option>
+                                    <option value="1706">Бухарская область</option>
+                                    <option value="1708">Джизакская область</option>
+                                    <option value="1710">Кашкадарьинская область</option>
+                                    <option value="1712">Навоийская область</option>
+                                    <option value="1714">Наманганская область</option>
+                                    <option value="1718">Самаркандская область</option>
+                                    <option value="1722">Сурхандарьинская область</option>
+                                    <option value="1724">Сырдарьинская область</option>
+                                    <option value="1726" selected="">г. Ташкент</option>
+                                    <option value="1727">Ташкентская область</option>
+                                    <option value="1730">Ферганская область</option>
+                                    <option value="1733">Хорезмская область</option>
+                                    <option value="1735">Республика Каракалпакстан</option>
+                                    <option value="1">Ташкенткая область</option>
+                                </select>
+                            </form>
+                            <form class="form-inline mg-t-10 mg-l-5">
+                                <select class="form-control custom-select">
+                                    <option value="1703">Ташкент</option>
+                                    <option value="1703">Янгиюль</option>
+                                    <option value="1703">Кокарал</option>
+                                    <option value="1703">Дальверзин</option>
+                                    <option value="1703">Бекабад</option>
+                                    <option value="1703">Тюябугуз</option>
+                                    <option value="1703">Алмалык</option>
+                                    <option value="1703">Сукок</option>
+                                    <option value="1703">Ангрен</option>
+                                    <option value="1703">Дукант</option>
+                                    <option value="1703">Чимган</option>
+                                    <option value="1703">Пскем</option>
+                                    <option value="1703">Кайнарсай</option>
+                                </select>
+                            </form>
+                            <form class="form-inline mg-t-10 mg-l-5">
+                                <input type="text" class="form-control" placeholder="Выберите дата" id="datepicker4">
+                            </form>
+                            <div class="btn-toolbar mg-t-10">
+                                <div class="mg-l-5">
+                                    <button type="button" class="btn  btn btn-white btn-icon"><i data-feather="filter"></i></button>
+                                    <button type="button" class="btn  btn btn-white btn-icon"><i data-feather="printer"></i></button>
+                                    <button type="button" class="btn  btn btn-white btn-icon"><i data-feather="download"></i></button>
+                                    <button type="button" class="btn  btn btn-secondary btn-icon"><i data-feather="x"></i></button>
                                 </div>
-                                <div class="pd-10 mg-l-auto">
-                                    <div class="d-flex">
-                                        <select class="custom-select custom-select-sm tx-12">
-                                            <option value="1703">Андижанская область</option>
-                                            <option value="1706">Бухарская область</option>
-                                            <option value="1708">Джизакская область</option>
-                                            <option value="1710">Кашкадарьинская область</option>
-                                            <option value="1712">Навоийская область</option>
-                                            <option value="1714">Наманганская область</option>
-                                            <option value="1718">Самаркандская область</option>
-                                            <option value="1722">Сурхандарьинская область</option>
-                                            <option value="1724">Сырдарьинская область</option>
-                                            <option value="1726" selected="">г. Ташкент</option>
-                                            <option value="1727">Ташкентская область</option>
-                                            <option value="1730">Ферганская область</option>
-                                            <option value="1733">Хорезмская область</option>
-                                            <option value="1735">Республика Каракалпакстан</option>
-                                            <option value="1">Ташкенткая область</option>
-                                        </select>
-                                        <button class="btn btn-secondary btn-xs btn-icon pd-y-0 mg-l-5 flex-shrink-0"><i class="fas fa-arrow-down"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- card-header -->
-                        <div class="card-body">
-                            <div class="row row-sm">
-                                <div class="col-sm">
-                                    <!-- бугун -->
-                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
-                                        <div class="card-body">
-                                            <h1 class="card-value current-temp tx-meteo">0</h1>
-                                            <div class="w-icon"> <i class="wi wi-snow-wind"></i> </div>
-                                        </div><!-- card-body -->
-                                        <h6 class="card-title tx-center">15.11.2020</h6>
-                                    </div><!-- card -->
-                                </div>
-                                <div class="col-sm">
-                                    <!-- эртага -->
-                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
-                                        <div class="card-body">
-                                            <h1 class="card-value current-temp tx-meteo">0</h1>
-                                            <div class="w-icon"><i class="wi wi-snow-wind"></i> </div>
-                                        </div><!-- card-body -->
-                                        <h6 class="card-title tx-center">15.11.2020</h6>
-                                    </div><!-- card -->
-                                </div>
-                                <div class="col-sm">
-                                    <!-- индинга -->
-                                    <div class="card card-hover card-weather-one no-shadow no-border bg-0">
-                                        <div class="card-body">
-                                            <h1 class="card-value current-temp tx-meteo">0</h1>
-                                            <div class="w-icon"><i class="wi wi-snow-wind"></i></div>
-                                        </div><!-- card-body -->
-                                        <h6 class="card-title tx-center">15.11.2020</h6>
-                                    </div><!-- card -->
-                                </div>
-                            </div>
+                            </div><!-- btn-toolbar -->
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="row no-gutters">
-                                <div class="col-md-4 col-sm">
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <i class="wi-wi wi wi-raindrop"></i>
-                                        <h4 class="tx-numeric tx-normal precip"></h4>
+                    </nav>
+                </div>
+                <div class="card-body component-section mg-t-0">
+                    <table id="example2" class="table">
+                        <thead>
+                            <tr>
+                                <th class="wd-25p">Кем</th>
+                                <th class="wd-20p">Когда</th>
+                                <th class="wd-10p">Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Иванов Иван Иванович</td>
+                                <td>01.12.2020 14:34:32</td>
+                                <td>
+                                    <div class="mg-l-5">
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="eye"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="plus"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="trash"></i></button>
                                     </div>
-                                    <label class="content-label content-label-xs">Влажность</label>
-                                </div><!-- col -->
-                                <div class="col-md-4 col-sm">
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <i class="wi-wi wi wi-strong-wind"></i>
-                                        <h4 class="tx-numeric tx-normal wind"></h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Сидоров Александр Михайлович</td>
+                                <td>01.12.2020 14:34:32</td>
+                                <td>
+                                    <div class="mg-l-5">
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="eye"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="plus"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="trash"></i></button>
                                     </div>
-                                    <label class="content-label content-label-xs">Ветер</label>
-                                </div><!-- col -->
-                                <div class="col-md-4 col-sm mg-t-15 mg-sm-t-0">
-                                    <div class="d-flex align-items-baseline mg-b-5">
-                                        <i class="wi-wi wi wi-cloudy"></i>
-                                        <h4 class="tx-numeric tx-normal clouds"></h4>
-                                    </div>
-                                    <label class="content-label content-label-xs">Осадка</label>
-                                </div><!-- col -->
-                            </div><!-- row -->
-                        </div><!-- card-footer -->
-                    </div><!-- card -->
-                </div><!-- col -->
-                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mg-t-15 mg-sm-t-20">
-                    <div class="card card-hover card-chart-weather">
-                        <div class="card-header bg-transparent d-flex">
-                            <div class="pd-10 flex-grow-1">
-                                <h6 class="card-title mg-b-0 current-temp"></h6>
-                            </div>
-                            <div class="pd-10">
-                                <div class="btn-group"><button class="inline-wi legend-label temp-label">Температура</button>
-                                    <button class="inline-wi legend-label wind-label label-off">Ветер</button>
-                                    <button class="inline-wi legend-label rain-label label-off">Осадки</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-chart-header">
-                                <div class="chart-legend">
-                                    <!--  <h6 class="current-temp inline-wi"></h6> -->
-                                </div>
-                                <div class="btn-group">
-                                    <button class="temp-format celsius">°C</button>
-                                    <button class="temp-format faren">°F</button>
-                                </div><!-- btn-group -->
-                            </div><!-- card-chart-header -->
-                            <div class="chart-wrapper">
-                                <div class="graph">
-                                    <canvas id="temp-chart" class="temp-chart"></canvas>
-                                </div>
-                                <div class="graph">
-                                    <canvas id="rain-chart" class="rain-chart chart-hidden"></canvas>
-                                </div>
-                                <div class="graph">
-                                    <canvas id="wind-chart" class="wind-chart chart-hidden"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- card -->
-                </div><!-- col -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="row row-sm mg-t-15 mg-sm-t-20">
-                <div class="col-md-12 col-xl-12 mg-t-15 mg-sm-t-20">
-                    <div class="card card-hover card-weather-location">
-                        <div class="card-header bg-transparent">
-                            <div>
-                                <h6 class="card-title mg-b-0">Погода по регионам</h6>
-                            </div>
-                            <nav class="nav">
-                                <div class="btn-group">
-                                    <button class="btn btn-white btn-xs">Сегодня</button>
-                                    <button class="btn btn-white btn-xs">Завтра</button>
-                                    <button class="btn btn-white btn-xs active">После завтра</button>
-                                </div>
-                            </nav>
-                        </div><!-- card-header -->
-                        <div class="card-body">
-                            <div class="list-group-wrapper order-2 order-md-0 mg-t-20 mg-sm-t-30 mg-md-t-0">
-                                <ul class="list-group list-group-flush mg-b-15">
-                                    <li class="list-group-item">
-                                        <span></span>
-                                        <span>Андижан</span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span></span>
-                                        <span>Фергана</span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span></span>
-                                        <span>Наманган</span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span></span>
-                                        <span>Ташкентская обл.</span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span></span>
-                                        <span>г. Ташкент</span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span></span>
-                                        <span>Сирдарья</span>
-                                        <span class="tx-medium current-temp">0</span>
-                                    </li>
-                                </ul>
-                                <a href="" class="d-flex align-items-center tx-12">Подробнее <i class="icon ion-android-arrow-forward mg-l-5"></i></a>
-                            </div>
-                            <div class="vmap-wrapper bd-sm-l">
-                                <div id="vmap" class="vmap order-1 order-md-0"></div>
-                            </div>
-                        </div><!-- card-body -->
-                    </div><!-- card -->
-                </div><!-- col -->
-            </div><!-- row -->
         </div><!-- content-body -->
     </div><!-- content -->
     <div id="offCanvas3" class="off-canvas off-canvas-overlay off-canvas-right">
@@ -384,20 +276,129 @@
     <script src="../lib/feather-icons/feather.min.js"></script>
     <script src="../lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../lib/js-cookie/js.cookie.js"></script>
-    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <!--     <script src="../lib/chart.js/Chart.bundle.min.js"></script> -->
     <script src="../lib/jquery.flot/jquery.flot.js"></script>
     <script src="../lib/jquery.flot/jquery.flot.stack.js"></script>
     <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
     <script src="../lib/jquery.flot/jquery.flot.threshold.js"></script>
     <script src="../lib/jqvmap/jquery.vmap.min.js"></script>
     <script src="../lib/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="../lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="../lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+    <script src="../assets/js/flot.sampledata.js"></script>
+    <script src="../assets/js/vmap.sampledata.js"></script>
     <script src="../lib/select2/js/select2.min.js"></script>
     <script src="../assets/js/meteo.js"></script>
     <script src="../assets/js/canvas.js"></script>
-    <script src="../assets/js/flot.sampledata.js"></script>
-    <script src="../assets/js/vmap.sampledata.js"></script>
+    <script src="../lib/quill/quill.min.js"></script>
     <!-- weather-panel -->
-    <script src="../assets/js/weather-panel.js"></script>
+    <!--     <script src="../assets/js/weather-panel.js"></script> -->
+    <script>
+    $(function() {
+        'use strict'
+
+        $('#example1').DataTable({
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
+        });
+
+        $('#example2').DataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Поиск...',
+                sSearch: '',
+                lengthMenu: '_MENU_ в таблице',
+            }
+        });
+
+        $('#example3').DataTable({
+            'ajax': '../assets/data/datatable-arrays.txt',
+            language: {
+                searchPlaceholder: 'Поиск...',
+                sSearch: '',
+                lengthMenu: '_MENU_ в таблице',
+            }
+        });
+
+        $('#example4').DataTable({
+            'ajax': '../assets/data/datatable-objects.txt',
+            "columns": [
+                { "data": "name" },
+                { "data": "position" },
+                { "data": "office" },
+                { "data": "extn" },
+                { "data": "salary" }
+            ],
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
+        });
+
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        $('#datepicker1').datepicker();
+
+        $('#datepicker2').datepicker({
+            showOtherMonths: true,
+            selectOtherMonths: true
+        });
+
+        $('#datepicker3').datepicker({
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $('#datepicker4').datepicker();
+
+        $('#datepicker5').datepicker({
+            showButtonPanel: true
+        });
+
+        $('#datepicker6').datepicker({
+            numberOfMonths: 2
+        });
+
+        var dateFormat = 'mm/dd/yy',
+            from = $('#dateFrom')
+            .datepicker({
+                defaultDate: '+1w',
+                numberOfMonths: 2
+            })
+            .on('change', function() {
+                to.datepicker('option', 'minDate', getDate(this));
+            }),
+            to = $('#dateTo').datepicker({
+                defaultDate: '+1w',
+                numberOfMonths: 2
+            })
+            .on('change', function() {
+                from.datepicker('option', 'maxDate', getDate(this));
+            });
+
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat, element.value);
+            } catch (error) {
+                date = null;
+            }
+
+            return date;
+        }
+
+    });
+
+    </script>
 </body>
 
 </html>
