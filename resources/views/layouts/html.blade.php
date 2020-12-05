@@ -38,7 +38,7 @@
             @includeWhen(auth()->check(), 'blocks.breadcrumb')
 
             {{-- main content --}}
-            <div class="content-body">
+            <div class="content-body" id="app">
                 @yield('content')
             </div><!-- content-body -->
         </div>
@@ -64,6 +64,18 @@
         <script src="{{ asset('template/assets/js/canvas.js') }}"></script>
         <script src="{{ asset('template/assets/js/flot.sampledata.js') }}"></script>
         <script src="{{ asset('template/assets/js/vmap.sampledata.js') }}"></script>
+        {{-- input mask --}}
+        <script src="{{ asset('template/lib/inputmask/jquery.inputmask.js') }}"></script>
+        <script src="{{ asset('template/lib/inputmask/inputmask.binding.js') }}"></script>
+        {{-- vuejs --}}
+        <script src="{{ asset('template/assets/js/axios.min.js') }}"></script>
+        <script src="{{ asset('template/assets/js/vue.js') }}"></script>
+        {{-- ckeditor --}}
+        <script src="{{ asset('template/lib/ckeditor-classic/ckeditor.js') }}"></script>
+        {{-- customizer --}}
+        <script src="{{ asset('template/assets/js/customizer/ckeditor-config.js') }}"></script>
+        <script src="{{ asset('template/assets/js/customizer/customizer.js') }}"></script>
+        <script src="{{ asset('template/assets/js/customizer/app.js') }}"></script>
         <!-- weather-panel -->
         <script src="{{ asset('template/assets/js/weather-panel.js') }}"></script>
         <!-- custom scripts -->

@@ -22,10 +22,18 @@ class RolesPermsSeeder extends Seeder
         if(Role::where('name', 'viewer')->count() === 0) Role::create(['name' => 'viewer']);
         if(Role::where('name', 'worker')->count() === 0) Role::create(['name' => 'worker']);
 
+        if(Role::where('name', 'shift-agent-station')->count() === 0) Role::create(['name' => 'shift-agent-station']);
+        if(Role::where('name', 'central-agent-station')->count() === 0) Role::create(['name' => 'central-agent-station']);
+
         // create permissions
         if(Permission::where('name', 'work')->count() === 0) Permission::create(['name' => 'work']);
         if(Permission::where('name', 'see users')->count() === 0) Permission::create(['name' => 'see users']);
         if(Permission::where('name', 'create users')->count() === 0) Permission::create(['name' => 'create users']);
         if(Permission::where('name', 'delete users')->count() === 0) Permission::create(['name' => 'delete users']);
+
+        if(Permission::where('name', 'create hourly station info')->count() === 0) Permission::create(['name' => 'create hourly station info']);
+        if(Permission::where('name', 'create daily station info')->count() === 0) Permission::create(['name' => 'create daily station info']);
+        if(Permission::where('name', 'send telegram')->count() === 0) Permission::create(['name' => 'send telegram']);
+        if(Permission::where('name', 'send exat')->count() === 0) Permission::create(['name' => 'send exat']);
     }
 }

@@ -2,6 +2,8 @@
     <div class="sidebar-header"><a href="#" class="sidebar-logo"><img src="{{asset('template/assets/img/gidrometeo.svg')}}"></a></div><!-- sidebar-header -->
     <div id="dpSidebarBody" class="sidebar-body">
         <ul class="nav nav-sidebar">
+            @includeWhen(auth()->user()->isAdmin(), 'blocks.menu.admin')
+
             <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
             <li class="nav-item">
                 <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Прогноз погоды</a>

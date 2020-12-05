@@ -2,7 +2,7 @@
 //https://darksky.net/dev/img/attribution/poweredby-oneline-darkbackground.png
 //https://darksky.net/dev/img/attribution/poweredby-oneline.png
 //https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/37.8267,-122.4233?'
-console.clear();
+// console.clear();
 $(document).ready(function() {
     var metric = true;
     var date;
