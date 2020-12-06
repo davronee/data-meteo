@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * checks whether the user profile is filled or not.
+     */
+    public function profileIsFilled()
+    {
+        return !is_null($this->pinfl) && !is_null($this->passport) && !is_null($this->fullname);
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole(['superadmin', 'admin']);
+    }
 }

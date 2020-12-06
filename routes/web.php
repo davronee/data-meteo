@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WidgetController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\DailyStationInfoController;
+use App\Http\Controllers\HourlyStationInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +20,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['set_locale']], function() {
+    Auth::routes(['register' => false]);
     Route::get('/data', function () {
         return view('pages.map');
     });
-    Route::get('/', [App\Http\Controllers\WidgetController::class, 'index'])->name('home');
-    Route::get('/test', [App\Http\Controllers\WidgetController::class, 'test'])->name('test');
 
+    // widget controller
+    Route::get('/', [WidgetController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
-//    Route::prefix('widget')->group(function () {
-//        Route::get('/', [App\Http\Controllers\WidgetController::class, 'index'])->name('home');
-//
-//    });
+    Route::group(['middleware' => ['auth']], function() {
+        // user profile routes
+        Route::resource('admin/user', UserController::class)->except(['show']);
 
-    Auth::routes(['register' => false]);
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        // user profile routes
+        Route::resource('user-profile', UserProfileController::class)->only([
+            'edit', 'update', 'show'
+        ]);
+
+        // hourly info routes
+        Route::resource('hourly-station-info', HourlyStationInfoController::class)->middleware('isProfileFilled');
+
+        // daily info routes
+        Route::resource('daily-station-info', DailyStationInfoController::class)->middleware('isProfileFilled');
+    });
 });
 

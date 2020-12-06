@@ -133,7 +133,7 @@ class AddWeatherCode extends Seeder
         }
 
 
-        if (!\App\Models\WeatherCode::where('code', 'heavy')->first()) {
+        if (!\App\Models\WeatherCode::where('code', 'heavy-snow')->first()) {
             $weather_code = new \App\Models\WeatherCode();
             $weather_code->code = 'heavy-snow';
             $weather_code->name_ru = 'сильный снег';
