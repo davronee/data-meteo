@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meteo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class WidgetController extends Controller
 {
@@ -11,6 +12,46 @@ class WidgetController extends Controller
     {
 
         return view('widget.index');
+    }
+
+    public function getWindSpeed(Request $request)
+    {
+        $request->validate([
+            'city' => 'required'
+        ]);
+
+        if ($request->city == 'tashkent')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/41.311081,69.240562')->body();
+        elseif ($request->city == 'andijan')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/40.7833302,72.333332')->body();
+        elseif ($request->city == 'bukhara')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/39.7666636,64.4333316')->body();
+        elseif ($request->city == 'jizzakh')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/40.11583,67.84222')->body();
+        elseif ($request->city == 'qarshi')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/38.86056,65.78905')->body();
+        elseif ($request->city == 'navoiy')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/40.08444,65.37917')->body();
+        elseif ($request->city == 'namangan')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/40.9983,71.67257')->body();
+        elseif ($request->city == 'samarkand')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/39.65417,66.95972')->body();
+        elseif ($request->city == 'termez')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/37.22417,67.27833')->body();
+        elseif ($request->city == 'gulistan')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/40.491509,68.781077')->body();
+        elseif ($request->city == 'nurafshon')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/40.45264,68.70062')->body();
+        elseif ($request->city == 'fergana')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/40.38421,71.78432')->body();
+        elseif ($request->city == 'urgench')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/41.534532,60.624889')->body();
+        elseif ($request->city == 'nukus')
+            $wind = Http::get('https://api.darksky.net/forecast/d77118a60fbebfa1cb5a648f42f623a9/42.45306,59.61028')->body();
+
+
+        $wind = json_decode($wind, true);
+        return response()->json($wind['currently']['windSpeed']);
     }
 
     public function test(Request $request)

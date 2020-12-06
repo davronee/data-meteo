@@ -41,7 +41,8 @@
             <div class="card card-hover no-shadow">
                 <div class="card-body">
                     <div class="main">
-                        <select v-model="city" @change="getCurrent" id="city" class="custom-select custom-select-sm tx-12 mg-b-10">
+                        <select v-model="city" @change="getCurrent" id="city"
+                                class="custom-select custom-select-sm tx-12 mg-b-10">
                             <option value="andijan">Андижанская область</option>
                             <option value="bukhara">Бухарская область</option>
                             <option value="jizzakh">Джизакская область</option>
@@ -115,7 +116,7 @@
                                         <div class="w3ls_main_grid_left_grid1">
                                             <div class="w3l_main_grid_left_grid1_left">
                                                 <h3>Ветер</h3>
-                                                <p>14 <span>Km/h</span></p>
+                                                <p>@{{ current_wind }} <span>Km/h</span></p>
                                             </div>
                                             <div class="w3l_main_grid_left_grid1_right">
                                                 <canvas id="wind" width="45" height="45"></canvas>
@@ -268,7 +269,8 @@
                                 class="d-flex flex-column flex-sm-row align-items-start justify-content-between mg-b-15">
                                 <div class="total-sales-info order-2 order-sm-0">
                                     <div>
-                                        <select v-model="city" @change="getCurrent" class="custom-select custom-select-sm tx-12"  >
+                                        <select v-model="city" @change="getCurrent"
+                                                class="custom-select custom-select-sm tx-12">
                                             <option value="andijan">Андижанская область</option>
                                             <option value="bukhara">Бухарская область</option>
                                             <option value="jizzakh">Джизакская область</option>
@@ -368,10 +370,11 @@
             forecast_day_code: '',
             forecast_night_code: '',
             city: 'tashkent',
-            current:0,
-            city_name:'Ташкент',
-            current_weather_code:'',
-            forcastdate:[]
+            current: 0,
+            city_name: 'Ташкент',
+            current_weather_code: '',
+            forcastdate: [],
+            current_wind: [],
         },
         filters: {
             capitalize: function (value) {
@@ -382,7 +385,7 @@
         },
         methods: {
 
-            getCurrent:function () {
+            getCurrent: function () {
                 axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
                     params: {
                         city: this.city,
@@ -393,7 +396,7 @@
                         app.current = Math.floor(response.data.air_t);
 
                         app.getTitle();
-
+                        app.getWind();
 
 
                         if (response.data.weather_code == 'clear')
@@ -437,74 +440,66 @@
                         // always executed
                     });
             },
-            getTitle:function () {
-                if(app.city == 'tashkent')
-                {
+            getTitle: function () {
+                if (app.city == 'tashkent') {
                     app.city_name = 'г. Ташкент';
-                }
-                else if(app.city == 'andijan')
-                {
+                } else if (app.city == 'andijan') {
                     app.city_name = 'Андижанская область';
-                }
-                else if(app.city == 'bukhara')
-                {
+                } else if (app.city == 'bukhara') {
                     app.city_name = 'Бухарская область';
-                }
-                else if(app.city == 'jizzakh')
-                {
+                } else if (app.city == 'jizzakh') {
                     app.city_name = 'Джизакская область';
-                }
-                else if(app.city == 'qarshi')
-                {
+                } else if (app.city == 'qarshi') {
                     app.city_name = 'Кашкадарьинская область';
-                }
-                else if(app.city == 'navoiy')
-                {
+                } else if (app.city == 'navoiy') {
                     app.city_name = 'Навоийская область';
-                }
-                else if(app.city == 'namangan')
-                {
+                } else if (app.city == 'namangan') {
                     app.city_name = 'Наманганская область';
-                }
-                else if(app.city == 'samarkand')
-                {
+                } else if (app.city == 'samarkand') {
                     app.city_name = 'Самаркандская область';
-                }
-                else if(app.city == 'termez')
-                {
+                } else if (app.city == 'termez') {
                     app.city_name = 'Сурхандарьинская область';
-                }
-                else if(app.city == 'gulistan')
-                {
+                } else if (app.city == 'gulistan') {
                     app.city_name = 'Сырдарьинская область';
-                }
-                else if(app.city == 'nurafshon')
-                {
+                } else if (app.city == 'nurafshon') {
                     app.city_name = 'Ташкентская область';
-                }
-                else if(app.city == 'fergana')
-                {
+                } else if (app.city == 'fergana') {
                     app.city_name = 'Ферганская область';
-                }
-                else if(app.city == 'urgench')
-                {
+                } else if (app.city == 'urgench') {
                     app.city_name = 'Хорезмская область';
-                }
-                else if(app.city == 'nukus')
-                {
+                } else if (app.city == 'nukus') {
                     app.city_name = 'Республика Каракалпакстан';
                 }
+            },
+            getWind: function () {
+
+
+                    axios.get('{{route('getWindSpeed')}}', {
+                        params: {
+                            city: this.city,
+                        }
+                    })
+                        .then(function (response) {
+                            app.current_wind = response.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+
             }
         },
         mounted() {
             this.getCurrent();
         },
-        created(){
+        created() {
 
         }
     });
-
-
 
 
 </script>

@@ -27,6 +27,7 @@ Route::group(['middleware' => ['set_locale']], function() {
 
     // widget controller
     Route::get('/', [WidgetController::class, 'index'])->name('home');
+    Route::get('/getWindSpeed', [WidgetController::class, 'getWindSpeed'])->name('getWindSpeed');
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
     Route::group(['middleware' => ['auth']], function() {
