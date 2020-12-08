@@ -8,6 +8,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="form-group">
+                                @include('common.messages')
+                            </div>
                             <form action="{{ route('user.store') }}" method="post">
                                 @csrf
                                 <div class="row">
@@ -18,14 +21,14 @@
                                                 <option value="">@lang('messages.choose')</option>
                                                 <option value="17">@lang('messages.republic')</option>
                                                 @foreach ($regions as $regionid => $region)
-                                                    <option value="{{ $regionid }}">{{ $region }}</option>
+                                                    <option value="{{ $regionid }}" {{ old('region_id') == $regionid ? 'selected' : '' }}>{{ $region }}</option>
                                                 @endforeach
                                         </select>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="district_id">@lang('messages.district')</label>
-                                        <select name="region_id" id="district_id" class="form-control district_id"
+                                        <select name="district_id" id="district_id" class="form-control district_id"
                                             data-selected="{{ old('district_id') }}" v-model="district_id">
                                                 <option value="">@lang('messages.choose')</option>
                                                 <option v-for="district,index in districts" :value="index">@{{ district }}</option>
@@ -33,11 +36,11 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="position_id">@lang('messages.position')</label>
-                                        <select name="position_id" id="position_id" class="form-control position_id" required>
+                                        <label for="position_code">@lang('messages.position')</label>
+                                        <select name="position_code" id="position_code" class="form-control position_code" required>
                                             <option value="">@lang('messages.choose')</option>
-                                            @foreach ($regions as $regionid => $region)
-                                                <option value="{{ $regionid }}">{{ $region }}</option>
+                                            @foreach ($positions as $code => $position)
+                                                <option {{ old('position_code') == $code ? 'selected' : '' }} value="{{ $code }}">{{ $position }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -58,22 +61,32 @@
                                     </div>
 
                                     <div class="form-group col-md-12">
+                                        <label for="station_id">@lang('messages.station')</label>
+                                        <select name="station_id" id="station_id" class="form-control station_id">
+                                            <option value="">@lang('messages.choose')</option>
+                                            @foreach ($stations as $id => $station)
+                                                <option {{ old('station_id') == $id ? 'selected' : '' }} value="{{ $id }}">{{ $station }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
                                         <label>@lang('messages.roles')</label>
                                         @foreach ($roles as $id => $role)
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" id="role-{{ $id }}" name="roles[]" value="{{ $role }}" class="custom-control-input">
-                                            <label for="role-{{ $id }}" class="custom-control-label tx-sm">{{ trans(sprintf('messages.%s', $role)) }}</label>
-                                        </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="role-{{ $id }}" name="roles[]" value="{{ $role }}" class="custom-control-input" {{ in_array($role, old('roles', [])) ? 'checked' : ''}}>
+                                                <label for="role-{{ $id }}" class="custom-control-label tx-sm">{{ trans(sprintf('messages.%s', $role)) }}</label>
+                                            </div>
                                         @endforeach
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label>@lang('messages.permissions')</label>
                                         @foreach ($permissions as $id => $permission)
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" id="permission-{{ $id }}" name="permissions[]" value="{{ $permission }}" class="custom-control-input">
-                                            <label for="role-{{ $id }}" class="custom-control-label tx-sm">{{ trans(sprintf('messages.%s', $permission)) }}</label>
-                                        </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="permission-{{ $id }}" name="permissions[]" value="{{ $permission }}" class="custom-control-input" {{ in_array($permission, old('permissions', [])) ? 'checked' : ''}}>
+                                                <label for="permission-{{ $id }}" class="custom-control-label tx-sm">{{ trans(sprintf('messages.%s', $permission)) }}</label>
+                                            </div>
                                         @endforeach
                                     </div>
 

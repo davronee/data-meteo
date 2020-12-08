@@ -28,3 +28,12 @@ php artisan optimize:clear
 php artisan migrate
 php artisan db:seed --class="ImportRegionAndDistrictSeeder"
 ```
+
+### 08.12.2020 ###
+```
+composer install --ignore-platform-reqs
+composer dump-autoload --ignore-platform-reqs
+php artisan migrate
+php artisan db:seed
+php artisan optimize:clear
+```

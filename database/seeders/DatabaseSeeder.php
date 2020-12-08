@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             DefaultUsersSeeder::class,
             AddWeatherCode::class,
             AddWeatherRegions::class,
+            PositionSeeder::class
         ]);
     }
 }

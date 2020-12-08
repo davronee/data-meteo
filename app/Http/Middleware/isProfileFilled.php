@@ -23,8 +23,9 @@ class isProfileFilled
          * if user is new and profile is not filled yet
          * redirect to the profile edit page
          */
-        if(!$user->profileIsFilled())
-            return route('user-profile.edit');
+        if(!$user->profileIsFilled()) {
+            return redirect()->route('user-profile.edit', $user->id);
+        }
 
         return $next($request);
     }

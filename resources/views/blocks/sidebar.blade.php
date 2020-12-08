@@ -3,6 +3,7 @@
     <div id="dpSidebarBody" class="sidebar-body">
         <ul class="nav nav-sidebar">
             @includeWhen(auth()->user()->isAdmin(), 'blocks.menu.admin')
+            @includeWhen(auth()->user()->isStationShiftAgent(), 'blocks.menu.station-shift-agent')
 
             <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
             <li class="nav-item">

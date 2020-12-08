@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasRole(['superadmin', 'admin']);
     }
+
+    public function isStationShiftAgent()
+    {
+        return $this->hasRole(['shift-agent-station']);
+    }
 }

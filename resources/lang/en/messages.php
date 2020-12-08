@@ -5,6 +5,10 @@ return [
     'modules' => 'Модули',
     'create_user' => 'Создать пользователь',
     'user_list' => 'Список пользователей',
+    'user_created' => 'Пользователь успешно создан',
+    'staff-menu' => 'Меню сотрудника',
+    'hourly-station-info-list' => 'Список сменных данных',
+    'hourly-station-info-create' => 'Ввести сменные данные',
 
     // permissions
     "work" => 'Работать',
@@ -35,4 +39,10 @@ return [
     "password_confirmation" => 'Подтвердите пароль',
     "roles" => 'Роли',
     "permissions" => 'Разрешения',
+    "position" => 'Должность',
+    "station" => 'Станция',
+
+    // validation messages
+    'region_id_required_message' => 'Поле Регион обязательно для заполнения.',
+    'district_id_required_message' => 'Поле Район/город обязательно для заполнения.',
 ];

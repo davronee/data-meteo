@@ -32,7 +32,7 @@
         {{-- sidebar --}}
         @includeWhen(auth()->check(), 'blocks.sidebar')
 
-        <div class="content content-page">
+        <div class="{{ auth()->check() ? 'content' : '' }} content-page">
             {{-- top section --}}
             @includeWhen(auth()->check(), 'blocks.header')
             @includeWhen(auth()->check(), 'blocks.breadcrumb')

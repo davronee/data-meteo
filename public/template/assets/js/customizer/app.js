@@ -33,13 +33,20 @@ var app = new Vue({
                     if(response.data) {
                         this.districts = response.data;
                     }
-                    $(e.target).prop('disabled', false);
+                    this.setDistrictField();
+                    this.regionFieldsRemoveDisabled();
+                }, (error) => {
+                    console.log(error);
                     this.regionFieldsRemoveDisabled();
                 });
         },
         resetDistrictField: function()
         {
             this.district_id = '';
+        },
+        setDistrictField: function()
+        {
+            this.district_id = $('#district_id').attr('data-selected');
         },
         regionFieldsAddDisabled: function()
         {
@@ -61,9 +68,9 @@ var app = new Vue({
         //
     },
     created() {
-        //
+        this.region_id = $('#region_id').val();
     },
     mounted() {
-        //
+        this.regionChanged();
     }
 });
