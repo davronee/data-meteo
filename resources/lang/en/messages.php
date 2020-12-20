@@ -45,4 +45,7 @@ return [
     // validation messages
     'region_id_required_message' => 'Поле Регион обязательно для заполнения.',
     'district_id_required_message' => 'Поле Район/город обязательно для заполнения.',
+
+    'profile_not_filled' => 'Профиль пользователя еще не заполнен. Пожалуйста, сначала заполните профиль пользователя',
+    'saved_successfully' => 'Успешно сохранено!'
 ];

@@ -7,6 +7,7 @@ use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\DailyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoController;
+use App\Http\Controllers\UserProfilePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::group(['middleware' => ['set_locale']], function() {
         Route::resource('user-profile', UserProfileController::class)->only([
             'edit', 'update', 'show'
         ]);
+        Route::get('/user-profile/{user_profile}/password', [UserProfilePasswordController::class, 'edit'])->name('user_profile.password.edit');
+        Route::put('/user-profile/{user_profile}/password', [UserProfilePasswordController::class, 'update'])->name('user_profile.password.update');
 
         // hourly info routes
         Route::resource('hourly-station-info', HourlyStationInfoController::class)->middleware('isProfileFilled');
