@@ -130,8 +130,8 @@
                                         <div id="parentHorizontalTab">
                                             <ul class="resp-tabs-list hor_1">
                                                 <li>Сегодня</li>
-                                                <li>Неделя</li>
-                                                <li>Месяц</li>
+                                                <li>Завтра</li>
+                                                <li>За 3 дня</li>
                                             </ul>
                                             <div class="resp-tabs-container hor_1">
                                                 <div class="w3_agileits_tabs">
@@ -140,7 +140,7 @@
                                                             <p>02:00</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>15&deg;C<span>Cloudy</span></p>
+                                                            <p>15&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -149,7 +149,7 @@
                                                             <p>05:00</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>16&deg;C<span>Clear</span></p>
+                                                            <p>16&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -158,7 +158,7 @@
                                                             <p>08:00</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>18&deg;C<span>Cear</span></p>
+                                                            <p>18&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -167,7 +167,7 @@
                                                             <p>11:00</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>12&deg;C<span>Partly Cloudy</span></p>
+                                                            <p>12&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -178,7 +178,7 @@
                                                             <p>Monday</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>14&deg;C<span>Clear</span></p>
+                                                            <p>14&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -187,16 +187,17 @@
                                                             <p>Tuesday</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>16&deg;C<span>Cloudy</span></p>
+                                                            <p>16&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
                                                     <div class="w3_main_grid_right_grid1">
                                                         <div class="w3_main_grid_right_grid1_left">
                                                             <p>Wednesday</p>
+                                                            <span>облачность</span>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>11&deg;C<span>Rainy</span></p>
+                                                            <p>11&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -205,7 +206,7 @@
                                                             <p>Thursday</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>18&deg;C<span>Sunny</span></p>
+                                                            <p>18&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -216,7 +217,7 @@
                                                             <p>January</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>18&deg;C<span>Cloudy</span></p>
+                                                            <p>18&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -225,7 +226,7 @@
                                                             <p>February</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>14&deg;C<span>Clear</span></p>
+                                                            <p>14&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -234,7 +235,7 @@
                                                             <p>March</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>18&deg;C<span>Cear</span></p>
+                                                            <p>18&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -243,7 +244,7 @@
                                                             <p>April</p>
                                                         </div>
                                                         <div class="w3_main_grid_right_grid1_right">
-                                                            <p>12&deg;C<span>Partly Cloudy</span></p>
+                                                            <p>12&deg;C<span>15&deg;C</span></p>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -306,7 +307,7 @@
                                     </div>
                                 </div><!-- total-sales-info -->
                                 <div class="order-1 order-sm-0 mg-sm-t-7 mg-b-15 mg-sm-b-0">
-                                    <p class="btn btn-xs btn-white">Обновлено: 03.12.2020, 14:01</p>
+                                   
                                 </div>
                             </div>
                             <div class="flot-wrapper">
@@ -329,6 +330,7 @@
                                         строительный базар «Джами»)</small>
                                     <small><b>С какого года работает:</b> 10.09.1986г.</small>
                                     <small><b>Дата открытия поста:</b> 10.09.1986г.</small>
+                                    <small><b>Дата обновления:</b> 03.12.2020, 14:01</small>
                                 </div>
                             </div>
                         </div><!-- card-info -->
