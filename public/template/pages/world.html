@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta -->
+    <meta name="description" content="Единая система анализа и обработки гидрометеорологических наблюдений">
+    <meta name="author" content="Метеоинфосистем">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
+    <title>METEO|DC</title>
+    <!-- icons css -->
+    <link href="../lib/fontawesome5/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/ionicons.min.css">
+    <!-- vendor css -->
+    <link href="../lib/select2/css/select2.min.css" rel="stylesheet">
+    <!-- template css -->
+    <link rel="stylesheet" href="../assets/css/meteo.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/weather-panel.css">
+    <link rel="stylesheet" href="../assets/css/meteo-weather.css">
+    <link rel="stylesheet" href="../assets/css/world.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/css/easy-responsive-tabs.css">
+</head>
+
+<body onload="startTime()">
+    <div class="container">
+        <div class="header">
+            <div class="header-left sidebar-logo">
+                <img src="../assets/img/gidrometeo.svg"></a>
+            </div><!-- header-left -->
+            <div class="header-right">
+            </div><!-- header-right -->
+        </div><!-- header -->
+        <div class="content-page mg-t-20">
+            <div class="content-body">
+                <div class="row row-sm mg-t-20">
+                    <div class="col-md-12 col-xl-12 mg-t-5 mg-sm-t-15">
+                        <div class="card card-hover card-total-sales no-shadow bd-0">
+                            <div class="card-header bg-transparent pd-y-15 pd-l-15 pd-sm-l-20 pd-r-15 bd-b-1">
+                                <select class="custom-select custom-select-sm tx-12 mg-b-10">
+                                    <option value="1703">Андижанская область</option>
+                                    <option value="1706">Бухарская область</option>
+                                    <option value="1708">Джизакская область</option>
+                                    <option value="1710">Кашкадарьинская область</option>
+                                    <option value="1712">Навоийская область</option>
+                                    <option value="1714">Наманганская область</option>
+                                    <option value="1718">Самаркандская область</option>
+                                    <option value="1722">Сурхандарьинская область</option>
+                                    <option value="1724">Сырдарьинская область</option>
+                                    <option value="1726" selected="">г. Ташкент</option>
+                                    <option value="1727">Ташкентская область</option>
+                                    <option value="1730">Ферганская область</option>
+                                    <option value="1733">Хорезмская область</option>
+                                    <option value="1735">Республика Каракалпакстан</option>
+                                    <option value="1">Ташкенткая область</option>
+                                </select>
+                            </div><!-- card-header -->
+                            <div class="worko-tabs">
+                                <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked />
+                                <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
+                                <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three" />
+                                <input class="state" type="radio" title="tab-four" name="tabs-state" id="tab-four" />
+                                <div class="tabs flex-tabs">
+                                    <label for="tab-one" id="tab-one-label" class="tab">Узгидромет</label>
+                                    <label for="tab-two" id="tab-two-label" class="tab">OpenWeather</label>
+                                    <label for="tab-three" id="tab-three-label" class="tab">AccuWeather</label>
+                                    <label for="tab-four" id="tab-four-label" class="tab">Gismeteo</label>
+                                    <!-- УЗГИДРОМЕТ -->
+                                    <div id="tab-one-panel" class="panel active">
+                                        <div class="main-wthree-row">
+                                            <div class="agileits-top">
+                                                <div class="agileinfo-top-row">
+                                                    <div class="agileinfo-top-time">
+                                                        <div class="date-time">
+                                                            <div class="dmy">
+                                                                <div class="date">
+                                                                    <span>переменная облачность</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                    <h3>28<sup class="degree">°</sup><span>C</span></h3>
+                                                    <p>New York</p>
+                                                    <article class="ac-small">
+                                                        <div class="wthree-grids">
+                                                            <div class="wthree-grids-row">
+                                                                <ul class="top">
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 25 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 27 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 31 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 19 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 16 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- OpenWeather -->
+                                    <div id="tab-two-panel" class="panel">
+                                        <div class="main-wthree-row">
+                                            <div class="agileits-top">
+                                                <div class="agileinfo-top-row">
+                                                    <div class="agileinfo-top-time">
+                                                        <div class="date-time">
+                                                            <div class="dmy">
+                                                                <div class="date">
+                                                                    <span>переменная облачность</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                    <h3>28<sup class="degree">°</sup><span>C</span></h3>
+                                                    <p>New York</p>
+                                                    <article class="ac-small">
+                                                        <div class="wthree-grids">
+                                                            <div class="wthree-grids-row">
+                                                                <ul class="top">
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 25 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 27 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 31 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 19 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 16 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- AccuWeather -->
+                                    <div id="tab-three-panel" class="panel">
+                                        <div class="main-wthree-row">
+                                            <div class="agileits-top">
+                                                <div class="agileinfo-top-row">
+                                                    <div class="agileinfo-top-time">
+                                                        <div class="date-time">
+                                                            <div class="dmy">
+                                                                <div class="date">
+                                                                    <span>переменная облачность</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                    <h3>28<sup class="degree">°</sup><span>C</span></h3>
+                                                    <p>New York</p>
+                                                    <article class="ac-small">
+                                                        <div class="wthree-grids">
+                                                            <div class="wthree-grids-row">
+                                                                <ul class="top">
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 25 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 27 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 31 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 19 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 16 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Gismeteo -->
+                                    <div id="tab-four-panel" class="panel">
+                                        <div class="main-wthree-row">
+                                            <div class="agileits-top">
+                                                <div class="agileinfo-top-row">
+                                                    <div class="agileinfo-top-time">
+                                                        <div class="date-time">
+                                                            <div class="dmy">
+                                                                <div class="date">
+                                                                    <span>переменная облачность</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                    <h3>28<sup class="degree">°</sup><span>C</span></h3>
+                                                    <p>New York</p>
+                                                    <article class="ac-small">
+                                                        <div class="wthree-grids">
+                                                            <div class="wthree-grids-row">
+                                                                <ul class="top">
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 25 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 27 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 20 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/3.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 18 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/4.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 31 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 19 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                            <div class="wthree-grids-row">
+                                                                <ul>
+                                                                    <li>01.12.2015</li>
+                                                                    <li class="wthree-img"><img src="../assets/img/2.png" alt="" /> </li>
+                                                                    <li class="wthree-temp"> 30 <sup class="degree">°</sup></li>
+                                                                    <li class="wthree-temp"> 16 <sup class="degree">°</sup></li>
+                                                                </ul>
+                                                                <div class="clear"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- card -->
+                    </div><!-- col -->
+                </div>
+            </div>
+            <!--content-body -->
+        </div><!-- content-page -->
+    </div><!-- content -->
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/feather-icons/feather.min.js"></script>
+    <script src="../lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../lib/js-cookie/js.cookie.js"></script>
+    <script src="../lib/select2/js/select2.min.js"></script>
+    <script src="../assets/js/skycons.js"></script>
+    <script src="../assets/js/easyResponsiveTabs.js"></script>
+    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.pie.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.stack.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.threshold.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.fillbetween.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.crosshair.js"></script>
+    <script src="../assets/js/flot.sampledata.js"></script>
+    <script src="../assets/js/vmap.sampledata.js"></script>
+    <script src="../assets/js/dashboard-one.js"></script>
+    <script src="../assets/js/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo").owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+            items: 6,
+            itemsDesktop: [640, 5],
+            itemsDesktopSmall: [414, 4]
+
+        });
+
+    });
+
+    </script>
+    <!-- sky-icons -->
+    <script>
+    var icons = new Skycons({ "color": "#36a6e5" }),
+        list = [
+            "sleet"
+        ],
+        i;
+
+    for (i = list.length; i--;)
+        icons.set(list[i], list[i]);
+
+    icons.play();
+
+    </script>
+    <script>
+    var icons = new Skycons({ "color": "#36a6e5" }),
+        list = [
+            "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "clear-day", "snow", "wind",
+            "fog"
+        ],
+        i;
+
+    for (i = list.length; i--;)
+        icons.set(list[i], list[i]);
+
+    icons.play();
+
+    </script>
+    <!-- //sky-icons -->
+    <!-- tabs -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //Horizontal Tab
+        $('#parentHorizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true, // 100% fit in a container
+            tabidentify: 'hor_1', // The tab groups identifier
+            activate: function(event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#nested-tabInfo');
+                var $name = $('span', $info);
+                $name.text($tab.text());
+                $info.show();
+            }
+        });
+    });
+
+    </script>
+    <!-- //tabs -->
+</body>
+
+</html>
