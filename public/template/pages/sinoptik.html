@@ -10,7 +10,7 @@
     <meta name="author" content="Метеоинфосистем">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
-    <title>METEO|DC</title>
+    <title>Синоптический анализ|METEO</title>
     <!-- icons css -->
     <link href="../lib/fontawesome5/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
@@ -60,7 +60,7 @@
                 <li class="nav-item">
                     <a href="" class="nav-link with-sub"><i class="fas fa-chart-line"></i> Анализ</a>
                     <nav class="nav nav-sub">
-                        <a href="sinoptik.html" class="nav-sub-link">Синоптический анализ</a>
+                        <a href="#" class="nav-sub-link">Синоптический анализ</a>
                         <a href="#" class="nav-sub-link">Анализ и объяснение</a>
                         <a href="#" class="nav-sub-link">Фактическая погода</a>
                         <a href="#" class="nav-sub-link">Данные об условиях погоды</a>
@@ -166,6 +166,19 @@
                 </div>
             </div><!-- header-right -->
         </div><!-- header -->
+        <div class="content-header justify-content-between">
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Анализ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Синоптический анализ</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="d-none d-sm-flex">
+                <a href="#modal4" class="btn btn btn-success" data-toggle="modal">Создать</a>
+            </div>
+        </div>
         <div class="content-body content-body-profile">
             <div class="profile-body mg-t-10 no-shadow">
                 <div class="card-title">
@@ -176,6 +189,7 @@
                         <div class="collapse navbar-collapse order-2" id="navbarSupportedContent">
                             <form class="form-inline mg-t-10 mg-l-5">
                                 <select class="form-control custom-select">
+                                    <option value="1703" selected="">По Республике</option>
                                     <option value="1703">Андижанская область</option>
                                     <option value="1706">Бухарская область</option>
                                     <option value="1708">Джизакская область</option>
@@ -185,7 +199,7 @@
                                     <option value="1718">Самаркандская область</option>
                                     <option value="1722">Сурхандарьинская область</option>
                                     <option value="1724">Сырдарьинская область</option>
-                                    <option value="1726" selected="">г. Ташкент</option>
+                                    <option value="1726">г. Ташкент</option>
                                     <option value="1727">Ташкентская область</option>
                                     <option value="1730">Ферганская область</option>
                                     <option value="1733">Хорезмская область</option>
@@ -194,7 +208,8 @@
                                 </select>
                             </form>
                             <form class="form-inline mg-t-10 mg-l-5">
-                                <select class="form-control custom-select">
+                                <select class="form-control custom-select" disabled="">
+                                    <option value="">Выберите</option>
                                     <option value="1703">Ташкент</option>
                                     <option value="1703">Янгиюль</option>
                                     <option value="1703">Кокарал</option>
@@ -211,15 +226,18 @@
                                 </select>
                             </form>
                             <form class="form-inline mg-t-10 mg-l-5">
-                                <input type="text" class="form-control" placeholder="Выберите дата" id="datepicker4">
+                                <select class="form-control custom-select">
+                                    <option value="next-day">Прогноз погоды на ближайшие сутки</option>
+                                    <option value="next-3-6-days">Прогноз погоды на 3-6 сутки</option>
+                                    <option value="next-10-day">Прогноз погоды на 10 дней</option>
+                                </select>
                             </form>
                             <div class="btn-toolbar mg-t-10">
                                 <div class="mg-l-5">
                                     <button type="button" class="btn  btn btn-white btn-icon"><i data-feather="filter"></i></button>
-                                    <button type="button" class="btn  btn btn-white btn-icon"><i data-feather="printer"></i></button>
-                                    <button type="button" class="btn  btn btn-white btn-icon"><i data-feather="download"></i></button>
-                                    <button type="button" class="btn  btn btn-secondary btn-icon"><i data-feather="x"></i></button>
+                                      <button type="button" class="btn  btn btn-white btn-icon"><i data-feather="download"></i></button>
                                 </div>
+                               
                             </div><!-- btn-toolbar -->
                         </div>
                     </nav>
@@ -228,31 +246,34 @@
                     <table id="example2" class="table">
                         <thead>
                             <tr>
-                                <th class="wd-25p">Кем</th>
-                                <th class="wd-20p">Когда</th>
-                                <th class="wd-10p">Действие</th>
+                                <th class="wd-25p tx-bold">Регион</th>
+                                <th class="wd-20p tx-bold">Прогноз погоды на</th>
+                                <th class="wd-10p tx-bold">Дата внесение/изменение</th>
+                                <th class="wd-5p tx-bold">Действие</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Иванов Иван Иванович</td>
-                                <td>01.12.2020 14:34:32</td>
+                                <td>По республике</td>
+                                <td>Прогноз погоды на ближайшие сутки</td>
+                                <td>10.12.2020 12:21:52</td>
                                 <td>
                                     <div class="mg-l-5">
                                         <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="eye"></i></button>
-                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="plus"></i></button>
-                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="trash"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="edit"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-danger btn-icon"><i data-feather="trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Сидоров Александр Михайлович</td>
-                                <td>01.12.2020 14:34:32</td>
+                                <td>г. Ташкент</td>
+                                <td>Прогноз погоды на 10 дней</td>
+                                <td>13.12.2020 12:21:52</td>
                                 <td>
                                     <div class="mg-l-5">
                                         <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="eye"></i></button>
-                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="plus"></i></button>
-                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="trash"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-white btn-icon"><i data-feather="edit"></i></button>
+                                        <button type="button" class="btn  btn-xs btn-danger btn-icon"><i data-feather="trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -270,6 +291,73 @@
             <p class="mg-b-25 tx-color-03 tx-justify">Система для автоматизации основных этапов прикладной обработки и анализа гидрометерологических данных Узгидромета</p>
         </div>
     </div><!-- off-canvas -->
+    <!-- МОДАЛ СОЗДАТЬ -->
+    <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel4">Создать новый прогноз</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i data-feather="x"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row row-sm">
+                        <form class="form-inline mg-t-10 mg-l-5">
+                            <select class="form-control custom-select">
+                                <option value="next-day">Прогноз погоды на ближайшие сутки</option>
+                                <option value="next-3-6-days">Прогноз погоды на 3-6 сутки</option>
+                                <option value="next-10-day">Прогноз погоды на 10 дней</option>
+                            </select>
+                        </form>
+                        <form class="form-inline mg-t-10 mg-l-5">
+                            <select class="form-control custom-select">
+                                <option value="1703" selected="">По Республике</option>
+                                <option value="1703">Андижанская область</option>
+                                <option value="1706">Бухарская область</option>
+                                <option value="1708">Джизакская область</option>
+                                <option value="1710">Кашкадарьинская область</option>
+                                <option value="1712">Навоийская область</option>
+                                <option value="1714">Наманганская область</option>
+                                <option value="1718">Самаркандская область</option>
+                                <option value="1722">Сурхандарьинская область</option>
+                                <option value="1724">Сырдарьинская область</option>
+                                <option value="1726">г. Ташкент</option>
+                                <option value="1727">Ташкентская область</option>
+                                <option value="1730">Ферганская область</option>
+                                <option value="1733">Хорезмская область</option>
+                                <option value="1735">Республика Каракалпакстан</option>
+                                <option value="1">Ташкенткая область</option>
+                            </select>
+                        </form>
+                        <form class="form-inline mg-t-10 mg-l-5">
+                            <select class="form-control custom-select" disabled="">
+                                <option value="">Выберите</option>
+                                <option value="1703">Ташкент</option>
+                                <option value="1703">Янгиюль</option>
+                                <option value="1703">Кокарал</option>
+                                <option value="1703">Дальверзин</option>
+                                <option value="1703">Бекабад</option>
+                                <option value="1703">Тюябугуз</option>
+                                <option value="1703">Алмалык</option>
+                                <option value="1703">Сукок</option>
+                                <option value="1703">Ангрен</option>
+                                <option value="1703">Дукант</option>
+                                <option value="1703">Чимган</option>
+                                <option value="1703">Пскем</option>
+                                <option value="1703">Кайнарсай</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Отменить</button>
+                    <button type="button" class="btn btn-success">Создать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- КОНЕЦ МОДАЛЬ СОЗДАТЬ -->
     <script src="../lib/jquery/jquery.min.js"></script>
     <script src="../lib/jqueryui/jquery-ui.min.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -293,6 +381,29 @@
     <script src="../assets/js/meteo.js"></script>
     <script src="../assets/js/canvas.js"></script>
     <script src="../lib/quill/quill.min.js"></script>
+    <script src="../lib/parsleyjs/parsley.min.js"></script>
+    <script src="../lib/jquery-steps/build/jquery.steps.min.js"></script>
+    <script>
+    $(function() {
+
+        'use strict'
+
+        $('#modal6').on('show.bs.modal', function(event) {
+
+            var animation = $(event.relatedTarget).data('animation');
+            $(this).addClass(animation);
+        })
+
+        // hide modal with effect
+        $('#modal6').on('hidden.bs.modal', function(e) {
+            $(this).removeClass(function(index, className) {
+                return (className.match(/(^|\s)effect-\S+/g) || []).join(' ');
+            });
+        });
+
+    })
+
+    </script>
     <!-- weather-panel -->
     <!--     <script src="../assets/js/weather-panel.js"></script> -->
     <script>
