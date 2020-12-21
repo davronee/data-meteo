@@ -45,7 +45,7 @@
         <a href="" class="btn dropdown-link" data-toggle="dropdown"><i class="far fa-user fa-lg"></i></a>
         <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-menu-body">
-                <a href="#" class="dropdown-item">Изменить данные</a>
+                <a href="{{ route('user-profile.edit', auth()->user()->id) }}" class="dropdown-item">Изменить данные</a>
             </div>
             <div class="dropdown-menu-body">
                 <a class="dropdown-item" href="{{ route('logout') }}"

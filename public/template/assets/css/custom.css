@@ -210,3 +210,20 @@
 .mt-45 {
     margin-top: 45px;
 }
+
+#paneProfile .form-settings {
+    max-width: 100%;
+}
+
+.no-shadow {
+    box-shadow: none !important;
+}
+
+.no-bottom-border {
+    border-bottom: none;
+}
+
+.no-top-border {
+    border-top: none;
+}
+

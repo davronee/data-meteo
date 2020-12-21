@@ -20,6 +20,9 @@
         <!-- vendor css -->
         <link href="{{ asset('template/lib/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('template/lib/select2/css/select2.min.css') }}" rel="stylesheet">
+        {{-- datepicker --}}
+        {{-- <link href="{{ asset('template/lib/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"> --}}
+        <link href="{{ asset('template/lib/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
         <!-- template css -->
         <link rel="stylesheet" href="{{ asset('template/assets/css/meteo.css') }}">
         <link rel="stylesheet" href="{{ asset('template/assets/css/custom.css') }}">
@@ -64,6 +67,10 @@
         <script src="{{ asset('template/assets/js/canvas.js') }}"></script>
         <script src="{{ asset('template/assets/js/flot.sampledata.js') }}"></script>
         <script src="{{ asset('template/assets/js/vmap.sampledata.js') }}"></script>
+        {{-- datepicker --}}
+        {{-- <script src="{{ asset('template/lib/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script> --}}
+        <script src="{{ asset('template/lib/moment/moment.js') }}"></script>
+        <script src="{{ asset('template/lib/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
         {{-- input mask --}}
         <script src="{{ asset('template/lib/inputmask/jquery.inputmask.js') }}"></script>
         <script src="{{ asset('template/lib/inputmask/inputmask.binding.js') }}"></script>

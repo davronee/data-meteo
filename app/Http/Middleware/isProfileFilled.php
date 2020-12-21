@@ -24,7 +24,7 @@ class isProfileFilled
          * redirect to the profile edit page
          */
         if(!$user->profileIsFilled()) {
-            return redirect()->route('user-profile.edit', $user->id);
+            return redirect()->route('user-profile.edit', $user->id)->with('error', trans('messages.profile_not_filled'));
         }
 
         return $next($request);

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use \Hash;
+use Carbon\Carbon;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
+        // profile
+        'fullname',
+        'firstname',
+        'lastname',
+        'middlename',
+        'phone',
+        'stir',
+        'pinfl',
+        'passport',
+        'passport_expire',
+        'passport_address',
     ];
 
     /**
@@ -59,4 +73,48 @@ class User extends Authenticatable
     {
         return $this->hasRole(['shift-agent-station']);
     }
+
+    /**
+     * Mutators *****************************************************************************
+     */
+
+    public function setFirstnameAttribute($value)
+    {
+        $this->attributes['firstname'] = $value;
+        $this->attributes['fullname'] = sprintf("%s %s %s", request()->lastname, request()->firstname, request()->middlename);
+    }
+
+    public function setPassportExpireAttribute($value)
+    {
+        $this->attributes['passport_expire'] = Carbon::parse($value)->format("Y-m-d");
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    /**
+     * accessors *****************************************************************************
+     */
+
+    public function getPassportExpireFormattedAttribute()
+    {
+        return Carbon::parse($this->passport_expire)->format('d.m.Y');
+    }
+
+    public function getFormattedPositionAttribute()
+    {
+        return $this->position->name;
+    }
+
+    /**
+     * Relations *****************************************************************************
+     */
+    public function position()
+    {
+        return $this->belongsTo('App\Models\Position');
+    }
+
+
 }

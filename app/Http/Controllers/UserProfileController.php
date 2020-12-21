@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Position;
 use Illuminate\Http\Request;
+use App\Http\Requests\Profile\UpdateRequest;
 
 class UserProfileController extends Controller
 {
@@ -13,7 +16,7 @@ class UserProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user_profile)
     {
         //
     }
@@ -24,9 +27,10 @@ class UserProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user_profile)
     {
-        //
+        $user = $user_profile;
+        return view("user.profile.edit", compact('user'));
     }
 
     /**
@@ -36,8 +40,12 @@ class UserProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateRequest $request, User $user_profile)
     {
-        //
+        $data = $request->validated();
+        $user_profile->fill($data);
+        $user_profile->save();
+
+        return redirect()->back()->with('status', trans('messages.saved_successfully'));
     }
 }
