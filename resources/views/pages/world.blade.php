@@ -74,12 +74,12 @@
                                                 <h3>@{{ current }}<sup class="degree">°</sup><span>C</span></h3>
                                                 <article class="ac-small">
                                                     <div class="wthree-grids">
-                                                        <div v-for="(item, index) in forecast" class="wthree-grids-row">
+                                                        <div v-for="(item, index) in forecastsortday" class="wthree-grids-row">
                                                             <ul class="top">
-                                                                <li>@{{ item.date }}</li>
+                                                                <li>@{{ forecastsortday[index].date }}</li>
                                                                 <li class="wthree-img"><img src="{{asset('template/assets/img/2.png')}}" alt="" /> </li>
-                                                                <li class="wthree-temp">День<br>25 <sup class="degree">°</sup></li>
-                                                                <li class="wthree-temp">Ночь<br>20 <sup class="degree">°</sup></li>
+                                                                <li class="wthree-temp">День<br>@{{ forecastsortday[index].air_t_min }} <sup class="degree">°</sup></li>
+                                                                <li class="wthree-temp">Ночь<br>@{{ forecastsort[index].air_t_min }} <sup class="degree">°</sup></li>
                                                             </ul>
                                                             <div class="clear"> </div>
                                                         </div>
@@ -375,6 +375,8 @@
         data:{
             current:'',
             forecast:[],
+            forecastsort:[],
+            forecastsortday:[],
             current_weather_code:'',
             regions: {
                 tashkent: 'г. Ташкент',
@@ -395,6 +397,7 @@
         },
         methods:{
             getCurrent: function (city = 'tashkent') {
+                var i;
                 axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
                     params: {
                         city: city,
@@ -457,7 +460,33 @@
                         app.forecast = response.data;
                         app.forecast.reverse();
 
-
+                        for (i = 0; i < app.forecast.length; i++) {
+                           if(i % 2 == 0)
+                           {
+                               app.forecastsort.push({
+                                   day:false,
+                                   air_t_min:app.forecast[i].air_t_min,
+                                   date:app.forecast[i].date,
+                                   icon:app.forecast[i].icon,
+                                   cloud_amount:app.forecast[i].cloud_amount,
+                                   wind_speed_min:app.forecast[i].wind_speed_min,
+                                   day_part:app.forecast[i].day_part,
+                               })
+                           }
+                           else
+                           {
+                               app.forecastsortday.push({
+                                   day:true,
+                                   air_t_min:app.forecast[i].air_t_min,
+                                   date:app.forecast[i].date,
+                                   icon:app.forecast[i].icon,
+                                   cloud_amount:app.forecast[i].cloud_amount,
+                                   wind_speed_min:app.forecast[i].wind_speed_min,
+                                   day_part:app.forecast[i].day_part,
+                               })
+                           }
+                        }
+                        console.log(app.forecastsort);
                     })
                     .catch(function (error) {
                         console.log(error);
