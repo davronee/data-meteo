@@ -77,7 +77,7 @@
                                                         <div v-for="(item, index) in forecastsortday" class="wthree-grids-row">
                                                             <ul class="top">
                                                                 <li>@{{ forecastsortday[index].date }}</li>
-                                                                <li class="wthree-img"><img src="{{asset('template/assets/img/2.png')}}" alt="" /> </li>
+                                                                <li class="wthree-img"><img :src="forecastsortday[index].icon" alt="" /> </li>
                                                                 <li class="wthree-temp">День<br>@{{ forecastsortday[index].air_t_min }} <sup class="degree">°</sup></li>
                                                                 <li class="wthree-temp">Ночь<br>@{{ forecastsort[index].air_t_min }} <sup class="degree">°</sup></li>
                                                             </ul>
@@ -398,6 +398,9 @@
         methods:{
             getCurrent: function (city = 'tashkent') {
                 var i;
+                var icon;
+                this.forecastsortday = [];
+                this.forecastsort = [];
                 axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
                     params: {
                         city: city,
@@ -457,36 +460,106 @@
                     }
                 })
                     .then(function (response) {
+                        // console.log(response.data.icon);
                         app.forecast = response.data;
                         app.forecast.reverse();
 
                         for (i = 0; i < app.forecast.length; i++) {
-                           if(i % 2 == 0)
-                           {
-                               app.forecastsort.push({
-                                   day:false,
-                                   air_t_min:app.forecast[i].air_t_min,
-                                   date:app.forecast[i].date,
-                                   icon:app.forecast[i].icon,
-                                   cloud_amount:app.forecast[i].cloud_amount,
-                                   wind_speed_min:app.forecast[i].wind_speed_min,
-                                   day_part:app.forecast[i].day_part,
-                               })
-                           }
-                           else
-                           {
-                               app.forecastsortday.push({
-                                   day:true,
-                                   air_t_min:app.forecast[i].air_t_min,
-                                   date:app.forecast[i].date,
-                                   icon:app.forecast[i].icon,
-                                   cloud_amount:app.forecast[i].cloud_amount,
-                                   wind_speed_min:app.forecast[i].wind_speed_min,
-                                   day_part:app.forecast[i].day_part,
-                               })
-                           }
+                            if(i % 2 == 0)
+                            {
+
+                                if (app.forecast[i].icon  == 'clear')
+                                    icon = '{{asset('template/assets/img/3.png')}}';
+                                else if (app.forecast[i].icon  == 'mostly_clear')
+                                    icon = '{{asset('template/assets/img/4.png')}}';
+                                else if (app.forecast[i].icon == 'partly_cloudy')
+                                    icon = '{{asset('template/assets/img/4.png')}}';
+                                else if (app.forecast[i].icon == 'mostly_cloudy')
+                                    icon = '{{asset('template/assets/img/4.png')}}';
+                                else if (app.forecast[i].icon == 'overcast')
+                                    icon = '{{asset('template/assets/img/2.png')}}';
+                                else if (app.forecast[i].icon == 'fog')
+                                    icon = '{{asset('template/assets/img/2.png')}}';
+                                else if (app.forecast[i].icon == 'light_rain')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'rain')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'heavy_rain')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'thunderstorm')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'light-sleet')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'sleet')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'heavy_sleet')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'light_snow')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'snow')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'heavy_snow')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+
+                                app.forecastsort.push({
+                                    day:false,
+                                    air_t_min:app.forecast[i].air_t_min,
+                                    date:app.forecast[i].date,
+                                    icon:app.forecast[i].icon,
+                                    cloud_amount:app.forecast[i].cloud_amount,
+                                    wind_speed_min:app.forecast[i].wind_speed_min,
+                                    day_part:app.forecast[i].day_part,
+                                    icon:icon,
+                                })
+                            }
+                            else
+                            {
+                                if (app.forecast[i].icon  == 'clear')
+                                    icon = '{{asset('template/assets/img/3.png')}}';
+                                else if (app.forecast[i].icon  == 'mostly_clear')
+                                    icon = '{{asset('template/assets/img/4.png')}}';
+                                else if (app.forecast[i].icon == 'partly_cloudy')
+                                    icon = '{{asset('template/assets/img/4.png')}}';
+                                else if (app.forecast[i].icon == 'mostly_cloudy')
+                                    icon = '{{asset('template/assets/img/4.png')}}';
+                                else if (app.forecast[i].icon == 'overcast')
+                                    icon = '{{asset('template/assets/img/2.png')}}';
+                                else if (app.forecast[i].icon == 'fog')
+                                    icon = '{{asset('template/assets/img/2.png')}}';
+                                else if (app.forecast[i].icon == 'light_rain')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'rain')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'heavy_rain')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'thunderstorm')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'light-sleet')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'sleet')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'heavy_sleet')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'light_snow')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'snow')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                else if (app.forecast[i].icon == 'heavy_snow')
+                                    icon = '{{asset('template/assets/img/1.png')}}';
+                                app.forecastsortday.push({
+                                    day:true,
+                                    air_t_min:app.forecast[i].air_t_min,
+                                    date:app.forecast[i].date,
+                                    icon:app.forecast[i].icon,
+                                    cloud_amount:app.forecast[i].cloud_amount,
+                                    wind_speed_min:app.forecast[i].wind_speed_min,
+                                    day_part:app.forecast[i].day_part,
+                                    icon:icon,
+                                })
+                            }
                         }
-                        console.log(app.forecastsort);
+                        // console.log(app.forecast);
+                        // console.log(app.forecastsort);
                     })
                     .catch(function (error) {
                         console.log(error);
