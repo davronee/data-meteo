@@ -14,6 +14,12 @@ class WidgetController extends Controller
         return view('widget.index');
     }
 
+    public function map(Request $request)
+    {
+
+        return view('pages.map');
+    }
+
     public function getWindSpeed(Request $request)
     {
         $request->validate([
