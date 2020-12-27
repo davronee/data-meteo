@@ -28,7 +28,7 @@
 </head>
 
 <body>
-<div class="container" id="app">
+<div class="container" id="app" v-cloak="v-cloak">
     <div class="header">
         <div class="header-left sidebar-logo">
             <img src="{{asset('template/assets/img/gidrometeo.svg')}}"></a>
@@ -55,8 +55,8 @@
                             <div class="tabs flex-tabs">
                                 <label for="tab-one" id="tab-one-label" class="tab">Узгидромет</label>
                                 <label for="tab-two" id="tab-two-label" class="tab">OpenWeather</label>
-                                <label for="tab-three" id="tab-three-label" class="tab">AccuWeather</label>
-                                <label for="tab-four" id="tab-four-label" class="tab">Gismeteo</label>
+                                <label for="tab-three" id="tab-three-label" class="tab" v-if="accuweather_current_description">AccuWeather</label>
+                                <label for="tab-four" id="tab-four-label" class="tab" v-if="weatherbit_current">Weatherbit</label>
                                 <!-- УЗГИДРОМЕТ -->
                                 <div id="tab-one-panel" class="panel active">
                                     <div class="main-wthree-row">
@@ -131,9 +131,11 @@
                                                                 <li class="wthree-temp">@{{ item.weather[0].description
                                                                     }}
                                                                 </li>
-                                                                <li class="wthree-temp"> @{{ Math.floor(item.temp.day)
+                                                                <li class="wthree-temp">День <br> @{{
+                                                                    Math.floor(item.temp.day)
                                                                     }} <sup class="degree">°</sup></li>
-                                                                <li class="wthree-temp"> @{{ Math.floor(item.temp.night)
+                                                                <li class="wthree-temp">Ночь <br> @{{
+                                                                    Math.floor(item.temp.night)
                                                                     }} <sup class="degree">°</sup></li>
                                                             </ul>
                                                             <div class="clear"></div>
@@ -145,7 +147,7 @@
                                     </div>
                                 </div>
                                 <!-- AccuWeather -->
-                                <div id="tab-three-panel" class="panel">
+                                <div v-if="accuweather_current_description" id="tab-three-panel" class="panel">
                                     <div class="main-wthree-row">
                                         <div class="agileits-top">
                                             <div class="agileinfo-top-row">
@@ -153,90 +155,24 @@
                                                     <div class="date-time">
                                                         <div class="dmy">
                                                             <div class="date">
-                                                                <span>переменная облачность</span>
+                                                                <span>@{{ accuweather_current_description }}</span>
                                                             </div>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
                                                 </div>
-                                                <h3>28<sup class="degree">°</sup><span>C</span></h3>
-                                                <p>New York</p>
+                                                <h3>@{{ accuweather_current }}<sup class="degree">°</sup><span>C</span>
+                                                </h3>
+                                                {{--                                                <p>New York</p>--}}
                                                 <article class="ac-small">
                                                     <div class="wthree-grids">
-                                                        <div class="wthree-grids-row">
+                                                        <div v-for="(item,index) in accuweather_forecast"  class="wthree-grids-row">
                                                             <ul class="top">
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/2.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 25 <sup class="degree">°</sup>
+                                                                <li>@{{ convertUnixtoDate(item.EpochDate) }}</li>
+                                                                <li class="wthree-temp">@{{ item.Day.IconPhrase }}</li>
+                                                                <li class="wthree-temp"> @{{ Math.floor(item.Temperature.Maximum.Value) }} <sup class="degree">°</sup>
                                                                 </li>
-                                                                <li class="wthree-temp"> 20 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/4.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 27 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 18 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/3.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 30 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 20 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/3.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 30 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 18 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/4.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 31 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 19 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/2.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 30 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 16 <sup class="degree">°</sup>
+                                                                <li class="wthree-temp"> @{{ Math.floor(item.Temperature.Minimum.Value) }} <sup class="degree">°</sup>
                                                                 </li>
                                                             </ul>
                                                             <div class="clear"></div>
@@ -248,7 +184,7 @@
                                     </div>
                                 </div>
                                 <!-- Gismeteo -->
-                                <div id="tab-four-panel" class="panel">
+                                <div id="tab-four-panel" class="panel" v-if="weatherbit_current">
                                     <div class="main-wthree-row">
                                         <div class="agileits-top">
                                             <div class="agileinfo-top-row">
@@ -256,94 +192,28 @@
                                                     <div class="date-time">
                                                         <div class="dmy">
                                                             <div class="date">
-                                                                <span>переменная облачность</span>
+                                                                <span>@{{ weatherbit_current.weather.description }}</span>
                                                             </div>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
                                                 </div>
-                                                <h3>28<sup class="degree">°</sup><span>C</span></h3>
-                                                <p>New York</p>
+                                                <h3>@{{ Math.floor(weatherbit_current.temp) }}<sup class="degree">°</sup><span>C</span></h3>
+{{--                                                <p>New York</p>--}}
                                                 <article class="ac-small">
                                                     <div class="wthree-grids">
-                                                        <div class="wthree-grids-row">
+                                                        <div v-for="(item,index) in weatherbit_forecast" class="wthree-grids-row">
                                                             <ul class="top">
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/2.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 25 <sup class="degree">°</sup>
+                                                                <li>@{{ convertUnixtoDate(item.moonrise_ts) }}</li>
+                                                                <li class="wthree-temp">@{{ item.weather.description }}</li>
+                                                                <li class="wthree-temp"> @{{ Math.floor(item.max_temp) }} <sup class="degree">°</sup>
                                                                 </li>
-                                                                <li class="wthree-temp"> 20 <sup class="degree">°</sup>
+                                                                <li class="wthree-temp"> @{{ Math.floor(item.min_temp) }} <sup class="degree">°</sup>
                                                                 </li>
                                                             </ul>
                                                             <div class="clear"></div>
                                                         </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/4.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 27 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 18 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/3.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 30 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 20 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/3.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 30 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 18 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/4.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 31 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 19 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="wthree-grids-row">
-                                                            <ul>
-                                                                <li>01.12.2015</li>
-                                                                <li class="wthree-img"><img
-                                                                        src="{{asset('template/assets/img/2.png')}}"
-                                                                        alt=""/></li>
-                                                                <li class="wthree-temp"> 30 <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> 16 <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
+
                                                     </div>
                                                 </article>
                                             </div>
@@ -400,6 +270,16 @@
             openweather_current: null,
             openweather_current_description: null,
             openweather_forecast: null,
+
+            accuweather: null,
+            accuweather_current: null,
+            accuweather_current_description: null,
+            accuweather_forecast: null,
+
+            weatherbit: null,
+            weatherbit_current: null,
+            weatherbit_current_description: null,
+            weatherbit_forecast: null,
             regions: {
                 tashkent: 'г. Ташкент',
                 andijan: 'Андижанская область',
@@ -609,22 +489,6 @@
                         // always executed
                     });
 
-                // latlangs: {
-                //     tashkent: 'lat=41.26465&lon=69.21627',
-                //         andijan: 'lat=40.78206&lon=72.34424',
-                //         bukhara: 'lat=39.77472&lon=64.42861',
-                //         jizzakh: 'lat=40.11583&lon=67.84222',
-                //         qarshi: 'lat=38.86056&lon=65.78905',
-                //         navoiy: 'lat=40.08444&lon=65.37917',
-                //         namangan: 'lat=40.9983&lon=71.67257',
-                //         samarkand: 'lat=39.65417&lon=66.95972',
-                //         termez: 'lat=37.22417&lon=67.27833',
-                //         gulistan: 'lat=40.491509&lon=68.781077',
-                //         nurafshon: 'lat=41.166666&lon=69.749997',
-                //         fergana: 'lat=40.38421&lon=71.78432',
-                //         urgench: 'lat=41.55&lon=60.63333',
-                //         nukus: 'lat=42.45306&lon=59.6102',
-                // }
                 var endpoint_openweather = '';
 
                 if (city == 'tashkent')
@@ -676,12 +540,124 @@
                     });
 
                 // open weather end
+
+                //accuweather
+
+
+                var endpoint_accuweather = '';
+                var accuweather_locationkey = '';
+
+
+                if (city == 'tashkent')
+                    accuweather_locationkey = 719862;
+                else if (city == 'andijan')
+                    accuweather_locationkey = 351828;
+                else if (city == 'bukhara')
+                    accuweather_locationkey = 352479;
+                else if (city == 'jizzakh')
+                    accuweather_locationkey = 348390;
+                else if (city == 'qarshi')
+                    accuweather_locationkey = 350541;
+                else if (city == 'navoiy')
+                    accuweather_locationkey = 355115;
+                else if (city == 'namangan')
+                    accuweather_locationkey = 355095;
+                else if (city == 'samarkand')
+                    accuweather_locationkey = 355776;
+                else if (city == 'termez')
+                    accuweather_locationkey = 356042;
+                else if (city == 'gulistan')
+                    accuweather_locationkey = 355934;
+                else if (city == 'nurafshon')
+                    accuweather_locationkey = 356228;
+                else if (city == 'fergana')
+                    accuweather_locationkey = 353238;
+                else if (city == 'urgench')
+                    accuweather_locationkey = 356378;
+                else if (city == 'nukus')
+                    accuweather_locationkey = 355666;
+
+                axios.get('{{route('getAccuweatherCurrent')}}', {
+                    params: {
+                        locationkey: accuweather_locationkey
+                    }
+                })
+                    .then(function (response) {
+                        app.accuweather_current = response.data.temp;
+                        app.accuweather_current_description = response.data.desc;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+
+                axios.get('{{route('getAccuweatherForecast')}}', {
+                    params: {
+                        locationkey: accuweather_locationkey
+                    }
+                })
+                    .then(function (response) {
+                        app.accuweather_forecast = response.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+                //accuweather end
+
+                //weatherbit
+
+                axios.get('http://api.weatherbit.io/v2.0/current', {
+                    params: {
+                        key: '867bcae31c4a4c5ca57c57a806a4f07d',
+                        lang: 'ru',
+                        city: city,
+                    }
+                })
+                    .then(function (response) {
+                        app.weatherbit_current = response.data.data[0];
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+                axios.get('http://api.weatherbit.io/v2.0/forecast/daily', {
+                    params: {
+                        key: '867bcae31c4a4c5ca57c57a806a4f07d',
+                        lang: 'ru',
+                        city: city,
+                    }
+                })
+                    .then(function (response) {
+                        app.weatherbit_forecast = response.data.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+                // weather bit end
+
+
+
+
+
             },
             convertUnixtoDate: function (unix_timestamp) {
 
 // Create a new JavaScript Date object based on the timestamp
 // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-                var months_arr = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+                var months_arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
                 var date = new Date(unix_timestamp * 1000);
 // Hours part from the timestamp
@@ -694,7 +670,7 @@
 // Will display time in 10:30:23 format
                 var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
-               return date.getDate() + '.' + months_arr[date.getMonth()] + '.' + date.getFullYear();
+                return date.getDate() + '.' + months_arr[date.getMonth()] + '.' + date.getFullYear();
 
             }
 
