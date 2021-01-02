@@ -227,3 +227,126 @@
     border-top: none;
 }
 
+.form-group {
+    margin-right: 4px;
+}
+
+/* ckeditor */
+
+.document-editor {
+    border: 1px solid var(--ck-color-base-border);
+    border-radius: var(--ck-border-radius);
+
+    /* Set vertical boundaries for the document editor. */
+    max-height: 450px;
+
+    /* This element is a flex container for easier rendering. */
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.document-editor__toolbar {
+    /* Make sure the toolbar container is always above the editable. */
+    z-index: 1;
+
+    /* Create the illusion of the toolbar floating over the editable. */
+    box-shadow: 0 0 5px hsla( 0,0%,0%,.2 );
+
+    /* Use the CKEditor CSS variables to keep the UI consistent. */
+    border-bottom: 1px solid var(--ck-color-toolbar-border);
+}
+
+/* Adjust the look of the toolbar inside the container. */
+.document-editor__toolbar .ck-toolbar {
+    border: 0;
+    border-radius: 0;
+}
+
+/* Make the editable container look like the inside of a native word processor application. */
+.document-editor__editable-container {
+    padding: calc( 2 * var(--ck-spacing-large) );
+    background: var(--ck-color-base-foreground);
+
+    /* Make it possible to scroll the "page" of the edited content. */
+    overflow-y: scroll;
+}
+
+.document-editor__editable-container .ck-editor__editable {
+    /* Set the dimensions of the "page". */
+    width: 21cm;
+    min-height: 29.7cm;
+
+    /* Keep the "page" off the boundaries of the container. */
+    padding: 1cm 1.5cm 1.25cm 2cm !important;
+
+    border: 1px hsl( 0,0%,82.7% ) solid;
+    border-radius: var(--ck-border-radius);
+    background: white;
+
+    /* The "page" should cast a slight shadow (3D illusion). */
+    box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );
+
+    /* Center the "page". */
+    margin: 0 auto;
+}
+
+/* Set the default font for the "page" of the content. */
+.document-editor .ck-content,
+.document-editor .ck-heading-dropdown .ck-list .ck-button__label {
+    font: 16px/1.6 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.ck.ck-toolbar {
+    border: none !important;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+strong {
+    font-weight: bold;
+}
+
+body {
+    background: #f8f9fa;
+}
+
+
+.normalized th, .normalized td {
+    padding: 5px 15px !important;
+    text-align: left;
+}
+
+.card-deal .table tbody>tr th, .card-deal .table tbody>tr td {
+    text-align: left;
+}
+
+.card-deal .table thead>tr th, .card-deal .table thead>tr td {
+    text-align: left;
+}
+
+div#datatable-buttons_info {
+    padding: 8px;
+}
+
+.action-butons a {
+    font-size: 18px;
+}
+
+ul.dropdown-menu li {
+    padding: 4px;
+}
+
+.action-butons .btn-group .dropdown-menu {
+    min-width: 5rem;
+}
+
+/* .btn {
+    margin-bottom: 4px;
+} */
+
+#create-user-form .form-group {
+    margin-right: 0;
+}

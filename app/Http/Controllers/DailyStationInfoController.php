@@ -2,82 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DailyStationInfo;
+use App\Models\Region;
 use Illuminate\Http\Request;
+use App\Models\DailyStationInfo;
 
 class DailyStationInfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('role:central-agent-station', ['only' => ['create', 'edit']]);
+    }
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $user = auth()->user();
+
+        $regions = Region::orderBy('regionid', 'asc')
+            ->whereUserRegion($user->region_id)
+            ->pluck('nameUz', 'regionid')
+            ->toArray();
+
+        return view('daily-station-info.create', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DailyStationInfo  $dailyStationInfo
-     * @return \Illuminate\Http\Response
-     */
     public function show(DailyStationInfo $dailyStationInfo)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DailyStationInfo  $dailyStationInfo
-     * @return \Illuminate\Http\Response
-     */
     public function edit(DailyStationInfo $dailyStationInfo)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DailyStationInfo  $dailyStationInfo
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, DailyStationInfo $dailyStationInfo)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DailyStationInfo  $dailyStationInfo
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(DailyStationInfo $dailyStationInfo)
     {
         //

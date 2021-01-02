@@ -11,7 +11,7 @@
                             <div class="form-group">
                                 @include('common.messages')
                             </div>
-                            <form action="{{ route('user.store') }}" method="post">
+                            <form action="{{ route('user.store') }}" method="post" id="create-user-form">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-md-6">

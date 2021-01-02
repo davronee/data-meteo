@@ -1,0 +1,32 @@
+@extends('layouts.html')
+
+@section('vue_id', 'hourly_station_info_create')
+
+@section('content')
+
+<div class="content-body mg-t-20 mg-b-20">
+    @include('common.messages')
+
+    <div class="mail-body-content">
+        @include('hourly-station-info.partials.common.navbar', ['date' => date("d.m.Y")])
+    </div>
+
+    <div class="row row-xs">
+        <div class="col-md-12">
+            <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40 wd-98p mg-b-15 mg-t-5">
+                <div class="tab-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @include('hourly-station-info.partials.create.form')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('template/assets/js/customizer/hourly-station-info/create.js') }}"></script>
+@endsection

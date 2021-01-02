@@ -4,10 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WidgetController;
+use App\Http\Controllers\StationController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\DailyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoController;
 use App\Http\Controllers\UserProfilePasswordController;
+use App\Http\Controllers\HourlyStationInfoSendController;
+use App\Http\Controllers\HourlyInfoSentController;
+use App\Http\Controllers\HourlyStationInfoExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +47,14 @@ Route::group(['middleware' => ['set_locale']], function() {
         Route::put('/user-profile/{user_profile}/password', [UserProfilePasswordController::class, 'update'])->name('user_profile.password.update');
 
         // hourly info routes
+        Route::get('/hourly-station-info/sent-list', [HourlyInfoSentController::class, 'index'])->middleware('isProfileFilled')->name('hourly-station-info.sent');
         Route::resource('hourly-station-info', HourlyStationInfoController::class)->middleware('isProfileFilled');
+        Route::get('/hourly-station-info/export/{hourly_station_info}/doc', [HourlyStationInfoExportController::class, 'doc'])->name('hourly-station-info.export.doc');
+        Route::get('/hourly-station-info/export/{hourly_station_info}/pdf', [HourlyStationInfoExportController::class, 'pdf'])->name('hourly-station-info.export.pdf');
+        Route::post('/hourly-station-info/{hourly_station_info}/send', [HourlyStationInfoSendController::class, 'store'])->name('hourly-station-info.send');
 
         // daily info routes
+        Route::resource('station', StationController::class)->middleware('isProfileFilled');
         Route::resource('daily-station-info', DailyStationInfoController::class)->middleware('isProfileFilled');
     });
 });

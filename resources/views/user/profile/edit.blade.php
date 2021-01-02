@@ -66,7 +66,7 @@
 
 									<div class="col-md-12">
 										<hr class="op-0">
-                                        <button type="submit" class="btn btn-sm btn-outline-success">Янгилаш</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Киритиш</button>
                                         <button type="reset" class="btn btn-sm btn-outline-light mg-l-2">Ўзгартиришларни бекор қилиш</button>
 									</div>
 								</form>

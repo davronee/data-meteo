@@ -10,4 +10,11 @@ class Region extends Model
     use HasFactory;
 
     protected $table = "uz_regions";
+
+    // scopes
+    public function scopeWhereUserRegion($query, $region_id)
+    {
+        if(!is_null($region_id) && $region_id != 17)
+            return $query->where('regionid', $region_id);
+    }
 }

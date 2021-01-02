@@ -74,6 +74,63 @@ class User extends Authenticatable
         return $this->hasRole(['shift-agent-station']);
     }
 
+    public function isFirstShift()
+    {
+        return isset($this->position->code) && in_array($this->position->code, ['T1']);
+    }
+
+    public function isSecondShift()
+    {
+        return isset($this->position->code) && in_array($this->position->code, ['T2']);
+    }
+
+    public function isThirdShift()
+    {
+        return isset($this->position->code) && in_array($this->position->code, ['T3']);
+    }
+
+    public function isInFirstGrafik()
+    {
+        return date('G') >= 8 && date('G') < 16;
+    }
+
+    public function isInSecondGrafik()
+    {
+        return date('G') >= 16 && date('G') <= 23;
+    }
+
+    public function isInThirdGrafik()
+    {
+        return date('G') >= 0 && date('G') < 8;
+    }
+
+    public function isInWorkHour()
+    {
+        $isInWorkHour = false;
+        if($this->isStationShiftAgent())
+        {
+            if(
+                $this->isFirstShift() && $this->isInFirstGrafik()
+                || $this->isSecondShift() && $this->isInSecondGrafik()
+                || $this->isThirdShift() && $this->isInThirdGrafik()
+            )
+            {
+                $isInWorkHour = true;
+            }
+        }
+        return $isInWorkHour;
+    }
+
+    public function isStationCentralAgent()
+    {
+        return $this->hasRole(['central-agent-station']);
+    }
+
+    public function isStationControlAgent()
+    {
+        return $this->hasRole(['control']);
+    }
+
     /**
      * Mutators *****************************************************************************
      */
@@ -108,12 +165,42 @@ class User extends Authenticatable
         return $this->position->name;
     }
 
+    public function getFormattedRegionAttribute()
+    {
+        return $this->region->nameUz ?? trans('messages.republic');
+    }
+
+    public function getFormattedDistrictAttribute()
+    {
+        return $this->district->nameUz ?? '';
+    }
+
+    public function getFormattedStationAttribute()
+    {
+        return $this->station->name ?? '';
+    }
+
     /**
      * Relations *****************************************************************************
      */
     public function position()
     {
         return $this->belongsTo('App\Models\Position');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo('App\Models\Region', 'region_id', 'regionid');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\Models\District', 'district_id', 'areaid');
+    }
+
+    public function station()
+    {
+        return $this->belongsTo('App\Models\Station');
     }
 
 
