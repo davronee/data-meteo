@@ -14,6 +14,12 @@ class WidgetController extends Controller
         return view('widget.index');
     }
 
+    public function map(Request $request)
+    {
+
+        return view('pages.map');
+    }
+
     public function getWindSpeed(Request $request)
     {
         $request->validate([
@@ -60,6 +66,47 @@ class WidgetController extends Controller
         $meteo = Meteo::all();
 
         return response()->json($meteo);
+
+    }
+
+    public function getAccuweatherCurrent(Request $request){
+        $request->validate([
+            'locationkey'=>'required'
+        ]);
+        $accuweather = Http::get('http://dataservice.accuweather.com/currentconditions/v1/'.$request->locationkey,[
+            'apikey'=>'9r5K2d9cY9TVWeTrSQyAXupIAHD8VE8V',
+            'language'=>'Ru-ru',
+            'metric'=>'true',
+        ])->json();
+
+
+
+        return [
+            'temp'=>round($accuweather[0]['Temperature']['Metric']['Value']),
+            'desc'=>$accuweather[0]['WeatherText']
+        ];
+
+    }
+
+    public function getAccuweatherForecast(Request $request){
+        $request->validate([
+            'locationkey'=>'required'
+        ]);
+        $accuweather = Http::get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/'.$request->locationkey,[
+            'apikey'=>'9r5K2d9cY9TVWeTrSQyAXupIAHD8VE8V',
+            'language'=>'Ru-ru',
+            'metric'=>'true',
+        ])->json();
+
+
+
+       return $accuweather['DailyForecasts'];
+
+    }
+
+    public function world(Request  $request)
+    {
+        return view('pages.world');
 
     }
 

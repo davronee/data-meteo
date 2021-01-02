@@ -32,8 +32,12 @@ Route::group(['middleware' => ['set_locale']], function() {
 
     // widget controller
     Route::get('/', [WidgetController::class, 'index'])->name('home');
+    Route::get('/world', [WidgetController::class, 'world'])->name('world');
+    Route::get('/map', [WidgetController::class, 'map'])->name('map');
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
     Route::get('/getWindSpeed', [WidgetController::class, 'getWindSpeed'])->name('getWindSpeed');
+    Route::get('/getAccuweatherCurrent', [WidgetController::class, 'getAccuweatherCurrent'])->name('getAccuweatherCurrent');
+    Route::get('/getAccuweatherForecast', [WidgetController::class, 'getAccuweatherForecast'])->name('getAccuweatherForecast');
 
     Route::group(['middleware' => ['auth']], function() {
         // user profile routes
