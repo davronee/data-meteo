@@ -28,7 +28,3 @@
     </div>
 </div>
 @endsection
-
-@section('script')
-    <script src="{{ asset('template/assets/js/customizer/hourly-station-info/create.js') }}"></script>
-@endsection

@@ -17,7 +17,7 @@ class HourlyStationInfoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('HourlyStationWorkHour', ['only' => ['create', 'edit']]);
+        // $this->middleware('HourlyStationWorkHour', ['only' => ['create', 'edit']]);
     }
 
     public function index(Request $request)

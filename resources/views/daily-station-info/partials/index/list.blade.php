@@ -3,7 +3,6 @@
         <thead>
             <tr role="row">
                 <th>№</th>
-                <th class="col-md-2">@lang('messages.station')</th>
                 <th class="col-md-1">@lang('messages.region')</th>
                 <th class="col-md-2">@lang('messages.district')</th>
                 <th class="col-md-2">@lang('messages.staff')</th>
@@ -17,14 +16,13 @@
             @foreach ($info_list as $key => $info)
                 <tr role="row" class="odd">
                     <td>{{ $num }}</td>
-                    <td>{{ $info->formatted_station }}</td>
                     <td>{{ $info->formatted_region }}</td>
                     <td>{{ $info->formatted_district }}</td>
                     <td>{{ $info->formatted_staff }}</td>
                     <td>{{ $info->created_at }}</td>
                     <td>{{ $info->formatted_published_at }}</td>
                     <td class="text-right action-butons">
-                        @include('hourly-station-info.partials.index.list.actions')
+                        @include('daily-station-info.partials.index.list.actions')
                     </td>
                 </tr>
                 @php $num++; @endphp

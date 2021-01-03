@@ -14,10 +14,10 @@ class District extends Model
     public function scopeByRegion($query, $user)
     {
         if(!is_null($user->region_id))
-            $query->where('region_id', $user->region_id);
+            $query->where('regionid', $user->region_id);
 
         if(!is_null($user->district_id))
-            $query->where('district_id', $user->district_id);
+            $query->where('areaid', $user->district_id);
 
         return $query;
     }

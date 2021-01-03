@@ -1,4 +1,4 @@
-<button type="submit" class="btn btn-sm btn-info"><i class="fa fa-check"></i> @lang('messages.save')</button>
+<button type="submit" class="btn btn-sm btn-info" @click="editor"><i class="fa fa-check"></i> @lang('messages.save')</button>
 
 <div class="btn-group">
     <button type="button" data-toggle="dropdown" class="btn btn-info btn-sm dropdown-toggle">
@@ -14,13 +14,13 @@
     <button type="button" class="btn btn-success btn-sm text-white"
         data-toggle="tooltip" data-placement="top"
         title="@lang('messages.send')"
-        v-on:click="sendInfo($event, '{{ route('hourly-station-info.send', $hourlyStationInfo->id) }}', '{{ trans('messages.send-confirm-text') }}')">
+        v-on:click="sendInfo($event, '{{ route('hourly-station-info.send', $hourlyStationInfo->id) }}', '{{ trans('messages.send-confirm-text') }}', '#send-hourly-station-info-form')">
         <i class="fab fa-telegram-plane"></i> @lang('messages.send')
     </button>
     <button type="button" class="btn btn-sm btn-danger"
         form="delete-hourly-station-info-form"
         id="delete-hourly-station-info-button"
-        v-on:click="deleteInfo($event, '{{ route('hourly-station-info.destroy', $hourlyStationInfo->id) }}', '{{ trans('messages.delete-confirm-text') }}')">
+        v-on:click="deleteInfo($event, '{{ route('hourly-station-info.destroy', $hourlyStationInfo->id) }}', '{{ trans('messages.delete-confirm-text') }}', '#delete-hourly-station-info-form')">
         <i class="fa fa-trash"></i> @lang('messages.delete')
     </button>
 @endif

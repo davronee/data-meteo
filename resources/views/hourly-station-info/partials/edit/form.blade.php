@@ -36,7 +36,7 @@
                 <div class="document-editor">
                     <div class="document-editor__toolbar"></div>
                     <div class="document-editor__editable-container">
-                        <div class="document-editor__editable" @blur="editor">
+                        <div class="document-editor__editable">
                             {!! $hourlyStationInfo->description !!}
                         </div>
                     </div>

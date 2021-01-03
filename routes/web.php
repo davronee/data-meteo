@@ -6,11 +6,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\HourlyInfoSentController;
 use App\Http\Controllers\DailyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoController;
 use App\Http\Controllers\UserProfilePasswordController;
+use App\Http\Controllers\DailyStationInfoSendController;
 use App\Http\Controllers\HourlyStationInfoSendController;
-use App\Http\Controllers\HourlyInfoSentController;
+use App\Http\Controllers\DailyStationInfoExportController;
 use App\Http\Controllers\HourlyStationInfoExportController;
 
 /*
@@ -60,6 +62,9 @@ Route::group(['middleware' => ['set_locale']], function() {
         // daily info routes
         Route::resource('station', StationController::class)->middleware('isProfileFilled');
         Route::resource('daily-station-info', DailyStationInfoController::class)->middleware('isProfileFilled');
+        Route::get('/daily-station-info/export/{daily_station_info}/doc', [DailyStationInfoExportController::class, 'doc'])->name('daily-station-info.export.doc');
+        Route::get('/daily-station-info/export/{daily_station_info}/pdf', [DailyStationInfoExportController::class, 'pdf'])->name('daily-station-info.export.pdf');
+        Route::post('/daily-station-info/{daily_station_info}/send', [DailyStationInfoSendController::class, 'store'])->name('daily-station-info.send');
     });
 });
 

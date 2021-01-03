@@ -1,6 +1,6 @@
 @extends('layouts.html')
 
-@section('vue_id', 'hourly_station_info_create')
+@section('vue_id', 'app')
 
 @section('content')
 

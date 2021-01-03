@@ -1,4 +1,4 @@
-<form action="{{ route('hourly-station-info.index') }}" method="get" class="form-inline with-margin">
+<form action="{{ route('daily-station-info.index') }}" method="get" class="form-inline with-margin">
     <div class="form-group">
         <div class="form-group">
             <select name="region_id" id="region_id" class="form-control region_id form-control-sm"
@@ -28,8 +28,8 @@
     </div>
 
     <div class="form-group">
-        <button class="btn btn-brand-02 btn-xs"><i class="fa fa-filter"></i></button>
-        <a href="{{ route('hourly-station-info.index') }}" class="btn btn-info btn-xs" title="тозалаш">✖</a>
+        <button class="btn btn-light btn-xs text-dark mr-1"><i class="fa fa-filter"></i></button>
+        <a href="{{ route('hourly-station-info.index') }}" class="btn btn-light btn-xs text-dark" title="тозалаш"><i class="fa fa-times"></i></a>
     </div>
 </form>
 

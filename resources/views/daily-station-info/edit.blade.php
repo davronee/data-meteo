@@ -8,7 +8,7 @@
     @include('common.messages')
 
     <div class="mail-body-content">
-        @include('hourly-station-info.partials.common.navbar', ['date' => $hourlyStationInfo->created_at->format('d.m.Y')])
+        @include('daily-station-info.partials.common.navbar', ['date' => $dailyStationInfo->created_at->format('d.m.Y')])
     </div>
 
     <div class="row row-xs">
@@ -17,9 +17,9 @@
                 <div class="tab-content">
                     <div class="row">
                         <div class="col-md-12">
-                            @include('hourly-station-info.partials.edit.form')
+                            @include('daily-station-info.partials.edit.form')
 
-                            @include('hourly-station-info.partials.index.forms')
+                            @include('daily-station-info.partials.index.forms')
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('script')
-    <script src="{{ asset('template/assets/js/customizer/hourly-station-info/create.js') }}"></script>
 @endsection

@@ -31,7 +31,6 @@ var app = new Vue({
 
             axios.get(url)
                 .then((response) => {
-                    console.log(response);
                     if(response.data) {
                         this.districts = response.data;
                     }
@@ -51,7 +50,6 @@ var app = new Vue({
 
             axios.get(url)
                 .then((response) => {
-                    console.log(response);
                     if(response.data) {
                         this.stations = response.data;
                     }
@@ -89,30 +87,47 @@ var app = new Vue({
 
 
         // hourly station info
-        deleteInfo: function(e, action, confirm_message)
+        deleteInfo: function(e, action, confirm_message, form_id)
         {
             if(!confirm(confirm_message))
             {
                 return false;
             }
 
-            $('#delete-hourly-station-info-form').attr('action', action);
-            $('#delete-hourly-station-info-form').submit();
+            $(form_id).attr('action', action);
+            $(form_id).submit();
         },
-        sendInfo: function(e, action, confirm_message)
+        sendInfo: function(e, action, confirm_message, form_id)
         {
             if(!confirm(confirm_message))
             {
                 return false;
             }
 
-            $('#send-hourly-station-info-form').attr('action', action);
-            $('#send-hourly-station-info-form').submit();
+            $(form_id).attr('action', action);
+            $(form_id).submit();
         },
         editor: function (e)
         {
             this.content = editor.getData();
         },
+        makeEditor: function()
+        {
+            window.editor;
+            DecoupledEditor
+                .create( document.querySelector( '.document-editor__editable' ), {
+                })
+                .then(editor => {
+                    const toolbarContainer = document.querySelector( '.document-editor__toolbar' );
+                    toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+                    window.editor = editor;
+
+                    this.content = editor.getData();
+                })
+                .catch( err => {
+                    console.error( err );
+                });
+        }
     },
     watch: {
         'region_id': {
@@ -129,6 +144,7 @@ var app = new Vue({
         this.user_id = $('#user_id').val();
     },
     mounted() {
+        this.makeEditor();
         this.regionChanged();
     }
 });

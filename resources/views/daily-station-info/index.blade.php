@@ -14,10 +14,10 @@
                             </div>
 
                             <div class="card-body">
-                                @includeWhen(true, 'hourly-station-info.partials.index.filter')
-                                @include('hourly-station-info.partials.index.list')
+                                @include('daily-station-info.partials.index.filter')
+                                @include('daily-station-info.partials.index.list')
 
-                                @include('hourly-station-info.partials.index.forms')
+                                @include('daily-station-info.partials.index.forms')
                             </div>
                         </div>
                     </div>
