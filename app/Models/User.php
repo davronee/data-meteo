@@ -162,7 +162,7 @@ class User extends Authenticatable
 
     public function getFormattedPositionAttribute()
     {
-        return $this->position->name;
+        return $this->position->name ?? '';
     }
 
     public function getFormattedRegionAttribute()

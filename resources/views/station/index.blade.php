@@ -14,6 +14,9 @@
                             </div>
 
                             <div class="card-body">
+                                @if (auth()->user()->isAdmin())
+                                    <a href="{{ route('station.create') }}" class="btn btn-light text-dark btn-xs mb-1">@lang('messages.add')</a>
+                                @endif
                                 {{-- @include('hourly-station-info.partials.index.filter') --}}
                                 @include('station.partials.index.list')
                             </div>
@@ -23,8 +26,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script src="{{ asset('template/assets/js/customizer/hourly-station-info/create.js') }}"></script>
 @endsection

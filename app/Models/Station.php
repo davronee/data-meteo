@@ -54,4 +54,13 @@ class Station extends Model
 
         return $query;
     }
+
+    public function scopeWhereUniqueCheck($query, $data)
+    {
+        $query->where('region_id', $data['region_id'])
+            ->where('district_id', $data['district_id'])
+            ->where('name', $data['name']);
+
+        return $query;
+    }
 }

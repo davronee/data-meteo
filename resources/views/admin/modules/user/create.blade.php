@@ -1,7 +1,7 @@
 @extends('layouts.html')
 
 @section('content')
-    <div class="row">
+    <div class="row mg-t-20 mg-b-20">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">@lang('messages.create_user')</div>
