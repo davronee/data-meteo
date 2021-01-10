@@ -23,7 +23,7 @@ class UserCreateService
             $user->password = Hash::make($user_data['password']);
             $user->email = $user_data['email'];
 
-            if(!is_null($user_data['region_id']))
+            if(!is_null($user_data['region_id']) && $user_data['region_id'] != 17)
                 $user->region_id = $user_data['region_id'];
 
             if(!is_null($user_data['district_id']))

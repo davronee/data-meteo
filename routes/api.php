@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\StationController;
 use App\Http\Controllers\API\DistrictController;
 
 /*
@@ -20,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/districts', [DistrictController::class, 'index'])->name('api.district.index');
+Route::get('/stations', [StationController::class, 'index'])->name('api.station.index');
