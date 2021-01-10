@@ -106,7 +106,7 @@ class WidgetController extends Controller
 
     public function world(Request  $request)
     {
-        return view('pages.world');
+        return view('pages.world_new');
 
     }
 

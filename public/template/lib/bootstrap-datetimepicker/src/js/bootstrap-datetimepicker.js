@@ -1436,7 +1436,7 @@
          * =====================
          *
          * Important: Do not expose direct references to private objects or the options
-         * object to the outer world. Always return a clone when returning values or make
+         * object to the outer world_template. Always return a clone when returning values or make
          * a clone when setting a private variable.
          *
          ********************************************************************************/
