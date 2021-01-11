@@ -13,6 +13,8 @@
                             </div>
                             <form action="{{ route('user.store') }}" method="post" id="edit-user-form">
                                 @csrf
+                                @method('PUT')
+
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="region_id">@lang('messages.region')</label>
@@ -92,7 +94,7 @@
 
                                     <div id="actions">
                                         <div class="form-group col-md-12">
-                                            <button type="submit" class="btn btn-info">@lang('messages.create_user')</button>
+                                            <button type="submit" class="btn btn-info">@lang('messages.save')</button>
                                         </div>
                                     </div>
                                 </div>
