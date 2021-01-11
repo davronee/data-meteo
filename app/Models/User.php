@@ -131,6 +131,16 @@ class User extends Authenticatable
         return $this->hasRole(['control']);
     }
 
+    public function rolesArray()
+    {
+        return $this->roles->pluck('name')->toArray();
+    }
+    
+    public function permissionArray()
+    {
+        return $this->permissions->pluck('name')->toArray();
+    }
+
     /**
      * Mutators *****************************************************************************
      */
@@ -178,6 +188,11 @@ class User extends Authenticatable
     public function getFormattedStationAttribute()
     {
         return $this->station->name ?? '';
+    }
+
+    public function getPositionCodeAttribute()
+    {
+        return $this->position->code ?? '';
     }
 
     /**
