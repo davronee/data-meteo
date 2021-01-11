@@ -8535,7 +8535,7 @@ globe:
       - planet
       - translate
       - travel
-      - world
+      - world_template
   styles:
     - solid
   unicode: f0ac
@@ -8562,7 +8562,7 @@ globe-africa:
       - planet
       - translate
       - travel
-      - world
+      - world_template
   styles:
     - solid
   unicode: f57c
@@ -8589,7 +8589,7 @@ globe-americas:
       - planet
       - translate
       - travel
-      - world
+      - world_template
   styles:
     - solid
   unicode: f57d
@@ -8616,7 +8616,7 @@ globe-asia:
       - planet
       - translate
       - travel
-      - world
+      - world_template
   styles:
     - solid
   unicode: f57e
@@ -8643,7 +8643,7 @@ globe-europe:
       - planet
       - translate
       - travel
-      - world
+      - world_template
   styles:
     - solid
   unicode: f7a2

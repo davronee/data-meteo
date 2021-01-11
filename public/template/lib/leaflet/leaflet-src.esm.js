@@ -3285,7 +3285,7 @@ var Map = Evented.extend({
 	},
 
 	// @method fitWorld(options?: fitBounds options): this
-	// Sets a map view that mostly contains the whole world with the maximum
+	// Sets a map view that mostly contains the whole world_template with the maximum
 	// zoom level possible.
 	fitWorld: function (options) {
 		return this.fitBounds([[-90, -180], [90, 180]], options);
@@ -3620,7 +3620,7 @@ var Map = Evented.extend({
 	// Tries to locate the user using the Geolocation API, firing a [`locationfound`](#map-locationfound)
 	// event with location data on success or a [`locationerror`](#map-locationerror) event on failure,
 	// and optionally sets the map view to the user's location with respect to
-	// detection accuracy (or to the world view if geolocation failed).
+	// detection accuracy (or to the world_template view if geolocation failed).
 	// Note that, if your page doesn't use HTTPS, this method will fail in
 	// modern browsers ([Chrome 50 and newer](https://sites.google.com/a/chromium.org/dev/Home/chromium-security/deprecating-powerful-features-on-insecure-origins))
 	// See `Locate options` for more details.
@@ -3920,7 +3920,7 @@ var Map = Evented.extend({
 	},
 
 	// @method getPixelWorldBounds(zoom?: Number): Bounds
-	// Returns the world's bounds in pixel coordinates for zoom level `zoom`.
+	// Returns the world_template's bounds in pixel coordinates for zoom level `zoom`.
 	// If `zoom` is omitted, the map's current zoom level is used.
 	getPixelWorldBounds: function (zoom) {
 		return this.options.crs.getProjectedBounds(zoom === undefined ? this.getZoom() : zoom);
@@ -6378,7 +6378,7 @@ var Mercator = {
 /*
  * @class Projection
 
- * An object with methods for projecting geographical coordinates of the world onto
+ * An object with methods for projecting geographical coordinates of the world_template onto
  * a flat surface (and back). See [Map projection](http://en.wikipedia.org/wiki/Map_projection).
 
  * @property bounds: Bounds
@@ -6928,7 +6928,7 @@ var layerGroup = function (layers, options) {
  *
  * ```js
  * L.featureGroup([marker1, marker2, polyline])
- * 	.bindPopup('Hello world!')
+ * 	.bindPopup('Hello world_template!')
  * 	.on('click', function() { alert('Clicked on a member of the group!'); })
  * 	.addTo(map);
  * ```
@@ -9655,7 +9655,7 @@ var DivOverlay = Layer.extend({
  * ```js
  * var popup = L.popup()
  * 	.setLatLng(latlng)
- * 	.setContent('<p>Hello world!<br />This is a nice popup.</p>')
+ * 	.setContent('<p>Hello world_template!<br />This is a nice popup.</p>')
  * 	.openOn(map);
  * ```
  */
@@ -13205,7 +13205,7 @@ Map.mergeOptions({
 	// TODO refactor, move to CRS
 	// @option worldCopyJump: Boolean = false
 	// With this option enabled, the map tracks when you pan to another "copy"
-	// of the world and seamlessly jumps to the original one so that all overlays
+	// of the world_template and seamlessly jumps to the original one so that all overlays
 	// like markers and vector layers are still visible.
 	worldCopyJump: false,
 
