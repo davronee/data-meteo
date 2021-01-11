@@ -135,7 +135,7 @@ class User extends Authenticatable
     {
         return $this->roles->pluck('name')->toArray();
     }
-    
+
     public function permissionArray()
     {
         return $this->permissions->pluck('name')->toArray();

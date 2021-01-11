@@ -9,6 +9,7 @@ use App\Models\Position;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Services\UserCreateService;
+use App\Http\Requests\User\EditRequest;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\User\CreateRequest;
 
@@ -63,7 +64,16 @@ class UserController extends Controller
 
     public function update(EditRequest $request, User $user)
     {
-        //
+        $valid_user_data = $request->validated();
+
+        try {
+            $user->fill($valid_user_data);
+            $user->save();
+        } catch (\Throwable $e) {
+            return back()->withInput()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('user.index')->with('status', trans('messages.saved_successfully'));
     }
 
     public function destroy(User $user)
