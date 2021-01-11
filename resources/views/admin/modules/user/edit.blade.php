@@ -11,7 +11,7 @@
                             <div class="form-group">
                                 @include('common.messages')
                             </div>
-                            <form action="{{ route('user.store') }}" method="post" id="edit-user-form">
+                            <form action="{{ route('user.update', $user->id) }}" method="post" id="edit-user-form">
                                 @csrf
                                 @method('PUT')
 
