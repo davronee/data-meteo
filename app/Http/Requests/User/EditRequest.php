@@ -32,7 +32,7 @@ class EditRequest extends FormRequest
             'region_id' => [new RegionRule($input_array)],
             'district_id' => [new DistrictRule($input_array)],
             'position_code' => 'required',
-            'email' => 'required|email:rfc|unique:users,email',
+            'email' => 'required|email:rfc',
             'password' => 'required|confirmed|string|min:6',
             'roles' => ['required'],
             'permissions' => ['sometimes'],
