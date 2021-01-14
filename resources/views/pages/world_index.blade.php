@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Об-ҳаво</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{asset('world_template/style.css')}}">
+    <link rel="stylesheet" href="{{asset('worldnew/style.css')}}">
 </head>
 
 <body>
@@ -51,192 +51,157 @@
         <tr>
             <td colspan="5" class="sep">Прогноз погоды на ближайшие сутки</td>
         </tr>
-        <tr>
+        <tr >
             <td><span class="p-l txt-bold">09.01.2020</span><span class="p-r">Сб</span></td>
-            <td class="default">
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">переменная облачность</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
         </tr>
         <tr>
             <td><span class="p-l txt-bold">09.01.2020</span><span class="p-r">Сб</span></td>
-            <td class="default">
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">переменная облачность</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
-            </td>
-        </tr>
-        <tr>
-            <td><span class="p-l txt-bold">09.01.2020</span><span class="p-r">Сб</span></td>
-            <td class="default">
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
-            </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">утром возможен туман</span>
-                        </span>
-            </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
-            </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">переменная облачность</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
         </tr>
         <tr>
             <td><span class="p-l txt-bold">09.01.2020</span><span class="p-r">Сб</span></td>
-            <td class="default">
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">временами туман</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">переменная облачность</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">возможно туман</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
-            <td>
-                        <span class="tick block-gradus day">
-                            <span class="txt-info">-7...-3</span>
-                        </span>
-                <span class="night">
-                            <span class="txt-night">-7...-3</span>
-                        </span>
-                <span class="tick block-info">
-                            <span class="txt-info-w">переменная облачность</span>
-                        </span>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">-7...-3</span></div>
+                    </dt>
+                </ol>
             </td>
         </tr>
         <tr>
@@ -268,7 +233,7 @@
 </article>
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js'></script>
-<script src="{{asset('world_template/script.js')}}"></script>
+<script src="{{asset('worldnew/script.js')}}"></script>
 <script src="{{asset('asset/js/vue.js')}}"></script>
 <script src="{{asset('asset/js/axios.min.js')}}"></script>
 </body>
