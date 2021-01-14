@@ -1,6 +1,6 @@
 <div class="mail-navbar">
     <div class="d-none d-md-flex btn-group">
-        <a href="{{ route('home') }}" class="btn creat">Орқага</a>
+        <a href="{{ route('hourly-station-info.index') }}" class="btn creat">Орқага</a>
     </div>
     <span class="pull-right text-right">
         <strong>{{ $user->fullname }}</strong><br>

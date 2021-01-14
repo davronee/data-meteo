@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         // customs
         'set_locale' => \App\Http\Middleware\SetLocale::class,
         'isProfileFilled' => \App\Http\Middleware\isProfileFilled::class,
+        'HourlyStationWorkHour' => \App\Http\Middleware\HourlyStationWorkHour::class,
     ];
 }

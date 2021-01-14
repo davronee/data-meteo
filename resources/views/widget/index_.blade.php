@@ -28,7 +28,7 @@
     <div class="container bd-b">
         <div class="az-header-left">
             <img src="{{asset('weather-widget/images/gidrometeo.svg')}}" width="85%">
-            <!--           <a href="index.html" class="az-logo">Me<span>t</span>eo</a> -->
+            <!--           <a href="index_.html" class="az-logo">Me<span>t</span>eo</a> -->
         </div><!-- az-header-left -->
         <div class="az-header-center">
         </div><!-- az-header-center -->

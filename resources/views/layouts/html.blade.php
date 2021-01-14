@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="{{ asset('template/assets/css/meteo.css') }}">
         <link rel="stylesheet" href="{{ asset('template/assets/css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('template/assets/css/weather-panel.css') }}">
-        <link rel="stylesheet" href="{{ asset('template/assets/css/customizer.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('template/assets/css/customizer.css') }}"> --}}
         <!-- custom styles -->
         @yield('styles')
     </head>
@@ -38,10 +38,10 @@
         <div class="{{ auth()->check() ? 'content' : '' }} content-page">
             {{-- top section --}}
             @includeWhen(auth()->check(), 'blocks.header')
-            @includeWhen(auth()->check(), 'blocks.breadcrumb')
+            {{-- @includeWhen(auth()->check(), 'blocks.breadcrumb') --}}
 
             {{-- main content --}}
-            <div class="content-body" id="app">
+            <div class="content-body" id="@yield('vue_id', 'app')">
                 @yield('content')
             </div><!-- content-body -->
         </div>
@@ -61,7 +61,7 @@
         <script src="{{ asset('template/lib/jquery.flot/jquery.flot.resize.js') }}"></script>
         <script src="{{ asset('template/lib/jquery.flot/jquery.flot.threshold.js') }}"></script>
         <script src="{{ asset('template/lib/jqvmap/jquery.vmap.min.js') }}"></script>
-        <script src="{{ asset('template/lib/jqvmap/maps/jquery.vmap.world.js') }}"></script>
+        <script src="{{ asset('template/lib/jqvmap/maps/jquery.vmap.world_template.js') }}"></script>
         <script src="{{ asset('template/lib/select2/js/select2.min.js') }}"></script>
         <script src="{{ asset('template/assets/js/meteo.js') }}"></script>
         <script src="{{ asset('template/assets/js/canvas.js') }}"></script>
@@ -78,7 +78,9 @@
         <script src="{{ asset('template/assets/js/axios.min.js') }}"></script>
         <script src="{{ asset('template/assets/js/vue.js') }}"></script>
         {{-- ckeditor --}}
-        <script src="{{ asset('template/lib/ckeditor-classic/ckeditor.js') }}"></script>
+        <script src="{{ asset('template/lib/ckeditor-document/ckeditor.js') }}"></script>
+
+        @yield('script')
         {{-- customizer --}}
         <script src="{{ asset('template/assets/js/customizer/ckeditor-config.js') }}"></script>
         <script src="{{ asset('template/assets/js/customizer/customizer.js') }}"></script>
@@ -86,6 +88,5 @@
         <!-- weather-panel -->
         <script src="{{ asset('template/assets/js/weather-panel.js') }}"></script>
         <!-- custom scripts -->
-        @yield('script')
     </body>
 </html>

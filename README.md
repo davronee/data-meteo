@@ -26,10 +26,18 @@ php artisan migrate
 composer dump-autoload --ignore-platform-reqs
 php artisan optimize:clear
 php artisan migrate
-php artisan db:seed --class="ImportRegionAndDistrictSeeder"
 ```
 
 ### 08.12.2020 ###
+```
+composer install --ignore-platform-reqs
+composer dump-autoload --ignore-platform-reqs
+php artisan migrate
+php artisan db:seed
+php artisan optimize:clear
+```
+
+### 03.01.2021 ###
 ```
 composer install --ignore-platform-reqs
 composer dump-autoload --ignore-platform-reqs

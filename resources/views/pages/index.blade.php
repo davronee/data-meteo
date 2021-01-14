@@ -260,7 +260,7 @@
                     </div>
                     <div class="vmap-wrapper bd-sm-l">
                         {{--                        <div id="vmap" class="vmap order-1 order-md-0"></div>--}}
-                        <iframe src="{{asset('template/map/index.html')}}" frameborder="0" width="1340"
+                        <iframe src="{{asset('template/map/index_.html')}}" frameborder="0" width="1340"
                                 height="600"></iframe>
                     </div>
                 </div><!-- card-body -->

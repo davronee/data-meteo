@@ -4,8 +4,10 @@
         <ul class="nav nav-sidebar">
             @includeWhen(auth()->user()->isAdmin(), 'blocks.menu.admin')
             @includeWhen(auth()->user()->isStationShiftAgent(), 'blocks.menu.station-shift-agent')
+            @includeWhen(auth()->user()->isStationCentralAgent(), 'blocks.menu.station-central-agent')
+            @includeWhen(auth()->user()->isStationControlAgent(), 'blocks.menu.station-control-agent')
 
-            <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
+            {{-- <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
             <li class="nav-item">
                 <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Прогноз погоды</a>
                 <nav class="nav nav-sub">
@@ -45,7 +47,7 @@
             <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-cloud-showers-heavy"></i>Снежный покров</a></li>
             <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-poo-storm"></i> Информация о штормовых явлениях</a></li>
             <li class="nav-label"><label class="content-label"></label></li>
-            <li class="nav-item"><a href="#" class="nav-link text-danger"><i class="fas fa-exclamation-triangle"></i> Экстренная сообщения</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-danger"><i class="fas fa-exclamation-triangle"></i> Экстренная сообщения</a></li> --}}
         </ul>
         <hr class="mg-t-30 mg-b-25">
         <ul class="nav nav-sidebar">
@@ -58,4 +60,5 @@
             <li class="nav-item"><a href="#offCanvas3" class="nav-link off-canvas-menu"><i class="fas fa-question-circle"></i> О системе</a></li>
         </ul>
     </div><!-- sidebar-body -->
+    <input type="hidden" id="user_id" value="{{ base64_encode(auth()->user()->id) }}">
 </div><!-- sidebar -->

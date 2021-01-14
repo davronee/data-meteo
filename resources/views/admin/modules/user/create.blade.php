@@ -1,7 +1,7 @@
 @extends('layouts.html')
 
 @section('content')
-    <div class="row">
+    <div class="row mg-t-20 mg-b-20">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">@lang('messages.create_user')</div>
@@ -11,7 +11,7 @@
                             <div class="form-group">
                                 @include('common.messages')
                             </div>
-                            <form action="{{ route('user.store') }}" method="post">
+                            <form action="{{ route('user.store') }}" method="post" id="create-user-form">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-md-6">

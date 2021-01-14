@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{asset('template/assets/css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/weather-panel.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/meteo-weather.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/world.css')}}">
+    <link rel="stylesheet" href="{{asset('template/assets/css/world_template.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/owl.carousel.css')}}" type="text/css" media="all">
     <link rel="stylesheet" href="{{asset('template/assets/css/easy-responsive-tabs.css')}}">
 </head>
