@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,7 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="widthet changed">
+      <change afterPath="$PROJECT_DIR$/resources/views/pages/world_old.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/meteo-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meteo-data.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/world.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/world.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/world_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/world_new.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +51,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -155,6 +166,18 @@
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/infureal/artisan-gui" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="ProjectId" id="1l5jI5zwzAVKW9aXmTM7KWLD5PA" />
@@ -165,8 +188,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../geojson" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kms" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -218,6 +248,12 @@
       <workItem from="1608712165926" duration="4308000" />
       <workItem from="1608984238572" duration="4291000" />
       <workItem from="1610084632461" duration="355000" />
+      <workItem from="1610617636574" duration="5629000" />
+      <workItem from="1611038901498" duration="1372000" />
+      <workItem from="1611040526249" duration="1556000" />
+      <workItem from="1611124094794" duration="1615000" />
+      <workItem from="1611140180342" duration="421000" />
+      <workItem from="1611293460501" duration="1580000" />
     </task>
     <task id="LOCAL-00005" summary="widthet changed">
       <created>1606913079150</created>
@@ -247,7 +283,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608726117717</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="widthet changed">
+      <created>1610617726975</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610617726975</updated>
+    </task>
+    <task id="LOCAL-00010" summary="widthet changed">
+      <created>1610618617602</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1610618617602</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,22 +321,33 @@
     <option name="LAST_COMMIT_MESSAGE" value="widthet changed" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1610084675539">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="987" y="370" key="FileChooserDialogImpl" timestamp="1611293573624">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1610084675539" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1608728260325">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="987" y="370" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1611293573624" />
+    <state x="782" y="346" key="SettingsEditor" timestamp="1611038993386">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="782" y="346" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1611038993386" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1610620803296">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1608574165630" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608728260325" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1610620803296" />
     <state x="643" y="293" key="git4idea.merge.GitPullDialog" timestamp="1605808434644">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="643" y="293" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605808434644" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1608535960058">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1033" y="602" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1611296729953">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1033" y="602" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1611296729953" />
+    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1611296772475">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608535960058" />
+    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1611296772475" />
   </component>
 </project>

@@ -135,10 +135,7 @@
 
 
                 // load a tile layer  http://map.ygk.uz/tile/{z}/{x}/{y}.png OpenStreetMap харита
-                osm = L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
-                    // osm =  L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
-                    attribution: 'data.meteo.uz'
-                }).addTo(map);
+
 
                 drawnItems = L.featureGroup().addTo(map);
 
@@ -148,13 +145,17 @@
                 }).addTo(map);
 
                 L.control.layers({
-                    'OpenStreetMap харита': osm.addTo(map),
+                    'Google харита': L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
+                        attribution: 'data.meteo.uz'
+                    }).addTo(map),
+                    'OpenStreetMap харита': L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
+                        // osm =  L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
+                        attribution: 'data.meteo.uz'
+                    }),
                     'Google харита (Спутник)': L.tileLayer('http://www.google.com/maps/vt?lyrs=s@189&gl=uz&x={x}&y={y}&z={z}', {
                         attribution: 'data.meteo.uz'
                     }),
-                    'Google харита': L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
-                        attribution: 'data.meteo.uz'
-                    })
+
                 }, {}, {position: 'topright', collapsed: false}).addTo(map);
 
                 {{--var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");--}}

@@ -110,4 +110,21 @@ class WidgetController extends Controller
 
     }
 
+    public function getForeCast(Request  $request)
+    {
+        $request->validate([
+            'city'=>'required'
+        ]);
+
+        $gidromet  = Http::get('http://www.meteo.uz/index.php/forecast/city',[
+            'city'=>$request->city,
+            'expand'=>'city'
+        ]);
+
+        $gidromet = array_reverse(array_sort($gidromet));
+
+        return $gidromet;
+
+    }
+
 }
