@@ -463,6 +463,21 @@
                     });
 
 
+                axios.get('{{route('world.forecast')}}', {
+                    params: {
+                        city: city,
+                    }
+                })
+                    .then(function (response) {
+                        app.forecast = response.data;
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
 
 
                 //accuweather end
@@ -495,28 +510,11 @@
                 return date.getDate() + '.' + months_arr[date.getMonth()] + '.' + date.getFullYear();
 
             },
-            getForecast:function (city = 'tashkent') {
-                axios.get('{{route('world.forecast')}}', {
-                    params: {
-                        city: city,
-                    }
-                })
-                    .then(function (response) {
-                        app.forecast = response.data;
 
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .then(function () {
-                        // always executed
-                    });
-            }
 
         },
         created() {
             this.getCurrent('tashkent');
-            this.getForecast('tashkent');
 
         },
         mounted() {

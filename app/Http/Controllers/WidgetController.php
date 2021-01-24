@@ -318,7 +318,7 @@ class WidgetController extends Controller
             'metric' => 'true',
         ])->json();
 
-        
+
 //        $accuweather = json_decode($accuweather,true);
 
 //        return $accuweather;
