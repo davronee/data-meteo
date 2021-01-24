@@ -52,7 +52,7 @@
             <td colspan="5" class="sep">Прогноз погоды на ближайшие сутки</td>
         </tr>
         <tr v-if="forecast.gidromet">
-            <td><span class="p-l txt-bold">@{{ forecast.gidromet[0][0].date }}</span><span class="p-r">Сб</span></td>
+            <td><span class="p-l txt-bold">@{{ forecast.gidromet[0][0].date }}</span><span class="p-r"></span></td>
             <td class="column-2">
                 <ol>
                     <dt>
@@ -103,7 +103,7 @@
             </td>
         </tr>
         <tr v-if="forecast.gidromet">
-            <td><span class="p-l txt-bold">@{{ forecast.gidromet[1][0].date }}</span><span class="p-r">Сб</span></td>
+            <td><span class="p-l txt-bold">@{{ forecast.gidromet[1][0].date }}</span><span class="p-r"></span></td>
             <td class="column-2">
                 <ol>
                     <dt>
@@ -154,7 +154,7 @@
             </td>
         </tr>
         <tr v-if="forecast.gidromet">
-            <td><span class="p-l txt-bold">@{{ forecast.gidromet[2][0].date }}</span><span class="p-r">Сб</span></td>
+            <td><span class="p-l txt-bold">@{{ forecast.gidromet[2][0].date }}</span><span class="p-r"></span></td>
             <td class="column-2">
                 <ol>
                     <dt>
