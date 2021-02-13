@@ -125,7 +125,7 @@ class WidgetController extends Controller
 
         if ($request->city == 'tashkent')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -137,7 +137,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'andijan')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -148,7 +148,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'bukhara')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -159,7 +159,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'jizzakh')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -170,7 +170,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'qarshi')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -181,7 +181,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'navoiy')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -192,7 +192,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'namangan')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -204,7 +204,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'samarkand')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -215,7 +215,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'termez')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -226,7 +226,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'gulistan')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -237,7 +237,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'nurafshon')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -249,7 +249,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'fergana')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -260,7 +260,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'urgench')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',
@@ -271,7 +271,7 @@ class WidgetController extends Controller
         }
         else if ($request->city == 'nukus')
         {
-            $openweather = Http::get('https://api.openweathermap.org/data/2.5/onecall', [
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
                 'exclude'=> 'current,minutely,hourly',
                 'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
                 'lang'=> 'ru',

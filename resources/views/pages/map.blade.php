@@ -10,11 +10,10 @@
 <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /> -->
     <!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" /> -->
     <link rel="stylesheet" href="{{asset('assets/css/leaflet.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/><![endif]-->
-    <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}"/>
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
@@ -47,13 +46,74 @@
 </head>
 
 <body>
+<div id="sidebar" class="leaflet-sidebar collapsed">
 
+    <!-- nav tabs -->
+    <div class="leaflet-sidebar-tabs">
+        <!-- top aligned tabs -->
+        <ul role="tablist">
+            <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
+            <li><a href="#autopan" role="tab"><i class="fa fa-arrows"></i></a></li>
+        </ul>
+
+        <!-- bottom aligned tabs -->
+        <ul role="tablist">
+            <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>
+        </ul>
+    </div>
+
+    <!-- panel content -->
+    <div class="leaflet-sidebar-content">
+        <div class="leaflet-sidebar-pane" id="home">
+            <h1 class="leaflet-sidebar-header">
+                sidebar-v2
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+
+            <p>A responsive sidebar for the mapping library <a href="https://leafletjs.com/">Leaflet</a>.</p>
+            <p>Compatible with version 0.7 and 1.x (tested up to 1.6.0)</p>
+            <p><b>Select the other panes for a showcase of each feature.</b></p>
+
+            <h2>More examples</h2>
+            <ul>
+                <li><a href="./position-right.html">Right aligned</a></li>
+                <li><a href="./halfheight.html">The sidebar adapts to map container size</a></li>
+                <li><a href="./leaflet-0.7.html">Proof that it works with leaflet 0.7</a></li>
+            </ul>
+
+            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+
+        <div class="leaflet-sidebar-pane" id="autopan">
+            <h1 class="leaflet-sidebar-header">
+                autopan
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <p>
+                <code>Leaflet.control.sidebar({ autopan: true })</code>
+                makes shure that the map center always stays visible.
+            </p>
+            <p>
+                The autopan behviour is responsive as well.
+                Try opening and closing the sidebar from this pane!
+            </p>
+        </div>
+
+        <div class="leaflet-sidebar-pane" id="messages">
+            <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        </div>
+    </div>
+</div>
 <div id="map">
 </div>
 
 
 <!--  <a href="#"><img style="position: fixed; top: 0; right: 0; border: 0;" src="../images/ribbon.png" alt="βeta version"></a> -->
 <script src="{{asset('assets/js/leaflet.js')}}"></script>
+<script src="{{asset('asset/js/leaflet-sidebar.min.js')}}"></script>
 <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
 
 <script src="{{asset('asset/js/leaflet.ajax.js')}}"></script>
@@ -157,6 +217,13 @@
                     }),
 
                 }, {}, {position: 'topright', collapsed: false}).addTo(map);
+
+                var sidebar = L.control.sidebar({ container: 'sidebar', position: "right"})
+                    .addTo(map)
+                    .open('home');
+
+                // add panels dynamically to the sidebar
+
 
                 {{--var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");--}}
                 {{--geojsonLayer.addTo(map);--}}
