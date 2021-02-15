@@ -9,13 +9,17 @@ class ArmController extends Controller
 {
     public function index(Request $request)
     {
-        $arms = Arm::all();
+        $arms = Arm::query()
+        ->select('device')
+        ->selectRaw('max(did) as id')
+        ->groupBy('device')->get();
 
         $array = [];
         foreach ($arms as $item)
         {
+            $raw = Arm::where('did',$item->id)->first();
 
-           $exp = explode(';',$item->data);
+           $exp = explode(';',$raw->data);
 
            $object = [
                'date'=>$exp[0],
