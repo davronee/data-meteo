@@ -6,8 +6,8 @@
 *
 
 /* ############### FONTS IMPORT ############### */
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Oswald:300,400,500|Fira+Sans:300,400,500,600|Archivo+Narrow:400,500,600&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Mono|Roboto+Slab:300,400,700|Roboto+Condensed:300,400,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Lato:400,700|Oswald:300,400,500|Fira+Sans:300,400,500,600|Archivo+Narrow:400,500,600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Mono|Roboto+Slab:300,400,700|Roboto+Condensed:300,400,700&display=swap"); */
 
 /* ############### BOOTSTRAP FRAMEWORK ############### */
 /*!
@@ -4636,7 +4636,7 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 576px) {
-    
+
     .navbar-expand-sm {
         flex-flow: row nowrap;
         justify-content: flex-start;
@@ -11914,7 +11914,7 @@ textarea.form-control {
 
 .nav-link.active {
     color: #06072d;
-    
+
 }
 
 .nav-pills .nav-link {

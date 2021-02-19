@@ -4,20 +4,18 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\District;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DistrictController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
+        $user = User::find(base64_decode($request->input('user_id')));
+
         return District::where('regionid', $request->input('region_id'))
-            ->whereNotIn('areacode', [260, 200, 400])
-            ->pluck('nameUz', 'areaid')
-            ->toArray();
+            ->filteredList()
+            ->byRegion($user)
+            ->pluck('nameUz', 'areaid')->toArray();
     }
 }
