@@ -20,5 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::prefix('apm')->group(function () {
+    Route::get('/', [\App\Http\Controllers\ArmController::class, 'index'])->name('arm.index');
+    Route::get('/{id}', [\App\Http\Controllers\ArmController::class, 'get'])->name('arm.get');
+});
+
+
 Route::get('/districts', [DistrictController::class, 'index'])->name('api.district.index');
 Route::get('/stations', [StationController::class, 'index'])->name('api.station.index');

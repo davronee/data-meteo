@@ -43,9 +43,7 @@ Route::group(['middleware' => ['set_locale']], function() {
         Route::get('/getAccuweatherForecast', [WidgetController::class, 'getAccuweatherForecast'])->name('getAccuweatherForecast');
     });
 
-    Route::prefix('arm')->group(function () {
-        Route::get('/', [\App\Http\Controllers\ArmController::class, 'index'])->name('arm.index');
-    });
+
 
 
     Route::get('/', [WidgetController::class, 'index'])->name('home');
