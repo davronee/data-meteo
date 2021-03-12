@@ -69,44 +69,274 @@ class WidgetController extends Controller
 
     }
 
-    public function getAccuweatherCurrent(Request $request){
+    public function getAccuweatherCurrent(Request $request)
+    {
         $request->validate([
-            'locationkey'=>'required'
+            'locationkey' => 'required'
         ]);
-        $accuweather = Http::get('http://dataservice.accuweather.com/currentconditions/v1/'.$request->locationkey,[
-            'apikey'=>'9r5K2d9cY9TVWeTrSQyAXupIAHD8VE8V',
-            'language'=>'Ru-ru',
-            'metric'=>'true',
+        $accuweather = Http::get('http://dataservice.accuweather.com/currentconditions/v1/' . $request->locationkey, [
+            'apikey' => '9r5K2d9cY9TVWeTrSQyAXupIAHD8VE8V',
+            'language' => 'Ru-ru',
+            'metric' => 'true',
         ])->json();
 
 
-
         return [
-            'temp'=>round($accuweather[0]['Temperature']['Metric']['Value']),
-            'desc'=>$accuweather[0]['WeatherText']
+            'temp' => round($accuweather[0]['Temperature']['Metric']['Value']),
+            'desc' => $accuweather[0]['WeatherText']
         ];
 
     }
 
-    public function getAccuweatherForecast(Request $request){
+    public function getAccuweatherForecast(Request $request)
+    {
         $request->validate([
-            'locationkey'=>'required'
+            'locationkey' => 'required'
         ]);
-        $accuweather = Http::get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/'.$request->locationkey,[
-            'apikey'=>'9r5K2d9cY9TVWeTrSQyAXupIAHD8VE8V',
-            'language'=>'Ru-ru',
-            'metric'=>'true',
+        $accuweather = Http::get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/' . $request->locationkey, [
+            'apikey' => '9r5K2d9cY9TVWeTrSQyAXupIAHD8VE8V',
+            'language' => 'Ru-ru',
+            'metric' => 'true',
         ])->json();
 
 
-
-       return $accuweather['DailyForecasts'];
+        return $accuweather['DailyForecasts'];
 
     }
 
-    public function world(Request  $request)
+    public function world(Request $request)
     {
-        return view('pages.world_new');
+        return view('pages.world');
+
+    }
+
+    public function getForeCast(Request $request)
+    {
+        $request->validate([
+            'city' => 'required'
+        ]);
+
+        $gidromet = Http::get('http://www.meteo.uz/index.php/forecast/city', [
+            'city' => $request->city,
+            'expand' => 'city'
+        ]);
+
+        $endpoint_openweather = '';
+
+        if ($request->city == 'tashkent')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'41.26465',
+                'lon'=>'69.21627',
+            ]);
+
+        }
+        else if ($request->city == 'andijan')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'40.7820',
+                'lon'=>'72.34424',
+            ]);
+        }
+        else if ($request->city == 'bukhara')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'39.77472',
+                'lon'=>'64.42861',
+            ]);
+        }
+        else if ($request->city == 'jizzakh')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'40.11583',
+                'lon'=>'67.84222',
+            ]);
+        }
+        else if ($request->city == 'qarshi')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'38.86056',
+                'lon'=>'65.78905',
+            ]);
+        }
+        else if ($request->city == 'navoiy')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'40.08444',
+                'lon'=>'65.37917',
+            ]);
+        }
+        else if ($request->city == 'namangan')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'40.9983',
+                'lon'=>'71.67257',
+            ]);
+
+        }
+        else if ($request->city == 'samarkand')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'39.65417',
+                'lon'=>'66.95972',
+            ]);
+        }
+        else if ($request->city == 'termez')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'37.22417',
+                'lon'=>'67.27833',
+            ]);
+        }
+        else if ($request->city == 'gulistan')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'40.491509',
+                'lon'=>'68.781077',
+            ]);
+        }
+        else if ($request->city == 'nurafshon')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'41.166666',
+                'lon'=>'69.749997',
+            ]);
+
+        }
+        else if ($request->city == 'fergana')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'40.38421',
+                'lon'=>'71.78432',
+            ]);
+        }
+        else if ($request->city == 'urgench')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'41.55',
+                'lon'=>'60.63333',
+            ]);
+        }
+        else if ($request->city == 'nukus')
+        {
+            $openweather = Http::get('http://api.openweathermap.org/data/2.5/onecall?exclude=current%2Cminutely%2Chourly&appid=3b7367c71902cdb4229175c9aa4113ee&lang=ru&units=metric&lat=41.26465&lon=69.21627', [
+                'exclude'=> 'current,minutely,hourly',
+                'appid'=>'3b7367c71902cdb4229175c9aa4113ee',
+                'lang'=> 'ru',
+                'units'=>'metric',
+                'lat'=>'42.45306',
+                'lon'=>'59.6102',
+            ]);
+        }
+
+        if ($request->city == 'tashkent')
+            $accuweather_locationkey = 719862;
+        else if ($request->city == 'andijan')
+            $accuweather_locationkey = 351828;
+        else if ($request->city == 'bukhara')
+            $accuweather_locationkey = 352479;
+        else if ($request->city == 'jizzakh')
+            $accuweather_locationkey = 348390;
+        else if ($request->city == 'qarshi')
+            $accuweather_locationkey = 350541;
+        else if ($request->city == 'navoiy')
+            $accuweather_locationkey = 355115;
+        else if ($request->city == 'namangan')
+            $accuweather_locationkey = 355095;
+        else if ($request->city == 'samarkand')
+            $accuweather_locationkey = 355776;
+        else if ($request->city == 'termez')
+            $accuweather_locationkey = 356042;
+        else if ($request->city == 'gulistan')
+            $accuweather_locationkey = 355934;
+        else if ($request->city == 'nurafshon')
+            $accuweather_locationkey = 356228;
+        else if ($request->city == 'fergana')
+            $accuweather_locationkey = 353238;
+        else if ($request->city == 'urgench')
+            $accuweather_locationkey = 356378;
+        else if ($request->city == 'nukus')
+            $accuweather_locationkey = 355666;
+
+
+
+        $accuweather = Http::get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/' . $request->locationkey, [
+            'apikey' => '9r5K2d9cY9TVWeTrSQyAXupIAHD8VE8V',
+            'language' => 'Ru-ru',
+            'metric' => 'true',
+        ])->json();
+
+
+//        $accuweather = json_decode($accuweather,true);
+
+//        return $accuweather;
+
+        $gidromet = [
+            'gidromet' => array(
+                [$gidromet[4], $gidromet[5]],
+                [$gidromet[2],$gidromet[3]],
+                [$gidromet[0], $gidromet[1]],
+            ),
+            'openweather' =>array(
+                $openweather['daily'][1],
+                $openweather['daily'][2],
+                $openweather['daily'][3],
+            )
+        ];
+
+        return response()->json($gidromet);
 
     }
 

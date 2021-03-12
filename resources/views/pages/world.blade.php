@@ -1,270 +1,250 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Meta -->
-    <meta name="description" content="Единая система анализа и обработки гидрометеорологических наблюдений">
-    <meta name="author" content="Метеоинфосистем">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('template/assets/img/favicon/favicon.ico')}}">
-    <title>METEO|DC</title>
-    <!-- icons css -->
-    <link href="{{asset('template/lib/fontawesome5/css/all.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('template/assets/css/weather-icons.min.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/ionicons.min.css')}}">
-    <!-- vendor css -->
-    <link href="{{asset('template/lib/select2/css/select2.min.css')}}" rel="stylesheet">
-    <!-- template css -->
-    <link rel="stylesheet" href="{{asset('template/assets/css/meteo.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/custom.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/weather-panel.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/meteo-weather.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/world_template.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/owl.carousel.css')}}" type="text/css" media="all">
-    <link rel="stylesheet" href="{{asset('template/assets/css/easy-responsive-tabs.css')}}">
+    <meta charset="UTF-8">
+    <title>Об-ҳаво</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{asset('worldnew/style.css')}}">
 </head>
 
 <body>
-<div class="container" id="app" v-cloak="v-cloak">
-    <div class="header">
-        <div class="header-left sidebar-logo">
-            <img src="{{asset('template/assets/img/gidrometeo.svg')}}"></a>
-        </div><!-- header-left -->
-        <div class="header-right">
-        </div><!-- header-right -->
-    </div><!-- header -->
-    <div class="content-page mg-t-20">
-        <div class="content-body">
-            <div class="row row-sm mg-t-20">
-                <div class="col-md-12 col-xl-12 mg-t-5 mg-sm-t-15">
-                    <div class="card card-hover card-total-sales no-shadow bd-0">
-                        <div class="card-header bg-transparent pd-y-15 pd-l-15 pd-sm-l-20 pd-r-15 bd-b-1">
-                            <select class="custom-select custom-select-sm tx-12 mg-b-10"
-                                    @change="getCurrent($event.target.value)">
-                                <option v-for="(item, index) in regions" :value="index">@{{ item }}</option>
-                            </select>
-                        </div><!-- card-header -->
-                        <div class="worko-tabs">
-                            <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked/>
-                            <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two"/>
-                            <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three"/>
-                            <input class="state" type="radio" title="tab-four" name="tabs-state" id="tab-four"/>
-                            <div class="tabs flex-tabs">
-                                <label for="tab-one" id="tab-one-label" class="tab">Узгидромет</label>
-                                <label for="tab-two" id="tab-two-label" class="tab">OpenWeather</label>
-                                <label for="tab-three" id="tab-three-label" class="tab" v-if="accuweather_current_description">AccuWeather</label>
-                                <label for="tab-four" id="tab-four-label" class="tab" v-if="weatherbit_current">Weatherbit</label>
-                                <!-- УЗГИДРОМЕТ -->
-                                <div id="tab-one-panel" class="panel active">
-                                    <div class="main-wthree-row">
-                                        <div class="agileits-top">
-                                            <div class="agileinfo-top-row">
-                                                <div class="agileinfo-top-time">
-                                                    <div class="date-time">
-                                                        <div class="dmy">
-                                                            <div class="date">
-                                                                <span>@{{ current_weather_code }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </div>
-                                                <h3>@{{ current }}<sup class="degree">°</sup><span>C</span></h3>
-                                                <article class="ac-small">
-                                                    <div class="wthree-grids">
-                                                        <div v-for="(item, index) in forecastsortday"
-                                                             class="wthree-grids-row">
-                                                            <ul class="top">
-                                                                <li>@{{ forecastsortday[index].date }}</li>
-                                                                <li class="wthree-img"><img
-                                                                        :src="forecastsortday[index].icon" alt=""/></li>
-                                                                <li class="wthree-temp">День<br>@{{
-                                                                    forecastsortday[index].air_t_min }} <sup
-                                                                        class="degree">°</sup></li>
-                                                                <li class="wthree-temp">Ночь<br>@{{
-                                                                    forecastsort[index].air_t_min }} <sup
-                                                                        class="degree">°</sup></li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
+<!-- partial:index.partial.html -->
+<!-- DIRTY Responsive pricing table HTML -->
+<article id="app" v-cloak="v-cloak">
+    <select class="custom-select custom-select-sm tx-12 mg-b-10"
+            @change="getCurrent($event.target.value)">
+        <option v-for="(item, index) in regions" :value="index">@{{ item }}</option>
+    </select>
+    <ul>
+        <li class="bg-blue active">
+            <button>Узгидромет</button>
+        </li>
+        <li class="bg-blue">
+            <button>Gismeteo</button>
+        </li>
+        <li class="bg-blue">
+            <button>OpenWeather</button>
+        </li>
+        <li class="bg-blue">
+            <button>Accuweather</button>
+        </li>
+    </ul>
+    <table>
+        <thead>
+        <tr>
+            <th class="hide"></th>
+            <th class="bg-blue default">Узгидромет</th>
+            <th class="bg-blue">Gismeteo</th>
+            <th class="bg-blue">OpenWeather</th>
+            <th class="bg-blue">Accuweather</th>
+        </tr>
+        </thead>
+        <tbody class="txt-white">
+        <tr>
+            <td class="txt-bold factic">Сейчас:</td>
+            <td><span class="txt-l">@{{ current }}</span><span class="txt-top">&deg;</span> <span class="p-r">@{{ current_weather_code }}</span></td>
+            <td><span class="txt-l"></span><span class="txt-top">&deg;</span><span class="p-r"></span></td>
+            <td class="default"><span class="txt-l">@{{ openweather_current }}</span><span class="txt-top">&deg;</span><span class="p-r">@{{ openweather_current_description }}</span></td>
+            <td><span class="txt-l">@{{ accuweather_current }}</span><span class="txt-top">&deg;</span><span class="p-r">@{{ accuweather_current_description }}</span></td>
+        </tr>
+        <tr>
+            <td colspan="5" class="sep">Прогноз погоды на ближайшие сутки</td>
+        </tr>
+        <tr v-if="forecast.gidromet">
+            <td><span class="p-l txt-bold">@{{ forecast.gidromet[0][0].date }}</span><span class="p-r"></span></td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">@{{ forecast.gidromet[0][0].air_t_min }}...@{{ forecast.gidromet[0][0].air_t_max }}</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">@{{ forecast.gidromet[0][1].air_t_min }}...@{{ forecast.gidromet[0][1].air_t_max }}</span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">@{{ Math.round(forecast.openweather[0].temp.day) }}</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">@{{ Math.round(forecast.openweather[0].temp.night) }}</span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                </ol>
+            </td>
+        </tr>
+        <tr v-if="forecast.gidromet">
+            <td><span class="p-l txt-bold">@{{ forecast.gidromet[1][0].date }}</span><span class="p-r"></span></td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">@{{ forecast.gidromet[1][0].air_t_min }}...@{{ forecast.gidromet[1][0].air_t_max }}</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">@{{ forecast.gidromet[1][1].air_t_min }}...@{{ forecast.gidromet[1][1].air_t_max }}</span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">@{{ Math.round(forecast.openweather[1].temp.day) }}</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">@{{ Math.round(forecast.openweather[1].temp.night) }}</span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                </ol>
+            </td>
+        </tr>
+        <tr v-if="forecast.gidromet">
+            <td><span class="p-l txt-bold">@{{ forecast.gidromet[2][0].date }}</span><span class="p-r"></span></td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">@{{ forecast.gidromet[2][0].air_t_min }}...@{{ forecast.gidromet[2][0].air_t_max }}</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">@{{ forecast.gidromet[2][1].air_t_min }}...@{{ forecast.gidromet[2][1].air_t_max }}</span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info">@{{ Math.round(forecast.openweather[2].temp.day) }}</span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info">@{{ Math.round(forecast.openweather[2].temp.night) }}</span></div>
+                    </dt>
+                </ol>
+            </td>
+            <td class="column-2">
+                <ol>
+                    <dt>
+                        <div class="description-day">Днем</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                    <dt class="night">
+                        <div class="description-night">Ночью</div>
+                        <div class="price"><span class="txt-info"></span></div>
+                    </dt>
+                </ol>
+            </td>
+        </tr>
 
-                                                    </div>
-                                                </article>
-                                            </div>
-                                        </div>
-                                        <div class="w3ls-bottom2">
-                                            <div class="ac-container mg-t-20">
-                                                <a for="ac-1" class="grid1"
-                                                   href="https://www.meteo.uz/#/ru/forecasts/next-day" target="_blank">
-                                                    ПРОГНОЗ ПОГОДЫ НА БЛИЖАЙШИЕ СУТКИ</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- OpenWeather -->
-                                <div id="tab-two-panel" class="panel">
-                                    <div class="main-wthree-row">
-                                        <div class="agileits-top">
-                                            <div class="agileinfo-top-row">
-                                                <div class="agileinfo-top-time">
-                                                    <div class="date-time">
-                                                        <div class="dmy">
-                                                            <div class="date">
-                                                                <span>@{{ openweather_current_description }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </div>
-                                                <h3>@{{ openweather_current }}<sup class="degree">°</sup><span>C</span>
-                                                </h3>
-                                                {{--                                                <p>New York</p>--}}
-                                                <article class="ac-small">
-                                                    <div class="wthree-grids">
-                                                        <div v-for="(item,index) in openweather_forecast"
-                                                             class="wthree-grids-row">
-                                                            <ul class="top">
-                                                                <li>@{{ convertUnixtoDate(item.dt) }}</li>
-                                                                <li class="wthree-temp">@{{ item.weather[0].description
-                                                                    }}
-                                                                </li>
-                                                                <li class="wthree-temp">День <br> @{{
-                                                                    Math.floor(item.temp.day)
-                                                                    }} <sup class="degree">°</sup></li>
-                                                                <li class="wthree-temp">Ночь <br> @{{
-                                                                    Math.floor(item.temp.night)
-                                                                    }} <sup class="degree">°</sup></li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- AccuWeather -->
-                                <div v-if="accuweather_current_description" id="tab-three-panel" class="panel">
-                                    <div class="main-wthree-row">
-                                        <div class="agileits-top">
-                                            <div class="agileinfo-top-row">
-                                                <div class="agileinfo-top-time">
-                                                    <div class="date-time">
-                                                        <div class="dmy">
-                                                            <div class="date">
-                                                                <span>@{{ accuweather_current_description }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </div>
-                                                <h3>@{{ accuweather_current }}<sup class="degree">°</sup><span>C</span>
-                                                </h3>
-                                                {{--                                                <p>New York</p>--}}
-                                                <article class="ac-small">
-                                                    <div class="wthree-grids">
-                                                        <div v-for="(item,index) in accuweather_forecast"  class="wthree-grids-row">
-                                                            <ul class="top">
-                                                                <li>@{{ convertUnixtoDate(item.EpochDate) }}</li>
-                                                                <li class="wthree-temp">@{{ item.Day.IconPhrase }}</li>
-                                                                <li class="wthree-temp"> @{{ Math.floor(item.Temperature.Maximum.Value) }} <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> @{{ Math.floor(item.Temperature.Minimum.Value) }} <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Gismeteo -->
-                                <div id="tab-four-panel" class="panel" v-if="weatherbit_current">
-                                    <div class="main-wthree-row">
-                                        <div class="agileits-top">
-                                            <div class="agileinfo-top-row">
-                                                <div class="agileinfo-top-time">
-                                                    <div class="date-time">
-                                                        <div class="dmy">
-                                                            <div class="date">
-                                                                <span>@{{ weatherbit_current.weather.description }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </div>
-                                                <h3>@{{ Math.floor(weatherbit_current.temp) }}<sup class="degree">°</sup><span>C</span></h3>
-{{--                                                <p>New York</p>--}}
-                                                <article class="ac-small">
-                                                    <div class="wthree-grids">
-                                                        <div v-for="(item,index) in weatherbit_forecast" class="wthree-grids-row">
-                                                            <ul class="top">
-                                                                <li>@{{ convertUnixtoDate(item.moonrise_ts) }}</li>
-                                                                <li class="wthree-temp">@{{ item.weather.description }}</li>
-                                                                <li class="wthree-temp"> @{{ Math.floor(item.max_temp) }} <sup class="degree">°</sup>
-                                                                </li>
-                                                                <li class="wthree-temp"> @{{ Math.floor(item.min_temp) }} <sup class="degree">°</sup>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="clear"></div>
-                                                        </div>
 
-                                                    </div>
-                                                </article>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- card -->
-                </div><!-- col -->
-            </div>
-        </div>
-        <!--content-body -->
-    </div><!-- content-page -->
-</div><!-- content -->
-<script src="{{asset('template/lib/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('template/lib/jqueryui/jquery-ui.min.js')}}"></script>
-<script src="{{asset('template/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('template/lib/feather-icons/feather.min.js')}}"></script>
-<script src="{{asset('template/lib/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-<script src="{{asset('template/lib/js-cookie/js.cookie.js')}}"></script>
-<script src="{{asset('template/lib/select2/js/select2.min.js')}}"></script>
-<script src="{{asset('template/assets/js/skycons.js')}}"></script>
-<script src="{{asset('template/assets/js/easyResponsiveTabs.js')}}"></script>
-<script src="{{asset('template/lib/chart.js/Chart.bundle.min.js')}}"></script>
-<script src="{{asset('template/lib/jquery.flot/jquery.flot.js')}}"></script>
-<script src="{{asset('template/lib/jquery.flot/jquery.flot.pie.js')}}"></script>
-<script src="{{asset('template/lib/jquery.flot/jquery.flot.stack.js')}}"></script>
-<script src="{{asset('template/lib/jquery.flot/jquery.flot.resize.js')}}"></script>
-<script src="{{asset('template/lib/jquery.flot/jquery.flot.threshold.js')}}"></script>
-<script src="{{asset('template/lib/jquery.flot/jquery.flot.fillbetween.js')}}"></script>
-<script src="{{asset('template/lib/jquery.flot/jquery.flot.crosshair.js')}}"></script>
-<script src="{{asset('template/assets/js/flot.sampledata.js')}}"></script>
-<script src="{{asset('template/assets/js/vmap.sampledata.js')}}"></script>
+        <tr>
+            <td colspan="5" class="sep">Каково точность прогноза погоды?</td>
+        </tr>
+        <tr>
+            <td>Прогноз температуры</td>
+            <td class="default"><span class="tick">94%</span></td>
+            <td><span class="tick">94%</span></td>
+            <td><span class="tick">92%</span></td>
+            <td><span class="tick">91%</span></td>
+        </tr>
+        <tr>
+            <td>Прогноз опасных явлений</td>
+            <td class="default"><span class="tick">98%</span></td>
+            <td><span class="tick">95%</span></td>
+            <td><span class="tick">91%</span></td>
+            <td><span class="tick">97%</span></td>
+        </tr>
+        <tr>
+            <td>Прогноз по осадкам</td>
+            <td class="default"><span class="tick">91%</span></td>
+            <td><span class="tick">93%</span></td>
+            <td><span class="tick">97%</span></td>
+            <td><span class="tick">92%</span></td>
+        </tr>
+        </tbody>
+    </table>
+</article>
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js'></script>
+<script src="{{asset('worldnew/script.js')}}"></script>
 <script src="{{asset('asset/js/vue.js')}}"></script>
 <script src="{{asset('asset/js/axios.min.js')}}"></script>
-
-<!-- //sky-icons -->
-<!-- tabs -->
-
-<!-- //tabs -->
 </body>
-
 <script>
     var app = new Vue({
         el: '#app',
         data: {
             current: '',
             forecast: [],
-            forecastsort: [],
-            forecastsortday: [],
             current_weather_code: '',
             openweather: null,
             openweather_current: null,
@@ -355,117 +335,6 @@
                         // always executed
                     });
 
-                axios.get('http://www.meteo.uz/index.php/forecast/city', {
-                    params: {
-                        city: city,
-                        expand: 'city',
-                    }
-                })
-                    .then(function (response) {
-                        // console.log(response.data.icon);
-                        app.forecast = response.data;
-                        app.forecast.reverse();
-
-                        for (i = 0; i < app.forecast.length; i++) {
-                            if (i % 2 == 0) {
-
-                                if (app.forecast[i].icon == 'clear')
-                                    icon = '{{asset('template/assets/img/3.png')}}';
-                                else if (app.forecast[i].icon == 'mostly_clear')
-                                    icon = '{{asset('template/assets/img/4.png')}}';
-                                else if (app.forecast[i].icon == 'partly_cloudy')
-                                    icon = '{{asset('template/assets/img/4.png')}}';
-                                else if (app.forecast[i].icon == 'mostly_cloudy')
-                                    icon = '{{asset('template/assets/img/4.png')}}';
-                                else if (app.forecast[i].icon == 'overcast')
-                                    icon = '{{asset('template/assets/img/2.png')}}';
-                                else if (app.forecast[i].icon == 'fog')
-                                    icon = '{{asset('template/assets/img/2.png')}}';
-                                else if (app.forecast[i].icon == 'light_rain')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'rain')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'heavy_rain')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'thunderstorm')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'light-sleet')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'sleet')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'heavy_sleet')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'light_snow')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'snow')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'heavy_snow')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-
-                                app.forecastsort.push({
-                                    day: false,
-                                    air_t_min: app.forecast[i].air_t_min,
-                                    date: app.forecast[i].date,
-                                    icon: app.forecast[i].icon,
-                                    cloud_amount: app.forecast[i].cloud_amount,
-                                    wind_speed_min: app.forecast[i].wind_speed_min,
-                                    day_part: app.forecast[i].day_part,
-                                    icon: icon,
-                                })
-                            } else {
-                                if (app.forecast[i].icon == 'clear')
-                                    icon = '{{asset('template/assets/img/3.png')}}';
-                                else if (app.forecast[i].icon == 'mostly_clear')
-                                    icon = '{{asset('template/assets/img/4.png')}}';
-                                else if (app.forecast[i].icon == 'partly_cloudy')
-                                    icon = '{{asset('template/assets/img/4.png')}}';
-                                else if (app.forecast[i].icon == 'mostly_cloudy')
-                                    icon = '{{asset('template/assets/img/4.png')}}';
-                                else if (app.forecast[i].icon == 'overcast')
-                                    icon = '{{asset('template/assets/img/2.png')}}';
-                                else if (app.forecast[i].icon == 'fog')
-                                    icon = '{{asset('template/assets/img/2.png')}}';
-                                else if (app.forecast[i].icon == 'light_rain')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'rain')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'heavy_rain')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'thunderstorm')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'light-sleet')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'sleet')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'heavy_sleet')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'light_snow')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'snow')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                else if (app.forecast[i].icon == 'heavy_snow')
-                                    icon = '{{asset('template/assets/img/1.png')}}';
-                                app.forecastsortday.push({
-                                    day: true,
-                                    air_t_min: app.forecast[i].air_t_min,
-                                    date: app.forecast[i].date,
-                                    icon: app.forecast[i].icon,
-                                    cloud_amount: app.forecast[i].cloud_amount,
-                                    wind_speed_min: app.forecast[i].wind_speed_min,
-                                    day_part: app.forecast[i].day_part,
-                                    icon: icon,
-                                })
-                            }
-                        }
-                        // console.log(app.forecast);
-                        // console.log(app.forecastsort);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .then(function () {
-                        // always executed
-                    });
 
                 //openweather open
                 axios.get('http://api.openweathermap.org/data/2.5/weather', {
@@ -594,13 +463,14 @@
                     });
 
 
-                axios.get('{{route('getAccuweatherForecast')}}', {
+                axios.get('{{route('world.forecast')}}', {
                     params: {
-                        locationkey: accuweather_locationkey
+                        city: city,
                     }
                 })
                     .then(function (response) {
-                        app.accuweather_forecast = response.data;
+                        app.forecast = response.data;
+
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -608,45 +478,12 @@
                     .then(function () {
                         // always executed
                     });
+
 
                 //accuweather end
 
                 //weatherbit
 
-                axios.get('http://api.weatherbit.io/v2.0/current', {
-                    params: {
-                        key: '867bcae31c4a4c5ca57c57a806a4f07d',
-                        lang: 'ru',
-                        city: city,
-                    }
-                })
-                    .then(function (response) {
-                        app.weatherbit_current = response.data.data[0];
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .then(function () {
-                        // always executed
-                    });
-
-                axios.get('http://api.weatherbit.io/v2.0/forecast/daily', {
-                    params: {
-                        key: '867bcae31c4a4c5ca57c57a806a4f07d',
-                        lang: 'ru',
-                        city: city,
-                    }
-                })
-                    .then(function (response) {
-                        app.weatherbit_forecast = response.data.data;
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .then(function () {
-                        // always executed
-                    });
-                // weather bit end
 
 
 
@@ -672,7 +509,8 @@
 
                 return date.getDate() + '.' + months_arr[date.getMonth()] + '.' + date.getFullYear();
 
-            }
+            },
+
 
         },
         created() {

@@ -10,11 +10,14 @@
 <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /> -->
     <!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" /> -->
     <link rel="stylesheet" href="{{asset('assets/css/leaflet.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}"/>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/css/leaflet.awesome-markers.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/weather-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/weather-icons-wind.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/><![endif]-->
-    <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}"/>
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
@@ -49,11 +52,79 @@
 <body>
 
 <div id="map">
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+
+        <!-- nav tabs -->
+        <div class="leaflet-sidebar-tabs">
+            <!-- top aligned tabs -->
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
+{{--                <li><a href="#autopan" role="tab"><i class="fa fa-arrows"></i></a></li>--}}
+            </ul>
+
+            <!-- bottom aligned tabs -->
+            <ul role="tablist">
+{{--                <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>--}}
+            </ul>
+        </div>
+
+        <!-- panel content -->
+        <div class="leaflet-sidebar-content">
+            <div class="leaflet-sidebar-pane" id="home">
+                <h1 class="leaflet-sidebar-header">
+                    data.meteo.uz
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+
+                <p>
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="currentTemp"
+                           @change="current">
+                    <label class="form-check-label" for="exampleCheck1">Об-ҳаво (фактик)</label>
+                </div>
+                </p>
+                <p>
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck2" v-model="forcastTemp">
+                    <label class="form-check-label" for="exampleCheck2">Об-ҳаво (3 кунлик)</label>
+                </div>
+                </p>
+                <p>
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck3" v-model="atmTemp">
+                    <label class="form-check-label" for="exampleCheck3">Атмосфера ифлосланиши</label>
+                </div>
+                </p>
+            </div>
+
+{{--            <div class="leaflet-sidebar-pane" id="autopan">--}}
+{{--                <h1 class="leaflet-sidebar-header">--}}
+{{--                    autopan--}}
+{{--                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>--}}
+{{--                </h1>--}}
+{{--                <p>--}}
+{{--                    <code>Leaflet.control.sidebar({ autopan: true })</code>--}}
+{{--                    makes shure that the map center always stays visible.--}}
+{{--                </p>--}}
+{{--                <p>--}}
+{{--                    The autopan behviour is responsive as well.--}}
+{{--                    Try opening and closing the sidebar from this pane!--}}
+{{--                </p>--}}
+{{--            </div>--}}
+
+            <div class="leaflet-sidebar-pane" id="messages">
+                <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i
+                            class="fa fa-caret-left"></i></span></h1>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <!--  <a href="#"><img style="position: fixed; top: 0; right: 0; border: 0;" src="../images/ribbon.png" alt="βeta version"></a> -->
 <script src="{{asset('assets/js/leaflet.js')}}"></script>
+<script src="{{asset('asset/js/leaflet-sidebar.min.js')}}"></script>
+<script src="{{asset('assets/js/leaflet.awesome-markers.min.js')}}"></script>
 <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
 
 <script src="{{asset('asset/js/leaflet.ajax.js')}}"></script>
@@ -67,11 +138,6 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script> -->
 <script>
     var map;
-    var geoojson;
-    var area_id;
-    var map_id;
-    var area;
-    var address;
 
 
     Vue.component('validation-errors', {
@@ -112,22 +178,48 @@
             latitude: 0,
             longitude: 0,
             file: '',
+            forcastTemp: false,
+            currentTemp: true,
+            atmTemp: false,
+            markers: [],
 
 
         },
         methods: {
             InitialMap: function () {
-
+                var google = L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
+                    attribution: 'data.meteo.uz'
+                });
+                var googleSputnik = L.tileLayer('http://www.google.com/maps/vt?lyrs=s@189&gl=uz&x={x}&y={y}&z={z}', {
+                    attribution: 'data.meteo.uz'
+                });
+                var OpenStreetMap = L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
+                    attribution: 'data.meteo.uz'
+                });
 
                 // initialize the map
                 if (app.latitude == 0 && app.longitude == 0) {
-                    map = L.map('map').setView([41.315514, 69.246097], 6);
-
+                    map = L.map('map', {
+                        center: [41.315514, 69.246097],
+                        zoom: 6,
+                        layers: [google]
+                    });
                 } else {
-                    map = L.map('map').setView([app.latitude, app.longitude], 15);
+                    map = L.map('map', {
+                        center: [app.latitude, app.longitude],
+                        zoom: 10,
+                        layers: [google]
+                    });
 
 
                 }
+
+
+
+
+
+
+
 
                 {{--var kmlLayer = new L.KML("{{asset('asset/js/--1984.kml')}}", { async: false });--}}
                 {{--map.addLayer(kmlLayer);--}}
@@ -135,10 +227,7 @@
 
 
                 // load a tile layer  http://map.ygk.uz/tile/{z}/{x}/{y}.png OpenStreetMap харита
-                osm = L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
-                    // osm =  L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
-                    attribution: 'data.meteo.uz'
-                }).addTo(map);
+
 
                 drawnItems = L.featureGroup().addTo(map);
 
@@ -147,15 +236,23 @@
                     imperial: false
                 }).addTo(map);
 
-                L.control.layers({
-                    'OpenStreetMap харита': osm.addTo(map),
-                    'Google харита (Спутник)': L.tileLayer('http://www.google.com/maps/vt?lyrs=s@189&gl=uz&x={x}&y={y}&z={z}', {
-                        attribution: 'data.meteo.uz'
-                    }),
-                    'Google харита': L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
-                        attribution: 'data.meteo.uz'
-                    })
-                }, {}, {position: 'topright', collapsed: false}).addTo(map);
+
+                var baseMaps = {
+                    "OpenStreetMap харита": OpenStreetMap,
+                    "Google харита": google,
+                    "Google харита (Спутник)": googleSputnik
+                };
+
+
+                var sidebar = L.control.sidebar({container: 'sidebar', position: "right"})
+                    .addTo(map)
+                    .open('home');
+
+                var layer = L.control.layers(baseMaps).addTo(map);
+
+
+                // add panels dynamically to the sidebar
+
 
                 {{--var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");--}}
                 {{--geojsonLayer.addTo(map);--}}
@@ -225,142 +322,6 @@
                 //fetch the geojson and add it to our geojson layer
                 getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
                 getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
-{{--                getGeoData('{{asset('asset/geojson/amudaryo.topojson')}}').then(data => geojsonSnow.addData(data));--}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-                {{--// Begin Amudaryo--}}
-                {{--                var Kafernigan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kafernigan.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Kafernigan.addTo(map);--}}
-
-                {{--                var Kashkad = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Kashkad.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Kashkad.addTo(map);--}}
-
-                {{--                var Qunduz = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Qunduz.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Qunduz.addTo(map);--}}
-
-                {{--                var Surhan = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Surhan.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Surhan.addTo(map);--}}
-
-                {{--                var Vakhsh = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Amudaryo/Vakhsh.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Vakhsh.addTo(map);--}}
-
-                {{--                //Amudaryo end--}}
-                {{--                //Sirdaryo begin--}}
-
-                {{--                var Ferg_North = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_North.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Ferg_North.addTo(map);--}}
-
-                {{--                var Ferg_Sourth = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ferg_Sourth.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Ferg_Sourth.addTo(map);--}}
-
-                {{--                var Pskem = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Pskem.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.5,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "grey", // Lines in between countries.--}}
-                {{--                            weight: 2--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Pskem.addTo(map);--}}
-
-                {{--                var Ugam = new L.GeoJSON.AJAX("{{asset('asset/geojson/Snow-json/Sirdaryo/Ugam.geojson')}}", {--}}
-                {{--                    style: function (feature) {--}}
-                {{--                        return {--}}
-                {{--                            fillColor: "grey", // Default color of countries.--}}
-                {{--                            fillOpacity: 0.1,--}}
-                {{--                            stroke: true,--}}
-                {{--                            color: "#57A0F3", // Lines in between countries.--}}
-                {{--                            weight: 0.5--}}
-                {{--                        };--}}
-                {{--                    }--}}
-                {{--                });--}}
-                {{--                Ugam.addTo(map);--}}
-
-                {{--                //Sirdaryo end--}}
 
 
             },
@@ -417,58 +378,206 @@
             },
             showPosition: function (position) {
                 console.log('Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude);
+            },
+            getCurrent: function (city, lat, lang) {
+                var marker;
+
+                axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
+                    params: {
+                        city: city,
+                        language: 'ru'
+                    }
+                })
+                    .then(function (response) {
+
+
+                        if (response.data.weather_code == 'clear') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-day-sunny',
+                                    prefix: 'wi',
+                                    markerColor: 'yellow',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+                        } else if (response.data.weather_code == 'mostly_clear' || response.data.weather_code == 'mostly_clear' || response.data.weather_code == 'mostly_loudy') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-day-cloudy',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else if (response.data.weather_code == 'overcast') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-cloudy',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else if (response.data.weather_code == 'fog') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-fog',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else if (response.data.weather_code == 'light_rain' || response.data.weather_code == 'rain') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-rain',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else if (response.data.weather_code == 'heavy_rain') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-storm-showers',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else if (response.data.weather_code == 'thunderstorm') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-thunderstorm',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else if (response.data.weather_code == 'light_sleet' || response.data.weather_code == 'sleet') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-sleet',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else if (response.data.weather_code == 'heavy_sleet') {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-storm-showers',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        } else {
+                            marker = L.marker([lat, lang], {
+                                icon: L.AwesomeMarkers.icon({
+                                    icon: 'wi-snow',
+                                    prefix: 'wi',
+                                    markerColor: 'cadetblue',
+                                    spin: false
+                                })
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                                {
+                                    permanent: true,
+                                    direction: 'center'
+                                }).addTo(map);
+
+                        }
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+                return marker;
+
+            },
+            current: function () {
+                if (this.currentTemp) {
+                    this.markers.push(this.getCurrent('tashkent', 41.311081, 69.240562));
+                    this.markers.push(this.getCurrent('andijan', 40.815356, 72.28375));
+                    this.markers.push(this.getCurrent('bukhara', 39.768083, 64.455577));
+                    this.markers.push(this.getCurrent('fergana', 40.37338, 71.797833));
+                    this.markers.push(this.getCurrent('jizzakh', 40.125044, 67.880824));
+                    this.markers.push(this.getCurrent('urgench', 41.583884, 60.642432));
+                    this.markers.push(this.getCurrent('namangan', 41.005773, 71.643603));
+                    this.markers.push(this.getCurrent('navoiy', 40.103922, 65.368834));
+                    this.markers.push(this.getCurrent('qarshi', 38.861192, 65.784727));
+                    this.markers.push(this.getCurrent('nukus', 42.461891, 59.616631));
+                    this.markers.push(this.getCurrent('samarkand', 39.627012, 66.974973));
+                    this.markers.push(this.getCurrent('gulistan', 40.491509, 68.781077));
+                    this.markers.push(this.getCurrent('termez', 37.261069, 67.308624));
+                    this.markers.push(this.getCurrent('nurafshon', 41.045932, 69.353311));
+                } else {
+                    for (i in map._layers) {
+                    }
+
+                }
+
+
             }
-
-
         },
         created() {
             this.getLocation();
+            this.current();
 
         },
         mounted() {
+
         }
 
-    });
 
-
-    function ClickButton() {
-        area_id = $('#area_id').val();
-        map_id = $('#map_id').val();
-        area = $('#area').val();
-        address = $('#address').val();
-
-
-        {{--axios.get('{{route('check')}}')--}}
-        {{--    .then(function(response) {--}}
-        {{--        // handle success--}}
-        {{--        if (response.data == 0) {--}}
-        {{--            window.location.assign('{{route('login')}}')--}}
-        {{--        }--}}
-        {{--    })--}}
-        {{--    .catch(function(error) {--}}
-        {{--        // handle error--}}
-        {{--        console.log(error);--}}
-        {{--    })--}}
-        {{--    .finally(function() {--}}
-        {{--        // always executed--}}
-        {{--    });--}}
-
-
-
-    }
-</script>
-<script>
-    $('#basic').simpleTreeTable({
-        expander: $('#expander'),
-        collapser: $('#collapser'),
-        store: 'session',
-        storeKey: 'simple-tree-table-basic'
-    });
-    $('#open1').on('click', function () {
-        $('#basic').data('simple-tree-table').openByID("1");
-    });
-    $('#close1').on('click', function () {
-        $('#basic').data('simple-tree-table').closeByID("1");
     });
 </script>
 
