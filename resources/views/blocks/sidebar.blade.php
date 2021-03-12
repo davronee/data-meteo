@@ -7,6 +7,10 @@
             @includeWhen(auth()->user()->isStationCentralAgent(), 'blocks.menu.station-central-agent')
             @includeWhen(auth()->user()->isStationControlAgent(), 'blocks.menu.station-control-agent')
 
+            <li class="nav-item">
+                <a href="#offCanvas3" class="nav-link off-canvas-menu"><i class="fas fa-satellite"></i>Спутник Метеосат</a>
+            </li>
+
             {{-- <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
             <li class="nav-item">
                 <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Прогноз погоды</a>
