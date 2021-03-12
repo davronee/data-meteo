@@ -8,7 +8,7 @@
             @includeWhen(auth()->user()->isStationControlAgent(), 'blocks.menu.station-control-agent')
 
             <li class="nav-item">
-                <a href="http://217.30.161.60:8083" target="_blank" class="nav-link off-canvas-menu"><i class="fas fa-satellite"></i>Спутник Метеосат</a>
+                <a href="http://217.30.161.60:8083" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Спутник Метеосат</a>
             </li>
 
             {{-- <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
