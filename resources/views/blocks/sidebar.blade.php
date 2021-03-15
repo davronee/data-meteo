@@ -7,51 +7,77 @@
             @includeWhen(auth()->user()->isStationCentralAgent(), 'blocks.menu.station-central-agent')
             @includeWhen(auth()->user()->isStationControlAgent(), 'blocks.menu.station-control-agent')
 
-            <li class="nav-item">
-                <a href="http://217.30.161.60:8083" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Спутник Метеосат</a>
-            </li>
+            <li class="nav-label"><label class="content-label">Прогноз погоды</label></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Общего пользования</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Наукастинг(фактическая)</a>
+                        <a href="#" class="nav-sub-link">Сверхкраткосрочный</a>
+                        <a href="#" class="nav-sub-link">Краткосрочный</a>
+                        <a href="#" class="nav-sub-link">Среднесрочный</a>
+                        <a href="#" class="nav-sub-link">С расширенным сроком</a>
+                        <a href="#" class="nav-sub-link">Долгосрочный</a>
+                    </nav>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plane-departure"></i> Авиационные</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
+                <li class="nav-label"><label class="content-label">Наблюдения и мониторинг</label></li>
+                <li class="nav-item">
+                    <a href="http://217.30.161.60:8083" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Зондирование</a>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-eye"></i> Мониторинг</a></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-database"></i> Сбор данных</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Источники</a>
+                        <a href="#" class="nav-sub-link">Метеостанции</a>
+                        <a href="#" class="nav-sub-link">Метео карты</a>
+                    </nav>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-chart-line"></i> Анализ</a>
+                    <nav class="nav nav-sub">
+                        <a href="sinoptik.html" class="nav-sub-link">Синоптический анализ</a>
+                        <a href="#" class="nav-sub-link">Анализ и объяснение</a>
+                        <a href="#" class="nav-sub-link">Фактическая погода</a>
+                        <a href="#" class="nav-sub-link">Данные об условиях погоды</a>
+                    </nav>
+                </li>
+                <li class="nav-label"><label class="content-label">Визуализация данных</label></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-chart-area"></i> Визуализация данных</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-layer-group"></i> Виджеты</a></li>
+                <li class="nav-label"><label class="content-label">Интеграция</label></li>
+                <li class="nav-item">
+                    <a href="" class="nav-link with-sub"><i class="fas fa-code"></i> Обмен данными</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">В виде таблиц</a>
+                        <a href="#" class="nav-sub-link">Экспорт на Excel</a>
+                        <a href="#" class="nav-sub-link">Экспорт на XML</a>
+                    </nav>
+                </li>
+                <li class="nav-label"><label class="content-label">Справочники и классификаторы</label></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fas fa-cogs"></i> Справочники</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Прогнозы погоды</a>
+                        <a href="#" class="nav-sub-link">Метеостанции</a>
+                        <a href="#" class="nav-sub-link">Пункты назначений</a>
+                    </nav>
+                </li>
 
-            {{-- <li class="nav-label"><label class="content-label">Данные об условиях погоды</label></li>
-            <li class="nav-item">
-                <a href="#" class="nav-link with-sub"><i class="fas fa-cloud-sun-rain"></i> Прогноз погоды</a>
-                <nav class="nav nav-sub">
-                    <a href="#" class="nav-sub-link">Наукастинг(фактическая)</a>
-                    <a href="#" class="nav-sub-link">Сверхкраткосрочный</a>
-                    <a href="#" class="nav-sub-link">Краткосрочный</a>
-                    <a href="#" class="nav-sub-link">Среднесрочный</a>
-                    <a href="#" class="nav-sub-link">С расширенным сроком</a>
-                    <a href="#" class="nav-sub-link">Долгосрочный</a>
-                </nav>
-            </li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plane-departure"></i> Авиационные</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
-            <li class="nav-label"><label class="content-label">Наблюдения и мониторинг</label></li>
-            <li class="nav-item">
-                <a href="" class="nav-link with-sub"><i class="fas fa-temperature-high"></i> Температура</a>
-                <nav class="nav nav-sub">
-                    <a href="#" class="nav-sub-link">Min. С&deg; воздуха и почвы</a>
-                    <a href="#" class="nav-sub-link">Max. С&deg; воздуха</a>
-                </nav>
-            </li>
-            <li class="nav-item">
-                <a href="" class="nav-link with-sub"><i class="fas fa-cloud-rain"></i> Количество осадков</a>
-                <nav class="nav nav-sub">
-                    <a href="#" class="nav-sub-link">За прошедшие сутки</a>
-                    <a href="#" class="nav-sub-link">За прошедший день</a>
-                </nav>
-            </li>
-            <li class="nav-item">
-                <a href="" class="nav-link with-sub"><i class="fas fa-chart-area"></i> Визуализация</a>
-                <nav class="nav nav-sub">
-                    <a href="#" class="nav-sub-link">Метеограммы Европейского центра</a>
-                    <a href="#" class="nav-sub-link">Спутниковые снимки</a>
-                    <a href="#" class="nav-sub-link">МРЛ-снимки</a>
-                </nav>
-            </li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-cloud-showers-heavy"></i>Снежный покров</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-poo-storm"></i> Информация о штормовых явлениях</a></li>
-            <li class="nav-label"><label class="content-label"></label></li>
-            <li class="nav-item"><a href="#" class="nav-link text-danger"><i class="fas fa-exclamation-triangle"></i> Экстренная сообщения</a></li> --}}
+                <li class="nav-label"><label class="content-label">Персональные данные</label></li>
+                <li class="nav-item"><a href="#" class="nav-link with-sub"><i class="fas fa-user"></i> Кабинет пользователя</a>
+                    <nav class="nav nav-sub">
+                        <a href="#" class="nav-sub-link">Почта</a>
+                        <a href="#" class="nav-sub-link">Чат</a>
+                        <a href="{{ route('user-profile.edit', auth()->user()->id) }}" class="nav-sub-link">Настройка</a>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-sub-link">Выход</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </nav>
+                </li>
         </ul>
         <hr class="mg-t-30 mg-b-25">
         <ul class="nav nav-sidebar">
