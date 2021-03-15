@@ -1,75 +1,48 @@
 @extends('layouts.html')
 
 @section('content')
-<div class="container">
-    <div id="login-section" class="mt-45">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
-
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Login') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<div class="signin-panel">
+    <div class="signin-sidebar">
+        <div class="signin-sidebar-body">
+            <div class="text-center">
+                <a href="#" class="text-success">
+                    <span><img src="{{ asset('template/assets/img/gidrometeo.svg') }}" alt=""></span>
+                </a>
+                <div class="divider-text">Кабинет пользователя</div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="signin-form">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label>Логин</label>
+                        <input type="text" class="form-control" placeholder="Введите свой логин" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="d-flex justify-content-between">
+                            <span>Пароль</span>
+                        </label>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Введите свой пароль">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group d-flex mg-b-0">
+                        <button type="submit" class="btn btn-facebook btn-uppercase btn-block"><i class="fas fa-sign-out-alt"></i> Войти</button>
+                    </div>
+                </form>
+            </div>
+            <p class="mg-t-auto mg-b-0 tx-sm tx-color-03 tx-center">Центр гидрометеорологической службы Республики Узбекистан</p>
+        </div><!-- signin-sidebar-body -->
+    </div><!-- signin-sidebar -->
+</div><!-- signin-panel -->
 @endsection
