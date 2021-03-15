@@ -23,12 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="widthet changed">
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/world_old.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/meteo-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meteo-data.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/world.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/world.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/world_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/world_new.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +183,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -254,6 +249,13 @@
       <workItem from="1611124094794" duration="1615000" />
       <workItem from="1611140180342" duration="421000" />
       <workItem from="1611293460501" duration="1580000" />
+      <workItem from="1611740820817" duration="7390000" />
+      <workItem from="1611901462302" duration="1199000" />
+      <workItem from="1612169804142" duration="1271000" />
+      <workItem from="1613220089984" duration="5018000" />
+      <workItem from="1613458287388" duration="670000" />
+      <workItem from="1615478356802" duration="83000" />
+      <workItem from="1615807173058" duration="72000" />
     </task>
     <task id="LOCAL-00005" summary="widthet changed">
       <created>1606913079150</created>
@@ -297,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610618617602</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="widthet changed">
+      <created>1611750958669</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1611750958669</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,21 +330,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="widthet changed" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="987" y="370" key="FileChooserDialogImpl" timestamp="1611293573624">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="527" y="192" key="FileChooserDialogImpl" timestamp="1613713543156">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="527" y="192" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1613713543156" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1610084675539" />
-    <state x="987" y="370" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1611293573624" />
+    <state x="987" y="370" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1613222042445" />
     <state x="782" y="346" key="SettingsEditor" timestamp="1611038993386">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="782" y="346" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1611038993386" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1610620803296">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1611750976841">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1608574165630" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608728260325" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1610620803296" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1611750976841" />
     <state x="643" y="293" key="git4idea.merge.GitPullDialog" timestamp="1605808434644">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -344,10 +354,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1033" y="602" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1611296729953" />
-    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1611296772475">
+    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1613224622438">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608535960058" />
-    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1611296772475" />
+    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1613224622438" />
   </component>
 </project>
