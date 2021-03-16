@@ -193,7 +193,7 @@
                 var googleSputnik = L.tileLayer('http://www.google.com/maps/vt?lyrs=s@189&gl=uz&x={x}&y={y}&z={z}', {
                     attribution: 'data.meteo.uz'
                 });
-                var OpenStreetMap = L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
+                var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: 'data.meteo.uz'
                 });
 
@@ -399,7 +399,7 @@
                                     markerColor: 'yellow',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -412,7 +412,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -426,7 +426,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -440,7 +440,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -454,7 +454,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -468,7 +468,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -482,7 +482,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -496,7 +496,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -510,7 +510,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'
@@ -524,7 +524,7 @@
                                     markerColor: 'cadetblue',
                                     spin: false
                                 })
-                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t) + ' °C' : Math.round(response.data.air_t),
+                            }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
                                 {
                                     permanent: true,
                                     direction: 'center'

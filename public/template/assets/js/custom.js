@@ -49,7 +49,7 @@ let app2 = new Vue({
             var googleSputnik = L.tileLayer('http://www.google.com/maps/vt?lyrs=s@189&gl=uz&x={x}&y={y}&z={z}', {
                 attribution: 'data.meteo.uz'
             });
-            var OpenStreetMap = L.tileLayer('http://map.ygk.uz/tile/{z}/{x}/{y}.png', {
+            var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'data.meteo.uz'
             });
 
@@ -145,8 +145,8 @@ let app2 = new Vue({
             }
 
             //fetch the geojson and add it to our geojson layer
-            getGeoData('/asset/geojson/tuman.topojson').then(data => geojson.addData(data));
-            getGeoData('/asset/geojson/map.topojson').then(data => geojsonSnow.addData(data));
+            // getGeoData('/asset/geojson/tuman.topojson').then(data => geojson.addData(data));
+            // getGeoData('/asset/geojson/map.topojson').then(data => geojsonSnow.addData(data));
         },
 
 getElement: function (area, area_id, map_id) {
