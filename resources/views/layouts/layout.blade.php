@@ -121,7 +121,7 @@
 <script src="{{asset('template/lib/jquery.flot/jquery.flot.resize.js')}}"></script>
 <script src="{{asset('template/lib/jquery.flot/jquery.flot.threshold.js')}}"></script>
 <script src="{{asset('template/lib/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{asset('template/lib/jqvmap/maps/jquery.vmap.world_template.js')}}"></script>
+{{--<script src="{{asset('template/lib/jqvmap/maps/jquery.vmap.world_template.js')}}"></script>--}}
 <script src="{{asset('template/lib/select2/js/select2.min.js')}}"></script>
 <script src="{{asset('template/assets/js/meteo.js')}}"></script>
 <script src="{{asset('template/assets/js/canvas.js')}}"></script>
