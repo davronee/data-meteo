@@ -354,3 +354,32 @@ ul.dropdown-menu li {
 #edit-user-form .form-group {
     margin-right: 0;
 }
+
+#map {
+    height: 100%;
+    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.lorem {
+    font-style: italic;
+    color: #AAA;
+}
+
+.bg-aniq {
+    background: #fff;
+    border: 1px solid #ff0303;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.col-md-31 {
+    float: left;
+    width: 400px;
+}
+
+.col-md-91 {
+    float: left;
+    width: calc(100vw - 390px) !important;
+}
