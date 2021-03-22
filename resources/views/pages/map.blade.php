@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
     <!--[if lte IE 8]>
-    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/><![endif]-->
+<!--    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/>--><![endif]-->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}"/>
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
@@ -136,11 +136,11 @@
 <script src="{{asset('assets/js/leaflet.js')}}"></script>
 <script src="{{asset('asset/js/leaflet-sidebar.min.js')}}"></script>
 <script src="{{asset('assets/js/leaflet.awesome-markers.min.js')}}"></script>
-<script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+<script src="{{asset('js/topojson.min.js')}}"></script>
 
 <script src="{{asset('asset/js/leaflet.ajax.js')}}"></script>
 
-<script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+<script src="{{asset('assets/js/jquery-2.1.3.js')}}"></script>
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery-simple-tree-table.js')}}"></script>
