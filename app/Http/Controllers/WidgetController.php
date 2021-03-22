@@ -28,7 +28,7 @@ class WidgetController extends Controller
 
     public function getCurrent(Request $request)
     {
-        $current = Http::get('http://192.168.10.247/api/weather/current/'.$request->regionid);
+        $current = Http::get('http://192.168.10.255/api/weather/current/'.$request->regionid);
         return $current->json();
     }
 
