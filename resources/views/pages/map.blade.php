@@ -22,6 +22,9 @@
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/table.css')}}"/>
+    {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>--}}
+    {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>--}}
+    {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>--}}
 
 
     <style>
@@ -59,12 +62,12 @@
             <!-- top aligned tabs -->
             <ul role="tablist">
                 <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
-{{--                <li><a href="#autopan" role="tab"><i class="fa fa-arrows"></i></a></li>--}}
+                {{--                <li><a href="#autopan" role="tab"><i class="fa fa-arrows"></i></a></li>--}}
             </ul>
 
             <!-- bottom aligned tabs -->
             <ul role="tablist">
-{{--                <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>--}}
+                {{--                <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>--}}
             </ul>
         </div>
 
@@ -80,37 +83,45 @@
                 <div class="form-group">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="currentTemp"
                            @change="current">
-                    <label class="form-check-label" for="exampleCheck1">Об-ҳаво (фактик)</label>
+                    <label class="form-check-label" for="exampleCheck1">Об-ҳаво</label>
                 </div>
                 </p>
-                <p>
-                <div class="form-group">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck2" v-model="forcastTemp">
-                    <label class="form-check-label" for="exampleCheck2">Об-ҳаво (3 кунлик)</label>
-                </div>
-                </p>
+                {{--                <p>--}}
+                {{--                <div class="form-group">--}}
+                {{--                    <input type="checkbox" class="form-check-input" id="exampleCheck2" v-model="forcastTemp">--}}
+                {{--                    <label class="form-check-label" for="exampleCheck2">Об-ҳаво (3 кунлик)</label>--}}
+                {{--                </div>--}}
+                {{--                </p>--}}
                 <p>
                 <div class="form-group">
                     <input type="checkbox" class="form-check-input" id="exampleCheck3" v-model="atmTemp">
                     <label class="form-check-label" for="exampleCheck3">Атмосфера ифлосланиши</label>
                 </div>
                 </p>
+                <p>
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck4" v-model="radar"
+                           @change="getRadars"
+                    >
+                    <label class="form-check-label" for="exampleCheck4">Радар</label>
+                </div>
+                </p>
             </div>
 
-{{--            <div class="leaflet-sidebar-pane" id="autopan">--}}
-{{--                <h1 class="leaflet-sidebar-header">--}}
-{{--                    autopan--}}
-{{--                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>--}}
-{{--                </h1>--}}
-{{--                <p>--}}
-{{--                    <code>Leaflet.control.sidebar({ autopan: true })</code>--}}
-{{--                    makes shure that the map center always stays visible.--}}
-{{--                </p>--}}
-{{--                <p>--}}
-{{--                    The autopan behviour is responsive as well.--}}
-{{--                    Try opening and closing the sidebar from this pane!--}}
-{{--                </p>--}}
-{{--            </div>--}}
+            {{--            <div class="leaflet-sidebar-pane" id="autopan">--}}
+            {{--                <h1 class="leaflet-sidebar-header">--}}
+            {{--                    autopan--}}
+            {{--                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>--}}
+            {{--                </h1>--}}
+            {{--                <p>--}}
+            {{--                    <code>Leaflet.control.sidebar({ autopan: true })</code>--}}
+            {{--                    makes shure that the map center always stays visible.--}}
+            {{--                </p>--}}
+            {{--                <p>--}}
+            {{--                    The autopan behviour is responsive as well.--}}
+            {{--                    Try opening and closing the sidebar from this pane!--}}
+            {{--                </p>--}}
+            {{--            </div>--}}
 
             <div class="leaflet-sidebar-pane" id="messages">
                 <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i
@@ -135,9 +146,13 @@
 <script src="{{asset('assets/js/jquery-simple-tree-table.js')}}"></script>
 <script src="{{asset('assets/js/table.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
+{{--<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>--}}
+{{--<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>--}}
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script> -->
 <script>
     var map;
+    var markers_weather = L.featureGroup();
+    var markers_radar = L.featureGroup();
 
 
     Vue.component('validation-errors', {
@@ -182,11 +197,14 @@
             currentTemp: true,
             atmTemp: false,
             markers: [],
+            radars:@json($radars),
+            radar:false,
 
 
         },
         methods: {
             InitialMap: function () {
+
                 var google = L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
                     attribution: 'data.meteo.uz'
                 });
@@ -324,6 +342,8 @@
                 getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
 
 
+
+                this.getRadars();
             },
 
 
@@ -382,17 +402,16 @@
             getCurrent: function (city, lat, lang) {
                 var marker;
 
-                axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
+                axios.get('{{route('map.getCurrent')}}', {
                     params: {
-                        city: city,
-                        language: 'ru'
+                        regionid: city,
                     }
                 })
                     .then(function (response) {
 
 
                         if (response.data.weather_code == 'clear') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-day-sunny',
                                     prefix: 'wi',
@@ -403,9 +422,11 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
                         } else if (response.data.weather_code == 'mostly_clear' || response.data.weather_code == 'mostly_clear' || response.data.weather_code == 'mostly_loudy') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-day-cloudy',
                                     prefix: 'wi',
@@ -416,10 +437,13 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else if (response.data.weather_code == 'overcast') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-cloudy',
                                     prefix: 'wi',
@@ -430,10 +454,13 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else if (response.data.weather_code == 'fog') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-fog',
                                     prefix: 'wi',
@@ -444,10 +471,13 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else if (response.data.weather_code == 'light_rain' || response.data.weather_code == 'rain') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-rain',
                                     prefix: 'wi',
@@ -458,10 +488,13 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else if (response.data.weather_code == 'heavy_rain') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-storm-showers',
                                     prefix: 'wi',
@@ -472,10 +505,13 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else if (response.data.weather_code == 'thunderstorm') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-thunderstorm',
                                     prefix: 'wi',
@@ -486,10 +522,13 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else if (response.data.weather_code == 'light_sleet' || response.data.weather_code == 'sleet') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-sleet',
                                     prefix: 'wi',
@@ -500,10 +539,13 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else if (response.data.weather_code == 'heavy_sleet') {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-storm-showers',
                                     prefix: 'wi',
@@ -514,10 +556,12 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         } else {
-                            marker = L.marker([lat, lang], {
+                            marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
                                 icon: L.AwesomeMarkers.icon({
                                     icon: 'wi-snow',
                                     prefix: 'wi',
@@ -528,9 +572,15 @@
                                 {
                                     permanent: true,
                                     direction: 'center'
-                                }).addTo(map);
+                                });
+                            markers_weather.addLayer(marker)
+
 
                         }
+
+
+                        map.addLayer(markers_weather);
+
 
                     })
                     .catch(function (error) {
@@ -545,25 +595,56 @@
             },
             current: function () {
                 if (this.currentTemp) {
-                    this.markers.push(this.getCurrent('tashkent', 41.311081, 69.240562));
-                    this.markers.push(this.getCurrent('andijan', 40.815356, 72.28375));
-                    this.markers.push(this.getCurrent('bukhara', 39.768083, 64.455577));
-                    this.markers.push(this.getCurrent('fergana', 40.37338, 71.797833));
-                    this.markers.push(this.getCurrent('jizzakh', 40.125044, 67.880824));
-                    this.markers.push(this.getCurrent('urgench', 41.583884, 60.642432));
-                    this.markers.push(this.getCurrent('namangan', 41.005773, 71.643603));
-                    this.markers.push(this.getCurrent('navoiy', 40.103922, 65.368834));
-                    this.markers.push(this.getCurrent('qarshi', 38.861192, 65.784727));
-                    this.markers.push(this.getCurrent('nukus', 42.461891, 59.616631));
-                    this.markers.push(this.getCurrent('samarkand', 39.627012, 66.974973));
-                    this.markers.push(this.getCurrent('gulistan', 40.491509, 68.781077));
-                    this.markers.push(this.getCurrent('termez', 37.261069, 67.308624));
-                    this.markers.push(this.getCurrent('nurafshon', 41.045932, 69.353311));
+                    this.markers.push(this.getCurrent(1726));
+                    this.markers.push(this.getCurrent(1703));
+                    this.markers.push(this.getCurrent(1706));
+                    this.markers.push(this.getCurrent(1730));
+                    this.markers.push(this.getCurrent(1708));
+                    this.markers.push(this.getCurrent(1733));
+                    this.markers.push(this.getCurrent(1714));
+                    this.markers.push(this.getCurrent(1712));
+                    this.markers.push(this.getCurrent(1710));
+                    this.markers.push(this.getCurrent(1735));
+                    this.markers.push(this.getCurrent(1718));
+                    this.markers.push(this.getCurrent(1724));
+                    this.markers.push(this.getCurrent(1722));
+                    this.markers.push(this.getCurrent(1727));
                 } else {
-                    for (i in map._layers) {
-                    }
+                    markers_weather.clearLayers();
+
 
                 }
+
+
+            },
+            getRadars: function () {
+                if(this.radar)
+                {
+                    this.radars.forEach(function (item, i, arr) {
+                        // console.log( i + ": " + item.latitude + " (массив:" + item.region_id + ")" );
+                      var marker =  L.marker([item.latitude, item.longitude]);
+                        markers_radar.addLayer(marker);
+
+                        var circle = L.circle([item.latitude, item.longitude], {
+                            color: 'red',
+                            fillColor: '#f03',
+                            fillOpacity: 0.3,
+                            radius: 200000
+                        })
+                        markers_radar.addLayer(circle)
+                    });
+
+
+
+                    map.addLayer(markers_radar);
+
+                }
+                else
+                {
+                    markers_radar.clearLayers();
+
+                }
+
 
 
             }

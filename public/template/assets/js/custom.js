@@ -200,186 +200,191 @@ showError: function (error) {
 showPosition: function (position) {
     console.log('Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude);
 },
-getCurrent: function (city, lat, lang) {
-    var marker;
+        getCurrent: function (city, lat, lang) {
+            var marker;
 
-    axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
-        params: {
-            city: city,
-            language: 'ru'
-        }
-    })
+            axios.get('/map/getcurrent', {
+                params: {
+                    regionid: city,
+                }
+            })
         .then(function (response) {
 
 
-            if (response.data.weather_code == 'clear') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-day-sunny',
-                        prefix: 'wi',
-                        markerColor: 'yellow',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
-            } else if (response.data.weather_code == 'mostly_clear' || response.data.weather_code == 'mostly_loudy' ||  response.data.weather_code == 'partly_cloudy') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-day-cloudy',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                if (response.data.weather_code == 'clear') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-day-sunny',
+                            prefix: 'wi',
+                            markerColor: 'yellow',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
+                } else if (response.data.weather_code == 'mostly_clear' || response.data.weather_code == 'mostly_clear' || response.data.weather_code == 'mostly_loudy') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-day-cloudy',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
 
-            } else if (response.data.weather_code == 'overcast') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-cloudy',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                } else if (response.data.weather_code == 'overcast') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
 
-            } else if (response.data.weather_code == 'fog') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-fog',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-cloudy',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
 
-            } else if (response.data.weather_code == 'light_rain' || response.data.weather_code == 'rain') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-rain',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                } else if (response.data.weather_code == 'fog') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
 
-            } else if (response.data.weather_code == 'heavy_rain') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-storm-showers',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-fog',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
 
-            } else if (response.data.weather_code == 'thunderstorm') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-thunderstorm',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                } else if (response.data.weather_code == 'light_rain' || response.data.weather_code == 'rain') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
 
-            } else if (response.data.weather_code == 'light_sleet' || response.data.weather_code == 'sleet') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-sleet',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-rain',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
 
-            } else if (response.data.weather_code == 'heavy_sleet') {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-storm-showers',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                } else if (response.data.weather_code == 'heavy_rain') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
 
-            } else {
-                marker = L.marker([lat, lang], {
-                    icon: L.AwesomeMarkers.icon({
-                        icon: 'wi-snow',
-                        prefix: 'wi',
-                        markerColor: 'cadetblue',
-                        spin: false
-                    })
-                }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
-                    {
-                        permanent: true,
-                        direction: 'center'
-                    }).addTo(map);
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-storm-showers',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
 
-            }
+                } else if (response.data.weather_code == 'thunderstorm') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
 
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        .then(function () {
-            // always executed
-        });
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-thunderstorm',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
 
-    return marker;
+                } else if (response.data.weather_code == 'light_sleet' || response.data.weather_code == 'sleet') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
 
-},
-current: function () {
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-sleet',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
+
+                } else if (response.data.weather_code == 'heavy_sleet') {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-storm-showers',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
+
+                } else {
+                    marker = L.marker([response.data.city.latitude, response.data.city.longitude], {
+                        icon: L.AwesomeMarkers.icon({
+                            icon: 'wi-snow',
+                            prefix: 'wi',
+                            markerColor: 'cadetblue',
+                            spin: false
+                        })
+                    }).bindTooltip(response.data.air_t > 0 ? '+' + Math.round(response.data.air_t).toString() + ' °C' : Math.round(response.data.air_t).toString(),
+                        {
+                            permanent: true,
+                            direction: 'center'
+                        }).addTo(map);
+
+                }
+
+            })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .then(function () {
+                    // always executed
+                });
+
+            return marker;
+
+        },current: function () {
     if (this.currentTemp) {
-        this.markers.push(this.getCurrent('tashkent', 41.311081, 69.240562));
-        this.markers.push(this.getCurrent('andijan', 40.815356, 72.28375));
-        this.markers.push(this.getCurrent('bukhara', 39.768083, 64.455577));
-        this.markers.push(this.getCurrent('fergana', 40.37338, 71.797833));
-        this.markers.push(this.getCurrent('jizzakh', 40.125044, 67.880824));
-        this.markers.push(this.getCurrent('urgench', 41.583884, 60.642432));
-        this.markers.push(this.getCurrent('namangan', 41.005773, 71.643603));
-        this.markers.push(this.getCurrent('navoiy', 40.103922, 65.368834));
-        this.markers.push(this.getCurrent('qarshi', 38.861192, 65.784727));
-        this.markers.push(this.getCurrent('nukus', 42.461891, 59.616631));
-        this.markers.push(this.getCurrent('samarkand', 39.627012, 66.974973));
-        this.markers.push(this.getCurrent('gulistan', 40.491509, 68.781077));
-        this.markers.push(this.getCurrent('termez', 37.261069, 67.308624));
-        this.markers.push(this.getCurrent('nurafshon', 41.045932, 69.353311));
+        this.markers.push(this.getCurrent(1726));
+        this.markers.push(this.getCurrent(1703));
+        this.markers.push(this.getCurrent(1706));
+        this.markers.push(this.getCurrent(1730));
+        this.markers.push(this.getCurrent(1708));
+        this.markers.push(this.getCurrent(1733));
+        this.markers.push(this.getCurrent(1714));
+        this.markers.push(this.getCurrent(1712));
+        this.markers.push(this.getCurrent(1710));
+        this.markers.push(this.getCurrent(1735));
+        this.markers.push(this.getCurrent(1718));
+        this.markers.push(this.getCurrent(1724));
+        this.markers.push(this.getCurrent(1722));
+        this.markers.push(this.getCurrent(1727));
     } else {
         for (i in map._layers) {
         }

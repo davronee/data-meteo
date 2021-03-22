@@ -26,7 +26,9 @@ use App\Http\Controllers\HourlyStationInfoExportController;
 |
 */
 
-Route::group(['middleware' => ['set_locale']], function() {
+Route::group(['middleware' => ['set_locale']], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+
     Auth::routes(['register' => false]);
     Route::get('/data', function () {
         return view('pages.map');
@@ -44,19 +46,17 @@ Route::group(['middleware' => ['set_locale']], function() {
     });
 
 
-
-
     Route::get('/', [WidgetController::class, 'index'])->name('home');
-    Route::get('/map', [WidgetController::class, 'map'])->name('map');
-    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+
+    Route::prefix('map')->group(function () {
+        Route::get('/', [WidgetController::class, 'map'])->name('map');
+        Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
 
 
+    });
 
 
-
-
-
-    Route::group(['middleware' => ['auth']], function() {
+    Route::group(['middleware' => ['auth']], function () {
         // user profile routes
         Route::resource('admin/user', UserController::class)->except(['show']);
 
