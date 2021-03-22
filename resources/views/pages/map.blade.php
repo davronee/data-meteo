@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/leaflet-sidebar.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
     <!--[if lte IE 8]>
-<!--    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/>--><![endif]-->
+    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css"/><![endif]-->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}"/>
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
