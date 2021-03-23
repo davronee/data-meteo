@@ -132,6 +132,8 @@
 </div>
 
 
+
+
 <!--  <a href="#"><img style="position: fixed; top: 0; right: 0; border: 0;" src="../images/ribbon.png" alt="βeta version"></a> -->
 <script src="{{asset('assets/js/leaflet.js')}}"></script>
 <script src="{{asset('asset/js/leaflet-sidebar.min.js')}}"></script>
@@ -198,7 +200,7 @@
             atmTemp: false,
             markers: [],
             radars:@json($radars),
-            radar:false,
+            radar: false,
 
 
         },
@@ -342,8 +344,9 @@
                 getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
 
 
-
                 this.getRadars();
+
+
             },
 
 
@@ -618,16 +621,28 @@
 
             },
             getRadars: function () {
-                if(this.radar)
-                {
+                if (this.radar) {
                     this.radars.forEach(function (item, i, arr) {
                         // console.log( i + ": " + item.latitude + " (массив:" + item.region_id + ")" );
-                      var marker =  L.marker([item.latitude, item.longitude]);
+                        var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
+
+                            if(item.region_id == 1726 || item.region_id == 1735)
+                            {
+                                marker.bindPopup("<img width='400' height='250' src='/map/getRadars?region="+ item.region_id + "' />" )
+                            }
+                            // marker.bindPopup("<img width='200' height='150' src='/map/getRadars?region="+ item.region_id + "' />" )
+
+                            // this.bindPopup('<img src="https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">');
+                        });
                         markers_radar.addLayer(marker);
+                        marker.fire('click');
+
+
+                        // marker.bindPopup('<p>'+ item.region_id +'</p>');
 
                         var circle = L.circle([item.latitude, item.longitude], {
-                            color: 'red',
-                            fillColor: '#f03',
+                            color: '#4236E5',
+                            fillColor: '#6789E5',
                             fillOpacity: 0.3,
                             radius: 200000
                         })
@@ -635,16 +650,12 @@
                     });
 
 
-
                     map.addLayer(markers_radar);
 
-                }
-                else
-                {
+                } else {
                     markers_radar.clearLayers();
 
                 }
-
 
 
             }

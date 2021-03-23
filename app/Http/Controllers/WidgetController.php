@@ -26,9 +26,25 @@ class WidgetController extends Controller
 
     }
 
+    public function getRadars(Request $request)
+    {
+        $radar = Http::get('http://meteo.uz/new/index.php?r=restricted/radarimage/listAjax');
+        header('Content-type:image/png');
+
+        if($request->region)
+        {
+            if($request->region == 1726)
+            print base64_decode($radar[0]['tashkent']['image']);
+
+            if($request->region == 1735)
+                print base64_decode($radar[0]['nukus']['image']);
+        }
+
+    }
     public function getCurrent(Request $request)
     {
-        $current = Http::get('http://192.168.10.249:8085/api/weather/current/'.$request->regionid);
+//        $current = Http::get('http://192.168.10.249:8085/api/weather/current/'.$request->regionid);
+        $current = Http::get('http://217.30.161.60:8085/api/weather/current/'.$request->regionid);
         return $current->json();
     }
 

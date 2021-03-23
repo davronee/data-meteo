@@ -51,6 +51,7 @@ Route::group(['middleware' => ['set_locale']], function () {
     Route::prefix('map')->group(function () {
         Route::get('/', [WidgetController::class, 'map'])->name('map');
         Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
+        Route::get('/getRadars', [WidgetController::class, 'getRadars'])->name('map.getRadars');
 
 
     });
