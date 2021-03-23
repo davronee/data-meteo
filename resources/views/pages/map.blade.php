@@ -11,6 +11,9 @@
     <!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" /> -->
     <link rel="stylesheet" href="{{asset('assets/css/leaflet.css')}}"/>
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
+
+
     <link rel="stylesheet" href="{{asset('assets/css/leaflet.awesome-markers.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/weather-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/weather-icons-wind.css')}}">
@@ -22,6 +25,7 @@
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/table.css')}}"/>
+
     {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>--}}
     {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>--}}
     {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>--}}
@@ -103,7 +107,7 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck4" v-model="radar"
                            @change="getRadars"
                     >
-                    <label class="form-check-label" for="exampleCheck4">Радар</label>
+                    <label class="form-check-label" for="exampleCheck4">Локатор<i class="fas fa-satellite"></i></label>
                 </div>
                 </p>
             </div>
@@ -628,7 +632,15 @@
 
                             if(item.region_id == 1726 || item.region_id == 1735)
                             {
-                                marker.bindPopup("<img width='400' height='250' src='/map/getRadars?region="+ item.region_id + "' />" )
+                                if(item.region_id == 1726)
+                                {
+                                    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/2.png')}}' />" )
+                                }
+                                else if(item.region_id == 1735)
+                                {
+                                    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/1.png')}}' />" )
+                                }
+                                // marker.bindPopup("<img width='400' height='250' src='/map/getRadars?region="+ item.region_id + "' />" )
                             }
                             // marker.bindPopup("<img width='200' height='150' src='/map/getRadars?region="+ item.region_id + "' />" )
 
