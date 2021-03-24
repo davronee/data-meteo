@@ -367,7 +367,8 @@ class WidgetController extends Controller
 
     public function GetAtmasfera()
     {
-        $atmasfera = Http::get('http://192.168.10.249:8085/api/atmosphere/monitoring/');
+//        $atmasfera = Http::get('http://217.30.161.60:8085/api/atmosphere/monitoring/');
+        $atmasfera = Http::get('http://http://192.168.10.249:8085/api/atmosphere/monitoring/');
         return $atmasfera->json();
     }
 

@@ -25,7 +25,6 @@
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/table.css')}}"/>
-    <link rel="stylesheet" href="{{asset('css/lightbox.min.css')}}">
 
     {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>--}}
     {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>--}}
@@ -135,6 +134,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!--  <a href="#"><img style="position: fixed; top: 0; right: 0; border: 0;" src="../images/ribbon.png" alt="βeta version"></a> -->
@@ -635,7 +635,7 @@
                         var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
 
                             if (item.region_id == 1726 || item.region_id == 1735) {
-                                marker.bindPopup("<img width='400'  height='250' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' />")
+                                marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img class='zoom' width='400'  height='250' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
                             }
                         });
                         markers_radar.addLayer(marker);
@@ -656,6 +656,8 @@
                     markers_radar.clearLayers();
 
                 }
+
+
             },
             getAtmasfera:function () {
                 var marker;

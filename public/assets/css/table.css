@@ -84,14 +84,21 @@
   }
 }
 
-.leaflet-popup {
-    width: 100%;
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+    width: 126%;
 }
 
-.leaflet-popup-content-wrapper .leaflet-popup-content {
+#zoomCheck {
+    display: none;
 }
 
-.leaflet-popup-tip-container {
+.container img {
+    margin: 100px;
+    transition: transform 0.25s ease;
+    cursor: zoom-in;
 }
 
-.marker-map{font-size: 36px !important;display: flex;}
+input[type=checkbox]:checked ~ label > img {
+    transform: scale(3);
+    cursor: zoom-out;
+}
