@@ -25,6 +25,7 @@
     <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/table.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/lightbox.min.css')}}">
 
     {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>--}}
     {{--    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>--}}
@@ -98,7 +99,7 @@
                 {{--                </p>--}}
                 <p>
                 <div class="form-group">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck3" v-model="atmTemp">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck3" v-model="atmTemp" @change="getAtmasfera">
                     <label class="form-check-label" for="exampleCheck3">Атмосфера ифлосланиши</label>
                 </div>
                 </p>
@@ -136,8 +137,6 @@
 </div>
 
 
-
-
 <!--  <a href="#"><img style="position: fixed; top: 0; right: 0; border: 0;" src="../images/ribbon.png" alt="βeta version"></a> -->
 <script src="{{asset('assets/js/leaflet.js')}}"></script>
 <script src="{{asset('asset/js/leaflet-sidebar.min.js')}}"></script>
@@ -152,6 +151,8 @@
 <script src="{{asset('assets/js/jquery-simple-tree-table.js')}}"></script>
 <script src="{{asset('assets/js/table.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
+<script src="{{asset('js/lightbox.min.js')}}"></script>
+<script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
 {{--<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>--}}
 {{--<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>--}}
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script> -->
@@ -159,6 +160,7 @@
     var map;
     var markers_weather = L.featureGroup();
     var markers_radar = L.featureGroup();
+    var markers_atmasfera = L.featureGroup();
 
 
     Vue.component('validation-errors', {
@@ -200,11 +202,12 @@
             longitude: 0,
             file: '',
             forcastTemp: false,
-            currentTemp: true,
-            atmTemp: false,
+            currentTemp: false,
+            atmTemp: true,
             markers: [],
             radars:@json($radars),
             radar: false,
+            atmasfera_data:'',
 
 
         },
@@ -349,6 +352,7 @@
 
 
                 this.getRadars();
+                this.getAtmasfera();
 
 
             },
@@ -630,28 +634,12 @@
                         // console.log( i + ": " + item.latitude + " (массив:" + item.region_id + ")" );
                         var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
 
-                            if(item.region_id == 1726 || item.region_id == 1735)
-                            {
-                                {{--if(item.region_id == 1726)--}}
-                                {{--{--}}
-                                {{--    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/2.png')}}' />" )--}}
-                                {{--}--}}
-                                {{--else if(item.region_id == 1735)--}}
-                                {{--{--}}
-                                {{--    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/1.png')}}' />" )--}}
-                                {{--}--}}
-                                marker.bindPopup("<img width='400' height='250' src='/map/getRadars?region="+ item.region_id + "' />" )
+                            if (item.region_id == 1726 || item.region_id == 1735) {
+                                marker.bindPopup("<img width='400'  height='250' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' />")
                             }
-                            // marker.bindPopup("<img width='200' height='150' src='/map/getRadars?region="+ item.region_id + "' />" )
-
-                            // this.bindPopup('<img src="https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">');
                         });
                         markers_radar.addLayer(marker);
                         marker.fire('click');
-
-
-                        // marker.bindPopup('<p>'+ item.region_id +'</p>');
-
                         var circle = L.circle([item.latitude, item.longitude], {
                             color: '#4236E5',
                             fillColor: '#6789E5',
@@ -668,7 +656,62 @@
                     markers_radar.clearLayers();
 
                 }
+            },
+            getAtmasfera:function () {
+                var marker;
+                var markerColor, icon;
+                if(this.atmTemp)
+                {
+                    axios.get('{{route('map.GetAtmasfera')}}')
+                        .then(function (response) {
+                            this.atmasfera_stations = response.data.data[0].stations;
+                            this.atmasfera_stations.forEach(function (item, i, arr) {
 
+                                var  SI = (item.Si == '-') ? '-' : parseFloat(item.Si);
+
+
+                                markerColor = item.color; //getColorSi(SI);
+                                // console.log(SI);
+                                count_si = parseFloat(item.Si);
+
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div class="marker-map"  style="color:'+markerColor+'"><i class="fa fa-map-marker fa-sm"></i></div>',
+                                    iconSize: [36, 36],
+                                    className: 'myDivIcon'
+                                });
+                                var marker = L.marker( [ parseFloat(item.lat), parseFloat(item.lon) ] )
+                                    .bindTooltip(item.Si,
+                                    {
+                                        permanent: true,
+                                        direction: 'bottom'
+                                    });
+
+                                marker.ind =item.id;//j+"_"+i;
+
+                                markers_atmasfera.addLayer(marker);
+
+
+
+
+                            })
+
+                            map.addLayer(markers_atmasfera);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+                }
+                else
+                {
+                    markers_atmasfera.clearLayers();
+
+                }
 
             }
         },

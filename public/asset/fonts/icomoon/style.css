@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?idqx7j');
+  src:  url('fonts/icomoon.eot?idqx7j#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?idqx7j') format('truetype'),
+    url('fonts/icomoon.woff?idqx7j') format('woff'),
+    url('fonts/icomoon.svg?idqx7j#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-left-arrow:before {
+  content: "\e91b";
+}
+.icon-agenda:before {
+  content: "\e919";
+}
+.icon-map:before {
+  content: "\e91a";
+}
+.icon-air-pollution:before {
+  content: "\e900";
+}
+.icon-close:before {
+  content: "\e901";
+}
+.icon-eyeglasses:before {
+  content: "\e902";
+}
+.icon-gps:before {
+  content: "\e903";
+}
+.icon-high-temperature:before {
+  content: "\e904";
+}
+.icon-icons-02:before {
+  content: "\e905";
+}
+.icon-icons-03:before {
+  content: "\e906";
+}
+.icon-icons-04:before {
+  content: "\e907";
+}
+.icon-icons-05:before {
+  content: "\e908";
+}
+.icon-increase:before {
+  content: "\e909";
+}
+.icon-logout:before {
+  content: "\e90a";
+}
+.icon-mail:before {
+  content: "\e90b";
+}
+.icon-park:before {
+  content: "\e90c";
+}
+.icon-phone:before {
+  content: "\e90d";
+}
+.icon-placeholder:before {
+  content: "\e90e";
+}
+.icon-pressure:before {
+  content: "\e90f";
+}
+.icon-question:before {
+  content: "\e910";
+}
+.icon-search:before {
+  content: "\e911";
+}
+.icon-shield:before {
+  content: "\e912";
+}
+.icon-sun:before {
+  content: "\e913";
+}
+.icon-tree:before {
+  content: "\e914";
+}
+.icon-water:before {
+  content: "\e915";
+}
+.icon-watering-can:before {
+  content: "\e916";
+}
+.icon-wind:before {
+  content: "\e917";
+}
+.icon-window:before {
+  content: "\e918";
+}

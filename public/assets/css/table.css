@@ -93,3 +93,5 @@
 
 .leaflet-popup-tip-container {
 }
+
+.marker-map{font-size: 36px !important;display: flex;}
