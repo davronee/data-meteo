@@ -31,19 +31,43 @@ class WidgetController extends Controller
         $radar = Http::get('http://meteo.uz/new/index.php?r=restricted/radarimage/listAjax');
         header('Content-type:image/png');
 
-        if($request->region)
-        {
-            if($request->region == 1726)
-            print base64_decode($radar[0]['tashkent']['image']);
+//        if($request->region)
+//        {
+//            if($request->region == 1726)
+//            print base64_decode($radar[0]['tashkent']['image']);
+//
+//            if($request->region == 1735)
+//                print base64_decode($radar[0]['nukus']['image']);
+//        }
 
-            if($request->region == 1735)
-                print base64_decode($radar[0]['nukus']['image']);
+
+        if ($request->region) {
+            if ($request->region == 1726) {
+                $im = imageCreateFromString(base64_decode($radar[0]['tashkent']['image']));
+                $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
+                if ($im2 !== FALSE) {
+                    header("Content-type: image/png");
+                    imagepng($im2);
+//                imagedestroy($im2);
+                }
+            }
+
+            if ($request->region == 1735) {
+                $im = imageCreateFromString(base64_decode($radar[0]['nukus']['image']));
+                $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
+                if ($im2 !== FALSE) {
+                    header("Content-type: image/png");
+                    imagepng($im2);
+//                imagedestroy($im2);
+                }
+            }
         }
 
     }
+
     public function getCurrent(Request $request)
     {
-        $current = Http::get('http://192.168.10.249:8085/api/weather/current/'.$request->regionid);
+        $current = Http::get('http://192.168.10.249:8085/api/weather/current/' . $request->regionid);
 //        $current = Http::get('http://217.30.161.60:8085/api/weather/current/'.$request->regionid);
         return $current->json();
     }

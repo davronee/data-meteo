@@ -632,15 +632,15 @@
 
                             if(item.region_id == 1726 || item.region_id == 1735)
                             {
-                                if(item.region_id == 1726)
-                                {
-                                    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/2.png')}}' />" )
-                                }
-                                else if(item.region_id == 1735)
-                                {
-                                    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/1.png')}}' />" )
-                                }
-                                // marker.bindPopup("<img width='400' height='250' src='/map/getRadars?region="+ item.region_id + "' />" )
+                                {{--if(item.region_id == 1726)--}}
+                                {{--{--}}
+                                {{--    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/2.png')}}' />" )--}}
+                                {{--}--}}
+                                {{--else if(item.region_id == 1735)--}}
+                                {{--{--}}
+                                {{--    marker.bindPopup("<img width='700' height='500' src='{{asset('asset/1.png')}}' />" )--}}
+                                {{--}--}}
+                                marker.bindPopup("<img width='400' height='250' src='/map/getRadars?region="+ item.region_id + "' />" )
                             }
                             // marker.bindPopup("<img width='200' height='150' src='/map/getRadars?region="+ item.region_id + "' />" )
 
