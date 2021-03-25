@@ -677,15 +677,17 @@
                                 count_si = parseFloat(item.Si);
 
                                 const fontAwesomeIcon = L.divIcon({
-                                    html: '<div class="marker-map"  style="color:'+markerColor+'"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    html: '<div style="color:'+markerColor+'"><i class="fa fa-map-marker fa-2x"></i></div>',
                                     iconSize: [36, 36],
                                     className: 'myDivIcon'
                                 });
                                 var marker = L.marker( [ parseFloat(item.lat), parseFloat(item.lon) ],{icon:fontAwesomeIcon} )
-                                    .bindTooltip(item.Si,
+                                    .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
                                     {
                                         permanent: true,
-                                        direction: 'bottom'
+                                        direction: 'top',
+                                        className:'ownClass'
+
                                     });
 
                                 marker.ind =item.id;//j+"_"+i;

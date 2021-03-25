@@ -103,3 +103,18 @@ input[type=checkbox]:checked ~ label > img {
     cursor: zoom-out;
 }
 
+.ownClass {
+    padding: 0;
+    border: 1px solid green;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -3px;
+    margin-left: -10px;
+}
+
+.pin-info {
+    padding: 4px;
+    /*color: #fff;*/
+
+}
+
