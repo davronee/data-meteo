@@ -67,8 +67,8 @@ class WidgetController extends Controller
 
     public function getCurrent(Request $request)
     {
-//        $current = Http::get('http://192.168.10.249:8085/api/weather/current/' . $request->regionid);
-        $current = Http::get('http://217.30.161.60:8085/api/weather/current/'.$request->regionid);
+        $current = Http::get('http://192.168.10.249:8085/api/weather/current/' . $request->regionid);
+//        $current = Http::get('http://217.30.161.60:8085/api/weather/current/'.$request->regionid);
         return $current->json();
     }
 
@@ -366,8 +366,8 @@ class WidgetController extends Controller
 
     public function GetAtmasfera()
     {
-        $atmasfera = Http::get('http://217.30.161.60:8085/api/atmosphere/monitoring/');
-//        $atmasfera = Http::get('http://192.168.10.249:8085/api/atmosphere/monitoring/');
+//        $atmasfera = Http::get('http://217.30.161.60:8085/api/atmosphere/monitoring/');
+        $atmasfera = Http::get('http://192.168.10.249:8085/api/atmosphere/monitoring/');
         return $atmasfera->json();
     }
 
