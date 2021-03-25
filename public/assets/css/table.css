@@ -102,3 +102,4 @@ input[type=checkbox]:checked ~ label > img {
     transform: scale(3);
     cursor: zoom-out;
 }
+
