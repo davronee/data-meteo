@@ -166,7 +166,9 @@
     var map;
     var markers_weather = L.featureGroup();
     var markers_radar = L.featureGroup();
-    var markers_atmasfera = L.featureGroup();
+    // var markers_atmasfera = L.featureGroup();
+    var markers_atmasfera = L.markerClusterGroup();;
+    var markers_snow = L.featureGroup();
 
 
     Vue.component('validation-errors', {
@@ -330,20 +332,7 @@
                     }
                 }).addTo(map);
 
-                var geojsonSnow = L.topoJson(null, {
-                    style: function (feature) {
-                        return {
-                            color: "grey",
-                            fillOpacity: 0.5,
-                            fillColor: 'grey',
-                            stroke: true,
-                            weight: 2
-                        }
-                    },
-                    onEachFeature: function (feature, layer) {
-                        // layer.bindPopup('<p>'+feature.properties.NAME+'</p>')
-                    }
-                }).addTo(map);
+
                 //fill: #317581;
                 //define a function to get and parse geojson from URL
                 async function getGeoData(url) {
@@ -353,7 +342,8 @@
                 }
 
 
-
+                //fetch the geojson and add it to our geojson layer
+                getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
 
 
                 this.getRadars();
@@ -703,9 +693,40 @@
             getSnow:function () {
                 if(this.snow)
                 {
-                    //fetch the geojson and add it to our geojson layer
-                    getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
+
+                    var geojsonSnow = L.topoJson(null, {
+                        style: function (feature) {
+                            return {
+                                color: "grey",
+                                fillOpacity: 0.5,
+                                fillColor: 'grey',
+                                stroke: true,
+                                weight: 2
+                            }
+                        },
+                        onEachFeature: function (feature, layer) {
+                            // layer.bindPopup('<p>'+feature.properties.NAME+'</p>')
+                        }
+                    });
+                    markers_snow.addLayer(geojsonSnow);
+
+                    map.addLayer(markers_snow);
+
+
+
+                    async function getGeoData(url) {
+                        let response = await fetch(url);
+                        let data = await response.json();
+                        return data;
+                    }
+
                     getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+
+
+                }
+                else
+                {
+                    markers_snow.clearLayers();
 
                 }
 
