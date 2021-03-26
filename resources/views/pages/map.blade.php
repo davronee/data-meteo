@@ -519,7 +519,7 @@
 
 
                                 } else if (item.weather_code == 'thunderstorm') {
-                                    marker = L.marker([item.city.latitude, itema.city.longitude], {
+                                    marker = L.marker([item.city.latitude, item.city.longitude], {
 
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-thunderstorm',
@@ -544,7 +544,7 @@
                                             markerColor: 'cadetblue',
                                             spin: false
                                         })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(itema.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
                                         {
                                             permanent: true,
                                             direction: 'center'
