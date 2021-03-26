@@ -616,7 +616,7 @@
                         var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
 
                             if (item.region_id == 1726 || item.region_id == 1735) {
-                                marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img class='zoom' width='400'  height='250' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
+                                marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img class='zoom' width='400' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
                             }
                         });
                         markers_radar.addLayer(marker);
@@ -625,7 +625,7 @@
                             color: '#4236E5',
                             fillColor: '#6789E5',
                             fillOpacity: 0.3,
-                            radius: 200000
+                            radius: 300000
                         })
                         markers_radar.addLayer(circle)
                     });
