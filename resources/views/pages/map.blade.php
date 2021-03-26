@@ -106,17 +106,18 @@
                 <p>
                 <div class="form-group">
                     <input type="checkbox" class="form-check-input" id="exampleCheck4" v-model="radar"
-                           @change="getRadars"
-                    >
+                           @change="getRadars">
                     <label class="form-check-label" for="exampleCheck4">Локатор<i class="fas fa-satellite"></i></label>
                 </div>
-                <div class="form-group">
+                </p>
+                <p><div class="form-group">
                     <input type="checkbox" class="form-check-input" id="exampleCheck5" v-model="snow"
                            @change="getSnow"
                     >
                     <label class="form-check-label" for="exampleCheck5">Қор<i class="fas fa-satellite"></i></label>
-                </div>
-                </p>
+                </div></p>
+
+
             </div>
 
             {{--            <div class="leaflet-sidebar-pane" id="autopan">--}}
@@ -690,9 +691,8 @@
                 }
 
             },
-            getSnow:function () {
-                if(this.snow)
-                {
+            getSnow: function () {
+                if (this.snow) {
 
                     var geojsonSnow = L.topoJson(null, {
                         style: function (feature) {
@@ -713,7 +713,6 @@
                     map.addLayer(markers_snow);
 
 
-
                     async function getGeoData(url) {
                         let response = await fetch(url);
                         let data = await response.json();
@@ -723,9 +722,7 @@
                     getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
 
 
-                }
-                else
-                {
+                } else {
                     markers_snow.clearLayers();
 
                 }
