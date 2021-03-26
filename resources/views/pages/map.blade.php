@@ -110,6 +110,12 @@
                     >
                     <label class="form-check-label" for="exampleCheck4">Локатор<i class="fas fa-satellite"></i></label>
                 </div>
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck5" v-model="snow"
+                           @change="getSnow"
+                    >
+                    <label class="form-check-label" for="exampleCheck5">Қор<i class="fas fa-satellite"></i></label>
+                </div>
                 </p>
             </div>
 
@@ -208,6 +214,7 @@
             radars:@json($radars),
             radar: false,
             atmasfera_data: '',
+            snow: '',
 
 
         },
@@ -346,13 +353,12 @@
                 }
 
 
-                //fetch the geojson and add it to our geojson layer
-                getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
-                getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+
 
 
                 this.getRadars();
                 this.getAtmasfera();
+                this.getSnow();
 
 
             },
@@ -690,6 +696,16 @@
                         });
                 } else {
                     markers_atmasfera.clearLayers();
+
+                }
+
+            },
+            getSnow:function () {
+                if(this.snow)
+                {
+                    //fetch the geojson and add it to our geojson layer
+                    getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
+                    getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
 
                 }
 
