@@ -616,7 +616,7 @@
                         var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
 
                             if (item.region_id == 1726 || item.region_id == 1735) {
-                                marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img class='zoom' width='400' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
+                                marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='400' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
                             }
                         });
                         markers_radar.addLayer(marker);
