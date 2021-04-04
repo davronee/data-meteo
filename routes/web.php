@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WidgetController;
+use App\Http\Controllers\AwdController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\HourlyInfoSentController;
@@ -53,7 +54,10 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
         Route::get('/getRadars', [WidgetController::class, 'getRadars'])->name('map.getRadars');
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
-
+        Route::prefix('awd')->group(function () {
+            Route::get('/getallstations', [AwdController::class, 'getAllStations'])->name('map.awd.getallstations');
+            Route::post('/getStation', [AwdController::class, 'getStation'])->name('map.awd.getStation');
+        });
 
     });
 

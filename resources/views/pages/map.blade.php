@@ -110,12 +110,22 @@
                     <label class="form-check-label" for="exampleCheck4">Локатор<i class="fas fa-satellite"></i></label>
                 </div>
                 </p>
-                <p><div class="form-group">
+                <p>
+                <div class="form-group">
                     <input type="checkbox" class="form-check-input" id="exampleCheck5" v-model="snow"
                            @change="getSnow"
                     >
                     <label class="form-check-label" for="exampleCheck5">Қор<i class="fas fa-satellite"></i></label>
-                </div></p>
+                </div>
+                </p>
+                <p>
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck6" v-model="awd"
+                           @change="getawd"
+                    >
+                    <label class="form-check-label" for="exampleCheck6">AWS<i class="fas fa-satellite"></i></label>
+                </div>
+                </p>
 
 
             </div>
@@ -168,6 +178,7 @@
     var markers_weather = L.featureGroup();
     var markers_radar = L.featureGroup();
     var markers_atmasfera = L.featureGroup();
+    var markers_awd = L.featureGroup();
     // var markers_atmasfera = L.featureGroup();
     var markers_snow = L.featureGroup();
 
@@ -193,553 +204,649 @@
 
 
     let app = new Vue({
-        el: '#map',
-        data: {
-            area_id: '',
-            map_id: '',
-            full_name: '{{$user->full_name ?? ''}}',
-            phone: '{{$user->mob_phone_no ?? ''}}',
-            category: 1,
-            sentence: '',
-            proposed_financing: '',
-            validationErrors: "",
+            el: '#map',
+            data: {
+                area_id: '',
+                map_id: '',
+                full_name: '{{$user->full_name ?? ''}}',
+                phone: '{{$user->mob_phone_no ?? ''}}',
+                category: 1,
+                sentence: '',
+                proposed_financing: '',
+                validationErrors: "",
 
-            area: '',
-            address: '',
-            result_id: '',
-            latitude: 0,
-            longitude: 0,
-            file: '',
-            forcastTemp: false,
-            currentTemp: true,
-            atmTemp: false,
-            markers: [],
-            radars:@json($radars),
-            radar: false,
-            atmasfera_data: '',
-            snow: '',
+                area: '',
+                address: '',
+                result_id: '',
+                latitude: 0,
+                longitude: 0,
+                file: '',
+                forcastTemp: false,
+                currentTemp: true,
+                atmTemp: false,
+                markers: [],
+                radars:@json($radars),
+                radar: false,
+                atmasfera_data: '',
+                snow: '',
+                awd: false,
+                awds:@json($stations)
 
 
-        },
-        methods: {
-            InitialMap: function () {
+            },
+            methods: {
+                InitialMap: function () {
 
-                var google = L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
-                    attribution: 'data.meteo.uz'
-                });
-                var googleSputnik = L.tileLayer('http://www.google.com/maps/vt?lyrs=s@189&gl=uz&x={x}&y={y}&z={z}', {
-                    attribution: 'data.meteo.uz'
-                });
-                var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: 'data.meteo.uz'
-                });
-
-                // initialize the map
-                if (app.latitude == 0 && app.longitude == 0) {
-                    map = L.map('map', {
-                        center: [41.315514, 69.246097],
-                        zoom: 6,
-                        layers: [google]
+                    var google = L.tileLayer('http://www.google.com/maps/vt?ROADMAP=s@189&gl=uz&x={x}&y={y}&z={z}', {
+                        attribution: 'data.meteo.uz'
                     });
-                } else {
-                    map = L.map('map', {
-                        center: [app.latitude, app.longitude],
-                        zoom: 10,
-                        layers: [google]
+                    var googleSputnik = L.tileLayer('http://www.google.com/maps/vt?lyrs=s@189&gl=uz&x={x}&y={y}&z={z}', {
+                        attribution: 'data.meteo.uz'
+                    });
+                    var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'data.meteo.uz'
                     });
 
-
-                }
-
-
-
-
-
-
-
-
-                {{--var kmlLayer = new L.KML("{{asset('asset/js/--1984.kml')}}", { async: false });--}}
-                {{--map.addLayer(kmlLayer);--}}
-
-
-
-                // load a tile layer  http://map.ygk.uz/tile/{z}/{x}/{y}.png OpenStreetMap харита
+                    // initialize the map
+                    if (app.latitude == 0 && app.longitude == 0) {
+                        map = L.map('map', {
+                            center: [41.315514, 69.246097],
+                            zoom: 6,
+                            layers: [google]
+                        });
+                    } else {
+                        map = L.map('map', {
+                            center: [app.latitude, app.longitude],
+                            zoom: 10,
+                            layers: [google]
+                        });
 
 
-                drawnItems = L.featureGroup().addTo(map);
-
-
-                var scale = L.control.scale({
-                    imperial: false
-                }).addTo(map);
-
-
-                var baseMaps = {
-                    "OpenStreetMap харита": OpenStreetMap,
-                    "Google харита": google,
-                    "Google харита (Спутник)": googleSputnik
-                };
-
-
-                var sidebar = L.control.sidebar({container: 'sidebar', position: "right"})
-                    .addTo(map)
-                    .open('home');
-
-                var layer = L.control.layers(baseMaps).addTo(map);
-
-
-                // add panels dynamically to the sidebar
-
-
-                {{--var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");--}}
-                {{--geojsonLayer.addTo(map);--}}
+                    }
 
 
 
 
-                //extend Leaflet to create a GeoJSON layer from a TopoJSON file
-                L.TopoJSON = L.GeoJSON.extend({
-                    addData: function (data) {
-                        var geojson, key;
-                        if (data.type === "Topology") {
-                            for (key in data.objects) {
-                                if (data.objects.hasOwnProperty(key)) {
-                                    geojson = topojson.feature(data, data.objects[key]);
-                                    L.GeoJSON.prototype.addData.call(this, geojson);
+
+
+
+
+                    {{--var kmlLayer = new L.KML("{{asset('asset/js/--1984.kml')}}", { async: false });--}}
+                    {{--map.addLayer(kmlLayer);--}}
+
+
+
+                    // load a tile layer  http://map.ygk.uz/tile/{z}/{x}/{y}.png OpenStreetMap харита
+
+
+                    drawnItems = L.featureGroup().addTo(map);
+
+
+                    var scale = L.control.scale({
+                        imperial: false
+                    }).addTo(map);
+
+
+                    var baseMaps = {
+                        "OpenStreetMap харита": OpenStreetMap,
+                        "Google харита": google,
+                        "Google харита (Спутник)": googleSputnik
+                    };
+
+
+                    var sidebar = L.control.sidebar({container: 'sidebar', position: "right"})
+                        .addTo(map)
+                        .open('home');
+
+                    var layer = L.control.layers(baseMaps).addTo(map);
+
+
+                    // add panels dynamically to the sidebar
+
+
+                    {{--var geojsonLayer = new L.GeoJSON.AJAX("{{asset('asset/geojson/tuman.geojson')}}");--}}
+                    {{--geojsonLayer.addTo(map);--}}
+
+
+
+
+                    //extend Leaflet to create a GeoJSON layer from a TopoJSON file
+                    L.TopoJSON = L.GeoJSON.extend({
+                        addData: function (data) {
+                            var geojson, key;
+                            if (data.type === "Topology") {
+                                for (key in data.objects) {
+                                    if (data.objects.hasOwnProperty(key)) {
+                                        geojson = topojson.feature(data, data.objects[key]);
+                                        L.GeoJSON.prototype.addData.call(this, geojson);
+                                    }
                                 }
+                                return this;
                             }
+                            L.GeoJSON.prototype.addData.call(this, data);
                             return this;
                         }
-                        L.GeoJSON.prototype.addData.call(this, data);
-                        return this;
-                    }
-                });
-                L.topoJson = function (data, options) {
-                    return new L.TopoJSON(data, options);
-                };
-                //create an empty geojson layer
-                //with a style and a popup on click
-                var geojson = L.topoJson(null, {
-                    style: function (feature) {
-                        return {
-                            fillOpacity: 0.1,
-                            weight: 0.4,
-                            stroke: true,
-
-                        }
-                    },
-                    onEachFeature: function (feature, layer) {
-                        layer.bindPopup('<p>' + feature.properties.tuman_nomi + '</p>')
-                    }
-                }).addTo(map);
-
-
-                //fill: #317581;
-                //define a function to get and parse geojson from URL
-                async function getGeoData(url) {
-                    let response = await fetch(url);
-                    let data = await response.json();
-                    return data;
-                }
-
-
-                //fetch the geojson and add it to our geojson layer
-                getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
-
-
-                this.getRadars();
-                this.getAtmasfera();
-                this.getSnow();
-
-
-            },
-
-
-            {{--},--}}
-            getElement: function (area, area_id, map_id) {
-                app.area = area;
-                app.area_id = area_id;
-                app.map_id = map_id;
-            },
-            getLocation: function () {
-
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        app.latitude = position.coords.latitude;
-                        app.longitude = position.coords.longitude;
-
-                        app.InitialMap();
-                        app.getGeojson();
-
                     });
-
-
-                    navigator.geolocation.watchPosition(function (position) {
-                        },
-                        function (error) {
-                            if (error.code == error.PERMISSION_DENIED) {
-                                app.InitialMap();
-
-                            }
-
-                        });
-                } else {
-                    console.log("geolocation is not supported!!");
-                }
-
-            },
-            showError: function (error) {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        alert("User denied the request for Geolocation.");
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        alert("Location information is unavailable.");
-                        break;
-                    case error.TIMEOUT:
-                        alert("The request to get user location timed out.");
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        alert("An unknown error occurred.");
-                        break;
-                }
-            },
-            showPosition: function (position) {
-                console.log('Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude);
-            },
-
-            current: function () {
-                if (this.currentTemp) {
-                    var marker;
-
-                    axios.get('{{route('map.getCurrent')}}')
-                        .then(function (response) {
-
-                            response.data.forEach(function (item, i, arr) {
-                                if (item.weather_code == 'clear') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-day-sunny',
-                                            prefix: 'wi',
-                                            markerColor: 'yellow',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-                                } else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-day-cloudy',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else if (item.weather_code == 'overcast') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-cloudy',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else if (item.weather_code == 'fog') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-fog',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else if (item.weather_code == 'light_rain' || item.weather_code == 'rain') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-rain',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else if (item.weather_code == 'heavy_rain') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-storm-showers',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else if (item.weather_code == 'thunderstorm') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-thunderstorm',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else if (item.weather_code == 'light_sleet' || item.weather_code == 'sleet') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-sleet',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else if (item.weather_code == 'heavy_sleet') {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-storm-showers',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                } else {
-                                    marker = L.marker([item.city.latitude, item.city.longitude], {
-                                        icon: L.AwesomeMarkers.icon({
-                                            icon: 'wi-snow',
-                                            prefix: 'wi',
-                                            markerColor: 'cadetblue',
-                                            spin: false
-                                        })
-                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
-                                        {
-                                            permanent: true,
-                                            direction: 'center'
-                                        });
-                                    markers_weather.addLayer(marker)
-
-
-                                }
-
-                            });
-
-
-                            map.addLayer(markers_weather);
-
-
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-                } else {
-                    markers_weather.clearLayers();
-
-
-                }
-
-
-            },
-            getRadars: function () {
-                if (this.radar) {
-                    this.radars.forEach(function (item, i, arr) {
-                        // console.log( i + ": " + item.latitude + " (массив:" + item.region_id + ")" );
-                        var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
-
-                            if (item.region_id == 1726 || item.region_id == 1735) {
-                                marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='400' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
-                            }
-                        });
-                        markers_radar.addLayer(marker);
-                        marker.fire('click');
-                        var circle = L.circle([item.latitude, item.longitude], {
-                            color: '#4236E5',
-                            fillColor: '#6789E5',
-                            fillOpacity: 0.3,
-                            radius: 300000
-                        })
-                        markers_radar.addLayer(circle)
-                    });
-
-
-                    map.addLayer(markers_radar);
-
-                } else {
-                    markers_radar.clearLayers();
-
-                }
-
-
-            },
-            getAtmasfera: function () {
-                var marker;
-                var markerColor, icon;
-                if (this.atmTemp) {
-                    axios.get('{{route('map.GetAtmasfera')}}')
-                        .then(function (response) {
-                            this.atmasfera_stations = response.data.data[0].stations;
-                            this.atmasfera_stations.forEach(function (item, i, arr) {
-
-                                var SI = (item.Si == '-') ? '-' : parseFloat(item.Si);
-
-
-                                markerColor = item.color; //getColorSi(SI);
-                                // console.log(SI);
-                                count_si = parseFloat(item.Si);
-
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:' + markerColor + '"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [36, 36],
-                                    className: 'myDivIcon'
-                                });
-                                var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
-                                    .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClass'
-
-                                        });
-
-                                marker.ind = item.id;//j+"_"+i;
-
-                                markers_atmasfera.addLayer(marker);
-
-
-                            })
-
-                            map.addLayer(markers_atmasfera);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-                } else {
-                    markers_atmasfera.clearLayers();
-
-                }
-
-            },
-            getSnow: function () {
-                if (this.snow) {
-
-                    var geojsonSnow = L.topoJson(null, {
+                    L.topoJson = function (data, options) {
+                        return new L.TopoJSON(data, options);
+                    };
+                    //create an empty geojson layer
+                    //with a style and a popup on click
+                    var geojson = L.topoJson(null, {
                         style: function (feature) {
                             return {
-                                color: "grey",
-                                fillOpacity: 0.5,
-                                fillColor: 'grey',
+                                fillOpacity: 0.1,
+                                weight: 0.4,
                                 stroke: true,
-                                weight: 2
+
                             }
                         },
                         onEachFeature: function (feature, layer) {
-                            // layer.bindPopup('<p>'+feature.properties.NAME+'</p>')
+                            layer.bindPopup('<p>' + feature.properties.tuman_nomi + '</p>')
                         }
-                    });
-                    markers_snow.addLayer(geojsonSnow);
-
-                    map.addLayer(markers_snow);
+                    }).addTo(map);
 
 
+                    //fill: #317581;
+                    //define a function to get and parse geojson from URL
                     async function getGeoData(url) {
                         let response = await fetch(url);
                         let data = await response.json();
                         return data;
                     }
 
-                    getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+
+                    //fetch the geojson and add it to our geojson layer
+                    getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
 
 
-                } else {
-                    markers_snow.clearLayers();
+                    this.getRadars();
+                    this.getAtmasfera();
+                    this.getSnow();
+                    this.getawd();
 
+
+                },
+
+
+                {{--},--}}
+                getElement: function (area, area_id, map_id) {
+                    app.area = area;
+                    app.area_id = area_id;
+                    app.map_id = map_id;
+                },
+                getLocation: function () {
+
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            app.latitude = position.coords.latitude;
+                            app.longitude = position.coords.longitude;
+
+                            app.InitialMap();
+                            app.getGeojson();
+
+                        });
+
+
+                        navigator.geolocation.watchPosition(function (position) {
+                            },
+                            function (error) {
+                                if (error.code == error.PERMISSION_DENIED) {
+                                    app.InitialMap();
+
+                                }
+
+                            });
+                    } else {
+                        console.log("geolocation is not supported!!");
+                    }
+
+                },
+                showError: function (error) {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            alert("User denied the request for Geolocation.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            alert("Location information is unavailable.");
+                            break;
+                        case error.TIMEOUT:
+                            alert("The request to get user location timed out.");
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            alert("An unknown error occurred.");
+                            break;
+                    }
+                },
+                showPosition: function (position) {
+                    console.log('Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude);
+                },
+
+                current: function () {
+                    if (this.currentTemp) {
+                        var marker;
+
+                        axios.get('{{route('map.getCurrent')}}')
+                            .then(function (response) {
+
+                                response.data.forEach(function (item, i, arr) {
+                                    if (item.weather_code == 'clear') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-day-sunny',
+                                                prefix: 'wi',
+                                                markerColor: 'yellow',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+                                    } else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-day-cloudy',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else if (item.weather_code == 'overcast') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-cloudy',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else if (item.weather_code == 'fog') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-fog',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else if (item.weather_code == 'light_rain' || item.weather_code == 'rain') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-rain',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else if (item.weather_code == 'heavy_rain') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-storm-showers',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else if (item.weather_code == 'thunderstorm') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-thunderstorm',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else if (item.weather_code == 'light_sleet' || item.weather_code == 'sleet') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-sleet',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else if (item.weather_code == 'heavy_sleet') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-storm-showers',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    } else {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-snow',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
+                                    }
+
+                                });
+
+
+                                map.addLayer(markers_weather);
+
+
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+
+                    } else {
+                        markers_weather.clearLayers();
+
+
+                    }
+
+
+                },
+                getRadars: function () {
+                    if (this.radar) {
+                        this.radars.forEach(function (item, i, arr) {
+                            // console.log( i + ": " + item.latitude + " (массив:" + item.region_id + ")" );
+                            var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
+
+                                if (item.region_id == 1726 || item.region_id == 1735) {
+                                    marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='200' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
+                                }
+                            });
+                            markers_radar.addLayer(marker);
+                            marker.fire('click');
+                            var circle = L.circle([item.latitude, item.longitude], {
+                                color: '#4236E5',
+                                fillColor: '#6789E5',
+                                fillOpacity: 0.3,
+                                radius: 300000
+                            })
+                            markers_radar.addLayer(circle)
+                        });
+
+
+                        map.addLayer(markers_radar);
+
+                    } else {
+                        markers_radar.clearLayers();
+
+                    }
+
+
+                },
+                getAtmasfera: function () {
+                    var marker;
+                    var markerColor, icon;
+                    if (this.atmTemp) {
+                        axios.get('{{route('map.GetAtmasfera')}}')
+                            .then(function (response) {
+                                this.atmasfera_stations = response.data.data[0].stations;
+                                this.atmasfera_stations.forEach(function (item, i, arr) {
+
+                                    var SI = (item.Si == '-') ? '-' : parseFloat(item.Si);
+
+
+                                    markerColor = item.color; //getColorSi(SI);
+                                    // console.log(SI);
+                                    count_si = parseFloat(item.Si);
+
+                                    const fontAwesomeIcon = L.divIcon({
+                                        html: '<div style="color:' + markerColor + '"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                        iconSize: [36, 36],
+                                        className: 'myDivIcon'
+                                    });
+                                    var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
+                                        .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
+                                            {
+                                                permanent: true,
+                                                direction: 'top',
+                                                className: 'ownClass'
+
+                                            });
+
+                                    marker.ind = item.id;//j+"_"+i;
+
+                                    markers_atmasfera.addLayer(marker);
+
+
+                                })
+
+                                map.addLayer(markers_atmasfera);
+
+                                // handle success
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    } else {
+                        markers_atmasfera.clearLayers();
+
+                    }
+
+                },
+                getSnow: function () {
+                    if (this.snow) {
+
+                        var geojsonSnow = L.topoJson(null, {
+                            style: function (feature) {
+                                return {
+                                    color: "grey",
+                                    fillOpacity: 0.5,
+                                    fillColor: 'grey',
+                                    stroke: true,
+                                    weight: 2
+                                }
+                            },
+                            onEachFeature: function (feature, layer) {
+                                // layer.bindPopup('<p>'+feature.properties.NAME+'</p>')
+                            }
+                        });
+                        markers_snow.addLayer(geojsonSnow);
+
+                        map.addLayer(markers_snow);
+
+
+                        async function getGeoData(url) {
+                            let response = await fetch(url);
+                            let data = await response.json();
+                            return data;
+                        }
+
+                        getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+
+
+                    } else {
+                        markers_snow.clearLayers();
+
+                    }
+
+                },
+                getawd: function () {
+                    if (this.awd) {
+                        // console.log(this.awds['Stations'][0].Metadata.Longitude);
+                        // var marker = L.marker([parseFloat(this.awds['Stations'][0].Metadata.Latitude), parseFloat(this.awds['Stations'][1].Metadata.Longitude)]).addTo(map);
+                        this.awds.Stations.forEach(function (item, i, arr) {
+                                var meteoIcon = L.icon({
+                                    iconUrl: '{{asset('images/meteo.png')}}',
+                                    iconSize: [28, 28], // size of the icon
+                                    class: "station"
+                                });
+
+                                var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
+                                    axios.post('{{route('map.awd.getStation')}}', {
+                                        token: '{{@csrf_token()}}',
+                                        id: item.Id
+                                    })
+                                        .then(function (response) {
+
+
+                                            marker.bindPopup("" +
+                                                "<table class='table table-bordered'>" +
+                                                "<tr colspan='3'><td class='text-center'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
+                                                "<tr>" +
+                                                "<td><b>Температура воздуха</b></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[2].Value['Value'] + " °C </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Точка Росы</b></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Относительная влажность</b></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Текущее давление<b/></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[9].Value['Value'] + " гПа </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[9].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Средн.давление над ур.моря за 10мин<b/></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Осадкомер 2. Сумма осадков за 10мин</b></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Средн.направление ветра за 10 мин</b></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " мм </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Средн.скорость ветра за 10 мин</b></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>Средн.кол-во солнечной радиации за 10мин</b></td>" +
+                                                "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
+                                                "<td>" +  new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            )
+                                        })
+                                        .catch(function (error) {
+                                            // handle error
+                                            console.log(error);
+                                        })
+                                        .then(function () {
+                                            // always executed
+                                        });
+                                });
+                                marker.fire('click');
+
+                                markers_awd.addLayer(marker);
+                            }
+                        );
+                        map.addLayer(markers_awd);
+
+
+                    } else {
+                        markers_awd.clearLayers();
+
+                    }
                 }
+            },
+            created() {
+                this.getLocation();
+                this.current();
 
             }
-        },
-        created() {
-            this.getLocation();
-            this.current();
+            ,
+            mounted() {
 
-        },
-        mounted() {
-
-        }
+            }
 
 
-    });
+        })
+    ;
 </script>
 
 </body>

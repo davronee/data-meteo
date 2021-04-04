@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Http;
 
 class WidgetController extends Controller
 {
+    public $endpoint = 'http://192.168.10.249:8086/';
+
     public function index(Request $request)
     {
 
@@ -19,8 +21,12 @@ class WidgetController extends Controller
     {
 
         $radars = Radar::all();
+
+        $stations = Http::withBasicAuth('davronee','bvlgari1991')->get($this->endpoint.'EnvidbMetadataInterface/GetAllStations');
+
         return view('pages.map')->with([
-            'radars' => $radars
+            'radars' => $radars,
+            'stations' => $stations->json()
         ]);
 
 
