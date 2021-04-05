@@ -183,7 +183,7 @@
     // ============
 
     var map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6),
-        layer = L.esri.basemapLayer('Topographic').addTo(map),
+        layer = L.esri.basemapLayer('Imagery').addTo(map),
         // layerLabels = L.esri.basemapLayer('xxxLabels').addTo(map);
         layerLabels = null,
         worldTransportation = L.esri.basemapLayer('ImageryTransportation');
