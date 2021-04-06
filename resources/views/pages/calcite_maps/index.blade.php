@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/weather-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/weather-icons-wind.css')}}">
 
-{{--    <script src="{{asset('asset/js/vue.js')}}"></script>--}}
+    <script src="{{asset('asset/js/vue.js')}}"></script>
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
     <!-- Load Esri Leaflet from CDN -->
 
