@@ -76,7 +76,7 @@
                 <span></span>
             </div>
         </a>
-        <ul class="dropdown-menu calcite-bgcolor-green">
+        <ul class="dropdown-menu calcite-bgcolor-green" onclick="alert('sds')">
             <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span class="glyphicon glyphicon-info-sign"></span> Info</a></li>
             <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span class="glyphicon glyphicon-search"></span> Search</a></li>
             <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-th-large"></span> Basemaps</a></li>
