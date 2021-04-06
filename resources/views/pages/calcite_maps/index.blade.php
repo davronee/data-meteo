@@ -118,13 +118,13 @@
     <div id="panelInfo" class="panel collapse">
         <div id="headingInfo" class="panel-heading" role="tab">
             <div class="panel-title">
-                <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><span class="panel-label">Info</span></a>
+                <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><span class="panel-label">О системе</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
         <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
             <div class="panel-body">
-                <p>The main styles used in this app are:</p>
+                <p>Данная платформа является </p>
                 Body
                 <li>calcite-nav-bottom</li>
                 <li>calcite-layout-large-title</li>
