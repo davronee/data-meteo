@@ -63,10 +63,10 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     });
 
-//    Route::prefix('map2')->group(function () {
-//        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.calcilate.index');
-//
-//    });
+    Route::prefix('map2')->group(function () {
+        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.calcilate.index');
+
+    });
 
         Route::group(['middleware' => ['auth']], function () {
         // user profile routes
