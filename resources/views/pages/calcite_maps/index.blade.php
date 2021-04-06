@@ -43,7 +43,7 @@
 
     <!--     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script> -->
     <script src="{{asset('calcite/js/jquery/leaflet-src.js')}}"></script>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <link href="{{asset('calcite/css/font-awesome.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
 
 
