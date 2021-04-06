@@ -8,7 +8,7 @@
     <meta name="description" content="Calcite Maps Demo - Esri-Leaflet">
     <meta name="author" content="">
     <link rel="icon" href="https://www.esri.com/favicon.ico">
-    <title>Calcite Maps - Esri-Leaflet</title>
+    <title>METEO MONITORING MAP - UZHYDROMET</title>
 
     <!-- Calcite Maps Bootstrap -->
     <link rel="stylesheet" href="{{asset('calcite/css/calcite-maps-bootstrap.min-v0.10.css')}}">
@@ -18,15 +18,22 @@
     <link rel="stylesheet" href="{{asset('calcite/fonts/calcite/calcite-ui.css')}}">
 
     <!-- Load Leaflet from CDN-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
+<!--     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> -->
+     <link rel="stylesheet" href="{{asset('calcite/css/leaflet.css')}}">
+    
+<!--     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script> -->
+     <script src="{{asset('calcite/js/jquery/leaflet-src.js')}}"></script>
 
     <!-- Load Esri Leaflet from CDN -->
-    <script src="https://unpkg.com/esri-leaflet@2.0.7"></script>
+    
+    <script src="{{asset('calcite/js/jquery/esri-leaflet-debug.js')}}"></script>
 
     <!-- Load Esri Leaflet Geocoder from CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.3/dist/esri-leaflet-geocoder.css">
-    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.3"></script>
+<!--     <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.3/dist/esri-leaflet-geocoder.css"> -->
+
+    <link rel="stylesheet" href="{{asset('calcite/css/esri-leaflet-geocoder.css')}}">
+     <script src="{{asset('calcite/js/jquery/esri-leaflet-geocoder-debug.js')}}"></script>
+<!--     <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.3"></script> -->
 
     <style>
         html, body {
@@ -60,34 +67,35 @@
     </style>
 
 </head>
-<body class="calcite-maps calcite-nav-bottom calcite-layout-small-title">
+<body class="calcite-maps calcite-nav-top calcite-layout-small-title">
 
 <!-- Navbar -->
 
-<nav class="navbar calcite-navbar navbar-fixed-bottom calcite-bg-dark calcite-text-light calcite-bgcolor-green">
+<nav class="navbar calcite-navbar navbar-fixed-top calcite-bg-dark calcite-text-light calcite-bgcolor-dark-blue">
     <!-- Menu -->
     <div class="dropdown calcite-dropdown calcite-bg-custom calcite-text-light" role="presentation">
         <a class="dropdown-toggle" role="menubutton" aria-haspopup="true" aria-expanded="false" tabindex="0">
             <div class="calcite-dropdown-toggle">
-                <span class="sr-only">Toggle dropdown menu</span>
+                <span class="sr-only">Меню</span>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </a>
-        <ul class="dropdown-menu calcite-bgcolor-green" onclick="alert('sds')">
-            <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span class="glyphicon glyphicon-info-sign"></span> Info</a></li>
-            <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span class="glyphicon glyphicon-search"></span> Search</a></li>
-            <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-th-large"></span> Basemaps</a></li>
-            <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span class="glyphicon glyphicon-fullscreen"></span> Full Map</a></li>
+        <ul class="dropdown-menu calcite-bgcolor-dark-blue">
+            <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span class="glyphicon glyphicon-search"></span> Поиск</a></li>
+            <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-globe"></span> Базовые карты</a></li>
+             <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span class="glyphicon glyphicon-th-list"></span> Данные</a></li>
+            <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
+                <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
         </ul>
     </div>
     <!-- Title -->
     <div class="calcite-title calcite-overflow-hidden">
-        <span class="calcite-title-main">METEOINFOCOM</span>
+        <span class="calcite-title-main">METEO MONITORING - единая система метеорологических наблюдений</span>
         <span class="calcite-title-divider hidden-xs"></span>
-        <span class="calcite-title-sub hidden-xs">data.meteo.uz</span>
+        <span class="calcite-title-sub hidden-xs">УЗГИДРОМЕТ</span>
     </div>
     <!-- Nav -->
     <ul class="calcite-nav nav navbar-nav">
@@ -103,7 +111,7 @@
 
 <!-- Panel -->
 
-<div class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-green" role="tablist" aria-multiselectable="true">
+<div class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue" role="tablist" aria-multiselectable="true">
 
     <!-- Info Panel -->
 
@@ -138,7 +146,7 @@
     <div id="panelSearch" class="panel collapse hidden-sm hidden-md hidden-lg">
         <div id="headingSearch" class="panel-heading" role="tab">
             <div class="panel-title">
-                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"  aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="panel-label">Search</span></a>
+                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"  aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="panel-label">Поиск</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
@@ -149,25 +157,49 @@
         </div>
     </div>
 
+    <!-- Данные Panel -->
+
+    <div id="panelMeteodata" class="panel collapse">
+        <div id="headingMeteodata" class="panel-heading" role="tab">
+            <div class="panel-title">
+                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata" aria-expanded="false"   aria-controls="collapseMeteodata"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
+                <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+            </div>
+        </div>
+        <div id="collapseMeteodata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMeteodata">
+            <div class="panel-body">
+                <select id="selectStandardMeteodata" class="form-control">
+                    <option selected value="fakt">Фактическая погода</option>
+                    <option value="atmosphere">Загрязнение</option>
+                    <option value="forecast">Прогноз погода</option>
+                    <option value="locator">Локаторы</option>
+                    <option value="aero" disabled="">Аэро-метеорологические данные</option>
+                    <option value="snow">Данные снежного покрова</option>
+                    <option value="water">Данные водного кадастра</option>
+                    <option value="danger">Опасных зон</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <!-- Basemaps Panel -->
 
     <div id="panelBasemaps" class="panel collapse">
         <div id="headingBasemaps" class="panel-heading" role="tab">
             <div class="panel-title">
-                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false"   aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Basemaps</span></a>
+                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false"   aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Типы географических карт</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
         <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
             <div class="panel-body">
                 <select id="selectStandardBasemap" class="form-control">
-                    <option value="Streets">Streets</option>
-                    <option value="Imagery">Satellite</option>
-                    <!-- <option value="Hybrid">Hybrid</option> -->
+                    <option value="Streets">Улицы</option>
+                    <option value="Imagery">Спутник</option>
                     <option selected value="NationalGeographic">National Geographic</option>
-                    <option value="Topographic">Topographic</option>
-                    <option value="Gray">Gray</option>
-                    <option value="DarkGray">Dark Gray</option>
+                    <option value="Topographic">Топографическая</option>
+                    <option value="Gray">Серый</option>
+                    <option value="DarkGray">Темно-серый</option>
                     <option value="OpenStreetMap">Open Street Map</option>
                 </select>
             </div>
