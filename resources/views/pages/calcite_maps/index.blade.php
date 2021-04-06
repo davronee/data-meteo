@@ -103,8 +103,7 @@
 <div id="app">
     <nav class="navbar calcite-navbar navbar-fixed-top calcite-bg-dark calcite-text-light calcite-bgcolor-dark-blue">
         <!-- Menu -->
-        <div class="dropdown calcite-dropdown calcite-bg-custom calcite-text-light" v-on="click: myFilter"
-             v-class="open: isActive" role="presentation">
+        <div class="dropdown calcite-dropdown calcite-bg-custom calcite-text-light open" role="presentation">
             <a class="dropdown-toggle" role="menubutton" aria-haspopup="true" aria-expanded="false" tabindex="0">
                 <div class="calcite-dropdown-toggle">
                     <span class="sr-only">Меню</span>
