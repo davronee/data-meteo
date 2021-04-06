@@ -86,7 +86,7 @@
         <ul class="dropdown-menu calcite-bgcolor-dark-blue">
             <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span class="glyphicon glyphicon-search"></span> Поиск</a></li>
             <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-globe"></span> Базовые карты</a></li>
-             <li><a role="menuitem" tabindex="0" data-target="#panelmeteodata" aria-haspopup="true"><span class="glyphicon glyphicon-th-list"></span> Данные</a></li>
+             <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span class="glyphicon glyphicon-th-list"></span> Данные</a></li>
             <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
         </ul>
@@ -159,16 +159,16 @@
 
     <!-- Данные Panel -->
 
-    <div id="panelmeteodata" class="panel collapse">
-        <div id="headingBasemaps" class="panel-heading" role="tab">
+    <div id="panelMeteodata" class="panel collapse">
+        <div id="headingMeteodata" class="panel-heading" role="tab">
             <div class="panel-title">
-                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false"   aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
-                <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelmeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata" aria-expanded="false"   aria-controls="collapseMeteodata"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
+                <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
-        <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
+        <div id="collapseMeteodata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMeteodata">
             <div class="panel-body">
-                <select id="selectStandardBasemap" class="form-control">
+                <select id="selectStandardMeteodata" class="form-control">
                     <option selected value="fakt">Фактическая погода</option>
                     <option value="atmosphere">Загрязнение</option>
                     <option value="forecast">Прогноз погода</option>
