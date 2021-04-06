@@ -103,7 +103,8 @@
 <div id="app">
     <nav class="navbar calcite-navbar navbar-fixed-top calcite-bg-dark calcite-text-light calcite-bgcolor-dark-blue">
         <!-- Menu -->
-        <div class="dropdown calcite-dropdown calcite-bg-custom calcite-text-light" role="presentation">
+        <div class="dropdown calcite-dropdown calcite-bg-custom calcite-text-light" v-on="click: myFilter"
+             v-class="open: isActive" role="presentation">
             <a class="dropdown-toggle" role="menubutton" aria-haspopup="true" aria-expanded="false" tabindex="0">
                 <div class="calcite-dropdown-toggle">
                     <span class="sr-only">Меню</span>
@@ -196,9 +197,9 @@
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
-            <div id="collapseMeteodata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMeteodata">
+            <div id="collapseMeteodata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMeteodata" onclick="alert('sd')">
                 <div class="panel-body">
-                    <select id="selectStandardMeteodata" class="form-control" @change="menuChange"
+                    <select id="selectStandardMeteodata" class="form-control" @change="menuChange()"
                             v-model="menu">
                         <option selected value="fakt">Фактическая погода</option>
                         <option value="atmosphere">Загрязнение</option>
@@ -273,7 +274,8 @@
             snow: false,
             awd: false,
             awds:@json($stations),
-            menu: 'fakt'
+            menu: 'fakt',
+            isActive: false,
         },
         methods: {
             InitialMap: function () {
@@ -934,6 +936,10 @@
 
                 }
 
+            },
+            myFilter: function() {
+                this.isActive = !this.isActive;
+                // some code to filter users
             }
         },
         mounted() {
