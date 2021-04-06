@@ -52,12 +52,9 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/weather-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/weather-icons-wind.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
 
-    <script src="{{asset('asset/js/vue.js')}}"></script>
+{{--    <script src="{{asset('asset/js/vue.js')}}"></script>--}}
     <script src="{{asset('asset/js/axios.min.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
     <!-- Load Esri Leaflet from CDN -->
 
     <script src="{{asset('calcite/js/jquery/esri-leaflet-debug.js')}}"></script>
@@ -250,6 +247,7 @@
 <script src="{{asset('js/topojson.min.js')}}"></script>
 
 <script src="{{asset('asset/js/leaflet.ajax.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all plugins or individual files as needed -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
