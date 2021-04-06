@@ -23,7 +23,7 @@ class WidgetController extends Controller
 
         $radars = Radar::all();
 
-        $stations = Http::withBasicAuth('davronee','bvlgari1991')->get($this->endpoint.'EnvidbMetadataInterface/GetAllStations');
+        $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations');
 
         return view('pages.map')->with([
             'radars' => $radars,
@@ -75,9 +75,10 @@ class WidgetController extends Controller
     public function getCurrent(Request $request)
     {
         $current = Http::get('http://192.168.10.249:8085/api/weather/current/' . $request->regionid);
-//        $current = Http::get('http://217.30.161.60:8085/api/weather/current/');
+//        $current = Http::get('http://217.30.161.60:8085/api/weather/current/' . $request->regionid);
         return $current->json();
     }
+
 
     public function getWindSpeed(Request $request)
     {

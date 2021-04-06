@@ -8,24 +8,38 @@
     <meta name="description" content="Метеорологическая карта Узбекистана">
     <meta name="author" content="">
     <!--favicon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://hydromet.uz/templates/meteouz/images/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-16x16.png">
     <link rel="shortcut icon" href="https://hydromet.uz/templates/meteouz/images/favicon/favicon.ico">
     <link rel="manifest" href="https://hydromet.uz/templates/meteouz/images/favicon/manifest.json">
-    <meta name="yandex-verification" content="c194b7ef7003b9b1" />
+    <meta name="yandex-verification" content="c194b7ef7003b9b1"/>
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="https://hydromet.uz/templates/meteouz/images/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage"
+          content="https://hydromet.uz/templates/meteouz/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!--favicon-->
     <title>METEO MONITORING MAP - UZHYDROMET</title>
@@ -71,6 +85,7 @@
             padding: 0;
             height: 100%;
         }
+
         .calcite-nav-bottom .calcite-map .leaflet-control-zoom {
             margin-top: 28px;
         }
@@ -114,22 +129,31 @@
                 </div>
             </a>
             <ul class="dropdown-menu calcite-bgcolor-dark-blue">
-                <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span class="glyphicon glyphicon-search"></span> Поиск</a></li>
-                <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-globe"></span> Базовые карты</a></li>
-                <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span class="glyphicon glyphicon-th-list"></span> Данные</a></li>
-                <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
-                <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
+                <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span
+                            class="glyphicon glyphicon-search"></span> Поиск</a></li>
+                <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span
+                            class="glyphicon glyphicon-globe"></span> Базовые карты</a></li>
+                <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
+                            class="glyphicon glyphicon-th-list"></span> Данные</a></li>
+                <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
+                            class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
+                <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
+                            class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
             </ul>
         </div>
         <!-- Title -->
         <div class="calcite-title calcite-overflow-hidden">
             <span class="calcite-title-main">METEO MONITORING - единая система метеорологических наблюдений</span>
             <span class="calcite-title-divider hidden-xs"></span>
-            <span class="calcite-title-sub hidden-xs">УЗГИДРОМЕТ</span>
+            <span class="calcite-title-sub hidden-xs">βета версия</span>
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
-            <li><div class="calcite-navbar-search hidden-xs"><div id="geocode"></div></div></li>
+            <li>
+                <div class="calcite-navbar-search hidden-xs">
+                    <div id="geocode"></div>
+                </div>
+            </li>
         </ul>
     </nav><!--/.navbar -->
 
@@ -141,15 +165,21 @@
 
     <!-- Panel -->
 
-    <div class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue" role="tablist" aria-multiselectable="true">
+    <div
+        class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
+        role="tablist" aria-multiselectable="true">
 
         <!-- Info Panel -->
 
         <div id="panelInfo" class="panel collapse">
             <div id="headingInfo" class="panel-heading" role="tab">
                 <div class="panel-title">
-                    <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><span class="panel-label">О системе</span></a>
-                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                    <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo"
+                       aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign"
+                                                                               aria-hidden="true"></span><span
+                            class="panel-label">О системе</span></a>
+                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span
+                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
@@ -176,8 +206,12 @@
         <div id="panelSearch" class="panel collapse hidden-sm hidden-md hidden-lg">
             <div id="headingSearch" class="panel-heading" role="tab">
                 <div class="panel-title">
-                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"  aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="panel-label">Поиск</span></a>
-                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"
+                       aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search"
+                                                                                  aria-hidden="true"></span><span
+                            class="panel-label">Поиск</span></a>
+                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span
+                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseSearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSearch">
@@ -192,11 +226,15 @@
         <div id="panelMeteodata" class="panel collapse">
             <div id="headingMeteodata" class="panel-heading" role="tab">
                 <div class="panel-title">
-                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata" aria-expanded="false"   aria-controls="collapseMeteodata"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
-                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata"
+                       aria-expanded="false" aria-controls="collapseMeteodata"><span
+                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
+                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0"
+                       href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
-            <div id="collapseMeteodata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMeteodata" >
+            <div id="collapseMeteodata" class="panel-collapse collapse" role="tabpanel"
+                 aria-labelledby="headingMeteodata">
                 <div class="panel-body">
                     <select id="selectStandardMeteodata" class="form-control" @change="menuChange()"
                             v-model="menu">
@@ -204,7 +242,7 @@
                         <option value="atmosphere">Загрязнение</option>
                         <option value="forecast">Прогноз погода</option>
                         <option value="locator">Локаторы</option>
-                        <option value="aero" disabled="">Аэро-метеорологические данные</option>
+                        <option value="aero">Аэро-метеорологические данные</option>
                         <option value="snow">Данные снежного покрова</option>
                         <option value="water">Данные водного кадастра</option>
                         <option value="danger">Опасных зон</option>
@@ -220,11 +258,16 @@
         <div id="panelBasemaps" class="panel collapse">
             <div id="headingBasemaps" class="panel-heading" role="tab">
                 <div class="panel-title">
-                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false"   aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Типы географических карт</span></a>
-                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps"
+                       aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large"
+                                                                                    aria-hidden="true"></span><span
+                            class="panel-label">Типы географических карт</span></a>
+                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span
+                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
-            <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
+            <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel"
+                 aria-labelledby="headingBasemaps">
                 <div class="panel-body">
                     <select id="selectStandardBasemap" class="form-control">
                         <option value="Streets">Улицы</option>
@@ -259,6 +302,7 @@
     var markers_awd = L.featureGroup();
     // var markers_atmasfera = L.featureGroup();
     var markers_snow = L.featureGroup();
+    var markers_aero = L.featureGroup();
 
     let app = new Vue({
         el: "#app",
@@ -274,7 +318,89 @@
             awd: false,
             awds:@json($stations),
             menu: 'fakt',
-            isActive: false,
+            aero: false,
+            aeroports: [
+                {
+                    code: 'AZN',
+                    name: 'Андижан',
+                    lat: '40.7258',
+                    lon: '72.2939',
+                    region_id: 1703
+                },
+                {
+                    code: 'BHK',
+                    name: 'Бухара',
+                    lat: '39.773',
+                    lon: '64.497',
+                    region_id: 1706
+                },
+                {
+                    code: 'FEG',
+                    name: 'Фергана',
+                    lat: '40.3568',
+                    lon: '71.7587',
+                    region_id: 1730
+                },
+                {
+                    code: 'KSQ',
+                    name: 'Карши / Карши-Ханабад',
+                    lat: '40.3568',
+                    lon: '71.7587',
+                    region_id: 1710
+                },
+                {
+                    code: 'NMA',
+                    name: 'Наманган',
+                    lat: '40.9825',
+                    lon: '71.5567',
+                    region_id: 1714
+                },
+                {
+                    code: 'NVI',
+                    name: 'Навои',
+                    lat: '40.1157',
+                    lon: '65.1888',
+                    region_id: 1712
+                },
+                {
+                    code: 'NCU',
+                    name: 'Нукус',
+                    lat: '42.4864',
+                    lon: '59.6368',
+                    region_id: 1735
+                },
+                {
+                    code: 'SKD',
+                    name: 'Самарканд',
+                    lat: '39.6985',
+                    lon: '66.9976',
+                    region_id: 1718
+                },
+                {
+                    code: 'TAS',
+                    name: 'Ташкент-Южный',
+                    lat: '41.2558',
+                    lon: '69.2948',
+                    region_id: 1726
+
+                },
+                {
+                    code: 'TMJ',
+                    name: 'Термез',
+                    lat: '37.2845',
+                    lon: '67.3237',
+                    region_id: 1722
+
+                },
+                {
+                    code: 'UGC',
+                    name: 'Ургенч',
+                    lat: '41.5822',
+                    lon: '60.6554',
+                    region_id: 1733
+
+                },
+            ]
         },
         methods: {
             InitialMap: function () {
@@ -364,7 +490,7 @@
                         return {
                             fillOpacity: 0.0,
                             weight: 0.7,
-                            color:'white',
+                            color: 'white',
                             stroke: true,
 
                         }
@@ -430,7 +556,7 @@
  *
  * ======================================================================== */
 
-                (function(calciteMaps, $, undefined) {
+                (function (calciteMaps, $, undefined) {
 
                     // Public
                     calciteMaps.navbarSelector = ".calcite-navbar .calcite-dropdown li > a",
@@ -445,7 +571,7 @@
                     //----------------------------------
 
                     // Show/hide panels
-                    $(calciteMaps.navbarSelector).on("click", function(e) {
+                    $(calciteMaps.navbarSelector).on("click", function (e) {
                         var isPanel = false,
                             panel = null,
                             panelBody = null,
@@ -501,14 +627,14 @@
                     // Toggle navbar hidden
                     //----------------------------------
 
-                    $("#calciteToggleNavbar").on("click", function() {
+                    $("#calciteToggleNavbar").on("click", function () {
                         var body = $("body");
                         if (!body.hasClass("calcite-nav-hidden")) {
                             body.addClass("calcite-nav-hidden");
                         } else {
                             body.removeClass("calcite-nav-hidden");
                         }
-                        $(".calcite-dropdown .dropdown-toggle").trigger( "click" );
+                        $(".calcite-dropdown .dropdown-toggle").trigger("click");
                     });
 
                     //----------------------------------
@@ -530,12 +656,12 @@
                     //----------------------------------
 
                     // Hide
-                    $(".calcite-panels .panel .panel-collapse").on("hide.bs.collapse", function(e) {
+                    $(".calcite-panels .panel .panel-collapse").on("hide.bs.collapse", function (e) {
                         $(e.target.parentNode).find(".panel-label").addClass("visible-xs-inline-block");
                         $(e.target.parentNode).find(".panel-close").addClass("visible-xs-flex");
                     });
                     //Show
-                    $(".calcite-panels .panel .panel-collapse").on("show.bs.collapse", function(e) {
+                    $(".calcite-panels .panel .panel-collapse").on("show.bs.collapse", function (e) {
                         $(e.target.parentNode).find(".panel-label").removeClass("visible-xs-inline-block");
                         $(e.target.parentNode).find(".panel-close").removeClass("visible-xs-flex");
                     });
@@ -545,7 +671,7 @@
                     //----------------------------------
 
                     // Stops browser overscroll/bouncing effect on mobile
-                    $(".calcite-map").on("touchmove", function(e) {
+                    $(".calcite-map").on("touchmove", function (e) {
                         if (calciteMaps.preventOverscrolling) {
                             e.preventDefault();
                         }
@@ -988,6 +1114,7 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.aero = false;
 
                     this.current();
 
@@ -995,6 +1122,7 @@
                     markers_atmasfera.clearLayers();
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
+                    markers_aero.clearLayers();
 
 
                 } else if (this.menu == 'atmosphere') {
@@ -1005,6 +1133,7 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.aero = false;
 
 
                     this.getAtmasfera();
@@ -1014,6 +1143,7 @@
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
+                    markers_aero.clearLayers();
 
 
                 } else if (this.menu == 'forecast') {
@@ -1023,12 +1153,15 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.aero = false;
+
 
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
+                    markers_aero.clearLayers();
 
                 } else if (this.menu == 'locator') {
                     this.currentTemp = false;
@@ -1037,6 +1170,8 @@
                     this.radar = true;
                     this.awd = false;
                     this.snow = false;
+                    this.aero = false;
+
 
                     this.getRadars();
 
@@ -1044,6 +1179,7 @@
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
+                    markers_aero.clearLayers();
 
 
                 } else if (this.menu == 'snow') {
@@ -1053,6 +1189,7 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = true;
+                    this.aero = false;
 
 
                     this.getSnow();
@@ -1061,6 +1198,7 @@
                     markers_atmasfera.clearLayers();
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
+                    markers_aero.clearLayers();
 
                 } else if (this.menu == 'awd') {
                     this.currentTemp = false;
@@ -1069,6 +1207,7 @@
                     this.radar = false;
                     this.awd = true;
                     this.snow = false;
+                    this.aero = false;
 
 
                     this.getawd();
@@ -1077,13 +1216,77 @@
                     markers_atmasfera.clearLayers();
                     markers_weather.clearLayers();
                     markers_snow.clearLayers();
+                    markers_aero.clearLayers();
+
+                } else if (this.menu == 'aero') {
+                    this.currentTemp = false;
+                    this.forcastTemp = false;
+                    this.atmTemp = false;
+                    this.radar = false;
+                    this.awd = false;
+                    this.snow = false;
+                    this.aero = true;
+
+
+                    this.getAeroport();
+
+                    markers_radar.clearLayers();
+                    markers_atmasfera.clearLayers();
+                    markers_weather.clearLayers();
+                    markers_snow.clearLayers();
+                    markers_awd.clearLayers();
+
 
                 }
 
             },
-            myFilter: function() {
-                this.isActive = !this.isActive;
-                // some code to filter users
+            getAeroport: function () {
+                if (this.aero) {
+                    var marker;
+
+                    this.aeroports.forEach(function (item, i, arr) {
+                        axios.get('{{route('map.getCurrent')}}', {
+                            params: {
+                                regionid: item.region_id
+                            }
+                        })
+                            .then(function (response) {
+                                var meteoIcon = L.icon({
+                                    iconUrl: '{{asset('images/departures.svg')}}',
+                                    color: 'red',
+                                    iconSize: [40, 40],
+                                    className: 'selectedMarker'
+                                });
+
+                                var marker = L.marker([item.lat, item.lon], {icon: meteoIcon})
+                                    .bindTooltip(item.name + " (" + item.code + ") " + " " + Math.round(response.data.air_t).toString() + ' °C',
+                                        {
+                                            permanent: true,
+                                            direction: 'bottom'
+                                        });
+
+                                markers_aero.addLayer(marker)
+
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+
+
+                    })
+
+                    map.addLayer(markers_aero);
+
+
+                } else {
+                    markers_aero.clearLayers();
+
+
+                }
+
             }
         },
         mounted() {
