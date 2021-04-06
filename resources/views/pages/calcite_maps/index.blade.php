@@ -909,7 +909,7 @@
 
                                         marker.bindPopup("" +
                                             "<table class='table table-bordered'>" +
-                                            "<tr colspan='3'><td class='text-center'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
+                                            "<tr ><td class='text-center' colspan='3'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
                                             "<tr>" +
                                             "<td><b>Температура воздуха</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[2].Value['Value'] + " °C </td>" +
