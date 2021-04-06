@@ -86,7 +86,7 @@
         <ul class="dropdown-menu calcite-bgcolor-dark-blue">
             <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span class="glyphicon glyphicon-search"></span> Поиск</a></li>
             <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-globe"></span> Базовые карты</a></li>
-             <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-th-list"></span> Данные</a></li>
+             <li><a role="menuitem" tabindex="0" data-target="#panelmeteodata" aria-haspopup="true"><span class="glyphicon glyphicon-th-list"></span> Данные</a></li>
             <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
         </ul>
@@ -157,25 +157,49 @@
         </div>
     </div>
 
+    <!-- Данные Panel -->
+
+    <div id="panelmeteodata" class="panel collapse">
+        <div id="headingBasemaps" class="panel-heading" role="tab">
+            <div class="panel-title">
+                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false"   aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
+                <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelmeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+            </div>
+        </div>
+        <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
+            <div class="panel-body">
+                <select id="selectStandardBasemap" class="form-control">
+                    <option selected value="fakt">Фактическая погода</option>
+                    <option value="atmosphere">Загрязнение</option>
+                    <option value="forecast">Прогноз погода</option>
+                    <option value="locator">Локаторы</option>
+                    <option value="aero" disabled="">Аэро-метеорологические данные</option>
+                    <option value="snow">Данные снежного покрова</option>
+                    <option value="water">Данные водного кадастра</option>
+                    <option value="danger">Опасных зон</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <!-- Basemaps Panel -->
 
     <div id="panelBasemaps" class="panel collapse">
         <div id="headingBasemaps" class="panel-heading" role="tab">
             <div class="panel-title">
-                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false"   aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Basemaps</span></a>
+                <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false"   aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Типы географических карт</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
         <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
             <div class="panel-body">
                 <select id="selectStandardBasemap" class="form-control">
-                    <option value="Streets">Streets</option>
-                    <option value="Imagery">Satellite</option>
-                    <!-- <option value="Hybrid">Hybrid</option> -->
+                    <option value="Streets">Улицы</option>
+                    <option value="Imagery">Спутник</option>
                     <option selected value="NationalGeographic">National Geographic</option>
-                    <option value="Topographic">Topographic</option>
-                    <option value="Gray">Gray</option>
-                    <option value="DarkGray">Dark Gray</option>
+                    <option value="Topographic">Топографическая</option>
+                    <option value="Gray">Серый</option>
+                    <option value="DarkGray">Темно-серый</option>
                     <option value="OpenStreetMap">Open Street Map</option>
                 </select>
             </div>
