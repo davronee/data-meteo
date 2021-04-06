@@ -208,7 +208,7 @@
                         <option value="snow">Данные снежного покрова</option>
                         <option value="water">Данные водного кадастра</option>
                         <option value="danger">Опасных зон</option>
-                        <option value="awd">AWD</option>
+                        <option value="awd">Автоматическая станция</option>
 
                     </select>
                 </div>
@@ -362,8 +362,9 @@
                 var geojson = L.topoJson(null, {
                     style: function (feature) {
                         return {
-                            fillOpacity: 0.1,
-                            weight: 0.4,
+                            fillOpacity: 0.0,
+                            weight: 0.7,
+                            color:'white',
                             stroke: true,
 
                         }
@@ -866,6 +867,7 @@
                             // layer.bindPopup('<p>'+feature.properties.NAME+'</p>')
                         }
                     });
+
                     markers_snow.addLayer(geojsonSnow);
 
                     map.addLayer(markers_snow);
