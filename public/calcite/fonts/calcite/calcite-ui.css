@@ -568,3 +568,42 @@
 .icon-ui-zoom-out-magnifying-glass:before,
 .esri-icon-zoom-out-magnifying-glass:before {
   content: "\f188"; }
+
+
+img.leaflet-marker-icon[src*="meteo.png"] {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px #000;
+    background-color: #2f3ead;
+
+}
+
+#zoomCheck {
+    display: none;
+}
+
+.container img {
+    margin: 100px;
+    transition: transform 0.25s ease;
+    cursor: zoom-in;
+}
+
+input[type=checkbox]:checked ~ label > img {
+    transform: scale(3);
+    cursor: zoom-out;
+}
+
+.ownClass {
+    padding: 0;
+    border: 1px solid green;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -3px;
+    margin-left: -10px;
+}
+
+.pin-info {
+    padding: 4px;
+    /*color: #fff;*/
+
+}

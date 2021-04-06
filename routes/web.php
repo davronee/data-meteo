@@ -50,7 +50,9 @@ Route::group(['middleware' => ['set_locale']], function () {
     Route::get('/', [WidgetController::class, 'index'])->name('home');
 
     Route::prefix('map')->group(function () {
-        Route::get('/', [WidgetController::class, 'map'])->name('map');
+//        Route::get('/', [WidgetController::class, 'map'])->name('map');
+        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map');
+
         Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
         Route::get('/getRadars', [WidgetController::class, 'getRadars'])->name('map.getRadars');
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
@@ -61,10 +63,10 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     });
 
-    Route::prefix('map2')->group(function () {
-        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.calcilate.index');
-
-    });
+//    Route::prefix('map2')->group(function () {
+//        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.calcilate.index');
+//
+//    });
 
         Route::group(['middleware' => ['auth']], function () {
         // user profile routes
