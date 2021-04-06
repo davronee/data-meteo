@@ -250,6 +250,8 @@
 <script src="{{asset('calcite/js/jquery.min.js')}}"></script>
 <!-- Include all plugins or individual files as needed -->
 <script src="{{asset('calcite/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('calcite/js/jquery/calcitemaps-v0.10.js')}}"/>
+
 
 <script>
     var map;
@@ -967,6 +969,5 @@
 <!--script src="https://esri.github.io/calcite-bootstrap/scripts/vendor.js"></script-->
 <!--script src="https://esri.github.io/calcite-bootstrap/scripts/plugins.js"></script-->
 
-<script src="{{asset('calcite/js/jquery/calcitemaps-v0.10.js')}}"/>
 </body>
 </html>
