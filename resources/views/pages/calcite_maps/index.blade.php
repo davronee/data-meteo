@@ -1256,7 +1256,7 @@
                                 });
 
                                 var marker = L.marker([item.lat, item.lon], {icon: meteoIcon})
-                                    .bindTooltip(item.name + " (" + item.code + ") " + " " + Math.round(response.data.air_t).toString() + ' °C',
+                                    .bindTooltip(item.code + " "  + Math.round(response.data.air_t).toString() + '°',
                                         {
                                             permanent: true,
                                             direction: 'bottom'
