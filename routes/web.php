@@ -47,7 +47,8 @@ Route::group(['middleware' => ['set_locale']], function () {
     });
 
 
-    Route::get('/', [WidgetController::class, 'index'])->name('home');
+//    Route::get('/', [WidgetController::class, 'index'])->name('home');
+    Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map');
 
     Route::prefix('map')->group(function () {
 //        Route::get('/', [WidgetController::class, 'map'])->name('map');
