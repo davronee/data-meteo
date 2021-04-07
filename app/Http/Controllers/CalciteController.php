@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Http;
 
 class CalciteController extends Controller
 {
-    public $endpoint = 'http://192.168.10.249:8086/';
-//    public $endpoint = 'http://217.30.161.60:8086/';
+//    public $endpoint = 'http://192.168.10.249:8086/';
+    public $endpoint = 'http://217.30.161.60:8086/';
 //
     public function index(Request $request)
     {

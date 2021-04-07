@@ -1111,8 +1111,9 @@
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
                                 var meteoIcon = L.icon({
+                                    iconUrl: '{{asset('images/meteo_full.png')}}',
                                     iconSize: [28, 28], // size of the icon
-                                    class: "station"
+                                    className: "station",
                                 });
 
                                 var marker = L.marker([parseFloat(item.city.latitude), parseFloat(item.city.longitude)], {icon: meteoIcon}).on('click', function () {
