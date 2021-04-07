@@ -184,19 +184,15 @@
             </div>
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
                 <div class="panel-body">
-                    <p>Данная платформа является </p>
-                    Body
-                    <li>calcite-nav-bottom</li>
-                    <li>calcite-layout-large-title</li>
-                    <br>
-                    Nav
-                    <li>calcite-bgcolor-dark-green</li>
-                    <li>calcite-text-light</li>
-                    <br>
-                    Panels
-                    <li>calcite-panels-left</li>
-                    <li>calcite-bgcolor-dark-green</li>
-                    <li>calcite-bg-custom</li>
+                    <p> <b>Meteo Data Monitoring</b> - ягона метеорологик кузатувлар портали.</p>
+            <p>Модуллар:</p>
+                    <li>Фактик об-ҳаво</li>
+                    <li>Атмосфера ифлосланиши</li>
+                    <li>Локаторлар маълумоти</li>
+                    <li>Аэро-метеорологик маълумотлар</li>
+                    <li>Спутник маълумотлар</li>
+                    <li>Сув кадастри ва хавфли зоналар кадастри</li>
+                    <li>Автоматик метеостанциялар маълумотлари</li>
                 </div>
             </div>
         </div>
@@ -244,6 +240,7 @@
                         <option value="locator">Локаторы</option>
                         <option value="aero">Аэро-метеорологические данные</option>
                         <option value="snow">Данные снежного покрова</option>
+                         <option value="sputnik">Спутниковые метеорологические снимки</option>
                         <option value="water">Данные водного кадастра</option>
                         <option value="danger">Опасных зон</option>
                         <option value="awd">Автоматическая станция</option>
