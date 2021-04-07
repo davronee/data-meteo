@@ -1111,7 +1111,6 @@
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
                                 var meteoIcon = L.icon({
-                                    iconUrl: '',
                                     iconSize: [28, 28], // size of the icon
                                     class: "station"
                                 });
