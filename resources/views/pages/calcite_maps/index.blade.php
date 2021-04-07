@@ -306,8 +306,8 @@
     let app = new Vue({
         el: "#app",
         data: {
-            forcastTemp: true,
-            currentTemp: false,
+            forcastTemp: false,
+            currentTemp: true,
             atmTemp: false,
             markers: [],
             radars:@json($radars),
@@ -316,7 +316,7 @@
             snow: false,
             awd: false,
             awds:@json($stations),
-            menu: 'forecast',
+            menu: 'fakt',
             aero: false,
             aeroports: [
                 {
