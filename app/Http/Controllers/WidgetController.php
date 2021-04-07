@@ -80,7 +80,7 @@ class WidgetController extends Controller
     }
     public function forecast(Request $request)
     {
-        $current = Http::get('http://192.168.10.249:8085/api/weather/current/' . $request->regionid);
+        $current = Http::get('http://192.168.10.249:8085/api/weather/forecast/' . $request->regionid);
 //        $current = Http::get('http://217.30.161.60:8085/api/weather/forecast/' . $request->regionid);
         return $current->json();
     }
