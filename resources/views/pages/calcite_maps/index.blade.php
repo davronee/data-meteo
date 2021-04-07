@@ -1117,76 +1117,50 @@
                                 });
 
                                 var marker = L.marker([parseFloat(item.city.latitude), parseFloat(item.city.longitude)], {icon: meteoIcon}).on('click', function () {
+                                    var head;
                                     axios.get('{{route('map.forecast')}}', {
-                                        regionid: item.region_id
+                                        params: {
+                                            regionid: item.region_id
+                                        }
                                     })
-                                        .then(function (response) {
+                                        .then(function (response2) {
+                                            head = "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                            response2.data.forEach(function (item, i, arr) {
+                                                if (i % 2 == 0) {
+                                                    head += "<tr>" +
+                                                        "<td>" + item.date + "</td>" +
+                                                        "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                } else {
+                                                    head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                }
 
 
-                                            // marker.bindPopup("" +
-                                            //     "<table class='table table-bordered'>" +
-                                            //     "<tr ><td class='text-center' colspan='3'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Температура воздуха</b></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[2].Value['Value'] + " °C </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Точка Росы</b></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Относительная влажность</b></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Текущее давление<b/></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[9].Value['Value'] + " гПа </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[9].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Средн.давление над ур.моря за 10мин<b/></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Осадкомер 2. Сумма осадков за 10мин</b></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Средн.направление ветра за 10 мин</b></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " мм </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Средн.скорость ветра за 10 мин</b></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "<tr>" +
-                                            //     "<td><b>Средн.кол-во солнечной радиации за 10мин</b></td>" +
-                                            //     "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
-                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
-                                            //     "</tr>" +
-                                            //     "</table>"
-                                            // )
+                                            });
+
+                                            head += "</table>"
+
+                                            marker.bindPopup(head);
                                         })
                                         .catch(function (error) {
-                                            // handle error
                                             console.log(error);
                                         })
                                         .then(function () {
                                             // always executed
                                         });
+                                    // marker.bindPopup('sds');
+
+
                                 });
-                                marker.fire('click');
 
                                 markers_forecast.addLayer(marker)
+                                marker.fire('click');
 
                             });
+
 
                             map.addLayer(markers_forecast);
 
