@@ -306,7 +306,7 @@
         el: "#app",
         data: {
             forcastTemp: false,
-            currentTemp: false,
+            currentTemp: true,
             atmTemp: false,
             markers: [],
             radars:@json($radars),
@@ -315,8 +315,8 @@
             snow: false,
             awd: false,
             awds:@json($stations),
-            menu: 'aero',
-            aero: true,
+            menu: 'fakt',
+            aero: false,
             aeroports: [
                 {
                     code: 'AZN',
