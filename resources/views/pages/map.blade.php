@@ -179,6 +179,7 @@
     var markers_radar = L.featureGroup();
     var markers_atmasfera = L.featureGroup();
     var markers_awd = L.featureGroup();
+    var markers_forecast = L.featureGroup();
     // var markers_atmasfera = L.featureGroup();
     var markers_snow = L.featureGroup();
 

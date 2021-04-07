@@ -54,6 +54,8 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map');
 
         Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
+        Route::get('/forecast', [WidgetController::class, 'forecast'])->name('map.forecast');
+        Route::post('/getcurrentAll', [WidgetController::class, 'getForecastAll'])->name('map.forecast');
         Route::get('/getRadars', [WidgetController::class, 'getRadars'])->name('map.getRadars');
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
         Route::prefix('awd')->group(function () {

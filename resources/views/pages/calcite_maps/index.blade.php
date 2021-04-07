@@ -185,8 +185,8 @@
             </div>
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
                 <div class="panel-body">
-                    <p> <b>Meteo Data Monitoring</b> - ягона метеорологик кузатувлар портали.</p>
-            <p>Модуллар:</p>
+                    <p><b>Meteo Data Monitoring</b> - ягона метеорологик кузатувлар портали.</p>
+                    <p>Модуллар:</p>
                     <li>Фактик об-ҳаво</li>
                     <li>Атмосфера ифлосланиши</li>
                     <li>Локаторлар маълумоти</li>
@@ -235,13 +235,13 @@
                 <div class="panel-body">
                     <select id="selectStandardMeteodata" class="form-control" @change="menuChange()"
                             v-model="menu">
-                        <option selected value="fakt">Фактическая погода</option>
+                        <option value="fakt">Фактическая погода</option>
                         <option value="atmosphere">Загрязнение</option>
                         <option value="forecast">Прогноз погода</option>
                         <option value="locator">Локаторы</option>
                         <option value="aero">Аэро-метеорологические данные</option>
                         <option value="snow">Данные снежного покрова</option>
-                         <option value="sputnik">Спутниковые метеорологические снимки</option>
+                        <option value="sputnik">Спутниковые метеорологические снимки</option>
                         <option value="water">Данные водного кадастра</option>
                         <option value="danger">Опасных зон</option>
                         <option value="awd">Автоматическая станция</option>
@@ -298,6 +298,7 @@
     var markers_radar = L.featureGroup();
     var markers_atmasfera = L.featureGroup();
     var markers_awd = L.featureGroup();
+    var markers_forecast = L.featureGroup();
     // var markers_atmasfera = L.featureGroup();
     var markers_snow = L.featureGroup();
     var markers_aero = L.featureGroup();
@@ -305,8 +306,8 @@
     let app = new Vue({
         el: "#app",
         data: {
-            forcastTemp: false,
-            currentTemp: true,
+            forcastTemp: true,
+            currentTemp: false,
             atmTemp: false,
             markers: [],
             radars:@json($radars),
@@ -315,7 +316,7 @@
             snow: false,
             awd: false,
             awds:@json($stations),
-            menu: 'fakt',
+            menu: 'forecast',
             aero: false,
             aeroports: [
                 {
@@ -1103,6 +1104,108 @@
 
                 }
             },
+            getForecast: function () {
+                if (this.forcastTemp) {
+
+                    axios.get('{{route('map.getCurrent')}}')
+                        .then(function (response) {
+                            response.data.forEach(function (item, i, arr) {
+                                var meteoIcon = L.icon({
+                                    iconUrl: '{{asset('images/meteo.png')}}',
+                                    iconSize: [28, 28], // size of the icon
+                                    class: "station"
+                                });
+
+                                var marker = L.marker([parseFloat(item.city.latitude), parseFloat(item.city.longitude)], {icon: meteoIcon}).on('click', function () {
+                                    axios.get('{{route('map.forecast')}}', {
+                                        regionid: item.region_id
+                                    })
+                                        .then(function (response) {
+
+
+                                            // marker.bindPopup("" +
+                                            //     "<table class='table table-bordered'>" +
+                                            //     "<tr ><td class='text-center' colspan='3'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Температура воздуха</b></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[2].Value['Value'] + " °C </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Точка Росы</b></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Относительная влажность</b></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Текущее давление<b/></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[9].Value['Value'] + " гПа </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[9].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Средн.давление над ур.моря за 10мин<b/></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Осадкомер 2. Сумма осадков за 10мин</b></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Средн.направление ветра за 10 мин</b></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " мм </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Средн.скорость ветра за 10 мин</b></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "<tr>" +
+                                            //     "<td><b>Средн.кол-во солнечной радиации за 10мин</b></td>" +
+                                            //     "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
+                                            //     "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
+                                            //     "</tr>" +
+                                            //     "</table>"
+                                            // )
+                                        })
+                                        .catch(function (error) {
+                                            // handle error
+                                            console.log(error);
+                                        })
+                                        .then(function () {
+                                            // always executed
+                                        });
+                                });
+                                marker.fire('click');
+
+                                markers_forecast.addLayer(marker)
+
+                            });
+
+                            map.addLayer(markers_forecast);
+
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+                } else {
+                    markers_forecast.clearLayers();
+
+
+                }
+            },
             menuChange: function () {
                 if (this.menu == 'fakt') {
 
@@ -1121,6 +1224,7 @@
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
                     markers_aero.clearLayers();
+                    markers_forecast.clearLayers();
 
 
                 } else if (this.menu == 'atmosphere') {
@@ -1142,24 +1246,8 @@
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
                     markers_aero.clearLayers();
+                    markers_forecast.clearLayers();
 
-
-                } else if (this.menu == 'forecast') {
-                    this.currentTemp = false;
-                    this.forcastTemp = true;
-                    this.atmTemp = false;
-                    this.radar = false;
-                    this.awd = false;
-                    this.snow = false;
-                    this.aero = false;
-
-
-                    markers_radar.clearLayers();
-                    markers_atmasfera.clearLayers();
-                    markers_snow.clearLayers();
-                    markers_awd.clearLayers();
-                    markers_weather.clearLayers();
-                    markers_aero.clearLayers();
 
                 } else if (this.menu == 'locator') {
                     this.currentTemp = false;
@@ -1178,6 +1266,7 @@
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
                     markers_aero.clearLayers();
+                    markers_forecast.clearLayers();
 
 
                 } else if (this.menu == 'snow') {
@@ -1197,6 +1286,8 @@
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
                     markers_aero.clearLayers();
+                    markers_forecast.clearLayers();
+
 
                 } else if (this.menu == 'awd') {
                     this.currentTemp = false;
@@ -1215,6 +1306,8 @@
                     markers_weather.clearLayers();
                     markers_snow.clearLayers();
                     markers_aero.clearLayers();
+                    markers_forecast.clearLayers();
+
 
                 } else if (this.menu == 'aero') {
                     this.currentTemp = false;
@@ -1233,7 +1326,27 @@
                     markers_weather.clearLayers();
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
+                    markers_forecast.clearLayers();
 
+
+                } else if (this.menu == 'forecast') {
+                    this.currentTemp = false;
+                    this.forcastTemp = true;
+                    this.atmTemp = false;
+                    this.radar = false;
+                    this.awd = false;
+                    this.snow = false;
+                    this.aero = false;
+
+
+                    this.getForecast();
+
+                    markers_radar.clearLayers();
+                    markers_atmasfera.clearLayers();
+                    markers_weather.clearLayers();
+                    markers_snow.clearLayers();
+                    markers_aero.clearLayers();
+                    markers_awd.clearLayers();
 
                 }
 
@@ -1257,7 +1370,7 @@
                                 });
 
                                 var marker = L.marker([item.lat, item.lon], {icon: meteoIcon})
-                                    .bindTooltip(item.code + " "  + Math.round(response.data.air_t).toString() + '°',
+                                    .bindTooltip(item.code + " " + Math.round(response.data.air_t).toString() + '°',
                                         {
                                             permanent: true,
                                             direction: 'bottom',
