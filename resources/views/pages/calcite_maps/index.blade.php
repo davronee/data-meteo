@@ -77,6 +77,7 @@
     <!--     <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.3/dist/esri-leaflet-geocoder.css"> -->
 
     <link rel="stylesheet" href="{{asset('calcite/css/esri-leaflet-geocoder.css')}}">
+    <link rel="stylesheet" href="{{asset('calcite/css/style.css')}}">
     <script src="{{asset('calcite/js/jquery/esri-leaflet-geocoder-debug.js')}}"></script>
 
     <style>
@@ -305,7 +306,7 @@
         el: "#app",
         data: {
             forcastTemp: false,
-            currentTemp: true,
+            currentTemp: false,
             atmTemp: false,
             markers: [],
             radars:@json($radars),
@@ -314,8 +315,8 @@
             snow: false,
             awd: false,
             awds:@json($stations),
-            menu: 'fakt',
-            aero: false,
+            menu: 'aero',
+            aero: true,
             aeroports: [
                 {
                     code: 'AZN',
@@ -1259,7 +1260,9 @@
                                     .bindTooltip(item.code + " "  + Math.round(response.data.air_t).toString() + '°',
                                         {
                                             permanent: true,
-                                            direction: 'bottom'
+                                            direction: 'bottom',
+                                            sticky: true,
+                                            className: 'leaflet-tooltip-own'
                                         });
 
                                 markers_aero.addLayer(marker)

@@ -1,0 +1,27 @@
+.leaflet-tooltip-own {
+    /*background-color: rgba(0, 0, 0, 0.0);*/
+    color: #fff;
+    border: 0;
+    font-weight: bold;
+    border-radius: 0;
+    top: 12px;
+    background: transparent;
+    box-shadow: none;
+    text-shadow: 2px 2px 2px #000;
+}
+
+.leaflet-tooltip-own:before, .leaflet-tooltip-own:after {
+    display: none;
+}
+
+.leaflet-tooltip-own {
+    box-shadow: 0 0 5px green;
+    border: 2px solid #fff;
+    background: #196fa6;
+}
+
+/*img[src*="departures.svg"] {*/
+/*    box-shadow: 0 0 5px green;*/
+/*    border: 2px solid #fff;*/
+/*    background: #196fa6;*/
+/*}*/
