@@ -962,6 +962,34 @@
                                     className: 'myDivIcon'
                                 });
                                 var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
+                                    .on('click',function () {
+                                        marker.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>Оксид азота (NO):</b></td>" +
+                                            "<td>" + item.NO + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>Оксид углерода (СО):</b></td>" +
+                                            "<td>" + item.CO + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>Диоксид серы (SO2):</b></td>" +
+                                            "<td>" + item.SO2 + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>Диоксид азота (NO2):</b></td>" +
+                                            "<td>" + item.NO2 + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>Взвешенные вещества (пыль):</b></td>" +
+                                            "<td>" + item.substances + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+
+                                    })
                                     .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
                                         {
                                             permanent: true,
@@ -969,6 +997,8 @@
                                             className: 'ownClass'
 
                                         });
+
+                                marker.fire('click');
 
                                 marker.ind = item.id;//j+"_"+i;
 
