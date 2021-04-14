@@ -57,6 +57,7 @@
 
     <!--     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script> -->
     <script src="{{asset('calcite/js/jquery/leaflet-src.js')}}"></script>
+    <script src="{{asset('js/leaflet-svg-shape-markers.min.js')}}"></script>
     <link href="{{asset('calcite/css/font-awesome.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
 
@@ -243,7 +244,21 @@
                         <option value="snow">Данные снежного покрова</option>
                         <option value="sputnik">Спутниковые метеорологические снимки</option>
                         <option value="water">Данные водного кадастра</option>
-                        <option value="danger">Опасных зон</option>
+                        <optgroup label="Опасных зон">
+                            <option value="AtmZasuha">AtmZasuha</option>
+                            <option value="dojd_30mm_12ches">dojd_30mm_12ches</option>
+                            <option value="dojd_polusutkas">dojd_polusutkas</option>
+                            <option value="osen_zam_pochvas">osen_zam_pochvas</option>
+                            <option value="osen_zam_vozds">osen_zam_vozds</option>
+                            <option value="sneg20mm12ches">sneg20mm12ches</option>
+                            <option value="sneg_polusutkas">sneg_polusutkas</option>
+                            <option value="t40_s">t40_s</option>
+                            <option value="ves_zampochvas">ves_zampochvas</option>
+                            <option value="ves_zam_vozduhs">ves_zam_vozduhs</option>
+                            <option value="veter_razl_predelov2020s">veter_razl_predelov2020s</option>
+                            <option value="veter15s">veter15s</option>
+                        </optgroup>
+
                         <option value="awd">Автоматическая станция</option>
 
                     </select>
@@ -302,12 +317,13 @@
     // var markers_atmasfera = L.featureGroup();
     var markers_snow = L.featureGroup();
     var markers_aero = L.featureGroup();
+    var markers_dangerzones = L.featureGroup();
 
     let app = new Vue({
         el: "#app",
         data: {
-            forcastTemp: false,
-            currentTemp: true,
+            forcastTemp: true,
+            currentTemp: false,
             atmTemp: false,
             markers: [],
             radars:@json($radars),
@@ -316,8 +332,9 @@
             snow: false,
             awd: false,
             awds:@json($stations),
-            menu: 'fakt',
+            menu: 'forecast',
             aero: false,
+            dangerzones: false,
             aeroports: [
                 {
                     code: 'AZN',
@@ -713,6 +730,8 @@
                                             permanent: true,
                                             direction: 'center'
                                         });
+                                    marker.fire('click');
+
                                     markers_weather.addLayer(marker)
 
                                 } else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
@@ -1110,54 +1129,572 @@
                     axios.get('{{route('map.getCurrent')}}')
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
-                                var meteoIcon = L.icon({
-                                    iconUrl: '{{asset('images/meteo_full.png')}}',
-                                    iconSize: [28, 28], // size of the icon
-                                    className: "station",
-                                });
+                                {{--var meteoIcon = L.icon({--}}
+                                {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
+                                {{--    iconSize: [28, 28], // size of the icon--}}
+                                {{--    className: "station",--}}
+                                {{--});--}}
 
-                                var marker = L.marker([parseFloat(item.city.latitude), parseFloat(item.city.longitude)], {icon: meteoIcon}).on('click', function () {
-                                    var head;
-                                    axios.get('{{route('map.forecast')}}', {
-                                        params: {
-                                            regionid: item.region_id
-                                        }
-                                    })
-                                        .then(function (response2) {
-                                            head = "<table class='table table-bordered'>" +
-                                                "<tr>" +
-                                                "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                if (item.weather_code == 'clear') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-day-sunny',
+                                            prefix: 'wi',
+                                            markerColor: 'yellow',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
 
-                                            response2.data.forEach(function (item, i, arr) {
-                                                if (i % 2 == 0) {
-                                                    head += "<tr>" +
-                                                        "<td>" + item.date + "</td>" +
-                                                        "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
-                                                } else {
-                                                    head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
-                                                }
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
 
 
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
                                             });
+                                        // marker.bindPopup('sds');
 
-                                            head += "</table>"
 
-                                            marker.bindPopup(head);
-                                        })
-                                        .catch(function (error) {
-                                            console.log(error);
-                                        })
-                                        .then(function () {
-                                            // always executed
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
                                         });
-                                    // marker.bindPopup('sds');
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-day-cloudy',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
 
 
-                                });
+                                                });
 
-                                markers_forecast.addLayer(marker)
-                                marker.fire('click');
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'overcast') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-cloudy',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'fog') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-fog',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'light_rain' || item.weather_code == 'rain') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-rain',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'heavy_rain') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-storm-showers',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'thunderstorm') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-thunderstorm',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'light_sleet' || item.weather_code == 'sleet') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-sleet',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else if (item.weather_code == 'heavy_sleet') {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-storm-showers',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else {
+                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-snow',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
 
                             });
 
@@ -1190,6 +1727,7 @@
                     this.awd = false;
                     this.snow = false;
                     this.aero = false;
+                    this.dangerzones = false;
 
                     this.current();
 
@@ -1199,6 +1737,7 @@
                     markers_awd.clearLayers();
                     markers_aero.clearLayers();
                     markers_forecast.clearLayers();
+                    markers_dangerzones.clearLayers();
 
 
                 } else if (this.menu == 'atmosphere') {
@@ -1210,6 +1749,7 @@
                     this.awd = false;
                     this.snow = false;
                     this.aero = false;
+                    this.dangerzones = false;
 
 
                     this.getAtmasfera();
@@ -1221,6 +1761,7 @@
                     markers_weather.clearLayers();
                     markers_aero.clearLayers();
                     markers_forecast.clearLayers();
+                    markers_dangerzones.clearLayers();
 
 
                 } else if (this.menu == 'locator') {
@@ -1231,6 +1772,7 @@
                     this.awd = false;
                     this.snow = false;
                     this.aero = false;
+                    this.dangerzones = false;
 
 
                     this.getRadars();
@@ -1241,6 +1783,7 @@
                     markers_weather.clearLayers();
                     markers_aero.clearLayers();
                     markers_forecast.clearLayers();
+                    markers_dangerzones.clearLayers();
 
 
                 } else if (this.menu == 'snow') {
@@ -1251,6 +1794,7 @@
                     this.awd = false;
                     this.snow = true;
                     this.aero = false;
+                    this.dangerzones = false;
 
 
                     this.getSnow();
@@ -1261,6 +1805,7 @@
                     markers_weather.clearLayers();
                     markers_aero.clearLayers();
                     markers_forecast.clearLayers();
+                    markers_dangerzones.clearLayers();
 
 
                 } else if (this.menu == 'awd') {
@@ -1271,6 +1816,7 @@
                     this.awd = true;
                     this.snow = false;
                     this.aero = false;
+                    this.dangerzones = false;
 
 
                     this.getawd();
@@ -1281,6 +1827,7 @@
                     markers_snow.clearLayers();
                     markers_aero.clearLayers();
                     markers_forecast.clearLayers();
+                    markers_dangerzones.clearLayers();
 
 
                 } else if (this.menu == 'aero') {
@@ -1291,6 +1838,7 @@
                     this.awd = false;
                     this.snow = false;
                     this.aero = true;
+                    this.dangerzones = false;
 
 
                     this.getAeroport();
@@ -1301,6 +1849,7 @@
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
                     markers_forecast.clearLayers();
+                    markers_dangerzones.clearLayers();
 
 
                 } else if (this.menu == 'forecast') {
@@ -1311,6 +1860,7 @@
                     this.awd = false;
                     this.snow = false;
                     this.aero = false;
+                    this.dangerzones = false;
 
 
                     this.getForecast();
@@ -1321,6 +1871,41 @@
                     markers_snow.clearLayers();
                     markers_aero.clearLayers();
                     markers_awd.clearLayers();
+                    markers_dangerzones.clearLayers();
+
+                } else if (this.menu == 'AtmZasuha' ||
+                    this.menu == 'dojd_30mm_12ches' ||
+                    this.menu == 'dojd_polusutkas' ||
+                    this.menu == 'osen_zam_pochvas' ||
+                    this.menu == 'osen_zam_vozds' ||
+                    this.menu == 'sneg20mm12ches' ||
+                    this.menu == 'sneg_polusutkas' ||
+                    this.menu == 't40_s' ||
+                    this.menu == 'ves_zampochvas' ||
+                    this.menu == 'ves_zam_vozduhs' ||
+                    this.menu == 'veter_razl_predelov2020s' ||
+                    this.menu == 'veter15s') {
+
+                    this.currentTemp = false;
+                    this.forcastTemp = false;
+                    this.atmTemp = false;
+                    this.radar = false;
+                    this.awd = false;
+                    this.snow = false;
+                    this.aero = false;
+                    this.dangerzones = true;
+
+
+                    this.getDangerzones(this.menu);
+
+                    markers_radar.clearLayers();
+                    markers_forecast.clearLayers();
+                    markers_atmasfera.clearLayers();
+                    markers_weather.clearLayers();
+                    markers_snow.clearLayers();
+                    markers_aero.clearLayers();
+                    markers_awd.clearLayers();
+                    markers_dangerzones.clearLayers();
 
                 }
 
@@ -1374,6 +1959,566 @@
 
                 }
 
+            },
+            getDangerzones: function (type) {
+                var square;
+
+
+                axios.get('{{route('map.dangerzones.data')}}', {
+                    params: {
+                        endpoint: type
+                    }
+                })
+                    .then(function (response) {
+                        if (type == 'AtmZasuha') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: '#f07e00'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NDAYSR</b></td>" +
+                                                "<td>" + feature.properties.NDAYSR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NDAYMAX</b></td>" +
+                                                "<td>" + feature.properties.NDAYMAX + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F5</b></td>" +
+                                                "<td>" + feature.properties.F5 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'dojd_30mm_12ches') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "circle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'red'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NSR</b></td>" +
+                                                "<td>" + feature.properties.NSR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NMAX</b></td>" +
+                                                "<td>" + feature.properties.NMAX + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F5</b></td>" +
+                                                "<td>" + feature.properties.F5 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'dojd_polusutkas') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'blue'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>HMAXPERIOD</b></td>" +
+                                                "<td>" + feature.properties.HMAXPERIOD + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>DATAMAXPER</b></td>" +
+                                                "<td>" + feature.properties.DATAMAXPER + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>HMAX2020</b></td>" +
+                                                "<td>" + feature.properties.HMAX2020 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>DATAMAX202</b></td>" +
+                                                "<td>" + feature.properties.DATAMAX202 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'osen_zam_pochvas') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td>" + feature.properties.RANNYAYADA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>SRDATA</b></td>" +
+                                                "<td>" + feature.properties.SRDATA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td>" + feature.properties.POZDNYAYAD + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR1</b></td>" +
+                                                "<td>" + feature.properties.YEAR1 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F7</b></td>" +
+                                                "<td>" + feature.properties.F7 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'osen_zam_vozds') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td>" + feature.properties.RANNYAYADA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>SRDATA</b></td>" +
+                                                "<td>" + feature.properties.SRDATA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td>" + feature.properties.POZDNYAYAD + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR1</b></td>" +
+                                                "<td>" + feature.properties.YEAR1 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F7</b></td>" +
+                                                "<td>" + feature.properties.F7 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'sneg20mm12ches') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NSR</b></td>" +
+                                                "<td>" + feature.properties.NSR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NMAX</b></td>" +
+                                                "<td>" + feature.properties.NMAX + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F5</b></td>" +
+                                                "<td>" + feature.properties.F5 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'sneg_polusutkas') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>HMAXPERIOD</b></td>" +
+                                                "<td>" + feature.properties.HMAXPERIOD + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>DATAMAXPER</b></td>" +
+                                                "<td>" + feature.properties.DATAMAXPER + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>HMAX2020</b></td>" +
+                                                "<td>" + feature.properties.HMAX2020 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>DATAMAX202</b></td>" +
+                                                "<td>" + feature.properties.DATAMAX202 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 't40_s') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>number</b></td>" +
+                                                "<td>" + feature.properties.number + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEARMAX</b></td>" +
+                                                "<td>" + feature.properties.YEARMAX + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NAVARAGE</b></td>" +
+                                                "<td>" + feature.properties.NAVARAGE + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>N2020</b></td>" +
+                                                "<td>" + feature.properties.N2020 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'ves_zampochvas') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td>" + feature.properties.RANNYAYADA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>SRDATA</b></td>" +
+                                                "<td>" + feature.properties.SRDATA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td>" + feature.properties.POZDNYAYAD + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR1</b></td>" +
+                                                "<td>" + feature.properties.YEAR1 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F7</b></td>" +
+                                                "<td>" + feature.properties.F7 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        } else if (type == 'ves_zam_vozduhs') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td>" + feature.properties.RANNYAYADA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>SRDATA</b></td>" +
+                                                "<td>" + feature.properties.SRDATA + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td>" + feature.properties.POZDNYAYAD + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR1</b></td>" +
+                                                "<td>" + feature.properties.YEAR1 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F7</b></td>" +
+                                                "<td>" + feature.properties.F7 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        }
+
+                        else if (type == 'veter_razl_predelov2020s') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>V15</b></td>" +
+                                                "<td>" + feature.properties.V15 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>V20</b></td>" +
+                                                "<td>" + feature.properties.V20 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>V30</b></td>" +
+                                                "<td>" + feature.properties.V30 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F7</b></td>" +
+                                                "<td>" + feature.properties.F7 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        }
+
+                        else if (type == 'veter15s') {
+                            response.data.forEach(function (item, i, arr) {
+                                var geoojson = L.geoJson(item, {
+                                    pointToLayer: function (feature, latlng) {
+                                        square = L.shapeMarker(latlng, {
+                                            shape: "triangle",
+                                            radius: 8,
+                                            fillOpacity: 1,
+                                            color: 'darkred'
+                                        }).on('click', function () {
+
+                                            var pop = L.popup().setLatLng(this._latlng).setContent(
+                                                "<table class='table table-bordered'>" +
+                                                "<tr>" +
+                                                "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NSR</b></td>" +
+                                                "<td>" + feature.properties.NSR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>NMAX</b></td>" +
+                                                "<td>" + feature.properties.NMAX + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>YEAR</b></td>" +
+                                                "<td>" + feature.properties.YEAR + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>F5</b></td>" +
+                                                "<td>" + feature.properties.F5 + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            ).openOn(map);
+
+                                        })
+                                    },
+                                });
+                                markers_dangerzones.addLayer(square);
+                            })
+
+                            map.addLayer(markers_dangerzones);
+                        }
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
             }
         },
         mounted() {

@@ -11,6 +11,14 @@ class WidgetController extends Controller
 {
 //    public $endpoint = 'http://217.30.161.60:8086/';
     public $endpoint = 'http://192.168.10.249:8086/';
+    public $meteoapi = 'http://192.168.10.249:8085/';
+    public $dangerzonesapi = 'http://10.190.24.134:11082/public/api/';
+
+    public function __construct()
+    {
+        $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->meteoapi = env('METEOAPI_ENDPOINT', 'http://192.168.10.249:8085/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+    }
 
     public function index(Request $request)
     {
@@ -74,13 +82,14 @@ class WidgetController extends Controller
 
     public function getCurrent(Request $request)
     {
-        $current = Http::get('http://192.168.10.249:8085/api/weather/current/' . $request->regionid);
+        $current = Http::get($this->meteoapi . 'api/weather/current/' . $request->regionid);
 //        $current = Http::get('http://217.30.161.60:8085/api/weather/current/' . $request->regionid);
         return $current->json();
     }
+
     public function forecast(Request $request)
     {
-        $current = Http::get('http://192.168.10.249:8085/api/weather/forecast/' . $request->regionid);
+        $current = Http::get($this->meteoapi . 'api/weather/forecast/' . $request->regionid);
 //        $current = Http::get('http://217.30.161.60:8085/api/weather/forecast/' . $request->regionid);
         return $current->json();
     }
@@ -88,7 +97,7 @@ class WidgetController extends Controller
 
     public function getForecastAll(Request $request)
     {
-        $current = Http::get('http://192.168.10.249:8085/api/weather/current/' . $request->regionid);
+        $current = Http::get($this->meteoapi . 'api/weather/forecast');
 //        $current = Http::get('http://217.30.161.60:8085/api/weather/forecast/' . $request->regionid);
         return $current->json();
     }
@@ -389,8 +398,26 @@ class WidgetController extends Controller
     public function GetAtmasfera()
     {
 //        $atmasfera = Http::get('http://217.30.161.60:8085/api/atmosphere/monitoring/');
-        $atmasfera = Http::get('http://192.168.10.249:8085/api/atmosphere/monitoring/');
+        $atmasfera = Http::get($this->meteoapi . 'api/atmosphere/monitoring/');
         return $atmasfera->json();
     }
 
+    public function dangerzonesLogin()
+    {
+        $response = Http::post($this->dangerzonesapi . 'login', [
+            'email' => 'info@ygk.uz',
+            'password' => 'X25G-y8nvQ8Tq_2D',
+        ]);
+
+        return $response->json()['token'];
+    }
+
+    public function dangerzonesData(Request $request)
+    {
+        $token = $this->dangerzonesLogin();
+        $data = Http::withToken($token)->get($this->dangerzonesapi . 'hydromet/' . $request->endpoint);
+        return $data->json();
+    }
+
 }
+

@@ -64,6 +64,11 @@ Route::group(['middleware' => ['set_locale']], function () {
             Route::post('/getStation', [AwdController::class, 'getStation'])->name('map.awd.getStation');
         });
 
+        Route::prefix('dangerzones')->group(function () {
+            Route::post('/', [WidgetController::class, 'dangerzonesLogin'])->name('map.dangerzones.login');
+            Route::get('/data', [WidgetController::class, 'dangerzonesData'])->name('map.dangerzones.data');
+        });
+
     });
 
     Route::prefix('map2')->group(function () {
