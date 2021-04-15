@@ -2008,7 +2008,7 @@
                                             shape: "triangle",
                                             radius: 8,
                                             fillOpacity: 1,
-                                            color: '#f07e00'
+                                            color: 'darkred'
                                         }).on('click', function () {
 
                                             var pop = L.popup().setLatLng(this._latlng).setContent(
@@ -2047,10 +2047,10 @@
                                 var geoojson = L.geoJson(item, {
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
-                                            shape: "circle",
+                                            shape: "triangle",
                                             radius: 8,
                                             fillOpacity: 1,
-                                            color: 'red'
+                                            color: 'darkred'
                                         }).on('click', function () {
 
                                             var pop = L.popup().setLatLng(this._latlng).setContent(
@@ -2092,7 +2092,7 @@
                                             shape: "triangle",
                                             radius: 8,
                                             fillOpacity: 1,
-                                            color: 'blue'
+                                            color: 'darkred'
                                         }).on('click', function () {
 
                                             var pop = L.popup().setLatLng(this._latlng).setContent(
