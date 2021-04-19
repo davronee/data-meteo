@@ -42,7 +42,7 @@
           content="https://hydromet.uz/templates/meteouz/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!--favicon-->
-    <title>METEO MONITORING MAP - UZHYDROMET</title>
+    <title>METEO MONITORING - UZHYDROMET</title>
 
     <!-- Calcite Maps Bootstrap -->
     <link rel="stylesheet" href="{{asset('calcite/css/calcite-maps-bootstrap.min-v0.10.css')}}">
@@ -139,6 +139,8 @@
                             class="glyphicon glyphicon-th-list"></span> Данные</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
                             class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
+                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
+                            class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
                             class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
             </ul>
@@ -151,11 +153,14 @@
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
+              <li><a class="calcite-navbar-search hidden-xs" href="#">ЎЗБ</a></li>
+             <li><a class="calcite-navbar-search hidden-xs" href="#">РУС</a></li>
             <li>
                 <div class="calcite-navbar-search hidden-xs">
                     <div id="geocode"></div>
                 </div>
             </li>
+           
         </ul>
     </nav><!--/.navbar -->
 
@@ -170,6 +175,42 @@
     <div
         class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
         role="tablist" aria-multiselectable="true">
+
+
+        <!-- API Panel -->
+
+        <div id="panelApi" class="panel collapse">
+            <div id="headingApi" class="panel-heading" role="tab">
+                <div class="panel-title">
+                    <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseApi"
+                       aria-expanded="true" aria-controls="collapseApi"><span class="fa fa-code"
+                                                                               aria-hidden="true"></span><span
+                            class="panel-label">Метео API</span></a>
+                    <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelApi"><span
+                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                </div>
+            </div>
+            <div id="collapseApi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApi">
+                <div class="panel-body">
+                    <p><b>Метео API</b> - универсал гидрометеорологик маълумотлар узатиш вебсервиси.</p>
+                    <p>Модуллар:</p>
+                    <li>Фактик об-ҳаво</li>
+                    <li>Атмосфера ифлосланиши</li>
+                    <li>Локаторлар маълумоти</li>
+                    <li>Аэро-метеорологик маълумотлар</li>
+                    <li>Спутник маълумотлар</li>
+                    <li>Сув кадастри ва хавфли зоналар кадастри</li>
+                    <li>Автоматик метеостанциялар маълумотлари</li>
+                     <hr>
+                     <li  style="list-style: none;"><p><b>Метео API</b> вебсервисига уланиш учун <a href="#">қуйидаги ариза шаклини</a> тўлдирган ҳолда <b>info@mtb.uz</b> электрон почтасига сўров жўнатишингиз мумкин.</p></li>
+                </div>
+                
+                 
+            </div>
+           
+               
+        </div>
+
 
         <!-- Info Panel -->
 
