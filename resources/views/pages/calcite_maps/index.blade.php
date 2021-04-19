@@ -160,7 +160,7 @@
                     <div id="geocode"></div>
                 </div>
             </li>
-           
+
         </ul>
     </nav><!--/.navbar -->
 
@@ -204,11 +204,11 @@
                      <hr>
                      <li  style="list-style: none;"><p><b>Метео API</b> вебсервисига уланиш учун <a href="#">қуйидаги ариза шаклини</a> тўлдирган ҳолда <b>info@mtb.uz</b> электрон почтасига сўров жўнатишингиз мумкин.</p></li>
                 </div>
-                
-                 
+
+
             </div>
-           
-               
+
+
         </div>
 
 
@@ -286,18 +286,18 @@
                         <option value="sputnik">Спутниковые метеорологические снимки</option>
                         <option value="water">Данные водного кадастра</option>
                         <optgroup label="Опасных зон">
-                            <option value="AtmZasuha">AtmZasuha</option>
-                            <option value="dojd_30mm_12ches">dojd_30mm_12ches</option>
-                            <option value="dojd_polusutkas">dojd_polusutkas</option>
-                            <option value="osen_zam_pochvas">osen_zam_pochvas</option>
-                            <option value="osen_zam_vozds">osen_zam_vozds</option>
-                            <option value="sneg20mm12ches">sneg20mm12ches</option>
-                            <option value="sneg_polusutkas">sneg_polusutkas</option>
-                            <option value="t40_s">t40_s</option>
-                            <option value="ves_zampochvas">ves_zampochvas</option>
-                            <option value="ves_zam_vozduhs">ves_zam_vozduhs</option>
-                            <option value="veter_razl_predelov2020s">veter_razl_predelov2020s</option>
-                            <option value="veter15s">veter15s</option>
+                            <option value="AtmZasuha">Число дней с атм. засухой</option>
+                            <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
+                            <option value="dojd_polusutkas">Кол-во осадков за полусутки</option>
+                            <option value="osen_zam_pochvas">Даты первого осеннего заморозка на почве</option>
+                            <option value="osen_zam_vozds">Даты первого осеннего заморозка в воздухе</option>
+                            <option value="sneg20mm12ches">Кол-во суток со снегом 20 мм за 12 ч</option>
+                            <option value="sneg_polusutkas">Кол-во осадков в виде снега за полусутки</option>
+                            <option value="t40_s">Число дн. с температурой 40°С и выше</option>
+                            <option value="ves_zampochvas">Даты последнего весеннего заморозка на почве</option>
+                            <option value="ves_zam_vozduhs">Даты последнего весеннего заморозка в воздухе</option>
+                            <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30 м/с</option>
+                            <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option>
                         </optgroup>
 
                         <option value="awd">Автоматическая станция</option>
