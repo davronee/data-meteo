@@ -2058,19 +2058,19 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NDAYSR</b></td>" +
+                                                "<td><b>Число дней, среднее за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NDAYSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NDAYMAX</b></td>" +
+                                                "<td><b>Число дней, наибольшее, количество за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NDAYMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Число дней, наибольшее, год за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F5</b></td>" +
+                                                "<td><b>Число дней, за текущий год</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2100,19 +2100,19 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NSR</b></td>" +
+                                                "<td><b>Количество суток, среднее за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NMAX</b></td>" +
+                                                "<td><b>Количество суток, максимальное за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Количество суток, год за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F5</b></td>" +
+                                                "<td><b>Количество суток, за текущих год</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2142,19 +2142,19 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>HMAXPERIOD</b></td>" +
+                                                "<td><b>Максимальное за многолетний период, в мм</b></td>" +
                                                 "<td>" + feature.properties.HMAXPERIOD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>DATAMAXPER</b></td>" +
+                                                "<td><b>Максимальное за многолетний период, дата</b></td>" +
                                                 "<td>" + feature.properties.DATAMAXPER + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>HMAX2020</b></td>" +
+                                                "<td><b>Максимальное за текущих год, в мм</b></td>" +
                                                 "<td>" + feature.properties.HMAX2020 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>DATAMAX202</b></td>" +
+                                                "<td><b>Максимальное за текущий год, дата</b></td>" +
                                                 "<td>" + feature.properties.DATAMAX202 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2184,27 +2184,27 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>SRDATA</b></td>" +
+                                                "<td><b>Средняя дата за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR1</b></td>" +
+                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F7</b></td>" +
+                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2234,27 +2234,27 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>SRDATA</b></td>" +
+                                                "<td><b>Средняя дата за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR1</b></td>" +
+                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F7</b></td>" +
+                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2284,19 +2284,19 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NSR</b></td>" +
+                                                "<td><b>Количество суток, среднее за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NMAX</b></td>" +
+                                                "<td><b>Количество суток, максимальное за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Количество суток, год за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F5</b></td>" +
+                                                "<td><b>Количество суток, за текущих год</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2326,19 +2326,19 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>HMAXPERIOD</b></td>" +
+                                                "<td><b>Максимальное за многолетний период, в мм</b></td>" +
                                                 "<td>" + feature.properties.HMAXPERIOD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>DATAMAXPER</b></td>" +
+                                                "<td><b>Максимальное за многолетний период, дата</b></td>" +
                                                 "<td>" + feature.properties.DATAMAXPER + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>HMAX2020</b></td>" +
+                                                "<td><b>Максимальное за текущих год, в мм</b></td>" +
                                                 "<td>" + feature.properties.HMAX2020 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>DATAMAX202</b></td>" +
+                                                "<td><b>Максимальное за текущий год, дата</b></td>" +
                                                 "<td>" + feature.properties.DATAMAX202 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2368,19 +2368,19 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>number</b></td>" +
+                                                "<td><b>Максимальное за многолетний период (число дней)</b></td>" +
                                                 "<td>" + feature.properties.number + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEARMAX</b></td>" +
+                                                "<td><b>Максимальное за многолетний период (год)</b></td>" +
                                                 "<td>" + feature.properties.YEARMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NAVARAGE</b></td>" +
+                                                "<td><b>Среднее число дней за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NAVARAGE + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>N2020</b></td>" +
+                                                "<td><b>Число дней за текущий год</b></td>" +
                                                 "<td>" + feature.properties.N2020 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2410,27 +2410,27 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>SRDATA</b></td>" +
+                                                "<td><b>Средняя дата за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR1</b></td>" +
+                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F7</b></td>" +
+                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2460,27 +2460,27 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>RANNYAYADA</b></td>" +
+                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>SRDATA</b></td>" +
+                                                "<td><b>Средняя дата за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>POZDNYAYAD</b></td>" +
+                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR1</b></td>" +
+                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F7</b></td>" +
+                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
@@ -2512,21 +2512,21 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>V15</b></td>" +
+                                                "<td><b>Скорость ветра  ≥15 м/с</b></td>" +
                                                 "<td>" + feature.properties.V15 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>V20</b></td>" +
+                                                "<td><b>Скорость ветра  ≥20 м/с</b></td>" +
                                                 "<td>" + feature.properties.V20 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>V30</b></td>" +
+                                                "<td><b>Скорость ветра  ≥30 м/с</b></td>" +
                                                 "<td>" + feature.properties.V30 + "</td>" +
                                                 "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>F7</b></td>" +
-                                                "<td>" + feature.properties.F7 + "</td>" +
-                                                "</tr>" +
+                                                // "<tr>" +
+                                                // "<td><b>F7</b></td>" +
+                                                // "<td>" + feature.properties.F7 + "</td>" +
+                                                // "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
@@ -2556,19 +2556,19 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NSR</b></td>" +
+                                                "<td><b>Количество суток, среднее за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>NMAX</b></td>" +
+                                                "<td><b>Количество суток, максимальное за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.NMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>YEAR</b></td>" +
+                                                "<td><b>Количество суток, год за многолетний период</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>F5</b></td>" +
+                                                "<td><b>Количество суток, за текущий год</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
