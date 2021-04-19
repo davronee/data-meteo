@@ -1157,7 +1157,7 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>Средн.направление ветра за 10 мин</b></td>" +
-                                            "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " мм </td>" +
+                                            "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " ° </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
