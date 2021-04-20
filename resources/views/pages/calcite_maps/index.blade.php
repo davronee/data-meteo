@@ -139,7 +139,7 @@
                             class="glyphicon glyphicon-th-list"></span> Данные</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
                             class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
-                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
+                <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
                             class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
                             class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
@@ -153,8 +153,8 @@
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
-              <li><a class="calcite-navbar-search hidden-xs" href="#">ЎЗБ</a></li>
-             <li><a class="calcite-navbar-search hidden-xs" href="#">РУС</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="#">ЎЗБ</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="#">РУС</a></li>
             <li>
                 <div class="calcite-navbar-search hidden-xs">
                     <div id="geocode"></div>
@@ -184,7 +184,7 @@
                 <div class="panel-title">
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseApi"
                        aria-expanded="true" aria-controls="collapseApi"><span class="fa fa-code"
-                                                                               aria-hidden="true"></span><span
+                                                                              aria-hidden="true"></span><span
                             class="panel-label">Метео API</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelApi"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
@@ -201,8 +201,10 @@
                     <li>Спутник маълумотлар</li>
                     <li>Сув кадастри ва хавфли зоналар кадастри</li>
                     <li>Автоматик метеостанциялар маълумотлари</li>
-                     <hr>
-                     <li  style="list-style: none;"><p><b>Метео API</b> вебсервисига уланиш учун <a href="#">қуйидаги ариза шаклини</a> тўлдирган ҳолда <b>info@mtb.uz</b> электрон почтасига сўров жўнатишингиз мумкин.</p></li>
+                    <hr>
+                    <li style="list-style: none;"><p><b>Метео API</b> вебсервисига уланиш учун <a href="#">қуйидаги
+                                ариза шаклини</a> тўлдирган ҳолда <b>info@mtb.uz</b> электрон почтасига сўров
+                            жўнатишингиз мумкин.</p></li>
                 </div>
 
 
@@ -285,6 +287,8 @@
                         <option value="snow">Данные снежного покрова</option>
                         <option value="sputnik">Спутниковые метеорологические снимки</option>
                         <option value="water">Данные водного кадастра</option>
+                        <option value="awd">Автоматическая станция</option>
+
                         <optgroup label="Опасных зон">
                             <option value="AtmZasuha">Число дней с атм. засухой</option>
                             <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
@@ -296,11 +300,12 @@
                             <option value="t40_s">Число дн. с температурой 40°С и выше</option>
                             <option value="ves_zampochvas">Даты последнего весеннего заморозка на почве</option>
                             <option value="ves_zam_vozduhs">Даты последнего весеннего заморозка в воздухе</option>
-                            <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30 м/с</option>
+                            <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30
+                                м/с
+                            </option>
                             <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option>
                         </optgroup>
 
-                        <option value="awd">Автоматическая станция</option>
 
                     </select>
                 </div>
@@ -1003,7 +1008,7 @@
                                     className: 'myDivIcon'
                                 });
                                 var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
-                                    .on('click',function () {
+                                    .on('click', function () {
                                         marker.bindPopup("" +
                                             "<table class='table table-bordered'>" +
                                             "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
@@ -1120,14 +1125,171 @@
                                     id: item.Id
                                 })
                                     .then(function (response) {
+                                        var StationName = '';
+
+                                        switch (response.data.Stations.StationName) {
+                                            case "01_Boz":
+                                                    StationName = 'Боз';
+                                                break;
+                                            case "02_Kurgantepa":
+                                                    StationName = 'Кургантепа';
+                                                    break;
+                                            case "03_Ulugnar":
+                                                StationName = 'Улугнар';
+                                                break;
+                                            case "04_Ayakagitma":
+                                                StationName = 'Аякагитма';
+                                                break;
+                                            case "05_Djangeldy":
+                                                StationName = 'Джангелей';
+                                                break;
+                                            case "06_Karakul":
+                                                StationName = 'Каракул';
+                                                break;
+                                            case "07_Kysyl-Ravat":
+                                                StationName = 'Кизил-Рават';
+                                                break;
+                                            case "08_Akrabat":
+                                                StationName = 'Акрабат';
+                                                break;
+                                            case "09_Minchukur":
+                                                StationName = 'Минчукур';
+                                                break;
+                                            case "10_Kul":
+                                                StationName = 'Кул';
+                                                break;
+                                            case "11_Akbaytal":
+                                                StationName = 'Акбайтал';
+                                                break;
+                                            case "12_Buzaubay":
+                                                StationName = 'Бузаубай';
+                                                break;
+                                            case "13_Mashikuduk":
+                                                StationName = 'Машикудук';
+                                                break;
+                                            case "14_Nurata":
+                                                StationName = 'Нурата';
+                                                break;
+                                            case "15_Sentob-Nurata":
+                                                StationName = 'Сентоб-Нурата';
+                                                break;
+                                            case "16_Tamdy":
+                                                StationName = 'Тамди';
+                                                break;
+                                            case "17_Uchkuduk":
+                                                StationName = 'Учкудук';
+                                                break;
+                                            case "18_UGM_Navoiy":
+                                                StationName = 'УГМ_Навоий';
+                                                break;
+                                            case "19_Hanabad":
+                                                StationName = 'Ҳанабад';
+                                                break;
+                                            case "20_Payshanba":
+                                                StationName = 'Пайшанба';
+                                                break;
+                                            case "21_Kushrabad":
+                                                StationName = 'Кушрабад';
+                                                break;
+                                            case "22_Baysun":
+                                                StationName = 'Байсун';
+                                                break;
+                                            case "23_Saryassiya":
+                                                StationName = 'Сариассия';
+                                                break;
+                                            case "24_Shurchi":
+                                                StationName = 'Шурчи';
+                                                break;
+                                            case "25_Termez":
+                                                StationName = 'Термез';
+                                                break;
+                                            case "26_Syrdarya":
+                                                StationName = 'Сирдаря';
+                                                break;
+                                            case "27_Yangier":
+                                                StationName = 'Янгиер';
+                                                break;
+                                            case "28_Gulistan":
+                                                StationName = 'Гулистан';
+                                                break;
+                                            case "29_Chimgan":
+                                                StationName = 'Чимган';
+                                                break;
+                                            case "30_Oygaing":
+                                                StationName = 'Ойгаинг';
+                                                break;
+                                            case "31_Pskem":
+                                                StationName = 'Пскем';
+                                                break;
+                                            case "32_Charvak":
+                                                StationName = 'Чарвак';
+                                                break;
+                                            case "33_Almalyk":
+                                                StationName = 'Алмалик';
+                                                break;
+                                            case "34_Angren":
+                                                StationName = 'Ангрен';
+                                                break;
+                                            case "35_Bekabad":
+                                                StationName = 'Бекабад';
+                                                break;
+                                            case "36_Dalverzin":
+                                                StationName = '36_Dalverzin';
+                                                break;
+                                            case "37_Tyuyabuguz":
+                                                StationName = 'Тюябугуз';
+                                                break;
+                                            case "38_Kokaral":
+                                                StationName = 'Кокарал';
+                                                break;
+                                            case "39_Dukant":
+                                                StationName = 'Дукант';
+                                                break;
+                                            case "40_Yangiyul":
+                                                StationName = 'Янгиюл';
+                                                break;
+                                            case "41_Sukok":
+                                                StationName = 'Сукок';
+                                                break;
+                                            case "42_Nurafshon":
+                                                StationName = 'Нурафшон';
+                                                break;
+                                            case "43_Fergana":
+                                                StationName = 'Фергана';
+                                                break;
+                                            case "44_Kokand":
+                                                StationName = 'Коканд';
+                                                break;
+                                            case "45_Kuva":
+                                                StationName = 'Кува';
+                                                break;
+                                            case "46_Sarykanda":
+                                                StationName = 'Сарйканда';
+                                                break;
+                                            case "47_Shahimardan":
+                                                StationName = 'Шаҳимардан';
+                                                break;
+                                                case "48_Tuyamuyun":
+                                                StationName = 'Туямуюн';
+                                                break;
+                                                case "49_Khiva":
+                                                StationName = 'Ҳива';
+                                                break;
+                                                case "50_Gurlen":
+                                                StationName = 'Гурлен';
+                                                break;
+                                                case "51_Tashkent-Observatory":
+                                                StationName = 'Ташкент-Обсерваторй';
+                                                break;
+                                        }
 
 
                                         marker.bindPopup("" +
                                             "<table class='table table-bordered'>" +
-                                            "<tr ><td class='text-center' colspan='3'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
+                                            "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                             "<tr>" +
                                             "<td><b>Температура воздуха</b></td>" +
-                                            "<td>" + response.data.Stations.Sources.Variables[2].Value['Value'] + " °C </td>" +
+                                            "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
@@ -1142,8 +1304,8 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>Текущее давление<b/></td>" +
-                                            "<td>" + response.data.Stations.Sources.Variables[9].Value['Value'] + " гПа </td>" +
-                                            "<td>" + new Date(response.data.Stations.Sources.Variables[9].Value['Meastime']).toLocaleString() + "</td>" +
+                                            "<td>" + response.data.Stations.Sources.Variables[25].Value['Value'] + " гПа </td>" +
+                                            "<td>" + new Date(response.data.Stations.Sources.Variables[25].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>Средн.давление над ур.моря за 10мин<b/></td>" +
@@ -1194,6 +1356,27 @@
 
                 }
             },
+
+            translate: function (name) {
+                axios.get('{{route('map.awd.translate')}}', {
+                    params: {
+                        name: name
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response.data);
+                        return response;
+                        // console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+
+            },
             getForecast: function () {
                 if (this.forcastTemp) {
 
@@ -1201,13 +1384,13 @@
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
                                 {{--var meteoIcon = L.icon({--}}
-                                {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
-                                {{--    iconSize: [28, 28], // size of the icon--}}
-                                {{--    className: "station",--}}
-                                {{--});--}}
+                                    {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
+                                    {{--    iconSize: [28, 28], // size of the icon--}}
+                                    {{--    className: "station",--}}
+                                    {{--});--}}
 
                                 if (item.weather_code == 'clear') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-day-sunny',
                                             prefix: 'wi',
@@ -1261,9 +1444,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-day-cloudy',
                                             prefix: 'wi',
@@ -1317,9 +1499,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'overcast') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'overcast') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-cloudy',
                                             prefix: 'wi',
@@ -1373,9 +1554,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'fog') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'fog') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-fog',
                                             prefix: 'wi',
@@ -1429,9 +1609,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'light_rain' || item.weather_code == 'rain') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'light_rain' || item.weather_code == 'rain') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-rain',
                                             prefix: 'wi',
@@ -1485,9 +1664,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'heavy_rain') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'heavy_rain') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-storm-showers',
                                             prefix: 'wi',
@@ -1541,9 +1719,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'thunderstorm') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'thunderstorm') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-thunderstorm',
                                             prefix: 'wi',
@@ -1597,9 +1774,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'light_sleet' || item.weather_code == 'sleet') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'light_sleet' || item.weather_code == 'sleet') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-sleet',
                                             prefix: 'wi',
@@ -1653,9 +1829,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'heavy_sleet') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'heavy_sleet') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-storm-showers',
                                             prefix: 'wi',
@@ -1709,9 +1884,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-snow',
                                             prefix: 'wi',
@@ -2493,9 +2667,7 @@
                             })
 
                             map.addLayer(markers_dangerzones);
-                        }
-
-                        else if (type == 'veter_razl_predelov2020s') {
+                        } else if (type == 'veter_razl_predelov2020s') {
                             response.data.forEach(function (item, i, arr) {
                                 var geoojson = L.geoJson(item, {
                                     pointToLayer: function (feature, latlng) {
@@ -2537,9 +2709,7 @@
                             })
 
                             map.addLayer(markers_dangerzones);
-                        }
-
-                        else if (type == 'veter15s') {
+                        } else if (type == 'veter15s') {
                             response.data.forEach(function (item, i, arr) {
                                 var geoojson = L.geoJson(item, {
                                     pointToLayer: function (feature, latlng) {
