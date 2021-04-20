@@ -1357,26 +1357,6 @@
                 }
             },
 
-            translate: function (name) {
-                axios.get('{{route('map.awd.translate')}}', {
-                    params: {
-                        name: name
-                    }
-                })
-                    .then(function (response) {
-                        console.log(response.data);
-                        return response;
-                        // console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .then(function () {
-                        // always executed
-                    });
-
-
-            },
             getForecast: function () {
                 if (this.forcastTemp) {
 
