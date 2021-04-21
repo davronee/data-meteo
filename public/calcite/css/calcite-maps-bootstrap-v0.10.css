@@ -2954,7 +2954,7 @@ fieldset[disabled] a.btn {
 .btn-danger {
   color: #fff;
   background-color: #d9534f;
-  border-color: #d43f3a; }
+  border-color: 1px solid rgb(254 254 255 / 49%); }
   .btn-danger:focus, .btn-danger.focus {
     color: #fff;
     background-color: #c9302c;
