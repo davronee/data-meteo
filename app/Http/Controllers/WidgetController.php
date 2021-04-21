@@ -20,6 +20,7 @@ class WidgetController extends Controller
     {
         $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
         $this->meteoapi = env('METEOAPI_ENDPOINT', 'http://192.168.10.249:8085/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->dangerzonesapi = env('DANGERZONES_ENDPOINT', 'http://89.236.217.114:11082/public/api/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
     public function index(Request $request)
