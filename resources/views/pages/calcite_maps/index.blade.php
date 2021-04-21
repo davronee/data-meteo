@@ -132,22 +132,22 @@
             </a>
             <ul class="dropdown-menu calcite-bgcolor-dark-blue">
                 <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-search"></span> Поиск</a></li>
+                            class="glyphicon glyphicon-search"></span> Излаш</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-globe"></span> Базовые карты</a></li>
+                            class="glyphicon glyphicon-globe"></span> Харита турлари</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-th-list"></span> Данные</a></li>
+                            class="glyphicon glyphicon-th-list"></span> Маълумотлар</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
+                            class="glyphicon glyphicon-fullscreen"></span> Тўлиқ кўриниш</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
                             class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
+                            class="glyphicon glyphicon-info-sign"></span> Портал ҳақида</a></li>
             </ul>
         </div>
         <!-- Title -->
         <div class="calcite-title calcite-overflow-hidden">
-            <span class="calcite-title-main">METEO MONITORING - единая система метеорологических наблюдений</span>
+            <span class="calcite-title-main">METEO MONITORING - метеорологик кузатувлар Ягона портали</span>
             <span class="calcite-title-divider hidden-xs"></span>
             <span class="calcite-title-sub hidden-xs">βета версия</span>
         </div>
@@ -222,7 +222,7 @@
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo"
                        aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign"
                                                                                aria-hidden="true"></span><span
-                            class="panel-label">О системе</span></a>
+                            class="panel-label">Портал ҳақида</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -250,7 +250,7 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"
                        aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search"
                                                                                   aria-hidden="true"></span><span
-                            class="panel-label">Поиск</span></a>
+                            class="panel-label">Излаш</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -269,7 +269,7 @@
                 <div class="panel-title">
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata"
                        aria-expanded="false" aria-controls="collapseMeteodata"><span
-                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
+                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологик маълумотлар</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0"
                        href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -279,18 +279,32 @@
                 <div class="panel-body">
                     <select id="selectStandardMeteodata" class="form-control" @change="menuChange()"
                             v-model="menu">
-                        <option value="fakt">Фактическая погода</option>
-                        <option value="atmosphere">Загрязнение</option>
-                        <option value="forecast">Прогноз погода</option>
-                        <option value="locator">Локаторы</option>
-                        <option value="aero">Аэро-метеорологические данные</option>
-                        <option value="snow">Данные снежного покрова</option>
-                        <option value="sputnik">Спутниковые метеорологические снимки</option>
-                        <option value="water">Данные водного кадастра</option>
-                        <option value="awd">Автоматическая станция</option>
+                        <option value="fakt">Фактик об-ҳаво</option>
+                        <option value="atmosphere">Ҳаво ифлосланиши</option>
+                        <option value="forecast">Об-ҳаво</option>
+                        <option value="locator">Локаторлар</option>
+                        <option value="aero">Аэро-метеорологик маълумотлар</option>
+                        <option value="snow">Қор қоплами</option>
+                        <option value="sputnik">Метеорологик спутник маълумотлари</option>
+                        <option value="water">Сув кадастри маълумотлари</option>
+                        <option value="awd">Автоматик метеостанциялар</option>
+                        <optgroup label="Хавфли зоналар кадастри">
+                          
+                            <option value="AtmZasuha">Атмосфера қурғоқчилиги кунлари сони</option>
+                            <option value="dojd_30mm_12ches">12 соат мобайнида 30мм гача бўлган ёғингарчилик кунлари сони</option>
+                            <option value="dojd_polusutkas">Ярим суткалик ёғингарчилик миқдори</option>
+                            <option value="osen_zam_pochvas">Тупроқдаги биринчи кузги музлаш кунлари</option>
+                            <option value="osen_zam_vozds">Хаводаги биринчи кузги музлаш кунлари</option>
+                            <option value="sneg20mm12ches">12 соат мобайнида 12мм гача бўлган қорли кунлар сони</option>
+                            <option value="sneg_polusutkas">Ярим суткали қор кўринишидаги ёғингарчилик миқдори</option>
+                            <option value="t40_s">40°С ва ундан юқри бўлган кунлар сони</option>
+                            <option value="ves_zampochvas">Тупроқдаги сўнгги баҳорги музлаш кунлари</option>
+                            <option value="ves_zam_vozduhs">Хаводаги сўнгги баҳорги музлаш кунлари</option>
+                            <option value="veter_razl_predelov2020s">15, 20 и 30 м/с гача бўлган шамолли суткалар сони
+                            </option>
+                            <option value="veter15s">15 м/с ва ундан юқори бўлган шамолли суткалар сони</option>
 
-                        <optgroup label="Опасных зон">
-                            <option value="AtmZasuha">Число дней с атм. засухой</option>
+                     <!--        <option value="AtmZasuha">Число дней с атм. засухой</option>
                             <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
                             <option value="dojd_polusutkas">Кол-во осадков за полусутки</option>
                             <option value="osen_zam_pochvas">Даты первого осеннего заморозка на почве</option>
@@ -300,10 +314,9 @@
                             <option value="t40_s">Число дн. с температурой 40°С и выше</option>
                             <option value="ves_zampochvas">Даты последнего весеннего заморозка на почве</option>
                             <option value="ves_zam_vozduhs">Даты последнего весеннего заморозка в воздухе</option>
-                            <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30
-                                м/с
+                            <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30 м/с
                             </option>
-                            <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option>
+                            <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option> -->
                         </optgroup>
 
 
@@ -320,7 +333,7 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps"
                        aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large"
                                                                                     aria-hidden="true"></span><span
-                            class="panel-label">Типы географических карт</span></a>
+                            class="panel-label">Географик хариталар тури</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -329,12 +342,12 @@
                  aria-labelledby="headingBasemaps">
                 <div class="panel-body">
                     <select id="selectStandardBasemap" class="form-control">
-                        <option value="Streets">Улицы</option>
+                        <option value="Streets">Кўчалар</option>
                         <option value="Imagery">Спутник</option>
                         <option selected value="NationalGeographic">National Geographic</option>
-                        <option value="Topographic">Топографическая</option>
-                        <option value="Gray">Серый</option>
-                        <option value="DarkGray">Темно-серый</option>
+                        <option value="Topographic">Топографик харита</option>
+                        <option value="Gray">Кулранг</option>
+                        <option value="DarkGray">Тўқ-кулранг</option>
                         <option value="OpenStreetMap">Open Street Map</option>
                     </select>
                 </div>
