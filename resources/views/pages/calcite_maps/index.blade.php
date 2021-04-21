@@ -1301,47 +1301,47 @@
                                             "<table class='table table-bordered'>" +
                                             "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                             "<tr>" +
-                                            "<td><b>Температура воздуха</b></td>" +
+                                            "<td><b>Ҳаво ҳарорати</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Точка Росы</b></td>" +
+                                            "<td><b>Шудринг нуқтаси</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Относительная влажность</b></td>" +
+                                            "<td><b>Нисбий намлик</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Текущее давление<b/></td>" +
+                                            "<td><b>Жорий босим<b/></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[25].Value['Value'] + " гПа </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[25].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.давление над ур.моря за 10мин<b/></td>" +
+                                            "<td><b>10 дақ. давомида денгиз сатҳидан ўрт. босим<b/></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Осадкомер 2. Сумма осадков за 10мин</b></td>" +
+                                            "<td><b>10 дақ. давомидаги ёғингарчилик миқдори</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.направление ветра за 10 мин</b></td>" +
+                                            "<td><b>10 дақ. давомидаги шамолнинг ўртача йўналиши</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " ° </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.скорость ветра за 10 мин</b></td>" +
+                                            "<td><b>10 дақ. давомидаги шамолнинг ўртача тезлиги</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.кол-во солнечной радиации за 10мин</b></td>" +
+                                            "<td><b>10 дақ. давомидаги ўртача қуёш радиацияси миқдори</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
