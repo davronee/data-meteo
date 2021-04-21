@@ -132,24 +132,24 @@
             </a>
             <ul class="dropdown-menu calcite-bgcolor-dark-blue">
                 <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-search"></span> Излаш</a></li>
+                            class="glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-globe"></span> Харита турлари</a></li>
+                            class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-th-list"></span> Маълумотлар</a></li>
+                            class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-fullscreen"></span> Тўлиқ кўриниш</a></li>
+                            class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
                             class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-info-sign"></span> Портал ҳақида</a></li>
+                            class="glyphicon glyphicon-info-sign"></span> @lang('map.portal_info')</a></li>
             </ul>
         </div>
         <!-- Title -->
         <div class="calcite-title calcite-overflow-hidden">
-            <span class="calcite-title-main">METEO MONITORING - метеорологик кузатувлар Ягона портали</span>
+            <span class="calcite-title-main">@lang('map.main_title')</span>
             <span class="calcite-title-divider hidden-xs"></span>
-            <span class="calcite-title-sub hidden-xs">βета версия</span>
+            <span class="calcite-title-sub hidden-xs">@lang('map.beta_version')</span>
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
@@ -192,19 +192,17 @@
             </div>
             <div id="collapseApi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApi">
                 <div class="panel-body">
-                    <p><b>Метео API</b> - универсал гидрометеорологик маълумотлар узатиш вебсервиси.</p>
-                    <p>Модуллар:</p>
-                    <li>Фактик об-ҳаво</li>
-                    <li>Атмосфера ифлосланиши</li>
-                    <li>Локаторлар маълумоти</li>
-                    <li>Аэро-метеорологик маълумотлар</li>
-                    <li>Спутник маълумотлар</li>
-                    <li>Сув кадастри ва хавфли зоналар кадастри</li>
-                    <li>Автоматик метеостанциялар маълумотлари</li>
+                    <p>@lang('map.api_info')</p>
+                    <p>@lang('map.moduls'):</p>
+                    <li>@lang('map.factik')</li>
+                    <li>@lang('map.atmasphera')</li>
+                    <li>@lang('map.locator')</li>
+                    <li>@lang('map.aero')</li>
+                    <li>@lang('map.sputnik')</li>
+                    <li>@lang('map.water_kadster')</li>
+                    <li>@lang('map.aws')</li>
                     <hr>
-                    <li style="list-style: none;"><p><b>Метео API</b> вебсервисига уланиш учун <a href="#">қуйидаги
-                                ариза шаклини</a> тўлдирган ҳолда <b>info@mtb.uz</b> электрон почтасига сўров
-                            жўнатишингиз мумкин.</p></li>
+                    <li style="list-style: none;"><p>@lang('map.email_push')</p></li>
                 </div>
 
 
@@ -222,14 +220,14 @@
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo"
                        aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign"
                                                                                aria-hidden="true"></span><span
-                            class="panel-label">Портал ҳақида</span></a>
+                            class="panel-label">@lang('map.portal_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
                 <div class="panel-body">
-                    <p><b>Meteo Data Monitoring</b> - ягона метеорологик кузатувлар портали.</p>
+                    <p>@lang('map.main_title')</p>
                     <p>Модуллар:</p>
                     <li>Фактик об-ҳаво</li>
                     <li>Атмосфера ифлосланиши</li>
@@ -289,7 +287,7 @@
                         <option value="water">Сув кадастри маълумотлари</option>
                         <option value="awd">Автоматик метеостанциялар</option>
                         <optgroup label="Хавфли зоналар кадастри">
-                          
+
                             <option value="AtmZasuha">Атмосфера қурғоқчилиги кунлари сони</option>
                             <option value="dojd_30mm_12ches">12 соат мобайнида 30мм гача бўлган ёғингарчилик кунлари сони</option>
                             <option value="dojd_polusutkas">Ярим суткалик ёғингарчилик миқдори</option>
