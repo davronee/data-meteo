@@ -344,9 +344,9 @@
                     <select id="selectStandardBasemap" class="form-control">
                         <option value="Streets">Кўчалар</option>
                         <option value="Imagery">Спутник</option>
-                        <option selected value="NationalGeographic">National Geographic</option>
+                        <option  value="NationalGeographic">National Geographic</option>
                         <option value="Topographic">Топографик харита</option>
-                        <option value="Gray">Кулранг</option>
+                        <option selected value="Gray">Кулранг</option>
                         <option value="DarkGray">Тўқ-кулранг</option>
                         <option value="OpenStreetMap">Open Street Map</option>
                     </select>
@@ -484,7 +484,7 @@
                 // ============
 
                 map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6),
-                    layer = L.esri.basemapLayer('Imagery').addTo(map),
+                    layer = L.esri.basemapLayer('Gray').addTo(map),
                     // layerLabels = L.esri.basemapLayer('xxxLabels').addTo(map);
                     layerLabels = null,
                     worldTransportation = L.esri.basemapLayer('ImageryTransportation');
