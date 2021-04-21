@@ -2677,15 +2677,15 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Скорость ветра  ≥15 м/с</b></td>" +
+                                                "<td><b>Шамол тезлиги  ≥15 м/с</b></td>" +
                                                 "<td>" + feature.properties.V15 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Скорость ветра  ≥20 м/с</b></td>" +
+                                                "<td><b>Шамол тезлиги  ≥20 м/с</b></td>" +
                                                 "<td>" + feature.properties.V20 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Скорость ветра  ≥30 м/с</b></td>" +
+                                                "<td><b>Шамол тезлиги  ≥30 м/с</b></td>" +
                                                 "<td>" + feature.properties.V30 + "</td>" +
                                                 "</tr>" +
                                                 // "<tr>" +
