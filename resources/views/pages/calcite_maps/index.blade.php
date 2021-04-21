@@ -153,8 +153,8 @@
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
-            <li><a class="calcite-navbar-search hidden-xs" href="#">ЎЗБ</a></li>
-            <li><a class="calcite-navbar-search hidden-xs" href="#">РУС</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">ЎЗБ</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">РУС</a></li>
             <li>
                 <div class="calcite-navbar-search hidden-xs">
                     <div id="geocode"></div>
@@ -228,14 +228,14 @@
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
                 <div class="panel-body">
                     <p>@lang('map.main_title')</p>
-                    <p>Модуллар:</p>
-                    <li>Фактик об-ҳаво</li>
-                    <li>Атмосфера ифлосланиши</li>
-                    <li>Локаторлар маълумоти</li>
-                    <li>Аэро-метеорологик маълумотлар</li>
-                    <li>Спутник маълумотлар</li>
-                    <li>Сув кадастри ва хавфли зоналар кадастри</li>
-                    <li>Автоматик метеостанциялар маълумотлари</li>
+                    <p>@lang('map.moduls'):</p>
+                    <li>@lang('map.factik')</li>
+                    <li>@lang('map.atmasphera')</li>
+                    <li>@lang('map.locator')</li>
+                    <li>@lang('map.aero')</li>
+                    <li>@lang('map.sputnik')</li>
+                    <li>@lang('map.water_kadster')</li>
+                    <li>@lang('map.aws')</li>
                 </div>
             </div>
         </div>
@@ -248,7 +248,7 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"
                        aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search"
                                                                                   aria-hidden="true"></span><span
-                            class="panel-label">Излаш</span></a>
+                            class="panel-label">@lang('map.search')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -267,7 +267,7 @@
                 <div class="panel-title">
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata"
                        aria-expanded="false" aria-controls="collapseMeteodata"><span
-                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологик маълумотлар</span></a>
+                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">@lang('map.meteologik_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0"
                        href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -277,32 +277,31 @@
                 <div class="panel-body">
                     <select id="selectStandardMeteodata" class="form-control" @change="menuChange()"
                             v-model="menu">
-                        <option value="fakt">Фактик об-ҳаво</option>
-                        <option value="atmosphere">Ҳаво ифлосланиши</option>
-                        <option value="forecast">Об-ҳаво</option>
-                        <option value="locator">Локаторлар</option>
-                        <option value="aero">Аэро-метеорологик маълумотлар</option>
-                        <option value="snow">Қор қоплами</option>
-                        <option value="sputnik">Метеорологик спутник маълумотлари</option>
-                        <option value="water">Сув кадастри маълумотлари</option>
-                        <option value="awd">Автоматик метеостанциялар</option>
-                        <optgroup label="Хавфли зоналар кадастри">
+                        <option value="fakt">@lang('map.factik')</option>
+                        <option value="atmosphere">@lang('map.atmasphera')</option>
+                        <option value="forecast">@lang('map.weather')</option>
+                        <option value="locator">@lang('map.locator')</option>
+                        <option value="aero">@lang('map.aero')</option>
+                        <option value="snow">@lang('map.snow')</option>
+                        <option value="sputnik">@lang('map.metep_sputnik')</option>
+                        <option value="water">@lang('map.kadaster_water')</option>
+                        <option value="awd">@lang('map.aws')</option>
+                        <optgroup label="@lang('map.danger_zones_kadaster')">
 
-                            <option value="AtmZasuha">Атмосфера қурғоқчилиги кунлари сони</option>
-                            <option value="dojd_30mm_12ches">12 соат мобайнида 30мм гача бўлган ёғингарчилик кунлари
-                                сони
+                            <option value="AtmZasuha">@lang('map.AtmZasuha')</option>
+                            <option value="dojd_30mm_12ches">@lang('map.dojd_30mm_12ches')
                             </option>
-                            <option value="dojd_polusutkas">Ярим суткалик ёғингарчилик миқдори</option>
-                            <option value="osen_zam_pochvas">Тупроқдаги биринчи кузги музлаш кунлари</option>
-                            <option value="osen_zam_vozds">Хаводаги биринчи кузги музлаш кунлари</option>
-                            <option value="sneg20mm12ches">12 соат мобайнида 12мм гача бўлган қорли кунлар сони</option>
-                            <option value="sneg_polusutkas">Ярим суткали қор кўринишидаги ёғингарчилик миқдори</option>
-                            <option value="t40_s">40°С ва ундан юқри бўлган кунлар сони</option>
-                            <option value="ves_zampochvas">Тупроқдаги сўнгги баҳорги музлаш кунлари</option>
-                            <option value="ves_zam_vozduhs">Хаводаги сўнгги баҳорги музлаш кунлари</option>
-                            <option value="veter_razl_predelov2020s">15, 20 и 30 м/с гача бўлган шамолли суткалар сони
+                            <option value="dojd_polusutkas">@lang('map.dojd_polusutkas')</option>
+                            <option value="osen_zam_pochvas">@lang('map.osen_zam_pochvas')</option>
+                            <option value="osen_zam_vozds">@lang('map.osen_zam_vozds')</option>
+                            <option value="sneg20mm12ches">@lang('map.sneg20mm12ches')</option>
+                            <option value="sneg_polusutkas">@lang('map.sneg_polusutkas')</option>
+                            <option value="t40_s">@lang('map.t40_s')</option>
+                            <option value="ves_zampochvas">@lang('map.ves_zampochvas')</option>
+                            <option value="ves_zam_vozduhs">@lang('map.ves_zam_vozduhs')</option>
+                            <option value="veter_razl_predelov2020s">@lang('map.veter_razl_predelov2020s')
                             </option>
-                            <option value="veter15s">15 м/с ва ундан юқори бўлган шамолли суткалар сони</option>
+                            <option value="veter15s">@lang('map.veter15s')</option>
 
                             <!--        <option value="AtmZasuha">Число дней с атм. засухой</option>
                                    <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
@@ -333,7 +332,7 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps"
                        aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large"
                                                                                     aria-hidden="true"></span><span
-                            class="panel-label">Географик хариталар тури</span></a>
+                            class="panel-label">@lang('map.geografik_map_type')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
