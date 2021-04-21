@@ -1400,8 +1400,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво -  " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1455,8 +1455,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво -  " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1510,8 +1510,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво -  " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1565,8 +1565,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1620,8 +1620,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1675,8 +1675,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1730,8 +1730,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1785,8 +1785,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1840,8 +1840,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1895,8 +1895,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>3 кунлик об-ҳаво - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>Сана</b></td><td><b>Кундузи</b></td><td><b>Кечаси</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
