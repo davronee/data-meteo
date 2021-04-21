@@ -289,7 +289,9 @@
                         <optgroup label="Хавфли зоналар кадастри">
 
                             <option value="AtmZasuha">Атмосфера қурғоқчилиги кунлари сони</option>
-                            <option value="dojd_30mm_12ches">12 соат мобайнида 30мм гача бўлган ёғингарчилик кунлари сони</option>
+                            <option value="dojd_30mm_12ches">12 соат мобайнида 30мм гача бўлган ёғингарчилик кунлари
+                                сони
+                            </option>
                             <option value="dojd_polusutkas">Ярим суткалик ёғингарчилик миқдори</option>
                             <option value="osen_zam_pochvas">Тупроқдаги биринчи кузги музлаш кунлари</option>
                             <option value="osen_zam_vozds">Хаводаги биринчи кузги музлаш кунлари</option>
@@ -302,19 +304,19 @@
                             </option>
                             <option value="veter15s">15 м/с ва ундан юқори бўлган шамолли суткалар сони</option>
 
-                     <!--        <option value="AtmZasuha">Число дней с атм. засухой</option>
-                            <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
-                            <option value="dojd_polusutkas">Кол-во осадков за полусутки</option>
-                            <option value="osen_zam_pochvas">Даты первого осеннего заморозка на почве</option>
-                            <option value="osen_zam_vozds">Даты первого осеннего заморозка в воздухе</option>
-                            <option value="sneg20mm12ches">Кол-во суток со снегом 20 мм за 12 ч</option>
-                            <option value="sneg_polusutkas">Кол-во осадков в виде снега за полусутки</option>
-                            <option value="t40_s">Число дн. с температурой 40°С и выше</option>
-                            <option value="ves_zampochvas">Даты последнего весеннего заморозка на почве</option>
-                            <option value="ves_zam_vozduhs">Даты последнего весеннего заморозка в воздухе</option>
-                            <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30 м/с
-                            </option>
-                            <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option> -->
+                            <!--        <option value="AtmZasuha">Число дней с атм. засухой</option>
+                                   <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
+                                   <option value="dojd_polusutkas">Кол-во осадков за полусутки</option>
+                                   <option value="osen_zam_pochvas">Даты первого осеннего заморозка на почве</option>
+                                   <option value="osen_zam_vozds">Даты первого осеннего заморозка в воздухе</option>
+                                   <option value="sneg20mm12ches">Кол-во суток со снегом 20 мм за 12 ч</option>
+                                   <option value="sneg_polusutkas">Кол-во осадков в виде снега за полусутки</option>
+                                   <option value="t40_s">Число дн. с температурой 40°С и выше</option>
+                                   <option value="ves_zampochvas">Даты последнего весеннего заморозка на почве</option>
+                                   <option value="ves_zam_vozduhs">Даты последнего весеннего заморозка в воздухе</option>
+                                   <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30 м/с
+                                   </option>
+                                   <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option> -->
                         </optgroup>
 
 
@@ -1043,9 +1045,8 @@
                                             "<td><b>Тўхтатилган моддалар (чанг):</b></td>" +
                                             "<td>" + item.substances + "</td>" +
                                             "</tr>" +
-                                            "</table>"
-                                            
-                                        )
+                                            "</table>" +
+                                            "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>Батафсил....</a>")
 
                                     })
                                     .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
@@ -1141,11 +1142,11 @@
 
                                         switch (response.data.Stations.StationName) {
                                             case "01_Boz":
-                                                    StationName = 'Боз';
+                                                StationName = 'Боз';
                                                 break;
                                             case "02_Kurgantepa":
-                                                    StationName = 'Кургантепа';
-                                                    break;
+                                                StationName = 'Кургантепа';
+                                                break;
                                             case "03_Ulugnar":
                                                 StationName = 'Улугнар';
                                                 break;
@@ -1281,16 +1282,16 @@
                                             case "47_Shahimardan":
                                                 StationName = 'Шаҳимардан';
                                                 break;
-                                                case "48_Tuyamuyun":
+                                            case "48_Tuyamuyun":
                                                 StationName = 'Туямуюн';
                                                 break;
-                                                case "49_Khiva":
+                                            case "49_Khiva":
                                                 StationName = 'Ҳива';
                                                 break;
-                                                case "50_Gurlen":
+                                            case "50_Gurlen":
                                                 StationName = 'Гурлен';
                                                 break;
-                                                case "51_Tashkent-Observatory":
+                                            case "51_Tashkent-Observatory":
                                                 StationName = 'Ташкент-Обсерваторй';
                                                 break;
                                         }
