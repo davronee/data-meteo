@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -153,13 +153,18 @@
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
-            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">ЎЗБ</a></li>
-            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">РУС</a></li>
-            <li>
+            <!--  <li>
                 <div class="calcite-navbar-search hidden-xs">
                     <div id="geocode"></div>
                 </div>
-            </li>
+            </li> -->
+            <li><a class="calcite-navbar-search" href="#">Авторизация <span class="glyphicon glyphicon-log-out"></span></a></li>
+            <!-- <li><a class="calcite-navbar-search" href="#">Мой кабинет <span class="glyphicon glyphicon-user"></span></a></li> -->
+            <li><a class="calcite-navbar-search hidden-xs" href="#"><span class="calcite-title-divider hidden-xs"></span></a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">Ўзбекча</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">Русский</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">English</a></li>
+           
 
         </ul>
     </nav><!--/.navbar -->
