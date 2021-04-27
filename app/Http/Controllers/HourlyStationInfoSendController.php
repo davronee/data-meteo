@@ -21,6 +21,9 @@ class HourlyStationInfoSendController extends Controller
 
         // TODO: log write info
 
+        // send notification to all members @todo
+        // custom_emit('notification', ['new notification']);
+
         return redirect()->route('hourly-station-info.index')->with('status', trans('messages.sent_successfully'));
     }
 }
