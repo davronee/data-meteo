@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -132,34 +132,39 @@
             </a>
             <ul class="dropdown-menu calcite-bgcolor-dark-blue">
                 <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-search"></span> Поиск</a></li>
+                            class="glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-globe"></span> Базовые карты</a></li>
+                            class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-th-list"></span> Данные</a></li>
+                            class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-fullscreen"></span> Полная карта</a></li>
-                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
+                            class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
+                <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
                             class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-info-sign"></span> О системе</a></li>
+                            class="glyphicon glyphicon-info-sign"></span> @lang('map.portal_info')</a></li>
             </ul>
         </div>
         <!-- Title -->
         <div class="calcite-title calcite-overflow-hidden">
-            <span class="calcite-title-main">METEO MONITORING - единая система метеорологических наблюдений</span>
+            <span class="calcite-title-main">@lang('map.main_title')</span>
             <span class="calcite-title-divider hidden-xs"></span>
-            <span class="calcite-title-sub hidden-xs">βета версия</span>
+            <span class="calcite-title-sub hidden-xs">@lang('map.beta_version')</span>
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
-              <li><a class="calcite-navbar-search hidden-xs" href="#">ЎЗБ</a></li>
-             <li><a class="calcite-navbar-search hidden-xs" href="#">РУС</a></li>
-            <li>
+            <!--  <li>
                 <div class="calcite-navbar-search hidden-xs">
                     <div id="geocode"></div>
                 </div>
-            </li>
+            </li> -->
+            <li><a class="calcite-navbar-search" href="#">Авторизация <span class="glyphicon glyphicon-log-out"></span></a></li>
+            <!-- <li><a class="calcite-navbar-search" href="#">Мой кабинет <span class="glyphicon glyphicon-user"></span></a></li> -->
+            <li><a class="calcite-navbar-search hidden-xs" href="#"><span class="calcite-title-divider hidden-xs"></span></a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">Ўзбекча</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">Русский</a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">English</a></li>
+           
 
         </ul>
     </nav><!--/.navbar -->
@@ -184,7 +189,7 @@
                 <div class="panel-title">
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseApi"
                        aria-expanded="true" aria-controls="collapseApi"><span class="fa fa-code"
-                                                                               aria-hidden="true"></span><span
+                                                                              aria-hidden="true"></span><span
                             class="panel-label">Метео API</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelApi"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
@@ -192,17 +197,17 @@
             </div>
             <div id="collapseApi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApi">
                 <div class="panel-body">
-                    <p><b>Метео API</b> - универсал гидрометеорологик маълумотлар узатиш вебсервиси.</p>
-                    <p>Модуллар:</p>
-                    <li>Фактик об-ҳаво</li>
-                    <li>Атмосфера ифлосланиши</li>
-                    <li>Локаторлар маълумоти</li>
-                    <li>Аэро-метеорологик маълумотлар</li>
-                    <li>Спутник маълумотлар</li>
-                    <li>Сув кадастри ва хавфли зоналар кадастри</li>
-                    <li>Автоматик метеостанциялар маълумотлари</li>
-                     <hr>
-                     <li  style="list-style: none;"><p><b>Метео API</b> вебсервисига уланиш учун <a href="#">қуйидаги ариза шаклини</a> тўлдирган ҳолда <b>info@mtb.uz</b> электрон почтасига сўров жўнатишингиз мумкин.</p></li>
+                    <p>@lang('map.api_info')</p>
+                    <p>@lang('map.moduls'):</p>
+                    <li>@lang('map.factik')</li>
+                    <li>@lang('map.atmasphera')</li>
+                    <li>@lang('map.locator')</li>
+                    <li>@lang('map.aero')</li>
+                    <li>@lang('map.sputnik')</li>
+                    <li>@lang('map.water_kadster')</li>
+                    <li>@lang('map.aws')</li>
+                    <hr>
+                    <li style="list-style: none;"><p>@lang('map.email_push')</p></li>
                 </div>
 
 
@@ -220,22 +225,22 @@
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo"
                        aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign"
                                                                                aria-hidden="true"></span><span
-                            class="panel-label">О системе</span></a>
+                            class="panel-label">@lang('map.portal_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
                 <div class="panel-body">
-                    <p><b>Meteo Data Monitoring</b> - ягона метеорологик кузатувлар портали.</p>
-                    <p>Модуллар:</p>
-                    <li>Фактик об-ҳаво</li>
-                    <li>Атмосфера ифлосланиши</li>
-                    <li>Локаторлар маълумоти</li>
-                    <li>Аэро-метеорологик маълумотлар</li>
-                    <li>Спутник маълумотлар</li>
-                    <li>Сув кадастри ва хавфли зоналар кадастри</li>
-                    <li>Автоматик метеостанциялар маълумотлари</li>
+                    <p>@lang('map.main_title')</p>
+                    <p>@lang('map.moduls'):</p>
+                    <li>@lang('map.factik')</li>
+                    <li>@lang('map.atmasphera')</li>
+                    <li>@lang('map.locator')</li>
+                    <li>@lang('map.aero')</li>
+                    <li>@lang('map.sputnik')</li>
+                    <li>@lang('map.water_kadster')</li>
+                    <li>@lang('map.aws')</li>
                 </div>
             </div>
         </div>
@@ -248,7 +253,7 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"
                        aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search"
                                                                                   aria-hidden="true"></span><span
-                            class="panel-label">Поиск</span></a>
+                            class="panel-label">@lang('map.search')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -267,7 +272,8 @@
                 <div class="panel-title">
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata"
                        aria-expanded="false" aria-controls="collapseMeteodata"><span
-                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Метеорологические данные</span></a>
+                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span
+                            class="panel-label">@lang('map.meteologik_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0"
                        href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -277,30 +283,47 @@
                 <div class="panel-body">
                     <select id="selectStandardMeteodata" class="form-control" @change="menuChange()"
                             v-model="menu">
-                        <option value="fakt">Фактическая погода</option>
-                        <option value="atmosphere">Загрязнение</option>
-                        <option value="forecast">Прогноз погода</option>
-                        <option value="locator">Локаторы</option>
-                        <option value="aero">Аэро-метеорологические данные</option>
-                        <option value="snow">Данные снежного покрова</option>
-                        <option value="sputnik">Спутниковые метеорологические снимки</option>
-                        <option value="water">Данные водного кадастра</option>
-                        <optgroup label="Опасных зон">
-                            <option value="AtmZasuha">Число дней с атм. засухой</option>
-                            <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
-                            <option value="dojd_polusutkas">Кол-во осадков за полусутки</option>
-                            <option value="osen_zam_pochvas">Даты первого осеннего заморозка на почве</option>
-                            <option value="osen_zam_vozds">Даты первого осеннего заморозка в воздухе</option>
-                            <option value="sneg20mm12ches">Кол-во суток со снегом 20 мм за 12 ч</option>
-                            <option value="sneg_polusutkas">Кол-во осадков в виде снега за полусутки</option>
-                            <option value="t40_s">Число дн. с температурой 40°С и выше</option>
-                            <option value="ves_zampochvas">Даты последнего весеннего заморозка на почве</option>
-                            <option value="ves_zam_vozduhs">Даты последнего весеннего заморозка в воздухе</option>
-                            <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30 м/с</option>
-                            <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option>
+                        <option value="fakt">@lang('map.factik')</option>
+                        <option value="atmosphere">@lang('map.atmasphera')</option>
+                        <option value="forecast">@lang('map.weather')</option>
+                        <option value="locator">@lang('map.locator')</option>
+                        <option value="aero">@lang('map.aero')</option>
+                        <option value="snow">@lang('map.snow')</option>
+                        <option value="sputnik">@lang('map.metep_sputnik')</option>
+                        <option value="water">@lang('map.kadaster_water')</option>
+                        <option value="awd">@lang('map.aws')</option>
+                        <optgroup label="@lang('map.danger_zones_kadaster')">
+
+                            <option value="AtmZasuha">@lang('map.AtmZasuha')</option>
+                            <option value="dojd_30mm_12ches">@lang('map.dojd_30mm_12ches')
+                            </option>
+                            <option value="dojd_polusutkas">@lang('map.dojd_polusutkas')</option>
+                            <option value="osen_zam_pochvas">@lang('map.osen_zam_pochvas')</option>
+                            <option value="osen_zam_vozds">@lang('map.osen_zam_vozds')</option>
+                            <option value="sneg20mm12ches">@lang('map.sneg20mm12ches')</option>
+                            <option value="sneg_polusutkas">@lang('map.sneg_polusutkas')</option>
+                            <option value="t40_s">@lang('map.t40_s')</option>
+                            <option value="ves_zampochvas">@lang('map.ves_zampochvas')</option>
+                            <option value="ves_zam_vozduhs">@lang('map.ves_zam_vozduhs')</option>
+                            <option value="veter_razl_predelov2020s">@lang('map.veter_razl_predelov2020s')
+                            </option>
+                            <option value="veter15s">@lang('map.veter15s')</option>
+
+                            <!--        <option value="AtmZasuha">Число дней с атм. засухой</option>
+                                   <option value="dojd_30mm_12ches">Кол-во суток с осадками 30 мм за 12 ч.</option>
+                                   <option value="dojd_polusutkas">Кол-во осадков за полусутки</option>
+                                   <option value="osen_zam_pochvas">Даты первого осеннего заморозка на почве</option>
+                                   <option value="osen_zam_vozds">Даты первого осеннего заморозка в воздухе</option>
+                                   <option value="sneg20mm12ches">Кол-во суток со снегом 20 мм за 12 ч</option>
+                                   <option value="sneg_polusutkas">Кол-во осадков в виде снега за полусутки</option>
+                                   <option value="t40_s">Число дн. с температурой 40°С и выше</option>
+                                   <option value="ves_zampochvas">Даты последнего весеннего заморозка на почве</option>
+                                   <option value="ves_zam_vozduhs">Даты последнего весеннего заморозка в воздухе</option>
+                                   <option value="veter_razl_predelov2020s">Кол-во суток с ветром со скоростью 15, 20 и 30 м/с
+                                   </option>
+                                   <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option> -->
                         </optgroup>
 
-                        <option value="awd">Автоматическая станция</option>
 
                     </select>
                 </div>
@@ -315,7 +338,7 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps"
                        aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large"
                                                                                     aria-hidden="true"></span><span
-                            class="panel-label">Типы географических карт</span></a>
+                            class="panel-label">@lang('map.geografik_map_type')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span
                             class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -324,12 +347,12 @@
                  aria-labelledby="headingBasemaps">
                 <div class="panel-body">
                     <select id="selectStandardBasemap" class="form-control">
-                        <option value="Streets">Улицы</option>
-                        <option value="Imagery">Спутник</option>
-                        <option selected value="NationalGeographic">National Geographic</option>
-                        <option value="Topographic">Топографическая</option>
-                        <option value="Gray">Серый</option>
-                        <option value="DarkGray">Темно-серый</option>
+                        <option value="Streets">@lang('map.Streets')</option>
+                        <option value="Imagery">@lang('map.Imagery')</option>
+                        <option value="NationalGeographic">@lang('map.NationalGeographic')</option>
+                        <option value="Topographic">@lang('map.Topographic')</option>
+                        <option selected value="Gray">@lang('map.Gray')</option>
+                        <option value="DarkGray">@lang('map.DarkGray')</option>
                         <option value="OpenStreetMap">Open Street Map</option>
                     </select>
                 </div>
@@ -466,7 +489,7 @@
                 // ============
 
                 map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6),
-                    layer = L.esri.basemapLayer('Imagery').addTo(map),
+                    layer = L.esri.basemapLayer('Gray').addTo(map),
                     // layerLabels = L.esri.basemapLayer('xxxLabels').addTo(map);
                     layerLabels = null,
                     worldTransportation = L.esri.basemapLayer('ImageryTransportation');
@@ -1003,32 +1026,32 @@
                                     className: 'myDivIcon'
                                 });
                                 var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
-                                    .on('click',function () {
+                                    .on('click', function () {
                                         marker.bindPopup("" +
                                             "<table class='table table-bordered'>" +
                                             "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
                                             "<tr>" +
-                                            "<td><b>Оксид азота (NO):</b></td>" +
+                                            "<td><b>@lang('map.NO') (NO):</b></td>" +
                                             "<td>" + item.NO + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Оксид углерода (СО):</b></td>" +
+                                            "<td><b>@lang('map.CO') (СО):</b></td>" +
                                             "<td>" + item.CO + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Диоксид серы (SO2):</b></td>" +
+                                            "<td><b>@lang('map.SO2') (SO2):</b></td>" +
                                             "<td>" + item.SO2 + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Диоксид азота (NO2):</b></td>" +
+                                            "<td><b>@lang('map.NO2') (NO2):</b></td>" +
                                             "<td>" + item.NO2 + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Взвешенные вещества (пыль):</b></td>" +
+                                            "<td><b>@lang('map.dust'):</b></td>" +
                                             "<td>" + item.substances + "</td>" +
                                             "</tr>" +
-                                            "</table>"
-                                        )
+                                            "</table>" +
+                                            "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
 
                                     })
                                     .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
@@ -1120,53 +1143,210 @@
                                     id: item.Id
                                 })
                                     .then(function (response) {
+                                        var StationName = '';
+
+                                        switch (response.data.Stations.StationName) {
+                                            case "01_Boz":
+                                                StationName = 'Боз';
+                                                break;
+                                            case "02_Kurgantepa":
+                                                StationName = 'Кургантепа';
+                                                break;
+                                            case "03_Ulugnar":
+                                                StationName = 'Улугнар';
+                                                break;
+                                            case "04_Ayakagitma":
+                                                StationName = 'Аякагитма';
+                                                break;
+                                            case "05_Djangeldy":
+                                                StationName = 'Джангелей';
+                                                break;
+                                            case "06_Karakul":
+                                                StationName = 'Каракул';
+                                                break;
+                                            case "07_Kysyl-Ravat":
+                                                StationName = 'Кизил-Рават';
+                                                break;
+                                            case "08_Akrabat":
+                                                StationName = 'Акрабат';
+                                                break;
+                                            case "09_Minchukur":
+                                                StationName = 'Минчукур';
+                                                break;
+                                            case "10_Kul":
+                                                StationName = 'Кул';
+                                                break;
+                                            case "11_Akbaytal":
+                                                StationName = 'Акбайтал';
+                                                break;
+                                            case "12_Buzaubay":
+                                                StationName = 'Бузаубай';
+                                                break;
+                                            case "13_Mashikuduk":
+                                                StationName = 'Машикудук';
+                                                break;
+                                            case "14_Nurata":
+                                                StationName = 'Нурата';
+                                                break;
+                                            case "15_Sentob-Nurata":
+                                                StationName = 'Сентоб-Нурата';
+                                                break;
+                                            case "16_Tamdy":
+                                                StationName = 'Тамди';
+                                                break;
+                                            case "17_Uchkuduk":
+                                                StationName = 'Учкудук';
+                                                break;
+                                            case "18_UGM_Navoiy":
+                                                StationName = 'УГМ_Навоий';
+                                                break;
+                                            case "19_Hanabad":
+                                                StationName = 'Ҳанабад';
+                                                break;
+                                            case "20_Payshanba":
+                                                StationName = 'Пайшанба';
+                                                break;
+                                            case "21_Kushrabad":
+                                                StationName = 'Кушрабад';
+                                                break;
+                                            case "22_Baysun":
+                                                StationName = 'Байсун';
+                                                break;
+                                            case "23_Saryassiya":
+                                                StationName = 'Сариассия';
+                                                break;
+                                            case "24_Shurchi":
+                                                StationName = 'Шурчи';
+                                                break;
+                                            case "25_Termez":
+                                                StationName = 'Термез';
+                                                break;
+                                            case "26_Syrdarya":
+                                                StationName = 'Сирдаря';
+                                                break;
+                                            case "27_Yangier":
+                                                StationName = 'Янгиер';
+                                                break;
+                                            case "28_Gulistan":
+                                                StationName = 'Гулистан';
+                                                break;
+                                            case "29_Chimgan":
+                                                StationName = 'Чимган';
+                                                break;
+                                            case "30_Oygaing":
+                                                StationName = 'Ойгаинг';
+                                                break;
+                                            case "31_Pskem":
+                                                StationName = 'Пскем';
+                                                break;
+                                            case "32_Charvak":
+                                                StationName = 'Чарвак';
+                                                break;
+                                            case "33_Almalyk":
+                                                StationName = 'Алмалик';
+                                                break;
+                                            case "34_Angren":
+                                                StationName = 'Ангрен';
+                                                break;
+                                            case "35_Bekabad":
+                                                StationName = 'Бекабад';
+                                                break;
+                                            case "36_Dalverzin":
+                                                StationName = '36_Dalverzin';
+                                                break;
+                                            case "37_Tyuyabuguz":
+                                                StationName = 'Тюябугуз';
+                                                break;
+                                            case "38_Kokaral":
+                                                StationName = 'Кокарал';
+                                                break;
+                                            case "39_Dukant":
+                                                StationName = 'Дукант';
+                                                break;
+                                            case "40_Yangiyul":
+                                                StationName = 'Янгиюл';
+                                                break;
+                                            case "41_Sukok":
+                                                StationName = 'Сукок';
+                                                break;
+                                            case "42_Nurafshon":
+                                                StationName = 'Нурафшон';
+                                                break;
+                                            case "43_Fergana":
+                                                StationName = 'Фергана';
+                                                break;
+                                            case "44_Kokand":
+                                                StationName = 'Коканд';
+                                                break;
+                                            case "45_Kuva":
+                                                StationName = 'Кува';
+                                                break;
+                                            case "46_Sarykanda":
+                                                StationName = 'Сарйканда';
+                                                break;
+                                            case "47_Shahimardan":
+                                                StationName = 'Шаҳимардан';
+                                                break;
+                                            case "48_Tuyamuyun":
+                                                StationName = 'Туямуюн';
+                                                break;
+                                            case "49_Khiva":
+                                                StationName = 'Ҳива';
+                                                break;
+                                            case "50_Gurlen":
+                                                StationName = 'Гурлен';
+                                                break;
+                                            case "51_Tashkent-Observatory":
+                                                StationName = 'Ташкент-Обсерваторй';
+                                                break;
+                                        }
 
 
                                         marker.bindPopup("" +
                                             "<table class='table table-bordered'>" +
-                                            "<tr ><td class='text-center' colspan='3'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
+                                            "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                             "<tr>" +
-                                            "<td><b>Температура воздуха</b></td>" +
-                                            "<td>" + response.data.Stations.Sources.Variables[2].Value['Value'] + " °C </td>" +
+                                            "<td><b>@lang('map.air_temperature')</b></td>" +
+                                            "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Точка Росы</b></td>" +
+                                            "<td><b>@lang('map.dew_point')</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Относительная влажность</b></td>" +
+                                            "<td><b>@lang('map.relative_humidity')</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Текущее давление<b/></td>" +
-                                            "<td>" + response.data.Stations.Sources.Variables[9].Value['Value'] + " гПа </td>" +
-                                            "<td>" + new Date(response.data.Stations.Sources.Variables[9].Value['Meastime']).toLocaleString() + "</td>" +
+                                            "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                            "<td>" + response.data.Stations.Sources.Variables[25].Value['Value'] + " гПа </td>" +
+                                            "<td>" + new Date(response.data.Stations.Sources.Variables[25].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.давление над ур.моря за 10мин<b/></td>" +
+                                            "<td><b>@lang('map.10_during_sea_level_pressure')<b/></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Осадкомер 2. Сумма осадков за 10мин</b></td>" +
+                                            "<td><b>@lang('map.10_the_amount_precipitation_during')</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.направление ветра за 10 мин</b></td>" +
+                                            "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " ° </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.скорость ветра за 10 мин</b></td>" +
+                                            "<td><b>@lang('map.10_average_wind_speed_during')</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>Средн.кол-во солнечной радиации за 10мин</b></td>" +
+                                            "<td><b>@lang('map.10_the_average_amount_solar_radiation_during')</b></td>" +
                                             "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
                                             "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
                                             "</tr>" +
@@ -1194,6 +1374,7 @@
 
                 }
             },
+
             getForecast: function () {
                 if (this.forcastTemp) {
 
@@ -1201,13 +1382,13 @@
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
                                 {{--var meteoIcon = L.icon({--}}
-                                {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
-                                {{--    iconSize: [28, 28], // size of the icon--}}
-                                {{--    className: "station",--}}
-                                {{--});--}}
+                                    {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
+                                    {{--    iconSize: [28, 28], // size of the icon--}}
+                                    {{--    className: "station",--}}
+                                    {{--});--}}
 
                                 if (item.weather_code == 'clear') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-day-sunny',
                                             prefix: 'wi',
@@ -1224,8 +1405,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') -  " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1261,9 +1442,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_clear' || item.weather_code == 'mostly_loudy') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-day-cloudy',
                                             prefix: 'wi',
@@ -1280,8 +1460,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') -  " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1317,9 +1497,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'overcast') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'overcast') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-cloudy',
                                             prefix: 'wi',
@@ -1336,8 +1515,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') -  " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1373,9 +1552,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'fog') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'fog') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-fog',
                                             prefix: 'wi',
@@ -1392,8 +1570,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1429,9 +1607,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'light_rain' || item.weather_code == 'rain') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'light_rain' || item.weather_code == 'rain') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-rain',
                                             prefix: 'wi',
@@ -1448,8 +1625,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1485,9 +1662,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'heavy_rain') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'heavy_rain') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-storm-showers',
                                             prefix: 'wi',
@@ -1504,8 +1680,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1541,9 +1717,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'thunderstorm') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'thunderstorm') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-thunderstorm',
                                             prefix: 'wi',
@@ -1560,8 +1735,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1597,9 +1772,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'light_sleet' || item.weather_code == 'sleet') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'light_sleet' || item.weather_code == 'sleet') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-sleet',
                                             prefix: 'wi',
@@ -1616,8 +1790,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1653,9 +1827,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else if (item.weather_code == 'heavy_sleet') {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else if (item.weather_code == 'heavy_sleet') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-storm-showers',
                                             prefix: 'wi',
@@ -1672,8 +1845,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -1709,9 +1882,8 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                }
-                                else {
-                                    var  marker = L.marker([item.city.latitude, item.city.longitude], {
+                                } else {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-snow',
                                             prefix: 'wi',
@@ -1728,8 +1900,8 @@
                                             .then(function (response2) {
                                                 head = "<table class='table table-bordered'>" +
                                                     "<tr>" +
-                                                    "<td class='text-center' colspan='3'><b> Погода по " + response2.data[0].region_name + "</b></td></tr>" +
-                                                    "<tr><td><b>Дата</b></td><td><b>Днём</b></td><td><b>Ночью</b></td></tr>";
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
 
                                                 response2.data.forEach(function (item, i, arr) {
                                                     if (i % 2 == 0) {
@@ -2047,7 +2219,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2058,25 +2230,36 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Число дней, среднее за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.AtmZasuha_NDAYSR')</b></td>" +
                                                 "<td>" + feature.properties.NDAYSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Число дней, наибольшее, количество за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.AtmZasuha_NDAYMAX')</b></td>" +
                                                 "<td>" + feature.properties.NDAYMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Число дней, наибольшее, год за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.AtmZasuha_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Число дней, за текущий год</b></td>" +
+                                                "<td><b>@lang('map.AtmZasuha_F5')</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
+
+
                                     },
                                 });
                                 markers_dangerzones.addLayer(square);
@@ -2089,7 +2272,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2100,27 +2283,36 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, среднее за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_30mm_12ches_NSR')</b></td>" +
                                                 "<td>" + feature.properties.NSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, максимальное за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_30mm_12ches_NMAX')</b></td>" +
                                                 "<td>" + feature.properties.NMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, год за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_30mm_12ches_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, за текущих год</b></td>" +
+                                                "<td><b>@lang('map.dojd_30mm_12ches_F5')</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2131,7 +2323,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2142,27 +2334,36 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за многолетний период, в мм</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_HMAXPERIOD')</b></td>" +
                                                 "<td>" + feature.properties.HMAXPERIOD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за многолетний период, дата</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_DATAMAXPER')</b></td>" +
                                                 "<td>" + feature.properties.DATAMAXPER + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за текущих год, в мм</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_HMAX2020')</b></td>" +
                                                 "<td>" + feature.properties.HMAX2020 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за текущий год, дата</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_DATAMAX202')</b></td>" +
                                                 "<td>" + feature.properties.DATAMAX202 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2173,7 +2374,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2184,35 +2385,44 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_RANNYAYADA')</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Средняя дата за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_SRDATA')</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_POZDNYAYAD')</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_YEAR1')</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
+                                                "<td><b>@lang('map.dojd_polusutkas_F7')</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2223,7 +2433,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2234,35 +2444,44 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.osen_zam_vozds_RANNYAYADA')</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.osen_zam_vozds_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Средняя дата за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.osen_zam_vozds_SRDATA')</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.osen_zam_vozds_POZDNYAYAD')</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.osen_zam_vozds_YEAR1')</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
+                                                "<td><b>@lang('map.osen_zam_vozds_F7')</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2273,7 +2492,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2284,27 +2503,36 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, среднее за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.sneg20mm12ches_NSR')</b></td>" +
                                                 "<td>" + feature.properties.NSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, максимальное за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.sneg20mm12ches_NMAX')</b></td>" +
                                                 "<td>" + feature.properties.NMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, год за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.sneg20mm12ches_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, за текущих год</b></td>" +
+                                                "<td><b>@lang('map.sneg20mm12ches_F5')</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2315,7 +2543,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2326,27 +2554,36 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за многолетний период, в мм</b></td>" +
+                                                "<td><b>@lang('map.sneg_polusutkas_HMAXPERIOD')</b></td>" +
                                                 "<td>" + feature.properties.HMAXPERIOD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за многолетний период, дата</b></td>" +
+                                                "<td><b>@lang('map.sneg_polusutkas_DATAMAXPER')</b></td>" +
                                                 "<td>" + feature.properties.DATAMAXPER + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за текущих год, в мм</b></td>" +
+                                                "<td><b>@lang('map.sneg_polusutkas_HMAX2020')</b></td>" +
                                                 "<td>" + feature.properties.HMAX2020 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за текущий год, дата</b></td>" +
+                                                "<td><b>@lang('map.sneg_polusutkas_DATAMAX202')</b></td>" +
                                                 "<td>" + feature.properties.DATAMAX202 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2357,7 +2594,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2368,27 +2605,36 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за многолетний период (число дней)</b></td>" +
+                                                "<td><b>@lang('map.t40_s_number')</b></td>" +
                                                 "<td>" + feature.properties.number + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Максимальное за многолетний период (год)</b></td>" +
+                                                "<td><b>@lang('map.t40_s_YEARMAX')</b></td>" +
                                                 "<td>" + feature.properties.YEARMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Среднее число дней за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.t40_s_NAVARAGE')</b></td>" +
                                                 "<td>" + feature.properties.NAVARAGE + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Число дней за текущий год</b></td>" +
+                                                "<td><b>@lang('map.t40_s_N2020')</b></td>" +
                                                 "<td>" + feature.properties.N2020 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2399,7 +2645,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2410,35 +2656,44 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zampochvas_RANNYAYADA')</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zampochvas_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Средняя дата за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zampochvas_SRDATA')</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zampochvas_POZDNYAYAD')</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zampochvas_YEAR1')</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
+                                                "<td><b>@lang('map.ves_zampochvas_F7')</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
+
                                 markers_dangerzones.addLayer(square);
                             })
 
@@ -2449,7 +2704,7 @@
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2460,48 +2715,55 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zam_vozduhs_RANNYAYADA')</b></td>" +
                                                 "<td>" + feature.properties.RANNYAYADA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая ранняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zam_vozduhs_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Средняя дата за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zam_vozduhs_SRDATA')</b></td>" +
                                                 "<td>" + feature.properties.SRDATA + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (число, месяц) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zam_vozduhs_POZDNYAYAD')</b></td>" +
                                                 "<td>" + feature.properties.POZDNYAYAD + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Самая поздняя дата (год) за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.ves_zam_vozduhs_YEAR1')</b></td>" +
                                                 "<td>" + feature.properties.YEAR1 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Последний весенний заморозок за текущий год</b></td>" +
+                                                "<td><b>@lang('map.ves_zam_vozduhs_F7')</b></td>" +
                                                 "<td>" + feature.properties.F7 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
                                 markers_dangerzones.addLayer(square);
+
                             })
 
                             map.addLayer(markers_dangerzones);
-                        }
-
-                        else if (type == 'veter_razl_predelov2020s') {
+                        } else if (type == 'veter_razl_predelov2020s') {
                             response.data.forEach(function (item, i, arr) {
                                 var geoojson = L.geoJson(item, {
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2512,15 +2774,15 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Скорость ветра  ≥15 м/с</b></td>" +
+                                                "<td><b>@lang('map.veter_razl_predelov2020s_V15')</b></td>" +
                                                 "<td>" + feature.properties.V15 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Скорость ветра  ≥20 м/с</b></td>" +
+                                                "<td><b>@lang('map.veter_razl_predelov2020s_V20')</b></td>" +
                                                 "<td>" + feature.properties.V20 + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Скорость ветра  ≥30 м/с</b></td>" +
+                                                "<td><b>@lang('map.veter_razl_predelov2020s_V30')</b></td>" +
                                                 "<td>" + feature.properties.V30 + "</td>" +
                                                 "</tr>" +
                                                 // "<tr>" +
@@ -2531,21 +2793,28 @@
                                             ).openOn(map);
 
                                         })
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
                                 markers_dangerzones.addLayer(square);
+
                             })
 
                             map.addLayer(markers_dangerzones);
-                        }
-
-                        else if (type == 'veter15s') {
+                        } else if (type == 'veter15s') {
                             response.data.forEach(function (item, i, arr) {
                                 var geoojson = L.geoJson(item, {
                                     pointToLayer: function (feature, latlng) {
                                         square = L.shapeMarker(latlng, {
                                             shape: "triangle",
-                                            radius: 8,
+                                            radius: 5,
                                             fillOpacity: 1,
                                             color: 'darkred'
                                         }).on('click', function () {
@@ -2556,31 +2825,41 @@
                                                 "<td colspan='2' class='text-center'><b>" + feature.properties.STATIONS + "</b></td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, среднее за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.veter15s_NSR')</b></td>" +
                                                 "<td>" + feature.properties.NSR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, максимальное за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.veter15s_NMAX')</b></td>" +
                                                 "<td>" + feature.properties.NMAX + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, год за многолетний период</b></td>" +
+                                                "<td><b>@lang('map.veter15s_YEAR')</b></td>" +
                                                 "<td>" + feature.properties.YEAR + "</td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>Количество суток, за текущий год</b></td>" +
+                                                "<td><b>@lang('map.veter15s_F5')</b></td>" +
                                                 "<td>" + feature.properties.F5 + "</td>" +
                                                 "</tr>" +
                                                 "</table>"
                                             ).openOn(map);
 
                                         })
+                                        markers_dangerzones.addLayer(square);
+                                        var circle = L.circle(latlng, {
+                                            color: '#4236E5',
+                                            fillColor: '#6789E5',
+                                            fillOpacity: 0.7,
+                                            radius: 300
+                                        })
+
+                                        markers_dangerzones.addLayer(circle);
                                     },
                                 });
-                                markers_dangerzones.addLayer(square);
+
                             })
 
                             map.addLayer(markers_dangerzones);
+
                         }
 
                     })

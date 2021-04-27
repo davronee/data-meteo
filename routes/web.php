@@ -27,6 +27,11 @@ use App\Http\Controllers\HourlyStationInfoExportController;
 |
 */
 
+Route::get('locale/{locale}', function ($locale) {
+    \Illuminate\Support\Facades\Session::put('locale', $locale);
+    return redirect()->back();
+})->name('locale');
+
 Route::group(['middleware' => ['set_locale']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
