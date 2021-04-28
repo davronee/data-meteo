@@ -20807,7 +20807,7 @@ body {
 .list-group-settings {
     height: 100%;
     background-color: #fff;
-    border: 1px solid rgba(230, 231, 239, 0.85);
+    border-right: 1px solid rgba(230, 231, 239, 0.85);
     border-bottom-width: 0;
     box-shadow: 2px 2px 5px 0 rgba(60, 70, 83, 0.04);
     flex-direction: row;
