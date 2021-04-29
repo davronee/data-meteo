@@ -58,7 +58,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     Route::prefix('map')->group(function () {
 //        Route::get('/', [WidgetController::class, 'map'])->name('map');
-        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map');
+        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.index');
 
         Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
         Route::get('/forecast', [WidgetController::class, 'forecast'])->name('map.forecast');
