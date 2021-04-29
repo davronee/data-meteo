@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             AddWeatherRegions::class,
             PositionSeeder::class,
             UpdateDefaultUsersPasswordSeeder::class,
+            CreateUGMsSeeder::class,
+            CreateAWSSeeder::class,
         ]);
     }
 }

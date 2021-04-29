@@ -25,7 +25,11 @@
                 <li class="nav-item">
                     <a href="http://217.30.161.60:8083" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Зондирование</a>
                 </li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-eye"></i> Мониторинг</a></li>
+                @if (auth()->user()->canSeeMonitoringMenu())
+                    <li class="nav-item">
+                        <a href="{{ route('aws-monitoring.create') }}" class="nav-link"><i class="fas fa-eye"></i> Мониторинг</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="" class="nav-link with-sub"><i class="fas fa-database"></i> Сбор данных</a>
                     <nav class="nav nav-sub">

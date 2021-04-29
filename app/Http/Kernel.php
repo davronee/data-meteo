@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'set_locale' => \App\Http\Middleware\SetLocale::class,
         'isProfileFilled' => \App\Http\Middleware\isProfileFilled::class,
         'HourlyStationWorkHour' => \App\Http\Middleware\HourlyStationWorkHour::class,
+        'AllowAwsStatusTracker' => \App\Http\Middleware\AllowAwsStatusTracker::class,
     ];
 }

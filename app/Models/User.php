@@ -141,6 +141,16 @@ class User extends Authenticatable
         return $this->permissions->pluck('name')->toArray();
     }
 
+    public function canSeeMonitoringMenu()
+    {
+        return $this->isAdmin() || $this->can('create station status');
+    }
+
+    public function canCreateStationStatus()
+    {
+        return $this->isAdmin() || $this->can('create station status');
+    }
+
     /**
      * Mutators *****************************************************************************
      */

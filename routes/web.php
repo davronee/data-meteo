@@ -15,6 +15,7 @@ use App\Http\Controllers\DailyStationInfoSendController;
 use App\Http\Controllers\HourlyStationInfoSendController;
 use App\Http\Controllers\DailyStationInfoExportController;
 use App\Http\Controllers\HourlyStationInfoExportController;
+use App\Http\Controllers\StationMonitoringController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,11 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/daily-station-info/export/{daily_station_info}/doc', [DailyStationInfoExportController::class, 'doc'])->name('daily-station-info.export.doc');
         Route::get('/daily-station-info/export/{daily_station_info}/pdf', [DailyStationInfoExportController::class, 'pdf'])->name('daily-station-info.export.pdf');
         Route::post('/daily-station-info/{daily_station_info}/send', [DailyStationInfoSendController::class, 'store'])->name('daily-station-info.send');
+
+        // aws monitoring
+        Route::resource('aws-monitoring', StationMonitoringController::class)->only([
+            'create', 'store', 'index'
+        ]);
     });
 });
 
