@@ -23,7 +23,7 @@
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
                 <li class="nav-label"><label class="content-label">Наблюдения и мониторинг</label></li>
                 <li class="nav-item">
-                    <a href="http://217.30.161.60:8083" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Зондирование</a>
+                    <a href="http://217.30.161.60:8083/meteo-data/meteosat?id={{ base64_encode('data_meteo_meteosat') }}&from={{ base64_encode('data.meteo.uz') }}&username={{ base64_encode('sinoptika') }}&time={{ time() }}&token={{ uniqid() }}" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Зондирование</a>
                 </li>
                 @if (auth()->user()->canSeeMonitoringMenu())
                     <li class="nav-item">
