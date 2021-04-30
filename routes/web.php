@@ -82,7 +82,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     });
 
-        Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth']], function () {
         // user profile routes
         Route::resource('admin/user', UserController::class)->except(['show']);
 
@@ -112,5 +112,7 @@ Route::group(['middleware' => ['set_locale']], function () {
             'create', 'store', 'index'
         ]);
     });
+
+    Route::get('/aws-status', [StationMonitoringController::class, 'index'])->name('aws.status');
 });
 
