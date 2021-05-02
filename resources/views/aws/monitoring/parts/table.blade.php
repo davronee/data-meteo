@@ -42,16 +42,17 @@
                         @if ($cTime == strtotime(date('Y-m-d')))
                             <td>
                                 @php
-                                    $status = App\Models\AwsStatus::displayAwsStatatus($station->id, $aws_statuses);
+                                    $status = App\Models\AwsStatus::displayAwsStatus($station->id, $aws_statuses);
+                                    $data = App\Models\AwsStatus::getAwsData($station->id, $aws_statuses);
                                 @endphp
-                                @if (!empty($status))
+                                @if (!empty($status) && $data->is_published)
                                     {!! $status !!}
                                 @else
-                                    <select class="form-control" :ref="'station'+{{ $station->id }}" @change="saveAwsStation($event, {{ $station->id }}, '{{ route('aws-monitoring.store') }}')">
+                                    <select class="form-control mw120" :ref="'station'+{{ $station->id }}" @change="saveAwsStation($event, {{ $station->id }}, '{{ route('aws-monitoring.store') }}')">
                                         <option value="">Танланш</option>
-                                        <option value="1">соз</option>
-                                        <option value="0">носоз</option>
-                                        <option value="-1">номаълум</option>
+                                        <option {{ (isset($data->is_published) && $data->status == 1 ? 'selected' : '') }} value="1">соз</option>
+                                        <option {{ (isset($data->is_published) && $data->status == 0 ? 'selected' : '') }} value="0">носоз</option>
+                                        <option {{ (isset($data->is_published) && $data->status == -1 ? 'selected' : '') }} value="-1">номаълум</option>
                                     </select>
                                 @endif
                             </td>

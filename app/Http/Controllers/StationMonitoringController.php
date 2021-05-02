@@ -44,7 +44,7 @@ class StationMonitoringController extends Controller
         $ugms = UGM::orderBy('id', 'asc')->with('aws')->get();
         $aws_statuses = AwsStatus::toBase()
             ->whereBetween('date', [$firstDayOfMonth, $lastDayOfMonth])
-            ->select('date', 'aws_id', 'status')
+            ->select('date', 'aws_id', 'status', 'is_published')
             ->get()
             ->keyBy('aws_id')
             ->toArray();
@@ -59,17 +59,39 @@ class StationMonitoringController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $aws_status = AwsStatus::firstOrCreate(
-            [
-                'date' => Carbon::parse($data['date'])->format('Y-m-d'),
-                'aws_id' => $data['aws_id'],
-            ],
-            [
-                'date' => Carbon::parse($data['date'])->format('Y-m-d'),
-                'aws_id' => $data['aws_id'],
-                'status' => $data['status']
-            ]
-        );
+        $aws_status = AwsStatus::where('date', Carbon::parse($data['date'])->format('Y-m-d'))->where('aws_id', $data['aws_id']);
+
+        if($aws_status->count() == 0) {
+            AwsStatus::create(
+                [
+                    'date' => Carbon::parse($data['date'])->format('Y-m-d'),
+                    'aws_id' => $data['aws_id'],
+                    'status' => $data['status'],
+                    'is_published' => 0
+                ]
+            );
+        } else {
+            $aws_status->update(
+                [
+                    'date' => Carbon::parse($data['date'])->format('Y-m-d'),
+                    'aws_id' => $data['aws_id'],
+                    'status' => $data['status'],
+                    'is_published' => 0
+                ]
+            );
+        }
+
+        return response()->json([
+            'response_code' => 0,
+            'response_text' => 'OK'
+        ], 200);
+    }
+
+    public function save(Request $request)
+    {
+        AwsStatus::where('date', date('Y-m-d'))
+            ->where('is_published', 0)
+            ->update(['is_published' => 1]);
 
         return response()->json([
             'response_code' => 0,

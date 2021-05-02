@@ -11,18 +11,19 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="{{ route('aws-monitoring.store') }}" method="post" id="aws-monitor-form">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h4 class="text-center"><strong>ГИДРОМЕТРОЛОГИЯ ТИЗИМИДА ЖОЙЛАРДАГИ АВТОМАТИК СТАНЦИЯЛАР ҲОЛАТИ ЖАДВАЛИ</strong></h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="text-center"><strong>ГИДРОМЕТРОЛОГИЯ ТИЗИМИДА ЖОЙЛАРДАГИ АВТОМАТИК СТАНЦИЯЛАР ҲОЛАТИ ЖАДВАЛИ</strong></h4>
 
-                                        <div class="table-responsive double-scroll">
-                                            @include('aws.monitoring.parts.table')
-                                        </div>
+                                    <div class="table-responsive double-scroll">
+                                        @include('aws.monitoring.parts.table')
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <button @click="saveAwsStatuses('{{ route('aws-monitoring.save') }}')" ref="saveAwsStatuses" class="btn btn-success">@lang('messages.save')</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -34,4 +35,9 @@
 
 @section('script')
     <script src="{{ asset('template/lib/jQuery-doubleScroll/jquery.doubleScroll.js') }}"></script>
+    <script src="{{ asset('template/lib/notification-box-notific/notific.js') }}"></script>
+@endsection
+
+@section('styles')
+    <link href="{{ asset('template/lib/notification-box-notific/notific.css') }}" rel="stylesheet">
 @endsection

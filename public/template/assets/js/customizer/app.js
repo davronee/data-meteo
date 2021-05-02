@@ -146,8 +146,20 @@ var app = new Vue({
                 status: element.value
             }).then(function (response) {
                 console.log(response);
-                if(response.data.response_code == 0)
-                    parent_element.innerHTML = statuses[element.value];
+                // if(response.data.response_code == 0)
+                //     Message.add('Сохранено', {type:'success'});
+                //parent_element.innerHTML = statuses[element.value];
+            });
+        },
+
+        saveAwsStatuses: function(url)
+        {
+            this.$refs.saveAwsStatuses.setAttribute('disabled', true);
+            axios.post(url).then(function (response) {
+                if(response.data.response_code == 0) {
+                    Message.add('Сохранено', {type:'success'});
+                    window.location.reload();
+                }
             });
         }
     },

@@ -25,11 +25,11 @@
         <link href="{{ asset('template/lib/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
         <!-- template css -->
         <link rel="stylesheet" href="{{ asset('template/assets/css/meteo.css') }}">
-        <link rel="stylesheet" href="{{ asset('template/assets/css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('template/assets/css/weather-panel.css') }}">
         {{-- <link rel="stylesheet" href="{{ asset('template/assets/css/customizer.css') }}"> --}}
-        <!-- custom styles -->
         @yield('styles')
+        <!-- custom styles -->
+        <link rel="stylesheet" href="{{ asset('template/assets/css/custom.css') }}">
     </head>
     <body data-spy="scroll" data-target="#navSection" data-offset="100">
         {{-- sidebar --}}

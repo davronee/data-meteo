@@ -431,3 +431,10 @@ table.sticky tbody .stick {
     z-index: 5;
 }
 
+.mw120 {
+    min-width: 120px;
+}
+
+#aws-status-table tbody tr:hover > td {
+    background-color: #eff1f5 !important;
+}
