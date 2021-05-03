@@ -50,9 +50,9 @@
                                 @else
                                     <select class="form-control mw120" :ref="'station'+{{ $station->id }}" @change="saveAwsStation($event, {{ $station->id }}, '{{ route('aws-monitoring.store') }}')">
                                         <option value="">Танланш</option>
-                                        <option {{ (isset($data->is_published) && $data->status == 1 ? 'selected' : '') }} value="1">соз</option>
-                                        <option {{ (isset($data->is_published) && $data->status == 0 ? 'selected' : '') }} value="0">носоз</option>
-                                        <option {{ (isset($data->is_published) && $data->status == -1 ? 'selected' : '') }} value="-1">номаълум</option>
+                                        <option {{ $data->status == 1 ? 'selected' : '' }} value="1">соз</option>
+                                        <option {{ $data->status == 0 ? 'selected' : '' }} value="0">носоз</option>
+                                        <option {{ $data->status == -1 ? 'selected' : '' }} value="-1">номаълум</option>
                                     </select>
                                 @endif
                             </td>
