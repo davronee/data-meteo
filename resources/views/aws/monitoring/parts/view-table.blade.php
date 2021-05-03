@@ -42,7 +42,7 @@
                         @if ($cTime == strtotime(date('Y-m-d')))
                             <td>
                                 @php
-                                    $status = App\Models\AwsStatus::displayAwsStatatus($station->id, $aws_statuses);
+                                    $status = App\Models\AwsStatus::displayAwsStatus($station->id, $aws_statuses);
                                 @endphp
                                 {{ $status }}
                             </td>
