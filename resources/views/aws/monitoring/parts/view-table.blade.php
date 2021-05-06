@@ -39,12 +39,16 @@
                         $total++;
                     @endphp
                     @while ($cTime <= $lastDayOfMonth)
+                        @php
+                            $status = App\Models\AwsStatus::displayAwsStatus(date('Y-m-d', $cTime), $station->id, $aws_statuses);
+                        @endphp
                         @if ($cTime == strtotime(date('Y-m-d')))
                             <td>
-                                @php
-                                    $status = App\Models\AwsStatus::displayAwsStatus($station->id, $aws_statuses);
-                                @endphp
                                 {{ $status }}
+                            </td>
+                        @elseif($cTime < time())
+                            <td>
+                                {!! !empty($status) ? $status : '-' !!}
                             </td>
                         @else
                             <td></td>

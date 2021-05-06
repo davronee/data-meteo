@@ -24,13 +24,13 @@ class AwsStatus extends Model
         return $this->belongsTo('App\AWS', 'aws_id', 'id');
     }
 
-    public static function displayAwsStatus($aws_id, $aws_statuses)
+    public static function displayAwsStatus($date, $aws_id, $aws_statuses)
     {
-        return isset($aws_statuses[$aws_id]->status) ? self::AWSStatuses[$aws_statuses[$aws_id]->status] : '';
+        return isset($aws_statuses[$date][$aws_id]->status) ? self::AWSStatuses[$aws_statuses[$date][$aws_id]->status] : '';
     }
 
-    public static function getAwsData($aws_id, $aws_statuses)
+    public static function getAwsData($date, $aws_id, $aws_statuses)
     {
-        return isset($aws_statuses[$aws_id]->status) ? $aws_statuses[$aws_id] : (object) [];
+        return isset($aws_statuses[$date][$aws_id]->status) ? $aws_statuses[$date][$aws_id] : (object) [];
     }
 }

@@ -24,10 +24,15 @@ class StationMonitoringController extends Controller
         $ugms = UGM::orderBy('id', 'asc')->with('aws')->get();
         $aws_statuses = AwsStatus::toBase()
             ->whereBetween('date', [$firstDayOfMonth, $lastDayOfMonth])
-            ->select('date', 'aws_id', 'status')
-            ->get()
-            ->keyBy('aws_id')
-            ->toArray();
+            ->select('date', 'aws_id', 'status', 'is_published')
+            ->get();
+
+        $aws_status_new = [];
+        foreach ($aws_statuses as $key => $data) {
+            if(!isset($aws_status_new[$data->date])) $aws_status_new[$data->date] = [];
+            $aws_status_new[$data->date][$data->aws_id] = $data;
+        }
+        $aws_statuses = $aws_status_new;
 
         $firstDayOfMonth = strtotime($firstDayOfMonth);
         $lastDayOfMonth = strtotime($lastDayOfMonth);
@@ -45,13 +50,19 @@ class StationMonitoringController extends Controller
         $aws_statuses = AwsStatus::toBase()
             ->whereBetween('date', [$firstDayOfMonth, $lastDayOfMonth])
             ->select('date', 'aws_id', 'status', 'is_published')
-            ->get()
-            ->keyBy('aws_id')
-            ->toArray();
+            ->get();
+
+        $aws_status_new = [];
+        foreach ($aws_statuses as $key => $data) {
+            if(!isset($aws_status_new[$data->date])) $aws_status_new[$data->date] = [];
+            $aws_status_new[$data->date][$data->aws_id] = $data;
+        }
+        $aws_statuses = $aws_status_new;
 
         $firstDayOfMonth = strtotime($firstDayOfMonth);
         $lastDayOfMonth = strtotime($lastDayOfMonth);
         $currentTime = $firstDayOfMonth;
+
 
         return view('aws.monitoring.create', compact('aws_statuses', 'firstDayOfMonth', 'lastDayOfMonth', 'currentTime', 'ugms'));
     }

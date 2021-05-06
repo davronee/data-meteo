@@ -39,22 +39,26 @@
                         $total++;
                     @endphp
                     @while ($cTime <= $lastDayOfMonth)
+                        @php
+                            $status = App\Models\AwsStatus::displayAwsStatus(date('Y-m-d', $cTime), $station->id, $aws_statuses);
+                            $data = App\Models\AwsStatus::getAwsData(date('Y-m-d', $cTime), $station->id, $aws_statuses);
+                        @endphp
                         @if ($cTime == strtotime(date('Y-m-d')))
                             <td>
-                                @php
-                                    $status = App\Models\AwsStatus::displayAwsStatus($station->id, $aws_statuses);
-                                    $data = App\Models\AwsStatus::getAwsData($station->id, $aws_statuses);
-                                @endphp
                                 @if (!empty($status) && $data->is_published)
                                     {!! $status !!}
                                 @else
                                     <select class="form-control mw120" :ref="'station'+{{ $station->id }}" @change="saveAwsStation($event, {{ $station->id }}, '{{ route('aws-monitoring.store') }}')">
                                         <option value="">Танланш</option>
-                                        <option {{ $data->status == 1 ? 'selected' : '' }} value="1">соз</option>
-                                        <option {{ $data->status == 0 ? 'selected' : '' }} value="0">носоз</option>
-                                        <option {{ $data->status == -1 ? 'selected' : '' }} value="-1">номаълум</option>
+                                        <option {{ isset($data->status) && $data->status == 1 ? 'selected' : '' }} value="1">соз</option>
+                                        <option {{ isset($data->status) && $data->status == 0 ? 'selected' : '' }} value="0">носоз</option>
+                                        <option {{ isset($data->status) && $data->status == -1 ? 'selected' : '' }} value="-1">номаълум</option>
                                     </select>
                                 @endif
+                            </td>
+                        @elseif($cTime < time())
+                            <td>
+                                {!! !empty($status) ? $status : '-' !!}
                             </td>
                         @else
                             <td></td>
