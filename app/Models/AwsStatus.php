@@ -14,9 +14,9 @@ class AwsStatus extends Model
 
     protected $fillable = ['date', 'aws_id', 'status', 'is_published'];
     protected const AWSStatuses = [
-        '0' => 'Носоз',
-        '1' => 'Соз',
-        '-1' => 'Номаълум',
+        '0' => '<span class="fa fa-times-circle fa-2xx text-danger" data-toggle="tooltip" title="Носоз"></span>',
+        '1' => '<span class="fa fa-check-circle fa-2xx text-success" data-toggle="tooltip" title="Соз"></span>',
+        '-1' => '<span class="fa fa-question-circle fa-2xx text-warning" data-toggle="tooltip" title="Номаълум"></span>',
     ];
 
     public function aws()

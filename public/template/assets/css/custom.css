@@ -438,3 +438,7 @@ table.sticky tbody .stick {
 #aws-status-table tbody tr:hover > td {
     background-color: #eff1f5 !important;
 }
+
+.aws-status {
+    cursor: pointer;
+}

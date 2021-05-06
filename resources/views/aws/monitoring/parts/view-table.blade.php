@@ -43,11 +43,11 @@
                             $status = App\Models\AwsStatus::displayAwsStatus(date('Y-m-d', $cTime), $station->id, $aws_statuses);
                         @endphp
                         @if ($cTime == strtotime(date('Y-m-d')))
-                            <td>
-                                {{ $status }}
+                            <td class="text-center aws-status">
+                                {!! $status !!}
                             </td>
                         @elseif($cTime < time())
-                            <td>
+                            <td class="text-center aws-status">
                                 {!! !empty($status) ? $status : '-' !!}
                             </td>
                         @else
