@@ -35,7 +35,8 @@ class QuickInfo extends Model
         // Return email address only
         $mailsToSend = [
             'abror9109@gmail.com',
-            'foruhb@gmail.com'
+            'foruhb@gmail.com',
+            'mtb@meteo.uz'
         ];
 
         // $mailsToSend[] = self::MAILS[$this->region_id];

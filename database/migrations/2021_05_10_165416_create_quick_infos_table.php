@@ -18,7 +18,7 @@ class CreateQuickInfosTable extends Migration
             $table->text('info');
             $table->date('date');
             $table->tinyInteger('is_published')->default(0);
-            $table->unsignedInteger('region_id');
+            $table->unsignedInteger('region_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

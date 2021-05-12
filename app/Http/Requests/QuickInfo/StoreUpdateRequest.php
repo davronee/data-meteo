@@ -15,7 +15,7 @@ class StoreUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'region_id' => 'required',
+            'region_id' => 'sometimes|nullable',
             'info' => 'required'
         ];
     }

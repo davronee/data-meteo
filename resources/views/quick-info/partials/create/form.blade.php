@@ -7,7 +7,7 @@
             <div class="form-group">
                 <label for="date">Регион</label>
                 <select name="region_id" id="region_id" class="form-control">
-                    <option value="">@lang('messages.choose')</option>
+                    <option value="">@lang('messages.central_apparat')</option>
                     @foreach ($regions as $region)
                         <option value="{{ $region->regionid }}">{{ $region->nameUz }}</option>
                     @endforeach

@@ -88,5 +88,6 @@ return [
     'info_required' => 'Поле Информация обязательно для заполнения',
     'region_id_required' => 'Поле Регион обязательно для заполнения',
     'error' => 'Произошла ошибка во время процесса',
+    'central_apparat' => 'Markaziy apparat',
 
 ];

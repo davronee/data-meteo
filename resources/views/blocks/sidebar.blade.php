@@ -23,7 +23,7 @@
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
                 @if (auth()->user()->isQuickInfoEditor())
                     <li class="nav-item">
-                        <a href="#" class="nav-link with-sub"><i class="fas fa-exclamation-triangle text-danger"></i> Быстрое сообщение</a>
+                        <a href="#" class="nav-link with-sub"><i class="fas fa-exclamation-triangle text-danger"></i> Экстренное сообщение</a>
                         <nav class="nav nav-sub">
                             <a href="{{ route('quick-info.create') }}" class="nav-sub-link">Создать новый</a>
                             <a href="{{ route('quick-info.index') }}" class="nav-sub-link">Список сообщений</a>
