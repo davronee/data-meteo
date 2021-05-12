@@ -19,7 +19,7 @@ class QuickInfoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('QuickInfoMiddleware');
+        $this->middleware(['QuickInfoMiddleware', 'isProfileFilled']);
     }
 
     public function index()
