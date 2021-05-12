@@ -442,3 +442,16 @@ table.sticky tbody .stick {
 .aws-status {
     cursor: pointer;
 }
+
+.quick-info-view table {
+    border: 1px solid #777;
+    width: 100%;
+    padding: 0px;
+    margin: 10px 0px;
+    border-spacing: 0;
+}
+
+.quick-info-view table tr td {
+    border: 1px solid #777;
+    padding: 5px;
+}

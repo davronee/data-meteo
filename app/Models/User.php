@@ -131,6 +131,11 @@ class User extends Authenticatable
         return $this->hasRole(['control']);
     }
 
+    public function isQuickInfoEditor()
+    {
+        return $this->hasRole(['quick-info-editor', 'superadmin']);
+    }
+
     public function rolesArray()
     {
         return $this->roles->pluck('name')->toArray();

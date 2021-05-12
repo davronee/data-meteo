@@ -29,6 +29,8 @@ class RolesPermsSeeder extends Seeder
         if(Role::where('name', 'station-status-tracker')->count() === 0) Role::create(['name' => 'station-status-tracker']);
         if(Role::where('name', 'station-status-viewer')->count() === 0) Role::create(['name' => 'station-status-viewer']);
 
+        if(Role::where('name', 'quick-info-editor')->count() === 0) Role::create(['name' => 'quick-info-editor']);
+
         // create permissions
         if(Permission::where('name', 'work')->count() === 0) Permission::create(['name' => 'work']);
         if(Permission::where('name', 'see users')->count() === 0) Permission::create(['name' => 'see users']);

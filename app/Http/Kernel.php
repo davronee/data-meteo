@@ -73,5 +73,6 @@ class Kernel extends HttpKernel
         'isProfileFilled' => \App\Http\Middleware\isProfileFilled::class,
         'HourlyStationWorkHour' => \App\Http\Middleware\HourlyStationWorkHour::class,
         'AllowAwsStatusTracker' => \App\Http\Middleware\AllowAwsStatusTracker::class,
+        'QuickInfoMiddleware' => \App\Http\Middleware\QuickInfoMiddleware::class,
     ];
 }

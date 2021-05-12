@@ -6,16 +6,18 @@ use App\Libraries\SendInfo\SendInfoInterface;
 class Telegram implements SendInfoInterface {
 
     protected $path;
+    protected $chat_id;
 
-    public function __construct($path) {
+    public function __construct($path, $chat_id = null) {
+        $this->chat_id = "@gidromet_daily_info";
         $this->path = $path;
+        if(!is_null($chat_id)) $this->chat_id = $chat_id;
     }
 
     protected function sendDocument() {
     	$botToken = "1431648419:AAHns8IHW3T0HJMwOyFWL_pdrtB0CMEZ1rQ";
-		$chat_id = "@gidromet_daily_info";
 
-		$post = array('chat_id' => $chat_id, 'document' => new CurlFile($this->path));
+		$post = array('chat_id' => $this->chat_id, 'document' => new CurlFile($this->path));
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,"https://api.telegram.org/bot" . $botToken . "/sendDocument");
 		curl_setopt($ch, CURLOPT_POST, 1);

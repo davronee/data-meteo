@@ -44,7 +44,7 @@
                             $data = App\Models\AwsStatus::getAwsData(date('Y-m-d', $cTime), $station->id, $aws_statuses);
                         @endphp
                         @if ($cTime == strtotime(date('Y-m-d')))
-                            <td>
+                            <td class="text-center">
                                 @if (!empty($status) && $data->is_published)
                                     {!! $status !!}
                                 @else
@@ -57,7 +57,7 @@
                                 @endif
                             </td>
                         @elseif($cTime < time())
-                            <td>
+                            <td class="text-center">
                                 {!! !empty($status) ? $status : '-' !!}
                             </td>
                         @else

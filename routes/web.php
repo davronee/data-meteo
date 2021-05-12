@@ -1,21 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AwdController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WidgetController;
-use App\Http\Controllers\AwdController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\QuickInfoController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\HourlyInfoSentController;
 use App\Http\Controllers\DailyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoController;
+use App\Http\Controllers\StationMonitoringController;
 use App\Http\Controllers\UserProfilePasswordController;
 use App\Http\Controllers\DailyStationInfoSendController;
 use App\Http\Controllers\HourlyStationInfoSendController;
 use App\Http\Controllers\DailyStationInfoExportController;
 use App\Http\Controllers\HourlyStationInfoExportController;
-use App\Http\Controllers\StationMonitoringController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +112,12 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::resource('aws-monitoring', StationMonitoringController::class)->only([
             'create', 'store', 'index'
         ]);
+
+        // Quick info
+        Route::resource('quick-info', QuickInfoController::class);
+        Route::get('/quick-info/export/{quick_info}/doc', [QuickInfoController::class, 'doc'])->name('quick-info.export.doc');
+        Route::get('/quick-info/export/{quick_info}/pdf', [QuickInfoController::class, 'pdf'])->name('quick-info.export.pdf');
+        Route::post('/quick-info/{quick_info}/send', [QuickInfoController::class, 'send'])->name('quick-info.send');
     });
 
     Route::get('/aws-status', [StationMonitoringController::class, 'index'])->name('aws.status');
