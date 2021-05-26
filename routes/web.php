@@ -106,5 +106,8 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/daily-station-info/export/{daily_station_info}/pdf', [DailyStationInfoExportController::class, 'pdf'])->name('daily-station-info.export.pdf');
         Route::post('/daily-station-info/{daily_station_info}/send', [DailyStationInfoSendController::class, 'store'])->name('daily-station-info.send');
     });
+
+    Route::post('/microstep-receive', [\App\Http\Controllers\MicrostepStationsController::class, 'getinfo'])->name('microstep.getinfo');
+
 });
 
