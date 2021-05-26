@@ -21,11 +21,27 @@
                 </li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plane-departure"></i> Авиационные</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tractor"></i> Агрометеорологические</a></li>
+                @if (auth()->user()->isQuickInfoEditor())
+                    <li class="nav-item">
+                        <a href="#" class="nav-link with-sub"><i class="fas fa-exclamation-triangle text-danger"></i> Экстренное сообщение</a>
+                        <nav class="nav nav-sub">
+                            <a href="{{ route('quick-info.create') }}" class="nav-sub-link">Создать новый</a>
+                            <a href="{{ route('quick-info.index') }}" class="nav-sub-link">Список сообщений</a>
+                        </nav>
+                    </li>
+                @endif
+
                 <li class="nav-label"><label class="content-label">Наблюдения и мониторинг</label></li>
+
+
                 <li class="nav-item">
-                    <a href="http://217.30.161.60:8083" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Зондирование</a>
+                    <a href="http://217.30.161.60:8083/meteo-data/meteosat?id={{ base64_encode('data_meteo_meteosat') }}&from={{ base64_encode('data.meteo.uz') }}&username={{ base64_encode('sinoptika') }}&time={{ time() }}&token={{ uniqid() }}" target="_blank" class="nav-link"><i class="fas fa-satellite"></i>Зондирование</a>
                 </li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-eye"></i> Мониторинг</a></li>
+                @if (auth()->user()->canSeeMonitoringMenu())
+                    <li class="nav-item">
+                        <a href="{{ route('aws-monitoring.create') }}" class="nav-link"><i class="fas fa-eye"></i> Мониторинг</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="" class="nav-link with-sub"><i class="fas fa-database"></i> Сбор данных</a>
                     <nav class="nav nav-sub">

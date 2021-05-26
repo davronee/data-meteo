@@ -21,6 +21,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+
+        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
@@ -70,5 +72,7 @@ class Kernel extends HttpKernel
         'set_locale' => \App\Http\Middleware\SetLocale::class,
         'isProfileFilled' => \App\Http\Middleware\isProfileFilled::class,
         'HourlyStationWorkHour' => \App\Http\Middleware\HourlyStationWorkHour::class,
+        'AllowAwsStatusTracker' => \App\Http\Middleware\AllowAwsStatusTracker::class,
+        'QuickInfoMiddleware' => \App\Http\Middleware\QuickInfoMiddleware::class,
     ];
 }

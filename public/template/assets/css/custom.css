@@ -383,3 +383,75 @@ body {
     float: left;
     width: calc(100vw - 390px) !important;
 }
+
+tr.bg-gray {
+    background: #eee;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #eee;
+    margin-bottom: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* sticky */
+table.sticky tbody th {
+    font-weight: 100;
+    font-style: italic;
+    text-align: left;
+    position: relative;
+}
+
+table.sticky thead .stick {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+}
+
+table.sticky tbody .stick {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+}
+
+.mw120 {
+    min-width: 120px;
+}
+
+#aws-status-table tbody tr:hover > td {
+    background-color: #eff1f5 !important;
+}
+
+.aws-status {
+    cursor: pointer;
+}
+
+.quick-info-view table {
+    border: 1px solid #777;
+    width: 100%;
+    padding: 0px;
+    margin: 10px 0px;
+    border-spacing: 0;
+}
+
+.quick-info-view table tr td {
+    border: 1px solid #777;
+    padding: 5px;
+}

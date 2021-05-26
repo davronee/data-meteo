@@ -131,6 +131,11 @@ class User extends Authenticatable
         return $this->hasRole(['control']);
     }
 
+    public function isQuickInfoEditor()
+    {
+        return $this->hasRole(['quick-info-editor', 'superadmin']);
+    }
+
     public function rolesArray()
     {
         return $this->roles->pluck('name')->toArray();
@@ -139,6 +144,16 @@ class User extends Authenticatable
     public function permissionArray()
     {
         return $this->permissions->pluck('name')->toArray();
+    }
+
+    public function canSeeMonitoringMenu()
+    {
+        return $this->isAdmin() || $this->can('create station status');
+    }
+
+    public function canCreateStationStatus()
+    {
+        return $this->isAdmin() || $this->can('create station status');
     }
 
     /**

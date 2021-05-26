@@ -15,7 +15,7 @@
 
                             <div class="card-body">
                                 @if (auth()->user()->isAdmin())
-                                    <a href="{{ route('user.create') }}" class="btn btn-light text-dark btn-xs mb-1">@lang('messages.add')</a>
+                                    <a href="{{ route('user.create') }}" class="btn btn-success text-white btn-xs mb-1">@lang('messages.add')</a>
                                 @endif
                                 {{-- @include('hourly-station-info.partials.index.filter') --}}
                                 @include('admin.modules.user.partials.index.list')

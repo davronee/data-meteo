@@ -1,15 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AwdController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WidgetController;
-use App\Http\Controllers\AwdController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\QuickInfoController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\HourlyInfoSentController;
 use App\Http\Controllers\DailyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoController;
+use App\Http\Controllers\StationMonitoringController;
 use App\Http\Controllers\UserProfilePasswordController;
 use App\Http\Controllers\DailyStationInfoSendController;
 use App\Http\Controllers\HourlyStationInfoSendController;
@@ -57,7 +59,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     Route::prefix('map')->group(function () {
 //        Route::get('/', [WidgetController::class, 'map'])->name('map');
-        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map');
+        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.index');
 
         Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
         Route::get('/forecast', [WidgetController::class, 'forecast'])->name('map.forecast');
@@ -81,7 +83,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     });
 
-        Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth']], function () {
         // user profile routes
         Route::resource('admin/user', UserController::class)->except(['show']);
 
@@ -105,9 +107,20 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/daily-station-info/export/{daily_station_info}/doc', [DailyStationInfoExportController::class, 'doc'])->name('daily-station-info.export.doc');
         Route::get('/daily-station-info/export/{daily_station_info}/pdf', [DailyStationInfoExportController::class, 'pdf'])->name('daily-station-info.export.pdf');
         Route::post('/daily-station-info/{daily_station_info}/send', [DailyStationInfoSendController::class, 'store'])->name('daily-station-info.send');
+
+        // aws monitoring
+        Route::resource('aws-monitoring', StationMonitoringController::class)->only([
+            'create', 'store', 'index'
+        ]);
+
+        // Quick info
+        Route::resource('quick-info', QuickInfoController::class);
+        Route::get('/quick-info/export/{quick_info}/doc', [QuickInfoController::class, 'doc'])->name('quick-info.export.doc');
+        Route::get('/quick-info/export/{quick_info}/pdf', [QuickInfoController::class, 'pdf'])->name('quick-info.export.pdf');
+        Route::post('/quick-info/{quick_info}/send', [QuickInfoController::class, 'send'])->name('quick-info.send');
     });
 
-    Route::post('/microstep-receive', [\App\Http\Controllers\MicrostepStationsController::class, 'getinfo'])->name('microstep.getinfo');
-
+    Route::get('/aws-status', [StationMonitoringController::class, 'index'])->name('aws.status');
+    Route::post('/aws-monitoring/save', [StationMonitoringController::class, 'save'])->name('aws-monitoring.save');
 });
 

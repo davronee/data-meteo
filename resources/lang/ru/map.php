@@ -2,8 +2,8 @@
 
 return [
 
-    'search' => 'поиск',
-    'type_map' => 'тип карта',
+    'search' => 'Поиск',
+    'type_map' => 'Тип карта',
     'info' => 'Информация',
     'full_view' => 'Полный обзор',
     'portal_info' => 'О портале',
@@ -44,7 +44,7 @@ return [
     'Imagery'=>'Спутник',
     'NationalGeographic'=>'Национальная география',
     'Topographic'=>'Топографическая карта',
-    'Gray'=>'серый',
+    'Gray'=>'Серый',
     'DarkGray'=>'Темно-серый',
     'OpenStreetMap'=>'Открытая карта улиц',
 

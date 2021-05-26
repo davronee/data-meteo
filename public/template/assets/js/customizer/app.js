@@ -127,6 +127,40 @@ var app = new Vue({
                 .catch( err => {
                     console.error( err );
                 });
+        },
+
+        saveAwsStation: function(e, station_id, url)
+        {
+            var date = moment();
+            var ref = 'station' + station_id;
+            var element = this.$refs[ref];
+            var parent_element = element.parentNode;
+            var statuses = {
+                "-1": "Номаълум",
+                0: "Носоз",
+                1: "Соз",
+            };
+            axios.post(url, {
+                date: date,
+                aws_id: station_id,
+                status: element.value
+            }).then(function (response) {
+                console.log(response);
+                // if(response.data.response_code == 0)
+                //     Message.add('Сохранено', {type:'success'});
+                //parent_element.innerHTML = statuses[element.value];
+            });
+        },
+
+        saveAwsStatuses: function(url)
+        {
+            this.$refs.saveAwsStatuses.setAttribute('disabled', true);
+            axios.post(url).then(function (response) {
+                if(response.data.response_code == 0) {
+                    Message.add('Сохранено', {type:'success'});
+                    window.location.reload();
+                }
+            });
         }
     },
     watch: {

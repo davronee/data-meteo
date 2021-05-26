@@ -16,6 +16,8 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();
 
+    $('.double-scroll').doubleScroll();
+
     // ckeditor
     // if($('#editor').length > 0) {
         // ClassicEditor
