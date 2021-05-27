@@ -1380,175 +1380,175 @@
 
 
 
-                    this.microstep.forEach(function (item, i, arr) {
-                            var meteoIcon1 = L.icon({
-                                iconUrl: '{{asset('images/meteo.png')}}',
-                                iconSize: [28, 28], // size of the icon
-                                class: "station"
-                            });
+                    {{--this.microstep.forEach(function (item, i, arr) {--}}
+                    {{--        var meteoIcon1 = L.icon({--}}
+                    {{--            iconUrl: '{{asset('images/meteo.png')}}',--}}
+                    {{--            iconSize: [28, 28], // size of the icon--}}
+                    {{--            class: "station"--}}
+                    {{--        });--}}
 
-                            var marker1 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon1}).on('click', function () {
-                                axios.get('{{route('map.MicrostepStations.get')}}', {
-                                    params: {
-                                        id: item.id
-                                    }
-                                })
-                                    .then(function (response) {
-                                        marker1.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>" + item.station_name +"</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>дата и время</b></td>" +
-                                            "<td>" + response.data.datetime +  "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                            "<td>" + response.data.Ta + " °C </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>влажность</b></td>" +
-                                            "<td>" + response.data.R + " % </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>точка росы<b/></td>" +
-                                            "<td>" + response.data.Td +  "</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура воздуха за последние 3 часа<b/></td>" +
-                                            // "<td>" + response.data.Ta_avr + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура воздуха за последние 3 час</b></td>" +
-                                            // "<td>" + response.data.Ta_min + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура воздуха за последние 3 час</b></td>" +
-                                            // "<td>" + response.data.Ta_max + "</td>" +
-                                            // "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>Измеренное давление</b></td>" +
-                                            "<td>" + response.data.P + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>Давление, приведенное к уровню моря</b></td>" +
-                                            "<td>" + response.data.P_sl + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>барическая тенденция</b></td>" +
-                                            "<td>" + response.data.a + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>скорость ветра средняя</b></td>" +
-                                            "<td>" + response.data.ff_avr + "</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>скорость ветра в порыве (максимальная)</b></td>" +
-                                            // "<td>" + response.data.ff_gust + "</td>" +
-                                            // "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>направление ветра</b></td>" +
-                                            "<td>" + response.data.dd_avr + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            // "<td><b>температура почвы на глубине 5см</b></td>" +
-                                            // "<td>" + response.data.Ts5 + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура почвы на глубине 10см</b></td>" +
-                                            // "<td>" + response.data.Ts10 + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура почвы на глубине 20см</b></td>" +
-                                            // "<td>" + response.data.Ts20 + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура почвы на глубине 30см</b></td>" +
-                                            // "<td>" + response.data.Ts30 + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура почвы на глубине 50см</b></td>" +
-                                            // "<td>" + response.data.Ts50 + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура почвы на глубине 100см</b></td>" +
-                                            // "<td>" + response.data.Ts100 + "</td>" +
-                                            // "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>высота снежного покрова</b></td>" +
-                                            "<td>" + response.data.Hsnow + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            // "<td><b>кол-во осадков за измеряемый период (5мин – 60мин)</b></td>" +
-                                            // "<td>" + response.data.RR + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>кол-во осадков за последние 12 часов</b></td>" +
-                                            // "<td>" + response.data.RR_12 + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>кол-во осадков за последние 24 часа</b></td>" +
-                                            // "<td>" + response.data.RR_24 + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>влажность почвы на глубине 15 см.</b></td>" +
-                                            // "<td>" + response.data.soil_moisture + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>состояния батарея</b></td>" +
-                                            // "<td>" + response.data.battery + "</td>" +
-                                            // "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>высота станции</b></td>" +
-                                            "<td>" + response.data.altitude + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            // "<td><b>температура воздуха за последние 12 часов</b></td>" +
-                                            // "<td>" + response.data.Ta_12h_avr + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура воздуха за последние 12 часов</b></td>" +
-                                            // "<td>" + response.data.Ta_12h_min + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>температура воздуха за последние 12 часов</b></td>" +
-                                            // "<td>" + response.data.Ta_12h_max + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>скорость ветра в порыве (максимальная) за последние 12 часов</b></td>" +
-                                            // "<td>" + response.data.ff_gust_12h + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>скорость ветра в порыве (максимальная) за последние 3 часов</b></td>" +
-                                            // "<td>" + response.data.ff_gust_3h + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>скорость ветра в порыве (максимальная) за последние 1 часов</b></td>" +
-                                            // "<td>" + response.data.ff_gust_1h + "</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            "<td><b>солнечная радиация Вт/кв.м.</b></td>" +
-                                            "<td>" + response.data.SunRad + "</td>" +
-                                            "</tr>" +
-                                            "</table>"
-                                        )
-                                    })
-                                    .catch(function (error) {
-                                        // handle error
-                                        console.log(error);
-                                    })
-                                    .then(function () {
-                                        // always executed
-                                    });
-                            });
-                        marker1.fire('click');
-
-
+                    {{--        var marker1 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--            axios.get('{{route('map.MicrostepStations.get')}}', {--}}
+                    {{--                params: {--}}
+                    {{--                    id: item.id--}}
+                    {{--                }--}}
+                    {{--            })--}}
+                    {{--                .then(function (response) {--}}
+                    {{--                    marker1.bindPopup("" +--}}
+                    {{--                        "<table class='table table-bordered'>" +--}}
+                    {{--                        "<tr ><td colspan='2' class='text-center'><b>" + item.station_name +"</b></td></tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>дата и время</b></td>" +--}}
+                    {{--                        "<td>" + response.data.datetime +  "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>температура воздуха за измеряемый период</b></td>" +--}}
+                    {{--                        "<td>" + response.data.Ta + " °C </td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>влажность</b></td>" +--}}
+                    {{--                        "<td>" + response.data.R + " % </td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>точка росы<b/></td>" +--}}
+                    {{--                        "<td>" + response.data.Td +  "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура воздуха за последние 3 часа<b/></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ta_avr + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура воздуха за последние 3 час</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ta_min + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура воздуха за последние 3 час</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ta_max + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>Измеренное давление</b></td>" +--}}
+                    {{--                        "<td>" + response.data.P + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>Давление, приведенное к уровню моря</b></td>" +--}}
+                    {{--                        "<td>" + response.data.P_sl + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>барическая тенденция</b></td>" +--}}
+                    {{--                        "<td>" + response.data.a + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>скорость ветра средняя</b></td>" +--}}
+                    {{--                        "<td>" + response.data.ff_avr + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>скорость ветра в порыве (максимальная)</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.ff_gust + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>направление ветра</b></td>" +--}}
+                    {{--                        "<td>" + response.data.dd_avr + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        // "<td><b>температура почвы на глубине 5см</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ts5 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура почвы на глубине 10см</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ts10 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура почвы на глубине 20см</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ts20 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура почвы на глубине 30см</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ts30 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура почвы на глубине 50см</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ts50 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура почвы на глубине 100см</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ts100 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>высота снежного покрова</b></td>" +--}}
+                    {{--                        "<td>" + response.data.Hsnow + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        // "<td><b>кол-во осадков за измеряемый период (5мин – 60мин)</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.RR + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>кол-во осадков за последние 12 часов</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.RR_12 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>кол-во осадков за последние 24 часа</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.RR_24 + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>влажность почвы на глубине 15 см.</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.soil_moisture + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>состояния батарея</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.battery + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>высота станции</b></td>" +--}}
+                    {{--                        "<td>" + response.data.altitude + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        // "<td><b>температура воздуха за последние 12 часов</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ta_12h_avr + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура воздуха за последние 12 часов</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ta_12h_min + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>температура воздуха за последние 12 часов</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.Ta_12h_max + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>скорость ветра в порыве (максимальная) за последние 12 часов</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.ff_gust_12h + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>скорость ветра в порыве (максимальная) за последние 3 часов</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.ff_gust_3h + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        // "<td><b>скорость ветра в порыве (максимальная) за последние 1 часов</b></td>" +--}}
+                    {{--                        // "<td>" + response.data.ff_gust_1h + "</td>" +--}}
+                    {{--                        // "</tr>" +--}}
+                    {{--                        // "<tr>" +--}}
+                    {{--                        "<td><b>солнечная радиация Вт/кв.м.</b></td>" +--}}
+                    {{--                        "<td>" + response.data.SunRad + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "</table>"--}}
+                    {{--                    )--}}
+                    {{--                })--}}
+                    {{--                .catch(function (error) {--}}
+                    {{--                    // handle error--}}
+                    {{--                    console.log(error);--}}
+                    {{--                })--}}
+                    {{--                .then(function () {--}}
+                    {{--                    // always executed--}}
+                    {{--                });--}}
+                    {{--        });--}}
+                    {{--    marker1.fire('click');--}}
 
 
 
-                            markers_awd.addLayer(marker1);
-                        }
-                    );
+
+
+                    {{--        markers_awd.addLayer(marker1);--}}
+                    {{--    }--}}
+                    {{--);--}}
 
 
 
