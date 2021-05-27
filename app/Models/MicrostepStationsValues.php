@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class MicrostepStationsValues extends Model
 {
     use HasFactory;
+
+    public function station()
+    {
+        return $this->belongsTo(MicrostepStations::class, 'station_id');
+    }
 }

@@ -35,47 +35,44 @@ class MicrostepStationsController extends Controller
 
                 $stationid = MicrostepStations::where('stationid', $stationid[0])->first();
 
-//                Log::info('count: '.count($data).' statiodid: '.$stationid->stationid);
+                Log::info('count: '.count($data).' statiodid: '.$stationid->stationid);
 
 
                 $station = new MicrostepStationsValues();
                 $station->station_id = $stationid->id;
                 $station->datetime = Carbon::createFromFormat('y.m.d H:i', $data[0]);
-                $station->Ta = isset($data[1]) ? $data[1] : null;
-                $station->R = isset($data[2]) ? $data[2] : null;
-                $station->Td = isset($data[3]) ? $data[3] : null;
-                $station->Ta_avr = isset($data[4]) ? $data[4] : null;
-                $station->Ta_min = isset($data[5]) ? $data[5] : null;
-                $station->Ta_max = $data[6];
-                $station->P = $data[7];
-                $station->P_sl = $data[8];
-                $station->a = $data[9];
-                $station->ff_avr = $data[10];
-                $station->ff_gust = $data[11];
-                $station->dd_avr = $data[12];
-                $station->Ts5 = $data[13];
-                $station->Ts10 = $data[14] == true ? $data[14] : null;//$data[13];
-                $station->Ts20 = $data[15] == true ? $data[15] : null;//$data[14];
-                $station->Ts30 = $data[16] == true ? $data[16] : null;//$data[15];
-                $station->Ts50 = $data[17] == true ? $data[17] : null;//$data[16];
-                $station->Ts100 = $data[18] == true ? $data[18] : null;//$data[17];
-                $station->Hsnow = $data[19] == true ? $data[19] : null;//$data[18];
-                $station->RR = $data[20];
-                $station->RR_12 = $data[21];
-                $station->RR_24 = $data[22];
-                $station->soil_moisture = $data[23];
-                $station->battery = $data[24] == true ? $data[24] : null;//$data[23];
-                $station->altitude = $data[25];
-                $station->Ta_12h_avr = $data[26];
-                $station->Ta_12h_min = $data[27];
-                $station->Ta_12h_max = $data[28];
-                $station->ff_gust_12h = $data[29];
-                $station->ff_gust_3h = $data[30];
-                $station->ff_gust_1h = $data[31];
-                if (count($data) == 32)
-                    $station->SunRad = $data[32] == true ? $data[32] : null;
-                else
-                    $station->SunRad = null;
+                $station->Ta = $this->validateValue($data, 1);
+                $station->R = $this->validateValue($data, 2);
+                $station->Td = $this->validateValue($data, 3);
+                $station->Ta_avr = $this->validateValue($data, 4);
+                $station->Ta_min = $this->validateValue($data, 5);
+                $station->Ta_max = $this->validateValue($data, 6);
+                $station->P = $this->validateValue($data, 7);
+                $station->P_sl = $this->validateValue($data, 8);
+                $station->a = $this->validateValue($data, 9);
+                $station->ff_avr = $this->validateValue($data, 10);
+                $station->ff_gust = $this->validateValue($data, 11);
+                $station->dd_avr = $this->validateValue($data, 12);
+                $station->Ts5 = $this->validateValue($data, 13);
+                $station->Ts10 = $this->validateValue($data, 14);
+                $station->Ts20 = $this->validateValue($data, 15);
+                $station->Ts30 = $this->validateValue($data, 16);
+                $station->Ts50 = $this->validateValue($data, 17);
+                $station->Ts100 = $this->validateValue($data, 18);
+                $station->Hsnow = $this->validateValue($data, 19);
+                $station->RR = $this->validateValue($data, 20);
+                $station->RR_12 = $this->validateValue($data, 21);
+                $station->RR_24 = $this->validateValue($data, 22);
+                $station->soil_moisture = $this->validateValue($data, 23);;
+                $station->battery = $this->validateValue($data, 24);
+                $station->altitude = $this->validateValue($data, 25);
+                $station->Ta_12h_avr = $this->validateValue($data, 26);
+                $station->Ta_12h_min = $this->validateValue($data, 27);
+                $station->Ta_12h_max = $this->validateValue($data, 28);
+                $station->ff_gust_12h = $this->validateValue($data, 29);
+                $station->ff_gust_3h = $this->validateValue($data, 30);
+                $station->ff_gust_1h = $this->validateValue($data, 31);
+                $station->SunRad = $this->validateValue($data, 32);
                 $station->path = $postName;
                 $station->save();
 
@@ -93,9 +90,14 @@ class MicrostepStationsController extends Controller
 
     public function get(Request $request)
     {
-        $stations = MicrostepStationsValues::where('station_id',$request->id)->latest()->first();
+        $stations = MicrostepStationsValues::query()->where('station_id',$request->id)->latest()->first();
 
         return $stations;
 
+    }
+
+    protected function validateValue($data, $index)
+    {
+        return isset($data[$index]) ? (double) str_replace(" ", null, trim($data[$index])) : null;
     }
 }
