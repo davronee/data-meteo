@@ -1380,12 +1380,12 @@
 
 
 
-                    {{--this.microstep.forEach(function (item, i, arr) {--}}
-                    {{--        var meteoIcon1 = L.icon({--}}
-                    {{--            iconUrl: '{{asset('images/meteo.png')}}',--}}
-                    {{--            iconSize: [28, 28], // size of the icon--}}
-                    {{--            class: "station"--}}
-                    {{--        });--}}
+                    this.microstep.forEach(function (item, i, arr) {
+                            var meteoIcon1 = L.icon({
+                                iconUrl: '{{asset('images/meteo.png')}}',
+                                iconSize: [28, 28], // size of the icon
+                                class: "station"
+                            });
 
                             var marker1 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon1}).on('click', function () {
                                 axios.get('{{route('map.MicrostepStations.get')}}', {
