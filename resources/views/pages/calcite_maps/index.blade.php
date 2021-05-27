@@ -164,7 +164,7 @@
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">Ўзбекча</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">Русский</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">English</a></li>
-           
+
 
         </ul>
     </nav><!--/.navbar -->
@@ -382,6 +382,7 @@
     var markers_snow = L.featureGroup();
     var markers_aero = L.featureGroup();
     var markers_dangerzones = L.featureGroup();
+    var markers_microstep = L.featureGroup();
 
     let app = new Vue({
         el: "#app",
@@ -396,6 +397,7 @@
             snow: false,
             awd: false,
             awds:@json($stations),
+            microstep:@json($microstations),
             menu: 'forecast',
             aero: false,
             dangerzones: false,
@@ -1130,6 +1132,9 @@
                 if (this.awd) {
                     // console.log(this.awds['Stations'][0].Metadata.Longitude);
                     // var marker = L.marker([parseFloat(this.awds['Stations'][0].Metadata.Latitude), parseFloat(this.awds['Stations'][1].Metadata.Longitude)]).addTo(map);
+
+
+
                     this.awds.Stations.forEach(function (item, i, arr) {
                             var meteoIcon = L.icon({
                                 iconUrl: '{{asset('images/meteo.png')}}',
@@ -1363,9 +1368,82 @@
                             });
                             marker.fire('click');
 
+
+
+
                             markers_awd.addLayer(marker);
                         }
                     );
+
+
+
+
+
+
+                    this.microstep.forEach(function (item, i, arr) {
+                            var meteoIcon1 = L.icon({
+                                iconUrl: '{{asset('images/meteo.png')}}',
+                                iconSize: [28, 28], // size of the icon
+                                class: "station"
+                            });
+
+                            var marker1 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon1}).on('click', function () {
+                                axios.get('{{route('map.MicrostepStations.get')}}', {
+                                    params: {
+                                        id: item.id
+                                    }
+                                })
+                                    .then(function (response) {
+                                        marker1.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td class='text-center'><b></b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>дата и время</b></td>" +
+                                            "<td>" + response.data.datetime +  "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>температура воздуха за измеряемый период</b></td>" +
+                                            "<td>" + response.data.Ta + " °C </td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>влажность</b></td>" +
+                                            "<td>" + response.data.R + " % </td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>точка росы<b/></td>" +
+                                            "<td>" + response.data.Td +  "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>температура воздуха за последние 3 часа<b/></td>" +
+                                            "<td>" + response.data.Ta_avr + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>температура воздуха за последние 3 час</b></td>" +
+                                            "<td>" + response.data.Ta_max + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+                                    })
+                                    .catch(function (error) {
+                                        // handle error
+                                        console.log(error);
+                                    })
+                                    .then(function () {
+                                        // always executed
+                                    });
+                            });
+                        marker1.fire('click');
+
+
+
+
+
+                            markers_awd.addLayer(marker1);
+                        }
+                    );
+
+
+
                     map.addLayer(markers_awd);
 
 

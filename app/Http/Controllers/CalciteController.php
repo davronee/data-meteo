@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MicrostepStations;
 use App\Models\Radar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -24,9 +25,12 @@ class CalciteController extends Controller
 
         $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations');
 
+        $microstations = MicrostepStations::get();
+
         return view('pages.calcite_maps.index')->with([
             'radars' => $radars,
-            'stations' => $stations->json()
+            'stations' => $stations->json(),
+            'microstations' => $microstations,
         ]);
 
     }

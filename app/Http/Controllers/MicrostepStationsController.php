@@ -45,45 +45,42 @@ class MicrostepStationsController extends Controller
                 $station->R = isset($data[2]) ? $data[2] : null;
                 $station->Td = isset($data[3]) ? $data[3] : null;
                 $station->Ta_avr = isset($data[4]) ? $data[4] : null;
-                $station->Ta_max = $data[5];
-                $station->P = $data[6];
-                $station->P_sl = $data[7];
-                $station->a = $data[8];
-                $station->ff_avr = $data[9];
-                $station->ff_gust = $data[10];
-                $station->dd_avr = $data[11];
-                $station->Ts5 =  $data[12];
-                $station->Ts10 = $data[13] == true ? $data[13] : null;//$data[13];
-                $station->Ts20 = $data[14] == true ? $data[14] :  null;//$data[14];
-                $station->Ts30 = $data[15] == true ? $data[15] : null;//$data[15];
-                $station->Ts50 = $data[16] == true ? $data[16] :null;//$data[16];
-                $station->Ts100 = $data[17] == true ? $data[17] : null;//$data[17];
-                $station->Hsnow = $data[18] == true ? $data[18] : null;//$data[18];
-                $station->RR = $data[19];
-                $station->RR_12 = $data[20];
-                $station->RR_24 = $data[21];
-                $station->soil_moisture = $data[22];
-                $station->battery = $data[23] == true ? $data[23] : null;//$data[23];
-                $station->altitude = $data[24];
-                $station->Ta_12h_avr = $data[25];
-                $station->Ta_12h_min = $data[26];
-                $station->Ta_12h_max = $data[27];
-                $station->ff_gust_12h = $data[28];
-                $station->ff_gust_3h = $data[29];
-                $station->ff_gust_1h = $data[30];
-                if(count($data) == 31)
-                $station->SunRad = $data[31] == true ? $data[31]  : null;
+                $station->Ta_min = isset($data[5]) ? $data[5] : null;
+                $station->Ta_max = $data[6];
+                $station->P = $data[7];
+                $station->P_sl = $data[8];
+                $station->a = $data[9];
+                $station->ff_avr = $data[10];
+                $station->ff_gust = $data[11];
+                $station->dd_avr = $data[12];
+                $station->Ts5 = $data[13];
+                $station->Ts10 = $data[14] == true ? $data[14] : null;//$data[13];
+                $station->Ts20 = $data[15] == true ? $data[15] : null;//$data[14];
+                $station->Ts30 = $data[16] == true ? $data[16] : null;//$data[15];
+                $station->Ts50 = $data[17] == true ? $data[17] : null;//$data[16];
+                $station->Ts100 = $data[18] == true ? $data[18] : null;//$data[17];
+                $station->Hsnow = $data[19] == true ? $data[19] : null;//$data[18];
+                $station->RR = $data[20];
+                $station->RR_12 = $data[21];
+                $station->RR_24 = $data[22];
+                $station->soil_moisture = $data[23];
+                $station->battery = $data[24] == true ? $data[24] : null;//$data[23];
+                $station->altitude = $data[25];
+                $station->Ta_12h_avr = $data[26];
+                $station->Ta_12h_min = $data[27];
+                $station->Ta_12h_max = $data[28];
+                $station->ff_gust_12h = $data[29];
+                $station->ff_gust_3h = $data[30];
+                $station->ff_gust_1h = $data[31];
+                if (count($data) == 32)
+                    $station->SunRad = $data[32] == true ? $data[32] : null;
                 else
                     $station->SunRad = null;
                 $station->path = $postName;
                 $station->save();
 
 
-
-
             }
-
-
 
 
         } catch (\Exception $exception) {
@@ -91,6 +88,14 @@ class MicrostepStationsController extends Controller
 
         }
 
+
+    }
+
+    public function get(Request $request)
+    {
+        $stations = MicrostepStationsValues::where('station_id',$request->id)->latest()->first();
+
+        return $stations;
 
     }
 }
