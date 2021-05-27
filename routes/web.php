@@ -122,5 +122,9 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     Route::get('/aws-status', [StationMonitoringController::class, 'index'])->name('aws.status');
     Route::post('/aws-monitoring/save', [StationMonitoringController::class, 'save'])->name('aws-monitoring.save');
+
+
+
+    Route::post('/microstep-receive', [\App\Http\Controllers\MicrostepStationsController::class, 'getinfo'])->name('microstep.getinfo');
 });
 
