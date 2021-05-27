@@ -1380,67 +1380,67 @@
 
 
 
-                    this.microstep.forEach(function (item, i, arr) {
-                            var meteoIcon1 = L.icon({
-                                iconUrl: '{{asset('images/meteo.png')}}',
-                                iconSize: [28, 28], // size of the icon
-                                class: "station"
-                            });
+                    {{--this.microstep.forEach(function (item, i, arr) {--}}
+                    {{--        var meteoIcon1 = L.icon({--}}
+                    {{--            iconUrl: '{{asset('images/meteo.png')}}',--}}
+                    {{--            iconSize: [28, 28], // size of the icon--}}
+                    {{--            class: "station"--}}
+                    {{--        });--}}
 
-                            var marker1 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon1}).on('click', function () {
-                                axios.get('{{route('map.MicrostepStations.get')}}', {
-                                    params: {
-                                        id: item.id
-                                    }
-                                })
-                                    .then(function (response) {
-                                        marker1.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td class='text-center'><b></b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>дата и время</b></td>" +
-                                            "<td>" + response.data.datetime +  "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                            "<td>" + response.data.Ta + " °C </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>влажность</b></td>" +
-                                            "<td>" + response.data.R + " % </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>точка росы<b/></td>" +
-                                            "<td>" + response.data.Td +  "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>температура воздуха за последние 3 часа<b/></td>" +
-                                            "<td>" + response.data.Ta_avr + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>температура воздуха за последние 3 час</b></td>" +
-                                            "<td>" + response.data.Ta_max + "</td>" +
-                                            "</tr>" +
-                                            "</table>"
-                                        )
-                                    })
-                                    .catch(function (error) {
-                                        // handle error
-                                        console.log(error);
-                                    })
-                                    .then(function () {
-                                        // always executed
-                                    });
-                            });
-                        marker1.fire('click');
-
-
+                    {{--        var marker1 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--            axios.get('{{route('map.MicrostepStations.get')}}', {--}}
+                    {{--                params: {--}}
+                    {{--                    id: item.id--}}
+                    {{--                }--}}
+                    {{--            })--}}
+                    {{--                .then(function (response) {--}}
+                    {{--                    marker1.bindPopup("" +--}}
+                    {{--                        "<table class='table table-bordered'>" +--}}
+                    {{--                        "<tr ><td class='text-center'><b></b></td></tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>дата и время</b></td>" +--}}
+                    {{--                        "<td>" + response.data.datetime +  "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>температура воздуха за измеряемый период</b></td>" +--}}
+                    {{--                        "<td>" + response.data.Ta + " °C </td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>влажность</b></td>" +--}}
+                    {{--                        "<td>" + response.data.R + " % </td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>точка росы<b/></td>" +--}}
+                    {{--                        "<td>" + response.data.Td +  "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>температура воздуха за последние 3 часа<b/></td>" +--}}
+                    {{--                        "<td>" + response.data.Ta_avr + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "<tr>" +--}}
+                    {{--                        "<td><b>температура воздуха за последние 3 час</b></td>" +--}}
+                    {{--                        "<td>" + response.data.Ta_max + "</td>" +--}}
+                    {{--                        "</tr>" +--}}
+                    {{--                        "</table>"--}}
+                    {{--                    )--}}
+                    {{--                })--}}
+                    {{--                .catch(function (error) {--}}
+                    {{--                    // handle error--}}
+                    {{--                    console.log(error);--}}
+                    {{--                })--}}
+                    {{--                .then(function () {--}}
+                    {{--                    // always executed--}}
+                    {{--                });--}}
+                    {{--        });--}}
+                    {{--    marker1.fire('click');--}}
 
 
 
-                            markers_awd.addLayer(marker1);
-                        }
-                    );
+
+
+                    {{--        markers_awd.addLayer(marker1);--}}
+                    {{--    }--}}
+                    {{--);--}}
 
 
 
