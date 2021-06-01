@@ -1398,11 +1398,11 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.Ta,'°C') + " °C </td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Ta,'°C') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>влажность</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.R,'%') + " % </td>" +
+                                            "<td>" + app.checktoUndefine(response.data.R,'%') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>точка росы<b/></td>" +
