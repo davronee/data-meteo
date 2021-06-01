@@ -40,7 +40,7 @@ class MicrostepStationsController extends Controller
 
                 $station = new MicrostepStationsValues();
                 $station->station_id = $stationid->id;
-                $station->datetime = Carbon::createFromFormat('y.m.d H:i', $data[0]);
+                $station->datetime = Carbon::createFromFormat('y.m.d H:i', $data[0])->addHours(5);
                 $station->Ta = $this->validateValue($data, 1);
                 $station->R = $this->validateValue($data, 2);
                 $station->Td = $this->validateValue($data, 3);
