@@ -158,9 +158,11 @@
                     <div id="geocode"></div>
                 </div>
             </li> -->
-            <li><a class="calcite-navbar-search" href="#">Авторизация <span class="glyphicon glyphicon-log-out"></span></a></li>
+            <li><a class="calcite-navbar-search" href="#">Авторизация <span class="glyphicon glyphicon-log-out"></span></a>
+            </li>
             <!-- <li><a class="calcite-navbar-search" href="#">Мой кабинет <span class="glyphicon glyphicon-user"></span></a></li> -->
-            <li><a class="calcite-navbar-search hidden-xs" href="#"><span class="calcite-title-divider hidden-xs"></span></a></li>
+            <li><a class="calcite-navbar-search hidden-xs" href="#"><span
+                        class="calcite-title-divider hidden-xs"></span></a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">Ўзбекча</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">Русский</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">English</a></li>
@@ -1134,7 +1136,6 @@
                     // var marker = L.marker([parseFloat(this.awds['Stations'][0].Metadata.Latitude), parseFloat(this.awds['Stations'][1].Metadata.Longitude)]).addTo(map);
 
 
-
                     this.awds.Stations.forEach(function (item, i, arr) {
                             var meteoIcon = L.icon({
                                 iconUrl: '{{asset('images/meteo.png')}}',
@@ -1369,15 +1370,9 @@
                             marker.fire('click');
 
 
-
-
                             markers_awd.addLayer(marker);
                         }
                     );
-
-
-
-
 
 
                     this.microstep.forEach(function (item, i, arr) {
@@ -1396,22 +1391,22 @@
                                     .then(function (response) {
                                         marker1.bindPopup("" +
                                             "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>" + item.station_name +"</b></td></tr>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>" + app.checktoUndefine(item.station_name) + "</b></td></tr>" +
                                             "<tr>" +
                                             "<td><b>дата и время</b></td>" +
-                                            "<td>" + response.data.datetime +  "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.datetime) + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                            "<td>" + response.data.Ta + " °C </td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Ta) + " °C </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>влажность</b></td>" +
-                                            "<td>" + response.data.R + " % </td>" +
+                                            "<td>" + app.checktoUndefine(response.data.R) + " % </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>точка росы<b/></td>" +
-                                            "<td>" + response.data.Td +  "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Td) + "</td>" +
                                             "</tr>" +
                                             // "<tr>" +
                                             // "<td><b>температура воздуха за последние 3 часа<b/></td>" +
@@ -1427,19 +1422,19 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>Измеренное давление</b></td>" +
-                                            "<td>" + response.data.P + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.P) + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>Давление, приведенное к уровню моря</b></td>" +
-                                            "<td>" + response.data.P_sl + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.P_sl) + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>барическая тенденция</b></td>" +
-                                            "<td>" + response.data.a + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.a) + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>скорость ветра средняя</b></td>" +
-                                            "<td>" + response.data.ff_avr + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.ff_avr) + "</td>" +
                                             "</tr>" +
                                             // "<tr>" +
                                             // "<td><b>скорость ветра в порыве (максимальная)</b></td>" +
@@ -1447,7 +1442,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>направление ветра</b></td>" +
-                                            "<td>" + response.data.dd_avr + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.dd_avr) + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>температура почвы на глубине 5см</b></td>" +
@@ -1475,7 +1470,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>высота снежного покрова</b></td>" +
-                                            "<td>" + response.data.Hsnow + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Hsnow) + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>кол-во осадков за измеряемый период (5мин – 60мин)</b></td>" +
@@ -1499,7 +1494,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>высота станции</b></td>" +
-                                            "<td>" + response.data.altitude + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.altitude) + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>температура воздуха за последние 12 часов</b></td>" +
@@ -1527,7 +1522,7 @@
                                             // "</tr>" +
                                             // "<tr>" +
                                             "<td><b>солнечная радиация Вт/кв.м.</b></td>" +
-                                            "<td>" + response.data.SunRad + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.SunRad) + "</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -1540,16 +1535,12 @@
                                         // always executed
                                     });
                             });
-                        marker1.fire('click');
-
-
-
+                            marker1.fire('click');
 
 
                             markers_awd.addLayer(marker1);
                         }
                     );
-
 
 
                     map.addLayer(markers_awd);
@@ -3055,6 +3046,15 @@
                     .then(function () {
                         // always executed
                     });
+            },
+            checktoUndefine: function (text) {
+                if (text !== undefined) {
+                    return text;
+                }
+                else
+                {
+                    return '-';
+                }
             }
         },
         mounted() {
