@@ -1398,15 +1398,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.Ta) + " °C </td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Ta,'°C') + " °C </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>влажность</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.R) + " % </td>" +
+                                            "<td>" + app.checktoUndefine(response.data.R,'%') + " % </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>точка росы<b/></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.Td) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Td,'°C') + "</td>" +
                                             "</tr>" +
                                             // "<tr>" +
                                             // "<td><b>температура воздуха за последние 3 часа<b/></td>" +
@@ -1422,19 +1422,19 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>Измеренное давление</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.P) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.P,'mB') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>Давление, приведенное к уровню моря</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.P_sl) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.P_sl,'mB') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>барическая тенденция</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.a) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.a,'a') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>скорость ветра средняя</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.ff_avr) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.ff_avr,'m/c') + "</td>" +
                                             "</tr>" +
                                             // "<tr>" +
                                             // "<td><b>скорость ветра в порыве (максимальная)</b></td>" +
@@ -1442,7 +1442,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>направление ветра</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.dd_avr) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.dd_avr,'°') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>температура почвы на глубине 5см</b></td>" +
@@ -1470,7 +1470,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>высота снежного покрова</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.Hsnow) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Hsnow,'cm') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>кол-во осадков за измеряемый период (5мин – 60мин)</b></td>" +
@@ -1494,7 +1494,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>высота станции</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.altitude) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.altitude,'a.s.l.') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>температура воздуха за последние 12 часов</b></td>" +
@@ -1522,7 +1522,7 @@
                                             // "</tr>" +
                                             // "<tr>" +
                                             "<td><b>солнечная радиация Вт/кв.м.</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.SunRad) + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.SunRad,'w/m') + "</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3047,9 +3047,9 @@
                         // always executed
                     });
             },
-            checktoUndefine: function (text) {
+            checktoUndefine: function (text,unit = '') {
                 if (text !== undefined) {
-                    return text;
+                    return text + ' ' + unit;
                 }
                 else
                 {
