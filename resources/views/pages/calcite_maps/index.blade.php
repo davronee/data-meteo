@@ -3048,7 +3048,7 @@
                     });
             },
             checktoUndefine: function (text,unit = '') {
-                if (text !== undefined || text !== null ) {
+                if (text !== undefined) {
                     return text + ' ' + unit;
                 }
                 else
