@@ -19,7 +19,7 @@ class HydrometSensorController extends Controller
                 'wspeed' => $request->ws,
                 'wdir' => $request->wd,
                 'pressure' => $request->p,
-                'station_id' => HydrometStation::where('code', $request->station_code)->pluck('id')->first()
+                'station_id' => HydrometStation::where('code', $request->station_id)->pluck('id')->first()
             ]);
         } catch (\Throwable $th) {
             return response()->json(['result_text' => $th->getMessage(), 'result_code' => 1], 200);
