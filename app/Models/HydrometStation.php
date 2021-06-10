@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class HydrometStation extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'lattitude', 'longitude', 'region_id', 'is_active'];
 }

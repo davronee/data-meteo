@@ -16,6 +16,7 @@ class CreateHydrometStationsTable extends Migration
         Schema::create('hydromet_stations', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
+            $table->string('code', 100);
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->unsignedInteger('region_id');

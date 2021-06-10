@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class HydrometSensorData extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['station_id', 'temperature', 'humidity', 'wspeed', 'wdir', 'pressure'];
 }
