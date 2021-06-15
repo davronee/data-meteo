@@ -19,6 +19,6 @@ class HydrometStation extends Model
 
     public function hydromet_sensor_data()
     {
-        return $this->hasOne(HydrometSensorData::class,'station_id','id')->orderByDesc('id');
+        return $this->hasOne(HydrometSensorData::class,'station_id','id')->orderByDesc('created_at');
     }
 }

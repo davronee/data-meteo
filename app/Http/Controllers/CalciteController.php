@@ -41,6 +41,8 @@ class CalciteController extends Controller
     {
         $hydrometStations = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
 
+        return $hydrometStations;
+
         return view('pages.hydromet_map')->with([
             'hydrometstation' => $hydrometStations
         ]);

@@ -16,7 +16,10 @@ class HydrometSensorData extends Model
      */
     protected $fillable = ['station_id', 'temperature', 'humidity', 'wspeed', 'wdir', 'pressure'];
 
-    protected $casts = [
-        'created_at' => 'datetime:d.m.Y H:s',
-    ];
+
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
 }
