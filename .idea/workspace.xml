@@ -22,10 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="widthet changed">
-      <change beforePath="$PROJECT_DIR$/.idea/meteo-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meteo-data.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="Karakalpak stations added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +42,16 @@
       </list>
     </option>
   </component>
-  <component name="Git.Pull.Settings">
-    <option name="BRANCH" value="master" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
@@ -185,7 +189,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tvrmonitoring" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -255,112 +260,18 @@
       <workItem from="1618915667372" duration="3000" />
       <workItem from="1618916341728" duration="715000" />
       <workItem from="1618919937866" duration="34057000" />
-      <workItem from="1619426729615" duration="914000" />
-    </task>
-    <task id="LOCAL-00060" summary="widthet changed">
-      <created>1617714060827</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1617714060827</updated>
-    </task>
-    <task id="LOCAL-00061" summary="widthet changed">
-      <created>1617714250996</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1617714250996</updated>
-    </task>
-    <task id="LOCAL-00062" summary="widthet changed">
-      <created>1617714260914</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1617714260914</updated>
-    </task>
-    <task id="LOCAL-00063" summary="widthet changed">
-      <created>1617714881017</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1617714881017</updated>
-    </task>
-    <task id="LOCAL-00064" summary="widthet changed">
-      <created>1617714975386</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1617714975386</updated>
-    </task>
-    <task id="LOCAL-00065" summary="widthet changed">
-      <created>1617715014243</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1617715014243</updated>
-    </task>
-    <task id="LOCAL-00066" summary="widthet changed">
-      <created>1617715433886</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1617715433886</updated>
-    </task>
-    <task id="LOCAL-00067" summary="widthet changed">
-      <created>1617715707012</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1617715707012</updated>
-    </task>
-    <task id="LOCAL-00068" summary="widthet changed">
-      <created>1617715801773</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1617715801773</updated>
-    </task>
-    <task id="LOCAL-00069" summary="widthet changed">
-      <created>1617716104437</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1617716104437</updated>
-    </task>
-    <task id="LOCAL-00070" summary="widthet changed">
-      <created>1617716295935</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1617716295935</updated>
-    </task>
-    <task id="LOCAL-00071" summary="widthet changed">
-      <created>1617716375421</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1617716375421</updated>
-    </task>
-    <task id="LOCAL-00072" summary="widthet changed">
-      <created>1617717367934</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1617717367935</updated>
-    </task>
-    <task id="LOCAL-00073" summary="widthet changed">
-      <created>1617718131908</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1617718131909</updated>
-    </task>
-    <task id="LOCAL-00074" summary="widthet changed">
-      <created>1617718577958</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1617718577959</updated>
+      <workItem from="1619426729615" duration="1110000" />
+      <workItem from="1619603808734" duration="465000" />
+      <workItem from="1619678112665" duration="7748000" />
+      <workItem from="1619759891275" duration="595000" />
+      <workItem from="1620024831290" duration="653000" />
+      <workItem from="1622020468143" duration="30701000" />
+      <workItem from="1622132913945" duration="1270000" />
+      <workItem from="1622523429890" duration="1211000" />
+      <workItem from="1622529009977" duration="5470000" />
+      <workItem from="1622615629577" duration="742000" />
+      <workItem from="1623218035660" duration="736000" />
+      <workItem from="1623663343192" duration="3127000" />
     </task>
     <task id="LOCAL-00075" summary="widthet changed">
       <created>1617743341187</created>
@@ -600,7 +511,112 @@
       <option name="project" value="LOCAL" />
       <updated>1619026402207</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Karakalpak stations added">
+      <created>1622060848784</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1622060848784</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Karakalpak stations added">
+      <created>1622093217219</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1622093217219</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Karakalpak stations added">
+      <created>1622093710893</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1622093710893</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Karakalpak stations added">
+      <created>1622101490123</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1622101490123</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Karakalpak stations added">
+      <created>1622101640235</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1622101640235</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Karakalpak stations added">
+      <created>1622111997606</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1622111997607</updated>
+    </task>
+    <task id="LOCAL-00115" summary="Karakalpak stations added">
+      <created>1622112114709</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1622112114709</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Karakalpak stations added">
+      <created>1622135660132</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1622135660133</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Karakalpak stations added">
+      <created>1622529096721</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1622529096722</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Karakalpak stations added">
+      <created>1622531736680</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1622531736680</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Karakalpak stations added">
+      <created>1622533192698</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1622533192698</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Karakalpak stations added">
+      <created>1622533708387</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1622533708387</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Karakalpak stations added">
+      <created>1622533767429</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1622533767429</updated>
+    </task>
+    <task id="LOCAL-00122" summary="Karakalpak stations added">
+      <created>1622533840186</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1622533840186</updated>
+    </task>
+    <task id="LOCAL-00123" summary="Karakalpak stations added">
+      <created>1622534141214</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1622534141214</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,88 +637,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added widget" />
     <MESSAGE value="widthet changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="widthet changed" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="441" y="154" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618209919796">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="441" y="154" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1618209919796" />
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618938263237">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1618938263237" />
-    <state x="479" y="229" key="#com.jetbrains.php.refactoring.move.PhpMoveClassDialog#1" timestamp="1617781521290">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="479" y="229" key="#com.jetbrains.php.refactoring.move.PhpMoveClassDialog#1/0.0.1366.728@0.0.1366.728" timestamp="1617781521290" />
-    <state x="306" y="0" key="CommitChangelistDialog2" timestamp="1619026401221">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="306" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1619026401221" />
-    <state x="430" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1616449067336" />
-    <state x="527" y="192" key="FileChooserDialogImpl" timestamp="1619085678581">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="527" y="192" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1619085678581" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1616448559424" />
-    <state x="987" y="370" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1613222042445" />
-    <state x="129" y="55" key="MergeDialog" timestamp="1617711064145">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="129" y="55" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1617711064145" />
-    <state x="387" y="71" key="MultipleFileMergeDialog" timestamp="1617711064158">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="387" y="71" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1617711064158" />
-    <state x="782" y="346" key="SettingsEditor" timestamp="1611038993386">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="782" y="346" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1611038993386" />
-    <state x="393" y="176" key="Vcs.Push.Dialog.v2" timestamp="1619026416975">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="393" y="176" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1619026416975" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616449072271" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1611750976841" />
-    <state x="304" y="45" width="758" height="638" key="find.popup" timestamp="1618935420736">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="304" y="45" width="758" height="638" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1618935420736" />
-    <state x="366" y="137" key="git4idea.merge.GitPullDialog" timestamp="1619026408055">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="366" y="137" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1619026408055" />
-    <state x="514" y="196" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616447816977" />
-    <state x="1033" y="602" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1611296729953">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1033" y="602" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1611296729953" />
-    <state x="370" y="217" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1617742239755">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="370" y="217" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1366.728@0.0.1366.728" timestamp="1617742239755" />
-    <state x="438" y="168" key="run.anything.popup" timestamp="1616569127731">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="438" y="168" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1616569127731" />
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616445268344" />
-    <state x="443" y="158" width="672" height="475" key="search.everywhere.popup" timestamp="1619025113057">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="443" y="158" width="672" height="475" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1619025113057" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616442486159" />
-    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1613224622438" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/pages/calcite_maps/index.blade.php</url>
-          <line>1080</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Karakalpak stations added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Karakalpak stations added" />
   </component>
 </project>
