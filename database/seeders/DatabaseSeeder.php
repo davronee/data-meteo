@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UpdateDefaultUsersPasswordSeeder::class,
             CreateUGMsSeeder::class,
             CreateAWSSeeder::class,
+            HydrometSensorStationsSeeder::class,
         ]);
     }
 }

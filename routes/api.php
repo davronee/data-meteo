@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\StationController;
 use App\Http\Controllers\API\DistrictController;
+use App\Http\Controllers\API\HydrometSensorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::prefix('apm')->group(function () {
 
 Route::get('/districts', [DistrictController::class, 'index'])->name('api.district.index');
 Route::get('/stations', [StationController::class, 'index'])->name('api.station.index');
+
+Route::get('/sensor/receive', [HydrometSensorController::class, 'store'])->name('api.hydromer.sensor.store');
