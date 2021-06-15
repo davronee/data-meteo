@@ -15,4 +15,8 @@ class HydrometSensorData extends Model
      * @var array
      */
     protected $fillable = ['station_id', 'temperature', 'humidity', 'wspeed', 'wdir', 'pressure'];
+
+    protected $casts = [
+        'created_at' => 'datetime:d.m.Y H:s',
+    ];
 }

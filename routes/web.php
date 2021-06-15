@@ -131,5 +131,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     Route::post('/microstep-receive', [\App\Http\Controllers\MicrostepStationsController::class, 'getinfo'])->name('microstep.getinfo');
 
+
+    Route::get('/hydrometmap',[\App\Http\Controllers\CalciteController::class,'HydrometMap'])->name('hydromet.map');
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HydrometStation;
 use App\Models\MicrostepStations;
 use App\Models\Radar;
 use Illuminate\Http\Request;
@@ -12,12 +13,13 @@ class CalciteController extends Controller
 {
 //    public $endpoint = 'http://192.168.10.249:8086/';
 //    public $endpoint = 'http://217.30.161.60:8086/';
-    public $endpoint =  '';
+    public $endpoint = '';
 
     public function __construct()
     {
-        $this->endpoint = env('AWS_ENDPOINT','http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
+
 //
     public function index(Request $request)
     {
@@ -34,4 +36,15 @@ class CalciteController extends Controller
         ]);
 
     }
+
+    public function HydrometMap(Request $request)
+    {
+        $hydrometStations = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
+
+        return view('pages.hydromet_map')->with([
+            'hydrometstation' => $hydrometStations
+        ]);
+    }
+
+
 }
