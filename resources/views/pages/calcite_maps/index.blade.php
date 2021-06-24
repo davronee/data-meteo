@@ -400,6 +400,7 @@
             awd: false,
             awds:@json($stations),
             microstep:@json($microstations),
+            hydrometStations:@json($hydrometstation),
             menu: 'forecast',
             aero: false,
             dangerzones: false,
@@ -1374,6 +1375,52 @@
                         }
                     );
 
+                    this.hydrometStations.forEach(function (item, i, arr) {
+                        var meteoIcon = L.icon({
+                            iconUrl: '{{asset('images/meteo_hydro.png')}}',
+                            iconSize: [28, 28], // size of the icon
+                            class: "station"
+                        });
+
+                        marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon}).on('click', function () {
+                            marker.bindPopup("" +
+                                "<table class='table table-bordered'>" +
+                                "<tr ><td class='text-center' colspan='2'><b>" + item.name + "</b></td></tr>" +
+                                "<tr>" +
+                                "<td><b>temperature</b></td>" +
+                                "<td>" + item.hydromet_sensor_data.temperature + "</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><b>humidity</b></td>" +
+                                "<td>" + item.hydromet_sensor_data.humidity + "</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><b>wspeed</b></td>" +
+                                "<td>" + item.hydromet_sensor_data.wspeed + "</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><b>wdir</b></td>" +
+                                "<td>" + item.hydromet_sensor_data.wdir + "</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><b>pressure</b></td>" +
+                                "<td>" + item.hydromet_sensor_data.pressure + "</td>" +
+                                "</tr>" +
+                                "<tr>" +
+                                "<td><b>created_at</b></td>" +
+                                "<td>" + item.hydromet_sensor_data.created_at + "</td>" +
+                                "</tr>" +
+                                "</table>"
+                            )
+                        }).addTo(map);
+
+                        marker.fire('click');
+
+
+                        markers_awd.addLayer(marker);
+
+                    });
+
 
                     this.microstep.forEach(function (item, i, arr) {
                             var meteoIcon1 = L.icon({
@@ -1398,15 +1445,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.Ta,'°C') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Ta, '°C') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>влажность</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.R,'%') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.R, '%') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>точка росы<b/></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.Td,'°C') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Td, '°C') + "</td>" +
                                             "</tr>" +
                                             // "<tr>" +
                                             // "<td><b>температура воздуха за последние 3 часа<b/></td>" +
@@ -1422,19 +1469,19 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>Измеренное давление</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.P,'mB') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.P, 'mB') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>Давление, приведенное к уровню моря</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.P_sl,'mB') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.P_sl, 'mB') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>барическая тенденция</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.a,'a') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.a, 'a') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>скорость ветра средняя</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.ff_avr,'m/c') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.ff_avr, 'm/c') + "</td>" +
                                             "</tr>" +
                                             // "<tr>" +
                                             // "<td><b>скорость ветра в порыве (максимальная)</b></td>" +
@@ -1442,7 +1489,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>направление ветра</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.dd_avr,'°') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.dd_avr, '°') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>температура почвы на глубине 5см</b></td>" +
@@ -1470,7 +1517,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>высота снежного покрова</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.Hsnow,'cm') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.Hsnow, 'cm') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>кол-во осадков за измеряемый период (5мин – 60мин)</b></td>" +
@@ -1494,7 +1541,7 @@
                                             // "</tr>" +
                                             "<tr>" +
                                             "<td><b>высота станции</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.altitude,'a.s.l.') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.altitude, 'a.s.l.') + "</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             // "<td><b>температура воздуха за последние 12 часов</b></td>" +
@@ -1522,7 +1569,7 @@
                                             // "</tr>" +
                                             // "<tr>" +
                                             "<td><b>солнечная радиация Вт/кв.м.</b></td>" +
-                                            "<td>" + app.checktoUndefine(response.data.SunRad,'w/m') + "</td>" +
+                                            "<td>" + app.checktoUndefine(response.data.SunRad, 'w/m') + "</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3047,12 +3094,10 @@
                         // always executed
                     });
             },
-            checktoUndefine: function (text,unit = '') {
+            checktoUndefine: function (text, unit = '') {
                 if (text !== undefined) {
                     return text + ' ' + unit;
-                }
-                else
-                {
+                } else {
                     return '-';
                 }
             }
