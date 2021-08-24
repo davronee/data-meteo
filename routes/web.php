@@ -81,6 +81,10 @@ Route::group(['middleware' => ['set_locale']], function () {
             Route::get('/get', [\App\Http\Controllers\MicrostepStationsController::class, 'get'])->name('map.MicrostepStations.get');
         });
 
+        Route::prefix('MeteoinfocomStationData')->group(function () {
+            Route::get('/get', [\App\Http\Controllers\AwdController::class, 'GetMeteoinfocomStationData'])->name('map.MeteoinfocomStationData.get');
+        });
+
     });
 
     Route::prefix('map2')->group(function () {
@@ -132,6 +136,6 @@ Route::group(['middleware' => ['set_locale']], function () {
     Route::post('/microstep-receive', [\App\Http\Controllers\MicrostepStationsController::class, 'getinfo'])->name('microstep.getinfo');
 
 
-    Route::get('/hydrometmap',[\App\Http\Controllers\CalciteController::class,'HydrometMap'])->name('hydromet.map');
+    Route::get('/hydrometmap', [\App\Http\Controllers\CalciteController::class, 'HydrometMap'])->name('hydromet.map');
 });
 
