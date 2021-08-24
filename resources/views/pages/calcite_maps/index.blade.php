@@ -1145,7 +1145,7 @@
                             });
 
                             // console.log(item.Metadata.Latitude);
-                            if (item.Metadata.Latitude !== null &&  item.Metadata.Longitude !== null) {
+                            if (item.Metadata.Latitude !== null && item.Metadata.Longitude !== null) {
                                 var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
                                     axios.post('{{route('map.awd.getStation')}}', {
                                         token: '{{@csrf_token()}}',
@@ -1592,6 +1592,63 @@
                             markers_awd.addLayer(marker1);
                         }
                     );
+
+
+
+                    var meteoIcon1 = L.icon({
+                        iconUrl: '{{asset('images/meteo.png')}}',
+                        iconSize: [28, 28], // size of the icon
+                        class: "station"
+                    });
+
+                    var marker2 = L.marker([parseFloat(41.312662), parseFloat(69.309249)], {icon: meteoIcon1}).on('click', function () {
+                        axios.get('{{route('map.MeteoinfocomStationData.get')}}')
+                            .then(function (response) {
+                                console.log(response.data.obsTimeLocal)
+                                marker2.bindPopup("" +
+                                    "<table class='table table-bordered'>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>" + response.data.stationID + "</b></td></tr>" +
+                                    "<tr>" +
+                                    "<td><b>дата и время</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.obsTimeLocal) + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>температура воздуха за измеряемый период</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.temp, '°C') + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>точка росы<b/></td>" +
+                                    "<td>" + response.data.metric.dewpt + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>скорость ветра</b></td>" +
+                                    "<td>" + response.data.metric.windSpeed + 'm/c' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>Давление, приведенное к уровню моря</b></td>" +
+                                    "<td>" + response.data.metric.pressure + 'mB' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>направление ветра</b></td>" +
+                                    "<td>" + response.data.metric.windChill + '°' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>высота станции</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +
+                                    "</tr>" +
+                                    "</table>"
+                                )
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    });
+                    marker2.fire('click');
+                    markers_awd.addLayer(marker2);
 
 
                     map.addLayer(markers_awd);
@@ -3114,21 +3171,7 @@
 </script>
 {{--<script src="{{asset('calcite/js/jquery/calcitemaps-v0.10.js')}}"/>--}}
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-   ym(83964367, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/83964367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
