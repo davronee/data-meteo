@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Region;
 use App\Models\Station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\Station\StoreRequest;
 
@@ -49,23 +50,6 @@ class StationController extends Controller
 
     }
 
-    public function show(Station $station)
-    {
-        //
-    }
 
-    public function edit(Station $station)
-    {
-        //
-    }
 
-    public function update(Request $request, Station $station)
-    {
-        //
-    }
-
-    public function destroy(Station $station)
-    {
-        //
-    }
 }
