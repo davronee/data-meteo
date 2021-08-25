@@ -1635,6 +1635,10 @@
                                     "<td><b>высота станции</b></td>" +
                                     "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +
                                     "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>осадка</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.precipRate) + "</td>" +
+                                    "</tr>" +
                                     "</table>"
                                 )
                             })
