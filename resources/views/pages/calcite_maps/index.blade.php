@@ -1145,7 +1145,7 @@
                             });
 
                             console.log(item);
-                            if (item.Metadata.Latitude !== null && item.Metadata.Longitude !== null && item.StationId != 52) {
+                            if (item.Metadata.Latitude !== null && item.Metadata.Longitude !== null && item.Id != 52) {
                                 var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
                                     axios.post('{{route('map.awd.getStation')}}', {
                                         token: '{{@csrf_token()}}',
