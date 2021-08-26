@@ -1599,8 +1599,7 @@
                         iconSize: [28, 28], // size of the icon
                         class: "station"
                     });
-
-                    var marker2 = L.marker([parseFloat(41.312662), parseFloat(69.309249)], {icon: meteoIcon1}).on('click', function () {
+                    var marker2 = L.marker([parseFloat(41.34564477332897), parseFloat(69.28504212769195)], {icon: meteoIcon1}).on('click', function () {
                         axios.get('{{route('map.MeteoinfocomStationData.get')}}')
                             .then(function (response) {
                                 console.log(response.data.obsTimeLocal)
