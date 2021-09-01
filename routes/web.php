@@ -34,6 +34,14 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
+Route::prefix('weather')->group(function () {
+    Route::get('/', [\App\Http\Controllers\WeatherForecastController::class, 'index'])->name('weather.index');
+    Route::get('/openweather', [\App\Http\Controllers\WeatherForecastController::class, 'getOpenWeather'])->name('weather.openweather');
+    Route::get('/accuweather', [\App\Http\Controllers\WeatherForecastController::class, 'getAccuweather'])->name('weather.accuweather');
+    Route::get('/uzgidromet', [\App\Http\Controllers\WeatherForecastController::class, 'GetGidromet'])->name('weather.gidromet');
+});
+
+
 Route::group(['middleware' => ['set_locale']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
