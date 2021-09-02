@@ -167,9 +167,10 @@ class WeatherForecastController extends Controller
 
         return $weatherbit->json();
     }
+
     public function GetAerisweather1(Request $request)
     {
-        $latlong = '';
+        $latlong = '41.26465,69.21627';
         if ($request->region == 'tashkent')
             $latlong = '41.26465,69.21627';
         else if ($request->region == 'andijan')
@@ -208,6 +209,50 @@ class WeatherForecastController extends Controller
 
         return $weatherbit->json();
     }
+
+    public function ForecastApi(Request $request)
+    {
+
+        $latlong = '41.26465/69.21627';
+        if ($request->region == 'tashkent')
+            $latlong = '41.26465/69.21627';
+        else if ($request->region == 'andijan')
+            $latlong = '40.78206/72.34424';
+        else if ($request->region == 'bukhara')
+            $latlong = '39.77472/64.42861';
+        else if ($request->region == 'jizzakh')
+            $latlong = '40.11583/67.84222';
+        else if ($request->region == 'qarshi')
+            $latlong = '38.86056/65.78905';
+        else if ($request->region == 'navoiy')
+            $latlong = '40.08444/65.37917';
+        else if ($request->region == 'namangan')
+            $latlong = '40.9983/71.67257';
+        else if ($request->region == 'samarkand')
+            $latlong = '39.65417/66.95972';
+        else if ($request->region == 'termez')
+            $latlong = '37.22417/67.27833';
+        else if ($request->region == 'gulistan')
+            $latlong = '40.491509/68.781077';
+        else if ($request->region == 'nurafshon')
+            $latlong = '41.166666/69.749997';
+        else if ($request->region == 'fergana')
+            $latlong = '40.38421/71.78432';
+        else if ($request->region == 'urgench')
+            $latlong = '41.55,60/63333';
+        else if ($request->region == 'nukus')
+            $latlong = '42.4530/59.6102';
+
+        $foreacast = Http::withOptions([
+            'verify' => false
+        ])->withHeaders([
+            'x-rapidapi-host' => 'forecast9.p.rapidapi.com',
+            'x-rapidapi-key' => '6cf743554dmsh3b4a43f2fe721bcp182316jsn234c801f7093'
+        ])->get('https://forecast9.p.rapidapi.com/rapidapi/forecast/' . $latlong . '/hourly/');
+
+        return $foreacast->json();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -133,7 +133,7 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <h3>Hydromet</h3>
+                    <h3>Forecast</h3>
                     <table class="table">
                         <thead>
                         <tr>
@@ -146,14 +146,35 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(item,index) in day">
-                            <th scope="row">@{{ day[index].date | night }}</th>
-                            <td>@{{ day[index].air_t_min }} - @{{ day[index].air_t_max }}</td>
-                            <td>@{{ night[index].air_t_min }} - @{{ night[index].air_t_max }}</td>
-                            <td>@{{ day[index].wind_speed_min }} - @{{ day[index].wind_speed_max }}</td>
-                            <td>@{{ day[index].wind_direction }}</td>
-                            <td v-if="day[index].precipitation == 'none'">-</td>
-                            <td v-else>@{{ day[index].precipitation }}</td>
+                        <tr v-for="(item,index) in Aerisweather">
+                            <th scope="row">@{{ item.timestamp | unixdate }}</th>
+                            <td>@{{ item.maxTempC }}</td>
+                            <td>@{{ item.minTempC }}</td>
+                            <td>@{{ Math.round(item.windSpeedKTS) }}</td>
+                            <td>@{{ item.windDirMaxDEG }} @{{ item.windDirMax }}</td>
+                            <td>@{{ item.precipMM }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <h3>Hydromet</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Температура</th>
+                            <th scope="col">Ветер</th>
+                            <th scope="col">Дожд</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in ForecastApi">
+                            <th scope="row">@{{ item.date | moment }}</th>
+                            <td>@{{ item.temperature.avg}}</td>
+                            <td>@{{ item.wind.avg}} @{{ item.wind.unit}}</td>
+                            <td>@{{ item.prec.sum}}</td>
                         </tr>
                         </tbody>
                     </table>

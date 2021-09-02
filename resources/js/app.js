@@ -31,7 +31,8 @@ const app = new Vue({
             night: [],
             weatherbit: [],
             darksky: [],
-            Aerisweather:[]
+            Aerisweather: [],
+            ForecastApi: []
         }
     },
     methods: {
@@ -166,6 +167,19 @@ const app = new Vue({
                     console.log(error)
                 })
         },
+        async GetForecastApi() {
+            axios.get('/weather/ForecastApi', {
+                params: {
+                    region: this.region
+                }
+            })
+                .then(response => {
+                    this.ForecastApi = response.data.items;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
         moment: function () {
             return moment();
         },
@@ -176,6 +190,7 @@ const app = new Vue({
             this.GetWeatherbit();
             this.DarkSky();
             this.GetAerisweather1();
+            this.GetForecastApi();
         }
     },
     filters: {
@@ -185,8 +200,8 @@ const app = new Vue({
         night: function (date) {
             return moment(date).format('DD.MM.YYYY');
         },
-        unixdate:function (date){
-          return   moment.unix(date).format('DD.MM.YYYY');
+        unixdate: function (date) {
+            return moment.unix(date).format('DD.MM.YYYY');
         }
     },
     mounted() {
