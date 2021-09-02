@@ -43,13 +43,16 @@
                             <th v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}
                             </th>
                             <th v-else class="blueopacity">@{{ item.dt_txt | moment }}</th>
-                            <td v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.main.temp_min }}° -
-                                @{{ item.main.temp_max }}°
+                            <td v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{
+                                Math.round(item.main.temp_min) }}° - @{{ Math.round(item.main.temp_max) }}°
                             </td>
-                            <td v-else class="blueopacity">@{{ item.main.temp_min }}° - @{{ item.main.temp_max }}°</td>
-                            <td v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.wind.speed }} м/с
+                            <td v-else class="blueopacity">@{{ Math.round(item.main.temp_min) }}° - @{{
+                                Math.round(item.main.temp_max) }}°
                             </td>
-                            <td v-else class="blueopacity">@{{ item.wind.speed }} м/с</td>
+                            <td v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{
+                                Math.round(item.wind.speed) }} м/с
+                            </td>
+                            <td v-else class="blueopacity">@{{ Math.round(item.wind.speed) }} м/с</td>
                             <td v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.wind.deg }}°</td>
                             <td v-else class="blueopacity">@{{ item.wind.deg }}°</td>
                             <td v-if="item.rain" v-text="">@{{ item.rain }}</td>
@@ -130,10 +133,10 @@
                         <tr v-for="(item,index) in weatherbit">
                             <th v-if="moment().isSame(item.datetime, 'day')">@{{ item.datetime | moment }}</th>
                             <th v-else class="blueopacity">@{{ item.datetime | moment }}</th>
-                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ item.temp }}</td>
-                            <td v-else class="blueopacity">@{{ item.temp }}</td>
-                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ item.wind_spd }}</td>
-                            <td v-else class="blueopacity">@{{ item.wind_spd }}</td>
+                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ Math.round(item.temp) }}</td>
+                            <td v-else class="blueopacity">@{{ Math.round(item.temp) }}</td>
+                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ Math.round(item.wind_spd) }}</td>
+                            <td v-else class="blueopacity">@{{ Math.round(item.wind_spd) }}</td>
                             <td v-if="moment().isSame(item.datetime, 'day')">@{{ Math.round(item.wind_dir) }}</td>
                             <td v-else class="blueopacity">@{{ Math.round(item.wind_dir) }}</td>
                             {{--                            <td>@{{ item.wind_dir }} @{{ item.wind_cdir }}</td>--}}
@@ -159,16 +162,22 @@
                         </thead>
                         <tbody>
                         <tr v-for="(item,index) in darksky">
-                            <th v-if="moment().isSame(item.time, 'day')">@{{ item.time | unixdate }}</th>
+                            <th v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{ item.time | unixdate }}</th>
                             <th v-else class="blueopacity">@{{ item.time | unixdate }}</th>
-                            <td v-if="moment().isSame(item.time, 'day')">@{{ item.temperatureHigh }}</td>
-                            <td v-else class="blueopacity">@{{ item.temperatureHigh }}</td>
-                            <td v-if="moment().isSame(item.time, 'day')">@{{ item.temperatureLow }}</td>
-                            <td v-else class="blueopacity">@{{ item.temperatureLow }}</td>
-                            <td v-if="moment().isSame(item.time, 'day')">@{{ Math.round(item.windSpeed) }}</td>
+                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{
+                                Math.round(item.temperatureHigh) }}
+                            </td>
+                            <td v-else class="blueopacity">@{{ Math.round(item.temperatureHigh) }}</td>
+                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{
+                                Math.round(item.temperatureLow) }}
+                            </td>
+                            <td v-else class="blueopacity">@{{ Math.round(item.temperatureLow) }}</td>
+                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{ Math.round(item.windSpeed)
+                                }}
+                            </td>
                             <td v-else class="blueopacity">@{{ Math.round(item.windSpeed) }}</td>
                             {{--                            <td>@{{ item.wind_dir }} @{{ item.wind_cdir }}</td>--}}
-                            <td v-if="moment().isSame(item.time, 'day')">@{{ item.precipIntensity }}</td>
+                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{ item.precipIntensity }}</td>
                             <td v-else class="blueopacity">@{{ item.precipIntensity }}</td>
                         </tr>
                         </tbody>
@@ -190,12 +199,24 @@
                         </thead>
                         <tbody>
                         <tr v-for="(item,index) in Aerisweather">
-                            <th class="blueopacity">@{{ item.timestamp | unixdate }}</th>
-                            <td class="blueopacity">@{{ item.maxTempC }}</td>
-                            <td class="blueopacity">@{{ item.minTempC }}</td>
-                            <td class="blueopacity">@{{ Math.round(item.windSpeedKTS) }}</td>
-                            <td class="blueopacity">@{{ item.windDirMaxDEG }} @{{ item.windDirMax }}</td>
-                            <td class="blueopacity">@{{ item.precipMM }}</td>
+                            <th v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.timestamp |
+                                unixdate }}
+                            </th>
+                            <th v-else class="blueopacity">@{{ item.timestamp | unixdate }}</th>
+                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.maxTempC }}</td>
+                            <td v-else class="blueopacity">@{{ item.maxTempC }}</td>
+                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.minTempC }}</td>
+                            <td v-else class="blueopacity">@{{ item.minTempC }}</td>
+                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{
+                                Math.round(item.windSpeedKTS) }}
+                            </td>
+                            <td v-else class="blueopacity">@{{ Math.round(item.windSpeedKTS) }}</td>
+                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.windDirMaxDEG }}
+                                @{{ item.windDirMax }}
+                            </td>
+                            <td v-else class="blueopacity">@{{ item.windDirMaxDEG }} @{{ item.windDirMax }}</td>
+                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.precipMM }}</td>
+                            <td v-else class="blueopacity">@{{ item.precipMM }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -214,8 +235,8 @@
                         </thead>
                         <tbody>
                         <tr v-for="(item,index) in ForecastApi">
-                            <th v-if="moment().isSame(item.date, 'day')" >@{{ item.date | moment }}</th>
-                            <th v-else class="blueopacity" >@{{ item.date | moment }}</th>
+                            <th v-if="moment().isSame(item.date, 'day')">@{{ item.date | moment }}</th>
+                            <th v-else class="blueopacity">@{{ item.date | moment }}</th>
                             <td v-if="moment().isSame(item.date, 'day')">@{{ item.temperature.avg}}</td>
                             <td v-else class="blueopacity">@{{ item.temperature.avg}}</td>
                             <td v-if="moment().isSame(item.date, 'day')">@{{ item.wind.avg}} @{{ item.wind.unit}}</td>
@@ -242,14 +263,25 @@
                         </thead>
                         <tbody>
                         <tr v-for="(item,index) in day">
-                            <th v-if="moment().isSame(day[index].date, 'day')" >@{{ day[index].date | night }}</th>
-                            <th v-else class="blueopacity" >@{{ day[index].date | night }}</th>
-                            <td v-if="moment().isSame(day[index].date, 'day')" >@{{ day[index].air_t_min }} - @{{ day[index].air_t_max }}</td>
-                            <td v-else class="blueopacity">@{{ day[index].air_t_min }} - @{{ day[index].air_t_max }}</td>
-                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ night[index].air_t_min }} - @{{ night[index].air_t_max }}</td>
-                            <td v-else class="blueopacity">@{{ night[index].air_t_min }} - @{{ night[index].air_t_max }}</td>
-                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].wind_speed_min }} - @{{ day[index].wind_speed_max }}</td>
-                            <td v-else class="blueopacity">@{{ day[index].wind_speed_min }} - @{{ day[index].wind_speed_max }}</td>
+                            <th v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].date | night }}</th>
+                            <th v-else class="blueopacity">@{{ day[index].date | night }}</th>
+                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].air_t_min }} - @{{
+                                day[index].air_t_max }}
+                            </td>
+                            <td v-else class="blueopacity">@{{ day[index].air_t_min }} - @{{ day[index].air_t_max }}
+                            </td>
+                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ night[index].air_t_min }} - @{{
+                                night[index].air_t_max }}
+                            </td>
+                            <td v-else class="blueopacity">@{{ night[index].air_t_min }} - @{{ night[index].air_t_max
+                                }}
+                            </td>
+                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].wind_speed_min }} - @{{
+                                day[index].wind_speed_max }}
+                            </td>
+                            <td v-else class="blueopacity">@{{ day[index].wind_speed_min }} - @{{
+                                day[index].wind_speed_max }}
+                            </td>
                             <td v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].wind_direction }}</td>
                             <td v-else class="blueopacity">@{{ day[index].wind_direction }}</td>
                             <td v-if="day[index].precipitation == 'none'">-</td>
