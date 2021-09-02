@@ -78,6 +78,60 @@
                         </tbody>
                     </table>
                 </div>
+
+                <hr>
+                <div class="form-group">
+                    <h3>Weatherbit</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">День</th>
+                            <th scope="col">ночь</th>
+                            <th scope="col">Ветер</th>
+                            {{--                            <th scope="col">Напр. Ветра</th>--}}
+                            <th scope="col">Дожд</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in darksky">
+                            <th scope="row">@{{ item.time | unixdate }}</th>
+                            <td>@{{ item.temperatureHigh }}</td>
+                            <td>@{{ item.temperatureLow }}</td>
+                            <td>@{{ Math.round(item.windSpeed) }}</td>
+                            {{--                            <td>@{{ item.wind_dir }} @{{ item.wind_cdir }}</td>--}}
+                            <td>@{{ item.precipIntensity }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <h3>Aerisweather</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">День</th>
+                            <th scope="col">ночь</th>
+                            <th scope="col">Ветер</th>
+                            <th scope="col">Напр. Ветра</th>
+                            <th scope="col">Дожд</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in Aerisweather">
+                            <th scope="row">@{{ item.timestamp | unixdate }}</th>
+                            <td>@{{ item.maxTempC }}</td>
+                            <td>@{{ item.minTempC }}</td>
+                            <td>@{{ Math.round(item.windSpeedKTS) }}</td>
+                            <td>@{{ item.windDirMaxDEG }} @{{ item.windDirMax }}</td>
+                            <td>@{{ item.precipMM }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
                 <div class="form-group">
                     <h3>Hydromet</h3>
                     <table class="table">

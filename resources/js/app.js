@@ -29,13 +29,16 @@ const app = new Vue({
             uzhydromet: null,
             day: [],
             night: [],
+            weatherbit: [],
+            darksky: [],
+            Aerisweather:[]
         }
     },
     methods: {
         async getOpenweather() {
             axios.get('/weather/openweather', {
                 params: {
-                    'region': this.region,
+                    region: this.region,
                 }
             })
                 .then(response => {
@@ -48,7 +51,7 @@ const app = new Vue({
         async getAccuweather() {
             axios.get('/weather/accuweather', {
                 params: {
-                    'region': this.region,
+                    region: this.region,
                 }
             })
                 .then(response => {
@@ -124,6 +127,45 @@ const app = new Vue({
                     console.log(error)
                 })
         },
+        async GetWeatherbit() {
+            axios.get('/weather/weatherbit', {
+                params: {
+                    region: this.region
+                }
+            })
+                .then(response => {
+                    this.weatherbit = response.data.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        async DarkSky() {
+            axios.get('/weather/darksky', {
+                params: {
+                    region: this.region
+                }
+            })
+                .then(response => {
+                    this.darksky = response.data.daily.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        async GetAerisweather1() {
+            axios.get('/weather/Aerisweather1', {
+                params: {
+                    region: this.region
+                }
+            })
+                .then(response => {
+                    this.Aerisweather = response.data.response[0].periods;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
         moment: function () {
             return moment();
         },
@@ -131,6 +173,9 @@ const app = new Vue({
             this.getOpenweather();
             this.getAccuweather();
             this.GetUzhydromet();
+            this.GetWeatherbit();
+            this.DarkSky();
+            this.GetAerisweather1();
         }
     },
     filters: {
@@ -140,10 +185,11 @@ const app = new Vue({
         night: function (date) {
             return moment(date).format('DD.MM.YYYY');
         },
+        unixdate:function (date){
+          return   moment.unix(date).format('DD.MM.YYYY');
+        }
     },
     mounted() {
-        this.getOpenweather();
-        this.getAccuweather();
-        this.GetUzhydromet();
+        this.Changes();
     }
 });
