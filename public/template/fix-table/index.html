@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Fixed Table Header Demo: Responsive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+
+    <h2>Scrolling in Two Directions</h2>
+    <div class="row mb-5">
+        <div class="col-md-6"><label for="exampleFormControlSelect1">Регионы</label> <select id="exampleFormControlSelect1" class="form-control"><option value="tashkent">г. Ташкент</option><option value="andijan">Андижанская область</option><option value="bukhara">Бухарская область</option><option value="jizzakh">Джизакская область</option><option value="qarshi">Кашкадарьинская область</option><option value="navoiy">Навоийская область</option><option value="namangan">Наманганская область</option><option value="samarkand">Самаркандская область</option><option value="termez">Сурхандарьинская область</option><option value="gulistan">Сырдарьинская область</option><option value="nurafshon">Ташкентская область</option><option value="fergana">Ферганская область</option><option value="urgench">Хорезмская область</option><option value="nukus">Республика Каракалпакстан</option></select></div>
+        <div class="col-md-6"><label for="exampleFormControlSelect2">Интервал</label> <select id="exampleFormControlSelect2" class="form-control"><option value="0">24</option> <option value="1">48</option> <option value="2">72</option></select></div>
+    </div>
+    <div role="region" aria-labelledby="HeadersCol" tabindex="0" class="rowheaders">
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Мировые сервисы погоды</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>ISBN-13</th>
+                    <th>ISBN-10</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">OpenWeather</th>
+                    <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
+                    <td>1605</td>
+                    <td>9783125798502</td>
+                    <td>3125798507</td>
+                </tr>
+                <tr>
+                    <th scope="row">AccuWeather</th>
+                    <td>La Belle et la Bête</td>
+                    <td>1740</td>
+                    <td>9781910880067</td>
+                    <td>191088006X</td>
+                </tr>
+                <tr>
+                    <th scope="row">WeatherBit</th>
+                    <td>The Method of Fluxions and Infinite Series: With Its Application to the Geometry of Curve-lines</td>
+                    <td>1763</td>
+                    <td>9781330454862</td>
+                    <td>1330454863</td>
+                </tr>
+                <tr>
+                    <th scope="row">DarkSky</th>
+                    <td>Frankenstein; or, The Modern Prometheus</td>
+                    <td>1818</td>
+                    <td>9781530278442</td>
+                    <td>1530278449</td>
+                </tr>
+                <tr>
+                    <th scope="row">AerisWeather</th>
+                    <td>Moby-Dick; or, The Whale</td>
+                    <td>1851</td>
+                    <td>9781530697908</td>
+                    <td>1530697905</td>
+                </tr>
+                <tr>
+                    <th scope="row">Узгидромет</th>
+                    <td>The Hidden Hand</td>
+                    <td>1888</td>
+                    <td>9780813512969</td>
+                    <td>0813512964</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        Прогноз составлен 6.09.2021 10:15.<br> Прогнозы рассчитаны по автоматизированной технологии Узгидромета без контроля синоптиком.
+    </p>
+    <!-- partial -->
+
+</body>
+
+</html>
