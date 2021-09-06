@@ -11,15 +11,55 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+    <style>
+        #weather-table-wrapper .table tr th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 5;
+            background: #fff;
+        }
 
+        #weather-table-wrapper td {
+            min-width: 200px;
+        }
+
+        #weather-table-wrapper .table-responsive {
+            /* max-height: 11100px; */
+            scrollbar-width: thin;
+        }
+
+        #weather-table-wrapper thead tr th {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #fff;
+        }
+
+        #weather-table-wrapper .table-responsive::-webkit-scrollbar {
+            width: 5px;
+            height: 5px
+        }
+
+        #weather-table-wrapper .table-responsive::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+
+        #weather-table-wrapper .table-responsive::-webkit-scrollbar-thumb {
+            background-color:#ccc
+        }
+
+        .mb-5 {
+            margin-bottom: 6px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container" id="app">
     <div class="row">
         <div class="col-md-12">
-            <form class="mt-5">
-                <div class="row">
+            <form>
+                <div class="row mb-5">
                     <div class="col-md-6">
                         <label for="exampleFormControlSelect1">Регионы</label>
                         <select @change="Changes()" class="form-control" id="exampleFormControlSelect1"
@@ -37,82 +77,85 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group  table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th v-for="item in accuweather" scope="col">@{{ item.datetime | moment }}</th>
-                            {{--                            <th scope="col">Температура</th>--}}
-                            {{--                            <th scope="col">Ветер</th>--}}
-                            {{--                            <th scope="col">Напр. Ветра</th>--}}
-                            {{--                            <th scope="col">Дожд</th>--}}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th>Openweather</th>
-                            {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
-                            {{--                            </th>--}}
-                            <td v-for="item in openweather" class="active">
-                                @{{ item.temp_min }}° - @{{ item.temp_max }}° <br>
-                                @{{ item.wind_speed }} м/с<br>
-                                @{{ item.wind_deg }}° <br>
-                                @{{ item.is_rain ? 'да' : 'нет' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Accuweather</th>
-                            {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
-                            {{--                            </th>--}}
-                            <td v-for="item in accuweather" class="active">
-                                @{{ item.temp_min }}° - @{{ item.temp_max }}° <br>
-                                @{{ item.day_wind_speed }} м/с<br>
-                                @{{ item.day_wind_deg }}° @{{ item.day_wind_localized }}<br>
-                                @{{ item.day_rain ? 'да' : 'нет' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>UzHydromet</th>
-                            {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
-                            {{--                            </th>--}}
-                            <td v-for="item in uzhydromet" class="active">
-                                @{{ item.air_t_min }}° - @{{ item.air_t_max }}° <br>
-                                @{{ item.wind_speed_min }} м/с @{{ item.wind_speed_max }} м/с<br>
-                                @{{ item.wind_direction }}°<br>
-                                @{{ item.precipitation ? 'да' : 'нет' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Weatherbit</th>
-                            {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
-                            {{--                            </th>--}}
-                            <td v-for="item in weatherbit" class="active">
-                                @{{ item.min_temp }}° - @{{ item.max_temp }}° <br>
-                                @{{ item.wind_spd }} м/с <br>
-                                @{{ item.wind_dir }}° @{{ item.wind_cdir }} <br>
-                                @{{ item.precip ? 'да' : 'нет' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>DarkSky</th>
-                            <td v-for="item in darksky" class="active">
-                                @{{ item.temperatureMin }}° - @{{ item.temperatureMax }}° <br>
-                                @{{ item.windSpeed }} м/с <br>
-                                @{{ item.precipIntensityMax ? 'да' : 'нет' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Aerisweather</th>
-                            <td v-for="item in Aerisweather" class="active">
-                                @{{ item.minTempC }}° - @{{ item.maxTempC }}° <br>
-                                @{{ item.windSpeedKTS }} м/с <br>
-                                @{{ item.windDirDEG }} @{{ item.windDir }} <br>
-                                @{{ item.precipMM ? 'да' : 'нет' }}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                <div id="weather-table-wrapper">
+                    <div class="form-group  table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th v-for="item in accuweather" scope="col">@{{ item.datetime | moment }}</th>
+                                    {{--                            <th scope="col">Температура</th>--}}
+                                    {{--                            <th scope="col">Ветер</th>--}}
+                                    {{--                            <th scope="col">Напр. Ветра</th>--}}
+                                    {{--                            <th scope="col">Дожд</th>--}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>Openweather</th>
+                                {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
+                                {{--                            </th>--}}
+                                <td v-for="item in openweather" class="active">
+                                    @{{ item.temp_min }}° - @{{ item.temp_max }}° <br>
+                                    @{{ item.wind_speed }} м/с<br>
+                                    @{{ item.wind_deg }}° <br>
+                                    @{{ item.is_rain ? 'да' : 'нет' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Accuweather</th>
+                                {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
+                                {{--                            </th>--}}
+                                <td v-for="item in accuweather" class="active">
+                                    @{{ item.temp_min }}° - @{{ item.temp_max }}° <br>
+                                    @{{ item.day_wind_speed }} м/с<br>
+                                    @{{ item.day_wind_deg }}° @{{ item.day_wind_localized }}<br>
+                                    @{{ item.day_rain ? 'да' : 'нет' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>UzHydromet</th>
+                                {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
+                                {{--                            </th>--}}
+                                <td v-for="item in uzhydromet" class="active">
+                                    @{{ item.air_t_min }}° - @{{ item.air_t_max }}° <br>
+                                    @{{ item.wind_speed_min }} м/с @{{ item.wind_speed_max }} м/с<br>
+                                    @{{ item.wind_direction }}°<br>
+                                    @{{ item.precipitation ? 'да' : 'нет' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Weatherbit</th>
+                                {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
+                                {{--                            </th>--}}
+                                <td v-for="item in weatherbit" class="active">
+                                    @{{ item.min_temp }}° - @{{ item.max_temp }}° <br>
+                                    @{{ item.wind_spd }} м/с <br>
+                                    @{{ item.wind_dir }}° @{{ item.wind_cdir }} <br>
+                                    @{{ item.precip ? 'да' : 'нет' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>DarkSky</th>
+                                <td v-for="item in darksky" class="active">
+                                    @{{ item.temperatureMin }}° - @{{ item.temperatureMax }}° <br>
+                                    @{{ item.windSpeed }} м/с <br>
+                                    @{{ item.precipIntensityMax ? 'да' : 'нет' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Aerisweather</th>
+                                <td v-for="item in Aerisweather" class="active">
+                                    @{{ item.minTempC }}° - @{{ item.maxTempC }}° <br>
+                                    @{{ item.windSpeedKTS }} м/с <br>
+                                    @{{ item.windDirDEG }} @{{ item.windDir }} <br>
+                                    @{{ item.precipMM ? 'да' : 'нет' }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <hr>
                 {{--                <div class="form-group">--}}
