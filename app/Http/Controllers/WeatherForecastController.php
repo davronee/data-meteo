@@ -65,8 +65,15 @@ class WeatherForecastController extends Controller
                 $take = 9;
                 break;
         }
-        $accuweather = Accuweather::where('region', request('region', 'tashkent'))->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))->get();
+        $subopenweather = Accuweather::toBase()
+            ->selectRaw('MAX(id) as id')
+            ->where('region', request('region', 'tashkent'))
+            ->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))
+            ->groupBy('date')
+            ->pluck('id')
+            ->toArray();
 
+        $accuweather = \App\Models\Accuweather::whereIn('id', $subopenweather)->get();
         return $accuweather;
     }
 
@@ -84,27 +91,55 @@ class WeatherForecastController extends Controller
                 $take = 9;
                 break;
         }
-        $gidromet = UzHydromet::where('region', request('region', 'tashkent'))->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))->get();
+        $subopenweather = UzHydromet::toBase()
+            ->selectRaw('MAX(id) as id')
+            ->where('region', request('region', 'tashkent'))
+            ->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))
+            ->groupBy('date')
+            ->pluck('id')
+            ->toArray();
 
+        $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
         return $gidromet;
     }
 
     public function GetWeatherBit(Request $request)
     {
-        $weatherbit = WeatherBit::where('region', request('region', 'tashkent'))->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))->get();
+        $subopenweather = WeatherBit::toBase()
+            ->selectRaw('MAX(id) as id')
+            ->where('region', request('region', 'tashkent'))
+            ->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))
+            ->groupBy('date')
+            ->pluck('id')
+            ->toArray();
+        $weatherbit = \App\Models\WeatherBit::whereIn('id', $subopenweather)->get();
         return $weatherbit;
     }
 
     public function GetDarkSky(Request $request)
     {
-        $weatherbit = \App\Models\DarkSky::where('region', request('region', 'tashkent'))->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))->get();
-        return $weatherbit;
+        $subopenweather = \App\Models\DarkSky::toBase()
+            ->selectRaw('MAX(id) as id')
+            ->where('region', request('region', 'tashkent'))
+            ->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))
+            ->groupBy('date')
+            ->pluck('id')
+            ->toArray();;
+        $darksky = \App\Models\DarkSky::whereIn('id', $subopenweather)->get();
+        return $darksky;
     }
 
     public function GetAerisweather1(Request $request)
     {
-        $weather = \App\Models\Aerisweather::where('region', request('region', 'tashkent'))->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))->get();
-        return $weather;
+        $subopenweather = \App\Models\Aerisweather::toBase()
+            ->selectRaw('MAX(id) as id')
+            ->where('region', request('region', 'tashkent'))
+            ->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))
+            ->groupBy('date')
+            ->pluck('id')
+            ->toArray();
+        $aerisweather = \App\Models\Aerisweather::whereIn('id', $subopenweather)->get();
+        return $aerisweather;
     }
 
     public function ForecastApi(Request $request)
