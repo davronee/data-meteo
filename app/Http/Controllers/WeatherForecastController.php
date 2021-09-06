@@ -37,7 +37,17 @@ class WeatherForecastController extends Controller
                 $take = 9;
                 break;
         }
-        $openweather = \App\Models\OpenWeather::where('region', request('region', 'tashkent'))->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))->get();
+
+        $subopenweather = \App\Models\OpenWeather::toBase()
+            ->where('region', request('region', 'tashkent'))
+            ->selectRaw('MAX(id) as id')
+            ->whereDate('datetime', '<=', Carbon::now()->addDays(request('interval', 0)))
+            ->groupBy('date')
+            ->pluck('id')
+            ->toArray();
+
+        $openweather = \App\Models\OpenWeather::whereIn('id', $subopenweather)->get();
+
         return $openweather;
     }
 
