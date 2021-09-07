@@ -23,6 +23,7 @@
             background: #fff;
             background-color: #efefef;
             /* border:1px solid #ccc */
+            border-bottom: 1px solid #ccc;
         }
 
         #weather-table-wrapper td {
@@ -128,19 +129,6 @@
                                 <td v-if="accuweather != null" v-for="i in 4-accuweather.length" class="active">&nbsp;</td>
                             </tr>
                             <tr>
-                                <th>UzHydromet</th>
-                                {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
-                                {{--                            </th>--}}
-                                <td v-for="item in uzhydromet" class="active">
-                                    @{{ item.air_t_min }}° - @{{ item.air_t_max }}° <br>
-                                    @{{ item.wind_speed_min }} м/с @{{ item.wind_speed_max }} м/с<br>
-                                    @{{ item.wind_direction }}°<br>
-                                    @{{ item.precipitation ? 'да' : 'нет' }}
-                                    @{{ typeof uzhydromet }}
-                                </td>
-                                <td v-if="typeof uzhydromet == 'object'" v-for="i in 4-uzhydromet.length" class="active">&nbsp;</td>
-                            </tr>
-                            <tr>
                                 <th>Weatherbit</th>
                                 {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
                                 {{--                            </th>--}}
@@ -170,6 +158,20 @@
                                     @{{ item.precipMM ? 'да' : 'нет' }}
                                 </td>
                                 <td v-if="Aerisweather != null" v-for="i in 4-Aerisweather.length" class="active">&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <th>UzHydromet</th>
+                                {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
+                                {{--                            </th>--}}
+                                <td v-for="item in uzhydromet" class="active">
+                                    @{{ item.air_t_min }}° - @{{ item.air_t_max }}° <br>
+                                    @{{ item.wind_speed_min }} м/с @{{ item.wind_speed_max }} м/с<br>
+                                    @{{ item.wind_direction }}°<br>
+                                    @{{ item.precipitation ? 'да' : 'n/a' }}
+                                    @{{ typeof uzhydromet }}
+                                </td>
+                                <td v-if="typeof uzhydromet == 'object'" v-for="i in 4-uzhydromet.length" class="active">&nbsp;</td>
                             </tr>
                             </tbody>
                         </table>
