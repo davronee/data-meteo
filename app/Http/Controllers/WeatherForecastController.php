@@ -96,6 +96,7 @@ class WeatherForecastController extends Controller
         $subopenweather = UzHydromet::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
+            ->where('day_part', 'day')
             ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
