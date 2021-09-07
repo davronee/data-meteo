@@ -169,7 +169,7 @@
                                 {{--                            </th>--}}
                                 <td v-for="item in uzhydromet" class="active">
                                     @{{ item.air_t_min }}° - @{{ item.air_t_max }}° <br>
-                                    @{{ item.wind_speed_min }} м/с @{{ item.wind_speed_max }} м/с<br>
+                                    @{{ item.wind_speed_min }} - @{{ item.wind_speed_max }} м/с<br>
                                     <!-- @{{ item.wind_direction }}°<br> -->
                                     @{{ item.precipitation ? 'да' : 'n/a' }}
                                     @{{ typeof uzhydromet }}
