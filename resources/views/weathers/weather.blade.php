@@ -12,11 +12,17 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <style>
+        #weather-table-wrapper td, #weather-table-wrapper th {
+            border: 1px solid #eee;
+        }
+
         #weather-table-wrapper .table tr th:first-child {
             position: sticky;
             left: 0;
             z-index: 5;
             background: #fff;
+            background-color: #efefef;
+            /* border:1px solid #ccc */
         }
 
         #weather-table-wrapper td {
@@ -24,7 +30,6 @@
         }
 
         #weather-table-wrapper .table-responsive {
-            /* max-height: 11100px; */
             scrollbar-width: thin;
         }
 
@@ -33,6 +38,11 @@
             top: 0;
             z-index: 5;
             background: #fff;
+            background-color: #efefef;
+        }
+
+        #weather-table-wrapper thead tr th:first-child {
+            border: none !important;
         }
 
         #weather-table-wrapper .table-responsive::-webkit-scrollbar {
@@ -85,6 +95,7 @@
                                 <tr>
                                     <th></th>
                                     <th v-for="item in accuweather" scope="col">@{{ item.datetime | moment }}</th>
+                                    <th v-if="accuweather != null" v-for="i in 4-accuweather.length" class="active">&nbsp;</th>
                                     {{--                            <th scope="col">Температура</th>--}}
                                     {{--                            <th scope="col">Ветер</th>--}}
                                     {{--                            <th scope="col">Напр. Ветра</th>--}}
@@ -102,6 +113,7 @@
                                     @{{ item.wind_deg }}° <br>
                                     @{{ item.is_rain ? 'да' : 'нет' }}
                                 </td>
+                                <td v-if="openweather != null" v-for="i in 4-openweather.length" class="active">&nbsp;</td>
                             </tr>
                             <tr>
                                 <th>Accuweather</th>
@@ -113,6 +125,7 @@
                                     @{{ item.day_wind_deg }}° @{{ item.day_wind_localized }}<br>
                                     @{{ item.day_rain ? 'да' : 'нет' }}
                                 </td>
+                                <td v-if="accuweather != null" v-for="i in 4-accuweather.length" class="active">&nbsp;</td>
                             </tr>
                             <tr>
                                 <th>UzHydromet</th>
@@ -123,7 +136,9 @@
                                     @{{ item.wind_speed_min }} м/с @{{ item.wind_speed_max }} м/с<br>
                                     @{{ item.wind_direction }}°<br>
                                     @{{ item.precipitation ? 'да' : 'нет' }}
+                                    @{{ typeof uzhydromet }}
                                 </td>
+                                <td v-if="typeof uzhydromet == 'object'" v-for="i in 4-uzhydromet.length" class="active">&nbsp;</td>
                             </tr>
                             <tr>
                                 <th>Weatherbit</th>
@@ -135,6 +150,7 @@
                                     @{{ item.wind_dir }}° @{{ item.wind_cdir }} <br>
                                     @{{ item.precip ? 'да' : 'нет' }}
                                 </td>
+                                <td v-if="weatherbit != null" v-for="i in 4-weatherbit.length" class="active">&nbsp;</td>
                             </tr>
                             <tr>
                                 <th>DarkSky</th>
@@ -143,15 +159,17 @@
                                     @{{ item.windSpeed }} м/с <br>
                                     @{{ item.precipIntensityMax ? 'да' : 'нет' }}
                                 </td>
+                                <td v-if="darksky != null" v-for="i in 4-darksky.length" class="active">&nbsp;</td>
                             </tr>
                             <tr>
                                 <th>Aerisweather</th>
-                                <td v-for="item in Aerisweather" class="active">
+                                <td v-if="Aerisweather != null" v-for="item in Aerisweather" class="active">
                                     @{{ item.minTempC }}° - @{{ item.maxTempC }}° <br>
                                     @{{ item.windSpeedKTS }} м/с <br>
                                     @{{ item.windDirDEG }} @{{ item.windDir }} <br>
                                     @{{ item.precipMM ? 'да' : 'нет' }}
                                 </td>
+                                <td v-if="Aerisweather != null" v-for="i in 4-Aerisweather.length" class="active">&nbsp;</td>
                             </tr>
                             </tbody>
                         </table>
