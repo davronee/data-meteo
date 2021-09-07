@@ -190,7 +190,7 @@
                 {{--                            <th scope="col">День</th>--}}
                 {{--                            <th scope="col">ночь</th>--}}
                 {{--                            <th scope="col">Ветер</th>--}}
-                <!-- {{--                            <th scope="col">Напр. Ветра</th>--}} -->
+                {{--                            <th scope="col">Напр. Ветра</th>--}}
                 {{--                            <th scope="col">Дожд</th>--}}
                 {{--                            <th scope="col">Снег</th>--}}
                 {{--                        </tr>--}}
@@ -217,12 +217,12 @@
                 {{--                            <td v-else class="blueopacity">@{{ item.Day.Wind.Speed.Value}} @{{ item.Day.Wind.Speed.Unit--}}
                 {{--                                }}--}}
                 {{--                            </td>--}}
-                <!-- {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Day.Wind.Direction.Degrees}} @{{--}}
+                {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Day.Wind.Direction.Degrees}} @{{--}}
                 {{--                                item.Day.Wind.Direction.Localized }}--}}
                 {{--                            </td>--}}
                 {{--                            <td v-else class="blueopacity">@{{ item.Day.Wind.Direction.Degrees}} @{{--}}
                 {{--                                item.Day.Wind.Direction.Localized }}--}}
-                {{--                            </td>--}} -->
+                {{--                            </td>--}}
                 {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Day.Rain.Value }} @{{--}}
                 {{--                                item.Day.Rain.Unit }}--}}
                 {{--                            </td>--}}
