@@ -221,12 +221,12 @@
                     </div>
 
                     {{-- meteogramm --}}
-                    {{-- <div>
+                    <div>
                         <h3>Метеограмма маълумотлари</h3>
                         <div class="overflow-hidden">
                             <img src="https://my.meteoblue.com/visimage/meteogram_web?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=411710118d5a56101c8668701ce59b24" srcset="https://my.meteoblue.com/visimage/meteogram_web_hd?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=c7f9240bc1cb94e2b8b39dcc1055bb73 1.4x" alt="Meteogram - 5 days - Ташкент" style="margin-top: -40px; max-width:100%">
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </form>
         </div>
@@ -237,7 +237,7 @@
 <div class="container">
     <h3>Метеокарта маълумотлари</h3>
     <div class="mt-10" style="position: relative">
-        <iframe src="https://www.meteoblue.com/en/weather/maps/widget?windAnimation=0&windAnimation=1&gust=0&gust=1&satellite=0&satellite=1&geoloc=detect&tempunit=C&windunit=m%252Fs&lengthunit=metric&zoom=5&autowidth=auto"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%; height: 720px"></iframe>
+        <iframe src="https://www.meteoblue.com/en/weather/maps/widget?satellite=0&satellite=1&windAnimation=0&gust=0&geoloc=detect&tempunit=C&windunit=m%252Fs&lengthunit=metric&zoom=5&autowidth=auto#coords=5/41.26/69.22&map=satellite~sat~none~none~none"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%; height: 720px"></iframe>
         <div
         style="position: absolute;
             top: 0;
