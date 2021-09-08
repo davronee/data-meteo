@@ -15,6 +15,11 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <style>
+        #mapContainer {
+            height: 500px;
+            width: 100%;
+        }
+
         #weather-table-wrapper td, #weather-table-wrapper th {
             border: 1px solid #eee;
         }
@@ -196,6 +201,8 @@
                             </tbody>
                         </table>
                     </div>
+
+                    {{-- metelocator --}}
                     <div class="row " style="margin-top: 50px;">
                         <div class="col-xs-12 col-sm-12 col-md-12 overflow-hidden ">
                             <h3>Метеолокатор маълумотлари</h3>
@@ -212,243 +219,43 @@
                                 right: 0;"></div>
                         </div>
                     </div>
-                    <div>
 
-                    </div>
+                    {{-- meteogramm --}}
+                    {{-- <div>
+                        <h3>Метеограмма маълумотлари</h3>
+                        <div class="overflow-hidden">
+                            <img src="https://my.meteoblue.com/visimage/meteogram_web?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=411710118d5a56101c8668701ce59b24" srcset="https://my.meteoblue.com/visimage/meteogram_web_hd?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=c7f9240bc1cb94e2b8b39dcc1055bb73 1.4x" alt="Meteogram - 5 days - Ташкент" style="margin-top: -40px; max-width:100%">
+                        </div>
+                    </div> --}}
                 </div>
-                <hr>
-                {{--                <div class="form-group">--}}
-                {{--                    <h3>Accuweather</h3>--}}
-                {{--                    <table class="table table-responsive">--}}
-                {{--                        <thead>--}}
-                {{--                        <tr>--}}
-                {{--                            <th scope="col">Дата</th>--}}
-                {{--                            <th scope="col">День</th>--}}
-                {{--                            <th scope="col">ночь</th>--}}
-                {{--                            <th scope="col">Ветер</th>--}}
-                {{--                            <th scope="col">Напр. Ветра</th>--}}
-                {{--                            <th scope="col">Дожд</th>--}}
-                {{--                            <th scope="col">Снег</th>--}}
-                {{--                        </tr>--}}
-                {{--                        </thead>--}}
-                {{--                        <tbody>--}}
-                {{--                        <tr v-for="item in accuweather">--}}
-                {{--                            <th v-if="moment().isSame(item.Date, 'day')" class="active">@{{ item.Date | night }}</th>--}}
-                {{--                            <th v-else class="blueopacity" class="active">@{{ item.Date | night }}</th>--}}
-                {{--                            <td v-if="moment().isSame(item.Date, 'day')" class="active">@{{--}}
-                {{--                                item.Temperature.Maximum.Value}} @{{ item.Temperature.Unit }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.Temperature.Maximum.Value}} @{{--}}
-                {{--                                item.Temperature.Unit }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Temperature.Minimum.Value }} @{{--}}
-                {{--                                item.Temperature.Unit }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.Temperature.Minimum.Value }} @{{--}}
-                {{--                                item.Temperature.Unit }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Day.Wind.Speed.Value}} @{{--}}
-                {{--                                item.Day.Wind.Speed.Unit }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.Day.Wind.Speed.Value}} @{{ item.Day.Wind.Speed.Unit--}}
-                {{--                                }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Day.Wind.Direction.Degrees}} @{{--}}
-                {{--                                item.Day.Wind.Direction.Localized }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.Day.Wind.Direction.Degrees}} @{{--}}
-                {{--                                item.Day.Wind.Direction.Localized }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Day.Rain.Value }} @{{--}}
-                {{--                                item.Day.Rain.Unit }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.Day.Rain.Value }} @{{ item.Day.Rain.Unit }}</td>--}}
-                {{--                            <td v-if="moment().isSame(item.Date, 'day')">@{{ item.Day.Ice.Value }} @{{ item.Day.Ice.Unit--}}
-                {{--                                }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.Day.Ice.Value }} @{{ item.Day.Ice.Unit }}</td>--}}
-                {{--                        </tr>--}}
-                {{--                        </tbody>--}}
-                {{--                    </table>--}}
-                {{--                </div>--}}
-                {{--                <hr>--}}
-                {{--                <div class="form-group">--}}
-                {{--                    <h3>WeatherBit</h3>--}}
-                {{--                    <table class="table table-responsive">--}}
-                {{--                        <thead>--}}
-                {{--                        <tr>--}}
-                {{--                            <th scope="col">Дата</th>--}}
-                {{--                            <th scope="col">Температура</th>--}}
-                {{--                            <th scope="col">Ветер</th>--}}
-                {{--                            <th scope="col">Напр. Ветра</th>--}}
-                {{--                            <th scope="col">Дожд</th>--}}
-                {{--                        </tr>--}}
-                {{--                        </thead>--}}
-                {{--                        <tbody>--}}
-                {{--                        <tr v-for="(item,index) in weatherbit">--}}
-                {{--                            <th v-if="moment().isSame(item.datetime, 'day')">@{{ item.datetime | moment }}</th>--}}
-                {{--                            <th v-else class="blueopacity">@{{ item.datetime | moment }}</th>--}}
-                {{--                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ Math.round(item.temp) }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ Math.round(item.temp) }}</td>--}}
-                {{--                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ Math.round(item.wind_spd) }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ Math.round(item.wind_spd) }}</td>--}}
-                {{--                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ Math.round(item.wind_dir) }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ Math.round(item.wind_dir) }}</td>--}}
-                {{--                            --}}{{--                            <td>@{{ item.wind_dir }} @{{ item.wind_cdir }}</td>--}}
-                {{--                            <td v-if="moment().isSame(item.datetime, 'day')">@{{ item.precip }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.precip }}</td>--}}
-                {{--                        </tr>--}}
-                {{--                        </tbody>--}}
-                {{--                    </table>--}}
-                {{--                </div>--}}
-                {{--                <hr>--}}
-                {{--                <div class="form-group">--}}
-                {{--                    <h3>DarkSky</h3>--}}
-                {{--                    <table class="table table-responsive">--}}
-                {{--                        <thead>--}}
-                {{--                        <tr>--}}
-                {{--                            <th scope="col">Дата</th>--}}
-                {{--                            <th scope="col">День</th>--}}
-                {{--                            <th scope="col">ночь</th>--}}
-                {{--                            <th scope="col">Ветер</th>--}}
-                {{--                            --}}{{--                            <th scope="col">Напр. Ветра</th>--}}
-                {{--                            <th scope="col">Дожд</th>--}}
-                {{--                        </tr>--}}
-                {{--                        </thead>--}}
-                {{--                        <tbody>--}}
-                {{--                        <tr v-for="(item,index) in darksky">--}}
-                {{--                            <th v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{ item.time | unixdate }}</th>--}}
-                {{--                            <th v-else class="blueopacity">@{{ item.time | unixdate }}</th>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{--}}
-                {{--                                Math.round(item.temperatureHigh) }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ Math.round(item.temperatureHigh) }}</td>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{--}}
-                {{--                                Math.round(item.temperatureLow) }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ Math.round(item.temperatureLow) }}</td>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{ Math.round(item.windSpeed)--}}
-                {{--                                }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ Math.round(item.windSpeed) }}</td>--}}
-                {{--                            --}}{{--                            <td>@{{ item.wind_dir }} @{{ item.wind_cdir }}</td>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.time*1000), 'day')">@{{ item.precipIntensity }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.precipIntensity }}</td>--}}
-                {{--                        </tr>--}}
-                {{--                        </tbody>--}}
-                {{--                    </table>--}}
-                {{--                </div>--}}
-                {{--                <hr>--}}
-                {{--                <div class="form-group">--}}
-                {{--                    <h3>Aerisweather</h3>--}}
-                {{--                    <table class="table table-responsive">--}}
-                {{--                        <thead>--}}
-                {{--                        <tr>--}}
-                {{--                            <th scope="col">Дата</th>--}}
-                {{--                            <th scope="col">День</th>--}}
-                {{--                            <th scope="col">ночь</th>--}}
-                {{--                            <th scope="col">Ветер</th>--}}
-                {{--                            <th scope="col">Напр. Ветра</th>--}}
-                {{--                            <th scope="col">Дожд</th>--}}
-                {{--                        </tr>--}}
-                {{--                        </thead>--}}
-                {{--                        <tbody>--}}
-                {{--                        <tr v-for="(item,index) in Aerisweather">--}}
-                {{--                            <th v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.timestamp |--}}
-                {{--                                unixdate }}--}}
-                {{--                            </th>--}}
-                {{--                            <th v-else class="blueopacity">@{{ item.timestamp | unixdate }}</th>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.maxTempC }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.maxTempC }}</td>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.minTempC }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.minTempC }}</td>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{--}}
-                {{--                                Math.round(item.windSpeedKTS) }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ Math.round(item.windSpeedKTS) }}</td>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.windDirMaxDEG }}--}}
-                {{--                                @{{ item.windDirMax }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.windDirMaxDEG }} @{{ item.windDirMax }}</td>--}}
-                {{--                            <td v-if="moment().isSame(new Date(item.timestamp*1000), 'day')">@{{ item.precipMM }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.precipMM }}</td>--}}
-                {{--                        </tr>--}}
-                {{--                        </tbody>--}}
-                {{--                    </table>--}}
-                {{--                </div>--}}
-                {{--                <hr>--}}
-                {{--                <div class="form-group">--}}
-                {{--                    <h3>ForecastApi</h3>--}}
-                {{--                    <table class="table table-responsive">--}}
-                {{--                        <thead>--}}
-                {{--                        <tr>--}}
-                {{--                            <th scope="col">Дата</th>--}}
-                {{--                            <th scope="col">Температура</th>--}}
-                {{--                            <th scope="col">Ветер</th>--}}
-                {{--                            <th scope="col">Дожд</th>--}}
-                {{--                        </tr>--}}
-                {{--                        </thead>--}}
-                {{--                        <tbody>--}}
-                {{--                        <tr v-for="(item,index) in ForecastApi">--}}
-                {{--                            <th v-if="moment().isSame(item.date, 'day')">@{{ item.date | moment }}</th>--}}
-                {{--                            <th v-else class="blueopacity">@{{ item.date | moment }}</th>--}}
-                {{--                            <td v-if="moment().isSame(item.date, 'day')">@{{ item.temperature.avg}}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.temperature.avg}}</td>--}}
-                {{--                            <td v-if="moment().isSame(item.date, 'day')">@{{ item.wind.avg}} @{{ item.wind.unit}}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.wind.avg}} @{{ item.wind.unit}}</td>--}}
-                {{--                            <td v-if="moment().isSame(item.date, 'day')">@{{ item.prec.avg}} @{{ item.wind.unit}}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ item.prec.avg}} @{{ item.wind.unit}}</td>--}}
-                {{--                        </tr>--}}
-                {{--                        </tbody>--}}
-                {{--                    </table>--}}
-                {{--                </div>--}}
-                {{--                <hr>--}}
-                {{--                <div class="form-group">--}}
-                {{--                    <h3>Hydromet</h3>--}}
-                {{--                    <table class="table table-responsive">--}}
-                {{--                        <thead>--}}
-                {{--                        <tr>--}}
-                {{--                            <th scope="col">Дата</th>--}}
-                {{--                            <th scope="col">День</th>--}}
-                {{--                            <th scope="col">ночь</th>--}}
-                {{--                            <th scope="col">Ветер</th>--}}
-                {{--                            <th scope="col">Напр. Ветра</th>--}}
-                {{--                            <th scope="col">Дожд</th>--}}
-                {{--                        </tr>--}}
-                {{--                        </thead>--}}
-                {{--                        <tbody>--}}
-                {{--                        <tr v-for="(item,index) in day">--}}
-                {{--                            <th v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].date | night }}</th>--}}
-                {{--                            <th v-else class="blueopacity">@{{ day[index].date | night }}</th>--}}
-                {{--                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].air_t_min }} - @{{--}}
-                {{--                                day[index].air_t_max }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ day[index].air_t_min }} - @{{ day[index].air_t_max }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ night[index].air_t_min }} - @{{--}}
-                {{--                                night[index].air_t_max }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ night[index].air_t_min }} - @{{ night[index].air_t_max--}}
-                {{--                                }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].wind_speed_min }} - @{{--}}
-                {{--                                day[index].wind_speed_max }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ day[index].wind_speed_min }} - @{{--}}
-                {{--                                day[index].wind_speed_max }}--}}
-                {{--                            </td>--}}
-                {{--                            <td v-if="moment().isSame(day[index].date, 'day')">@{{ day[index].wind_direction }}</td>--}}
-                {{--                            <td v-else class="blueopacity">@{{ day[index].wind_direction }}</td>--}}
-                {{--                            <td v-if="day[index].precipitation == 'none'">-</td>--}}
-                {{--                            <td v-else>@{{ day[index].precipitation }}</td>--}}
-                {{--                        </tr>--}}
-                {{--                        </tbody>--}}
-                {{--                    </table>--}}
-                {{--                </div>--}}
             </form>
         </div>
     </div>
 </div>
+
+{{-- map --}}
+<div class="container">
+    <h3>Метеокарта маълумотлари</h3>
+    <div class="mt-10" style="position: relative">
+        <iframe src="https://www.meteoblue.com/en/weather/maps/widget?windAnimation=0&windAnimation=1&gust=0&gust=1&satellite=0&satellite=1&geoloc=detect&tempunit=C&windunit=m%252Fs&lengthunit=metric&zoom=5&autowidth=auto"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%; height: 720px"></iframe>
+        <div
+        style="position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 55px;
+            background: rgb(3 62 106);
+            color: #fff;
+            text-align: center;
+            padding: 2px;
+            font-size: 30px;
+            font-weight: bold;">Meteoinfocom</div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
 <script src="{{mix('js/app.js')}}"></script>
 </body>
 </html>
