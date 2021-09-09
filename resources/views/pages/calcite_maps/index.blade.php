@@ -1032,31 +1032,129 @@
                                 });
                                 var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
                                     .on('click', function () {
-                                        marker.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.NO') (NO):</b></td>" +
-                                            "<td>" + item.NO + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.CO') (СО):</b></td>" +
-                                            "<td>" + item.CO + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.SO2') (SO2):</b></td>" +
-                                            "<td>" + item.SO2 + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.NO2') (NO2):</b></td>" +
-                                            "<td>" + item.NO2 + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dust'):</b></td>" +
-                                            "<td>" + item.substances + "</td>" +
-                                            "</tr>" +
-                                            "</table>" +
-                                            "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                        if (item.id == 108) {
+
+                                            axios.get('{{route('map.horiba.drujba')}}')
+                                                .then(function (response) {
+                                                    marker.bindPopup("" +
+                                                        "<table class='table table-bordered'>" +
+                                                        "<tr ><td class='text-center' colspan='2'><b>Чиланзарский р-он, проспект Бунёдкор (ориентир: Дворец Дружбы народов)</b></td></tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[0].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[0].Value).toFixed(2) + " " + response.data[0].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[1].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[1].Value).toFixed(2) + " " + response.data[1].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[2].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[2].Value).toFixed(2) + " " + response.data[2].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[3].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[3].Value).toFixed(2) + " " + response.data[3].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[4].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[4].Value).toFixed(2) + " " + response.data[4].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[5].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[5].Value).toFixed(2) + " " + response.data[5].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[6].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[7].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[7].Value).toFixed(2) + " " + response.data[7].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "</table>" +
+                                                        "<a href='https://monitoring.meteo.uz/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                })
+                                                .catch(error => {
+                                                    console.log(error)
+                                                });
+
+                                        }
+                                        else if (item.id == 107) {
+
+                                            axios.get('{{route('map.horiba.plashadka')}}')
+                                                .then(function (response) {
+                                                    marker.bindPopup("" +
+                                                        "<table class='table table-bordered'>" +
+                                                        "<tr ><td class='text-center' colspan='2'><b>Юнус-Абадский р-он, Узгидромет (ориентир: Метеоплощадка, обсерватория) </b></td></tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[0].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[0].Value).toFixed(2) + " " + response.data[0].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[1].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[1].Value).toFixed(2) + " " + response.data[1].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[2].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[2].Value).toFixed(2) + " " + response.data[2].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[3].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[3].Value).toFixed(2) + " " + response.data[3].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[4].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[4].Value).toFixed(2) + " " + response.data[4].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[5].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[5].Value).toFixed(2) + " " + response.data[5].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[6].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>" + response.data[7].Name + ":</b></td>" +
+                                                        "<td>" + parseFloat(response.data[7].Value).toFixed(2) + " " + response.data[7].Unit + "</td>" +
+                                                        "</tr>" +
+                                                        "</table>" +
+                                                        "<a href='https://monitoring.meteo.uz/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                })
+                                                .catch(error => {
+                                                    console.log(error)
+                                                });
+
+                                        }
+                                        else {
+                                            marker.bindPopup("" +
+                                                "<table class='table table-bordered'>" +
+                                                "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.NO') (NO):</b></td>" +
+                                                "<td>" + item.NO + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.CO') (СО):</b></td>" +
+                                                "<td>" + item.CO + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.SO2') (SO2):</b></td>" +
+                                                "<td>" + item.SO2 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.NO2') (NO2):</b></td>" +
+                                                "<td>" + item.NO2 + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.dust'):</b></td>" +
+                                                "<td>" + item.substances + "</td>" +
+                                                "</tr>" +
+                                                "</table>" +
+                                                "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+
+                                        }
+
 
                                     })
                                     .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",

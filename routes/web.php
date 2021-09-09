@@ -78,6 +78,8 @@ Route::group(['middleware' => ['set_locale']], function () {
 //        Route::post('/getcurrentAll', [WidgetController::class, 'getForecastAll'])->name('map.forecast');
         Route::get('/getRadars', [WidgetController::class, 'getRadars'])->name('map.getRadars');
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
+        Route::get('/GetHoribadrujba', [WidgetController::class, 'GetHoribaDrujba'])->name('map.horiba.drujba');
+        Route::get('/GetHoribaPlashadka', [WidgetController::class, 'GetHoribaPlashadka'])->name('map.horiba.plashadka');
         Route::prefix('awd')->group(function () {
             Route::get('/getallstations', [AwdController::class, 'getAllStations'])->name('map.awd.getallstations');
             Route::post('/getStation', [AwdController::class, 'getStation'])->name('map.awd.getStation');

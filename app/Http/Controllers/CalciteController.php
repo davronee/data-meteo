@@ -17,7 +17,7 @@ class CalciteController extends Controller
 
     public function __construct()
     {
-        $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->endpoint = env('AWS_ENDPOINT', 'http://217.30.161.60:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
 //
@@ -49,6 +49,8 @@ class CalciteController extends Controller
             'hydrometstation' => $hydrometStations
         ]);
     }
+
+
 
 
 }
