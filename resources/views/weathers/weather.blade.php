@@ -14,6 +14,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+    <script
+        src="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.js"
+        integrity="sha512-v5PfWsWi47/AZBVL7WMNqdbM1OMggp9Ce408yX/X9wg87Kjzb1xqpO2Ul0Oue8Vl9kKOcwPM2MWWkTbUjRxZOg=="
+        crossorigin="anonymous"
+    ></script>
+
+    <link
+        rel="stylesheet"
+        href="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.css"
+        integrity="sha512-xY1TAM00L9X8Su9zNuJ8nBZsGQ8IklX703iq4gWnsw6xCg+McrHXEwbBkNaWFHSqmf6e7BpxD6aJQLKAcsGSdA=="
+        crossorigin="anonymous"
+    >
+
+    <script src="https://static.meteoblue.com/lib/maps-plugin/v0.x/maps-plugin.js"></script>
+
+
     <style>
         #mapContainer {
             height: 500px;
@@ -239,7 +255,7 @@
 <div class="container">
     <br>
     <h3>Метеокарта маълумотлари</h3>
-    <div class="mt-10" style="position: relative">
+    {{-- <div class="mt-10" style="position: relative">
         <iframe src="https://www.meteoblue.com/ru/weather/maps/widget?satellite=0&satellite=1&windAnimation=0&gust=0&geoloc=detect&tempunit=C&windunit=m%252Fs&lengthunit=metric&zoom=5&autowidth=auto#coords=5/41.26/69.22&map=satellite~sat~none~none~none"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%; height: 720px"></iframe>
         <div
         style="position: absolute;
@@ -256,8 +272,33 @@
         <br>
         <br>
         <br>
-    </div>
+    </div> --}}
+
+    <div id="mapContainer"></div>
 </div>
+
+<script>
+    const mapboxMap = new mapboxgl.Map({
+        container: "mapContainer",
+        center: [69.2163 , 41.2646],
+        zoom: 5,
+        minZoom: 0,
+        maxZoom: 24,
+        hash: false,
+        attributionControl: false,
+        keyboard: false,
+    });
+
+    // const apiKey = "fnyIC9Q7OWSjr6vK";
+    const apiKey = "09bb30d822c1";
+    const inventoryUrl = "https://maps-api.meteoblue.com/v1/map/inventory/filter?lang=en&apikey=09bb30d822c1&maps=cloudsAndPrecipitation,precipitationProbability,temperature,wind,windAnimation&temperatureUnit=CELSIUS&velocityUnit=KILOMETER_PER_HOUR&lengthUnit=metric&overlays=pressure2mOverlay,graticuleOverlay&internal=true";
+
+    new meteoblueMapsPlugin({
+        mapboxMap: mapboxMap,
+        inventory: inventoryUrl,
+        apiKey: apiKey,
+    });
+</script>
 
 <script src="{{mix('js/app.js')}}"></script>
 </body>
