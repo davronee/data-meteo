@@ -43,6 +43,7 @@ class WeatherForecastController extends Controller
         $subopenweather = \App\Models\OpenWeather::toBase()
             ->where('region', request('region', 'tashkent'))
             ->selectRaw('MAX(id) as id')
+            ->wheretime('datetime','<=',Carbon::now())
             ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
@@ -70,7 +71,8 @@ class WeatherForecastController extends Controller
         $subopenweather = Accuweather::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->wheretime('datetime','<=',Carbon::now())
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();
@@ -97,7 +99,8 @@ class WeatherForecastController extends Controller
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
             ->where('day_part', 'day')
-            ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->wheretime('datetime','<=',Carbon::now())
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();
@@ -111,7 +114,7 @@ class WeatherForecastController extends Controller
         $subopenweather = WeatherBit::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();
@@ -124,7 +127,7 @@ class WeatherForecastController extends Controller
         $subopenweather = \App\Models\DarkSky::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();;
@@ -137,7 +140,9 @@ class WeatherForecastController extends Controller
         $subopenweather = \App\Models\Aerisweather::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->wheretime('datetime','<=',Carbon::now())
+
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();
