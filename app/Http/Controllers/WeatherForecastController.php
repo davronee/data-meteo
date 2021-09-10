@@ -258,4 +258,11 @@ class WeatherForecastController extends Controller
     {
         //
     }
+
+    public function maploader() {
+        // $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=4/41.26/69.22&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
+        $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=5.12/41.27/66.1&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
+        $output = file_get_contents($url);
+        print $output;
+    }
 }

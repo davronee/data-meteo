@@ -1,96 +1,93 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-        <!-- icons css -->
-        <link href="{{asset('template/lib/fontawesome5/css/all.min.css')}}" rel="stylesheet">
-        <link rel="stylesheet" href="{{asset('template/assets/css/weather-icons.min.css')}}">
-        <link rel="stylesheet" href="{{asset('template/assets/css/ionicons.min.css')}}">
-        <link rel="stylesheet" href="{{mix('css/app.css')}}">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- icons css -->
+    <link href="{{asset('template/lib/fontawesome5/css/all.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('template/assets/css/weather-icons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('template/assets/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{mix('css/app.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-        <script
-            src="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.js"
-            integrity="sha512-v5PfWsWi47/AZBVL7WMNqdbM1OMggp9Ce408yX/X9wg87Kjzb1xqpO2Ul0Oue8Vl9kKOcwPM2MWWkTbUjRxZOg=="
-            crossorigin="anonymous"
-        ></script>
+    <script
+        src="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.js"
+        integrity="sha512-v5PfWsWi47/AZBVL7WMNqdbM1OMggp9Ce408yX/X9wg87Kjzb1xqpO2Ul0Oue8Vl9kKOcwPM2MWWkTbUjRxZOg=="
+        crossorigin="anonymous"
+    ></script>
 
-        <link
-            rel="stylesheet"
-            href="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.css"
-            integrity="sha512-xY1TAM00L9X8Su9zNuJ8nBZsGQ8IklX703iq4gWnsw6xCg+McrHXEwbBkNaWFHSqmf6e7BpxD6aJQLKAcsGSdA=="
-            crossorigin="anonymous"
-        >
+    <link
+        rel="stylesheet"
+        href="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.css"
+        integrity="sha512-xY1TAM00L9X8Su9zNuJ8nBZsGQ8IklX703iq4gWnsw6xCg+McrHXEwbBkNaWFHSqmf6e7BpxD6aJQLKAcsGSdA=="
+        crossorigin="anonymous"
+    >
 
-        <script src="https://static.meteoblue.com/lib/maps-plugin/v0.x/maps-plugin.js"></script>
+    <script src="https://static.meteoblue.com/lib/maps-plugin/v0.x/maps-plugin.js"></script>
 
-        <style>
-            #mapContainer {
-                height: 500px;
-                width: 100%;
-            }
 
-            #weather-table-wrapper td, #weather-table-wrapper th {
-                border: 1px solid #eee;
-            }
+    <style>
+        #mapContainer {
+            height: 500px;
+            width: 100%;
+        }
 
-            #weather-table-wrapper .table tr th:first-child {
-                position: sticky;
-                left: 0;
-                z-index: 5;
-                background: #fff;
-                background-color: #efefef;
-                /* border:1px solid #ccc */
-                border-bottom: 1px solid #ccc;
-            }
+        #weather-table-wrapper td, #weather-table-wrapper th {
+            border: 1px solid #eee;
+        }
 
-            #weather-table-wrapper td {
-                min-width: 200px;
-            }
+        #weather-table-wrapper .table tr th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 5;
+            background: #fff;
+            background-color: #efefef;
+            /* border:1px solid #ccc */
+            border-bottom: 1px solid #ccc;
+        }
 
-            #weather-table-wrapper .table-responsive {
-                scrollbar-width: thin;
-            }
+        #weather-table-wrapper td {
+            min-width: 200px;
+        }
 
-            #weather-table-wrapper thead tr th {
-                position: sticky;
-                top: 0;
-                z-index: 5;
-                background: #fff;
-                background-color: #efefef;
-            }
+        #weather-table-wrapper .table-responsive {
+            scrollbar-width: thin;
+        }
 
-            #weather-table-wrapper thead tr th:first-child {
-                border: none !important;
-            }
+        #weather-table-wrapper thead tr th {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #fff;
+            background-color: #efefef;
+        }
 
-            #weather-table-wrapper .table-responsive::-webkit-scrollbar {
-                width: 5px;
-                height: 5px
-            }
+        #weather-table-wrapper thead tr th:first-child {
+            border: none !important;
+        }
 
-            #weather-table-wrapper .table-responsive::-webkit-scrollbar-track {
-                background-color: #eee;
-            }
+        #weather-table-wrapper .table-responsive::-webkit-scrollbar {
+            width: 5px;
+            height: 5px
+        }
 
-            #weather-table-wrapper .table-responsive::-webkit-scrollbar-thumb {
-                background-color: #ccc
-            }
+        #weather-table-wrapper .table-responsive::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
 
-            .mb-5 {
-                margin-bottom: 6px;
-            }
+        #weather-table-wrapper .table-responsive::-webkit-scrollbar-thumb {
+            background-color: #ccc
+        }
 
-            .none {
-                display: none !important;
-            }
-        </style>
-    </head>
+        .mb-5 {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
 <body>
 
 <div class="container" id="app">
@@ -254,93 +251,55 @@
     </div>
 </div>
 
-<script src="{{mix('js/app.js')}}"></script>
-
-<script>
-    setTimeout(function() {
-        var iframe = document.getElementById("test-map");
-
-        iframe.contentWindow.document.querySelector(".gdpr_message").remove();
-        iframe.contentWindow.document.querySelector(".navigation_scroll_container").remove();
-        iframe.contentWindow.document.querySelector('.menu_mobile_container').remove();
-
-        setTimeout(function() {
-            iframe.contentWindow.document.querySelector('.mapboxgl-canvas').style.width = '100% !important';
-            iframe.contentWindow.document.querySelector('.wrapper').style.left = '0px';
-            iframe.contentWindow.document.body.querySelector('[data-map-id="cloudsAndPrecipitation"]').click();
-            iframe.classList.remove('none');
-
-            var loader = document.getElementById("loader");
-            loader.classList.add('none');
-        }, 3000);
-
-    }, 2500);
-</script>
-
 {{-- map --}}
 <div class="container">
     <br>
     <h3>Метеокарта маълумотлари</h3>
-    <div class="text-left" style="margin-bottom: 55px;">
-        <div id="loader" style="width: 100%; height: 600px; border:1px solid #ccc">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="70px" height="600px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-                <g transform="rotate(0 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(30 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(60 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(90 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(120 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(150 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(180 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(210 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(240 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(270 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(300 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(330 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g>
-            </svg>
-        </div>
-        <iframe id="test-map" src="{{ route('weather.map') }}" frameborder="0" width="100%" height="600px" class="none" />
-    </div>
+    {{-- <div class="mt-10" style="position: relative">
+        <iframe src="https://www.meteoblue.com/ru/weather/maps/widget?satellite=0&satellite=1&windAnimation=0&gust=0&geoloc=detect&tempunit=C&windunit=m%252Fs&lengthunit=metric&zoom=5&autowidth=auto#coords=5/41.26/69.22&map=satellite~sat~none~none~none"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%; height: 720px"></iframe>
+        <div
+        style="position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 55px;
+            background: rgb(3 62 106);
+            color: #fff;
+            text-align: center;
+            padding: 2px;
+            font-size: 30px;
+            font-weight: bold;">Meteoinfocom</div>
+        <br>
+        <br>
+        <br>
+    </div> --}}
+
+    <div id="mapContainer"></div>
 </div>
 
+<script>
+    const mapboxMap = new mapboxgl.Map({
+        container: "mapContainer",
+        center: [69.2163 , 41.2646],
+        zoom: 5,
+        minZoom: 0,
+        maxZoom: 24,
+        hash: false,
+        attributionControl: false,
+        keyboard: false,
+    });
 
+    // const apiKey = "fnyIC9Q7OWSjr6vK";
+    const apiKey = "09bb30d822c1";
+    const inventoryUrl = "https://maps-api.meteoblue.com/v1/map/inventory/filter?lang=en&apikey=09bb30d822c1&maps=cloudsAndPrecipitation,precipitationProbability,temperature,wind,windAnimation&temperatureUnit=CELSIUS&velocityUnit=KILOMETER_PER_HOUR&lengthUnit=metric&overlays=pressure2mOverlay,graticuleOverlay&internal=true";
 
+    new meteoblueMapsPlugin({
+        mapboxMap: mapboxMap,
+        inventory: inventoryUrl,
+        apiKey: apiKey,
+    });
+</script>
 
+<script src="{{mix('js/app.js')}}"></script>
 </body>
 </html>
