@@ -422,5 +422,19 @@ class WidgetController extends Controller
         return $data->json();
     }
 
+    public function GetHoribaDrujba()
+    {
+        $horiba = Http::get('http://192.168.10.248:8080/drujba')->json();
+
+        return $horiba;
+    }
+
+    public function GetHoribaPlashadka()
+    {
+        $horiba = Http::get('http://192.168.10.248:8080')->json();
+
+        return $horiba;
+    }
+
 }
 
