@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('meteo:get')->dailyAt('17:15');
         $schedule->command('meteo:get')->dailyAt('20:15');
         $schedule->command('meteo:get')->dailyAt('23:15');
-        $schedule->command('weather:forecast')->dailyAt('10:56');
+        $schedule->command('weather:forecast')->dailyAt('01:00');
 
     }
 
