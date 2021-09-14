@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\getMeteo;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\Aerisweather;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,27 +15,30 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-            'App\Console\Commands\getMeteo',
+        'App\Console\Commands\getMeteo',
+        Aerisweather::class
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('meteo:get')->daily()->at('21:40');
+        $schedule->command('meteo:get')->dailyAt()->at('21:40');
         // $schedule->command('inspire')->hourly();
-        $schedule->command('meteo:get')->daily()->at('02:15');
-        $schedule->command('meteo:get')->daily()->at('05:15');
-        $schedule->command('meteo:get')->daily()->at('08:15');
-        $schedule->command('meteo:get')->daily()->at('11:15');
-        $schedule->command('meteo:get')->daily()->at('14:15');
-        $schedule->command('meteo:get')->daily()->at('17:15');
-        $schedule->command('meteo:get')->daily()->at('20:15');
-        $schedule->command('meteo:get')->daily()->at('23:15');
+        $schedule->command('meteo:get')->dailyAt('02:15');
+        $schedule->command('meteo:get')->dailyAt('05:15');
+        $schedule->command('meteo:get')->dailyAt('08:15');
+        $schedule->command('meteo:get')->dailyAt('11:15');
+        $schedule->command('meteo:get')->dailyAt('14:15');
+        $schedule->command('meteo:get')->dailyAt('17:15');
+        $schedule->command('meteo:get')->dailyAt('20:15');
+        $schedule->command('meteo:get')->dailyAt('23:15');
+        $schedule->command('weather:forecast')->dailyAt('10:53');
+
     }
 
     /**
@@ -44,7 +48,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
