@@ -1242,7 +1242,7 @@
                                 class: "station"
                             });
 
-                            if (item.Metadata.Latitude !== null && item.Metadata.Longitude !== null && item.Id != 52 && item.Id != 53 && item.Id != 55 && item.Id != 54 && item.Id != 57 && item.Id != 58 && item.Id != 59 && item.Id != 60 && item.Id != 56 && item.Id != 61 && item.Id != 62 && item.Id != 11 && item.Id != 63 && item.Id != 64 && item.Id != 30) {
+                            if (item.Metadata.Latitude !== null && item.Metadata.Longitude !== null && item.Id != 52) {
 
                                 var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
                                     axios.post('{{route('map.awd.getStation')}}', {
