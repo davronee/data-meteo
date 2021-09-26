@@ -8,38 +8,6 @@
     <meta name="description" content="Метеорологическая карта Узбекистана">
     <meta name="author" content="">
     <!--favicon-->
-    <link rel="apple-touch-icon" sizes="57x57"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16"
-          href="https://hydromet.uz/templates/meteouz/images/favicon/favicon-16x16.png">
-    <link rel="shortcut icon" href="https://hydromet.uz/templates/meteouz/images/favicon/favicon.ico">
-    <link rel="manifest" href="https://hydromet.uz/templates/meteouz/images/favicon/manifest.json">
-    <meta name="yandex-verification" content="c194b7ef7003b9b1"/>
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage"
-          content="https://hydromet.uz/templates/meteouz/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!--favicon-->
     <title>METEO MONITORING - UZHYDROMET</title>
@@ -440,50 +408,116 @@
 
             },
             getHydrometStation: function () {
-                this.hydrometStations.forEach(function (item, i, arr) {
-                    var meteoIcon = L.icon({
-                        iconUrl: '{{asset('images/meteo.png')}}',
-                        iconSize: [28, 28], // size of the icon
-                        class: "station"
-                    });
+                // this.hydrometStations.forEach(function (item, i, arr) {
+                //     var meteoIcon = L.icon({
+                //         iconUrl: '{{asset('images/meteo.png')}}',
+                //         iconSize: [28, 28], // size of the icon
+                //         class: "station"
+                //     });
 
-                    marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon}).on('click', function () {
-                        marker.bindPopup("" +
-                            "<table class='table table-bordered'>" +
-                            "<tr ><td class='text-center' colspan='2'><b>" + item.name + "</b></td></tr>" +
-                            "<tr>" +
-                            "<td><b>temperature</b></td>" +
-                            "<td>" + item.hydromet_sensor_data.temperature + "</td>" +
-                            "</tr>" +
-                            "<tr>" +
-                            "<td><b>humidity</b></td>" +
-                            "<td>" + item.hydromet_sensor_data.humidity + "</td>" +
-                            "</tr>" +
-                            "<tr>" +
-                            "<td><b>wspeed</b></td>" +
-                            "<td>" + item.hydromet_sensor_data.wspeed + "</td>" +
-                            "</tr>" +
-                            "<tr>" +
-                            "<td><b>wdir</b></td>" +
-                            "<td>" + item.hydromet_sensor_data.wdir + "</td>" +
-                            "</tr>" +
-                            "<tr>" +
-                            "<td><b>pressure</b></td>" +
-                            "<td>" + item.hydromet_sensor_data.pressure + "</td>" +
-                            "</tr>" +
-                            "<tr>" +
-                            "<td><b>created_at</b></td>" +
-                            "<td>" + item.hydromet_sensor_data.created_at + "</td>" +
-                            "</tr>" +
-                            "</table>"
-                        )
-                    }).addTo(map);
+                //     marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon}).on('click', function () {
+                //         marker.bindPopup("" +
+                //             "<table class='table table-bordered'>" +
+                //             "<tr ><td class='text-center' colspan='2'><b>" + item.name + "</b></td></tr>" +
+                //             "<tr>" +
+                //             "<td><b>temperature</b></td>" +
+                //             "<td>" + item.hydromet_sensor_data.temperature + "</td>" +
+                //             "</tr>" +
+                //             "<tr>" +
+                //             "<td><b>humidity</b></td>" +
+                //             "<td>" + item.hydromet_sensor_data.humidity + "</td>" +
+                //             "</tr>" +
+                //             "<tr>" +
+                //             "<td><b>wspeed</b></td>" +
+                //             "<td>" + item.hydromet_sensor_data.wspeed + "</td>" +
+                //             "</tr>" +
+                //             "<tr>" +
+                //             "<td><b>wdir</b></td>" +
+                //             "<td>" + item.hydromet_sensor_data.wdir + "</td>" +
+                //             "</tr>" +
+                //             "<tr>" +
+                //             "<td><b>pressure</b></td>" +
+                //             "<td>" + item.hydromet_sensor_data.pressure + "</td>" +
+                //             "</tr>" +
+                //             "<tr>" +
+                //             "<td><b>created_at</b></td>" +
+                //             "<td>" + item.hydromet_sensor_data.created_at + "</td>" +
+                //             "</tr>" +
+                //             "</table>"
+                //         )
+                //     }).addTo(map);
 
+                // });
+                // marker.fire('click');
+
+
+                var meteoIcon1 = L.icon({
+                    iconUrl: '{{asset('images/meteo.png')}}',
+                    iconSize: [28, 28], // size of the icon
+                    class: "station"
                 });
-                marker.fire('click');
+
+                var marker2 = L.marker([parseFloat(41.34564477332897), parseFloat(69.28504212769195)], {icon: meteoIcon1}).on('click', function () {
+                        axios.get('{{route('map.MeteoinfocomStationData.get')}}')
+                            .then(function (response) {
+                                console.log(response.data.obsTimeLocal)
+                                marker2.bindPopup("" +
+                                    "<table class='table table-bordered'>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>UZ-METEO2021-01</b></td></tr>" +
+                                    "<tr>" +
+                                    "<td><b>дата и время</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.obsTimeLocal) + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>температура воздуха за измеряемый период</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.temp, '°C') + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>точка росы<b/></td>" +
+                                    "<td>" + response.data.metric.dewpt + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>скорость ветра</b></td>" +
+                                    "<td>" + response.data.metric.windSpeed + 'm/c' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>Давление, приведенное к уровню моря</b></td>" +
+                                    "<td>" + response.data.metric.pressure + 'mB' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>направление ветра</b></td>" +
+                                    "<td>" + response.data.metric.windChill + '°' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>высота станции</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>осадка</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.precipRate) + "</td>" +
+                                    "</tr>" +
+                                    "</table>"
+                                )
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    }).addTo(map);;
+                    marker2.fire('click');
 
 
 
+            },
+            checktoUndefine: function (text, unit = '') {
+                if (text !== undefined) {
+                    return text + ' ' + unit;
+                } else {
+                    return '-';
+                }
             }
 
         },

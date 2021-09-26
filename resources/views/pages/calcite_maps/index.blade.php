@@ -111,6 +111,16 @@
         .leaflet-touch .leaflet-bar {
             border: none;
         }
+
+        div#footer-fluid {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            height: 50px;
+            text-align: right;
+        }
     </style>
 
 </head>
@@ -175,6 +185,11 @@
 
     <div class="calcite-map">
         <div id="map" class="calcite-map-absolute"></div>
+        <div class="container-fluid" id="footer-fluid">
+            <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">
+                <img alt="Лицензия Creative Commons" src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" style="border-width:0">
+            </a>
+        </div>
     </div><!-- /.container -->
 
     <!-- Panel -->
