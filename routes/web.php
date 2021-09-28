@@ -91,6 +91,7 @@ Route::group(['middleware' => ['set_locale']], function () {
         });
 
 
+
         Route::prefix('MicrostepStations')->group(function () {
             Route::get('/get', [\App\Http\Controllers\MicrostepStationsController::class, 'get'])->name('map.MicrostepStations.get');
         });
