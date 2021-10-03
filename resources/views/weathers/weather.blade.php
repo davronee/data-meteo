@@ -83,7 +83,7 @@
                                     <i class="fas fa-wind"></i> @{{ item.wind_speed }} м/с @{{ item.wind_deg }}°<br>
                                     <!-- @{{ item.wind_deg }}° <br> -->
                                     <i class="fas fa-cloud-rain"></i> @{{ item.is_rain ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
+                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="openweather != null" v-for="i in 5-openweather.length" class="active">&nbsp;
                                 </td>
@@ -99,7 +99,7 @@
                                     item.day_wind_deg}}<br>
                                     <!-- @{{ item.day_wind_deg }}° @{{ item.day_wind_localized }}<br> -->
                                     <i class="fas fa-cloud-rain"></i> @{{ item.day_rain ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
+                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="accuweather != null" v-for="i in 5-accuweather.length" class="active">&nbsp;
                                 </td>
@@ -114,7 +114,7 @@
                                     <i class="fas fa-wind"></i> @{{ item.wind_spd }} м/с @{{ item.wind_cdir }} <br>
                                     <!-- @{{ item.wind_dir }}° @{{ item.wind_cdir }} <br> -->
                                     <i class="fas fa-cloud-rain"></i> @{{ item.precip ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
+                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="weatherbit != null" v-for="i in 5-weatherbit.length" class="active">&nbsp;
                                 </td>
@@ -126,7 +126,7 @@
                                     item.temperatureMax }}° <br>
                                     <i class="fas fa-wind"></i> @{{ item.windSpeed }} м/с <br>
                                     <i class="fas fa-cloud-rain"></i> @{{ item.precipIntensityMax ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
+                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="darksky != null" v-for="i in 5-darksky.length" class="active">&nbsp;</td>
                             </tr>
@@ -138,7 +138,7 @@
                                     <i class="fas fa-wind"></i> @{{ item.windSpeedKTS }} м/с @{{ item.windDir }} <br>
                                     <!-- @{{ item.windDirDEG }} @{{ item.windDir }} <br> -->
                                     <i class="fas fa-cloud-rain"></i> @{{ item.precipMM ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
+                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="Aerisweather != null" v-for="i in 5-Aerisweather.length" class="active">
                                     &nbsp;
@@ -156,7 +156,7 @@
                                     м/с<br>
                                     <!-- @{{ item.wind_direction }}°<br> -->
                                     <i class="fas fa-cloud-rain"></i> @{{ item.precipitation ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
+                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="typeof uzhydromet == 'object'" v-for="i in 5-uzhydromet.length"
                                     class="active">&nbsp;
