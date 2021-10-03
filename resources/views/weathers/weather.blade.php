@@ -1,35 +1,35 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ForeCast</title>
-        <!-- icons css -->
-        <link href="{{asset('template/lib/fontawesome5/css/all.min.css')}}" rel="stylesheet">
-        <link rel="stylesheet" href="{{asset('template/assets/css/weather-icons.min.css')}}">
-        <link rel="stylesheet" href="{{asset('template/assets/css/ionicons.min.css')}}">
-        <link rel="stylesheet" href="{{mix('css/app.css')}}">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ForeCast</title>
+    <!-- icons css -->
+    <link href="{{asset('template/lib/fontawesome5/css/all.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('template/assets/css/weather-icons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('template/assets/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{mix('css/app.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-        <script
-            src="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.js"
-            integrity="sha512-v5PfWsWi47/AZBVL7WMNqdbM1OMggp9Ce408yX/X9wg87Kjzb1xqpO2Ul0Oue8Vl9kKOcwPM2MWWkTbUjRxZOg=="
-            crossorigin="anonymous"
-        ></script>
+    <script
+        src="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.js"
+        integrity="sha512-v5PfWsWi47/AZBVL7WMNqdbM1OMggp9Ce408yX/X9wg87Kjzb1xqpO2Ul0Oue8Vl9kKOcwPM2MWWkTbUjRxZOg=="
+        crossorigin="anonymous"
+    ></script>
 
-        <link
-            rel="stylesheet"
-            href="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.css"
-            integrity="sha512-xY1TAM00L9X8Su9zNuJ8nBZsGQ8IklX703iq4gWnsw6xCg+McrHXEwbBkNaWFHSqmf6e7BpxD6aJQLKAcsGSdA=="
-            crossorigin="anonymous"
-        >
+    <link
+        rel="stylesheet"
+        href="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.css"
+        integrity="sha512-xY1TAM00L9X8Su9zNuJ8nBZsGQ8IklX703iq4gWnsw6xCg+McrHXEwbBkNaWFHSqmf6e7BpxD6aJQLKAcsGSdA=="
+        crossorigin="anonymous"
+    >
 
-        <script src="https://static.meteoblue.com/lib/maps-plugin/v0.x/maps-plugin.js"></script>
+    <script src="https://static.meteoblue.com/lib/maps-plugin/v0.x/maps-plugin.js"></script>
 
-    </head>
+</head>
 <body>
 
 <div class="container" id="app">
@@ -82,7 +82,8 @@
                                     <br>
                                     <i class="fas fa-wind"></i> @{{ item.wind_speed }} м/с @{{ item.wind_deg }}°<br>
                                     <!-- @{{ item.wind_deg }}° <br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.is_rain ? 'да' : 'n/a' }}
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.is_rain ? 'да' : 'n/a' }}<br>
+                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="openweather != null" v-for="i in 5-openweather.length" class="active">&nbsp;
                                 </td>
@@ -97,7 +98,8 @@
                                     <i class="fas fa-wind"></i> @{{ item.day_wind_speed }} м/с @{{
                                     item.day_wind_deg}}<br>
                                     <!-- @{{ item.day_wind_deg }}° @{{ item.day_wind_localized }}<br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.day_rain ? 'да' : 'n/a' }}
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.day_rain ? 'да' : 'n/a' }}<br>
+                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="accuweather != null" v-for="i in 5-accuweather.length" class="active">&nbsp;
                                 </td>
@@ -111,7 +113,8 @@
                                     <br>
                                     <i class="fas fa-wind"></i> @{{ item.wind_spd }} м/с @{{ item.wind_cdir }} <br>
                                     <!-- @{{ item.wind_dir }}° @{{ item.wind_cdir }} <br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precip ? 'да' : 'n/a' }}
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.precip ? 'да' : 'n/a' }}<br>
+                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="weatherbit != null" v-for="i in 5-weatherbit.length" class="active">&nbsp;
                                 </td>
@@ -122,7 +125,8 @@
                                     <i class="fas fa-temperature-low"></i> @{{ item.temperatureMin }}° - @{{
                                     item.temperatureMax }}° <br>
                                     <i class="fas fa-wind"></i> @{{ item.windSpeed }} м/с <br>
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipIntensityMax ? 'да' : 'n/a' }}
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipIntensityMax ? 'да' : 'n/a' }}<br>
+                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="darksky != null" v-for="i in 5-darksky.length" class="active">&nbsp;</td>
                             </tr>
@@ -133,7 +137,8 @@
                                     <br>
                                     <i class="fas fa-wind"></i> @{{ item.windSpeedKTS }} м/с @{{ item.windDir }} <br>
                                     <!-- @{{ item.windDirDEG }} @{{ item.windDir }} <br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipMM ? 'да' : 'n/a' }}
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipMM ? 'да' : 'n/a' }}<br>
+                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="Aerisweather != null" v-for="i in 5-Aerisweather.length" class="active">
                                     &nbsp;
@@ -150,7 +155,8 @@
                                     <i class="fas fa-wind"></i> @{{ item.wind_speed_min }} - @{{ item.wind_speed_max }}
                                     м/с<br>
                                     <!-- @{{ item.wind_direction }}°<br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipitation ? 'да' : 'n/a' }}
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipitation ? 'да' : 'n/a' }}<br>
+                                    <span v-if="item.temp_precent > 0">@{{ item.temp_precent }} %</span>
                                 </td>
                                 <td v-if="typeof uzhydromet == 'object'" v-for="i in 5-uzhydromet.length"
                                     class="active">&nbsp;
@@ -182,7 +188,10 @@
                     <div>
                         <h3>Метеограмма маълумотлари</h3>
                         <div class="overflow-hidden">
-                            <img src="https://my.meteoblue.com/visimage/meteogram_web?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=411710118d5a56101c8668701ce59b24" srcset="https://my.meteoblue.com/visimage/meteogram_web_hd?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=c7f9240bc1cb94e2b8b39dcc1055bb73 1.4x" alt="Meteogram - 5 days - Ташкент" style="margin-top: -40px; max-width:100%">
+                            <img
+                                src="https://my.meteoblue.com/visimage/meteogram_web?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=411710118d5a56101c8668701ce59b24"
+                                srcset="https://my.meteoblue.com/visimage/meteogram_web_hd?look=METER_PER_SECOND%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=ms-1&precipitationamount=mm&winddirection=3char&city=%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&iso2=uz&lat=41.2646&lon=69.2163&asl=424&tz=Asia%2FTashkent&lang=ru&sig=c7f9240bc1cb94e2b8b39dcc1055bb73 1.4x"
+                                alt="Meteogram - 5 days - Ташкент" style="margin-top: -40px; max-width:100%">
                         </div>
                     </div>
 
@@ -196,14 +205,14 @@
 <script src="{{mix('js/app.js')}}"></script>
 
 <script>
-    setTimeout(function() {
+    setTimeout(function () {
         var iframe = document.getElementById("test-map");
 
         iframe.contentWindow.document.querySelector(".gdpr_message").remove();
         iframe.contentWindow.document.querySelector(".navigation_scroll_container").remove();
         iframe.contentWindow.document.querySelector('.menu_mobile_container').remove();
 
-        setTimeout(function() {
+        setTimeout(function () {
             iframe.contentWindow.document.querySelector('.mapboxgl-canvas').style.width = '100% !important';
             iframe.contentWindow.document.querySelector('.wrapper').style.left = '0px';
             iframe.contentWindow.document.body.querySelector('[data-map-id="cloudsAndPrecipitation"]').click();
@@ -222,63 +231,87 @@
     <h3>Метеокарта маълумотлари</h3>
     <div class="text-left" style="margin-bottom: 55px;">
         <div id="loader" style="width: 100%; height: 600px; border:1px solid #ccc">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="70px" height="600px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 style="margin:auto;background:#fff;display:block;" width="70px" height="600px" viewBox="0 0 100 100"
+                 preserveAspectRatio="xMidYMid">
                 <g transform="rotate(0 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(30 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(60 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(90 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(120 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(150 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(180 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(210 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(240 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(270 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(300 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate>
-                  </rect>
-                </g><g transform="rotate(330 50 50)">
-                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
-                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
-                  </rect>
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.9166666666666666s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(30 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.8333333333333334s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(60 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s"
+                                 repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(90 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.6666666666666666s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(120 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.5833333333333334s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(150 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s"
+                                 repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(180 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.4166666666666667s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(210 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.3333333333333333s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(240 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s"
+                                 repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(270 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.16666666666666666s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(300 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s"
+                                 begin="-0.08333333333333333s" repeatCount="indefinite"></animate>
+                    </rect>
+                </g>
+                <g transform="rotate(330 50 50)">
+                    <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#1d3f72">
+                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s"
+                                 repeatCount="indefinite"></animate>
+                    </rect>
                 </g>
             </svg>
         </div>
-        <iframe id="test-map" src="{{ route('weather.map') }}" frameborder="0" width="100%" height="600px" class="none" />
+        <iframe id="test-map" src="{{ route('weather.map') }}" frameborder="0" width="100%" height="600px"
+                class="none"/>
     </div>
 </div>
-
-
 
 
 </body>

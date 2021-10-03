@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
             CreateUGMsSeeder::class,
             CreateAWSSeeder::class,
             HydrometSensorStationsSeeder::class,
+            AddRadars::class,
+            AddMicrostepStations::class,
+            AddWeatherCode::class,
+            AddWeatherRegions::class
         ]);
     }
 }

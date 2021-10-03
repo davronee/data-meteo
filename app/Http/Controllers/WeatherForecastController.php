@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Services;
 use App\Console\Commands\DarkSky;
 use App\Models\Accuweather;
 use App\Models\UzHydromet;
@@ -43,8 +44,8 @@ class WeatherForecastController extends Controller
         $subopenweather = \App\Models\OpenWeather::toBase()
             ->where('region', request('region', 'tashkent'))
             ->selectRaw('MAX(id) as id')
-            ->wheretime('datetime','<=',Carbon::now())
-            ->whereBetween('date',[Carbon::now()->format("Y-m-d"),Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->wheretime('datetime', '<=', Carbon::now())
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();
@@ -71,7 +72,7 @@ class WeatherForecastController extends Controller
         $subopenweather = Accuweather::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->wheretime('datetime','<=',Carbon::now())
+            ->wheretime('datetime', '<=', Carbon::now())
             ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
@@ -99,7 +100,7 @@ class WeatherForecastController extends Controller
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
             ->where('day_part', 'day')
-            ->wheretime('datetime','<=',Carbon::now())
+            ->wheretime('datetime', '<=', Carbon::now())
             ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
@@ -140,8 +141,7 @@ class WeatherForecastController extends Controller
         $subopenweather = \App\Models\Aerisweather::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->wheretime('datetime','<=',Carbon::now())
-
+            ->wheretime('datetime', '<=', Carbon::now())
             ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
             ->groupBy('date')
             ->pluck('id')
@@ -259,7 +259,8 @@ class WeatherForecastController extends Controller
         //
     }
 
-    public function maploader() {
+    public function maploader()
+    {
         // $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=4/41.26/69.22&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
         $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=5.12/41.27/66.1&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
         $output = file_get_contents($url);

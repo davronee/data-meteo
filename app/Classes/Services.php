@@ -16,6 +16,7 @@ use phpDocumentor\Reflection\Types\This;
 class Services
 {
 
+
     public static $regions = [
         'tashkent',
         'andijan',
@@ -141,23 +142,23 @@ class Services
                     $accuweather->save();
                 }
             }
-            foreach ($services['DailyForecasts'] as $service) {
-                if (!Accuweather::where('night_wind_speed', null)->where('datetime', Carbon::parse($service['Date']))->where('region', self::$regions[$key])->first()) {
-                    $accuweather = new Accuweather();
-                    $accuweather->datetime = Carbon::parse($service['Date']);
-                    $accuweather->date = Carbon::parse($service['Date']);
-                    $accuweather->region = self::$regions[$key];
-                    $accuweather->temp_min = round($service['Temperature']['Minimum']['Value']);
-                    $accuweather->temp_max = round($service['Temperature']['Maximum']['Value']);
-                    $accuweather->night_wind_speed = round($service['Night']['Wind']['Speed']['Value']);
-                    $accuweather->night_wind_deg = $service['Night']['Wind']['Direction']['Degrees'];
-                    $accuweather->night_wind_localized = $service['Night']['Wind']['Direction']['Localized'];
-                    $accuweather->night_wind_gust = $service['Night']['WindGust']['Speed']['Value'];
-                    if ($service['Night']['Rain']['Value'] > 0)
-                        $accuweather->night_rain = true;
-                    $accuweather->save();
-                }
-            }
+//            foreach ($services['DailyForecasts'] as $service) {
+//                if (!Accuweather::where('night_wind_speed', null)->where('datetime', Carbon::parse($service['Date']))->where('region', self::$regions[$key])->first()) {
+//                    $accuweather = new Accuweather();
+//                    $accuweather->datetime = Carbon::parse($service['Date']);
+//                    $accuweather->date = Carbon::parse($service['Date']);
+//                    $accuweather->region = self::$regions[$key];
+//                    $accuweather->temp_min = round($service['Temperature']['Minimum']['Value']);
+//                    $accuweather->temp_max = round($service['Temperature']['Maximum']['Value']);
+//                    $accuweather->night_wind_speed = round($service['Night']['Wind']['Speed']['Value']);
+//                    $accuweather->night_wind_deg = $service['Night']['Wind']['Direction']['Degrees'];
+//                    $accuweather->night_wind_localized = $service['Night']['Wind']['Direction']['Localized'];
+//                    $accuweather->night_wind_gust = $service['Night']['WindGust']['Speed']['Value'];
+//                    if ($service['Night']['Rain']['Value'] > 0)
+//                        $accuweather->night_rain = true;
+//                    $accuweather->save();
+//                }
+//            }
 
         }
 
@@ -288,6 +289,113 @@ class Services
                 }
             }
         }
+
+    }
+
+    public static function getSumm($temp1, $temp2)
+    {
+        return $temp1 + $temp2 / 2;
+
+    }
+
+    public static function Delta($tem_min, $temp_max, $current)
+    {
+
+        $psumm = self::getSumm($tem_min, $temp_max);
+        $temprature = abs($psumm - $current) / $current * 100;
+        $result_temp = 100 - $temprature;
+
+        return round($result_temp);
+    }
+
+    public static function CheckIsTrue()
+    {
+        foreach (self::$regions as $region) {
+            $subopenweather = \App\Models\OpenWeather::toBase()
+                ->where('region', $region)
+                ->selectRaw('MAX(id) as id')
+                ->wheretime('datetime', '<=', Carbon::now())
+                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                ->groupBy('date')
+                ->pluck('id')
+                ->toArray();
+            $openweather = \App\Models\OpenWeather::whereIn('id', $subopenweather)->first();
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $openweather->temp_precent = self::Delta($openweather->temp_min, $openweather->temp_max, $weather['air_t']);
+            $openweather->save();
+
+
+            $subopenweather = Accuweather::toBase()
+                ->selectRaw('MAX(id) as id')
+                ->where('region', $region)
+                ->wheretime('datetime', '<=', Carbon::now())
+                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                ->groupBy('date')
+                ->pluck('id')
+                ->toArray();
+
+            $accuweather = \App\Models\Accuweather::whereIn('id', $subopenweather)->first();
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $accuweather->temp_precent = self::Delta($accuweather->temp_min, $accuweather->temp_max, $weather['air_t']);
+            $accuweather->save();
+
+
+            $subopenweather = UzHydromet::toBase()
+                ->selectRaw('MAX(id) as id')
+                ->where('region', $region)
+                ->where('day_part', 'day')
+                ->wheretime('datetime', '<=', Carbon::now())
+                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                ->groupBy('date')
+                ->pluck('id')
+                ->toArray();
+            $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->first();
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
+            $gidromet->save();
+
+
+            $subopenweather = WeatherBit::toBase()
+                ->selectRaw('MAX(id) as id')
+                ->where('region', $region)
+                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                ->groupBy('date')
+                ->pluck('id')
+                ->toArray();
+            $weatherbit = \App\Models\WeatherBit::whereIn('id', $subopenweather)->first();
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
+            $weatherbit->save();
+
+
+            $subopenweather = \App\Models\DarkSky::toBase()
+                ->selectRaw('MAX(id) as id')
+                ->where('region', $region)
+                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                ->groupBy('date')
+                ->pluck('id')
+                ->toArray();;
+            $darksky = \App\Models\DarkSky::whereIn('id', $subopenweather)->first();
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
+            $darksky->save();
+
+
+            $subopenweather = \App\Models\Aerisweather::toBase()
+                ->selectRaw('MAX(id) as id')
+                ->where('region', $region)
+                ->wheretime('datetime', '<=', Carbon::now())
+                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                ->groupBy('date')
+                ->pluck('id')
+                ->toArray();
+            $aerisweather = \App\Models\Aerisweather::whereIn('id', $subopenweather)->first();
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
+            $aerisweather->save();
+        }
+
+//        return $openweather;
 
     }
 }
