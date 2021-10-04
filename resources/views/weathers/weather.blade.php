@@ -56,6 +56,9 @@
                         </select>
                     </div>
                 </div>
+                <div class="row-md-12">
+                    <p class="font-weight-bold">Сейчас: @{{ Math.round(openweather[0].factik) }}</p>
+                </div>
 
                 <div id="weather-table-wrapper">
                     <div class="form-group  table-responsive mb-25">

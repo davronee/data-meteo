@@ -322,6 +322,7 @@ class Services
             $openweather = \App\Models\OpenWeather::whereIn('id', $subopenweather)->first();
             $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
             $openweather->temp_precent = self::Delta($openweather->temp_min, $openweather->temp_max, $weather['air_t']);
+            $openweather->factik = $weather['air_t'];
             $openweather->save();
 
 
@@ -338,6 +339,7 @@ class Services
             if ($accuweather) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $accuweather->temp_precent = self::Delta($accuweather->temp_min, $accuweather->temp_max, $weather['air_t']);
+                $accuweather->factik = $weather['air_t'];
                 $accuweather->save();
             }
 
@@ -356,6 +358,7 @@ class Services
             if ($gidromet) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
+                $gidromet->factik = $weather['air_t'];
                 $gidromet->save();
             }
 
@@ -371,6 +374,7 @@ class Services
             if ($weatherbit) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
+                $weatherbit->factik = $weather['air_t'];
                 $weatherbit->save();
             }
 
@@ -386,6 +390,7 @@ class Services
             if ($darksky) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
+                $darksky->factik = $weather['air_t'];
                 $darksky->save();
 
             }
@@ -403,6 +408,7 @@ class Services
             if ($aerisweather) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
+                $aerisweather->factik = $weather['air_t'];
                 $aerisweather->save();
             }
 
