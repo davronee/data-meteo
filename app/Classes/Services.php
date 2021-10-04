@@ -294,7 +294,7 @@ class Services
 
     public static function getSumm($temp1, $temp2)
     {
-        return $temp1 + $temp2 / 2;
+        return ($temp1 + $temp2) / 2;
 
     }
 
@@ -302,7 +302,7 @@ class Services
     {
 
         $psumm = self::getSumm($tem_min, $temp_max);
-        $temprature = abs($psumm - $current) / $current * 100;
+        $temprature = (abs($psumm - $current)) / $current * 100;
         $result_temp = 100 - $temprature;
 
         return round($result_temp);
@@ -368,13 +368,11 @@ class Services
                 ->pluck('id')
                 ->toArray();
             $weatherbit = \App\Models\WeatherBit::whereIn('id', $subopenweather)->first();
-            if($weatherbit)
-            {
+            if ($weatherbit) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
                 $weatherbit->save();
             }
-
 
 
             $subopenweather = \App\Models\DarkSky::toBase()
@@ -385,8 +383,7 @@ class Services
                 ->pluck('id')
                 ->toArray();;
             $darksky = \App\Models\DarkSky::whereIn('id', $subopenweather)->first();
-            if($darksky)
-            {
+            if ($darksky) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
                 $darksky->save();
@@ -403,8 +400,7 @@ class Services
                 ->pluck('id')
                 ->toArray();
             $aerisweather = \App\Models\Aerisweather::whereIn('id', $subopenweather)->first();
-            if($aerisweather)
-            {
+            if ($aerisweather) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
                 $aerisweather->save();
