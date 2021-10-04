@@ -335,9 +335,11 @@ class Services
                 ->toArray();
 
             $accuweather = \App\Models\Accuweather::whereIn('id', $subopenweather)->first();
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $accuweather->temp_precent = self::Delta($accuweather->temp_min, $accuweather->temp_max, $weather['air_t']);
-            $accuweather->save();
+            if ($accuweather) {
+                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+                $accuweather->temp_precent = self::Delta($accuweather->temp_min, $accuweather->temp_max, $weather['air_t']);
+                $accuweather->save();
+            }
 
 
             $subopenweather = UzHydromet::toBase()
@@ -350,9 +352,12 @@ class Services
                 ->pluck('id')
                 ->toArray();
             $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->first();
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
-            $gidromet->save();
+
+            if ($gidromet) {
+                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+                $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
+                $gidromet->save();
+            }
 
 
             $subopenweather = WeatherBit::toBase()
@@ -363,9 +368,13 @@ class Services
                 ->pluck('id')
                 ->toArray();
             $weatherbit = \App\Models\WeatherBit::whereIn('id', $subopenweather)->first();
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
-            $weatherbit->save();
+            if($weatherbit)
+            {
+                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+                $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
+                $weatherbit->save();
+            }
+
 
 
             $subopenweather = \App\Models\DarkSky::toBase()
@@ -376,9 +385,13 @@ class Services
                 ->pluck('id')
                 ->toArray();;
             $darksky = \App\Models\DarkSky::whereIn('id', $subopenweather)->first();
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
-            $darksky->save();
+            if($darksky)
+            {
+                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+                $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
+                $darksky->save();
+
+            }
 
 
             $subopenweather = \App\Models\Aerisweather::toBase()
@@ -390,9 +403,13 @@ class Services
                 ->pluck('id')
                 ->toArray();
             $aerisweather = \App\Models\Aerisweather::whereIn('id', $subopenweather)->first();
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
-            $aerisweather->save();
+            if($aerisweather)
+            {
+                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+                $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
+                $aerisweather->save();
+            }
+
         }
 
 //        return $openweather;
