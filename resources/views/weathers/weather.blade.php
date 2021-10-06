@@ -57,7 +57,8 @@
                     </div>
                 </div>
                 <div class="row-md-12">
-                    <p class="font-weight-bold">Сейчас: @{{ Math.round(openweather[0].factik) }}</p>
+                    <p class="font-weight-bold">Сейчас: @{{ Math.round(openweather[0].factik) }}<a
+                            class="m-lg-5 text-decoration-none" href="{{route('weather.download')}}">Скачать</a></p>
                 </div>
 
                 <div id="weather-table-wrapper">

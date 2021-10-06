@@ -43,6 +43,7 @@ Route::prefix('weather')->group(function () {
     Route::get('/darksky', [\App\Http\Controllers\WeatherForecastController::class, 'GetDarkSky'])->name('weather.darksky');
     Route::get('/Aerisweather1', [\App\Http\Controllers\WeatherForecastController::class, 'GetAerisweather1'])->name('weather.Aerisweather1');
     Route::get('/ForecastApi', [\App\Http\Controllers\WeatherForecastController::class, 'ForecastApi'])->name('weather.ForecastApi');
+    Route::get('/download', [\App\Http\Controllers\WeatherForecastController::class, 'export'])->name('weather.download');
 });
 
 

@@ -344,8 +344,12 @@ class Services
                 $accuweather->save();
             }
 
+            $start = '07:00:00';
+            $end = '18:00:00';
+            $now = Carbon::now('UTC');
+            $time = $now->format('H:i:s');
 
-            if (Carbon::now()->hour > 18 && Carbon::now()->hour < 7) {
+            if ($time >= $start && $time <= $end) {
                 $subopenweather = UzHydromet::toBase()
                     ->selectRaw('MAX(id) as id')
                     ->where('region', request('region', 'tashkent'))
@@ -431,17 +435,117 @@ class Services
 
     }
 
+    public static function GetRu($region)
+    {
+        switch ($region) {
+            case 'tashkent':
+                return 'г. Ташкент';
+                break;
+            case 'andijan':
+                return 'Андижанская область';
+                break;
+            case 'bukhara':
+                return 'Бухарская область';
+                break;
+            case 'jizzakh':
+                return 'Джизакская область';
+                break;
+            case 'qarshi':
+                return 'Кашкадарьинская область';
+                break;
+            case 'navoiy':
+                return 'Навоийская область';
+                break;
+            case 'namangan':
+                return 'Наманганская область';
+                break;
+            case 'samarkand':
+                return 'Самаркандская область';
+                break;
+            case 'termez':
+                return 'Сурхандарьинская область';
+                break;
+            case 'gulistan':
+                return 'Сырдарьинская область';
+                break;
+            case 'gulistan':
+                return 'Сырдарьинская область';
+                break;
+            case 'nurafshon':
+                return 'Ташкентская область';
+                break;
+            case 'fergana':
+                return 'Ферганская область';
+                break;
+            case 'urgench':
+                return 'Хорезмская область';
+                break;
+            case 'nukus':
+                return 'Республика Каракалпакстан';
+                break;
+        }
+
+    }
+
 
     public static function GetReport($model, $s_hour, $f_hour, $region = 'tashkent')
     {
 
-        $startDate = Carbon::now()->subHour($s_hour);
-        $endDate = Carbon::now()->subHour($f_hour);
-        $objects = DB::table($model)
-            ->where('region', $region)
-            ->whereBetween('datetime', [$endDate, $startDate])
-            ->get();
-        return $objects;
+        if ($model == 'uz_hydromets') {
+            $startDate = Carbon::now()->subHour($s_hour);
+            $endDate = Carbon::now()->subHour($f_hour);
+            $objects = DB::table($model)
+                ->where('day_part', 'day')
+                ->where('region', $region)
+                ->whereBetween('datetime', [$endDate, $startDate])
+                ->get();
+        } else {
+            $startDate = Carbon::now()->subHour($s_hour);
+            $endDate = Carbon::now()->subHour($f_hour);
+            $objects = DB::table($model)
+                ->where('region', $region)
+                ->whereBetween('datetime', [$endDate, $startDate])
+                ->get();
+        }
+
+
+        $summ = 0;
+        $total = 0;
+        foreach ($objects as $key => $object) {
+            $total += $object->temp_precent;
+        }
+
+        return round($total / count($objects));
 
     }
+
+    public static function GetReportAll($model, $s_hour, $f_hour)
+    {
+
+        if ($model == 'uz_hydromets') {
+            $startDate = Carbon::now()->subHour($s_hour);
+            $endDate = Carbon::now()->subHour($f_hour);
+            $objects = DB::table($model)
+                ->where('day_part', 'day')
+                ->whereBetween('datetime', [$endDate, $startDate])
+                ->get();
+        } else {
+            $startDate = Carbon::now()->subHour($s_hour);
+            $endDate = Carbon::now()->subHour($f_hour);
+            $objects = DB::table($model)
+                ->whereBetween('datetime', [$endDate, $startDate])
+                ->get();
+        }
+
+
+        $summ = 0;
+        $total = 0;
+        foreach ($objects as $key => $object) {
+            $total += $object->temp_precent;
+        }
+
+        return round($total / count($objects));
+
+    }
+
 }

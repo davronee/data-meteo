@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes\Services;
 use App\Console\Commands\DarkSky;
+use App\Exports\ExportUzHydromet;
 use App\Models\Accuweather;
 use App\Models\UzHydromet;
 use App\Models\WeatherBit;
@@ -11,6 +12,7 @@ use App\Models\WeatherForecast;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WeatherForecastController extends Controller
 {
@@ -22,7 +24,6 @@ class WeatherForecastController extends Controller
     public function index()
     {
 
-//        return Services::GetReport('uz_hydromets', 12, 72, 'tashkent');
         return view('weathers.weather');
     }
 
@@ -98,8 +99,11 @@ class WeatherForecastController extends Controller
                 $take = 9;
                 break;
         }
-
-        if (Carbon::now()->hour > 18 && Carbon::now()->hour < 7) {
+        $start = '07:00:00';
+        $end = '18:00:00';
+        $now = Carbon::now('UTC');
+        $time = $now->format('H:i:s');
+        if ($time >= $start && $time <= $end) {
             $subopenweather = UzHydromet::toBase()
                 ->selectRaw('MAX(id) as id')
                 ->where('region', request('region', 'tashkent'))
@@ -281,5 +285,10 @@ class WeatherForecastController extends Controller
         $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=5.12/41.27/66.1&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
         $output = file_get_contents($url);
         print $output;
+    }
+
+    public function export()
+    {
+        return Excel::download(new ExportUzHydromet, 'report.xlsx');
     }
 }
