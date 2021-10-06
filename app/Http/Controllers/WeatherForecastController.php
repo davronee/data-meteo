@@ -22,6 +22,7 @@ class WeatherForecastController extends Controller
     public function index()
     {
 
+//        return Services::GetReport('uz_hydromets', 12, 72, 'tashkent');
         return view('weathers.weather');
     }
 
@@ -98,8 +99,7 @@ class WeatherForecastController extends Controller
                 break;
         }
 
-        if(Carbon::now()->hour > 18 && Carbon::now()->hour < 7 )
-        {
+        if (Carbon::now()->hour > 18 && Carbon::now()->hour < 7) {
             $subopenweather = UzHydromet::toBase()
                 ->selectRaw('MAX(id) as id')
                 ->where('region', request('region', 'tashkent'))
@@ -109,9 +109,7 @@ class WeatherForecastController extends Controller
                 ->groupBy('date')
                 ->pluck('id')
                 ->toArray();
-        }
-        else
-        {
+        } else {
             $subopenweather = UzHydromet::toBase()
                 ->selectRaw('MAX(id) as id')
                 ->where('region', request('region', 'tashkent'))

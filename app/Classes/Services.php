@@ -10,6 +10,7 @@ use App\Models\UzHydromet;
 use App\Models\WeatherBit;
 use Carbon\Carbon;
 use http\Env\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use phpDocumentor\Reflection\Types\This;
 
@@ -344,15 +345,27 @@ class Services
             }
 
 
-            $subopenweather = UzHydromet::toBase()
-                ->selectRaw('MAX(id) as id')
-                ->where('region', $region)
-                ->where('day_part', 'day')
-                ->wheretime('datetime', '<=', Carbon::now())
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                ->groupBy('date')
-                ->pluck('id')
-                ->toArray();
+            if (Carbon::now()->hour > 18 && Carbon::now()->hour < 7) {
+                $subopenweather = UzHydromet::toBase()
+                    ->selectRaw('MAX(id) as id')
+                    ->where('region', request('region', 'tashkent'))
+                    ->where('day_part', 'night')
+                    ->wheretime('datetime', '<=', Carbon::now())
+                    ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                    ->groupBy('date')
+                    ->pluck('id')
+                    ->toArray();
+            } else {
+                $subopenweather = UzHydromet::toBase()
+                    ->selectRaw('MAX(id) as id')
+                    ->where('region', request('region', 'tashkent'))
+                    ->where('day_part', 'day')
+                    ->wheretime('datetime', '<=', Carbon::now())
+                    ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                    ->groupBy('date')
+                    ->pluck('id')
+                    ->toArray();
+            }
             $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->first();
 
             if ($gidromet) {
@@ -415,6 +428,20 @@ class Services
         }
 
 //        return $openweather;
+
+    }
+
+
+    public static function GetReport($model, $s_hour, $f_hour, $region = 'tashkent')
+    {
+
+        $startDate = Carbon::now()->subHour($s_hour);
+        $endDate = Carbon::now()->subHour($f_hour);
+        $objects = DB::table($model)
+            ->where('region', $region)
+            ->whereBetween('datetime', [$endDate, $startDate])
+            ->get();
+        return $objects;
 
     }
 }

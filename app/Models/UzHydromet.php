@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class UzHydromet extends Model
 {
     use HasFactory;
+
+    protected $dates = [
+        'created_at',
+        'updatet_at',
+        'datetime',
+    ];
 }
