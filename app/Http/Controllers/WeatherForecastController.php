@@ -24,6 +24,7 @@ class WeatherForecastController extends Controller
     public function index()
     {
 
+
         return view('weathers.weather');
     }
 
@@ -107,7 +108,7 @@ class WeatherForecastController extends Controller
             $subopenweather = UzHydromet::toBase()
                 ->selectRaw('MAX(id) as id')
                 ->where('region', request('region', 'tashkent'))
-                ->where('day_part', 'night')
+                ->where('day_part', 'day')
                 ->wheretime('datetime', '<=', Carbon::now())
                 ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
                 ->groupBy('date')
@@ -117,7 +118,7 @@ class WeatherForecastController extends Controller
             $subopenweather = UzHydromet::toBase()
                 ->selectRaw('MAX(id) as id')
                 ->where('region', request('region', 'tashkent'))
-                ->where('day_part', 'day')
+                ->where('day_part', 'night')
                 ->wheretime('datetime', '<=', Carbon::now())
                 ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
                 ->groupBy('date')
