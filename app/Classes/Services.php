@@ -352,7 +352,7 @@ class Services
             if ($time >= $start && $time <= $end) {
                 $subopenweather = UzHydromet::toBase()
                     ->selectRaw('MAX(id) as id')
-                    ->where('region', request('region', 'tashkent'))
+                    ->where('region', $region)
                     ->where('day_part', 'night')
                     ->wheretime('datetime', '<=', Carbon::now())
                     ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
@@ -362,7 +362,7 @@ class Services
             } else {
                 $subopenweather = UzHydromet::toBase()
                     ->selectRaw('MAX(id) as id')
-                    ->where('region', request('region', 'tashkent'))
+                    ->where('region', $region)
                     ->where('day_part', 'day')
                     ->wheretime('datetime', '<=', Carbon::now())
                     ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
