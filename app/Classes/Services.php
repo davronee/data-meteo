@@ -371,13 +371,11 @@ class Services
                     ->toArray();
             }
             $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->first();
-
-            if ($gidromet) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
                 $gidromet->factik = $weather['air_t'];
                 $gidromet->save();
-            }
+
 
 
             $subopenweather = WeatherBit::toBase()
