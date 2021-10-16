@@ -1087,7 +1087,7 @@
                                                         "<td>" + parseFloat(response.data[7].Value).toFixed(2) + " " + response.data[7].Unit + "</td>" +
                                                         "</tr>" +
                                                         "</table>" +
-                                                        "<a href='https://monitoring.meteo.uz/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                        "<a href='https://monitoring.meteo.uz/ru/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
                                                 })
                                                 .catch(error => {
                                                     console.log(error)
@@ -1134,7 +1134,7 @@
                                                         "<td>" + parseFloat(response.data[7].Value).toFixed(2) + " " + response.data[7].Unit + "</td>" +
                                                         "</tr>" +
                                                         "</table>" +
-                                                        "<a href='https://monitoring.meteo.uz/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                        "<a href='https://monitoring.meteo.uz/ru/map/view/107' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
                                                 })
                                                 .catch(error => {
                                                     console.log(error)
