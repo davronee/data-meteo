@@ -1530,15 +1530,15 @@
                                                 "<td>" + response.data.stp + " гПа </td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>@lang('map.10_the_amount_precipitation_during')</b></td>" +
+                                                "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
                                                 "<td>" + response.data.prsp + " мм </td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
+                                                "<td><b>@lang('map_chine.10_the_average_direction_wind_during')</b></td>" +
                                                 "<td>" + response.data.wd + " ° </td>" +
                                                 "</tr>" +
                                                 "<tr>" +
-                                                "<td><b>@lang('map.10_average_wind_speed_during')</b></td>" +
+                                                "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
                                                 "<td>" + response.data.ws + " м/с </td>" +
                                                 "</tr>" +
                                                 "<tr>" +
