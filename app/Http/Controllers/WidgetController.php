@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meteo;
 use App\Models\Radar;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -436,5 +437,33 @@ class WidgetController extends Controller
         return $horiba;
     }
 
+    public function ChineStations()
+    {
+        $stations = Http::get('http://192.168.10.226:7777/allStations.php?station_id=43')->json();
+        return $stations;
+    }
+
+    public function ChineStationCurrent(Request $request)
+    {
+        $stations = Http::get('http://192.168.10.226:7777',[
+            'station_id'=>$request->station_id,
+            'year'=>Carbon::now()->year,
+            'month'=>Carbon::now()->month,
+        ])->json();
+
+
+        $date = date_create($stations[1]);
+
+        return [
+            'station_id'=>$request->station_id,
+            'datetime'=>date_format($date, 'd.m.Y H:i:s'),
+            'ws'=>number_format($stations[2] / 10,1),
+            'wd'=>number_format($stations[3],1),
+            'prsp'=> number_format($stations[4],1),
+            'temp'=>number_format($stations[5] / 10,1),
+            'hr'=>number_format($stations[6],1),
+            'stp'=>number_format($stations[13],1),
+        ];
+    }
 }
 

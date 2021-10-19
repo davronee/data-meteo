@@ -92,7 +92,6 @@ Route::group(['middleware' => ['set_locale']], function () {
         });
 
 
-
         Route::prefix('MicrostepStations')->group(function () {
             Route::get('/get', [\App\Http\Controllers\MicrostepStationsController::class, 'get'])->name('map.MicrostepStations.get');
         });
@@ -154,5 +153,11 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     Route::get('/hydrometmap', [\App\Http\Controllers\CalciteController::class, 'HydrometMap'])->name('hydromet.map');
     Route::get('/weathermap', [\App\Http\Controllers\WeatherForecastController::class, 'maploader'])->name('weather.map');
+
+
+    Route::prefix('chines')->group(function () {
+        Route::get('/stations', [\App\Http\Controllers\WidgetController::class, 'ChineStations'])->name('weather.chine.station');
+        Route::get('/ChineStationCurrent', [\App\Http\Controllers\WidgetController::class, 'ChineStationCurrent'])->name('weather.chine.ChineStationCurrent');
+    });
 });
 
