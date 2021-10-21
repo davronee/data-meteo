@@ -586,6 +586,14 @@ img.leaflet-marker-icon[src*="meteo_china.png"] {
     filter: hue-rotate(45deg);
 
 }
+img.leaflet-marker-icon[src*="meteo_china.png"] {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px #000;
+    background-color: #2f3ead;
+    filter: hue-rotate(530deg);
+
+}
 
 #zoomCheck {
     display: none;
