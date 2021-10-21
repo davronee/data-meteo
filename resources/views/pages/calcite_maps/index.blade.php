@@ -1507,7 +1507,7 @@
 
                     this.ChineStation.forEach(function (item, i, arr) {
                             var meteoIcon = L.icon({
-                                iconUrl: '{{asset('images/meteo_china.png')}}',
+                                iconUrl: '{{asset('images/meteo_agro.png')}}',
                                 iconSize: [28, 28], // size of the icon
                                 class: "station china"
                             });
