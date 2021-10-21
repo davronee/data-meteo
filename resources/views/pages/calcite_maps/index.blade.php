@@ -1507,7 +1507,7 @@
 
                     this.ChineStation.forEach(function (item, i, arr) {
                             var meteoIcon = L.icon({
-                                iconUrl: '{{asset('images/meteo_agro.png')}}',
+                                iconUrl: '{{asset('images/meteo_china.png')}}',
                                 iconSize: [28, 28], // size of the icon
                                 class: "station china"
                             });
@@ -1868,7 +1868,7 @@
                             if ((item.Metadata.Latitude !== null && item.Metadata.Longitude !== null) && (item.Id == 59 || item.Id == 60 || item.Id == 61 || item.Id == 62 || item.Id == 63 || item.Id == 64 || item.Id == 55 || item.Id == 57 || item.Id == 53 || item.Id == 58 || item.Id == 54 || item.Id == 56)) {
 
                                 var meteoIconAgro = L.icon({
-                                    iconUrl: '{{asset('images/meteo.png')}}',
+                                    iconUrl: '{{asset('images/meteo_agro.png')}}',
                                     iconSize: [28, 28], // size of the icon
                                     class: "station"
                                 });
