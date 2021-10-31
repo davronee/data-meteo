@@ -371,11 +371,10 @@ class Services
                     ->toArray();
             }
             $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->first();
-                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-                $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
-                $gidromet->factik = $weather['air_t'];
-                $gidromet->save();
-
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
+            $gidromet->factik = $weather['air_t'];
+            $gidromet->save();
 
 
             $subopenweather = WeatherBit::toBase()
@@ -520,20 +519,12 @@ class Services
     public static function GetReportAll($model, $s_hour, $f_hour)
     {
 
-        if ($model == 'uz_hydromets') {
-            $startDate = Carbon::now()->subHour($s_hour);
-            $endDate = Carbon::now()->subHour($f_hour);
-            $objects = DB::table($model)
-                ->where('day_part', 'day')
-                ->whereBetween('datetime', [$endDate, $startDate])
-                ->get();
-        } else {
-            $startDate = Carbon::now()->subHour($s_hour);
-            $endDate = Carbon::now()->subHour($f_hour);
-            $objects = DB::table($model)
-                ->whereBetween('datetime', [$endDate, $startDate])
-                ->get();
-        }
+
+        $startDate = Carbon::now()->subHour($s_hour);
+        $endDate = Carbon::now()->subHour($f_hour);
+        $objects = DB::table($model)
+            ->whereBetween('datetime', [$endDate, $startDate])
+            ->get();
 
 
         $summ = 0;
