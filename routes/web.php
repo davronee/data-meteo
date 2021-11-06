@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AwdController;
 use App\Http\Controllers\HomeController;
@@ -159,5 +161,28 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/stations', [\App\Http\Controllers\WidgetController::class, 'ChineStations'])->name('weather.chine.station');
         Route::get('/ChineStationCurrent', [\App\Http\Controllers\WidgetController::class, 'ChineStationCurrent'])->name('weather.chine.ChineStationCurrent');
     });
+});
+
+
+Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
+
+//    \Illuminate\Support\Facades\Log::info([request()->ips()]);
+    $telegramUrl = "https://api.telegram.org/bot";
+    $chatId = -1001729729483;
+
+    $token = "2145533401:AAEhqjGkVZUcIk_LJaMtqnQPLshoK092D0c";
+    $url = $telegramUrl . $token . "/sendMessage?chat_id=" . $chatId;
+    $text = "&parse_mode=html&text=" . "<b>" . Carbon::now()->format('d.m.y H:i:s') . " </b>" . PHP_EOL . PHP_EOL ;
+
+
+    foreach (request()->ips() as $ips)
+    {
+        $text .= "<b>IP: </b>" . $ips.PHP_EOL;
+    }
+
+
+    $res = Http::withOptions(['verify' => false])->get($url . $text);
+
+    return $res->json();
 });
 
