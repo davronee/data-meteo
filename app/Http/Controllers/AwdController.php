@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AfganDb;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -53,7 +54,7 @@ class AwdController extends Controller
 
         return response()->json([
             'stationId'=>$data[0],
-            'datatime'=>$data[1],
+            'datatime'=> Carbon::parse($data[1])->addHours(5)->format('d.m.Y H:i:s'),
             'winddirect1min_avrg'=>$data[2],
             'windspeed1min_avrg'=>$data[3],
             'winddirect1min_max'=>$data[4],
