@@ -54,7 +54,7 @@ class AwdController extends Controller
 
         return response()->json([
             'stationId'=>$data[0],
-            'datatime'=> Carbon::parse($data[1])->addHours(5)->addMinutes(30)->format('d.m.Y H:i:s'),
+            'datatime'=> Carbon::parse($data[1])->addHours(4)->addMinutes(30)->format('d.m.Y H:i:s'),
             'winddirect1min_avrg'=>$data[2],
             'windspeed1min_avrg'=>$data[3],
             'winddirect1min_max'=>$data[4],
