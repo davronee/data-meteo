@@ -509,7 +509,7 @@
                 {{--    }).addTo(map);;--}}
                 {{--    marker2.fire('click');--}}
 
-                var marker2 = L.marker([parseFloat(67.114197), parseFloat(36.744187)], {icon: meteoIcon1}).on('click', function () {
+                var marker2 = L.marker([parseFloat(36.744187), parseFloat(67.114197)], {icon: meteoIcon1}).on('click', function () {
                     axios.get('{{route('map.GetAvganData.get')}}')
                         .then(function (response) {
                             console.log(response.data.obsTimeLocal)
