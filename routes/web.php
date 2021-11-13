@@ -100,6 +100,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
         Route::prefix('MeteoinfocomStationData')->group(function () {
             Route::get('/get', [\App\Http\Controllers\AwdController::class, 'GetMeteoinfocomStationData'])->name('map.MeteoinfocomStationData.get');
+            Route::get('/avgan', [\App\Http\Controllers\AwdController::class, 'GetAvganData'])->name('map.GetAvganData.get');
         });
 
     });
@@ -172,12 +173,11 @@ Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
 
     $token = "2145533401:AAEhqjGkVZUcIk_LJaMtqnQPLshoK092D0c";
     $url = $telegramUrl . $token . "/sendMessage?chat_id=" . $chatId;
-    $text = "&parse_mode=html&text=" . "<b>" . Carbon::now()->format('d.m.y H:i:s') . " </b>" . PHP_EOL . PHP_EOL ;
+    $text = "&parse_mode=html&text=" . "<b>" . Carbon::now()->format('d.m.y H:i:s') . " </b>" . PHP_EOL . PHP_EOL;
 
 
-    foreach (request()->ips() as $ips)
-    {
-        $text .= "<b>IP: </b>" . $ips.PHP_EOL;
+    foreach (request()->ips() as $ips) {
+        $text .= "<b>IP: </b>" . $ips . PHP_EOL;
     }
 
 
