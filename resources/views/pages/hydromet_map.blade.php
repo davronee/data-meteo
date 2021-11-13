@@ -515,7 +515,7 @@
                             console.log(response.data.obsTimeLocal)
                             marker2.bindPopup("" +
                                 "<table class='table table-bordered'>" +
-                                "<tr ><td colspan='2' class='text-center'><b>UZ-METEO2021-01</b></td></tr>" +
+                                "<tr ><td colspan='2' class='text-center'><b>UZ-METEO2021 Vaisala (аэропорт)</b></td></tr>" +
                                 "<tr>" +
                                 "<td><b>дата и время</b></td>" +
                                 "<td>" + app.checktoUndefine(response.data.datatime) + "</td>" +
