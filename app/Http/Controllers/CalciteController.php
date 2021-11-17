@@ -28,6 +28,7 @@ class CalciteController extends Controller
         $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations');
 
         $hydrometStations = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
+        $hydrometMini = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
 
         $microstations = MicrostepStations::get();
 
@@ -52,8 +53,6 @@ class CalciteController extends Controller
             'hydrometstation' => $hydrometStations
         ]);
     }
-
-
 
 
 }

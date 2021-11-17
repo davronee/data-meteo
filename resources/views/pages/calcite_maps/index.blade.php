@@ -315,6 +315,7 @@
                         <option value="sputnik">@lang('map.metep_sputnik')</option>
                         <option value="water">@lang('map.kadaster_water')</option>
                         <optgroup label="@lang('map.auto_meteo')">
+                            <option value="mini">@lang('map.mini_station')</option>
                             <option value="awd">@lang('map.meteo_auto')</option>
                             <option value="meteo_agro">@lang('map.agro_auto')</option>
                         </optgroup>
@@ -404,6 +405,7 @@
     var markers_atmasfera = L.featureGroup();
     var markers_awd = L.featureGroup();
     var markers_agro = L.featureGroup();
+    var markers_mini = L.featureGroup();
     var markers_forecast = L.featureGroup();
     // var markers_atmasfera = L.featureGroup();
     var markers_snow = L.featureGroup();
@@ -424,6 +426,7 @@
             snow: false,
             awd: false,
             agro: false,
+            mini: false,
             awds:@json($stations),
             ChineStation:@json($chinesstations),
             microstep:@json($microstations),
@@ -2113,6 +2116,78 @@
 
                 }
             },
+            GetMini: function () {
+                if (this.mini) {
+                    // console.log(this.awds['Stations'][0].Metadata.Longitude);
+                    // var marker = L.marker([parseFloat(this.awds['Stations'][0].Metadata.Latitude), parseFloat(this.awds['Stations'][1].Metadata.Longitude)]).addTo(map);
+
+                    var meteoIcon1 = L.icon({
+                        iconUrl: '{{asset('images/meteo.png')}}',
+                        iconSize: [28, 28], // size of the icon
+                        class: "station"
+                    });
+                    var marker2 = L.marker([parseFloat(41.34564477332897), parseFloat(69.28504212769195)], {icon: meteoIcon1}).on('click', function () {
+                        axios.get('{{route('map.MeteoinfocomStationData.get')}}')
+                            .then(function (response) {
+                                console.log(response.data.obsTimeLocal)
+                                marker2.bindPopup("" +
+                                    "<table class='table table-bordered'>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>UZMETEO-2021</b></td></tr>" +
+                                    "<tr>" +
+                                    "<td><b>дата и время</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.obsTimeLocal) + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>температура воздуха за измеряемый период</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.temp, '°C') + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>точка росы<b/></td>" +
+                                    "<td>" + response.data.metric.dewpt + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>скорость ветра</b></td>" +
+                                    "<td>" + response.data.metric.windSpeed + 'm/c' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>Давление, приведенное к уровню моря</b></td>" +
+                                    "<td>" + response.data.metric.pressure + 'mB' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>направление ветра</b></td>" +
+                                    "<td>" + response.data.metric.windChill + '°' + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>высота станции</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>осадка</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.metric.precipRate) + "</td>" +
+                                    "</tr>" +
+                                    "</table>"
+                                )
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    });
+                    marker2.fire('click');
+
+                    markers_mini.addLayer(marker2);
+
+                    map.addLayer(markers_mini);
+
+
+                } else {
+                    markers_mini.clearLayers();
+
+                }
+            },
 
             getForecast: function () {
                 if (this.forcastTemp) {
@@ -2703,6 +2778,7 @@
                 if (this.menu == 'fakt') {
 
                     this.currentTemp = true;
+                    this.mini = false;
                     this.forcastTemp = false;
                     this.atmTemp = false;
                     this.radar = false;
@@ -2722,6 +2798,7 @@
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'atmosphere') {
@@ -2732,6 +2809,7 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.mini = false;
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
@@ -2748,6 +2826,7 @@
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'locator') {
@@ -2760,6 +2839,7 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.mini = false;
 
 
                     this.getRadars();
@@ -2772,6 +2852,7 @@
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'snow') {
@@ -2784,6 +2865,7 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.mini = false;
 
 
                     this.getSnow();
@@ -2796,6 +2878,7 @@
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'awd') {
@@ -2808,6 +2891,7 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.mini = false;
 
 
                     this.getawd();
@@ -2820,6 +2904,7 @@
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'aero') {
@@ -2832,6 +2917,7 @@
                     this.aero = true;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.mini = false;
 
 
                     this.getAeroport();
@@ -2844,6 +2930,7 @@
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'forecast') {
@@ -2856,6 +2943,7 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.mini = false;
 
 
                     this.getForecast();
@@ -2868,6 +2956,7 @@
                     markers_awd.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'meteo_agro') {
@@ -2880,6 +2969,7 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = true;
+                    this.mini = false;
 
 
                     this.getAgro();
@@ -2892,6 +2982,33 @@
                     markers_awd.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_forecast.clearLayers();
+                    markers_mini.clearLayers();
+
+
+                } else if (this.menu == 'mini') {
+                    this.currentTemp = false;
+                    this.forcastTemp = false;
+                    this.atmTemp = false;
+                    this.radar = false;
+                    this.awd = false;
+                    this.snow = false;
+                    this.aero = false;
+                    this.dangerzones = false;
+                    this.agro = false;
+                    this.mini = true;
+
+
+                    this.GetMini();
+
+                    markers_radar.clearLayers();
+                    markers_atmasfera.clearLayers();
+                    markers_weather.clearLayers();
+                    markers_snow.clearLayers();
+                    markers_aero.clearLayers();
+                    markers_awd.clearLayers();
+                    markers_dangerzones.clearLayers();
+                    markers_forecast.clearLayers();
+                    markers_agro.clearLayers();
 
 
                 } else if (this.menu == 'AtmZasuha' ||
@@ -2913,6 +3030,7 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.mini = false;
                     this.aero = false;
                     this.dangerzones = true;
                     this.agro = false;
@@ -2929,6 +3047,7 @@
                     markers_awd.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 }
