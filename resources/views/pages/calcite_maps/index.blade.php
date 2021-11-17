@@ -428,7 +428,7 @@
             agro: false,
             mini: false,
             awds:@json($stations),
-            {{--ChineStation:@json($chinesstations),--}}
+            ChineStation:@json($chinesstations),
             microstep:@json($microstations),
             hydrometStations:@json($hydrometstation),
             menu: 'forecast',
@@ -1509,73 +1509,73 @@
                     );
 
 
-                    {{--this.ChineStation.forEach(function (item, i, arr) {--}}
-                    {{--        var meteoIcon = L.icon({--}}
-                    {{--            iconUrl: '{{asset('images/meteo_china.png')}}',--}}
-                    {{--            iconSize: [28, 28], // size of the icon--}}
-                    {{--            class: "station china"--}}
-                    {{--        });--}}
+                    this.ChineStation.forEach(function (item, i, arr) {
+                            var meteoIcon = L.icon({
+                                iconUrl: '{{asset('images/meteo_china.png')}}',
+                                iconSize: [28, 28], // size of the icon
+                                class: "station china"
+                            });
 
-                    {{--        if (item.Latitude !== null && item.Longitude !== null) {--}}
+                            if (item.Latitude !== null && item.Longitude !== null) {
 
-                    {{--            var marker = L.marker([parseFloat(item.Latitude), parseFloat(item.Longitude)], {icon: meteoIcon}).on('click', function () {--}}
-                    {{--                axios.get('{{route('weather.chine.ChineStationCurrent')}}', {--}}
-                    {{--                    params: {--}}
-                    {{--                        station_id: item.WeatherStationId--}}
-                    {{--                    }--}}
-                    {{--                })--}}
-                    {{--                    .then(function (response) {--}}
+                                var marker = L.marker([parseFloat(item.Latitude), parseFloat(item.Longitude)], {icon: meteoIcon}).on('click', function () {
+                                    axios.get('{{route('weather.chine.ChineStationCurrent')}}', {
+                                        params: {
+                                            station_id: item.WeatherStationId
+                                        }
+                                    })
+                                        .then(function (response) {
 
-                    {{--                        marker.bindPopup("" +--}}
-                    {{--                            "<table class='table table-bordered'>" +--}}
-                    {{--                            "<tr ><td class='text-center' colspan='2'><b>" + item.WeatherStationName + "</b></td></tr>" +--}}
-                    {{--                            "<tr>" +--}}
-                    {{--                            "<td><b>@lang('map.air_temperature')</b></td>" +--}}
-                    {{--                            "<td>" + response.data.temp + " °C </td>" +--}}
-                    {{--                            "</tr>" +--}}
-                    {{--                            "<tr>" +--}}
-                    {{--                            "<td><b>@lang('map.relative_humidity')</b></td>" +--}}
-                    {{--                            "<td>" + response.data.hr + " % </td>" +--}}
-                    {{--                            "</tr>" +--}}
-                    {{--                            "<tr>" +--}}
-                    {{--                            "<td><b>@lang('map.current_pressure')<b/></td>" +--}}
-                    {{--                            "<td>" + response.data.stp + " гПа </td>" +--}}
-                    {{--                            "</tr>" +--}}
-                    {{--                            "<tr>" +--}}
-                    {{--                            "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +--}}
-                    {{--                            "<td>" + response.data.prsp + " мм </td>" +--}}
-                    {{--                            "</tr>" +--}}
-                    {{--                            "<tr>" +--}}
-                    {{--                            "<td><b>@lang('map_chine.10_the_average_direction_wind_during')</b></td>" +--}}
-                    {{--                            "<td>" + response.data.wd + " ° </td>" +--}}
-                    {{--                            "</tr>" +--}}
-                    {{--                            "<tr>" +--}}
-                    {{--                            "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +--}}
-                    {{--                            "<td>" + response.data.ws + " м/с </td>" +--}}
-                    {{--                            "</tr>" +--}}
-                    {{--                            "<tr>" +--}}
-                    {{--                            "<td><b>@lang('map.date')</b></td>" +--}}
-                    {{--                            "<td>" + response.data.datetime + "</td>" +--}}
-                    {{--                            "</tr>" +--}}
-                    {{--                            "</table>"--}}
-                    {{--                        )--}}
-                    {{--                    })--}}
-                    {{--                    .catch(function (error) {--}}
-                    {{--                        // handle error--}}
-                    {{--                        console.log(error + item.Id);--}}
-                    {{--                    })--}}
-                    {{--                    .then(function () {--}}
-                    {{--                        // always executed--}}
-                    {{--                    });--}}
-                    {{--            });--}}
-                    {{--            marker.fire('click');--}}
+                                            marker.bindPopup("" +
+                                                "<table class='table table-bordered'>" +
+                                                "<tr ><td class='text-center' colspan='2'><b>" + item.WeatherStationName + "</b></td></tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.air_temperature')</b></td>" +
+                                                "<td>" + response.data.temp + " °C </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.relative_humidity')</b></td>" +
+                                                "<td>" + response.data.hr + " % </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                                "<td>" + response.data.stp + " гПа </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
+                                                "<td>" + response.data.prsp + " мм </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map_chine.10_the_average_direction_wind_during')</b></td>" +
+                                                "<td>" + response.data.wd + " ° </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
+                                                "<td>" + response.data.ws + " м/с </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.date')</b></td>" +
+                                                "<td>" + response.data.datetime + "</td>" +
+                                                "</tr>" +
+                                                "</table>"
+                                            )
+                                        })
+                                        .catch(function (error) {
+                                            // handle error
+                                            console.log(error + item.Id);
+                                        })
+                                        .then(function () {
+                                            // always executed
+                                        });
+                                });
+                                marker.fire('click');
 
 
-                    {{--            markers_awd.addLayer(marker);--}}
-                    {{--        }--}}
+                                markers_awd.addLayer(marker);
+                            }
 
-                    {{--    }--}}
-                    {{--);--}}
+                        }
+                    );
 
 
                     {{--this.hydrometStations.forEach(function (item, i, arr) {--}}
