@@ -234,7 +234,7 @@
     <br>
     <h3>Метеокарта маълумотлари</h3>
     <div class="text-left" style="margin-bottom: 55px;">
-        <div id="loader" style="width: 100%; height: 600px; border:1px solid #ccc">
+        {{-- <div id="loader" style="width: 100%; height: 600px; border:1px solid #ccc" class="none">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                  style="margin:auto;background:#fff;display:block;" width="70px" height="600px" viewBox="0 0 100 100"
                  preserveAspectRatio="xMidYMid">
@@ -311,9 +311,12 @@
                     </rect>
                 </g>
             </svg>
-        </div>
-        <iframe id="test-map" src="{{ route('weather.map') }}" frameborder="0" width="100%" height="600px"
-                class="none"/>
+        </div> --}}
+        <iframe id="test-map" width="100%" height="650" src="https://embed.windy.com/embed2.html?lat=41.192&lon=63.712&detailLat=41.317&detailLon=69.249&width=1024&height=650&zoom=5&level=surface&overlay=clouds&product=ecmwf&menu=&message=true&marker=&calendar=24&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+
+        {{-- <iframe id="test-map2" src="{{ route('weather.map') }}" frameborder="0" width="100%" height="600px"
+                class="none"/> --}}
+
     </div>
 </div>
 
