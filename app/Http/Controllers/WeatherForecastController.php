@@ -283,9 +283,18 @@ class WeatherForecastController extends Controller
     public function maploader()
     {
         // $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=4/41.26/69.22&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
-        $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=5.12/41.27/66.1&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
-        $output = file_get_contents($url);
-        print $output;
+//        $url = 'https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=5.12/41.27/66.1&map=cloudsAndPrecipitation~hourly~auto~sfc~none';
+        $url = Http::withOptions([
+            'verify' => false
+        ])->withHeaders(
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'Access-Control-Allow-Methods' => 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers' => 'Content-Type, Authorizations'
+            ]
+        )->get('https://www.meteoblue.com/en/weather/maps/tashkent_uzbekistan_1512569#coords=5.12/41.27/66.1&map=cloudsAndPrecipitation~hourly~auto~sfc~none')->body();
+//        $output = file_get_contents($url);
+        print $url;
     }
 
     public function export()
