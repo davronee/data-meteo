@@ -15,9 +15,9 @@ class OneIdController extends Controller
     public function OneIdLogin()
     {
         $authorizationurl = "https://sso.gov.uz:8443/sso/oauth/Authorization.do";
-        $clientid = "service_geoinfocom_uz";
-        $clientsecret = "Mxz0cB4527CLKu2EurpAyg==";
-        $scope = "service_geoinfocom_uz";
+        $clientid = "gidrometeorologiya";
+        $clientsecret = "aGTZZZl/Ji6comWwxflksw==";
+        $scope = "gidrometeorologiya";
         $stateArr = array('method' => 'IDPW');
         $states = json_encode($stateArr);
         $state = base64_encode($states);
