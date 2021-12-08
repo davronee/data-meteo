@@ -1,24 +1,24 @@
 <?php
 
+use App\Http\Controllers\AwdController;
+use App\Http\Controllers\DailyStationInfoController;
+use App\Http\Controllers\DailyStationInfoExportController;
+use App\Http\Controllers\DailyStationInfoSendController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HourlyInfoSentController;
+use App\Http\Controllers\HourlyStationInfoController;
+use App\Http\Controllers\HourlyStationInfoExportController;
+use App\Http\Controllers\HourlyStationInfoSendController;
+use App\Http\Controllers\QuickInfoController;
+use App\Http\Controllers\StationController;
+use App\Http\Controllers\StationMonitoringController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserProfilePasswordController;
+use App\Http\Controllers\WidgetController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AwdController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WidgetController;
-use App\Http\Controllers\StationController;
-use App\Http\Controllers\QuickInfoController;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\HourlyInfoSentController;
-use App\Http\Controllers\DailyStationInfoController;
-use App\Http\Controllers\HourlyStationInfoController;
-use App\Http\Controllers\StationMonitoringController;
-use App\Http\Controllers\UserProfilePasswordController;
-use App\Http\Controllers\DailyStationInfoSendController;
-use App\Http\Controllers\HourlyStationInfoSendController;
-use App\Http\Controllers\DailyStationInfoExportController;
-use App\Http\Controllers\HourlyStationInfoExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +36,10 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
+Route::get('/oneid', [\App\Http\Controllers\OneIdController::class, 'login'])->name('index.login');
+Route::get('/oneidlogin', [\App\Http\Controllers\OneIdController::class, 'OneIdLogin'])->name('oneidlogin');
+Route::get('/oneidlogged', [\App\Http\Controllers\OneIdController::class, 'Oneid_get_logged'])->name('oneidlogged');
+
 Route::prefix('weather')->group(function () {
     Route::get('/', [\App\Http\Controllers\WeatherForecastController::class, 'index'])->name('weather.index');
     Route::get('/openweather', [\App\Http\Controllers\WeatherForecastController::class, 'getOpenWeather'])->name('weather.openweather');
@@ -51,6 +55,7 @@ Route::prefix('weather')->group(function () {
 
 Route::group(['middleware' => ['set_locale']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+
 
     Auth::routes(['register' => false]);
     Route::get('/data', function () {
@@ -110,7 +115,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     });
 
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth', 'role:superadmin admin control viewer worker shift-agent-station central-agent-station station-status-admin station-status-tracker station-status-viewer quick-info-editor']], function () {
         // user profile routes
         Route::resource('admin/user', UserController::class)->except(['show']);
 
