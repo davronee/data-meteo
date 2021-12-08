@@ -44,7 +44,8 @@
                                 <a v-else-if="!isChecked" href="{{route('oneidlogin')}}" class="btn  btn-block btn-lg font-weight-medium btn-linkedin disabled"><i class="mdi mdi-logout"></i> ТИЗИМГА КИРИШ</a>
                             </div>
                             <div class="text-center mt-4 font-weight-light">
-                                <small class="text-muted text-center text-sm-center d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.ygk.uz/" target="_blank">Давергеодезкадастр қўмитаси</a>.</small>
+                                <small class="text-muted text-center text-sm-center d-block d-sm-inline-block">Copyright © 2021 <a href="https://www.hydromet.uz/" target="_blank">ЦЕНТР ГИДРОМЕТЕОРОЛОГИЧЕСКОЙ
+                                        СЛУЖБЫ РЕСПУБЛИКИ УЗБЕКИСТАН (УЗГИДРОМЕТ)</a>.</small>
                             </div>
                         </form>
                     </div>
