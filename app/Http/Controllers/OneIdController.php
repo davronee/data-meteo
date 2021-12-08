@@ -14,7 +14,7 @@ class OneIdController extends Controller
 
     public function OneIdLogin()
     {
-        $authorizationurl = "https://sso.gov.uz:8443/sso/oauth/Authorization.do";
+        $authorizationurl = "http://sso.egov.uz:8443/sso/oauth/Authorization.do";
         $clientid = "gidrometeorologiya";
         $clientsecret = "aGTZZZl/Ji6comWwxflksw==";
         $scope = "gidrometeorologiya";
@@ -33,10 +33,10 @@ class OneIdController extends Controller
 
     public function Oneid_get_logged()
     {
-        $authorizationurl = "https://sso.gov.uz:8443/sso/oauth/Authorization.do";
-        $clientid = "service_geoinfocom_uz";
-        $clientsecret = "Mxz0cB4527CLKu2EurpAyg==";
-        $scope = "service_geoinfocom_uz";
+        $authorizationurl = "http://sso.egov.uz:8443/sso/oauth/Authorization.do";
+        $clientid = "gidrometeorologiya";
+        $clientsecret = "aGTZZZl/Ji6comWwxflksw==";
+        $scope = "gidrometeorologiya";
 
         $ch = curl_init();
         $authCode = $_GET["code"];
