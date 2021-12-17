@@ -4,16 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('oneid/admin/images/apple-touch-icon.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('oneid/admin/images/favicon-32x32.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('oneid/admin/images/favicon-16x16.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('oneid/admin/images/favicon.ico')}}">
-    <link rel="manifest" href="{{asset('oneid/admin/images/site.webmanifest')}}">
-    <link rel="mask-icon" href="{{asset('oneid/admin/images/safari-pinned-tab.svg')}}" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('oneid_template/admin/images/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('oneid_template/admin/images/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('oneid_template/admin/images/favicon-16x16.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('oneid_template/admin/images/favicon.ico')}}">
+    <link rel="manifest" href="{{asset('oneid_template/admin/images/site.webmanifest')}}">
+    <link rel="mask-icon" href="{{asset('oneid_template/admin/images/safari-pinned-tab.svg')}}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="theme-color" content="#ffffff">
     <title>Тизимга кириш |</title>
-    <link rel="stylesheet" href="{{asset('oneid/admin/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('oneid_template/admin/css/style.css')}}">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                 <div class="col-lg-4 mx-auto">
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                     <!--  <div class="brand-logo text-right">
-                            <img src="{{asset('oneid/admin/images/logo.svg')}}" alt="logo">
+                            <img src="{{asset('oneid_template/admin/images/logo.svg')}}" alt="logo">
                         </div> -->
                         <h6 class="font-weight-light">Тизимга кириш</h6>
                         <h4>OneID - ягона идентификация тизими</h4>
@@ -58,8 +58,8 @@
 </div>
 <!-- container-scroller -->
 
-<script type="text/javascript" src="{{asset('oneid/js/axios.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('oneid/js/vue.js')}}"></script>
+<script type="text/javascript" src="{{asset('oneid_template/js/axios.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('oneid_template/js/vue.js')}}"></script>
 
 <script>
     let app = new Vue({

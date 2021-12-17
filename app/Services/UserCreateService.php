@@ -14,7 +14,7 @@ class UserCreateService
     public function createUser($user_data)
     {
         DB::transaction(function () use ($user_data) {
-            // generate oneid
+            // generate oneid_template
             $login = $this->generateLogin($user_data['region_id'], $user_data['district_id'], $user_data['position_code']);
 
             // create the user

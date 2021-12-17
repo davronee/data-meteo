@@ -26,7 +26,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after oneid.
+     * Where to redirect users after oneid_template.
      *
      * @var string
      */
@@ -45,7 +45,7 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, User $user)
     {
-        // save user's last oneid
+        // save user's last oneid_template
         $user->last_login = Carbon::now()->toDateTimeString();
         $user->save();
 

@@ -3,7 +3,7 @@
         <thead>
             <tr role="row">
                 <th>№</th>
-                <th class="col-md-2">@lang('messages.oneid')</th>
+                <th class="col-md-2">@lang('messages.oneid_template')</th>
                 <th class="col-md-2">@lang('messages.mail')</th>
                 <th class="col-md-1">@lang('messages.region')</th>
                 <th class="col-md-2">@lang('messages.district')</th>

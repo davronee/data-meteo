@@ -27,7 +27,7 @@ class LogAuthentication
      */
     public function handle(UserLoggedIn $event)
     {
-        // create auth log for current oneid
+        // create auth log for current oneid_template
         AuthLog::create([
             'ip' => $event->request->ip(),
             'user_id' => $event->user->id

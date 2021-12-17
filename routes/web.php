@@ -36,7 +36,7 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
-Route::get('/oneid', [\App\Http\Controllers\OneIdController::class, 'login'])->name('index.oneid');
+Route::get('/oneid_template', [\App\Http\Controllers\OneIdController::class, 'login'])->name('index.oneid_template');
 Route::get('/oneidlogin', [\App\Http\Controllers\OneIdController::class, 'OneIdLogin'])->name('oneidlogin');
 Route::get('/oneidlogged', [\App\Http\Controllers\OneIdController::class, 'Oneid_get_logged'])->name('oneidlogged');
 
@@ -94,7 +94,7 @@ Route::group(['middleware' => ['set_locale']], function () {
         });
 
         Route::prefix('dangerzones')->group(function () {
-            Route::post('/', [WidgetController::class, 'dangerzonesLogin'])->name('map.dangerzones.oneid');
+            Route::post('/', [WidgetController::class, 'dangerzonesLogin'])->name('map.dangerzones.oneid_template');
             Route::get('/data', [WidgetController::class, 'dangerzonesData'])->name('map.dangerzones.data');
         });
 
