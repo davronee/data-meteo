@@ -172,7 +172,7 @@
                     <div id="geocode"></div>
                 </div>
             </li> -->
-            <li><a class="calcite-navbar-search" href="{{route('index.oneid')}}">Авторизация <span
+            <li><a class="calcite-navbar-search" href="{{route('index.oneid_template')}}">Авторизация <span
                         class="glyphicon glyphicon-log-out"></span></a>
             </li>
             <!-- <li><a class="calcite-navbar-search" href="#">Мой кабинет <span class="glyphicon glyphicon-user"></span></a></li> -->

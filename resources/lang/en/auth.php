@@ -14,6 +14,6 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many oneid attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Too many oneid_template attempts. Please try again in :seconds seconds.',
 
 ];

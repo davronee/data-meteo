@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function login()
     {
-        return view('auth.oneid');
+        return view('auth.oneid_template');
     }
 
     public function index()

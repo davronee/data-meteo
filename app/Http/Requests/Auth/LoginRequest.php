@@ -57,7 +57,7 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Ensure the oneid request is not rate limited.
+     * Ensure the oneid_template request is not rate limited.
      *
      * @return void
      *

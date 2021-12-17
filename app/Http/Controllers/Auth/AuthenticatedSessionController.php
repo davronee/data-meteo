@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Auth;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the oneid view.
+     * Display the oneid_template view.
      *
      * @return \Illuminate\View\View
      */
     public function create()
     {
-        return view('auth.oneid');
+        return view('auth.oneid_template');
     }
 
     /**
