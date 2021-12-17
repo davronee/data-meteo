@@ -22,7 +22,7 @@ class OneIdController extends Controller
         $states = json_encode($stateArr);
         $state = base64_encode($states);
 
-        return view('oneid_template')
+        return view('oneid')
             ->with('authorizationurl', $authorizationurl)
             ->with('clientid', $clientid)
             ->with('clientsecret', $clientsecret)

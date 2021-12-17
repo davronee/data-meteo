@@ -36,7 +36,7 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
-Route::get('/oneid_template', [\App\Http\Controllers\OneIdController::class, 'login'])->name('index.oneid_template');
+Route::get('/oneid', [\App\Http\Controllers\OneIdController::class, 'login'])->name('index.oneid');
 Route::get('/oneidlogin', [\App\Http\Controllers\OneIdController::class, 'OneIdLogin'])->name('oneidlogin');
 Route::get('/oneidlogged', [\App\Http\Controllers\OneIdController::class, 'Oneid_get_logged'])->name('oneidlogged');
 
