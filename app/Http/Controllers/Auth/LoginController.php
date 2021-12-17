@@ -26,11 +26,11 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * Where to redirect users after oneid.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -41,11 +41,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
+
 
     public function authenticated(Request $request, User $user)
     {
-        // save user's last login
+        // save user's last oneid
         $user->last_login = Carbon::now()->toDateTimeString();
         $user->save();
 

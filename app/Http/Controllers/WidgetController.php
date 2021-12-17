@@ -408,7 +408,7 @@ class WidgetController extends Controller
 
     public function dangerzonesLogin()
     {
-        $response = Http::post($this->dangerzonesapi . 'login', [
+        $response = Http::post($this->dangerzonesapi . 'oneid', [
             'email' => 'info@ygk.uz',
             'password' => 'X25G-y8nvQ8Tq_2D',
         ]);
