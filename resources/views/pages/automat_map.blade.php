@@ -114,7 +114,7 @@
     let app = new Vue({
         el: "#app",
         data: {
-            hydrometStations:@json($hydrometstation)
+            awds:@json($stations)
         },
         methods: {
             InitialMap: function () {
@@ -408,160 +408,84 @@
 
             },
             getHydrometStation: function () {
-                // this.hydrometStations.forEach(function (item, i, arr) {
-                //     var meteoIcon = L.icon({
-                //         iconUrl: '{{asset('images/meteo.png')}}',
-                //         iconSize: [28, 28], // size of the icon
-                //         class: "station"
-                //     });
-
-                //     marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon}).on('click', function () {
-                //         marker.bindPopup("" +
-                //             "<table class='table table-bordered'>" +
-                //             "<tr ><td class='text-center' colspan='2'><b>" + item.name + "</b></td></tr>" +
-                //             "<tr>" +
-                //             "<td><b>temperature</b></td>" +
-                //             "<td>" + item.hydromet_sensor_data.temperature + "</td>" +
-                //             "</tr>" +
-                //             "<tr>" +
-                //             "<td><b>humidity</b></td>" +
-                //             "<td>" + item.hydromet_sensor_data.humidity + "</td>" +
-                //             "</tr>" +
-                //             "<tr>" +
-                //             "<td><b>wspeed</b></td>" +
-                //             "<td>" + item.hydromet_sensor_data.wspeed + "</td>" +
-                //             "</tr>" +
-                //             "<tr>" +
-                //             "<td><b>wdir</b></td>" +
-                //             "<td>" + item.hydromet_sensor_data.wdir + "</td>" +
-                //             "</tr>" +
-                //             "<tr>" +
-                //             "<td><b>pressure</b></td>" +
-                //             "<td>" + item.hydromet_sensor_data.pressure + "</td>" +
-                //             "</tr>" +
-                //             "<tr>" +
-                //             "<td><b>created_at</b></td>" +
-                //             "<td>" + item.hydromet_sensor_data.created_at + "</td>" +
-                //             "</tr>" +
-                //             "</table>"
-                //         )
-                //     }).addTo(map);
-
-                // });
-                // marker.fire('click');
-
-
-                var meteoIcon1 = L.icon({
-                    iconUrl: '{{asset('images/meteo.png')}}',
-                    iconSize: [28, 28], // size of the icon
-                    class: "station"
-                });
-
-                {{--var marker2 = L.marker([parseFloat(41.34564477332897), parseFloat(69.28504212769195)], {icon: meteoIcon1}).on('click', function () {--}}
-                {{--        axios.get('{{route('map.MeteoinfocomStationData.get')}}')--}}
-                {{--            .then(function (response) {--}}
-                {{--                console.log(response.data.obsTimeLocal)--}}
-                {{--                marker2.bindPopup("" +--}}
-                {{--                    "<table class='table table-bordered'>" +--}}
-                {{--                    "<tr ><td colspan='2' class='text-center'><b>UZ-METEO2021-01</b></td></tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>дата и время</b></td>" +--}}
-                {{--                    "<td>" + app.checktoUndefine(response.data.obsTimeLocal) + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>температура воздуха за измеряемый период</b></td>" +--}}
-                {{--                    "<td>" + app.checktoUndefine(response.data.metric.temp, '°C') + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>точка росы<b/></td>" +--}}
-                {{--                    "<td>" + response.data.metric.dewpt + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>скорость ветра</b></td>" +--}}
-                {{--                    "<td>" + response.data.metric.windSpeed + 'm/c' + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>Давление, приведенное к уровню моря</b></td>" +--}}
-                {{--                    "<td>" + response.data.metric.pressure + 'mB' + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>направление ветра</b></td>" +--}}
-                {{--                    "<td>" + response.data.metric.windChill + '°' + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>высота станции</b></td>" +--}}
-                {{--                    "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "<tr>" +--}}
-                {{--                    "<td><b>осадка</b></td>" +--}}
-                {{--                    "<td>" + app.checktoUndefine(response.data.metric.precipRate) + "</td>" +--}}
-                {{--                    "</tr>" +--}}
-                {{--                    "</table>"--}}
-                {{--                )--}}
-                {{--            })--}}
-                {{--            .catch(function (error) {--}}
-                {{--                // handle error--}}
-                {{--                console.log(error);--}}
-                {{--            })--}}
-                {{--            .then(function () {--}}
-                {{--                // always executed--}}
-                {{--            });--}}
-                {{--    }).addTo(map);;--}}
-                {{--    marker2.fire('click');--}}
-
-                var marker2 = L.marker([parseFloat(36.744187), parseFloat(67.114197)], {icon: meteoIcon1}).on('click', function () {
-                    axios.get('{{route('map.GetAvganData.get')}}')
-                        .then(function (response) {
-                            console.log(response.data.obsTimeLocal)
-                            marker2.bindPopup("" +
-                                "<table class='table table-bordered'>" +
-                                "<tr ><td colspan='2' class='text-center'><b>UZ-METEO2021 Vaisala (аэропорт)</b></td></tr>" +
-                                "<tr>" +
-                                "<td><b>дата и время</b></td>" +
-                                "<td>" + app.checktoUndefine(response.data.datatime) + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                "<td>" + app.checktoUndefine(response.data.Temp1min, '°C') + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td><b>точка росы<b/></td>" +
-                                "<td>" + response.data.Dptemp1min + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td><b>скорость ветра</b></td>" +
-                                "<td>" + response.data.windspeed1min_avrg + 'm/c' + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td><b>Давление, приведенное к уровню моря</b></td>" +
-                                "<td>" + response.data.Spress1min + 'mB' + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td><b>направление ветра</b></td>" +
-                                "<td>" + response.data.winddirect1min_max + '°' + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td><b>высота станции</b></td>" +
-                                "<td>" + app.checktoUndefine(response.data.evap1min, 'a.s.l.') + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td><b>осадка</b></td>" +
-                                "<td>" + app.checktoUndefine(response.data.preptotal1min) + "</td>" +
-                                "</tr>" +
-                                "</table>"
-                            )
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
+                this.awds.Stations.forEach(function (item, i, arr) {
+                        var meteoIcon = L.icon({
+                            iconUrl: '{{asset('images/meteo.png')}}',
+                            iconSize: [28, 28], // size of the icon
+                            class: "station"
                         });
-                }).addTo(map);
-                marker2.fire('click');
+
+                        var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
+                            axios.post('{{route('map.awd.getStation')}}', {
+                                token: '{{@csrf_token()}}',
+                                id: item.Id
+                            })
+                                .then(function (response) {
 
 
+                                    marker.bindPopup("" +
+                                        "<table class='table table-bordered'>" +
+                                        "<tr colspan='3'><td class='text-center'><b>" + response.data.Stations.StationName + "</b></td></tr>" +
+                                        "<tr>" +
+                                        "<td><b>Температура воздуха</b></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[2].Value['Value'] + " °C </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Точка Росы</b></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Относительная влажность</b></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Текущее давление<b/></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[9].Value['Value'] + " гПа </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[9].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Средн.давление над ур.моря за 10мин<b/></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Осадкомер 2. Сумма осадков за 10мин</b></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Средн.направление ветра за 10 мин</b></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " мм </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Средн.скорость ветра за 10 мин</b></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>Средн.кол-во солнечной радиации за 10мин</b></td>" +
+                                        "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
+                                        "<td>" +  new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
+                                        "</tr>" +
+                                        "</table>"
+                                    )
+                                })
+                                .catch(function (error) {
+                                    // handle error
+                                    console.log(error);
+                                })
+                                .then(function () {
+                                    // always executed
+                                });
+                        }).addTo(map);
+                        marker.fire('click');
+
+                    }
+                );
 
             },
             checktoUndefine: function (text, unit = '') {

@@ -6,7 +6,6 @@ use App\Models\HydrometStation;
 use App\Models\MicrostepStations;
 use App\Models\Radar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
 class CalciteController extends Controller
@@ -53,7 +52,16 @@ class CalciteController extends Controller
         ]);
     }
 
+    public function AutoStations(Request $request)
+    {
+        $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations');
 
+//        dd($stations->json());
+        return view('pages.automat_map')->with([
+            'stations' => $stations->json(),
+        ]);
+
+    }
 
 
 }

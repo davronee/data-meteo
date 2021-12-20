@@ -160,6 +160,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
 
     Route::get('/hydrometmap', [\App\Http\Controllers\CalciteController::class, 'HydrometMap'])->name('hydromet.map');
+    Route::get('/autostations', [\App\Http\Controllers\CalciteController::class, 'AutoStations'])->name('hydromet.autostations');
     Route::get('/weathermap', [\App\Http\Controllers\WeatherForecastController::class, 'maploader'])->name('weather.map');
 
 
