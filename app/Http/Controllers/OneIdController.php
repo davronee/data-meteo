@@ -139,11 +139,11 @@ class OneIdController extends Controller
 
             Auth::login($usersave);
 
-            return redirect(route('service.index'));
+            return redirect(url('/service'));
 
         } else {
             Auth::login($user);
-            return redirect(route('service.index'));
+            return redirect(url('/service'));
 
 
         }
