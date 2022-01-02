@@ -50,7 +50,7 @@ class OneIdController extends Controller
         $param = $param . "&client_secret=" . rawurlencode($clientsecret);
         $param = $param . "&code=" . rawurlencode($authCode);
         $param = $param . "&scope=" . rawurlencode($scope);
-        $param = $param . "&redirect_uri=" . rawurlencode(route('map'));
+        $param = $param . "&redirect_uri=" . rawurlencode(route('service.index'));
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -139,11 +139,11 @@ class OneIdController extends Controller
 
             Auth::login($usersave);
 
-            return redirect(route('map'));
+            return redirect(route('service.index'));
 
         } else {
             Auth::login($user);
-            return redirect(route('map'));
+            return redirect(route('service.index'));
 
 
         }

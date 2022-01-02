@@ -10,6 +10,7 @@ use App\Http\Controllers\HourlyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoExportController;
 use App\Http\Controllers\HourlyStationInfoSendController;
 use App\Http\Controllers\QuickInfoController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\StationMonitoringController;
 use App\Http\Controllers\UserController;
@@ -115,6 +116,11 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     });
 
+
+    // services
+    Route::resource('service', ServiceController::class)->middleware('auth');
+
+
     Route::group(['middleware' => ['auth', 'role:superadmin admin control viewer worker shift-agent-station central-agent-station station-status-admin station-status-tracker station-status-viewer quick-info-editor']], function () {
         // user profile routes
         Route::resource('admin/user', UserController::class)->except(['show']);
@@ -133,7 +139,6 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/hourly-station-info/export/{hourly_station_info}/pdf', [HourlyStationInfoExportController::class, 'pdf'])->name('hourly-station-info.export.pdf');
         Route::post('/hourly-station-info/{hourly_station_info}/send', [HourlyStationInfoSendController::class, 'store'])->name('hourly-station-info.send');
 
-        // daily info routes
         Route::resource('station', StationController::class)->middleware('isProfileFilled');
         Route::resource('daily-station-info', DailyStationInfoController::class)->middleware('isProfileFilled');
         Route::get('/daily-station-info/export/{daily_station_info}/doc', [DailyStationInfoExportController::class, 'doc'])->name('daily-station-info.export.doc');
@@ -191,7 +196,6 @@ Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
 
     return $res->json();
 });
-
 
 
 Route::get('/dashboard', function () {
