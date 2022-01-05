@@ -425,14 +425,14 @@ class WidgetController extends Controller
 
     public function GetHoribaDrujba()
     {
-        $horiba = Http::get('http://192.168.10.248:8080?point=2')->json();
+        $horiba = Http::get('http://ecoweb-api.meteo.uz?point=2')->json();
 
         return $horiba;
     }
 
     public function GetHoribaPlashadka()
     {
-        $horiba = Http::get('http://192.168.10.248:8080?point=1')->json();
+        $horiba = Http::get('http://ecoweb-api.meteo.uz?point=1')->json();
 
         return $horiba;
     }
