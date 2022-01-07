@@ -12,7 +12,7 @@ class WidgetController extends Controller
 {
 //    public $endpoint = 'http://217.30.161.60:8086/';
     public $endpoint = 'http://192.168.10.249:8086/';
-    public $meteoapi = 'http://192.168.10.249:8085/';
+    public $meteoapi = 'http://meteoapi.meteo.uz/';//'http://192.168.10.249:8085/';
 //    public $dangerzonesapi = 'http://10.190.24.134:11082/public/api/';
 //    public $dangerzonesapi = 'http://192.168.0.28:11082/public/api/';
     public $dangerzonesapi = 'http://89.236.217.114:11082/public/api/';
@@ -20,7 +20,7 @@ class WidgetController extends Controller
     public function __construct()
     {
         $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
-        $this->meteoapi = env('METEOAPI_ENDPOINT', 'http://192.168.10.249:8085/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->meteoapi = env('METEOAPI_ENDPOINT', 'http://meteoapi.meteo.uz/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
         $this->dangerzonesapi = env('DANGERZONES_ENDPOINT', 'http://89.236.217.114:11082/api/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
