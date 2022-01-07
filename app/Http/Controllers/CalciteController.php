@@ -16,7 +16,7 @@ class CalciteController extends Controller
 
     public function __construct()
     {
-        $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->endpoint = env('AWS_ENDPOINT', 'http://aws.meteo.uz/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
 //
@@ -30,15 +30,14 @@ class CalciteController extends Controller
 
         $microstations = MicrostepStations::get();
 
-        // $Chinesstations = Http::get('http://192.168.10.226:7777/allStations.php?station_id=43')->json();
-        $Chinesstations = [];
+       // $Chinesstations = Http::get('http://192.168.10.226:7777/allStations.php?station_id=43')->json();
 
         return view('pages.calcite_maps.index')->with([
             'radars' => $radars,
             'stations' => $stations->json(),
             'microstations' => $microstations,
             'hydrometstation' => $hydrometStations,
-            'chinesstations' => $Chinesstations,
+            'chinesstations' => []//$Chinesstations,
         ]);
 
     }
