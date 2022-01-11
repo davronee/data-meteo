@@ -7,6 +7,7 @@ use App\Models\Region;
 use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ServiceController extends Controller
 {
@@ -65,6 +66,22 @@ class ServiceController extends Controller
         $orders->email = $request->email;
         $orders->user_type = $request->user_type;
         $orders->save();
+
+        $serv = Services::find($request->type_service);
+        $region = Region::where('regionid',$request->region)->first();
+        $details = [
+            'user_type' => Auth::user()->user_type,
+            'fio' => $request->fio,
+            'pinfl' => Auth::user()->pin,
+            'tin' => $request->tin,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'service' => $serv->name,
+            'region' => $region->nameUz,
+        ];
+
+        Mail::to('services@meteo.uz')->send(new \App\Mail\ServiceMail($details));
+
 
         return redirect()->route('service.index')->with('status', trans('messages.sent_successfully'));
 

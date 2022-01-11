@@ -37,6 +37,14 @@
                                     <input type="text" name="fio" id="fio" class="form-control email-field"
                                            value="{{ \Illuminate\Support\Facades\Auth::user()->full_name }}" required>
                                 </div>
+                                @if(\Illuminate\Support\Facades\Auth::user()->user_type == 'I')
+                                    <div class="form-group col-md-12">
+                                        <label for="fio">Пинфл</label>
+                                        <input disabled type="text" name="pinfl" id="pinfl"
+                                               class="form-control email-field"
+                                               value="{{ \Illuminate\Support\Facades\Auth::user()->pin }}" required>
+                                    </div>
+                                @endif
                                 <div class="form-group col-md-12">
                                     <label for="tin">@lang('messages.tin')</label>
                                     <input type="text" name="tin" id="tin" class="form-control email-field"
