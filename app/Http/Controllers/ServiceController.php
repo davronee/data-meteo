@@ -81,6 +81,7 @@ class ServiceController extends Controller
         ];
 
         Mail::to('services@meteo.uz')->send(new \App\Mail\ServiceMail($details));
+        Mail::to($request->email,)->send(new \App\Mail\ClientMail());
 
 
         return redirect()->route('service.index')->with('status', trans('messages.sent_successfully'));
