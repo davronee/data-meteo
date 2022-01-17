@@ -4,7 +4,7 @@
 </head>
 <body>
 <div>
-    <h4>@lang('messages.sent_successfully')</h4>
+    <h4>Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время!номер вашей заявки:{{ $details['id_order'] }} 78 1508650</h4>
 </div>
 </body>
 

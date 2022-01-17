@@ -72,6 +72,7 @@ class ServiceController extends Controller
         $details = [
             'user_type' => Auth::user()->user_type,
             'fio' => $request->fio,
+            'id_order'=>$orders->id,
             'pinfl' => Auth::user()->pin,
             'tin' => $request->tin,
             'email' => $request->email,
@@ -81,10 +82,10 @@ class ServiceController extends Controller
         ];
 
         Mail::to('services@meteo.uz')->send(new \App\Mail\ServiceMail($details));
-        Mail::to($request->email,)->send(new \App\Mail\ClientMail());
+        Mail::to($request->email)->send(new \App\Mail\ClientMail($details));
 
 
-        return redirect()->route('service.index')->with('status', trans('messages.sent_successfully'));
+        return redirect()->route('service.index')->with('status', 'Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время!номер вашей заявки:'. $orders->id .' 78 1508650');
 
 
     }

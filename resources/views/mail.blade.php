@@ -15,6 +15,7 @@
 <p><b>@lang('messages.phone') :</b> {{isset($details['phone']) ? $details['phone'] : '' }}</p>
 <p><b>Тип услуги :</b> {{isset($details['service']) ? $details['service'] : '' }}</p>
 <p><b>>Регион :</b {{isset($details['region']) ? $details['region'] : '' }}</p>
+<p><b>>id :</b {{isset($details['id_order']) }}</p>
 </body>
 
 </html>
