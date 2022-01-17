@@ -59,17 +59,17 @@
     <script src="{{secure_asset('calcite/js/jquery/leaflet-src.js')}}"></script>
     <script src="{{secure_asset('js/leaflet-svg-shape-markers.min.js')}}"></script>
     <link href="{{secure_asset('calcite/css/font-awesome.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{secure_asset('secure_assets/css/font-awesome.min.css')}}"/>
+    <link rel="stylesheet" href="{{secure_asset('assets/css/font-awesome.min.css')}}"/>
 
 
-    <link rel="stylesheet" href="{{secure_asset('secure_assets/css/leaflet.awesome-markers.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('assets/css/leaflet.awesome-markers.css')}}">
     <script src="{{secure_asset('js/topojson.min.js')}}"></script>
 
-    <link rel="stylesheet" href="{{secure_asset('secure_assets/css/weather-icons.css')}}">
-    <link rel="stylesheet" href="{{secure_asset('secure_assets/css/weather-icons-wind.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('assets/css/weather-icons.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('assets/css/weather-icons-wind.css')}}">
 
-    <script src="{{secure_asset('secure_asset/js/vue.js')}}"></script>
-    <script src="{{secure_asset('secure_asset/js/axios.min.js')}}"></script>
+    <script src="{{secure_asset('asset/js/vue.js')}}"></script>
+    <script src="{{secure_asset('asset/js/axios.min.js')}}"></script>
     <!-- Load Esri Leaflet from CDN -->
 
     <script src="{{secure_asset('calcite/js/jquery/esri-leaflet-debug.js')}}"></script>
@@ -390,10 +390,10 @@
 
 </div>
 
-<script src="{{secure_asset('secure_assets/js/leaflet.awesome-markers.min.js')}}"></script>
+<script src="{{secure_asset('assets/js/leaflet.awesome-markers.min.js')}}"></script>
 <script src="{{secure_asset('js/topojson.min.js')}}"></script>
 
-<script src="{{secure_asset('secure_asset/js/leaflet.ajax.js')}}"></script>
+<script src="{{secure_asset('asset/js/leaflet.ajax.js')}}"></script>
 <script src="{{secure_asset('calcite/js/jquery.min.js')}}"></script>
 <!-- Include all plugins or individual files as needed -->
 <script src="{{secure_asset('calcite/js/bootstrap.min.js')}}"></script>
@@ -626,7 +626,7 @@
 
 
                 //fetch the geojson and add it to our geojson layer
-                getGeoData('{{secure_asset('secure_asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
+                getGeoData('{{secure_asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
 
 
                 // Basemap changed
@@ -1248,7 +1248,7 @@
                         return data;
                     }
 
-                    getGeoData('{{secure_asset('secure_asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+                    getGeoData('{{secure_asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
 
 
                 } else {
@@ -3797,7 +3797,7 @@
 <!--script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script-->
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<!--script src="../../secure_assets/js/ie10-viewport-bug-workaround.js"></script-->
+<!--script src="../../assets/js/ie10-viewport-bug-workaround.js"></script-->
 
 <!--script src="https://esri.github.io/calcite-bootstrap/scripts/vendor.js"></script-->
 <!--script src="https://esri.github.io/calcite-bootstrap/scripts/plugins.js"></script-->
