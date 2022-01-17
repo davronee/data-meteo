@@ -45,41 +45,41 @@
     <title>METEO MONITORING - UZHYDROMET</title>
 
     <!-- Calcite Maps Bootstrap -->
-    <link rel="stylesheet" href="{{secure_asset('calcite/css/calcite-maps-bootstrap.min-v0.10.css')}}">
+    <link rel="stylesheet" href="{{asset('calcite/css/calcite-maps-bootstrap.min-v0.10.css')}}">
 
     <!-- Calcite Maps -->
-    <link rel="stylesheet" href="{{secure_asset('calcite/css/calcite-maps-esri-leaflet.min-v0.10.css')}}">
-    <link rel="stylesheet" href="{{secure_asset('calcite/fonts/calcite/calcite-ui.css')}}">
+    <link rel="stylesheet" href="{{asset('calcite/css/calcite-maps-esri-leaflet.min-v0.10.css')}}">
+    <link rel="stylesheet" href="{{asset('calcite/fonts/calcite/calcite-ui.css')}}">
 
     <!-- Load Leaflet from CDN-->
     <!--     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> -->
-    <link rel="stylesheet" href="{{secure_asset('calcite/css/leaflet.css')}}">
+    <link rel="stylesheet" href="{{asset('calcite/css/leaflet.css')}}">
 
     <!--     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script> -->
-    <script src="{{secure_asset('calcite/js/jquery/leaflet-src.js')}}"></script>
-    <script src="{{secure_asset('js/leaflet-svg-shape-markers.min.js')}}"></script>
-    <link href="{{secure_asset('calcite/css/font-awesome.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{secure_asset('assets/css/font-awesome.min.css')}}"/>
+    <script src="{{asset('calcite/js/jquery/leaflet-src.js')}}"></script>
+    <script src="{{asset('js/leaflet-svg-shape-markers.min.js')}}"></script>
+    <link href="{{asset('calcite/css/font-awesome.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"/>
 
 
-    <link rel="stylesheet" href="{{secure_asset('assets/css/leaflet.awesome-markers.css')}}">
-    <script src="{{secure_asset('js/topojson.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('assets/css/leaflet.awesome-markers.css')}}">
+    <script src="{{asset('js/topojson.min.js')}}"></script>
 
-    <link rel="stylesheet" href="{{secure_asset('assets/css/weather-icons.css')}}">
-    <link rel="stylesheet" href="{{secure_asset('assets/css/weather-icons-wind.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/weather-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/weather-icons-wind.css')}}">
 
-    <script src="{{secure_asset('asset/js/vue.js')}}"></script>
-    <script src="{{secure_asset('asset/js/axios.min.js')}}"></script>
+    <script src="{{asset('asset/js/vue.js')}}"></script>
+    <script src="{{asset('asset/js/axios.min.js')}}"></script>
     <!-- Load Esri Leaflet from CDN -->
 
-    <script src="{{secure_asset('calcite/js/jquery/esri-leaflet-debug.js')}}"></script>
+    <script src="{{asset('calcite/js/jquery/esri-leaflet-debug.js')}}"></script>
 
     <!-- Load Esri Leaflet Geocoder from CDN -->
     <!--     <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.3/dist/esri-leaflet-geocoder.css"> -->
 
-    <link rel="stylesheet" href="{{secure_asset('calcite/css/esri-leaflet-geocoder.css')}}">
-    <link rel="stylesheet" href="{{secure_asset('calcite/css/style.css')}}">
-    <script src="{{secure_asset('calcite/js/jquery/esri-leaflet-geocoder-debug.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('calcite/css/esri-leaflet-geocoder.css')}}">
+    <link rel="stylesheet" href="{{asset('calcite/css/style.css')}}">
+    <script src="{{asset('calcite/js/jquery/esri-leaflet-geocoder-debug.js')}}"></script>
 
     <style>
         html, body {
@@ -390,13 +390,13 @@
 
 </div>
 
-<script src="{{secure_asset('assets/js/leaflet.awesome-markers.min.js')}}"></script>
-<script src="{{secure_asset('js/topojson.min.js')}}"></script>
+<script src="{{asset('assets/js/leaflet.awesome-markers.min.js')}}"></script>
+<script src="{{asset('js/topojson.min.js')}}"></script>
 
-<script src="{{secure_asset('asset/js/leaflet.ajax.js')}}"></script>
-<script src="{{secure_asset('calcite/js/jquery.min.js')}}"></script>
+<script src="{{asset('asset/js/leaflet.ajax.js')}}"></script>
+<script src="{{asset('calcite/js/jquery.min.js')}}"></script>
 <!-- Include all plugins or individual files as needed -->
-<script src="{{secure_asset('calcite/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('calcite/js/bootstrap.min.js')}}"></script>
 
 <script>
     var map;
@@ -626,7 +626,7 @@
 
 
                 //fetch the geojson and add it to our geojson layer
-                getGeoData('{{secure_asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
+                getGeoData('{{asset('asset/geojson/tuman.topojson')}}').then(data => geojson.addData(data));
 
 
                 // Basemap changed
@@ -1248,7 +1248,7 @@
                         return data;
                     }
 
-                    getGeoData('{{secure_asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+                    getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
 
 
                 } else {
@@ -1265,7 +1265,7 @@
 
                     this.awds.Stations.forEach(function (item, i, arr) {
                             var meteoIcon = L.icon({
-                                iconUrl: '{{secure_asset('images/meteo.png')}}',
+                                iconUrl: '{{asset('images/meteo.png')}}',
                                 iconSize: [28, 28], // size of the icon
                                 class: "station"
                             });
@@ -1511,7 +1511,7 @@
 
                     this.ChineStation.forEach(function (item, i, arr) {
                             var meteoIcon = L.icon({
-                                iconUrl: '{{secure_asset('images/meteo_china.png')}}',
+                                iconUrl: '{{asset('images/meteo_china.png')}}',
                                 iconSize: [28, 28], // size of the icon
                                 class: "station china"
                             });
@@ -1580,7 +1580,7 @@
 
                     {{--this.hydrometStations.forEach(function (item, i, arr) {--}}
                         {{--    var meteoIcon = L.icon({--}}
-                        {{--        iconUrl: '{{secure_asset('images/meteo_hydro.png')}}',--}}
+                        {{--        iconUrl: '{{asset('images/meteo_hydro.png')}}',--}}
                         {{--        iconSize: [28, 28], // size of the icon--}}
                         {{--        class: "station"--}}
                         {{--    });--}}
@@ -1627,7 +1627,7 @@
 
                         this.microstep.forEach(function (item, i, arr) {
                             var meteoIcon1 = L.icon({
-                                iconUrl: '{{secure_asset('images/meteo.png')}}',
+                                iconUrl: '{{asset('images/meteo.png')}}',
                                 iconSize: [28, 28], // size of the icon
                                 class: "station"
                             });
@@ -1794,7 +1794,7 @@
 
 
                     var meteoIcon1 = L.icon({
-                        iconUrl: '{{secure_asset('images/meteo.png')}}',
+                        iconUrl: '{{asset('images/meteo.png')}}',
                         iconSize: [28, 28], // size of the icon
                         class: "station"
                     });
@@ -1872,7 +1872,7 @@
                             if ((item.Metadata.Latitude !== null && item.Metadata.Longitude !== null) && (item.Id == 59 || item.Id == 60 || item.Id == 61 || item.Id == 62 || item.Id == 63 || item.Id == 64 || item.Id == 55 || item.Id == 57 || item.Id == 53 || item.Id == 58 || item.Id == 54 || item.Id == 56)) {
 
                                 var meteoIconAgro = L.icon({
-                                    iconUrl: '{{secure_asset('images/meteo_agro.png')}}',
+                                    iconUrl: '{{asset('images/meteo_agro.png')}}',
                                     iconSize: [28, 28], // size of the icon
                                     class: "station"
                                 });
@@ -2122,7 +2122,7 @@
                     // var marker = L.marker([parseFloat(this.awds['Stations'][0].Metadata.Latitude), parseFloat(this.awds['Stations'][1].Metadata.Longitude)]).addTo(map);
 
                     var meteoIcon1 = L.icon({
-                        iconUrl: '{{secure_asset('images/meteo.png')}}',
+                        iconUrl: '{{asset('images/meteo.png')}}',
                         iconSize: [28, 28], // size of the icon
                         class: "station"
                     });
@@ -2196,7 +2196,7 @@
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
                                 {{--var meteoIcon = L.icon({--}}
-                                    {{--    iconUrl: '{{secure_asset('images/meteo_full.png')}}',--}}
+                                    {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
                                     {{--    iconSize: [28, 28], // size of the icon--}}
                                     {{--    className: "station",--}}
                                     {{--});--}}
@@ -3065,7 +3065,7 @@
                         })
                             .then(function (response) {
                                 var meteoIcon = L.icon({
-                                    iconUrl: '{{secure_asset('images/departures.svg')}}',
+                                    iconUrl: '{{asset('images/departures.svg')}}',
                                     color: 'red',
                                     iconSize: [40, 40],
                                     className: 'selectedMarker'
@@ -3784,7 +3784,7 @@
         }
     })
 </script>
-{{--<script src="{{secure_asset('calcite/js/jquery/calcitemaps-v0.10.js')}}"/>--}}
+{{--<script src="{{asset('calcite/js/jquery/calcitemaps-v0.10.js')}}"/>--}}
 
 
 
