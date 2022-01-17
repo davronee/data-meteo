@@ -30,7 +30,7 @@ class ServiceMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from Meteoinfocom')
+        return $this->subject('УЗГИДРОМЕТ')
             ->view('mail');
     }
 }
