@@ -10,7 +10,7 @@
     <meta name="description" content="Единая система анализа и обработки гидрометеорологических наблюдений">
     <meta name="author" content="Метеоинфосистем">
     <!-- Title -->
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Отправка электронной заявки на оказание гидрометеорологических услуг</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/assets/img/favicon/favicon.ico') }}">
     <!-- icons css -->
