@@ -85,7 +85,7 @@ class ServiceController extends Controller
         Mail::to($request->email)->send(new \App\Mail\ClientMail($details));
 
 
-        return redirect()->route('service.index')->with('status', 'Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время!номер вашей заявки:'. $orders->id .' Статус заявки можно узнать по телефону 78 1508650.');
+        return redirect()->route('service.index')->with('status', 'Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время! Номер вашей заявки: '. $orders->id .'. Статус заявки можно узнать по телефону 78 1508650.');
 
 
     }
