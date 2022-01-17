@@ -14,7 +14,7 @@ class OneIdController extends Controller
 
     public function OneIdLogin()
     {
-        $authorizationurl = "http://sso.egov.uz:8443/sso/oauth/Authorization.do";
+        $authorizationurl = "https://sso2.egov.uz:8443/sso/oauth/Authorization.do";
         $clientid = "gidrometeorologiya";
         $clientsecret = "aGTZZZl/Ji6comWwxflksw==";
         $scope = "gidrometeorologiya";
@@ -33,7 +33,7 @@ class OneIdController extends Controller
 
     public function Oneid_get_logged()
     {
-        $authorizationurl = "http://sso.egov.uz:8443/sso/oauth/Authorization.do";
+        $authorizationurl = "https://sso2.egov.uz:8443/sso/oauth/Authorization.do";
         $clientid = "gidrometeorologiya";
         $clientsecret = "aGTZZZl/Ji6comWwxflksw==";
         $scope = "gidrometeorologiya";
