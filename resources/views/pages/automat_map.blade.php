@@ -417,7 +417,7 @@
 
                         var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
                             axios.post('{{route('map.awd.getStation')}}', {
-                                token: '{{@csrf_token()}}',
+                                token: '{{csrf_token()}}',
                                 id: item.Id
                             })
                                 .then(function (response) {
