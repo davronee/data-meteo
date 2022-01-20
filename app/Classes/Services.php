@@ -9,10 +9,8 @@ use App\Models\OpenWeather;
 use App\Models\UzHydromet;
 use App\Models\WeatherBit;
 use Carbon\Carbon;
-use http\Env\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use phpDocumentor\Reflection\Types\This;
 
 class Services
 {
@@ -533,7 +531,7 @@ class Services
             $total += $object->temp_precent;
         }
 
-        return round($total / count($objects));
+        return $total == 0 ? 0 : round($total / count($objects));
 
     }
 
