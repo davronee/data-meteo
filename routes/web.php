@@ -198,6 +198,11 @@ Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
 });
 
 
+Route::get('/test123',function (){
+    \App\Classes\Services::GetReport('uz_hydromets', 12, 72, 'tashkent');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

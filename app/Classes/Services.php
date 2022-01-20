@@ -301,8 +301,8 @@ class Services
     {
 
         $psumm = self::getSumm($tem_min, $temp_max);
-        $temprature = (abs($psumm - $current)) / $current * 100;
-        $result_temp = 100 - $temprature;
+        $temprature = ($psumm - $current) / $current * 100;
+        $result_temp = 100 - abs($temprature);
 
         return round($result_temp);
     }
