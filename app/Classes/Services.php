@@ -490,7 +490,6 @@ class Services
             $startDate = Carbon::now()->subHour($s_hour);
             $endDate = Carbon::now()->subHour($f_hour);
             $objects = DB::table($model)
-                ->where('day_part', 'day')
                 ->where('region', $region)
                 ->whereBetween('datetime', [$endDate, $startDate])
                 ->get();
