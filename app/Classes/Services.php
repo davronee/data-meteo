@@ -300,9 +300,17 @@ class Services
     public static function Delta($tem_min, $temp_max, $current)
     {
 
-        $psumm = self::getSumm($tem_min, $temp_max);
-        $temprature = ($psumm - $current) / $current * 100;
-        $result_temp = 100 - abs($temprature);
+        if ($current < $tem_min) {
+            $result_temp = abs(($tem_min - $current) / (self::getSumm($tem_min, $temp_max) - $current)) * 100;
+        } else if ($current > $tem_min && $current < $temp_max)
+            $result_temp = 0;
+        else if ($current > $temp_max) {
+            $result_temp = abs(($temp_max - $current) / (self::getSumm($tem_min, $temp_max) - $current)) * 100;
+        }
+
+//        $psumm = self::getSumm($tem_min, $temp_max);
+//        $temprature = ($psumm - $current) / $current * 100;
+//        $result_temp = 100 - abs($temprature);
 
         return round($result_temp);
     }
