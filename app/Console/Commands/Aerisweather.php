@@ -38,11 +38,11 @@ class Aerisweather extends Command
      */
     public function handle()
     {
-        //Services::GetAerisweather();
+        Services::GetAerisweather();
 //        Services::GetDarkSky();
-        //Services::WeatherBit();
+        Services::WeatherBit();
         Services::GetUzhydromet();
-        //Services::Accuweather();
-        //Services::OpenWeather();
+        Services::Accuweather();
+        Services::OpenWeather();
     }
 }
