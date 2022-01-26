@@ -520,7 +520,7 @@ class Services
             $total += $object->temp_precent;
         }
 
-        return round($total / count($objects));
+        return $total > 0 ? round($total / count($objects)) : 0;
 
     }
 
