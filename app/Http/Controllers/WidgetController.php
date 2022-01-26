@@ -15,13 +15,13 @@ class WidgetController extends Controller
     public $meteoapi = 'http://meteoapi.meteo.uz/';//'http://192.168.10.249:8085/';
 //    public $dangerzonesapi = 'http://10.190.24.134:11082/public/api/';
 //    public $dangerzonesapi = 'http://192.168.0.28:11082/public/api/';
-    public $dangerzonesapi = 'http://89.236.217.114:11082/public/api/';
+    public $dangerzonesapi = 'http://192.168.20.7:11082/api/';
 
     public function __construct()
     {
         $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
         $this->meteoapi = env('METEOAPI_ENDPOINT', 'http://meteoapi.meteo.uz/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
-        $this->dangerzonesapi = env('DANGERZONES_ENDPOINT', 'http://89.236.217.114:11082/api/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->dangerzonesapi = env('DANGERZONES_ENDPOINT', 'http://192.168.20.7:11082/api/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
     public function index(Request $request)
@@ -418,8 +418,7 @@ class WidgetController extends Controller
 
     public function dangerzonesData(Request $request)
     {
-        $token = $this->dangerzonesLogin();
-        $data = Http::withToken($token)->get($this->dangerzonesapi . 'hydromet/' . $request->endpoint);
+        $data = Http::withBasicAuth('info@ygk.uz','X25G-y8nvQ8Tq_2D')->get($this->dangerzonesapi . 'hydromet/' . $request->endpoint);
         return $data->json();
     }
 
@@ -439,13 +438,13 @@ class WidgetController extends Controller
 
     public function ChineStations()
     {
-        $stations = Http::get('http://192.168.10.226:7777/allStations.php?station_id=43')->json();
+        $stations = Http::get('http://chinese-api.meteo.uz/allStations.php?station_id=43')->json();
         return $stations;
     }
 
     public function ChineStationCurrent(Request $request)
     {
-        $stations = Http::get('http://192.168.10.226:7777',[
+        $stations = Http::get('http://chinese-api.meteo.uz',[
             'station_id'=>$request->station_id,
             'year'=>Carbon::now()->year,
             'month'=>Carbon::now()->month,
