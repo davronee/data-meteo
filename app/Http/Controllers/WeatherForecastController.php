@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Services;
-use App\Console\Commands\DarkSky;
 use App\Exports\ExportUzHydromet;
 use App\Models\Accuweather;
 use App\Models\UzHydromet;
@@ -23,8 +22,6 @@ class WeatherForecastController extends Controller
      */
     public function index()
     {
-
-
         return view('weathers.weather');
     }
 

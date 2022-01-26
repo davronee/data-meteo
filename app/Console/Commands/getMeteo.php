@@ -27,7 +27,7 @@ class getMeteo extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @defualt(0) void
      */
     public function __construct()
     {
@@ -37,7 +37,7 @@ class getMeteo extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @defualt(0) int
      */
     public function handle()
     {
