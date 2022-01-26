@@ -22,6 +22,9 @@ class WeatherForecastController extends Controller
      */
     public function index()
     {
+
+        dd(Services::Delta(6,8,7));
+
         return view('weathers.weather');
     }
 
