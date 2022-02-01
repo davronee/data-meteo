@@ -433,7 +433,7 @@
                         </div>
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-21x9 mb-3">
+                        <div class="ratio ratio-4x3 mb-3">
                             <div class="nukus">
                                 <div class="pointer"></div>
                             </div>
@@ -484,9 +484,9 @@
                         </div>
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-21x9 mb-3">
+                        <div class="ratio ratio-4x3 mb-3">
                             <!-- BEGIN map -->
-                            <div class="ratio ratio-21x9 mb-3">
+                            <div class="ratio ratio-4x3 mb-3">
                                 <div class="toshkent">
                                     <div class="pointer"></div>
                                 </div>
@@ -539,9 +539,9 @@
                         </div>
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-21x9 mb-3">
+                        <div class="ratio ratio-4x3 mb-3">
                             <!-- BEGIN map -->
-                            <div class="ratio ratio-21x9 mb-3">
+                            <div class="ratio ratio-4x3 mb-3">
                                 <div class="samarqand">
                                     <div class="pointer"></div>
                                 </div>
