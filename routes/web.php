@@ -53,6 +53,11 @@ Route::prefix('weather')->group(function () {
     Route::get('/download', [\App\Http\Controllers\WeatherForecastController::class, 'export'])->name('weather.download');
 });
 
+Route::prefix('meteo')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Meteocontroller::class, 'index'])->name('meteo.index');
+
+});
+
 
 Route::group(['middleware' => ['set_locale']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
