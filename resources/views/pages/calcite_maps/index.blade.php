@@ -417,14 +417,14 @@
     let app = new Vue({
         el: "#app",
         data: {
-            forcastTemp: false,
+            forcastTemp: true,
             currentTemp: false,
             atmTemp: false,
             markers: [],
             radars:@json($radars),
             radar: false,
             atmasfera_data: '',
-            snow: true,
+            snow: false,
             awd: false,
             agro: false,
             mini: false,
@@ -432,7 +432,7 @@
             ChineStation:@json($chinesstations),
             microstep:@json($microstations),
             hydrometStations:@json($hydrometstation),
-            menu: 'snow',
+            menu: 'forecast',
             aero: false,
             dangerzones: false,
             aeroports: [
