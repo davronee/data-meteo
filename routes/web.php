@@ -94,6 +94,7 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
         Route::get('/GetHoribadrujba', [WidgetController::class, 'GetHoribaDrujba'])->name('map.horiba.drujba');
         Route::get('/GetHoribaPlashadka', [WidgetController::class, 'GetHoribaPlashadka'])->name('map.horiba.plashadka');
+        Route::get('/GetAmbientweather', [\App\Http\Controllers\CalciteController::class, 'GetAmbientweather'])->name('map.GetAmbientweather');
         Route::prefix('awd')->group(function () {
             Route::get('/getallstations', [AwdController::class, 'getAllStations'])->name('map.awd.getallstations');
             Route::post('/getStation', [AwdController::class, 'getStation'])->name('map.awd.getStation');

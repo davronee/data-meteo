@@ -80,6 +80,7 @@
     <link rel="stylesheet" href="{{asset('calcite/css/esri-leaflet-geocoder.css')}}">
     <link rel="stylesheet" href="{{asset('calcite/css/style.css')}}">
     <script src="{{asset('calcite/js/jquery/esri-leaflet-geocoder-debug.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <style>
         html, body {
@@ -2121,49 +2122,108 @@
                     // console.log(this.awds['Stations'][0].Metadata.Longitude);
                     // var marker = L.marker([parseFloat(this.awds['Stations'][0].Metadata.Latitude), parseFloat(this.awds['Stations'][1].Metadata.Longitude)]).addTo(map);
 
+                    {{--var meteoIcon1 = L.icon({--}}
+                    {{--    iconUrl: '{{asset('images/meteo.png')}}',--}}
+                    {{--    iconSize: [28, 28], // size of the icon--}}
+                    {{--    class: "station"--}}
+                    {{--});--}}
+                    {{--var marker2 = L.marker([parseFloat(41.34564477332897), parseFloat(69.28504212769195)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('map.MeteoinfocomStationData.get')}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            console.log(response.data.obsTimeLocal)--}}
+                    {{--            marker2.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>UZMETEO-2021</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>дата и время</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(response.data.obsTimeLocal) + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>температура воздуха за измеряемый период</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(response.data.metric.temp, '°C') + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>точка росы<b/></td>" +--}}
+                    {{--                "<td>" + response.data.metric.dewpt + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>скорость ветра</b></td>" +--}}
+                    {{--                "<td>" + response.data.metric.windSpeed + 'm/c' + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>Давление, приведенное к уровню моря</b></td>" +--}}
+                    {{--                "<td>" + response.data.metric.pressure + 'mB' + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>направление ветра</b></td>" +--}}
+                    {{--                "<td>" + response.data.metric.windChill + '°' + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>высота станции</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>осадка</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(response.data.metric.precipRate) + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker2.fire('click');--}}
+
+                    {{--markers_mini.addLayer(marker2);--}}
+
+                    {{--map.addLayer(markers_mini);--}}
+
+
+
+
                     var meteoIcon1 = L.icon({
                         iconUrl: '{{asset('images/meteo.png')}}',
                         iconSize: [28, 28], // size of the icon
                         class: "station"
                     });
-                    var marker2 = L.marker([parseFloat(41.34564477332897), parseFloat(69.28504212769195)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('map.MeteoinfocomStationData.get')}}')
+                    var marker2 = L.marker([parseFloat(41.3202927), parseFloat(69.2968912)], {icon: meteoIcon1}).on('click', function () {
+                        axios.get('{{route('map.GetAmbientweather')}}')
                             .then(function (response) {
-                                console.log(response.data.obsTimeLocal)
                                 marker2.bindPopup("" +
                                     "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>UZMETEO-2021</b></td></tr>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>" + response.data.info.name + "</b></td></tr>" +
                                     "<tr>" +
                                     "<td><b>дата и время</b></td>" +
-                                    "<td>" + app.checktoUndefine(response.data.obsTimeLocal) + "</td>" +
+                                    "<td>" + moment(response.data.lastData.date).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
                                     "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                    "<td>" + app.checktoUndefine(response.data.metric.temp, '°C') + "</td>" +
+                                    "<td>" + app.checktoUndefine(app.FarangetToCelsium(response.data.lastData.tempf), '°C') + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
                                     "<td><b>точка росы<b/></td>" +
-                                    "<td>" + response.data.metric.dewpt + "</td>" +
+                                    "<td>" + response.data.lastData.dewPoint + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
                                     "<td><b>скорость ветра</b></td>" +
-                                    "<td>" + response.data.metric.windSpeed + 'm/c' + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>Давление, приведенное к уровню моря</b></td>" +
-                                    "<td>" + response.data.metric.pressure + 'mB' + "</td>" +
+                                    "<td>" + response.data.lastData.windspeedmph + 'm/c' + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
                                     "<td><b>направление ветра</b></td>" +
-                                    "<td>" + response.data.metric.windChill + '°' + "</td>" +
+                                    "<td>" + response.data.lastData.winddir + '°' + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
                                     "<td><b>высота станции</b></td>" +
-                                    "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +
+                                    "<td>" + app.checktoUndefine(Math.round(response.data.info.coords.elevation), 'a.s.l.') + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
                                     "<td><b>осадка</b></td>" +
-                                    "<td>" + app.checktoUndefine(response.data.metric.precipRate) + "</td>" +
+                                    "<td>" + app.checktoUndefine(response.data.lastData.hourlyrainin) + "</td>" +
                                     "</tr>" +
                                     "</table>"
                                 )
@@ -3776,6 +3836,23 @@
                 } else {
                     return '///';
                 }
+            },
+            timeConverter:function (UNIX_timestamp) {
+                var a = new Date(UNIX_timestamp * 1000);
+                var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                var year = a.getFullYear();
+                var month = months[a.getMonth()];
+                var date = a.getDate();
+                var hour = a.getHours();
+                var min = a.getMinutes();
+                var sec = a.getSeconds();
+                var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+                return time;
+            },
+            FarangetToCelsium:function (Fa){
+              var C = (5/9) * (Fa - 32)
+
+                return C.toFixed(1);
             }
         },
         mounted() {

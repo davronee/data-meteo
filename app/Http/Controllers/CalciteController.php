@@ -62,5 +62,17 @@ class CalciteController extends Controller
 
     }
 
+    public function GetAmbientweather()
+    {
+        $weather = Http::withOptions([
+            'verify' => false
+        ])->get('https://rt.ambientweather.net/v1/devices', [
+            'applicationKey' => '7524b7fc606c45eab2c14f5e1a24bba7769bedd3f13f4d538c93c81082510091',
+            'apiKey' => 'd30e8c1f9ef04e30b5e358b25ee189c6dfdf9d4024754aa286b36c584397c09e'
+        ])->json();
+
+        return response()->json($weather[0]);
+    }
+
 
 }
