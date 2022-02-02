@@ -8,23 +8,23 @@
     <meta name="description" content="" />
     <meta name="author" content="METEOINFOCOM" />
     <!-- ================== BEGIN core-css ================== -->
-    <link href="dist/assets/css/vendor.min.css" rel="stylesheet" />
-    <link href="dist/assets/css/app.min.css" rel="stylesheet" />
+    <link href="/dist1/assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="/dist1/assets/css/app.min.css" rel="stylesheet" />
     <!-- ================== END core-css ================== -->
     <!-- ================== BEGIN weather-css ================== -->
-    <link rel="stylesheet" href="dist/assets/plugins/weather-icons/css/weather-icons.css">
-    <link rel="stylesheet" href="dist/assets/plugins/weather-icons/css/weather-icons-wind.css">
+    <link rel="stylesheet" href="/dist1/assets/plugins/weather-icons/css/weather-icons.css">
+    <link rel="stylesheet" href="/dist1/assets/plugins/weather-icons/css/weather-icons-wind.css">
     <!-- ================== END weather-css ================== -->
     <!-- ================== BEGIN page-css ================== -->
-    <link href="dist/assets/plugins/tag-it/css/jquery.tagit.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/blueimp-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/summernote/dist/summernote-lite.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.css" rel="stylesheet" />
-    <link href="dist/assets/plugins/select-picker/dist/picker.min.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/tag-it/css/jquery.tagit.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/blueimp-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/summernote/dist/summernote-lite.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.css" rel="stylesheet" />
+    <link href="/dist1/assets/plugins/select-picker/dist/picker.min.css" rel="stylesheet" />
     <!-- ================== END page-css ================== -->
 </head>
 
@@ -146,7 +146,7 @@
                 <a href="#" class="card text-decoration-none">
                     <div class="card-body d-flex align-items-center m-5px">
                         <div class="flex-fill">
-                            <div class="fw-bold text-theme text-capitalized mb-1">Havo harorati</div>
+                            <div class="fw-bold text-white text-capitalized mb-1">Havo harorati</div>
                             <h2 class="gradus cold">2</h2>
                             <div class="light-sleet"></div>
                         </div>
@@ -170,7 +170,7 @@
                 <a href="#" class="card text-decoration-none">
                     <div class="card-body d-flex align-items-center m-5px">
                         <div class="flex-fill">
-                            <div class="fw-bold text-theme text-capitalized mb-1">Shamol tezligi va yo'nalishi</div>
+                            <div class="fw-bold text-white text-capitalized mb-1">Shamol tezligi va yo'nalishi</div>
                             <h2 class="m_s">9</h2>
                             <div class="scale_2"></div>
                         </div>
@@ -195,7 +195,7 @@
                 <a href="#" class="card text-decoration-none">
                     <div class="card-body d-flex align-items-center m-5px">
                         <div class="flex-fill">
-                            <div class="fw-bold text-theme text-capitalized mb-1">Yog'ingarchilik</div>
+                            <div class="fw-bold text-white text-capitalized mb-1">Yog'ingarchilik</div>
                             <h2 class="precipitation">3</h2>
                             <div class="light-sleet"></div>
                         </div>
@@ -220,9 +220,22 @@
                 <a href="#" class="card text-decoration-none">
                     <div class="card-body d-flex align-items-center m-5px">
                         <div class="flex-fill">
-                            <div class="fw-bold text-theme text-capitalized mb-1">Atmosfera va havo ifloslanishi</div>
-                            <h2 class="pm">64,013</h2>
-                            <div>Today, 11:25AM</div>
+                            <div class="fw-bold text-white text-capitalized mb-1">Atmosfera va havo ifloslanishi</div>
+                            <h2 class="mb-2 aqi-label-2 pm">64,013</h2>
+                            <div class="mb-md-0 d-flex">
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-1 fs-9px me-1"></i>Yaxshi
+                                </div>
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-2 fs-9px me-1"></i> O'rtacha
+                                </div>
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-4 fs-9px me-1"></i> Nosog'lom
+                                </div>
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-6 fs-9px me-1"></i> Xavfli
+                                </div>
+                            </div>
                         </div>
                         <div class="opacity-5">
                             <h4 class="text-theme">PM 2.5</h4>
@@ -256,7 +269,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-theme bg-opacity-25 fixed-side text-center">O'zgidromet <br><small>(O'zbekiston)</small></td>
+                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">O'zgidromet <br><small>(O'zbekiston)</small></td>
                         <td>
                             <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
                             <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
@@ -284,7 +297,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-theme bg-opacity-25 fixed-side text-center">GisMeteo <br><small>(Rossiya)</small></td>
+                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">GisMeteo <br><small>(Rossiya)</small></td>
                         <td>
                             <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
                             <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
@@ -312,7 +325,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-theme bg-opacity-25 fixed-side text-center">Yandex <br><small>(Rossiya)</small></td>
+                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">Yandex <br><small>(Rossiya)</small></td>
                         <td>
                             <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
                             <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
@@ -340,7 +353,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-theme bg-opacity-25 fixed-side text-center">Accuweather <br><small>(AQSH)</small></td>
+                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">Accuweather <br><small>(AQSH)</small></td>
                         <td>
                             <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
                             <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
@@ -368,7 +381,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-theme bg-opacity-25 fixed-side text-center">Intellicast <br><small>(AQSH)</small></td>
+                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">Intellicast <br><small>(AQSH)</small></td>
                         <td>
                             <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
                             <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
@@ -405,6 +418,169 @@
                 <div class="card-arrow-bottom-left"></div>
                 <div class="card-arrow-bottom-right"></div>
             </div>
+        </div>
+        <div class="row mb-3 mt-2">
+            <!-- BEGIN Nukus -->
+            <div class="col-xl-4">
+                <!-- BEGIN card -->
+                <div class="card mb-3">
+                    <!-- BEGIN card-body -->
+                    <div class="card-body">
+                        <!-- BEGIN title -->
+                        <div class="d-flex fw-bold small mb-3">
+                            <span class="flex-grow-1 text-theme">NUKUS</span>
+                            <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+                        </div>
+                        <!-- END title -->
+                        <!-- BEGIN map -->
+                        <div class="ratio ratio-4x3 mb-3">
+                            <div class="nukus">
+                                <div class="pointer"></div>
+                            </div>
+                        </div>
+                        <!-- END map -->
+                        <!-- BEGIN row -->
+                        <div class="row gx-4">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item d-flex">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <i class="fa fa-bullseye fa-2x text-gray-300"></i>
+                                    </div>
+                                    <div class="flex-fill px-3">
+                                        <div class="fw-bold">Baron Weather Radar</div>
+                                        <div class="fs-12px">31.01.2022 23:12:43</div>
+                                    </div>
+                                    <div class="text-nowrap">
+                                        <div class="text-success fw-bold"><a href="#" class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END row -->
+                    </div>
+                    <!-- END card-body -->
+                    <!-- BEGIN card-arrow -->
+                    <div class="card-arrow">
+                        <div class="card-arrow-top-left"></div>
+                        <div class="card-arrow-top-right"></div>
+                        <div class="card-arrow-bottom-left"></div>
+                        <div class="card-arrow-bottom-right"></div>
+                    </div>
+                    <!-- END card-arrow -->
+                </div>
+                <!-- END card -->
+            </div>
+            <!-- END Nukus -->
+            <!-- BEGIN Toshkent -->
+            <div class="col-xl-4">
+                <!-- BEGIN card -->
+                <div class="card mb-3">
+                    <!-- BEGIN card-body -->
+                    <div class="card-body">
+                        <!-- BEGIN title -->
+                        <div class="d-flex fw-bold small mb-3">
+                            <span class="flex-grow-1 text-theme">TOSHKENT</span>
+                            <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+                        </div>
+                        <!-- END title -->
+                        <!-- BEGIN map -->
+                        <div class="ratio ratio-4x3 mb-3">
+                            <!-- BEGIN map -->
+                            <div class="ratio ratio-4x3 mb-3">
+                                <div class="toshkent">
+                                    <div class="pointer"></div>
+                                </div>
+                            </div>
+                            <!-- END map -->
+                        </div>
+                        <!-- END map -->
+                        <!-- BEGIN row -->
+                        <div class="row gx-4">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item d-flex">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <i class="fa fa-bullseye fa-2x text-gray-300"></i>
+                                    </div>
+                                    <div class="flex-fill px-3">
+                                        <div class="fw-bold">Baron Weather Radar</div>
+                                        <div class="fs-12px">31.01.2022 23:12:43</div>
+                                    </div>
+                                    <div class="text-nowrap">
+                                        <div class="text-success fw-bold"><a href="#" class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END row -->
+                    </div>
+                    <!-- END card-body -->
+                    <!-- BEGIN card-arrow -->
+                    <div class="card-arrow">
+                        <div class="card-arrow-top-left"></div>
+                        <div class="card-arrow-top-right"></div>
+                        <div class="card-arrow-bottom-left"></div>
+                        <div class="card-arrow-bottom-right"></div>
+                    </div>
+                    <!-- END card-arrow -->
+                </div>
+                <!-- END card -->
+            </div>
+            <!-- END Toshkent -->
+            <!-- BEGIN Samarqand -->
+            <div class="col-xl-4">
+                <!-- BEGIN card -->
+                <div class="card mb-3">
+                    <!-- BEGIN card-body -->
+                    <div class="card-body">
+                        <!-- BEGIN title -->
+                        <div class="d-flex fw-bold small mb-3">
+                            <span class="flex-grow-1 text-theme">SAMARQAND</span>
+                            <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+                        </div>
+                        <!-- END title -->
+                        <!-- BEGIN map -->
+                        <div class="ratio ratio-4x3 mb-3">
+                            <!-- BEGIN map -->
+                            <div class="ratio ratio-4x3 mb-3">
+                                <div class="samarqand">
+                                    <div class="pointer"></div>
+                                </div>
+                            </div>
+                            <!-- END map -->
+                        </div>
+                        <!-- END map -->
+                        <!-- BEGIN row -->
+                        <div class="row gx-4">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item d-flex">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <i class="fa fa-bullseye fa-2x text-gray-300"></i>
+                                    </div>
+                                    <div class="flex-fill px-3">
+                                        <div class="fw-bold">Selex Weather Radar</div>
+                                        <div class="fs-12px">31.01.2022 23:12:43</div>
+                                    </div>
+                                    <div class="text-nowrap">
+                                        <div class="text-success fw-bold"><a href="#" class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END row -->
+                    </div>
+                    <!-- END card-body -->
+                    <!-- BEGIN card-arrow -->
+                    <div class="card-arrow">
+                        <div class="card-arrow-top-left"></div>
+                        <div class="card-arrow-top-right"></div>
+                        <div class="card-arrow-bottom-left"></div>
+                        <div class="card-arrow-bottom-right"></div>
+                    </div>
+                    <!-- END card-arrow -->
+                </div>
+                <!-- END card -->
+            </div>
+            <!-- END Samarqand -->
         </div>
     </div>
     <!-- END #content -->
@@ -454,19 +630,19 @@
                         <!-- BEGIN theme-cover -->
                         <div class="app-theme-cover">
                             <div class="app-theme-cover-item active">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist/assets/img/cover/cover-thumb-1.jpg);" data-theme-cover-class="" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Default">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-1.jpg);" data-theme-cover-class="" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Default">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist/assets/img/cover/cover-thumb-2.jpg);" data-theme-cover-class="bg-cover-2" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 2">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-2.jpg);" data-theme-cover-class="bg-cover-2" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 2">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist/assets/img/cover/cover-thumb-3.jpg);" data-theme-cover-class="bg-cover-3" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 3">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-3.jpg);" data-theme-cover-class="bg-cover-3" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 3">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist/assets/img/cover/cover-thumb-4.jpg);" data-theme-cover-class="bg-cover-4" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 4">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-4.jpg);" data-theme-cover-class="bg-cover-4" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 4">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist/assets/img/cover/cover-thumb-5.jpg);" data-theme-cover-class="bg-cover-5" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 5">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-5.jpg);" data-theme-cover-class="bg-cover-5" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 5">&nbsp;</a>
                             </div>
                         </div>
                         <!-- END theme-cover -->
@@ -489,42 +665,42 @@
 <!-- END #app -->
 <!-- script -->
 <!-- ================== BEGIN core-js ================== -->
-<script src="dist/assets/js/vendor.min.js"></script>
-<script src="dist/assets/js/app.min.js"></script>
+<script src="/dist1/assets/js/vendor.min.js"></script>
+<script src="/dist1/assets/js/app.min.js"></script>
 <!-- ================== END core-js ================== -->
 <!-- ================== BEGIN page-js ================== -->
-<script src="dist/assets/plugins/highlight.js/highlight.min.js"></script>
-<script src="dist/assets/js/demo/highlightjs.demo.js"></script>
+<script src="/dist1/assets/plugins/highlight.js/highlight.min.js"></script>
+<script src="/dist1/assets/js/demo/highlightjs.demo.js"></script>
 <!-- ================== END page-js ================== -->
 <!-- ================== BEGIN page-js ================== -->
-<script src="dist/assets/plugins/jquery-migrate/dist/jquery-migrate.min.js"></script>
-<script src="dist/assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="dist/assets/plugins/moment/min/moment.min.js"></script>
-<script src="dist/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="dist/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-<script src="dist/assets/plugins/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
-<script src="dist/assets/plugins/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
-<script src="dist/assets/plugins/jquery.maskedinput/src/jquery.maskedinput.js"></script>
-<script src="dist/assets/plugins/tag-it/js/tag-it.min.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-<script src="dist/assets/plugins/blueimp-tmpl/js/tmpl.min.js"></script>
-<script src="dist/assets/plugins/blueimp-load-image/js/load-image.all.min.js"></script>
-<script src="dist/assets/plugins/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
-<script src="dist/assets/plugins/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.fileupload.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.fileupload-audio.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.fileupload-video.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
-<script src="dist/assets/plugins/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
-<script src="dist/assets/plugins/summernote/dist/summernote-lite.min.js"></script>
-<script src="dist/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.js"></script>
-<script src="dist/assets/plugins/select-picker/dist/picker.min.js"></script>
-<script src="dist/assets/plugins/highlight.js/highlight.min.js"></script>
-<script src="dist/assets/js/demo/highlightjs.demo.js"></script>
-<script src="dist/assets/js/demo/form-plugins.demo.js"></script>
+<script src="/dist1/assets/plugins/jquery-migrate/dist/jquery-migrate.min.js"></script>
+<script src="/dist1/assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/dist1/assets/plugins/moment/min/moment.min.js"></script>
+<script src="/dist1/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/dist1/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+<script src="/dist1/assets/plugins/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+<script src="/dist1/assets/plugins/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
+<script src="/dist1/assets/plugins/jquery.maskedinput/src/jquery.maskedinput.js"></script>
+<script src="/dist1/assets/plugins/tag-it/js/tag-it.min.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/dist1/assets/plugins/blueimp-tmpl/js/tmpl.min.js"></script>
+<script src="/dist1/assets/plugins/blueimp-load-image/js/load-image.all.min.js"></script>
+<script src="/dist1/assets/plugins/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
+<script src="/dist1/assets/plugins/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-audio.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-video.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
+<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
+<script src="/dist1/assets/plugins/summernote/dist/summernote-lite.min.js"></script>
+<script src="/dist1/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.js"></script>
+<script src="/dist1/assets/plugins/select-picker/dist/picker.min.js"></script>
+<script src="/dist1/assets/plugins/highlight.js/highlight.min.js"></script>
+<script src="/dist1/assets/js/demo/highlightjs.demo.js"></script>
+<script src="/dist1/assets/js/demo/form-plugins.demo.js"></script>
 <!-- ================== END page-js ================== -->
 </body>
 
