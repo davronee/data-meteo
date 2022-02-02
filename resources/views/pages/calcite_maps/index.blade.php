@@ -417,14 +417,14 @@
     let app = new Vue({
         el: "#app",
         data: {
-            forcastTemp: true,
+            forcastTemp: false,
             currentTemp: false,
             atmTemp: false,
             markers: [],
             radars:@json($radars),
             radar: false,
             atmasfera_data: '',
-            snow: false,
+            snow: true,
             awd: false,
             agro: false,
             mini: false,
@@ -432,7 +432,7 @@
             ChineStation:@json($chinesstations),
             microstep:@json($microstations),
             hydrometStations:@json($hydrometstation),
-            menu: 'forecast',
+            menu: 'snow',
             aero: false,
             dangerzones: false,
             aeroports: [
@@ -1249,7 +1249,38 @@
                         return data;
                     }
 
-                    getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));
+                    {{--getGeoData('{{asset('asset/geojson/map.topojson')}}').then(data => geojsonSnow.addData(data));--}}
+
+                    var geojsonZarafshan = new L.GeoJSON.AJAX("{{asset('rasters/zarafshan.geojson')}}");
+                    markers_snow.addLayer(geojsonZarafshan);
+                    var geojsonSurxan = new L.GeoJSON.AJAX("{{asset('rasters/surxan.geojson')}}");
+                    markers_snow.addLayer(geojsonSurxan);
+                    var geojsonVaxsh = new L.GeoJSON.AJAX("{{asset('rasters/vaxshh.geojson')}}");
+                    markers_snow.addLayer(geojsonVaxsh);
+                    var geojsonKafernigam = new L.GeoJSON.AJAX("{{asset('rasters/kafernigam.geojson')}}");
+                    markers_snow.addLayer(geojsonKafernigam);
+                    var geojsonPyanj = new L.GeoJSON.AJAX("{{asset('rasters/pyanj.geojson')}}");
+                    markers_snow.addLayer(geojsonPyanj);
+                    var geojsonQunduz = new L.GeoJSON.AJAX("{{asset('rasters/qunduz.geojson')}}");
+                    markers_snow.addLayer(geojsonQunduz);
+                    var geojsonQashqadarya = new L.GeoJSON.AJAX("{{asset('rasters/qashqadarya.geojson')}}");
+                    markers_snow.addLayer(geojsonQashqadarya);
+                    var geojsonUgam = new L.GeoJSON.AJAX("{{asset('rasters/ugam.geojson')}}");
+                    markers_snow.addLayer(geojsonUgam);
+                    var geojsonPiskem = new L.GeoJSON.AJAX("{{asset('rasters/piskem.geojson')}}");
+                    markers_snow.addLayer(geojsonPiskem);
+                    var geojsonChatkal = new L.GeoJSON.AJAX("{{asset('rasters/Chatkal.geojson')}}");
+                    markers_snow.addLayer(geojsonChatkal);
+                    var geojsonAngren = new L.GeoJSON.AJAX("{{asset('rasters/angren.geojson')}}");
+                    markers_snow.addLayer(geojsonAngren);
+                    var geojsonFerganaN = new L.GeoJSON.AJAX("{{asset('rasters/FerganaN.geojson')}}");
+                    markers_snow.addLayer(geojsonFerganaN);
+                    var geojsonNarin = new L.GeoJSON.AJAX("{{asset('rasters/Narin.geojson')}}");
+                    markers_snow.addLayer(geojsonNarin);
+                    var geojsonKaradarya = new L.GeoJSON.AJAX("{{asset('rasters/karadarya.geojson')}}");
+                    markers_snow.addLayer(geojsonKaradarya);
+                    var geojsonFerganaS = new L.GeoJSON.AJAX("{{asset('rasters/FerganaS.geojson')}}");
+                    markers_snow.addLayer(geojsonFerganaS);
 
 
                 } else {
@@ -3837,7 +3868,7 @@
                     return '///';
                 }
             },
-            timeConverter:function (UNIX_timestamp) {
+            timeConverter: function (UNIX_timestamp) {
                 var a = new Date(UNIX_timestamp * 1000);
                 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 var year = a.getFullYear();
@@ -3849,8 +3880,8 @@
                 var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
                 return time;
             },
-            FarangetToCelsium:function (Fa){
-              var C = (5/9) * (Fa - 32)
+            FarangetToCelsium: function (Fa) {
+                var C = (5 / 9) * (Fa - 32)
 
                 return C.toFixed(1);
             }
