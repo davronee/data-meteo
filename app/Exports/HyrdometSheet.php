@@ -22,7 +22,7 @@ class HyrdometSheet  implements FromView, ShouldAutoSize, WithStyles, WithEvents
 
     public function collection()
     {
-        return UzHydromet::all();
+        UzHydromet::all();
     }
 
     public function view(): View

@@ -307,7 +307,7 @@
                                     </div>
                                 </div><!-- total-sales-info -->
                                 <div class="order-1 order-sm-0 mg-sm-t-7 mg-b-15 mg-sm-b-0">
-                                   
+
                                 </div>
                             </div>
                             <div class="flot-wrapper">

@@ -10,7 +10,7 @@
         <button class="close" data-dismiss="alert"></button> {{ session('success') }}
      </div>
     @endif
-    
+
     <div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="clearfix"></div>
-    
+
 @endsection

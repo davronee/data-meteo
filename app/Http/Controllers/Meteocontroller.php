@@ -8,6 +8,6 @@ class Meteocontroller extends Controller
 {
     public function index()
     {
-        return view('pages.meteo.index');
+        return view('pages.meteo.static');
     }
 }
