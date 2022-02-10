@@ -22,52 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="changes oneid endpoint">
-      <change beforePath="$PROJECT_DIR$/.idea/meteo-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meteo-data.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/HyrdometSheet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/HyrdometSheet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Meteocontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Meteocontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/excel.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/excel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddWeatherRegions.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddWeatherRegions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/oneid_template/css/settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/oneid_template/css/settings.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/assets/css/weather-panel.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/assets/css/weather-panel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/assets/js/meteo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/assets/js/meteo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/lib/ckeditor-classic/ckeditor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/lib/ckeditor-classic/ckeditor.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/lib/ckeditor-document/ckeditor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/lib/ckeditor-document/ckeditor.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/lib/prismjs/components/prism-basic.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/lib/prismjs/components/prism-basic.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/pages/page-signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/pages/page-signin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/pages/sinoptik-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/pages/sinoptik-create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/pages/sinoptik.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/pages/sinoptik.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/pages/widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/pages/widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/pages/world.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/pages/world.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blocks/about-system.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blocks/about-system.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blocks/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blocks/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/daily-station-info/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/daily-station-info/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hourly-station-info/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hourly-station-info/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hourly-station-info/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hourly-station-info/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/html-no-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/html-no-sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/html.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/html.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/meteo/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/meteo/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/world_old.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/world_old.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/quick-info/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/quick-info/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/station/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/station/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/profile/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/profile/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/weathers/weather.blade.bak.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weathers/weather.blade.bak.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/widget/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/widget/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-    </list>
+    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="changes oneid endpoint" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -432,14 +387,7 @@
       <workItem from="1643789458990" duration="3856000" />
       <workItem from="1643816195640" duration="13163000" />
       <workItem from="1643953650104" duration="7923000" />
-      <workItem from="1644133316582" duration="56989000" />
-    </task>
-    <task id="LOCAL-00218" summary="added service">
-      <created>1641145888762</created>
-      <option name="number" value="00218" />
-      <option name="presentableId" value="LOCAL-00218" />
-      <option name="project" value="LOCAL" />
-      <updated>1641145888762</updated>
+      <workItem from="1644133316582" duration="57251000" />
     </task>
     <task id="LOCAL-00219" summary="added service">
       <created>1641372119247</created>
@@ -777,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644305873591</updated>
     </task>
-    <option name="localTasksCounter" value="267" />
+    <task id="LOCAL-00267" summary="changes oneid endpoint">
+      <created>1644523151898</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1644523151898</updated>
+    </task>
+    <option name="localTasksCounter" value="268" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
