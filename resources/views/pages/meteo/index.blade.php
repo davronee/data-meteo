@@ -2,29 +2,34 @@
 <html lang="uz">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>METEO | SITUATION PANEL</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="METEOINFOCOM" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="METEOINFOCOM"/>
     <!-- ================== BEGIN core-css ================== -->
-    <link href="/dist1/assets/css/vendor.min.css" rel="stylesheet" />
-    <link href="/dist1/assets/css/app.min.css" rel="stylesheet" />
+    <link href="{{asset('new_meteo/assets/css/vendor.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/css/app.min.css')}}" rel="stylesheet"/>
     <!-- ================== END core-css ================== -->
     <!-- ================== BEGIN weather-css ================== -->
-    <link rel="stylesheet" href="/dist1/assets/plugins/weather-icons/css/weather-icons.css">
-    <link rel="stylesheet" href="/dist1/assets/plugins/weather-icons/css/weather-icons-wind.css">
+    <link rel="stylesheet" href="{{asset('new_meteo/assets/plugins/weather-icons/css/weather-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('new_meteo/assets/plugins/weather-icons/css/weather-icons-wind.css')}}">
     <!-- ================== END weather-css ================== -->
     <!-- ================== BEGIN page-css ================== -->
-    <link href="/dist1/assets/plugins/tag-it/css/jquery.tagit.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/blueimp-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/summernote/dist/summernote-lite.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.css" rel="stylesheet" />
-    <link href="/dist1/assets/plugins/select-picker/dist/picker.min.css" rel="stylesheet" />
+    <link href="{{asset('new_meteo/assets/plugins/tag-it/css/jquery.tagit.css')}}" rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}"
+          rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css')}}"
+          rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/bootstrap-slider/dist/css/bootstrap-slider.min.css')}}"
+          rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/blueimp-file-upload/css/jquery.fileupload.css')}}" rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/summernote/dist/summernote-lite.css')}}" rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/plugins/select-picker/dist/picker.min.css')}}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{mix('css/app.css')}}">
+
     <!-- ================== END page-css ================== -->
 </head>
 
@@ -46,9 +51,15 @@
         <!-- BEGIN menu -->
         <div class="menu">
             <marquee class="menu-link">
-                <div class="d-inline-flex me-3"><span class="text-theme">Toshkent:</span><span class="mx-2 gradus cold">1</span> <span class="mx-1 light-sleet"></span></div>
-                <div class="d-inline-flex me-3"><span class="text-theme">Farg'ona:</span><span class="mx-2 gradus warm">4</span> <span class="mx-1 overcast"></span></div>
-                <div class="d-inline-flex me-3"><span class="text-theme">Nurafshon:</span><span class="mx-2 gradus cold">2</span> <span class="mx-1 light-snow"></span></div>
+                <div v-for="item in current_all" class="d-inline-flex me-3">
+                    <span class="text-theme">@{{ item.city.title }}:</span>
+                    <span class="mx-2 gradus" :class="item.air_t < 0 ? '' : 'warm' ">@{{ item.air_t }}</span>
+                    <span class="mx-1" :class="item.weather_code"></span>
+                </div>
+                {{--                <div class="d-inline-flex me-3"><span class="text-theme">Farg'ona:</span><span class="mx-2 gradus warm">4</span>--}}
+                {{--                    <span class="mx-1 overcast"></span></div>--}}
+                {{--                <div class="d-inline-flex me-3"><span class="text-theme">Nurafshon:</span><span--}}
+                {{--                        class="mx-2 gradus cold">2</span> <span class="mx-1 light-snow"></span></div>--}}
             </marquee>
             <div class="menu-item dropdown dropdown-mobile-full">
                 <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
@@ -108,6 +119,254 @@
     <!-- END #header -->
     <!-- BEGIN #content -->
     <div id="content" class="app-content">
+        <div class="row d-inline-flex-md d-inline-flex-lg d-inline-flex-sm">
+            <div class="col-lg-9 col-xl-9 col-sm-12 mb-4">
+                <div class="card">
+                    <div class="card-header fw-bold small d-flex">
+                        <span class="flex-grow-1">OB-HAVO</span>
+                        <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i
+                                class="fa fa-fw fa-expand"></i> EXPAND</a>
+                    </div>
+                    <div class="card-body">
+                        <!-- BEGIN table -->
+                        <div class="table-responsive">
+                            <table class="table text-nowrap table-bordered">
+                                <thead class="text-capitalized text-theme pe-3">
+                                <tr v-if="days == 1">
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25"></th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(1, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(2, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(3, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(4, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(5, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(6, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(7, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(8, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(9, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(10, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(11, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(12, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(13, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(14, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(15, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                </tr>
+                                <tr v-if="days == 2">
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25"></th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(3, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(4, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(5, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(6, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(7, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(8, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(9, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(10, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                </tr>
+                                <tr v-if="days == 3">
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25"></th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(11, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(12, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(13, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(14, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                    <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">@{{
+                                        moment().add(15, 'days').format("DD.MM.YYYY") }}
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-if="days == 1">
+                                    <td class="align-middle text-capitalized fw-bold fixed-side text-center">O'zgidromet
+                                        <br><small>(O'zbekiston)</small></td>
+                                    <td v-for="item in uzhydromet">
+                            <span v-for="subday in item">
+                                <span v-if="subday.day_part == 'day'">
+                                    <h3>kunduzi</h3>
+                                    <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus"
+                                                                                    :class="subday.air_t_min >= 0 ? 'warm' : ''">@{{ subday.air_t_min }}</span>...<span
+                                            class="mx-1 gradus" :class="subday.air_t_max >= 0 ? 'warm' : ''">@{{ subday.air_t_max }}</span></p>
+                                    <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ subday.wind_speed_min }}-@{{ subday.wind_speed_max }}</span></p>
+                                    <p><i class="wi wi-sleet me-2"></i> <span :class="subday.precipitation != 'none' && subday.precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span></p>
+                                </span>
+                                <span v-if="subday.day_part == 'night'">
+                                    <h3>kechasi</h3>
+                                    <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus"
+                                                                                    :class="subday.air_t_min >= 0 ? 'warm' : ''">@{{ subday.air_t_min }}</span>...<span
+                                            class="mx-1 gradus" :class="subday.air_t_max >= 0 ? 'warm' : ''">@{{ subday.air_t_max }}</span></p>
+                                    <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ subday.wind_speed_min }}-@{{ subday.wind_speed_max }}</span></p>
+                                    <p><i class="wi wi-sleet me-2"></i> <span :class="subday.precipitation != 'none' && subday.precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span></p>
+                                </span>
+
+                            </span>
+                                    </td>
+                                </tr>
+                                <tr v-if="days == 1">
+                                    <td class="align-middle text-capitalized fw-bold fixed-side text-center">GisMeteo
+                                        <br><small>(Rossiya)</small></td>
+                                    <td v-for="item in gismeteo">
+                                        <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus">@{{ item.temp_min }}</span>...<span
+                                                class="mx-1 gradus ">@{{ item.temp_max }}</span></p>
+                                        <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ item.wind_speed_min }}-@{{ item.wind_speed_max }} | @{{ item.wind_direction }}</span></p>
+                                        <p><i class="wi wi-sleet me-2"></i> @{{ item.precipitation }} mm</p>
+                                    </td>
+                                </tr>
+                                <tr v-if="days == 1">
+                                    <td class="align-middle text-capitalized fw-bold fixed-side text-center">Yandex <br><small>(Rossiya)</small>
+                                    </td>
+                                    <td v-for="item in yandex">
+                                        <h3>kunduzi</h3>
+                                        <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus" :class="item.parts.day.temp_min > 0 ? 'warm' : '' ">@{{ item.parts.day.temp_min }}</span>...<span
+                                                class="mx-1 gradus" :class="item.parts.day.temp_max > 0 ? 'warm' : '' ">@{{ item.parts.day.temp_max }}</span></p>
+                                        <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ item.parts.day.wind_speed }}</span></p>
+                                        <p><i class="wi wi-sleet me-2"></i>@{{ item.parts.day.prec_mm }}</p>
+                                        <h3>kechasi</h3>
+                                        <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus" :class="item.parts.day.temp_min > 0 ? 'warm' : '' ">@{{ item.parts.evening.temp_min }}</span>...<span
+                                                class="mx-1 gradus" :class="item.parts.day.temp_max > 0 ? 'warm' : '' ">@{{ item.parts.evening.temp_max }}</span></p>
+                                        <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ item.parts.evening.wind_speed }}</span></p>
+                                        <p><i class="wi wi-sleet me-2"></i>@{{ item.parts.day.prec_mm }}</p>
+                                    </td>
+                                </tr>
+                                <tr v-if="days == 1">
+                                    <td class="align-middle text-capitalized fw-bold fixed-side text-center">Accuweather
+                                        <br><small>(AQSH)</small></td>
+                                    <td v-for="item in uzhydromet">
+                                        <div v-for="subday in item">
+                                <span v-if="subday.day_part == 'day'">
+                                    <h3>kunduzi</h3>
+                                    <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">@{{ subday.air_t_min }}</span>...<span
+                                            class="mx-1 gradus cold">@{{ subday.air_t_max }}</span></p>
+                                    <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ subday.wind_speed_min }}-@{{ subday.wind_speed_max }}</span></p>
+                                    <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
+                                </span>
+                                            <span v-if="subday.day_part == 'night'">
+                                    <h3>kechasi</h3>
+                                    <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">@{{ subday.air_t_min }}</span>...<span
+                                            class="mx-1 gradus cold">@{{ subday.air_t_max }}</span></p>
+                                    <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ subday.wind_speed_min }}-@{{ subday.wind_speed_max }}</span></p>
+                                    <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
+                                </span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr v-if="days == 1">
+                                    <td class="align-middle text-capitalized fw-bold fixed-side text-center">Intellicast
+                                        <br><small>(AQSH)</small></td>
+                                    <td v-for="item in uzhydromet">
+                                        <div v-for="subday in item">
+                                <span v-if="subday.day_part == 'day'">
+                                    <h3>kunduzi</h3>
+                                    <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">@{{ subday.air_t_min }}</span>...<span
+                                            class="mx-1 gradus cold">@{{ subday.air_t_max }}</span></p>
+                                    <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ subday.wind_speed_min }}-@{{ subday.wind_speed_max }}</span></p>
+                                    <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
+                                </span>
+                                            <span v-if="subday.day_part == 'night'">
+                                    <h3>kechasi</h3>
+                                    <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">@{{ subday.air_t_min }}</span>...<span
+                                            class="mx-1 gradus cold">@{{ subday.air_t_max }}</span></p>
+                                    <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">@{{ subday.wind_speed_min }}-@{{ subday.wind_speed_max }}</span></p>
+                                    <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
+                                </span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- END table -->
+                    </div>
+                    <div class="card-arrow">
+                        <div class="card-arrow-top-left"></div>
+                        <div class="card-arrow-top-right"></div>
+                        <div class="card-arrow-bottom-left"></div>
+                        <div class="card-arrow-bottom-right"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xl-3 col-sm-12 mb-4">
+                <div class="card">
+                    <div class="card-header fw-bold small d-flex">
+                        <span class="flex-grow-1">OB-HAVO</span>
+                        <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i
+                                class="fa fa-fw fa-expand"></i> EXPAND</a>
+                    </div>
+                    <div class="card-body d-flex align-items-center text-white m-5px">
+                        <div class="flex-fill">
+                            <div class="mb-1 light-sleet"></div>
+                            <h2>22,930</h2>
+                            <div>Today, 11:25AM</div>
+                        </div>
+                        <div class="opacity-10">
+                            <img src="{{asset('new_meteo/assets/img/qr-code.png')}}" alt="" width="80" class=""/>
+                        </div>
+                    </div>
+                    <!-- card-arrow -->
+                    <div class="card-arrow">
+                        <div class="card-arrow-top-left"></div>
+                        <div class="card-arrow-top-right"></div>
+                        <div class="card-arrow-bottom-left"></div>
+                        <div class="card-arrow-bottom-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="d-flex align-items-center mb-3">
             <div class="">
                 <ul class="breadcrumb">
@@ -116,302 +375,34 @@
                 </ul>
             </div>
             <div class="ms-auto">
-                <select class="form-control mb-1 me-1" id="ex-forecast">
-                    <option value="1">1-3 kunlik</option>
-                    <option value="2" selected>3-10 kunlik</option>
-                    <option value="3">10-15 kunlik</option>
+                <select class="form-control mb-1 me-1"  v-model="days">
+                    <option class="text-black" value="1" selected>1-3 kunlik</option>
+                    <option class="text-black" value="2">3-10 kunlik</option>
+                    <option class="text-black" value="3">10-15 kunlik</option>
                 </select>
             </div>
         </div>
         <div class="mb-md-4 mb-3 d-md-flex">
             <!-- BEGIN input-group -->
-            <select class="form-control" id="ex-city">
-                <option value="1" selected>Тошкент ш.</option>
-                <option value="2">Тошкент вилояти</option>
+            <select class="form-control" v-model="region" id="ex-city" @change="getcurrent">
+                <option class="text-black" v-for="item in regions" :value="item.regionid">@{{ item.name_uz }}</option>
             </select>
-            <select class="form-control" id="ex-tuman">
-                <option value="" selected>Tuman/shahar</option>
-                <option value="1">Олтинкўл тумани</option>
-                <option value="2">Андижон шаҳар</option>
-            </select>
-            <a href="#" class="btn btn-outline-theme rounded-0">
-                <span class="small">Tanlash</span>
-            </a>
-            <!-- END input-group -->
-        </div>
-        <div class="row mb-3">
-            <!-- BEGIN ҳарорат -->
-            <div class="col-xl-3 col-lg-6">
-                <!-- BEGIN card -->
-                <a href="#" class="card text-decoration-none">
-                    <div class="card-body d-flex align-items-center m-5px">
-                        <div class="flex-fill">
-                            <div class="fw-bold text-white text-capitalized mb-1">Havo harorati</div>
-                            <h2 class="gradus cold">2</h2>
-                            <div class="light-sleet"></div>
-                        </div>
-                        <div class="opacity-5">
-                            <i class="wi wi-thermometer fa-4x"></i>
-                        </div>
-                    </div>
-                    <!-- card-arrow -->
-                    <div class="card-arrow">
-                        <div class="card-arrow-top-left"></div>
-                        <div class="card-arrow-top-right"></div>
-                        <div class="card-arrow-bottom-left"></div>
-                        <div class="card-arrow-bottom-right"></div>
-                    </div>
-                </a>
-            </div>
-            <!-- END ҳарорат -->
-            <!-- BEGIN ёғингарчилик -->
-            <div class="col-xl-3 col-lg-6">
-                <!-- BEGIN card -->
-                <a href="#" class="card text-decoration-none">
-                    <div class="card-body d-flex align-items-center m-5px">
-                        <div class="flex-fill">
-                            <div class="fw-bold text-white text-capitalized mb-1">Shamol tezligi va yo'nalishi</div>
-                            <h2 class="m_s">9</h2>
-                            <div class="scale_2"></div>
-                        </div>
-                        <div class="opacity-5">
-                            <i class="wi wi-wind towards-45-deg fa-4x"></i>
-                        </div>
-                    </div>
-                    <!-- card-arrow -->
-                    <div class="card-arrow">
-                        <div class="card-arrow-top-left"></div>
-                        <div class="card-arrow-top-right"></div>
-                        <div class="card-arrow-bottom-left"></div>
-                        <div class="card-arrow-bottom-right"></div>
-                    </div>
-                </a>
-                <!-- END card -->
-            </div>
-            <!-- END ёғингарчилик -->
-            <!-- BEGIN шамол -->
-            <div class="col-xl-3 col-lg-6">
-                <!-- BEGIN card -->
-                <a href="#" class="card text-decoration-none">
-                    <div class="card-body d-flex align-items-center m-5px">
-                        <div class="flex-fill">
-                            <div class="fw-bold text-white text-capitalized mb-1">Yog'ingarchilik</div>
-                            <h2 class="precipitation">3</h2>
-                            <div class="light-sleet"></div>
-                        </div>
-                        <div class="opacity-5">
-                            <i class="wi wi-rain-mix fa-4x"></i>
-                        </div>
-                    </div>
-                    <!-- card-arrow -->
-                    <div class="card-arrow">
-                        <div class="card-arrow-top-left"></div>
-                        <div class="card-arrow-top-right"></div>
-                        <div class="card-arrow-bottom-left"></div>
-                        <div class="card-arrow-bottom-right"></div>
-                    </div>
-                </a>
-                <!-- END card -->
-            </div>
-            <!-- END шамол -->
-            <!-- BEGIN ифлосланиш -->
-            <div class="col-xl-3 col-lg-6">
-                <!-- BEGIN card -->
-                <a href="#" class="card text-decoration-none">
-                    <div class="card-body d-flex align-items-center m-5px">
-                        <div class="flex-fill">
-                            <div class="fw-bold text-white text-capitalized mb-1">Atmosfera va havo ifloslanishi</div>
-                            <h2 class="mb-2 aqi-label-2 pm">64,013</h2>
-                            <div class="mb-md-0 d-flex">
-                                <div class="d-flex align-items-center me-3">
-                                    <i class="fa fa-circle fa-fw aqi-label-1 fs-9px me-1"></i>Yaxshi
-                                </div>
-                                <div class="d-flex align-items-center me-3">
-                                    <i class="fa fa-circle fa-fw aqi-label-2 fs-9px me-1"></i> O'rtacha
-                                </div>
-                                <div class="d-flex align-items-center me-3">
-                                    <i class="fa fa-circle fa-fw aqi-label-4 fs-9px me-1"></i> Nosog'lom
-                                </div>
-                                <div class="d-flex align-items-center me-3">
-                                    <i class="fa fa-circle fa-fw aqi-label-6 fs-9px me-1"></i> Xavfli
-                                </div>
-                            </div>
-                        </div>
-                        <div class="opacity-5">
-                            <h4 class="text-theme">PM 2.5</h4>
-                        </div>
-                    </div>
-                    <!-- card-arrow -->
-                    <div class="card-arrow">
-                        <div class="card-arrow-top-left"></div>
-                        <div class="card-arrow-top-right"></div>
-                        <div class="card-arrow-bottom-left"></div>
-                        <div class="card-arrow-bottom-right"></div>
-                    </div>
-                </a>
-                <!-- END card -->
-            </div>
-            <!-- END ифлосланиш -->
+        {{--            <select class="form-control" id="ex-tuman">--}}
+        {{--                <option value="" selected>Tuman/shahar</option>--}}
+        {{--                <option value="1">Олтинкўл тумани</option>--}}
+        {{--                <option value="2">Андижон шаҳар</option>--}}
+        {{--            </select>--}}
+        {{--            <select class="form-control" id="ex-tuman">--}}
+        {{--                <option value="" selected>Tuman/shahar</option>--}}
+        {{--                <option value="1">Олтинкўл тумани</option>--}}
+        {{--                <option value="2">Андижон шаҳар</option>--}}
+        {{--            </select>--}}
+        {{--            <a href="#" class="btn btn-outline-theme rounded-0">--}}
+        {{--                <span class="small">Tanlash</span>--}}
+        {{--            </a>--}}
+        <!-- END input-group -->
         </div>
         <div class="card">
-            <!-- BEGIN table -->
-            <div class="table-responsive">
-                <table class="table text-nowrap table-bordered">
-                    <thead class="text-capitalized text-theme pe-3">
-                    <tr>
-                        <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25"></th>
-                        <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">27.01.2022</th>
-                        <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">28.01.2022</th>
-                        <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">29.01.2022</th>
-                        <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">30.01.2022</th>
-                        <th class="border-top-0 pt-2 pb-2 bg-theme bg-opacity-25 text-white">31.01.2022</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">O'zgidromet <br><small>(O'zbekiston)</small></td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="text-danger me-1 n_a"></span>...<span class="text-danger mx-1 n_a"></span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="text-danger n_a"></span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="text-danger n_a"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="text-danger me-1 n_a"></span>...<span class="text-danger mx-1 n_a"></span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="text-danger n_a"></span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="text-danger n_a"></span></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">GisMeteo <br><small>(Rossiya)</small></td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">Yandex <br><small>(Rossiya)</small></td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">Accuweather <br><small>(AQSH)</small></td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle text-capitalized fw-bold bg-gray-700 bg-opacity-50 fixed-side text-center">Intellicast <br><small>(AQSH)</small></td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                        <td>
-                            <p><i class="wi wi-thermometer me-2"></i> <span class="me-1 gradus warm">4</span>...<span class="mx-1 gradus cold">1</span></p>
-                            <p><i class="wi wi-wind towards-45-deg me-2"></i> <span class="m_s">9-12</span></p>
-                            <p><i class="wi wi-sleet me-2"></i> <span class="rain_yes"></span></p>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- END table -->
             <div class="card-arrow">
                 <div class="card-arrow-top-left"></div>
                 <div class="card-arrow-top-right"></div>
@@ -429,11 +420,12 @@
                         <!-- BEGIN title -->
                         <div class="d-flex fw-bold small mb-3">
                             <span class="flex-grow-1 text-theme">NUKUS</span>
-                            <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+                            <a href="#" data-toggle="card-expand"
+                               class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
                         </div>
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-4x3 mb-3">
+                        <div class="ratio ratio-21x9 mb-3">
                             <div class="nukus">
                                 <div class="pointer"></div>
                             </div>
@@ -451,7 +443,9 @@
                                         <div class="fs-12px">31.01.2022 23:12:43</div>
                                     </div>
                                     <div class="text-nowrap">
-                                        <div class="text-success fw-bold"><a href="#" class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
+                                        <div class="text-success fw-bold"><a href="#"
+                                                                             class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i
+                                                    class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -480,13 +474,14 @@
                         <!-- BEGIN title -->
                         <div class="d-flex fw-bold small mb-3">
                             <span class="flex-grow-1 text-theme">TOSHKENT</span>
-                            <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+                            <a href="#" data-toggle="card-expand"
+                               class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
                         </div>
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-4x3 mb-3">
+                        <div class="ratio ratio-21x9 mb-3">
                             <!-- BEGIN map -->
-                            <div class="ratio ratio-4x3 mb-3">
+                            <div class="ratio ratio-21x9 mb-3">
                                 <div class="toshkent">
                                     <div class="pointer"></div>
                                 </div>
@@ -506,7 +501,9 @@
                                         <div class="fs-12px">31.01.2022 23:12:43</div>
                                     </div>
                                     <div class="text-nowrap">
-                                        <div class="text-success fw-bold"><a href="#" class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
+                                        <div class="text-success fw-bold"><a href="#"
+                                                                             class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i
+                                                    class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -535,13 +532,14 @@
                         <!-- BEGIN title -->
                         <div class="d-flex fw-bold small mb-3">
                             <span class="flex-grow-1 text-theme">SAMARQAND</span>
-                            <a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+                            <a href="#" data-toggle="card-expand"
+                               class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
                         </div>
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-4x3 mb-3">
+                        <div class="ratio ratio-21x9 mb-3">
                             <!-- BEGIN map -->
-                            <div class="ratio ratio-4x3 mb-3">
+                            <div class="ratio ratio-21x9 mb-3">
                                 <div class="samarqand">
                                     <div class="pointer"></div>
                                 </div>
@@ -561,7 +559,9 @@
                                         <div class="fs-12px">31.01.2022 23:12:43</div>
                                     </div>
                                     <div class="text-nowrap">
-                                        <div class="text-success fw-bold"><a href="#" class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
+                                        <div class="text-success fw-bold"><a href="#"
+                                                                             class="btn btn-rounded px-3 btn-sm bg-theme bg-opacity-20 text-theme fw-600 rounded"><i
+                                                    class="fas fa-lg fa-fw me-2 fa-download"></i> Yuklab olish</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -582,6 +582,121 @@
             </div>
             <!-- END Samarqand -->
         </div>
+        <div class="row mb-3">
+            <!-- BEGIN ҳарорат -->
+            <div class="col-xl-3 col-lg-6">
+                <!-- BEGIN card -->
+                <a href="#" class="card text-decoration-none">
+                    <div class="card-body d-flex align-items-center m-5px">
+                        <div class="flex-fill">
+                            <div class="fw-bold text-white text-capitalized mb-1">Havo harorati</div>
+                            <h2 class="gradus" :class="uzhydromet_current.air_t < 0 ? '' : 'warm' ">
+                                @{{ uzhydromet_current.air_t }}</h2>
+                            <div :class="uzhydromet_current.weather_code"></div>
+                        </div>
+                        <div class="opacity-5">
+                            <i class="wi wi-thermometer fa-4x"></i>
+                        </div>
+                    </div>
+                    <!-- card-arrow -->
+                    <div class="card-arrow">
+                        <div class="card-arrow-top-left"></div>
+                        <div class="card-arrow-top-right"></div>
+                        <div class="card-arrow-bottom-left"></div>
+                        <div class="card-arrow-bottom-right"></div>
+                    </div>
+                </a>
+            </div>
+            <!-- END ҳарорат -->
+            <!-- BEGIN ёғингарчилик -->
+        {{--            <div class="col-xl-3 col-lg-6">--}}
+        {{--                <!-- BEGIN card -->--}}
+        {{--                <a href="#" class="card text-decoration-none">--}}
+        {{--                    <div class="card-body d-flex align-items-center m-5px">--}}
+        {{--                        <div class="flex-fill">--}}
+        {{--                            <div class="fw-bold text-white text-capitalized mb-1">Shamol tezligi va yo'nalishi</div>--}}
+        {{--                            <h2 class="m_s">9</h2>--}}
+        {{--                            <div class="scale_2"></div>--}}
+        {{--                        </div>--}}
+        {{--                        <div class="opacity-5">--}}
+        {{--                            <i class="wi wi-wind towards-45-deg fa-4x"></i>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                    <!-- card-arrow -->--}}
+        {{--                    <div class="card-arrow">--}}
+        {{--                        <div class="card-arrow-top-left"></div>--}}
+        {{--                        <div class="card-arrow-top-right"></div>--}}
+        {{--                        <div class="card-arrow-bottom-left"></div>--}}
+        {{--                        <div class="card-arrow-bottom-right"></div>--}}
+        {{--                    </div>--}}
+        {{--                </a>--}}
+        {{--                <!-- END card -->--}}
+        {{--            </div>--}}
+        <!-- END ёғингарчилик -->
+            <!-- BEGIN шамол -->
+        {{--            <div class="col-xl-3 col-lg-6">--}}
+        {{--                <!-- BEGIN card -->--}}
+        {{--                <a href="#" class="card text-decoration-none">--}}
+        {{--                    <div class="card-body d-flex align-items-center m-5px">--}}
+        {{--                        <div class="flex-fill">--}}
+        {{--                            <div class="fw-bold text-white text-capitalized mb-1">Yog'ingarchilik</div>--}}
+        {{--                            <h2 class="precipitation">3</h2>--}}
+        {{--                            <div class="light-sleet"></div>--}}
+        {{--                        </div>--}}
+        {{--                        <div class="opacity-5">--}}
+        {{--                            <i class="wi wi-rain-mix fa-4x"></i>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                    <!-- card-arrow -->--}}
+        {{--                    <div class="card-arrow">--}}
+        {{--                        <div class="card-arrow-top-left"></div>--}}
+        {{--                        <div class="card-arrow-top-right"></div>--}}
+        {{--                        <div class="card-arrow-bottom-left"></div>--}}
+        {{--                        <div class="card-arrow-bottom-right"></div>--}}
+        {{--                    </div>--}}
+        {{--                </a>--}}
+        {{--                <!-- END card -->--}}
+        {{--            </div>--}}
+        <!-- END шамол -->
+            <!-- BEGIN ифлосланиш -->
+            <div class="col-xl-3 col-lg-6">
+                <!-- BEGIN card -->
+                <a href="#" class="card text-decoration-none">
+                    <div class="card-body d-flex align-items-center m-5px">
+                        <div class="flex-fill">
+                            <div class="fw-bold text-white text-capitalized mb-1">Atmosfera va havo ifloslanishi</div>
+                            <h2 class="mb-2 aqi-label-2" :style="{color:current_si.color}">@{{ current_si.Si }}</h2>
+                            <div class="mb-md-0 d-flex">
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-1 fs-9px me-1"></i>Yaxshi
+                                </div>
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-2 fs-9px me-1"></i> O'rtacha
+                                </div>
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-4 fs-9px me-1"></i> Nosog'lom
+                                </div>
+                                <div class="d-flex align-items-center me-3">
+                                    <i class="fa fa-circle fa-fw aqi-label-6 fs-9px me-1"></i> Xavfli
+                                </div>
+                            </div>
+                        </div>
+                        <div class="opacity-5">
+                            <h4 class="text-theme">ИЗА</h4>
+                        </div>
+                    </div>
+                    <!-- card-arrow -->
+                    <div class="card-arrow">
+                        <div class="card-arrow-top-left"></div>
+                        <div class="card-arrow-top-right"></div>
+                        <div class="card-arrow-bottom-left"></div>
+                        <div class="card-arrow-bottom-right"></div>
+                    </div>
+                </a>
+                <!-- END card -->
+            </div>
+            <!-- END ифлосланиш -->
+        </div>
     </div>
     <!-- END #content -->
     <!-- BEGIN btn-scroll-top -->
@@ -590,7 +705,8 @@
     <!-- BEGIN theme-panel -->
     <div class="app-theme-panel">
         <div class="app-theme-panel-container">
-            <a href="javascript:;" data-toggle="theme-panel-expand" class="app-theme-toggle-btn"><i class="bi bi-sliders"></i></a>
+            <a href="javascript:;" data-toggle="theme-panel-expand" class="app-theme-toggle-btn"><i
+                    class="bi bi-sliders"></i></a>
             <div class="app-theme-panel-content">
                 <div class="small fw-bold text-white mb-1">Theme Color</div>
                 <div class="card mb-3">
@@ -598,18 +714,74 @@
                     <div class="card-body p-2">
                         <!-- BEGIN theme-list -->
                         <div class="app-theme-list">
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-pink" data-theme-class="theme-pink" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Pink">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-red" data-theme-class="theme-red" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Red">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-warning" data-theme-class="theme-warning" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Orange">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-yellow" data-theme-class="theme-yellow" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Yellow">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-lime" data-theme-class="theme-lime" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Lime">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-green" data-theme-class="theme-green" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Green">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-teal" data-theme-class="" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Default">&nbsp;</a></div>
-                            <div class="app-theme-list-item "><a href="javascript:;" class="app-theme-list-link bg-primary" data-theme-class="theme-primary" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Blue">&nbsp;</a></div>
-                            <div class="app-theme-list-item active"><a href="javascript:;" class="app-theme-list-link bg-info" data-theme-class="theme-info" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cyan">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-purple" data-theme-class="theme-purple" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Purple">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-indigo" data-theme-class="theme-indigo" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Indigo">&nbsp;</a></div>
-                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-gray-100" data-theme-class="theme-gray-200" data-toggle="theme-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Gray">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-pink"
+                                                                data-theme-class="theme-pink"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Pink">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-red"
+                                                                data-theme-class="theme-red"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Red">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;"
+                                                                class="app-theme-list-link bg-warning"
+                                                                data-theme-class="theme-warning"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Orange">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;"
+                                                                class="app-theme-list-link bg-yellow"
+                                                                data-theme-class="theme-yellow"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Yellow">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-lime"
+                                                                data-theme-class="theme-lime"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Lime">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-green"
+                                                                data-theme-class="theme-green"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Green">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;" class="app-theme-list-link bg-teal"
+                                                                data-theme-class="" data-toggle="theme-selector"
+                                                                data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                                data-bs-container="body"
+                                                                data-bs-title="Default">&nbsp;</a></div>
+                            <div class="app-theme-list-item "><a href="javascript:;"
+                                                                 class="app-theme-list-link bg-primary"
+                                                                 data-theme-class="theme-primary"
+                                                                 data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                 data-bs-trigger="hover" data-bs-container="body"
+                                                                 data-bs-title="Blue">&nbsp;</a></div>
+                            <div class="app-theme-list-item active"><a href="javascript:;"
+                                                                       class="app-theme-list-link bg-info"
+                                                                       data-theme-class="theme-info"
+                                                                       data-toggle="theme-selector"
+                                                                       data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                                       data-bs-container="body" data-bs-title="Cyan">&nbsp;</a>
+                            </div>
+                            <div class="app-theme-list-item"><a href="javascript:;"
+                                                                class="app-theme-list-link bg-purple"
+                                                                data-theme-class="theme-purple"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Purple">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;"
+                                                                class="app-theme-list-link bg-indigo"
+                                                                data-theme-class="theme-indigo"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Indigo">&nbsp;</a></div>
+                            <div class="app-theme-list-item"><a href="javascript:;"
+                                                                class="app-theme-list-link bg-gray-100"
+                                                                data-theme-class="theme-gray-200"
+                                                                data-toggle="theme-selector" data-bs-toggle="tooltip"
+                                                                data-bs-trigger="hover" data-bs-container="body"
+                                                                data-bs-title="Gray">&nbsp;</a></div>
                         </div>
                         <!-- END theme-list -->
                     </div>
@@ -630,19 +802,38 @@
                         <!-- BEGIN theme-cover -->
                         <div class="app-theme-cover">
                             <div class="app-theme-cover-item active">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-1.jpg);" data-theme-cover-class="" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Default">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link"
+                                   style="background-image: url({{asset('new_meteo/assets/img/cover/cover-thumb-1.jpg')}});"
+                                   data-theme-cover-class="" data-toggle="theme-cover-selector" data-bs-toggle="tooltip"
+                                   data-bs-trigger="hover" data-bs-container="body" data-bs-title="Default">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-2.jpg);" data-theme-cover-class="bg-cover-2" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 2">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link"
+                                   style="background-image: url({{asset('new_meteo/assets/img/cover/cover-thumb-2.jpg')}});"
+                                   data-theme-cover-class="bg-cover-2" data-toggle="theme-cover-selector"
+                                   data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body"
+                                   data-bs-title="Cover 2">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-3.jpg);" data-theme-cover-class="bg-cover-3" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 3">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link"
+                                   style="background-image: url({{asset('new_meteo/assets/img/cover/cover-thumb-3.jpg')}});"
+                                   data-theme-cover-class="bg-cover-3" data-toggle="theme-cover-selector"
+                                   data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body"
+                                   data-bs-title="Cover 3">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-4.jpg);" data-theme-cover-class="bg-cover-4" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 4">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link"
+                                   style="background-image: url({{asset('new_meteo/assets/img/cover/cover-thumb-4.jpg')}});"
+                                   data-theme-cover-class="bg-cover-4" data-toggle="theme-cover-selector"
+                                   data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body"
+                                   data-bs-title="Cover 4">&nbsp;</a>
                             </div>
                             <div class="app-theme-cover-item">
-                                <a href="javascript:;" class="app-theme-cover-link" style="background-image: url(/dist1/assets/img/cover/cover-thumb-5.jpg);" data-theme-cover-class="bg-cover-5" data-toggle="theme-cover-selector" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body" data-bs-title="Cover 5">&nbsp;</a>
+                                <a href="javascript:;" class="app-theme-cover-link"
+                                   style="background-image: url({{asset('new_meteo/assets/img/cover/cover-thumb-5.jpg')}});"
+                                   data-theme-cover-class="bg-cover-5" data-toggle="theme-cover-selector"
+                                   data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container="body"
+                                   data-bs-title="Cover 5">&nbsp;</a>
                             </div>
                         </div>
                         <!-- END theme-cover -->
@@ -665,42 +856,44 @@
 <!-- END #app -->
 <!-- script -->
 <!-- ================== BEGIN core-js ================== -->
-<script src="/dist1/assets/js/vendor.min.js"></script>
-<script src="/dist1/assets/js/app.min.js"></script>
+<script src="{{asset('new_meteo/assets/js/vendor.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/js/app.min.js')}}"></script>
 <!-- ================== END core-js ================== -->
 <!-- ================== BEGIN page-js ================== -->
-<script src="/dist1/assets/plugins/highlight.js/highlight.min.js"></script>
-<script src="/dist1/assets/js/demo/highlightjs.demo.js"></script>
+<script src="{{asset('new_meteo/assets/plugins/highlight.js/highlight.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/js/demo/highlightjs.demo.js')}}"></script>
 <!-- ================== END page-js ================== -->
 <!-- ================== BEGIN page-js ================== -->
-<script src="/dist1/assets/plugins/jquery-migrate/dist/jquery-migrate.min.js"></script>
-<script src="/dist1/assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="/dist1/assets/plugins/moment/min/moment.min.js"></script>
-<script src="/dist1/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="/dist1/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-<script src="/dist1/assets/plugins/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
-<script src="/dist1/assets/plugins/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
-<script src="/dist1/assets/plugins/jquery.maskedinput/src/jquery.maskedinput.js"></script>
-<script src="/dist1/assets/plugins/tag-it/js/tag-it.min.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-<script src="/dist1/assets/plugins/blueimp-tmpl/js/tmpl.min.js"></script>
-<script src="/dist1/assets/plugins/blueimp-load-image/js/load-image.all.min.js"></script>
-<script src="/dist1/assets/plugins/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
-<script src="/dist1/assets/plugins/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-audio.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-video.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
-<script src="/dist1/assets/plugins/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
-<script src="/dist1/assets/plugins/summernote/dist/summernote-lite.min.js"></script>
-<script src="/dist1/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.js"></script>
-<script src="/dist1/assets/plugins/select-picker/dist/picker.min.js"></script>
-<script src="/dist1/assets/plugins/highlight.js/highlight.min.js"></script>
-<script src="/dist1/assets/js/demo/highlightjs.demo.js"></script>
-<script src="/dist1/assets/js/demo/form-plugins.demo.js"></script>
+<script src="{{asset('new_meteo/assets/plugins/jquery-migrate/dist/jquery-migrate.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/moment/min/moment.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/bootstrap-slider/dist/bootstrap-slider.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/bootstrap-3-typeahead/bootstrap3-typeahead.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/jquery.maskedinput/src/jquery.maskedinput.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/tag-it/js/tag-it.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-tmpl/js/tmpl.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-load-image/js/load-image.all.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-canvas-to-blob/js/canvas-to-blob.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-gallery/js/jquery.blueimp-gallery.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.iframe-transport.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.fileupload.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.fileupload-process.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.fileupload-image.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.fileupload-audio.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.fileupload-video.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/blueimp-file-upload/js/jquery.fileupload-ui.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/summernote/dist/summernote-lite.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/select-picker/dist/picker.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/plugins/highlight.js/highlight.min.js')}}"></script>
+<script src="{{asset('new_meteo/assets/js/demo/highlightjs.demo.js')}}"></script>
+<script src="{{asset('new_meteo/assets/js/demo/form-plugins.demo.js')}}"></script>
+<script src="{{mix('js/app.js')}}"></script>
+
 <!-- ================== END page-js ================== -->
 </body>
 

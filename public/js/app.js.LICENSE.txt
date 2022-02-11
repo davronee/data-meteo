@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+=======
+/* @preserve
+ * Leaflet 1.7.1, a JS library for interactive maps. http://leafletjs.com
+ * (c) 2010-2019 Vladimir Agafonkin, (c) 2010-2011 CloudMade
+ */
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
 /**
  * @license
  * Lodash <https://lodash.com/>
@@ -6,7 +25,10 @@
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
+<<<<<<< HEAD
 
 //! moment.js
 
 //! moment.js locale configuration
+=======
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87

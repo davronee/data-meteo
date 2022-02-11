@@ -22,10 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="Karakalpak stations added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="changes oneid endpoint" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -63,7 +61,6 @@
       <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
       <path value="$PROJECT_DIR$/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
-      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
@@ -82,9 +79,6 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
@@ -119,7 +113,6 @@
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
-      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
@@ -143,7 +136,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
@@ -164,7 +156,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
@@ -178,7 +169,30 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
-      <path value="$PROJECT_DIR$/vendor/laravel/horizon" />
+      <path value="$PROJECT_DIR$/vendor/league/config" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/laravel/breeze" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-cors" />
+      <path value="$PROJECT_DIR$/vendor/imangazaliev/didom" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
     </include_path>
   </component>
   <component name="ProjectId" id="1l5jI5zwzAVKW9aXmTM7KWLD5PA" />
@@ -190,7 +204,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tvrmonitoring" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eijarafront" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -198,16 +212,18 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\meteo-data\resources\lang\ru" />
-      <recent name="C:\laragon\www\meteo-data\resources\lang\en" />
-      <recent name="C:\laragon\www\meteo-data\resources\lang\uz_Latin" />
-      <recent name="C:\laragon\www\meteo-data\resources\lang\uz_Cyrillic" />
-      <recent name="C:\laragon\www\meteo-data\public\js" />
+      <recent name="E:\laragon\www\meteo-data\resources\views\pages" />
+      <recent name="E:\laragon\www\meteo-data\public\login" />
+      <recent name="E:\laragon\www\meteo-data\resources\css" />
+      <recent name="E:\laragon\www\meteo-data\resources\js" />
+      <recent name="E:\laragon\www\meteo-data\resources\lang\uz_Cyrillic" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -272,351 +288,451 @@
       <workItem from="1622615629577" duration="742000" />
       <workItem from="1623218035660" duration="736000" />
       <workItem from="1623663343192" duration="3127000" />
+      <workItem from="1623775126905" duration="5273000" />
+      <workItem from="1623821344340" duration="85000" />
+      <workItem from="1623909049659" duration="1553000" />
+      <workItem from="1623914266657" duration="130000" />
+      <workItem from="1624185980227" duration="627000" />
+      <workItem from="1624265477108" duration="35000" />
+      <workItem from="1624347960731" duration="1962000" />
+      <workItem from="1624554942953" duration="1788000" />
+      <workItem from="1624875035146" duration="39000" />
+      <workItem from="1624880220918" duration="49000" />
+      <workItem from="1624880706951" duration="172000" />
+      <workItem from="1624949603922" duration="338000" />
+      <workItem from="1625226995864" duration="1745000" />
+      <workItem from="1625329499734" duration="2163000" />
+      <workItem from="1625594590642" duration="659000" />
+      <workItem from="1625596770419" duration="595000" />
+      <workItem from="1627447276865" duration="1404000" />
+      <workItem from="1627450004180" duration="617000" />
+      <workItem from="1627884051988" duration="1278000" />
+      <workItem from="1629800166256" duration="3429000" />
+      <workItem from="1629873349006" duration="3503000" />
+      <workItem from="1629962492420" duration="955000" />
+      <workItem from="1630348830466" duration="615000" />
+      <workItem from="1630400126164" duration="5659000" />
+      <workItem from="1630522233175" duration="58458000" />
+      <workItem from="1630922487753" duration="1981000" />
+      <workItem from="1630938059640" duration="22000" />
+      <workItem from="1630993975353" duration="8630000" />
+      <workItem from="1631165441899" duration="9442000" />
+      <workItem from="1631598273869" duration="1530000" />
+      <workItem from="1631682982121" duration="2999000" />
+      <workItem from="1631857504472" duration="1358000" />
+      <workItem from="1632215754545" duration="4385000" />
+      <workItem from="1632643485488" duration="5156000" />
+      <workItem from="1632896378326" duration="12590000" />
+      <workItem from="1633112436436" duration="986000" />
+      <workItem from="1633253813901" duration="1482000" />
+      <workItem from="1633320948333" duration="6717000" />
+      <workItem from="1633499849144" duration="30529000" />
+      <workItem from="1634277553730" duration="674000" />
+      <workItem from="1634413620736" duration="3507000" />
+      <workItem from="1634542128684" duration="514000" />
+      <workItem from="1634621273227" duration="7421000" />
+      <workItem from="1634801260771" duration="7809000" />
+      <workItem from="1634885512207" duration="795000" />
+      <workItem from="1634914168664" duration="916000" />
+      <workItem from="1635010357494" duration="12000" />
+      <workItem from="1635013554233" duration="1267000" />
+      <workItem from="1635315220602" duration="602000" />
+      <workItem from="1635413967999" duration="1731000" />
+      <workItem from="1635697213430" duration="946000" />
+      <workItem from="1635746212707" duration="316000" />
+      <workItem from="1636193743549" duration="3387000" />
+      <workItem from="1636817845093" duration="11997000" />
+      <workItem from="1637131016159" duration="224000" />
+      <workItem from="1637137065094" duration="2734000" />
+      <workItem from="1638863707501" duration="4114000" />
+      <workItem from="1638883090887" duration="726000" />
+      <workItem from="1638949701034" duration="9837000" />
+      <workItem from="1638974950592" duration="1278000" />
+      <workItem from="1638976382925" duration="61000" />
+      <workItem from="1639332360418" duration="849000" />
+      <workItem from="1639373674325" duration="741000" />
+      <workItem from="1639724864381" duration="423000" />
+      <workItem from="1639735032911" duration="220000" />
+      <workItem from="1639742305236" duration="6780000" />
+      <workItem from="1639843483267" duration="1215000" />
+      <workItem from="1639975609242" duration="782000" />
+      <workItem from="1639988594523" duration="143000" />
+      <workItem from="1640103985832" duration="4024000" />
+      <workItem from="1640165077368" duration="924000" />
+      <workItem from="1640169353209" duration="22000" />
+      <workItem from="1640860230250" duration="13906000" />
+      <workItem from="1641367167724" duration="2403000" />
+      <workItem from="1641485898514" duration="1258000" />
+      <workItem from="1641494041596" duration="2313000" />
+      <workItem from="1641794276318" duration="617000" />
+      <workItem from="1641886495979" duration="1424000" />
+      <workItem from="1641893259506" duration="220000" />
+      <workItem from="1641893492027" duration="693000" />
+      <workItem from="1641920181613" duration="29000" />
+      <workItem from="1641920280981" duration="4211000" />
+      <workItem from="1641966027572" duration="3041000" />
+      <workItem from="1642143069353" duration="1350000" />
+      <workItem from="1642395697866" duration="4595000" />
+      <workItem from="1642401281374" duration="1917000" />
+      <workItem from="1642416577693" duration="672000" />
+      <workItem from="1642498258673" duration="643000" />
+      <workItem from="1642578478697" duration="3172000" />
+      <workItem from="1642612590371" duration="1315000" />
+      <workItem from="1642660377016" duration="3061000" />
+      <workItem from="1642746519761" duration="2923000" />
+      <workItem from="1643026179880" duration="12597000" />
+      <workItem from="1643353673007" duration="3929000" />
+      <workItem from="1643653838230" duration="2787000" />
+      <workItem from="1643707930791" duration="3487000" />
+      <workItem from="1643789458990" duration="3856000" />
+      <workItem from="1643816195640" duration="13163000" />
+      <workItem from="1643953650104" duration="7923000" />
+      <workItem from="1644133316582" duration="57251000" />
     </task>
-    <task id="LOCAL-00075" summary="widthet changed">
-      <created>1617743341187</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
+    <task id="LOCAL-00219" summary="added service">
+      <created>1641372119247</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
       <option name="project" value="LOCAL" />
-      <updated>1617743341187</updated>
+      <updated>1641372119247</updated>
     </task>
-    <task id="LOCAL-00076" summary="widthet changed">
-      <created>1617743630220</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
+    <task id="LOCAL-00220" summary="added service">
+      <created>1641534072452</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
       <option name="project" value="LOCAL" />
-      <updated>1617743630220</updated>
+      <updated>1641534072452</updated>
     </task>
-    <task id="LOCAL-00077" summary="widthet changed">
-      <created>1617773968796</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
+    <task id="LOCAL-00221" summary="added service">
+      <created>1641534138131</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
       <option name="project" value="LOCAL" />
-      <updated>1617773968796</updated>
+      <updated>1641534138131</updated>
     </task>
-    <task id="LOCAL-00078" summary="widthet changed">
-      <created>1617780743961</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
+    <task id="LOCAL-00222" summary="added service">
+      <created>1641893125031</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
       <option name="project" value="LOCAL" />
-      <updated>1617780743962</updated>
+      <updated>1641893125031</updated>
     </task>
-    <task id="LOCAL-00079" summary="widthet changed">
-      <created>1617781244275</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
+    <task id="LOCAL-00223" summary="added service">
+      <created>1641893448526</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
       <option name="project" value="LOCAL" />
-      <updated>1617781244275</updated>
+      <updated>1641893448526</updated>
     </task>
-    <task id="LOCAL-00080" summary="widthet changed">
-      <created>1617781601001</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
+    <task id="LOCAL-00224" summary="added service">
+      <created>1641924522919</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
       <option name="project" value="LOCAL" />
-      <updated>1617781601001</updated>
+      <updated>1641924522920</updated>
     </task>
-    <task id="LOCAL-00081" summary="widthet changed">
-      <created>1617797205430</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
+    <task id="LOCAL-00225" summary="added mail to service">
+      <created>1641966813155</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
       <option name="project" value="LOCAL" />
-      <updated>1617797205430</updated>
+      <updated>1641966813156</updated>
     </task>
-    <task id="LOCAL-00082" summary="widthet changed">
-      <created>1617797262343</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
+    <task id="LOCAL-00226" summary="added mail to service">
+      <created>1641968722266</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
       <option name="project" value="LOCAL" />
-      <updated>1617797262343</updated>
+      <updated>1641968722266</updated>
     </task>
-    <task id="LOCAL-00083" summary="widthet changed">
-      <created>1617797387084</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
+    <task id="LOCAL-00227" summary="changed service name">
+      <created>1641969084054</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
       <option name="project" value="LOCAL" />
-      <updated>1617797387085</updated>
+      <updated>1641969084054</updated>
     </task>
-    <task id="LOCAL-00084" summary="widthet changed">
-      <created>1617797445798</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
+    <task id="LOCAL-00228" summary="added cors">
+      <created>1642396425681</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
       <option name="project" value="LOCAL" />
-      <updated>1617797445798</updated>
+      <updated>1642396425682</updated>
     </task>
-    <task id="LOCAL-00085" summary="widthet changed">
-      <created>1617797819331</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
+    <task id="LOCAL-00229" summary="added cors">
+      <created>1642396484734</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
       <option name="project" value="LOCAL" />
-      <updated>1617797819331</updated>
+      <updated>1642396484734</updated>
     </task>
-    <task id="LOCAL-00086" summary="widthet changed">
-      <created>1617818928252</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
+    <task id="LOCAL-00230" summary="added cors">
+      <created>1642396489838</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
       <option name="project" value="LOCAL" />
-      <updated>1617818928252</updated>
+      <updated>1642396489838</updated>
     </task>
-    <task id="LOCAL-00087" summary="widthet changed">
-      <created>1617819030471</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
+    <task id="LOCAL-00231" summary="added cors">
+      <created>1642396782756</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
       <option name="project" value="LOCAL" />
-      <updated>1617819030471</updated>
+      <updated>1642396782756</updated>
     </task>
-    <task id="LOCAL-00088" summary="widthet changed">
-      <created>1617819184113</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
+    <task id="LOCAL-00232" summary="added cors">
+      <created>1642396973944</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
       <option name="project" value="LOCAL" />
-      <updated>1617819184113</updated>
+      <updated>1642396973944</updated>
     </task>
-    <task id="LOCAL-00089" summary="widthet changed">
-      <created>1617819376910</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
+    <task id="LOCAL-00233" summary="added cors">
+      <created>1642397088569</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
       <option name="project" value="LOCAL" />
-      <updated>1617819376910</updated>
+      <updated>1642397088569</updated>
     </task>
-    <task id="LOCAL-00090" summary="widthet changed">
-      <created>1617819500239</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
+    <task id="LOCAL-00234" summary="added cors">
+      <created>1642397264322</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
       <option name="project" value="LOCAL" />
-      <updated>1617819500239</updated>
+      <updated>1642397264322</updated>
     </task>
-    <task id="LOCAL-00091" summary="widthet changed">
-      <created>1617821520698</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
+    <task id="LOCAL-00235" summary="added cors">
+      <created>1642397382646</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
       <option name="project" value="LOCAL" />
-      <updated>1617821520698</updated>
+      <updated>1642397382646</updated>
     </task>
-    <task id="LOCAL-00092" summary="widthet changed">
-      <created>1617821562344</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
+    <task id="LOCAL-00236" summary="added cors">
+      <created>1642397691389</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
       <option name="project" value="LOCAL" />
-      <updated>1617821562344</updated>
+      <updated>1642397691389</updated>
     </task>
-    <task id="LOCAL-00093" summary="widthet changed">
-      <created>1618394733546</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
+    <task id="LOCAL-00237" summary="added order id for service">
+      <created>1642401819767</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
       <option name="project" value="LOCAL" />
-      <updated>1618394733549</updated>
+      <updated>1642401819767</updated>
     </task>
-    <task id="LOCAL-00094" summary="widthet changed">
-      <created>1618395102238</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
+    <task id="LOCAL-00238" summary="added order id for service">
+      <created>1642401829221</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
       <option name="project" value="LOCAL" />
-      <updated>1618395102238</updated>
+      <updated>1642401829221</updated>
     </task>
-    <task id="LOCAL-00095" summary="widthet changed">
-      <created>1618398204846</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
+    <task id="LOCAL-00239" summary="added order id for service">
+      <created>1642402130996</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
       <option name="project" value="LOCAL" />
-      <updated>1618398204846</updated>
+      <updated>1642402130996</updated>
     </task>
-    <task id="LOCAL-00096" summary="widthet changed">
-      <created>1618469388931</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
+    <task id="LOCAL-00240" summary="added order id for service">
+      <created>1642402378355</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
       <option name="project" value="LOCAL" />
-      <updated>1618469388932</updated>
+      <updated>1642402378355</updated>
     </task>
-    <task id="LOCAL-00097" summary="widthet changed">
-      <created>1618808429486</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
+    <task id="LOCAL-00241" summary="added order id for service">
+      <created>1642402594936</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
       <option name="project" value="LOCAL" />
-      <updated>1618808429487</updated>
+      <updated>1642402594936</updated>
     </task>
-    <task id="LOCAL-00098" summary="widthet changed">
-      <created>1618817228775</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
+    <task id="LOCAL-00242" summary="added order id for service">
+      <created>1642402772348</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
       <option name="project" value="LOCAL" />
-      <updated>1618817228775</updated>
+      <updated>1642402772348</updated>
     </task>
-    <task id="LOCAL-00099" summary="widthet changed">
-      <created>1618833159969</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
+    <task id="LOCAL-00243" summary="added order id for service">
+      <created>1642402979400</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
       <option name="project" value="LOCAL" />
-      <updated>1618833159969</updated>
+      <updated>1642402979400</updated>
     </task>
-    <task id="LOCAL-00100" summary="widthet changed">
-      <created>1618941676476</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
+    <task id="LOCAL-00244" summary="added order id for service">
+      <created>1642403146321</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
       <option name="project" value="LOCAL" />
-      <updated>1618941676477</updated>
+      <updated>1642403146321</updated>
     </task>
-    <task id="LOCAL-00101" summary="widthet changed">
-      <created>1618941829580</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
+    <task id="LOCAL-00245" summary="added order id for service">
+      <created>1642581472991</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
       <option name="project" value="LOCAL" />
-      <updated>1618941829580</updated>
+      <updated>1642581472991</updated>
     </task>
-    <task id="LOCAL-00102" summary="widthet changed">
-      <created>1618982808825</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
+    <task id="LOCAL-00246" summary="added order id for service">
+      <created>1642660476744</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
       <option name="project" value="LOCAL" />
-      <updated>1618982808825</updated>
+      <updated>1642660476744</updated>
     </task>
-    <task id="LOCAL-00103" summary="widthet changed">
-      <created>1618983709205</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
+    <task id="LOCAL-00247" summary="added order id for service">
+      <created>1642662169966</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
       <option name="project" value="LOCAL" />
-      <updated>1618983709205</updated>
+      <updated>1642662169966</updated>
     </task>
-    <task id="LOCAL-00104" summary="widthet changed">
-      <created>1618984821240</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
+    <task id="LOCAL-00248" summary="added order id for service">
+      <created>1642663278998</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
       <option name="project" value="LOCAL" />
-      <updated>1618984821240</updated>
+      <updated>1642663278999</updated>
     </task>
-    <task id="LOCAL-00105" summary="widthet changed">
-      <created>1618985167444</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
+    <task id="LOCAL-00249" summary="added order id for service">
+      <created>1642760175312</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
       <option name="project" value="LOCAL" />
-      <updated>1618985167444</updated>
+      <updated>1642760175312</updated>
     </task>
-    <task id="LOCAL-00106" summary="widthet changed">
-      <created>1618987315899</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
+    <task id="LOCAL-00250" summary="added order id for service">
+      <created>1643178669220</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
       <option name="project" value="LOCAL" />
-      <updated>1618987315899</updated>
+      <updated>1643178669220</updated>
     </task>
-    <task id="LOCAL-00107" summary="widthet changed">
-      <created>1618989208861</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
+    <task id="LOCAL-00251" summary="added order id for service">
+      <created>1643179493273</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
       <option name="project" value="LOCAL" />
-      <updated>1618989208861</updated>
+      <updated>1643179493273</updated>
     </task>
-    <task id="LOCAL-00108" summary="widthet changed">
-      <created>1619026402207</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
+    <task id="LOCAL-00252" summary="added order id for service">
+      <created>1643179611010</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
       <option name="project" value="LOCAL" />
-      <updated>1619026402207</updated>
+      <updated>1643179611010</updated>
     </task>
-    <task id="LOCAL-00109" summary="Karakalpak stations added">
-      <created>1622060848784</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
+    <task id="LOCAL-00253" summary="added order id for service">
+      <created>1643187853932</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
       <option name="project" value="LOCAL" />
-      <updated>1622060848784</updated>
+      <updated>1643187853932</updated>
     </task>
-    <task id="LOCAL-00110" summary="Karakalpak stations added">
-      <created>1622093217219</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
+    <task id="LOCAL-00254" summary="added order id for service">
+      <created>1643191992531</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
       <option name="project" value="LOCAL" />
-      <updated>1622093217219</updated>
+      <updated>1643191992531</updated>
     </task>
-    <task id="LOCAL-00111" summary="Karakalpak stations added">
-      <created>1622093710893</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
+    <task id="LOCAL-00255" summary="added order id for service">
+      <created>1643192405301</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
       <option name="project" value="LOCAL" />
-      <updated>1622093710893</updated>
+      <updated>1643192405301</updated>
     </task>
-    <task id="LOCAL-00112" summary="Karakalpak stations added">
-      <created>1622101490123</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
+    <task id="LOCAL-00256" summary="added order id for service">
+      <created>1643192613946</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
       <option name="project" value="LOCAL" />
-      <updated>1622101490123</updated>
+      <updated>1643192613946</updated>
     </task>
-    <task id="LOCAL-00113" summary="Karakalpak stations added">
-      <created>1622101640235</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
+    <task id="LOCAL-00257" summary="added order id for service">
+      <created>1643192855372</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
       <option name="project" value="LOCAL" />
-      <updated>1622101640235</updated>
+      <updated>1643192855372</updated>
     </task>
-    <task id="LOCAL-00114" summary="Karakalpak stations added">
-      <created>1622111997606</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
+    <task id="LOCAL-00258" summary="added order id for service">
+      <created>1643194070755</created>
+      <option name="number" value="00258" />
+      <option name="presentableId" value="LOCAL-00258" />
       <option name="project" value="LOCAL" />
-      <updated>1622111997607</updated>
+      <updated>1643194070755</updated>
     </task>
-    <task id="LOCAL-00115" summary="Karakalpak stations added">
-      <created>1622112114709</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
+    <task id="LOCAL-00259" summary="added order id for service">
+      <created>1643364106375</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
       <option name="project" value="LOCAL" />
-      <updated>1622112114709</updated>
+      <updated>1643364106375</updated>
     </task>
-    <task id="LOCAL-00116" summary="Karakalpak stations added">
-      <created>1622135660132</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
+    <task id="LOCAL-00260" summary="added new disign meteo">
+      <created>1643694697582</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
       <option name="project" value="LOCAL" />
-      <updated>1622135660133</updated>
+      <updated>1643694697582</updated>
     </task>
-    <task id="LOCAL-00117" summary="Karakalpak stations added">
-      <created>1622529096721</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
+    <task id="LOCAL-00261" summary="added new disign meteo">
+      <created>1643709832916</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
       <option name="project" value="LOCAL" />
-      <updated>1622529096722</updated>
+      <updated>1643709832916</updated>
     </task>
-    <task id="LOCAL-00118" summary="Karakalpak stations added">
-      <created>1622531736680</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
+    <task id="LOCAL-00262" summary="added snows">
+      <created>1643830753955</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
       <option name="project" value="LOCAL" />
-      <updated>1622531736680</updated>
+      <updated>1643830753955</updated>
     </task>
-    <task id="LOCAL-00119" summary="Karakalpak stations added">
-      <created>1622533192698</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
+    <task id="LOCAL-00263" summary="added snows">
+      <created>1643830898870</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
       <option name="project" value="LOCAL" />
-      <updated>1622533192698</updated>
+      <updated>1643830898871</updated>
     </task>
-    <task id="LOCAL-00120" summary="Karakalpak stations added">
-      <created>1622533708387</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
+    <task id="LOCAL-00264" summary="added snows">
+      <created>1643958996171</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
       <option name="project" value="LOCAL" />
-      <updated>1622533708387</updated>
+      <updated>1643958996171</updated>
     </task>
-    <task id="LOCAL-00121" summary="Karakalpak stations added">
-      <created>1622533767429</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
+    <task id="LOCAL-00265" summary="added snows">
+      <created>1644305174823</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
       <option name="project" value="LOCAL" />
-      <updated>1622533767429</updated>
+      <updated>1644305174823</updated>
     </task>
-    <task id="LOCAL-00122" summary="Karakalpak stations added">
-      <created>1622533840186</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
+    <task id="LOCAL-00266" summary="changes oneid endpoint">
+      <created>1644305873591</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
       <option name="project" value="LOCAL" />
-      <updated>1622533840186</updated>
+      <updated>1644305873591</updated>
     </task>
-    <task id="LOCAL-00123" summary="Karakalpak stations added">
-      <created>1622534141214</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
+    <task id="LOCAL-00267" summary="changes oneid endpoint">
+      <created>1644523151898</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
       <option name="project" value="LOCAL" />
-      <updated>1622534141214</updated>
+      <updated>1644523151898</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <option name="localTasksCounter" value="268" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,6 +754,17 @@
     <MESSAGE value="added widget" />
     <MESSAGE value="widthet changed" />
     <MESSAGE value="Karakalpak stations added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Karakalpak stations added" />
+    <MESSAGE value="Meteoinfocom Television  stations added" />
+    <MESSAGE value="commit" />
+    <MESSAGE value="fixed login page" />
+    <MESSAGE value="added service" />
+    <MESSAGE value="added mail to service" />
+    <MESSAGE value="changed service name" />
+    <MESSAGE value="added cors" />
+    <MESSAGE value="added order id for service" />
+    <MESSAGE value="added new disign meteo" />
+    <MESSAGE value="added snows" />
+    <MESSAGE value="changes oneid endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes oneid endpoint" />
   </component>
 </project>

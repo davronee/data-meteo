@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\WeatherRegions;
 use Illuminate\Database\Seeder;
 
 class AddWeatherRegions extends Seeder
@@ -13,128 +14,132 @@ class AddWeatherRegions extends Seeder
      */
     public function run()
     {
-        if (!\App\Models\WeatherRegions::where('code', 'tashkent')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 1;
-            $weather_regions->regionid = 1726;
-            $weather_regions->code = 'tashkent';
-            $weather_regions->save();
-        }
-
-        if (!\App\Models\WeatherRegions::where('code', 'andijan')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 14;
-            $weather_regions->regionid = 1703;
-            $weather_regions->code = 'andijan';
-            $weather_regions->save();
-        }
 
 
-        if (!\App\Models\WeatherRegions::where('code', 'bukhara')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 4;
-            $weather_regions->regionid = 1706;
-            $weather_regions->code = 'bukhara';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'tashkent'],
+            ['weather_regionid' => 1,
+                'regionid' => 1726,
+                'name_ru' => 'г. Ташкент',
+                'name_uz' => 'Toshkent shahri'
+            ]
+        );
 
+        WeatherRegions::updateOrCreate(
+            ['code' => 'andijan'],
+            ['weather_regionid' => 14,
+                'regionid' => 1703,
+                'name_ru' => 'Андижанская область',
+                'name_uz' => 'Andijon viloyati'
+            ]
+        );
 
-        if (!\App\Models\WeatherRegions::where('code', 'fergana')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 12;
-            $weather_regions->regionid = 1730;
-            $weather_regions->code = 'fergana';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'bukhara'],
+            ['weather_regionid' => 4,
+                'regionid' => 1706,
+                'name_ru' => 'Бухарская область',
+                'name_uz' => 'Buxoro viloyati'
+            ]
+        );
 
+        WeatherRegions::updateOrCreate(
+            ['code' => 'fergana'],
+            ['weather_regionid' => 12,
+                'regionid' => 1730,
+                'name_ru' => 'Ферганская область',
+                'name_uz' => 'Farg`ona viloyati'
+            ]
+        );
 
-        if (!\App\Models\WeatherRegions::where('code', 'jizzakh')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 8;
-            $weather_regions->regionid = 1708;
-            $weather_regions->code = 'jizzakh';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'jizzakh'],
+            ['weather_regionid' => 8,
+                'regionid' => 1708,
+                'name_ru' => 'Джизакская область',
+                'name_uz' => 'Jizzax viloyati'
+            ]
+        );
 
+        WeatherRegions::updateOrCreate(
+            ['code' => 'urgench'],
+            ['weather_regionid' => 3,
+                'regionid' => 1733,
+                'name_ru' => 'Хорезмская область',
+                'name_uz' => 'Xorazm viloyati'
+            ]
+        );
 
-        if (!\App\Models\WeatherRegions::where('code', 'urgench')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 3;
-            $weather_regions->regionid = 1733;
-            $weather_regions->code = 'urgench';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'namangan'],
+            ['weather_regionid' => 13,
+                'regionid' => 1714,
+                'name_ru' => 'Наманганская область',
+                'name_uz' => 'Namangan viloyati'
+            ]
+        );
 
+        WeatherRegions::updateOrCreate(
+            ['code' => 'navoiy'],
+            ['weather_regionid' => 5,
+                'regionid' => 1712,
+                'name_ru' => 'Навоийская область',
+                'name_uz' => 'Navoiy viloyati'
+            ]
+        );
 
-        if (!\App\Models\WeatherRegions::where('code', 'namangan')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 13;
-            $weather_regions->regionid = 1714;
-            $weather_regions->code = 'namangan';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'qarshi'],
+            ['weather_regionid' => 10,
+                'regionid' => 1710,
+                'name_ru' => 'Кашкадарьинская область',
+                'name_uz' => 'Qashqadaryo viloyati'
+            ]
+        );
 
+        WeatherRegions::updateOrCreate(
+            ['code' => 'nukus'],
+            ['weather_regionid' => 2,
+                'regionid' => 1735,
+                'name_ru' => 'Республика Каракалпакстан',
+                'name_uz' => 'Qoraqalpog`iston Respublikasi'
+            ]
+        );
 
-        if (!\App\Models\WeatherRegions::where('code', 'navoiy')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 5;
-            $weather_regions->regionid = 1712;
-            $weather_regions->code = 'navoiy';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'samarkand'],
+            ['weather_regionid' => 7,
+                'regionid' => 1718,
+                'name_ru' => 'Самаркандская область',
+                'name_uz' => 'Samarqand viloyati'
+            ]
+        );
 
+        WeatherRegions::updateOrCreate(
+            ['code' => 'gulistan'],
+            ['weather_regionid' => 9,
+                'regionid' => 1724,
+                'name_ru' => 'Сырдарьинская область',
+                'name_uz' => 'Sirdaryo viloyati'
+            ]
+        );
 
-        if (!\App\Models\WeatherRegions::where('code', 'qarshi')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 10;
-            $weather_regions->regionid = 1710;
-            $weather_regions->code = 'qarshi';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'termez'],
+            ['weather_regionid' => 11,
+                'regionid' => 1722,
+                'name_ru' => 'Сурхандарьинская область',
+                'name_uz' => 'Surxandaryo viloyati'
+            ]
+        );
 
-
-        if (!\App\Models\WeatherRegions::where('code', 'nukus')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 2;
-            $weather_regions->regionid = 1735;
-            $weather_regions->code = 'nukus';
-            $weather_regions->save();
-        }
-
-
-        if (!\App\Models\WeatherRegions::where('code', 'samarkand')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 7;
-            $weather_regions->regionid = 1718;
-            $weather_regions->code = 'samarkand';
-            $weather_regions->save();
-        }
-
-
-        if (!\App\Models\WeatherRegions::where('code', 'gulistan')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 9;
-            $weather_regions->regionid = 1724;
-            $weather_regions->code = 'gulistan';
-            $weather_regions->save();
-        }
-
-
-        if (!\App\Models\WeatherRegions::where('code', 'termez')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 11;
-            $weather_regions->regionid = 1722;
-            $weather_regions->code = 'termez';
-            $weather_regions->save();
-        }
-
-
-        if (!\App\Models\WeatherRegions::where('code', 'nurafshon')->first()) {
-            $weather_regions = new \App\Models\WeatherRegions();
-            $weather_regions->weather_regionid = 20;
-            $weather_regions->regionid = 1727;
-            $weather_regions->code = 'nurafshon';
-            $weather_regions->save();
-        }
+        WeatherRegions::updateOrCreate(
+            ['code' => 'nurafshon'],
+            ['weather_regionid' => 20,
+                'regionid' => 1727,
+                'name_ru' => 'Ташкентская область',
+                'name_uz' => 'Toshkent viloyati'
+            ]
+        );
     }
 }
