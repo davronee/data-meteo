@@ -7,6 +7,7 @@ use App\Http\Controllers\API\DistrictController;
 use App\Http\Controllers\API\HydrometSensorController;
 use App\Http\Controllers\API\DirectoryController;
 use App\Http\Controllers\ArmController;
+use App\Http\Controllers\Meteocontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,12 @@ Route::prefix('apm')->group(function () {
 
 Route::prefix('directory')->group(function () {
     Route::get('/regions', [DirectoryController::class, 'regions'])->name('directory.regions.index');
+    Route::get('/regionsWithWeather', [DirectoryController::class, 'regionsWithWeather'])->name('directory.regions.regionsWithWeather');
+    Route::get('/current/aws/uzhydromet/{regionid}/{days}', [Meteocontroller::class, 'getAws'])->name('directory.aws.index');
     Route::get('/forecast/uzhydromet/{regionid}/{days}', [DirectoryController::class, 'uzhydromet'])->name('directory.forecast.uzhydromet');
     Route::get('/forecast/gismeteo/{regionid}/{days}', [DirectoryController::class, 'gismeteo'])->name('directory.forecast.gismeteo');
     Route::get('/forecast/yandexweather/{regionid}/{days}', [DirectoryController::class, 'yandexweather'])->name('directory.forecast.yandexweather');
-    Route::get('/forecast/accuweather/', [DirectoryController::class, 'Accuweather'])->name('directory.forecast.Accuweather');
+    Route::get('/forecast/accuweather/{regionid}/{days}', [DirectoryController::class, 'Accuweather'])->name('directory.forecast.Accuweather');
 
 });
 

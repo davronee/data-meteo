@@ -8,6 +8,7 @@ use App\Models\DarkSky;
 use App\Models\OpenWeather;
 use App\Models\UzHydromet;
 use App\Models\WeatherBit;
+use App\Models\WeatherRegions;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -543,6 +544,222 @@ class Services
 
         return $total == 0 ? 0 : round($total / count($objects));
 
+    }
+
+    public static function GetAwsByRegion($regionid)
+    {
+        $endpoint = env('AWS_ENDPOINT');
+        $endpoint_tradional = env('METEOAPI_ENDPOINT');
+        switch ($regionid) {
+            case 1726:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/51/O')->json();
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+                ];
+                return response()->json($cur);
+            case 1735:
+                $current = Http::withOptions([
+                    'verify' => false
+                ])->get('https://meteoapi.meteo.uz/api/weather/current/1735');
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['air_t'],
+                    'min_wind' => '-',
+                    'max_wind' => '-',
+                    'regionid' => $regionid,
+                    'weathercode' => $current['weather_code'],
+
+                ];
+                return response()->json($cur);
+            case 1703:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/1/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+
+                ];
+                return response()->json($cur);
+            case 1706:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/6/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+
+                    'regionid' => $regionid
+
+                ];
+                return response()->json($cur);
+            case 1708:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/60/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+
+                    'regionid' => $regionid
+
+                ];
+                return response()->json($cur);
+            case 1710:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/54/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+
+                ];
+                return response()->json($cur);
+            case 1712:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/17/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+
+                ];
+                return response()->json($cur);
+            case 1714:
+                $current = Http::withOptions([
+                    'verify' => false
+                ])->get('https://meteoapi.meteo.uz/api/weather/current/1714');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['air_t'],
+                    'min_wind' => '-',
+                    'max_wind' => '-',
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+
+                ];
+                return response()->json($cur);
+            case 1718:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/20/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+
+                ];
+                return response()->json($cur);
+            case 1722:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/25/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+                ];
+                return response()->json($cur);
+            case 1724:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/26/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+                ];
+                return response()->json($cur);
+            case 1727:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/42/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+                ];
+                return response()->json($cur);
+            case 1730:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/43/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+                ];
+                return response()->json($cur);
+            case 1733:
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/49/O');
+                $traditional = Http::withOptions([
+                    'verify' => false
+                ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
+                $cur = [
+                    'title' => WeatherRegions::select('name_uz')->where('regionid', $regionid)->first()->name_uz,
+                    'temp' => $current->json()['Stations']['Sources']['Variables'][24]['Value']['Value'],
+                    'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
+                    'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
+                    'weathercode' => $traditional['weather_code'],
+                    'regionid' => $regionid
+                ];
+                return response()->json($cur);
+
+        }
     }
 
 }
