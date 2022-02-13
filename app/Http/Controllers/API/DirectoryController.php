@@ -118,7 +118,9 @@ class DirectoryController extends Controller
             ];
             array_push($array, $weather);
         }
-        return response()->json($array);
+
+
+        return response()->json(array_splice($array,0,5));
     }
 
     public function yandexweather($regionid, $days)
@@ -228,7 +230,8 @@ class DirectoryController extends Controller
             'extra' => 'true',
             'lang' => 'uz_UZ',
         ])->json();
-        return response()->json($yandexweather['forecasts']);
+
+        return response()->json(array_splice($yandexweather['forecasts'],0,5));
     }
 
 

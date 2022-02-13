@@ -26,7 +26,7 @@
     <link href="{{'new_meteo/assets/plugins/summernote/dist/summernote-lite.css'}}" rel="stylesheet"/>
     <link href="{{'new_meteo/assets/plugins/spectrum-colorpicker2/dist/spectrum.min.css'}}" rel="stylesheet"/>
     <link href="{{'new_meteo/assets/plugins/select-picker/dist/picker.min.css'}}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{mix('css/app.css')}}">
+{{--    <link rel="stylesheet" href="{{mix('css/app.css')}}">--}}
 
     <!-- ================== END page-css ================== -->
 </head>
