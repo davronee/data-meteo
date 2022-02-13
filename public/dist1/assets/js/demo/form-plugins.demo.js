@@ -195,11 +195,19 @@ var handleRenderjQueryFileUpload = function() {
 };
 
 var handleRenderSelectPicker = function() {
+<<<<<<< HEAD
+    $('#ex-city').picker();
+    $('#ex-tuman').picker();
+    $('#ex-forecast').picker();
+    $('#ex-multiselect').picker();
+    $('#ex-search').picker({ search: true });
+=======
     // $('#ex-city').picker();
     // $('#ex-tuman').picker();
     // $('#ex-forecast').picker();
     // $('#ex-multiselect').picker();
     // $('#ex-search').picker({ search: true });
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
 };
 
 
@@ -217,4 +225,8 @@ $(document).ready(function() {
     handleRenderSummernote();
     handleRenderjQueryFileUpload();
     handleRenderSelectPicker();
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87

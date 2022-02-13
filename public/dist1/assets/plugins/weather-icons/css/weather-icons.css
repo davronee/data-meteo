@@ -119,7 +119,11 @@
 
 /*AIR QUALITY*/
 .aqi-label-1 {
+<<<<<<< HEAD
+    color: rgb(0, 153, 102);
+=======
     color: rgb(0, 153, 102)!important;
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
 }
 
 .aqi-label-2 {
@@ -430,8 +434,12 @@ td p {
 
 
 .pm:after {
+<<<<<<< HEAD
+    content: " µg/\33A5";
+=======
     /*content: " µg/\33A5";*/
     content: "";
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     font-size: 11pt;
 }
 
@@ -490,6 +498,17 @@ td p {
     content: "ochiq, bulutsiz";
 }
 
+<<<<<<< HEAD
+.mostly-clear:after {
+    content: "kam bulutli";
+}
+
+.partly-cloudy:after {
+    content: "o'zgaruvchan, bulutli";
+}
+
+.mostly-cloudy:after {
+=======
 .mostly_clear:after {
     content: "kam bulutli";
 }
@@ -499,6 +518,7 @@ td p {
 }
 
 .mostly_cloudy:after {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     content: "sezilari bulutli";
 }
 
@@ -510,7 +530,11 @@ td p {
     content: "tuman, yopiq havo";
 }
 
+<<<<<<< HEAD
+.light-rain:after {
+=======
 .light_rain:after {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     content: "кам миқдорли ёмғир";
 }
 
@@ -518,7 +542,11 @@ td p {
     content: "ёмғир";
 }
 
+<<<<<<< HEAD
+.heavy-rain:after {
+=======
 .heavy_rain:after {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     content: "кучли ёмғир";
 }
 
@@ -526,7 +554,11 @@ td p {
     content: "момақалдироқ";
 }
 
+<<<<<<< HEAD
+.light-sleet:after {
+=======
 .light_sleet:after {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     content: "kuchsiz yog'ingarchilik (yomg'ir, qor)";
 }
 
@@ -534,11 +566,19 @@ td p {
     content: "ёғингарчилик (ёмғир, қор)";
 }
 
+<<<<<<< HEAD
+.heavy-sleet:after {
+    content: "кучли ёғингарчилик (ёмғир, қор)";
+}
+
+.light-snow:after {
+=======
 .heavy_sleet:after {
     content: "кучли ёғингарчилик (ёмғир, қор)";
 }
 
 .light_snow:after {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     content: "енгил қор";
 }
 
@@ -546,7 +586,11 @@ td p {
     content: "қор";
 }
 
+<<<<<<< HEAD
+.heavy-snow:after {
+=======
 .heavy_snow:after {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     content: "кучли қор";
 }
 

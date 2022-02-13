@@ -1,0 +1,6 @@
+--2021-12-09 16:42:48--  https://www.airnowapi.org/aq/data/?api_key=5AD2EDB4-73A2-494D-BB79-1BE1DB22AEC7
+Resolving www.airnowapi.org (www.airnowapi.org)... 3.20.208.175
+Connecting to www.airnowapi.org (www.airnowapi.org)|3.20.208.175|:443... connected.
+HTTP request sent, awaiting response... 500 
+2021-12-09 16:42:54 ERROR 500: (no description).
+

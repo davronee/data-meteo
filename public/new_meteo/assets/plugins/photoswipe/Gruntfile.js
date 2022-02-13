@@ -1,9 +1,17 @@
 /**
+<<<<<<< HEAD
+ * 
+ * Run 'grunt' to generate JS and CSS in folder 'dist' and site in folder '_site'
+ * *
+ * Run 'grunt watch' to automatically regenerate '_site' when you change files in 'src' or in 'website'
+ * 
+=======
  *
  * Run 'grunt' to generate JS and CSS in folder 'dist' and site in folder '_site'
  * *
  * Run 'grunt watch' to automatically regenerate '_site' when you change files in 'src' or in 'website'
  *
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
  */
 
 module.exports = function(grunt) {
@@ -13,7 +21,11 @@ module.exports = function(grunt) {
   var jekyllConfig = "isLocal : false \r\n"+
       "permalink: /:title/ \r\n"+
       "exclude: ['.json', '.rvmrc', '.rbenv-version', 'README.md', 'Rakefile'," +
+<<<<<<< HEAD
+                "'changelog.md', 'compiler.jar', 'private', '.htaccess'," + 
+=======
                 "'changelog.md', 'compiler.jar', 'private', '.htaccess'," +
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
                 "'photoswipe.sublime-project', 'photoswipe.sublime-workspace'] \r\n"+
 
       "auto: true \r\n"+
@@ -41,10 +53,17 @@ module.exports = function(grunt) {
     clean: {
       files: ['dist']
     },
+<<<<<<< HEAD
+    
+    sass: {                            
+      dist: {                      
+        files: {      
+=======
 
     sass: {
       dist: {
         files: {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
           'dist/photoswipe.css': 'src/css/main.scss',
           'dist/default-skin/default-skin.css': 'src/css/default-skin/default-skin.scss'
         }
@@ -52,7 +71,11 @@ module.exports = function(grunt) {
     },
 
     // https://github.com/nDmitry/grunt-autoprefixer
+<<<<<<< HEAD
+    autoprefixer: { 
+=======
     autoprefixer: {
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
       options: {
         browsers: ['last 3 versions', 'android 3', 'ie 9', 'bb 10']
       },
@@ -100,7 +123,11 @@ module.exports = function(grunt) {
           url: 'local',
           raw: jekyllConfig + "url: local"
         }
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
       },
       production: {
         options: {
@@ -190,7 +217,11 @@ module.exports = function(grunt) {
     "})(this, function () {\n\n" +
       "\t'use strict';\n"+
       "\tvar PhotoSwipe = function(template, UiClass, items, options){\n";
+<<<<<<< HEAD
+      
+=======
 
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
 
     if(includes) {
       includes = includes.split(/[\s,]+/); // 'a,b,c' => ['a','b','c']
@@ -207,20 +238,34 @@ module.exports = function(grunt) {
 
       includes.forEach(function( name ) {
         if(name) {
+<<<<<<< HEAD
+           
+=======
 
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
            grunt.log.writeln( 'removed "'+name +'"' );
            files = removeA(files, name);
          }
       });
     }
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     grunt.log.writeln( 'Your build is made of:'+files );
 
     files.forEach(function( name ) {
       // Wrap each module with a pience of code to be able to exlude it, stolen for modernizr.com
+<<<<<<< HEAD
+      newContents += "\n/*>>"+name+"*/\n"; 
+      newContents += grunt.file.read( basePath + name + '.js' ) + '\n';
+      newContents += "\n/*>>"+name+"*/\n"; 
+=======
       newContents += "\n/*>>"+name+"*/\n";
       newContents += grunt.file.read( basePath + name + '.js' ) + '\n';
       newContents += "\n/*>>"+name+"*/\n";
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
     });
 
 
@@ -259,4 +304,8 @@ module.exports = function(grunt) {
   grunt.registerTask('nosite', ['sass', 'autoprefixer', 'pswpbuild', 'uglify']);
   grunt.registerTask('hint', ['jshint']);
 
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 1cdbac531306ace731f8642859d032ca0fd35c87
