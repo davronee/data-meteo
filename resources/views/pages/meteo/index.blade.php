@@ -380,7 +380,7 @@
                             <div class="icon"><a href="#" @click="Updateweather"><i class="fa fa-fw fa-refresh"></i></a>
                             </div>
                             <div class="title">OB-HAVO <em class="small">(real-time)</em></div>
-                            <div class="current-date">11:22:32</div>
+                            <div class="current-date">{{ \Carbon\Carbon::now()->format('H:i') }}</div>
                         </div>
                         <!-- END pos-sidebar-header -->
                         <!-- BEGIN pos-sidebar-nav -->
