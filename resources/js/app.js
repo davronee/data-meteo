@@ -147,30 +147,30 @@ Vue.component('weather-data-uzhydromet', {
                 class="text-warning text-left">O'zgidromet
                 <br><small>(O'zbekiston)</small> </a></th>
             <template v-for="item in uzhydromet">
-                <td><span class="me-1 gradus" :class="item[0].air_t_min >= 0 ? 'warm' : ''">{{ item[0].air_t_min }}</span>...<span
-                    class="mx-1 gradus" :class="item[0].air_t_max >= 0 ? 'warm' : ''">{{ item[0].air_t_max }}</span>
+                <td><span class="me-1 gradus" :class="item[0].air_t_min >= 0 ? 'warm' : ''">{{ item[0].air_t_min }}</span><br>
+                    <span class=" gradus" :class="item[0].air_t_max >= 0 ? 'warm' : ''">{{ item[0].air_t_max }}</span>
                 </td>
                 <td><span class="m_s">{{ item[0].wind_speed_min }}-{{ item[0].wind_speed_max }}</span></td>
                 <td><span
                     :class="item[0].precipitation != 'none' && item[0].precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
                 </td>
             </template>
-            <td><span class="me-1  n_a"></span><span class="mx-1"></span></td>
+            <td><span class="me-1  n_a"></span><span class=""></span></td>
             <td><span class="n_a"></span></td>
             <td><span class="n_a"></span></td>
         </tr>
         <tr>
             <template v-for="item in uzhydromet">
                 <td><span class="me-1 gradus"
-                          :class="item[1].air_t_min >= 0 ? 'warm' : ''">{{ item[1].air_t_min }}</span>...<span
-                    class="mx-1 gradus" :class="item[1].air_t_max >= 0 ? 'warm' : ''">{{ item[1].air_t_max }}</span>
+                          :class="item[1].air_t_min >= 0 ? 'warm' : ''">{{ item[1].air_t_min }}</span><br><span
+                    class=" gradus" :class="item[1].air_t_max >= 0 ? 'warm' : ''">{{ item[1].air_t_max }}</span>
                 </td>
                 <td><span class="m_s">{{ item[1].wind_speed_min }}-{{ item[1].wind_speed_max }}</span></td>
                 <td><span
                     :class="item[1].precipitation != 'none' && item[1].precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
                 </td>
             </template>
-            <td><span class="me-1  n_a"></span><span class="mx-1"></span></td>
+            <td><span class="me-1  n_a"></span><span class=""></span></td>
             <td><span class="n_a"></span></td>
             <td><span class="n_a"></span></td>
         </tr>
@@ -180,8 +180,8 @@ Vue.component('weather-data-uzhydromet', {
                 class="text-warning text-left">GisMeteo <br><small>(Rossiya)</small></a>
             </th>
             <template v-for="item in gismeteo">
-                <td><span class="me-1 gradus">{{ item.temp_min }}</span>...<span
-                    class="mx-1 gradus">{{ item.temp_max }}</span></td>
+                <td><span class="me-1 gradus" :class="item.temp_min == 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
+                    class=" gradus" :class="item.temp_max == 0 ? 'warm' : ''">{{ item.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.wind_speed_min }}-{{ item.wind_speed_max }}</span></td>
                 <td><span :class="item.precipitation > 0 ?  'rain_yes' : 'rain_no'"></span></td>
             </template>
@@ -193,8 +193,8 @@ Vue.component('weather-data-uzhydromet', {
             </th>
             <template v-for="item in yandex">
                 <td><span class="me-1 gradus"
-                          :class="item.parts.day.temp_min >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_min }}</span>...<span
-                    class="mx-1 gradus"
+                          :class="item.parts.day.temp_min >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_min }}</span><br><span
+                    class=" gradus"
                     :class="item.parts.day.temp_max >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.parts.day.wind_speed }}</span></td>
                 <td><span :class="item.parts.day.prec_mm > 0 ? 'rain_yes' : 'rain_no'"></span></td>
@@ -204,8 +204,8 @@ Vue.component('weather-data-uzhydromet', {
         <tr>
             <template v-for="item in yandex">
                 <td><span class="me-1 gradus"
-                          :class="item.parts.night.temp_min >= 0 ? 'warm' : ''">{{ item.parts.night.temp_min }}</span>...<span
-                    class="mx-1 gradus"
+                          :class="item.parts.night.temp_min >= 0 ? 'warm' : ''">{{ item.parts.night.temp_min }}</span><br><span
+                    class=" gradus"
                     :class="item.parts.night.temp_max >= 0 ? 'warm' : ''">{{ item.parts.night.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.parts.night.wind_speed }}</span></td>
                 <td><span :class="item.parts.night.prec_mm > 0 ? 'rain_yes' : 'rain_no'"></span></td>
@@ -218,8 +218,8 @@ Vue.component('weather-data-uzhydromet', {
                 class="text-warning text-left">Accuweather <br><small>(AQSH)</small></a>
             </th>
             <template v-for="item in accuweather">
-                <td rowspan="2"><span class="me-1 gradus" :class="item.Temperature.Minimum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Minimum.Value }}</span>...<span
-                    class="mx-1 gradus" :class="item.Temperature.Maximum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Maximum.Value }}</span></td>
+                <td rowspan="2"><span class="me-1 gradus" :class="item.Temperature.Minimum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Minimum.Value }}</span><br><span
+                    class=" gradus" :class="item.Temperature.Maximum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Maximum.Value }}</span></td>
                 <td><span class="m_s">{{ item.Day.Wind.Speed.Value }}</span></td>
                 <td><span :class="item.Day.Rain.Value > 0 ? 'rain_yes' : 'rain_no'"></span></td>
             </template>

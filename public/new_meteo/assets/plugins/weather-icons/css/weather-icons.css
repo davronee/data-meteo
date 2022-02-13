@@ -518,18 +518,21 @@ td p {
 
 .cold:before {
     content: "- ";
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .warm:before {
     content: "+ ";
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .gradus-celsius:after {
     content: " \2103";
 }
-
+.table.report-table>tbody>tr>td {
+    font-size: 9pt;
+    padding: 0px 0px;
+}
 .gradus:after {
     content: " \00B0";
 }
