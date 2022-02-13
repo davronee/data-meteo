@@ -106,82 +106,19 @@ Vue.component('weather-data-uzhydromet', {
             <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
                 colspan="3">{{ moment().add(4, 'days').format("DD.MM.YYYY") }}
             </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(5, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(6, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(7, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(8, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(9, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(10, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(11, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(12, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(13, 'days').format("DD.MM.YYYY") }}
-            </th>
         </tr>
         <tr>
             <th class="empty border-right">
                 <div class="form-group mb-2">
                     <select class="form-select">
-                        <option>3 kunlik</option>
+<!--                        <option>3 kunlik</option>-->
                         <option selected>5 kunlik</option>
-                        <option>7 kunlik</option>
-                        <option>10 kunlik</option>
-                        <option>1 oylik</option>
+<!--                        <option>7 kunlik</option>-->
+<!--                        <option>10 kunlik</option>-->
+<!--                        <option>1 oylik</option>-->
                     </select>
                 </div>
             </th>
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
-
             <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
             <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
             <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
@@ -210,8 +147,7 @@ Vue.component('weather-data-uzhydromet', {
                 class="text-warning text-left">O'zgidromet
                 <br><small>(O'zbekiston)</small> </a></th>
             <template v-for="item in uzhydromet">
-                <td><span class="me-1 gradus"
-                          :class="item[0].air_t_min >= 0 ? 'warm' : ''">{{ item[0].air_t_min }}</span>...<span
+                <td><span class="me-1 gradus" :class="item[0].air_t_min >= 0 ? 'warm' : ''">{{ item[0].air_t_min }}</span>...<span
                     class="mx-1 gradus" :class="item[0].air_t_max >= 0 ? 'warm' : ''">{{ item[0].air_t_max }}</span>
                 </td>
                 <td><span class="m_s">{{ item[0].wind_speed_min }}-{{ item[0].wind_speed_max }}</span></td>
@@ -219,6 +155,9 @@ Vue.component('weather-data-uzhydromet', {
                     :class="item[0].precipitation != 'none' && item[0].precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
                 </td>
             </template>
+            <td><span class="me-1  n_a"></span><span class="mx-1"></span></td>
+            <td><span class="n_a"></span></td>
+            <td><span class="n_a"></span></td>
         </tr>
         <tr>
             <template v-for="item in uzhydromet">
@@ -231,6 +170,9 @@ Vue.component('weather-data-uzhydromet', {
                     :class="item[1].precipitation != 'none' && item[1].precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
                 </td>
             </template>
+            <td><span class="me-1  n_a"></span><span class="mx-1"></span></td>
+            <td><span class="n_a"></span></td>
+            <td><span class="n_a"></span></td>
         </tr>
         <tr>
             <th class="align-middle border-right text-capitalized fw-bold fixed-side"><a

@@ -512,6 +512,7 @@ td p {
 
 .n_a:after {
     content: "n/a";
+    color: red;
     font-size: 11pt;
 }
 
