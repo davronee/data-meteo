@@ -183,7 +183,7 @@ Vue.component('weather-data-uzhydromet', {
                 <td><span class="me-1 gradus" :class="item.temp_min == 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
                     class=" gradus" :class="item.temp_max == 0 ? 'warm' : ''">{{ item.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.wind_speed_min }}-{{ item.wind_speed_max }}</span></td>
-                <td><span :class="item.precipitation > 0 ?  'rain_yes' : 'rain_no'"></span></td>
+                <td><span :class="item.precipitation !== 0 ?  'rain_yes' : 'rain_no'"></span></td>
             </template>
         </tr>
         <tr>
@@ -197,7 +197,7 @@ Vue.component('weather-data-uzhydromet', {
                     class=" gradus"
                     :class="item.parts.day.temp_max >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.parts.day.wind_speed }}</span></td>
-                <td><span :class="item.parts.day.prec_mm > 0 ? 'rain_yes' : 'rain_no'"></span></td>
+                <td><span :class="item.parts.day.prec_mm !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
             </template>
 
         </tr>
@@ -208,7 +208,7 @@ Vue.component('weather-data-uzhydromet', {
                     class=" gradus"
                     :class="item.parts.night.temp_max >= 0 ? 'warm' : ''">{{ item.parts.night.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.parts.night.wind_speed }}</span></td>
-                <td><span :class="item.parts.night.prec_mm > 0 ? 'rain_yes' : 'rain_no'"></span></td>
+                <td><span :class="item.parts.night.prec_mm !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
             </template>
 
         </tr>
@@ -221,7 +221,7 @@ Vue.component('weather-data-uzhydromet', {
                 <td rowspan="2"><span class="me-1 gradus" :class="item.Temperature.Minimum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Minimum.Value }}</span><br><span
                     class=" gradus" :class="item.Temperature.Maximum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Maximum.Value }}</span></td>
                 <td><span class="m_s">{{ item.Day.Wind.Speed.Value }}</span></td>
-                <td><span :class="item.Day.Rain.Value > 0 ? 'rain_yes' : 'rain_no'"></span></td>
+                <td><span :class="item.Day.Rain.Value !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
             </template>
         </tr>
         </tbody>
