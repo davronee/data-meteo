@@ -183,7 +183,7 @@ Vue.component('weather-data-uzhydromet', {
                 <td><span class="me-1 gradus" :class="item.temp_min == 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
                     class=" gradus" :class="item.temp_max == 0 ? 'warm' : ''">{{ item.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.wind_speed_min }}-{{ item.wind_speed_max }}</span></td>
-                <td><span :class="item.precipitation !== 0 ?  'rain_yes' : 'rain_no'"></span></td>
+                <td><span :class="item.precipitation != 0 ?  'rain_yes' : 'rain_no'"></span></td>
             </template>
         </tr>
         <tr>
