@@ -268,7 +268,7 @@ Vue.component('region-weather', {
             </div>
         </div>
         <div class="pos-order-price">
-            <h2 class="gradus" :class="aws_factics.temp  >= 0 ? 'warm' : 'cold'"> {{ aws_factics.temp }}</h2>
+            <h2 class="gradus" :class="aws_factics.temp  >= 0 ? 'warm' : ''"> {{ aws_factics.temp }}</h2>
         </div>
         </div>
     `
