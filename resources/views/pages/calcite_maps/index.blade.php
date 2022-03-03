@@ -2256,6 +2256,10 @@
                                     "<td><b>осадка</b></td>" +
                                     "<td>" + app.checktoUndefine(response.data.lastData.hourlyrainin) + "</td>" +
                                     "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>PM2.5</b></td>" +
+                                    "<td>" + app.checktoUndefine(response.data.lastData.pm25) + "</td>" +
+                                    "</tr>" +
                                     "</table>"
                                 )
                             })
