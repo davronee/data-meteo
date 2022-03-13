@@ -111,11 +111,11 @@ Vue.component('weather-data-uzhydromet', {
             <th class="empty border-right">
                 <div class="form-group mb-2">
                     <select class="form-select">
-<!--                        <option>3 kunlik</option>-->
+                        <!--                        <option>3 kunlik</option>-->
                         <option selected>5 kunlik</option>
-<!--                        <option>7 kunlik</option>-->
-<!--                        <option>10 kunlik</option>-->
-<!--                        <option>1 oylik</option>-->
+                        <!--                        <option>7 kunlik</option>-->
+                        <!--                        <option>10 kunlik</option>-->
+                        <!--                        <option>1 oylik</option>-->
                     </select>
                 </div>
             </th>
@@ -147,7 +147,8 @@ Vue.component('weather-data-uzhydromet', {
                 class="text-warning text-left">O'zgidromet
                 <br><small>(O'zbekiston)</small> </a></th>
             <template v-for="item in uzhydromet">
-                <td><span class="me-1 gradus" :class="item[0].air_t_min >= 0 ? 'warm' : ''">{{ item[0].air_t_min }}</span><br>
+                <td><span class="me-1 gradus"
+                          :class="item[0].air_t_min >= 0 ? 'warm' : ''">{{ item[0].air_t_min }}</span><br>
                     <span class=" gradus" :class="item[0].air_t_max >= 0 ? 'warm' : ''">{{ item[0].air_t_max }}</span>
                 </td>
                 <td><span class="m_s">{{ item[0].wind_speed_min }}-{{ item[0].wind_speed_max }}</span></td>
@@ -180,7 +181,8 @@ Vue.component('weather-data-uzhydromet', {
                 class="text-warning text-left">GisMeteo <br><small>(Rossiya)</small></a>
             </th>
             <template v-for="item in gismeteo">
-                <td><span class="me-1 gradus" :class="item.temp_min == 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
+                <td><span class="me-1 gradus"
+                          :class="item.temp_min == 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
                     class=" gradus" :class="item.temp_max == 0 ? 'warm' : ''">{{ item.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.wind_speed_min }}-{{ item.wind_speed_max }}</span></td>
                 <td><span :class="item.precipitation != 0 ?  'rain_yes' : 'rain_no'"></span></td>
@@ -218,8 +220,11 @@ Vue.component('weather-data-uzhydromet', {
                 class="text-warning text-left">Accuweather <br><small>(AQSH)</small></a>
             </th>
             <template v-for="item in accuweather">
-                <td rowspan="2"><span class="me-1 gradus" :class="item.Temperature.Minimum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Minimum.Value }}</span><br><span
-                    class=" gradus" :class="item.Temperature.Maximum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Maximum.Value }}</span></td>
+                <td rowspan="2"><span class="me-1 gradus"
+                                      :class="item.Temperature.Minimum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Minimum.Value }}</span><br><span
+                    class=" gradus"
+                    :class="item.Temperature.Maximum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Maximum.Value }}</span>
+                </td>
                 <td><span class="m_s">{{ item.Day.Wind.Speed.Value }}</span></td>
                 <td><span :class="item.Day.Rain.Value !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
             </template>
@@ -278,7 +283,24 @@ const app = new Vue({
     data() {
         return {
             regions: {},
+            regions_t: {
+                'tashkent': 'г. Ташкент',
+                'andijan': 'Андижанская область',
+                'bukhara': 'Бухарская область',
+                'jizzakh': 'Джизакская область',
+                'qarshi': 'Кашкадарьинская область',
+                'navoiy': 'Навоийская область',
+                'namangan': 'Наманганская область',
+                'samarkand': 'Самаркандская область',
+                'termez': 'Сурхандарьинская область',
+                'gulistan': 'Сырдарьинская область',
+                'nurafshon': 'Ташкентская область',
+                'fergana': 'Ферганская область',
+                'urgench': 'Хорезмская область',
+                'nukus': 'Республика Каракалпакстан',
+            },
             region: 1726,
+            region_t: 'tashkent',
             openweather: null,
             accuweather: null,
             uzhydromet: null,
@@ -315,7 +337,7 @@ const app = new Vue({
         async getOpenweather() {
             axios.get('/weather/openweather', {
                 params: {
-                    region: this.region,
+                    region: this.region_t,
                     interval: this.interval,
                 }
             })
@@ -329,7 +351,7 @@ const app = new Vue({
         async getAccuweather() {
             axios.get('/weather/accuweather', {
                 params: {
-                    region: this.region,
+                    region: this.region_t,
                     interval: this.interval,
 
                 }
@@ -345,7 +367,7 @@ const app = new Vue({
 
             axios.get('/weather/uzgidromet', {
                 params: {
-                    region: this.region,
+                    region: this.region_t,
                     interval: this.interval,
 
                 }
@@ -360,7 +382,7 @@ const app = new Vue({
         async GetWeatherbit() {
             axios.get('/weather/weatherbit', {
                 params: {
-                    region: this.region,
+                    region: this.region_t,
                     interval: this.interval,
 
                 }
@@ -375,7 +397,7 @@ const app = new Vue({
         async DarkSky() {
             axios.get('/weather/darksky', {
                 params: {
-                    region: this.region,
+                    region: this.region_t,
                     interval: this.interval,
 
                 }
@@ -390,7 +412,7 @@ const app = new Vue({
         async GetAerisweather1() {
             axios.get('/weather/Aerisweather1', {
                 params: {
-                    region: this.region,
+                    region: this.region_t,
                     interval: this.interval,
 
                 }
@@ -405,7 +427,7 @@ const app = new Vue({
         async GetForecastApi() {
             axios.get('/weather/ForecastApi', {
                 params: {
-                    region: this.region
+                    region: this.region_t
                 }
             })
                 .then(response => {
