@@ -9,7 +9,7 @@
     <meta name="author" content="METEOINFOCOM"/>
     <!-- ================== BEGIN core-css ================== -->
     <link href="{{asset('new_meteo/assets/css/vendor.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('new_meteo/assets/css/app.min.css'}}" rel="stylesheet"/>
+    <link href="{{asset('new_meteo/assets/css/app.min.css')}}" rel="stylesheet"/>
     <!-- ================== END core-css ================== -->
     <!-- ================== BEGIN weather-css ================== -->
     <link rel="stylesheet" href="{{asset('new_meteo/assets/plugins/weather-icons/css/weather-icons.css')}}">

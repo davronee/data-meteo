@@ -359,30 +359,16 @@ class Services
             $now = Carbon::now('UTC');
             $time = $now->format('H:i:s');
 
-            if ($time >= $start && $time <= $end) {
-                $subopenweather = UzHydromet::toBase()
-                    ->selectRaw('MAX(id) as id')
-                    ->where('region', $region)
-                    ->where('day_part', 'day')
-                    ->wheretime('datetime', '<=', Carbon::now())
-                    ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                    ->groupBy('date')
-                    ->pluck('id')
-                    ->toArray();
-            } else {
-                $subopenweather = UzHydromet::toBase()
-                    ->selectRaw('MAX(id) as id')
-                    ->where('region', $region)
-                    ->where('day_part', 'night')
-                    ->wheretime('datetime', '<=', Carbon::now())
-                    ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                    ->groupBy('date')
-                    ->pluck('id')
-                    ->toArray();
-            }
-            $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->first();
+
+            $subopenweather = UzHydromet::toBase()
+                ->where('region', 'tashkent')
+                ->where('datetime', '=', Carbon::now()->format('Y-m-d'))
+                ->pluck('id')
+                ->toArray();
+
+            $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
             $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
+            $gidromet->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
             $gidromet->factik = $weather['air_t'];
             $gidromet->save();
 
