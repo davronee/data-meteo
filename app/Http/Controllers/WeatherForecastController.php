@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Services;
 use App\Exports\ExportUzHydromet;
 use App\Models\Accuweather;
 use App\Models\UzHydromet;
@@ -22,8 +21,6 @@ class WeatherForecastController extends Controller
      */
     public function index()
     {
-
-//        dd(Services::Delta(6,8,7));
 
         return view('weathers.weather');
     }
@@ -104,31 +101,60 @@ class WeatherForecastController extends Controller
         $end = '18:00:00';
         $now = Carbon::now('UTC');
         $time = $now->format('H:i:s');
-        if ($time >= $start && $time <= $end) {
-            $subopenweather = UzHydromet::toBase()
-                ->selectRaw('MAX(id) as id')
-                ->where('region', request('region', 'tashkent'))
-                ->where('day_part', 'day')
-                ->wheretime('datetime', '<=', Carbon::now())
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                ->groupBy('date')
-                ->pluck('id')
-                ->toArray();
-        } else {
-            $subopenweather = UzHydromet::toBase()
-                ->selectRaw('MAX(id) as id')
-                ->where('region', request('region', 'tashkent'))
-                ->where('day_part', 'night')
-                ->wheretime('datetime', '<=', Carbon::now())
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                ->groupBy('date')
-                ->pluck('id')
-                ->toArray();
+//        if ($time >= $start && $time <= $end) {
+//            $subopenweather = UzHydromet::toBase()
+//                ->selectRaw('MAX(id) as id')
+//                ->where('region', request('region', 'tashkent'))
+//                ->where('day_part', 'day')
+//                ->wheretime('datetime', '<=', Carbon::now())
+//                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+//                ->groupBy('date')
+//                ->pluck('id')
+//                ->toArray();
+//        } else {
+//            $subopenweather = UzHydromet::toBase()
+//                ->selectRaw('MAX(id) as id')
+//                ->where('region', request('region', 'tashkent'))
+//                ->where('day_part', 'night')
+//                ->wheretime('datetime', '<=', Carbon::now())
+//                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+//                ->groupBy('date')
+//                ->pluck('id')
+//                ->toArray();
+//        }
+//        $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
+
+        $gidromet = \App\Models\UzHydromet::where('region', request('region', 'tashkent'))
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])->get();
+
+        $array = [];
+        foreach ($gidromet as $key=>$item)
+        {
+            if($key % 2 == 0)
+            {
+                array_push($array,[
+                    "region"=> $item->region,
+                    "date"=> $item->date,
+                    "air_t_min"=> $item->air_t_min,
+                    "air_t_max"=> $item->air_t_max,
+                    "air_t_min_night"=> $gidromet[$key+1]->air_t_min,
+                    "air_t_max_night"=> $gidromet[$key+1]->air_t_max,
+                    "wind_speed_min"=> $item->wind_speed_min,
+                    "wind_speed_max"=> $item->wind_speed_max,
+                    "wind_direction"=> $item->wind_direction,
+                    "precipitation"=> $item->precipitation,
+                    "temp_precent"=> $item->temp_precent,
+                    "wind_precent"=> $item->region,
+                    "rain_precent"=> $item->region,
+                    "factik"=> $item->factik,
+                ]);
+            }
+
         }
 
 
-        $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
-        return $gidromet;
+
+        return $array;
     }
 
     public function GetWeatherBit(Request $request)

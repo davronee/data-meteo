@@ -40,8 +40,8 @@
                     <div class="col-md-6">
                         <label for="exampleFormControlSelect1">Регионы</label>
                         <select @change="Changes()" class="form-control" id="exampleFormControlSelect1"
-                                v-model="region">
-                            <option v-for="(item, index) in regions" :value="index" v-text="item"></option>
+                                v-model="region_t">
+                            <option v-for="(item, index) in regions_t" :value="index" v-text="item"></option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -154,7 +154,8 @@
                                 {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
                                 {{--                            </th>--}}
                                 <td v-for="item in uzhydromet" class="active">
-                                    <i class="fas fa-temperature-low"></i> @{{ item.air_t_min }}° - @{{ item.air_t_max
+
+                                   <i class="fas fa-moon"></i> @{{ item.air_t_min_night }}° ... <i class="fas fa-sun"></i> @{{ item.air_t_max
                                     }}° <br>
                                     <i class="fas fa-wind"></i> @{{ item.wind_speed_min }} - @{{ item.wind_speed_max }}
                                     м/с<br>
@@ -176,7 +177,7 @@
                             <h3>Метеолокатор маълумотлари</h3>
                             <iframe style="width: 100%;max-width:100%;height: 85vh;position: relative;"
                                     frameborder="0"
-                                    src="https://www.meteoblue.com/ru/weather/widget/daily/' + this.region + '_uzbekistan_1512569?geoloc=fixed&days=7&tempunit=CELSIUS&windunit=METER_PER_SECOND&precipunit=MILLIMETER&coloured=coloured&pictoicon=0&pictoicon=1&maxtemperature=0&maxtemperature=1&mintemperature=0&mintemperature=1&windspeed=0&windspeed=1&windgust=0&winddirection=0&winddirection=1&uv=0&humidity=0&precipitation=0&precipitation=1&precipitationprobability=0&precipitationprobability=1&spot=0&spot=1&pressure=0&pressure=1&layout=light"
+                                    src="https://www.meteoblue.com/ru/weather/widget/daily/tashkent_uzbekistan_1512569?geoloc=fixed&days=7&tempunit=CELSIUS&windunit=METER_PER_SECOND&precipunit=MILLIMETER&coloured=coloured&pictoicon=0&pictoicon=1&maxtemperature=0&maxtemperature=1&mintemperature=0&mintemperature=1&windspeed=0&windspeed=1&windgust=0&winddirection=0&winddirection=1&uv=0&humidity=0&precipitation=0&precipitation=1&precipitationprobability=0&precipitationprobability=1&spot=0&spot=1&pressure=0&pressure=1&layout=light"
                                     allowfullscreen></iframe>
                             <div style="
                                 background: rgba(0,0,0, 0);

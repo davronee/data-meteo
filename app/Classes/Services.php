@@ -175,22 +175,23 @@ class Services
             ])->json();
 
             foreach ($services as $service) {
-                if (!UzHydromet::where('service_id', $service['id'])->first()) {
-                    $uzhdyromet = new UzHydromet();
-                    $uzhdyromet->region = $region;
-                    $uzhdyromet->service_id = $service['id'];
-                    $uzhdyromet->datetime = $service['date'];
-                    $uzhdyromet->date = $service['date'];
-                    $uzhdyromet->air_t_min = round($service['air_t_min']);
-                    $uzhdyromet->air_t_max = round($service['air_t_max']);
-                    $uzhdyromet->wind_direction = $service['wind_direction'];
-                    $uzhdyromet->wind_speed_min = round($service['wind_speed_min']);
-                    $uzhdyromet->wind_speed_max = round($service['wind_speed_max']);
-                    $uzhdyromet->day_part = $service['day_part'];
-                    if ($service['precipitation'] != 'none' && $service['precipitation'] != 'fog')
-                        $uzhdyromet->precipitation = true;
-                    $uzhdyromet->save();
-                }
+
+                UzHydromet::updateOrCreate(
+                    ['service_id' =>  $service['id']],
+                    [
+                        'region' => $region,
+                        'service_id' => $service['id'],
+                        'datetime' => $service['date'],
+                        'date' => $service['date'],
+                        'air_t_min' => round($service['air_t_min']),
+                        'air_t_max' => round($service['air_t_max']),
+                        'wind_direction' => $service['wind_direction'],
+                        'wind_speed_min' => round($service['wind_speed_min']),
+                        'wind_speed_max' => round($service['wind_speed_max']),
+                        'day_part' =>  $service['day_part'],
+                        'precipitation'=> $service['precipitation'] != 'none' && $service['precipitation'] != 'fog' ? true : false,
+                        ]
+                );
 
             }
 
@@ -359,32 +360,23 @@ class Services
             $now = Carbon::now('UTC');
             $time = $now->format('H:i:s');
 
-            if ($time >= $start && $time <= $end) {
-                $subopenweather = UzHydromet::toBase()
-                    ->selectRaw('MAX(id) as id')
-                    ->where('region', $region)
-                    ->where('day_part', 'day')
-                    ->wheretime('datetime', '<=', Carbon::now())
-                    ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                    ->groupBy('date')
-                    ->pluck('id')
-                    ->toArray();
-            } else {
-                $subopenweather = UzHydromet::toBase()
-                    ->selectRaw('MAX(id) as id')
-                    ->where('region', $region)
-                    ->where('day_part', 'night')
-                    ->wheretime('datetime', '<=', Carbon::now())
-                    ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                    ->groupBy('date')
-                    ->pluck('id')
-                    ->toArray();
+
+            $subopenweather = UzHydromet::toBase()
+                ->where('region', 'tashkent')
+                ->where('datetime', '=', Carbon::now()->format('Y-m-d'))
+                ->pluck('id')
+                ->toArray();
+
+            $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
+            foreach ($gidromet as $item)
+            {
+                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+                $item->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
+                $item->factik = $weather['air_t'];
+                $item->save();
+
             }
-            $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->first();
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $gidromet->temp_precent = self::Delta($gidromet->air_t_min, $gidromet->air_t_max, $weather['air_t']);
-            $gidromet->factik = $weather['air_t'];
-            $gidromet->save();
+
 
 
             $subopenweather = WeatherBit::toBase()
