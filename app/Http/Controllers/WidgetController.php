@@ -80,6 +80,16 @@ class WidgetController extends Controller
 //                imagedestroy($im2);
                 }
             }
+
+            if ($request->region == 1706) {
+                $im = imageCreateFromString(base64_decode($radar[0]['bukhara']['image']));
+                $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
+                if ($im2 !== FALSE) {
+                    header("Content-type: image/png");
+                    imagepng($im2);
+//                imagedestroy($im2);
+                }
+            }
         }
 
     }
