@@ -22,6 +22,24 @@ class WeatherForecastController extends Controller
     public function index()
     {
 
+<<<<<<< HEAD
+=======
+        $subopenweather = UzHydromet::toBase()
+            ->where('region', 'tashkent')
+            ->where('datetime', '=', Carbon::now()->format('Y-m-d'))
+            ->pluck('id')
+            ->toArray();
+
+        $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
+        $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+        $gidromet->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
+        $gidromet->factik = $weather['air_t'];
+        $gidromet->save();
+
+
+//        dd(Services::Delta(6,8,7));
+
+>>>>>>> ccf099acccfa41456f47887d40d8ddc61d9cb85f
         return view('weathers.weather');
     }
 
