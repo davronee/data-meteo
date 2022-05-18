@@ -272,7 +272,8 @@
                                     <!-- BEGIN card -->
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <div class="pos-product not-available">
+                                            <div class="pos-product" data-bs-toggle="modal"
+                                                 data-bs-target="#modalPosRadar">
                                                 <div class="img">
                                                     <div class="ratio ratio-4x3 mb-3">
                                                         <div class="buxoro">
@@ -286,9 +287,9 @@
                                                     <p class="card-text"><small class="text-muted">Aktuallik har 3
                                                             soatda</small></p>
                                                 </div>
-                                                <div class="not-available-text">
-                                                    <div class="text-danger">Not Available</div>
-                                                </div>
+{{--                                                <div class="not-available-text">--}}
+{{--                                                    <div class="text-danger">Not Available</div>--}}
+{{--                                                </div>--}}
                                             </div>
                                         </div>
                                         <div class="card-arrow">
