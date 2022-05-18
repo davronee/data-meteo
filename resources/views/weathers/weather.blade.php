@@ -154,7 +154,8 @@
                                 {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
                                 {{--                            </th>--}}
                                 <td v-for="item in uzhydromet" class="active">
-                                    <i class="fas fa-temperature-low"></i> @{{ item.air_t_min }}° - @{{ item.air_t_max
+
+                                   <i class="fas fa-moon"></i> @{{ item.air_t_min_night }}° ... <i class="fas fa-sun"></i> @{{ item.air_t_max
                                     }}° <br>
                                     <i class="fas fa-wind"></i> @{{ item.wind_speed_min }} - @{{ item.wind_speed_max }}
                                     м/с<br>

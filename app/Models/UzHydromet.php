@@ -14,4 +14,22 @@ class UzHydromet extends Model
         'updatet_at',
         'datetime',
     ];
+
+    protected $fillable = [
+      'service_id',
+      'region',
+      'datetime',
+      'date',
+      'air_t_min',
+      'air_t_max',
+      'wind_speed_min',
+      'wind_speed_max',
+      'wind_direction',
+      'day_part',
+      'precipitation',
+      'temp_precent',
+      'wind_precent',
+      'rain_precent',
+      'factik',
+    ];
 }
