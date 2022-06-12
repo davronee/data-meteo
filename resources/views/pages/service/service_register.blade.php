@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40 wd-98p mg-b-15 mg-t-5">
                     <div class="tab-content">
-                        <h1> Мурожаатлар очиқ реестри</h1>
+                        <h1> Мурожаатлар очиқ реестри <a href="{{route('openreeste_export')}}" class="btn"><i class="fa fa-download"></i> Юклаб олиш</a></h1>
                         <div class="row">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
@@ -40,15 +40,16 @@
                                             <td>{!! $offer->created_at->format('d.m.Y') !!}</td>
                                             <td>{!! $offer->fio !!}</td>
                                             <td>Д. Қориев</td>
-                                            <td>Д. Қориев</td>
+                                            <td>99871-235-85-49</td>
                                             <td>Кўриб чиқилмоқда</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                {!! $offers->render() !!}
                             </div>
-                            {!! $offers->render() !!}
                         </div>
+
                     </div>
                 </div>
             </div>

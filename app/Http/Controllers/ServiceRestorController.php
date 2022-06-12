@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OpenReestrExport;
 use App\Models\OrdersService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ServiceRestorController extends Controller
 {
@@ -26,6 +28,12 @@ class ServiceRestorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function export()
+    {
+        return Excel::download(new OpenReestrExport(), 'openreestr.xlsx');
+
+    }
     public function create()
     {
         //

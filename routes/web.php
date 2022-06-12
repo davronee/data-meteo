@@ -126,6 +126,7 @@ Route::group(['middleware' => ['set_locale']], function () {
     // services
     Route::resource('service', ServiceController::class)->middleware('auth');
     Route::resource('openregister',\App\Http\Controllers\ServiceRestorController ::class);
+    Route::get('/openreestr_export', [\App\Http\Controllers\ServiceRestorController::class, 'export'])->name('openreeste_export');
 
 
     Route::group(['middleware' => ['auth', 'role:superadmin admin control viewer worker shift-agent-station central-agent-station station-status-admin station-status-tracker station-status-viewer quick-info-editor']], function () {
