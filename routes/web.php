@@ -125,6 +125,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     // services
     Route::resource('service', ServiceController::class)->middleware('auth');
+    Route::resource('openregister',\App\Http\Controllers\ServiceRestorController ::class);
 
 
     Route::group(['middleware' => ['auth', 'role:superadmin admin control viewer worker shift-agent-station central-agent-station station-status-admin station-status-tracker station-status-viewer quick-info-editor']], function () {
@@ -204,14 +205,29 @@ Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
 });
 
 
-Route::get('/test123',function (){
-    \App\Classes\Services::GetReport('uz_hydromets', 12, 72, 'tashkent');
+Route::get('/test123', function () {
+    $bukhara = Http::withOptions([
+        'verify' => false
+    ])->post('http://192.168.21.137/focus-webapp/api/v2/image-export/getImage', [
+        'username' => 'admin',
+        'password' => 'admin123',
+        'widthPx' => 1000,
+        'heightPx' => 700,
+        'savedViewName' => 'bukhara_radar',
+        'time' => '2022-03-25T17:55:23.000Z',
+    ]);
+
+    dd($bukhara->body());
 });
+
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index'])->name('history');
+
 
 
 

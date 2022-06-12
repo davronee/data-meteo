@@ -76,7 +76,7 @@ class WidgetController extends Controller
                 $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
                 if ($im2 !== FALSE) {
                     header("Content-type: image/png");
-                    imagepng($im2);
+                    imagepng($im2); 
 //                imagedestroy($im2);
                 }
             }
