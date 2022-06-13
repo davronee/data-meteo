@@ -84,7 +84,7 @@
 
                                     <button type="submit" class="btn btn-sm btn-info"><i
                                             class="fa fa-check"></i> @lang('messages.send')</button>
-                                    <a href="http://hydromet.uz" type="button" class="btn btn-primary">перейти на главную страницу</a>
+                                    <a href="https://hydromet.uz" type="button" class="btn btn-primary">перейти на главную страницу</a>
 
                                 </div>
                             </form>
