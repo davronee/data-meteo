@@ -2313,11 +2313,11 @@
                                     "<td>" + response.data.data[0].dataItem[4].registerItem[0].data + ' ' + response.data.data[0].dataItem[4].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>температура</b></td>" +
+                                    "<td><b>Температура почвы</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[5].registerItem[0].data + ' ' + response.data.data[0].dataItem[5].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>Влажность</b></td>" +
+                                    "<td><b>Влажность почвы</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[5].registerItem[1].data + ' ' + response.data.data[0].dataItem[5].registerItem[1].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
