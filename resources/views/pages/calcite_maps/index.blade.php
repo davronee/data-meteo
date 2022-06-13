@@ -2281,12 +2281,12 @@
 
 
 
-                    var marker3 = L.marker([parseFloat(39.77472), parseFloat(64.42861)], {icon: meteoIcon1}).on('click', function () {
+                    var marker3 = L.marker([parseFloat(39.501), parseFloat(64.794)], {icon: meteoIcon1}).on('click', function () {
                         axios.get('{{route('bukhara_chines.getRealTimeData')}}')
                             .then(function (response) {
                                 marker3.bindPopup("" +
                                     "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>" + response.data.data[0].deviceName + "</b></td></tr>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>Қоравулбозор</b></td></tr>" +
                                     "<tr>" +
                                     "<td><b>дата и время</b></td>" +
                                     "<td>" +moment(response.data.data[0].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
