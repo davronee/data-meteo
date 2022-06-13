@@ -2278,6 +2278,86 @@
                     map.addLayer(markers_mini);
 
 
+
+
+
+                    var marker3 = L.marker([parseFloat(39.77472), parseFloat(64.42861)], {icon: meteoIcon1}).on('click', function () {
+                        axios.get('{{route('bukhara_chines.getRealTimeData')}}')
+                            .then(function (response) {
+                                marker3.bindPopup("" +
+                                    "<table class='table table-bordered'>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>" + response.data.data[0].deviceName + "</b></td></tr>" +
+                                    "<tr>" +
+                                    "<td><b>дата и время</b></td>" +
+                                    "<td>" +moment(response.data.data[0].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>температура </b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[0].registerItem[0].data + ' ' + response.data.data[0].dataItem[0].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>Влажность </b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[0].registerItem[1].data + ' ' + response.data.data[0].dataItem[0].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>CO2 </b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[1].registerItem[0].data + ' ' + response.data.data[0].dataItem[1].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<tr>" +
+                                    "<td><b>скорость ветра</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[3].registerItem[1].data + ' ' + response.data.data[0].dataItem[3].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>направление ветра</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[4].registerItem[0].data + ' ' + response.data.data[0].dataItem[4].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>температура</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[5].registerItem[0].data + ' ' + response.data.data[0].dataItem[5].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>Влажность</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[5].registerItem[1].data + ' ' + response.data.data[0].dataItem[5].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>EC</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[6].registerItem[0].data + ' ' + response.data.data[0].dataItem[6].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>совокупное количество осадков</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[7].registerItem[0].data + ' ' + response.data.data[0].dataItem[7].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>RA</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[8].registerItem[0].data + ' ' + response.data.data[0].dataItem[8].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>температура листа</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[9].registerItem[0].data + ' ' + response.data.data[0].dataItem[9].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>сырость</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[9].registerItem[1].data + ' ' + response.data.data[0].dataItem[9].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "</table>"
+                                )
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    });
+                    marker3.fire('click');
+
+                    markers_mini.addLayer(marker3);
+
+                    map.addLayer(markers_mini);
+
+
                 } else {
                     markers_mini.clearLayers();
 

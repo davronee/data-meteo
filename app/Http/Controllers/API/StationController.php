@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\User;
-use App\Models\Station;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Station;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class StationController extends Controller
 {
@@ -24,5 +25,23 @@ class StationController extends Controller
             ->byStation($user)
             ->pluck('name', 'id')
             ->toArray();
+    }
+
+    public function GetBukharaStationData()
+    {
+        $endpoint = "http://www.0531yun.com/";
+        $token = Http::get($endpoint . 'api/getToken', [
+            'loginName' => 'h211124mode',
+            'password' => 'h211124mode'
+        ])->json();
+
+
+        $data = Http::withHeaders([
+            'authorization' => $token['data']['token']
+        ])->get($endpoint . 'api/data/getRealTimeData')->json();
+
+
+        if ($data['code'] == 1000)
+            return $data;
     }
 }
