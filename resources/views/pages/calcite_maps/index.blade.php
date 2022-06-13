@@ -2288,15 +2288,15 @@
                                     "<table class='table table-bordered'>" +
                                     "<tr ><td colspan='2' class='text-center'><b>Қоравулбозор</b></td></tr>" +
                                     "<tr>" +
-                                    "<td><b>дата и время</b></td>" +
+                                    "<td><b>@lang('map.date')</b></td>" +
                                     "<td>" +moment(response.data.data[0].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>температура </b></td>" +
+                                    "<td><b>@lang('map.temp') </b></td>" +
                                     "<td>" + response.data.data[0].dataItem[0].registerItem[0].data + ' ' + response.data.data[0].dataItem[0].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>Влажность </b></td>" +
+                                    "<td><b>@lang('map.humidity')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[0].registerItem[1].data + ' ' + response.data.data[0].dataItem[0].registerItem[1].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
@@ -2304,40 +2304,39 @@
                                     "<td>" + response.data.data[0].dataItem[1].registerItem[0].data + ' ' + response.data.data[0].dataItem[1].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<tr>" +
-                                    "<td><b>скорость ветра</b></td>" +
+                                    "<td><b>@lang('map.wind_speed')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[3].registerItem[1].data + ' ' + response.data.data[0].dataItem[3].registerItem[1].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>направление ветра</b></td>" +
+                                    "<td><b>@lang('map.wind_direction')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[4].registerItem[0].data + ' ' + response.data.data[0].dataItem[4].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>Температура почвы</b></td>" +
+                                    "<td><b>@lang('map.temp_soil')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[5].registerItem[0].data + ' ' + response.data.data[0].dataItem[5].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>Влажность почвы</b></td>" +
+                                    "<td><b>@lang('map.humadity_soil')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[5].registerItem[1].data + ' ' + response.data.data[0].dataItem[5].registerItem[1].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>Точка росы</b></td>" +
+                                    "<td><b>@lang('map.ec')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[6].registerItem[0].data + ' ' + response.data.data[0].dataItem[6].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>совокупное количество осадков</b></td>" +
+                                    "<td><b>@lang('map.cumulative_rainfall')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[7].registerItem[0].data + ' ' + response.data.data[0].dataItem[7].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>Солнечная радиация</b></td>" +
+                                    "<td><b>@lang('map.ra')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[8].registerItem[0].data + ' ' + response.data.data[0].dataItem[8].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>температура листа</b></td>" +
+                                    "<td><b>@lang('map.leaf_temp')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[9].registerItem[0].data + ' ' + response.data.data[0].dataItem[9].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>сырость</b></td>" +
+                                    "<td><b>@lang('map.wetness')</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[9].registerItem[1].data + ' ' + response.data.data[0].dataItem[9].registerItem[1].unit + "</td>" +
                                     "</tr>" +
                                     "</table>"
