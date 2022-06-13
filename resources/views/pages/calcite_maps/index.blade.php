@@ -2321,8 +2321,16 @@
                                     "<td>" + response.data.data[0].dataItem[5].registerItem[1].data + ' ' + response.data.data[0].dataItem[5].registerItem[1].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
+                                    "<td><b>Точка росы</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[6].registerItem[0].data + ' ' + response.data.data[0].dataItem[6].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
                                     "<td><b>совокупное количество осадков</b></td>" +
                                     "<td>" + response.data.data[0].dataItem[7].registerItem[0].data + ' ' + response.data.data[0].dataItem[7].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>Солнечная радиация</b></td>" +
+                                    "<td>" + response.data.data[0].dataItem[8].registerItem[0].data + ' ' + response.data.data[0].dataItem[8].registerItem[0].unit + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
                                     "<td><b>температура листа</b></td>" +
