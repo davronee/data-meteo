@@ -59,7 +59,7 @@ return [
     'relative_humidity'=>'Нисбий намлик',
     'current_pressure'=>'Жорий босим',
     '10_during_sea_level_pressure'=>'10 дақ. давомида денгиз сатҳидан ўрт. босим босим',
-    '10_the_amount_precipitation_during'=>'10 дақ. давомидаги ёғингарчилик миқдори',
+    '10_the_amount_precipitation_during'=>' ёғингарчилик миқдори',
     '10_the_average_direction_wind_during'=>'10 дақ. давомидаги шамолнинг ўртача йўналиши',
     '10_the_average_direction_wind_during'=>'10 дақ. давомидаги шамолнинг ўртача йўналиши',
     '10_average_wind_speed_during'=>'10 дақ. давомидаги шамолнинг ўртача тезлиги',
