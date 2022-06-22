@@ -2362,7 +2362,7 @@
                             .then(function (response) {
                                 marker4.bindPopup("" +
                                     "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>Ташкент-Гидрометцентр</b></td></tr>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>MeteoBot-36 / MeteoUz</b></td></tr>" +
                                     "<tr>" +
                                     "<td><b>@lang('map.date')</b></td>" +
                                     "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
