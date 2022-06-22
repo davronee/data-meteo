@@ -2412,10 +2412,6 @@
                                     "<td>" + response.data[13] + "</td>" +
                                     "</tr>" +
                                     "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                    "<td>" + response.data[13] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
                                     "<td><b>@lang('map.Soil.Temp3') </b></td>" +
                                     "<td>" + response.data[14] + "</td>" +
                                     "</tr>" +
