@@ -2358,7 +2358,7 @@
 
 
                     var marker4 = L.marker([parseFloat(41.32673014429975), parseFloat(69.293103839704)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('meteobot.GetMeteoBotInfo')}}')
+                        axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303336)}}')
                             .then(function (response) {
                                 marker4.bindPopup("" +
                                     "<table class='table table-bordered'>" +
@@ -2429,6 +2429,80 @@
                     marker4.fire('click');
 
                     markers_mini.addLayer(marker4);
+
+
+                    var marker5 = L.marker([parseFloat(41.30336446744657), parseFloat(71.67648466571539)], {icon: meteoIcon1}).on('click', function () {
+                        axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303337)}}')
+                            .then(function (response) {
+                                marker5.bindPopup("" +
+                                    "<table class='table table-bordered'>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>MeteoBot-37 / MeteoUz</b></td></tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.date')</b></td>" +
+                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.temp') </b></td>" +
+                                    "<td>" + response.data[3] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.humidity') </b></td>" +
+                                    "<td>" + response.data[4] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.current_pressure') </b></td>" +
+                                    "<td>" + response.data[5] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.dew_point') </b></td>" +
+                                    "<td>" + response.data[6] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                    "<td>" + response.data[7] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.wind_speed') </b></td>" +
+                                    "<td>" + response.data[8] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
+                                    "<td>" + response.data[9] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
+                                    "<td>" + response.data[10] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
+                                    "<td>" + response.data[11] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.Soil.Temp1') </b></td>" +
+                                    "<td>" + response.data[12] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.Soil.Temp2') </b></td>" +
+                                    "<td>" + response.data[13] + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.Soil.Temp3') </b></td>" +
+                                    "<td>" + response.data[14] + "</td>" +
+                                    "</tr>" +
+                                    "</table>"
+                                )
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    });
+                    marker5.fire('click');
+
+                    markers_mini.addLayer(marker5);
 
                     map.addLayer(markers_mini);
 

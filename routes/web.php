@@ -237,7 +237,7 @@ Route::prefix('bukhara_chines')->group(function () {
 
 
 Route::prefix('meteobot')->group(function () {
-    Route::get('/get', [\App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
+    Route::get('/get/{id}', [\App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
 
 });
 
