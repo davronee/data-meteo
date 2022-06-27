@@ -2513,7 +2513,7 @@
                             .then(function (response) {
                                 marker6.bindPopup("" +
                                     "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>Учқорғон</b></td></tr>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>Учқўрғон</b></td></tr>" +
                                     "<tr>" +
                                     "<td><b>@lang('map.date')</b></td>" +
                                     "<td>" +moment(response.data.data[2].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
