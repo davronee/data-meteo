@@ -2502,6 +2502,7 @@
                     });
                     marker5.fire('click');
 
+                    markers_mini.addLayer(marker5);
 
 
 
@@ -2579,10 +2580,90 @@
                     });
                     marker6.fire('click');
 
+
+
                     markers_mini.addLayer(marker6);
 
 
-                    markers_mini.addLayer(marker5);
+
+
+
+
+                    var marker7 = L.marker([parseFloat(41.289427), parseFloat(71.540321)], {icon: meteoIcon1}).on('click', function () {
+                        axios.get('{{route('bukhara_chines.getRealTimeData')}}')
+                            .then(function (response) {
+                                marker7.bindPopup("" +
+                                    "<table class='table table-bordered'>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>Косонсой</b></td></tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.date')</b></td>" +
+                                    "<td>" +moment(response.data.data[3].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.temp') </b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[0].registerItem[0].data + ' ' + response.data.data[3].dataItem[0].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.humidity')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[0].registerItem[1].data + ' ' + response.data.data[3].dataItem[0].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>CO2 </b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[1].registerItem[0].data + ' ' + response.data.data[3].dataItem[1].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.wind_speed')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[3].registerItem[1].data + ' ' + response.data.data[3].dataItem[3].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.wind_direction')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[4].registerItem[0].data + ' ' + response.data.data[3].dataItem[4].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.temp_soil')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[5].registerItem[0].data + ' ' + response.data.data[3].dataItem[5].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.humadity_soil')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[5].registerItem[1].data + ' ' + response.data.data[3].dataItem[5].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.ec')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[6].registerItem[0].data + ' ' + response.data.data[3].dataItem[6].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.cumulative_rainfall')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[7].registerItem[0].data + ' ' + response.data.data[3].dataItem[7].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.ra')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[8].registerItem[0].data + ' ' + response.data.data[3].dataItem[8].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.leaf_temp')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[9].registerItem[0].data + ' ' + response.data.data[3].dataItem[9].registerItem[0].unit + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.wetness')</b></td>" +
+                                    "<td>" + response.data.data[3].dataItem[9].registerItem[1].data + ' ' + response.data.data[3].dataItem[9].registerItem[1].unit + "</td>" +
+                                    "</tr>" +
+                                    "</table>"
+                                )
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    });
+                    marker7.fire('click');
+
+                    markers_mini.addLayer(marker7);
+
+
+
 
                     map.addLayer(markers_mini);
 
