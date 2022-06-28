@@ -2670,7 +2670,7 @@
                             .then(function (response) {
                                 marker8.bindPopup("" +
                                     "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>MeteoBot-34 / MeteoUz</b></td></tr>" +
+                                    "<tr ><td colspan='2' class='text-center'><b>Уйчи тумани - 34</b></td></tr>" +
                                     "<tr>" +
                                     "<td><b>@lang('map.date')</b></td>" +
                                     "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
