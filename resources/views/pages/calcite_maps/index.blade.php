@@ -2742,7 +2742,7 @@
 
 
 
-                    var marker9 = L.marker([parseFloat(41.007298), parseFloat(71.832123)], {icon: meteoIcon1}).on('click', function () {
+                    var marker9 = L.marker([parseFloat(40.872529), parseFloat(71.454138)], {icon: meteoIcon1}).on('click', function () {
                         axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303335)}}')
                             .then(function (response) {
                                 marker9.bindPopup("" +
