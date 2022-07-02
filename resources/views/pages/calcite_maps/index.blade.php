@@ -2222,7 +2222,8 @@
                         iconSize: [28, 28], // size of the icon
                         class: "station"
                     });
-                    var marker2 = L.marker([parseFloat(41.3202927), parseFloat(69.2968912)], {icon: meteoIcon1}).on('click', function () {
+                    // [parseFloat(41.145047), parseFloat(72.100455)]
+                    var marker2 = L.marker([parseFloat(41.145047), parseFloat(72.100455)], {icon: meteoIcon1}).on('click', function () {
                         axios.get('{{route('map.GetAmbientweather')}}')
                             .then(function (response) {
                                 marker2.bindPopup("" +
