@@ -1015,7 +1015,7 @@
                         // console.log( i + ": " + item.latitude + " (массив:" + item.region_id + ")" );
                         var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
 
-                            if (item.region_id == 1726 || item.region_id == 1735 ||  item.region_id == 1706) {
+                            if (item.region_id == 1726 || item.region_id == 1735 || item.region_id == 1706) {
                                 marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='200' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
                             }
                         });
@@ -2217,293 +2217,293 @@
 
 
 
-                    var meteoIcon1 = L.icon({
-                        iconUrl: '{{asset('images/meteo.png')}}',
-                        iconSize: [28, 28], // size of the icon
-                        class: "station"
-                    });
-                    // [parseFloat(41.145047), parseFloat(72.100455)]
-                    var marker2 = L.marker([parseFloat(41.145047), parseFloat(72.100455)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('map.GetAmbientweather')}}')
-                            .then(function (response) {
-                                marker2.bindPopup("" +
-                                    "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>Учқўрғон</b></td></tr>" +
-                                    "<tr>" +
-                                    "<td><b>дата и время</b></td>" +
-                                    "<td>" + moment(response.data.lastData.date).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>температура воздуха за измеряемый период</b></td>" +
-                                    "<td>" + app.checktoUndefine(app.FarangetToCelsium(response.data.lastData.tempf), '°C') + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>точка росы<b/></td>" +
-                                    "<td>" + response.data.lastData.dewPoint + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>скорость ветра</b></td>" +
-                                    "<td>" + response.data.lastData.windspeedmph + 'm/c' + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>направление ветра</b></td>" +
-                                    "<td>" + response.data.lastData.winddir + '°' + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>высота станции</b></td>" +
-                                    "<td>" + app.checktoUndefine(Math.round(response.data.info.coords.elevation), 'a.s.l.') + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>осадка</b></td>" +
-                                    "<td>" + app.checktoUndefine(response.data.lastData.hourlyrainin) + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>PM2.5</b></td>" +
-                                    "<td>" + app.checktoUndefine(response.data.lastData.pm25) + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                )
-                            })
-                            .catch(function (error) {
-                                // handle error
-                                console.log(error);
-                            })
-                            .then(function () {
-                                // always executed
-                            });
-                    });
-                    marker2.fire('click');
+                    {{--var meteoIcon1 = L.icon({--}}
+                    {{--    iconUrl: '{{asset('images/meteo.png')}}',--}}
+                    {{--    iconSize: [28, 28], // size of the icon--}}
+                    {{--    class: "station"--}}
+                    {{--});--}}
+                    {{--// [parseFloat(41.145047), parseFloat(72.100455)]--}}
+                    {{--var marker2 = L.marker([parseFloat(41.145047), parseFloat(72.100455)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('map.GetAmbientweather')}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            marker2.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>Учқўрғон</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>дата и время</b></td>" +--}}
+                    {{--                "<td>" + moment(response.data.lastData.date).format('YYYY-MM-DD HH:mm:ss') + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>температура воздуха за измеряемый период</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(app.FarangetToCelsium(response.data.lastData.tempf), '°C') + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>точка росы<b/></td>" +--}}
+                    {{--                "<td>" + response.data.lastData.dewPoint + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>скорость ветра</b></td>" +--}}
+                    {{--                "<td>" + response.data.lastData.windspeedmph + 'm/c' + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>направление ветра</b></td>" +--}}
+                    {{--                "<td>" + response.data.lastData.winddir + '°' + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>высота станции</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(Math.round(response.data.info.coords.elevation), 'a.s.l.') + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>осадка</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(response.data.lastData.hourlyrainin) + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>PM2.5</b></td>" +--}}
+                    {{--                "<td>" + app.checktoUndefine(response.data.lastData.pm25) + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker2.fire('click');--}}
 
-                    markers_mini.addLayer(marker2);
+                    {{--markers_mini.addLayer(marker2);--}}
 
-                    map.addLayer(markers_mini);
-
-
-
-
-
-                    var marker3 = L.marker([parseFloat(39.501), parseFloat(64.794)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('bukhara_chines.getRealTimeData')}}')
-                            .then(function (response) {
-                                marker3.bindPopup("" +
-                                    "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>Қоравулбозор</b></td></tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.date')</b></td>" +
-                                    "<td>" +moment(response.data.data[0].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp') </b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[0].registerItem[0].data + ' ' + response.data.data[0].dataItem[0].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humidity')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[0].registerItem[1].data + ' ' + response.data.data[0].dataItem[0].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>CO2 </b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[1].registerItem[0].data + ' ' + response.data.data[0].dataItem[1].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_speed')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[3].registerItem[1].data + ' ' + response.data.data[0].dataItem[3].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_direction')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[4].registerItem[0].data + ' ' + response.data.data[0].dataItem[4].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp_soil')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[5].registerItem[0].data + ' ' + response.data.data[0].dataItem[5].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humadity_soil')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[5].registerItem[1].data + ' ' + response.data.data[0].dataItem[5].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.ec')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[6].registerItem[0].data + ' ' + response.data.data[0].dataItem[6].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.cumulative_rainfall')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[7].registerItem[0].data + ' ' + response.data.data[0].dataItem[7].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.ra')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[8].registerItem[0].data + ' ' + response.data.data[0].dataItem[8].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.leaf_temp')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[9].registerItem[0].data + ' ' + response.data.data[0].dataItem[9].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wetness')</b></td>" +
-                                    "<td>" + response.data.data[0].dataItem[9].registerItem[1].data + ' ' + response.data.data[0].dataItem[9].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                )
-                            })
-                            .catch(function (error) {
-                                // handle error
-                                console.log(error);
-                            })
-                            .then(function () {
-                                // always executed
-                            });
-                    });
-                    marker3.fire('click');
-
-                    markers_mini.addLayer(marker3);
+                    {{--map.addLayer(markers_mini);--}}
 
 
 
 
-                    var marker4 = L.marker([parseFloat(41.32673014429975), parseFloat(69.293103839704)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303336)}}')
-                            .then(function (response) {
-                                marker4.bindPopup("" +
-                                    "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>MeteoBot-36 / MeteoUz</b></td></tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.date')</b></td>" +
-                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp') </b></td>" +
-                                    "<td>" + response.data[3] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humidity') </b></td>" +
-                                    "<td>" + response.data[4] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.current_pressure') </b></td>" +
-                                    "<td>" + response.data[5] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.dew_point') </b></td>" +
-                                    "<td>" + response.data[6] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                    "<td>" + response.data[7] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_speed') </b></td>" +
-                                    "<td>" + response.data[8] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                    "<td>" + response.data[9] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                    "<td>" + response.data[10] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                    "<td>" + response.data[11] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                    "<td>" + response.data[12] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                    "<td>" + response.data[13] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                    "<td>" + response.data[14] + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                )
-                            })
-                            .catch(function (error) {
-                                // handle error
-                                console.log(error);
-                            })
-                            .then(function () {
-                                // always executed
-                            });
-                    });
-                    marker4.fire('click');
 
-                    markers_mini.addLayer(marker4);
+                    {{--var marker3 = L.marker([parseFloat(39.501), parseFloat(64.794)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('bukhara_chines.getRealTimeData')}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            marker3.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>Қоравулбозор</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.date')</b></td>" +--}}
+                    {{--                "<td>" +moment(response.data.data[0].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp') </b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[0].registerItem[0].data + ' ' + response.data.data[0].dataItem[0].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humidity')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[0].registerItem[1].data + ' ' + response.data.data[0].dataItem[0].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>CO2 </b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[1].registerItem[0].data + ' ' + response.data.data[0].dataItem[1].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_speed')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[3].registerItem[1].data + ' ' + response.data.data[0].dataItem[3].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_direction')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[4].registerItem[0].data + ' ' + response.data.data[0].dataItem[4].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp_soil')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[5].registerItem[0].data + ' ' + response.data.data[0].dataItem[5].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humadity_soil')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[5].registerItem[1].data + ' ' + response.data.data[0].dataItem[5].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.ec')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[6].registerItem[0].data + ' ' + response.data.data[0].dataItem[6].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.cumulative_rainfall')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[7].registerItem[0].data + ' ' + response.data.data[0].dataItem[7].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.ra')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[8].registerItem[0].data + ' ' + response.data.data[0].dataItem[8].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.leaf_temp')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[9].registerItem[0].data + ' ' + response.data.data[0].dataItem[9].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wetness')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[0].dataItem[9].registerItem[1].data + ' ' + response.data.data[0].dataItem[9].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker3.fire('click');--}}
+
+                    {{--markers_mini.addLayer(marker3);--}}
 
 
-                    var marker5 = L.marker([parseFloat(41.30336446744657), parseFloat(71.67648466571539)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303337)}}')
-                            .then(function (response) {
-                                marker5.bindPopup("" +
-                                    "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>MeteoBot-37 / MeteoUz</b></td></tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.date')</b></td>" +
-                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp') </b></td>" +
-                                    "<td>" + response.data[3] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humidity') </b></td>" +
-                                    "<td>" + response.data[4] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.current_pressure') </b></td>" +
-                                    "<td>" + response.data[5] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.dew_point') </b></td>" +
-                                    "<td>" + response.data[6] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                    "<td>" + response.data[7] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_speed') </b></td>" +
-                                    "<td>" + response.data[8] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                    "<td>" + response.data[9] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                    "<td>" + response.data[10] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                    "<td>" + response.data[11] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                    "<td>" + response.data[12] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                    "<td>" + response.data[13] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                    "<td>" + response.data[14] + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                )
-                            })
-                            .catch(function (error) {
-                                // handle error
-                                console.log(error);
-                            })
-                            .then(function () {
-                                // always executed
-                            });
-                    });
-                    marker5.fire('click');
 
-                    markers_mini.addLayer(marker5);
+
+                    {{--var marker4 = L.marker([parseFloat(41.32673014429975), parseFloat(69.293103839704)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303336)}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            marker4.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>MeteoBot-36 / MeteoUz</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.date')</b></td>" +--}}
+                    {{--                "<td>" + response.data[1] + " " + response.data[2] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp') </b></td>" +--}}
+                    {{--                "<td>" + response.data[3] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humidity') </b></td>" +--}}
+                    {{--                "<td>" + response.data[4] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.current_pressure') </b></td>" +--}}
+                    {{--                "<td>" + response.data[5] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.dew_point') </b></td>" +--}}
+                    {{--                "<td>" + response.data[6] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +--}}
+                    {{--                "<td>" + response.data[7] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_speed') </b></td>" +--}}
+                    {{--                "<td>" + response.data[8] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[9] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[10] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[11] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[12] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[13] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[14] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker4.fire('click');--}}
+
+                    {{--markers_mini.addLayer(marker4);--}}
+
+
+                    {{--var marker5 = L.marker([parseFloat(41.30336446744657), parseFloat(71.67648466571539)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303337)}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            marker5.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>MeteoBot-37 / MeteoUz</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.date')</b></td>" +--}}
+                    {{--                "<td>" + response.data[1] + " " + response.data[2] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp') </b></td>" +--}}
+                    {{--                "<td>" + response.data[3] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humidity') </b></td>" +--}}
+                    {{--                "<td>" + response.data[4] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.current_pressure') </b></td>" +--}}
+                    {{--                "<td>" + response.data[5] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.dew_point') </b></td>" +--}}
+                    {{--                "<td>" + response.data[6] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +--}}
+                    {{--                "<td>" + response.data[7] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_speed') </b></td>" +--}}
+                    {{--                "<td>" + response.data[8] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[9] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[10] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[11] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[12] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[13] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[14] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker5.fire('click');--}}
+
+                    {{--markers_mini.addLayer(marker5);--}}
 
 
 
@@ -2590,234 +2590,899 @@
 
 
 
-                    var marker7 = L.marker([parseFloat(41.289427), parseFloat(71.540321)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('bukhara_chines.getRealTimeData')}}')
-                            .then(function (response) {
-                                marker7.bindPopup("" +
-                                    "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>Косонсой</b></td></tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.date')</b></td>" +
-                                    "<td>" +moment(response.data.data[3].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp') </b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[0].registerItem[0].data + ' ' + response.data.data[3].dataItem[0].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humidity')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[0].registerItem[1].data + ' ' + response.data.data[3].dataItem[0].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>CO2 </b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[1].registerItem[0].data + ' ' + response.data.data[3].dataItem[1].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_speed')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[3].registerItem[1].data + ' ' + response.data.data[3].dataItem[3].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_direction')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[4].registerItem[0].data + ' ' + response.data.data[3].dataItem[4].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp_soil')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[5].registerItem[0].data + ' ' + response.data.data[3].dataItem[5].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humadity_soil')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[5].registerItem[1].data + ' ' + response.data.data[3].dataItem[5].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.ec')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[6].registerItem[0].data + ' ' + response.data.data[3].dataItem[6].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.cumulative_rainfall')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[7].registerItem[0].data + ' ' + response.data.data[3].dataItem[7].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.ra')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[8].registerItem[0].data + ' ' + response.data.data[3].dataItem[8].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.leaf_temp')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[9].registerItem[0].data + ' ' + response.data.data[3].dataItem[9].registerItem[0].unit + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wetness')</b></td>" +
-                                    "<td>" + response.data.data[3].dataItem[9].registerItem[1].data + ' ' + response.data.data[3].dataItem[9].registerItem[1].unit + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                )
-                            })
-                            .catch(function (error) {
-                                // handle error
-                                console.log(error);
-                            })
-                            .then(function () {
-                                // always executed
-                            });
-                    });
-                    marker7.fire('click');
+                    {{--var marker7 = L.marker([parseFloat(41.289427), parseFloat(71.540321)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('bukhara_chines.getRealTimeData')}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            marker7.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>Косонсой</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.date')</b></td>" +--}}
+                    {{--                "<td>" +moment(response.data.data[3].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp') </b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[0].registerItem[0].data + ' ' + response.data.data[3].dataItem[0].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humidity')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[0].registerItem[1].data + ' ' + response.data.data[3].dataItem[0].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>CO2 </b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[1].registerItem[0].data + ' ' + response.data.data[3].dataItem[1].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_speed')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[3].registerItem[1].data + ' ' + response.data.data[3].dataItem[3].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_direction')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[4].registerItem[0].data + ' ' + response.data.data[3].dataItem[4].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp_soil')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[5].registerItem[0].data + ' ' + response.data.data[3].dataItem[5].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humadity_soil')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[5].registerItem[1].data + ' ' + response.data.data[3].dataItem[5].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.ec')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[6].registerItem[0].data + ' ' + response.data.data[3].dataItem[6].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.cumulative_rainfall')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[7].registerItem[0].data + ' ' + response.data.data[3].dataItem[7].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.ra')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[8].registerItem[0].data + ' ' + response.data.data[3].dataItem[8].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.leaf_temp')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[9].registerItem[0].data + ' ' + response.data.data[3].dataItem[9].registerItem[0].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wetness')</b></td>" +--}}
+                    {{--                "<td>" + response.data.data[3].dataItem[9].registerItem[1].data + ' ' + response.data.data[3].dataItem[9].registerItem[1].unit + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker7.fire('click');--}}
 
-                    markers_mini.addLayer(marker7);
-
-
-
-
-                    var marker8 = L.marker([parseFloat(41.007298), parseFloat(71.832123)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303334)}}')
-                            .then(function (response) {
-                                marker8.bindPopup("" +
-                                    "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>Уйчи тумани - 34</b></td></tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.date')</b></td>" +
-                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp') </b></td>" +
-                                    "<td>" + response.data[3] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humidity') </b></td>" +
-                                    "<td>" + response.data[4] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.current_pressure') </b></td>" +
-                                    "<td>" + response.data[5] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.dew_point') </b></td>" +
-                                    "<td>" + response.data[6] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                    "<td>" + response.data[7] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_speed') </b></td>" +
-                                    "<td>" + response.data[8] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                    "<td>" + response.data[9] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                    "<td>" + response.data[10] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                    "<td>" + response.data[11] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                    "<td>" + response.data[12] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                    "<td>" + response.data[13] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                    "<td>" + response.data[14] + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                )
-                            })
-                            .catch(function (error) {
-                                // handle error
-                                console.log(error);
-                            })
-                            .then(function () {
-                                // always executed
-                            });
-                    });
-                    marker8.fire('click');
-
-                    markers_mini.addLayer(marker8);
+                    {{--markers_mini.addLayer(marker7);--}}
 
 
 
 
+                    {{--var marker8 = L.marker([parseFloat(41.007298), parseFloat(71.832123)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303334)}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            marker8.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>Уйчи тумани - 34</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.date')</b></td>" +--}}
+                    {{--                "<td>" + response.data[1] + " " + response.data[2] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp') </b></td>" +--}}
+                    {{--                "<td>" + response.data[3] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humidity') </b></td>" +--}}
+                    {{--                "<td>" + response.data[4] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.current_pressure') </b></td>" +--}}
+                    {{--                "<td>" + response.data[5] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.dew_point') </b></td>" +--}}
+                    {{--                "<td>" + response.data[6] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +--}}
+                    {{--                "<td>" + response.data[7] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_speed') </b></td>" +--}}
+                    {{--                "<td>" + response.data[8] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[9] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[10] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[11] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[12] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[13] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[14] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker8.fire('click');--}}
 
-                    var marker9 = L.marker([parseFloat(40.872529), parseFloat(71.454138)], {icon: meteoIcon1}).on('click', function () {
-                        axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303335)}}')
-                            .then(function (response) {
-                                marker9.bindPopup("" +
-                                    "<table class='table table-bordered'>" +
-                                    "<tr ><td colspan='2' class='text-center'><b>Мингбулоқ тумани - 35</b></td></tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.date')</b></td>" +
-                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.temp') </b></td>" +
-                                    "<td>" + response.data[3] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.humidity') </b></td>" +
-                                    "<td>" + response.data[4] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.current_pressure') </b></td>" +
-                                    "<td>" + response.data[5] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.dew_point') </b></td>" +
-                                    "<td>" + response.data[6] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                    "<td>" + response.data[7] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.wind_speed') </b></td>" +
-                                    "<td>" + response.data[8] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                    "<td>" + response.data[9] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                    "<td>" + response.data[10] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                    "<td>" + response.data[11] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                    "<td>" + response.data[12] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                    "<td>" + response.data[13] + "</td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                    "<td>" + response.data[14] + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                )
-                            })
-                            .catch(function (error) {
-                                // handle error
-                                console.log(error);
-                            })
-                            .then(function () {
-                                // always executed
-                            });
-                    });
-                    marker9.fire('click');
+                    {{--markers_mini.addLayer(marker8);--}}
 
-                    markers_mini.addLayer(marker9);
+
+
+
+
+                    {{--var marker9 = L.marker([parseFloat(40.872529), parseFloat(71.454138)], {icon: meteoIcon1}).on('click', function () {--}}
+                    {{--    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303335)}}')--}}
+                    {{--        .then(function (response) {--}}
+                    {{--            marker9.bindPopup("" +--}}
+                    {{--                "<table class='table table-bordered'>" +--}}
+                    {{--                "<tr ><td colspan='2' class='text-center'><b>Мингбулоқ тумани - 35</b></td></tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.date')</b></td>" +--}}
+                    {{--                "<td>" + response.data[1] + " " + response.data[2] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.temp') </b></td>" +--}}
+                    {{--                "<td>" + response.data[3] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.humidity') </b></td>" +--}}
+                    {{--                "<td>" + response.data[4] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.current_pressure') </b></td>" +--}}
+                    {{--                "<td>" + response.data[5] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.dew_point') </b></td>" +--}}
+                    {{--                "<td>" + response.data[6] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +--}}
+                    {{--                "<td>" + response.data[7] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.wind_speed') </b></td>" +--}}
+                    {{--                "<td>" + response.data[8] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[9] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[10] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Moisture3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[11] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp1') </b></td>" +--}}
+                    {{--                "<td>" + response.data[12] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp2') </b></td>" +--}}
+                    {{--                "<td>" + response.data[13] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "<tr>" +--}}
+                    {{--                "<td><b>@lang('map.Soil.Temp3') </b></td>" +--}}
+                    {{--                "<td>" + response.data[14] + "</td>" +--}}
+                    {{--                "</tr>" +--}}
+                    {{--                "</table>"--}}
+                    {{--            )--}}
+                    {{--        })--}}
+                    {{--        .catch(function (error) {--}}
+                    {{--            // handle error--}}
+                    {{--            console.log(error);--}}
+                    {{--        })--}}
+                    {{--        .then(function () {--}}
+                    {{--            // always executed--}}
+                    {{--        });--}}
+                    {{--});--}}
+                    {{--marker9.fire('click');--}}
+
+                    {{--markers_mini.addLayer(marker9);--}}
+
+
+
+
+                    axios.get('{{route('map.GetAmbientweather')}}')
+                        .then(function (response) {
+                            if (response.data.lastData.tempf) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker = L.marker([parseFloat(41.145047), parseFloat(72.100455)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>Учқўрғон</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>дата и время</b></td>" +
+                                            "<td>" + moment(response.data.lastData.date).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>температура воздуха за измеряемый период</b></td>" +
+                                            "<td>" + app.checktoUndefine(app.FarangetToCelsium(response.data.lastData.tempf), '°C') + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>точка росы<b/></td>" +
+                                            "<td>" + response.data.lastData.dewPoint + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>скорость ветра</b></td>" +
+                                            "<td>" + response.data.lastData.windspeedmph + 'm/c' + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>направление ветра</b></td>" +
+                                            "<td>" + response.data.lastData.winddir + '°' + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>высота станции</b></td>" +
+                                            "<td>" + app.checktoUndefine(Math.round(response.data.info.coords.elevation), 'a.s.l.') + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>осадка</b></td>" +
+                                            "<td>" + app.checktoUndefine(response.data.lastData.hourlyrainin) + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>PM2.5</b></td>" +
+                                            "<td>" + app.checktoUndefine(response.data.lastData.pm25) + "</td>" +
+                                            "</tr>" +
+                                            "</table>")
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + app.checktoUndefine(app.FarangetToCelsium(response.data.lastData.tempf), '°') + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker.fire('click');
+
+
+                                markers_mini.addLayer(marker);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+                    axios.get('{{route('bukhara_chines.getRealTimeData')}}')
+                        .then(function (response) {
+                            if (response.data.data[0].dataItem[0].registerItem[0].data) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(39.501), parseFloat(64.794)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker2.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>Қоравулбозор</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.date')</b></td>" +
+                                            "<td>" + moment(response.data.data[0].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp') </b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[0].registerItem[0].data + ' ' + response.data.data[0].dataItem[0].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humidity')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[0].registerItem[1].data + ' ' + response.data.data[0].dataItem[0].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>CO2 </b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[1].registerItem[0].data + ' ' + response.data.data[0].dataItem[1].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_speed')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[3].registerItem[1].data + ' ' + response.data.data[0].dataItem[3].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_direction')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[4].registerItem[0].data + ' ' + response.data.data[0].dataItem[4].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp_soil')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[5].registerItem[0].data + ' ' + response.data.data[0].dataItem[5].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humadity_soil')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[5].registerItem[1].data + ' ' + response.data.data[0].dataItem[5].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.ec')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[6].registerItem[0].data + ' ' + response.data.data[0].dataItem[6].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.cumulative_rainfall')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[7].registerItem[0].data + ' ' + response.data.data[0].dataItem[7].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.ra')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[8].registerItem[0].data + ' ' + response.data.data[0].dataItem[8].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.leaf_temp')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[9].registerItem[0].data + ' ' + response.data.data[0].dataItem[9].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wetness')</b></td>" +
+                                            "<td>" + response.data.data[0].dataItem[9].registerItem[1].data + ' ' + response.data.data[0].dataItem[9].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "</table>")
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data.data[0].dataItem[0].registerItem[0].data + '°' + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
 
 
                     map.addLayer(markers_mini);
+
+
+                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303336)}}')
+                        .then(function (response) {
+                            if (response.data[3]) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(41.32673014429975), parseFloat(69.293103839704)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker2.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>MeteoBot-36 / MeteoUz</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.date')</b></td>" +
+                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp') </b></td>" +
+                                            "<td>" + response.data[3] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humidity') </b></td>" +
+                                            "<td>" + response.data[4] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.current_pressure') </b></td>" +
+                                            "<td>" + response.data[5] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.dew_point') </b></td>" +
+                                            "<td>" + response.data[6] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                            "<td>" + response.data[7] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_speed') </b></td>" +
+                                            "<td>" + response.data[8] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
+                                            "<td>" + response.data[9] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
+                                            "<td>" + response.data[10] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
+                                            "<td>" + response.data[11] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
+                                            "<td>" + response.data[12] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
+                                            "<td>" + response.data[13] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
+                                            "<td>" + response.data[14] + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303337)}}')
+                        .then(function (response) {
+                            if (response.data[3]) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(41.30336446744657), parseFloat(71.67648466571539)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker2.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>MeteoBot-36 / MeteoUz</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.date')</b></td>" +
+                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp') </b></td>" +
+                                            "<td>" + response.data[3] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humidity') </b></td>" +
+                                            "<td>" + response.data[4] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.current_pressure') </b></td>" +
+                                            "<td>" + response.data[5] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.dew_point') </b></td>" +
+                                            "<td>" + response.data[6] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                            "<td>" + response.data[7] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_speed') </b></td>" +
+                                            "<td>" + response.data[8] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
+                                            "<td>" + response.data[9] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
+                                            "<td>" + response.data[10] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
+                                            "<td>" + response.data[11] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
+                                            "<td>" + response.data[12] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
+                                            "<td>" + response.data[13] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
+                                            "<td>" + response.data[14] + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+                    axios.get('{{route('bukhara_chines.getRealTimeData')}}')
+                        .then(function (response) {
+                            if (response.data.data[3].dataItem[0].registerItem[0].data) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(41.289427), parseFloat(71.540321)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker2.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>Косонсой</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.date')</b></td>" +
+                                            "<td>" + moment(response.data.data[3].timeStamp).format('YYYY-MM-DD HH:mm:ss') + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp') </b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[0].registerItem[0].data + ' ' + response.data.data[3].dataItem[0].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humidity')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[0].registerItem[1].data + ' ' + response.data.data[3].dataItem[0].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>CO2 </b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[1].registerItem[0].data + ' ' + response.data.data[3].dataItem[1].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_speed')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[3].registerItem[1].data + ' ' + response.data.data[3].dataItem[3].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_direction')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[4].registerItem[0].data + ' ' + response.data.data[3].dataItem[4].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp_soil')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[5].registerItem[0].data + ' ' + response.data.data[3].dataItem[5].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humadity_soil')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[5].registerItem[1].data + ' ' + response.data.data[3].dataItem[5].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.ec')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[6].registerItem[0].data + ' ' + response.data.data[3].dataItem[6].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.cumulative_rainfall')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[7].registerItem[0].data + ' ' + response.data.data[3].dataItem[7].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.ra')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[8].registerItem[0].data + ' ' + response.data.data[3].dataItem[8].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.leaf_temp')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[9].registerItem[0].data + ' ' + response.data.data[3].dataItem[9].registerItem[0].unit + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wetness')</b></td>" +
+                                            "<td>" + response.data.data[3].dataItem[9].registerItem[1].data + ' ' + response.data.data[3].dataItem[9].registerItem[1].unit + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data.data[3].dataItem[0].registerItem[0].data + '°' + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303334)}}')
+                        .then(function (response) {
+                            if (response.data[3]) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(41.007298), parseFloat(71.832123)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker2.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>Уйчи тумани - 34</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.date')</b></td>" +
+                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp') </b></td>" +
+                                            "<td>" + response.data[3] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humidity') </b></td>" +
+                                            "<td>" + response.data[4] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.current_pressure') </b></td>" +
+                                            "<td>" + response.data[5] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.dew_point') </b></td>" +
+                                            "<td>" + response.data[6] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                            "<td>" + response.data[7] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_speed') </b></td>" +
+                                            "<td>" + response.data[8] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
+                                            "<td>" + response.data[9] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
+                                            "<td>" + response.data[10] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
+                                            "<td>" + response.data[11] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
+                                            "<td>" + response.data[12] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
+                                            "<td>" + response.data[13] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
+                                            "<td>" + response.data[14] + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303335)}}')
+                        .then(function (response) {
+                            if (response.data[3]) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(40.872529), parseFloat(71.454138)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker2.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>Мингбулоқ тумани - 35</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.date')</b></td>" +
+                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp') </b></td>" +
+                                            "<td>" + response.data[3] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humidity') </b></td>" +
+                                            "<td>" + response.data[4] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.current_pressure') </b></td>" +
+                                            "<td>" + response.data[5] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.dew_point') </b></td>" +
+                                            "<td>" + response.data[6] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                            "<td>" + response.data[7] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_speed') </b></td>" +
+                                            "<td>" + response.data[8] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
+                                            "<td>" + response.data[9] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
+                                            "<td>" + response.data[10] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
+                                            "<td>" + response.data[11] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
+                                            "<td>" + response.data[12] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
+                                            "<td>" + response.data[13] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
+                                            "<td>" + response.data[14] + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
 
 
                 } else {
