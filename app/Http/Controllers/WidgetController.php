@@ -76,7 +76,7 @@ class WidgetController extends Controller
                 $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
                 if ($im2 !== FALSE) {
                     header("Content-type: image/png");
-                    imagepng($im2); 
+                    imagepng($im2);
 //                imagedestroy($im2);
                 }
             }
@@ -414,7 +414,9 @@ class WidgetController extends Controller
     public function GetAtmasfera()
     {
 //        $atmasfera = Http::get('http://217.30.161.60:8085/api/atmosphere/monitoring/');
-        $atmasfera = Http::get($this->meteoapi . 'api/atmosphere/monitoring/');
+        $atmasfera = Http::withOptions([
+            'verify' => false
+        ])->get($this->meteoapi . 'api/atmosphere/monitoring/');
         return $atmasfera->json();
     }
 

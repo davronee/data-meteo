@@ -376,10 +376,10 @@
                 <div class="panel-body">
                     <select id="selectStandardBasemap" class="form-control">
                         <option value="Streets">@lang('map.Streets')</option>
-                        <option value="Imagery">@lang('map.Imagery')</option>
+                        <option selected value="Imagery">@lang('map.Imagery')</option>
                         <option value="NationalGeographic">@lang('map.NationalGeographic')</option>
                         <option value="Topographic">@lang('map.Topographic')</option>
-                        <option selected value="Gray">@lang('map.Gray')</option>
+                        <option  value="Gray">@lang('map.Gray')</option>
                         <option value="DarkGray">@lang('map.DarkGray')</option>
                         <option value="OpenStreetMap">Open Street Map</option>
                     </select>
@@ -525,7 +525,7 @@
                 // ============
 
                 map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6),
-                    layer = L.esri.basemapLayer('Gray').addTo(map),
+                    layer = L.esri.basemapLayer('Imagery').addTo(map),
                     // layerLabels = L.esri.basemapLayer('xxxLabels').addTo(map);
                     layerLabels = null,
                     worldTransportation = L.esri.basemapLayer('ImageryTransportation');
@@ -1043,11 +1043,13 @@
             getAtmasfera: function () {
                 var marker;
                 var markerColor, icon;
+                var drujbahoriba,plashadkahoriba;
                 if (this.atmTemp) {
                     axios.get('{{route('map.GetAtmasfera')}}')
                         .then(function (response) {
                             this.atmasfera_stations = response.data.data[0].stations;
                             this.atmasfera_stations.forEach(function (item, i, arr) {
+
 
                                 var SI = (item.Si == '-') ? '-' : parseFloat(item.Si);
 
@@ -1067,6 +1069,8 @@
 
                                             axios.get('{{route('map.horiba.drujba')}}')
                                                 .then(function (response) {
+                                                    drujbahoriba = parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit;
+
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
                                                         "<tr ><td class='text-center' colspan='2'><b>Чиланзарский р-он, проспект Бунёдкор (ориентир: Дворец Дружбы народов)</b></td></tr>" +
@@ -1104,6 +1108,13 @@
                                                         "</tr>" +
                                                         "</table>" +
                                                         "<a href='https://monitoring.meteo.uz/ru/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "#1D9DA0" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
+                                                            {
+                                                                permanent: true,
+                                                                direction: 'top',
+                                                                className: 'ownClass'
+
+                                                            });
                                                 })
                                                 .catch(error => {
                                                     console.log(error)
@@ -1113,6 +1124,8 @@
 
                                             axios.get('{{route('map.horiba.plashadka')}}')
                                                 .then(function (response) {
+                                                    plashadkahoriba = parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit;
+
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
                                                         "<tr ><td class='text-center' colspan='2'><b>Юнус-Абадский р-он, Узгидромет (ориентир: Метеоплощадка, обсерватория) </b></td></tr>" +
@@ -1150,12 +1163,40 @@
                                                         "</tr>" +
                                                         "</table>" +
                                                         "<a href='https://monitoring.meteo.uz/ru/map/view/107' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "#1D9DA0" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
+                                                            {
+                                                                permanent: true,
+                                                                direction: 'top',
+                                                                className: 'ownClass'
+
+                                                            });
                                                 })
                                                 .catch(error => {
                                                     console.log(error)
                                                 });
 
-                                        } else {
+                                        }
+                                        else if (item.id == 109) {
+
+                                            marker.bindPopup("" +
+                                                "<table class='table table-bordered'>" +
+                                                "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
+                                                "<tr>" +
+                                                "<td><b>@lang('map.NO') (NO):</b></td>" +
+                                                "<td>27µg/m³</td>" +
+                                                "</tr>" +
+                                                "</table>" +
+                                                "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" +  "27"  + "</b></div>",
+                                                    {
+                                                        permanent: true,
+                                                        direction: 'top',
+                                                        className: 'ownClass'
+
+                                                    });
+
+                                        }
+                                        else {
                                             marker.bindPopup("" +
                                                 "<table class='table table-bordered'>" +
                                                 "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
@@ -1181,18 +1222,19 @@
                                                 "</tr>" +
                                                 "</table>" +
                                                 "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" +  item.Si  + "</b></div>",
+                                                {
+                                                    permanent: true,
+                                                    direction: 'top',
+                                                    className: 'ownClass'
+
+                                                });
 
                                         }
 
 
                                     })
-                                    .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClass'
 
-                                        });
 
                                 marker.fire('click');
 
