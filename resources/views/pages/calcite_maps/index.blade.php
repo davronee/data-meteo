@@ -376,8 +376,8 @@
                 <div class="panel-body">
                     <select id="selectStandardBasemap" class="form-control">
                         <option value="Streets">@lang('map.Streets')</option>
-                        <option selected value="Imagery">@lang('map.Imagery')</option>
-                        <option value="NationalGeographic">@lang('map.NationalGeographic')</option>
+                        <option  value="Imagery">@lang('map.Imagery')</option>
+                        <option selected value="NationalGeographic">@lang('map.NationalGeographic')</option>
                         <option value="Topographic">@lang('map.Topographic')</option>
                         <option  value="Gray">@lang('map.Gray')</option>
                         <option value="DarkGray">@lang('map.DarkGray')</option>
@@ -525,7 +525,7 @@
                 // ============
 
                 map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6),
-                    layer = L.esri.basemapLayer('Imagery').addTo(map),
+                    layer = L.esri.basemapLayer('NationalGeographic').addTo(map),
                     // layerLabels = L.esri.basemapLayer('xxxLabels').addTo(map);
                     layerLabels = null,
                     worldTransportation = L.esri.basemapLayer('ImageryTransportation');
@@ -1108,7 +1108,7 @@
                                                         "</tr>" +
                                                         "</table>" +
                                                         "<a href='https://monitoring.meteo.uz/ru/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "#1D9DA0" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
+                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
                                                             {
                                                                 permanent: true,
                                                                 direction: 'top',
@@ -1163,7 +1163,7 @@
                                                         "</tr>" +
                                                         "</table>" +
                                                         "<a href='https://monitoring.meteo.uz/ru/map/view/107' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "#1D9DA0" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
+                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
                                                             {
                                                                 permanent: true,
                                                                 direction: 'top',
