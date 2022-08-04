@@ -40,6 +40,8 @@ class HistoryServices
     public function GetHistoricalDataBySourceStationIdVarsInterval($stationId,$variablesId,$from,$To)
     {
 
+
+
         $history = Http::withOptions([
             'verify' => false
         ])->withBasicAuth(

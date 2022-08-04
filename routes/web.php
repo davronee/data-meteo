@@ -227,8 +227,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index'])->name('history');
+Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'ByStationAndInterval'])->name('history');
 
+Route::get('/variables', [\App\Http\Controllers\HistoryController::class, 'Variablees'])->name('history');
 
 Route::prefix('bukhara_chines')->group(function () {
     Route::get('/getRealTimeData', [\App\Http\Controllers\API\StationController::class, 'GetBukharaStationData'])->name('bukhara_chines.getRealTimeData');
