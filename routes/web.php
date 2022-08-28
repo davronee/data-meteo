@@ -230,7 +230,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'ByStationAndInterval'])->name('history');
 
-Route::get('/variables', [\App\Http\Controllers\HistoryController::class, 'Variablees'])->name('history');
+Route::get('/variables', [\App\Http\Controllers\HistoryController::class, 'Variablees'])->name('history.variables');
 
 Route::prefix('bukhara_chines')->group(function () {
     Route::get('/getRealTimeData', [\App\Http\Controllers\API\StationController::class, 'GetBukharaStationData'])->name('bukhara_chines.getRealTimeData');
