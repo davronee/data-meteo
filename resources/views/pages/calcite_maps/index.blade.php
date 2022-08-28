@@ -1652,51 +1652,7 @@
                     );
 
 
-                    {{--this.hydrometStations.forEach(function (item, i, arr) {--}}
-                        {{--    var meteoIcon = L.icon({--}}
-                        {{--        iconUrl: '{{asset('images/meteo_hydro.png')}}',--}}
-                        {{--        iconSize: [28, 28], // size of the icon--}}
-                        {{--        class: "station"--}}
-                        {{--    });--}}
 
-                        {{--    marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon}).on('click', function () {--}}
-                        {{--        marker.bindPopup("" +--}}
-                        {{--            "<table class='table table-bordered'>" +--}}
-                        {{--            "<tr ><td class='text-center' colspan='2'><b>" + item.name + "</b></td></tr>" +--}}
-                        {{--            "<tr>" +--}}
-                        {{--            "<td><b>temperature</b></td>" +--}}
-                        {{--            "<td>" + item.hydromet_sensor_data.temperature + "</td>" +--}}
-                        {{--            "</tr>" +--}}
-                        {{--            "<tr>" +--}}
-                        {{--            "<td><b>humidity</b></td>" +--}}
-                        {{--            "<td>" + item.hydromet_sensor_data.humidity + "</td>" +--}}
-                        {{--            "</tr>" +--}}
-                        {{--            "<tr>" +--}}
-                        {{--            "<td><b>wspeed</b></td>" +--}}
-                        {{--            "<td>" + item.hydromet_sensor_data.wspeed + "</td>" +--}}
-                        {{--            "</tr>" +--}}
-                        {{--            "<tr>" +--}}
-                        {{--            "<td><b>wdir</b></td>" +--}}
-                        {{--            "<td>" + item.hydromet_sensor_data.wdir + "</td>" +--}}
-                        {{--            "</tr>" +--}}
-                        {{--            "<tr>" +--}}
-                        {{--            "<td><b>pressure</b></td>" +--}}
-                        {{--            "<td>" + item.hydromet_sensor_data.pressure + "</td>" +--}}
-                        {{--            "</tr>" +--}}
-                        {{--            "<tr>" +--}}
-                        {{--            "<td><b>created_at</b></td>" +--}}
-                        {{--            "<td>" + item.hydromet_sensor_data.created_at + "</td>" +--}}
-                        {{--            "</tr>" +--}}
-                        {{--            "</table>"--}}
-                        {{--        )--}}
-                        {{--    }).addTo(map);--}}
-
-                        {{--    marker.fire('click');--}}
-
-
-                        {{--    markers_awd.addLayer(marker);--}}
-
-                        {{--});--}}
 
 
                         this.microstep.forEach(function (item, i, arr) {
@@ -1872,58 +1828,69 @@
                         iconSize: [28, 28], // size of the icon
                         class: "station"
                     });
-                    {{--var marker2 = L.marker([parseFloat(41.34564477332897), parseFloat(69.28504212769195)], {icon: meteoIcon1}).on('click', function () {--}}
-                    {{--    axios.get('{{route('map.MeteoinfocomStationData.get')}}')--}}
-                    {{--        .then(function (response) {--}}
-                    {{--            console.log(response.data.obsTimeLocal)--}}
-                    {{--            marker2.bindPopup("" +--}}
-                    {{--                "<table class='table table-bordered'>" +--}}
-                    {{--                "<tr ><td colspan='2' class='text-center'><b>UZ-METEO2021-01</b></td></tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>дата и время</b></td>" +--}}
-                    {{--                "<td>" + app.checktoUndefine(response.data.obsTimeLocal) + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>температура воздуха за измеряемый период</b></td>" +--}}
-                    {{--                "<td>" + app.checktoUndefine(response.data.metric.temp, '°C') + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>точка росы<b/></td>" +--}}
-                    {{--                "<td>" + response.data.metric.dewpt + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>скорость ветра</b></td>" +--}}
-                    {{--                "<td>" + response.data.metric.windSpeed + 'm/c' + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>Давление, приведенное к уровню моря</b></td>" +--}}
-                    {{--                "<td>" + response.data.metric.pressure + 'mB' + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>направление ветра</b></td>" +--}}
-                    {{--                "<td>" + response.data.metric.windChill + '°' + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>высота станции</b></td>" +--}}
-                    {{--                "<td>" + app.checktoUndefine(response.data.metric.elev, 'a.s.l.') + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "<tr>" +--}}
-                    {{--                "<td><b>осадка</b></td>" +--}}
-                    {{--                "<td>" + app.checktoUndefine(response.data.metric.precipRate) + "</td>" +--}}
-                    {{--                "</tr>" +--}}
-                    {{--                "</table>"--}}
-                    {{--            )--}}
-                    {{--        })--}}
-                    {{--        .catch(function (error) {--}}
-                    {{--            // handle error--}}
-                    {{--            console.log(error);--}}
-                    {{--        })--}}
-                    {{--        .then(function () {--}}
-                    {{--            // always executed--}}
-                    {{--        });--}}
-                    {{--});--}}
-                    {{--marker2.fire('click');--}}
-                    {{--markers_awd.addLayer(marker2);--}}
+
+
+
+
+                    var meteoIcon = L.icon({
+                        iconUrl: '{{asset('images/meteo_china.png')}}',
+                        iconSize: [28, 28], // size of the icon
+                        class: "station china"
+                    });
+
+
+
+                        var marker = L.marker([parseFloat(41.5659297), parseFloat(69.7703922)], {icon: meteoIcon}).on('click', function () {
+                            axios.get('{{route('map.awd.GetCrams')}}')
+                                .then(function (response) {
+
+                                    marker.bindPopup("" +
+                                        "<table class='table table-bordered'>" +
+                                        "<tr ><td class='text-center' colspan='2'><b>Газалкент</b></td></tr>" +
+                                        "<tr>" +
+                                        "<td><b>@lang('map.air_temperature')</b></td>" +
+                                        "<td>" + response.data.temp + " °C </td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>@lang('map.relative_humidity')</b></td>" +
+                                        "<td>" + response.data.humadity + " % </td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                        "<td>" + response.data.pressure + " гПа </td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
+                                        "<td>" + response.data.presipation + " мм </td>" +
+                                        "</tr>" +
+
+                                        "<tr>" +
+                                        "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
+                                        "<td>" + response.data.wind_speed + " м/с </td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>@lang('map.date')</b></td>" +
+                                        "<td>" + response.data.datetime + "</td>" +
+                                        "</tr>" +
+                                        "</table>"
+                                    )
+                                })
+                                .catch(function (error) {
+                                    // handle error
+                                    console.log(error);
+                                })
+                                .then(function () {
+                                    // always executed
+                                });
+                        });
+                        marker.fire('click');
+
+
+                        markers_awd.addLayer(marker);
+
+
+
+
 
 
                     map.addLayer(markers_awd);
