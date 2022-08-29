@@ -1869,6 +1869,10 @@
                                         "<td>" + response.data.wind_speed + " м/с </td>" +
                                         "</tr>" +
                                         "<tr>" +
+                                        "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
+                                        "<td>" + response.data.wind_direction + " м/с </td>" +
+                                        "</tr>" +
+                                        "<tr>" +
                                         "<td><b>@lang('map.date')</b></td>" +
                                         "<td>" + response.data.datetime + "</td>" +
                                         "</tr>" +
