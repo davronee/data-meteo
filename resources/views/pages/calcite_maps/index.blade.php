@@ -1870,7 +1870,7 @@
                                         "</tr>" +
                                         "<tr>" +
                                         "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
-                                        "<td>" + response.data.wind_direction + " м/с </td>" +
+                                        "<td>" + response.data.wind_direction + " ° </td>" +
                                         "</tr>" +
                                         "<tr>" +
                                         "<td><b>@lang('map.date')</b></td>" +
