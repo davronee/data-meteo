@@ -423,7 +423,7 @@
                             })
                             marker.bindPopup("" +
                                 "<table class='table table-bordered'>" +
-                                "<tr colspan='2'><td class='text-center'><b>Янги Ўзбекистон</b></td></tr>" +
+                                "<tr><td colspan='2' class='text-center'><b>Янги Ўзбекистон</b></td></tr>" +
                                 content +
                                 "</table>"
                             )
