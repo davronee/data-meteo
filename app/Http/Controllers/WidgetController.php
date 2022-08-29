@@ -90,7 +90,7 @@ class WidgetController extends Controller
                 }
             }
             if ($request->region == 1727) {
-                $im = imageCreateFromString(base64_decode($radar[0]['bukhara']['image']));
+                $im = imageCreateFromString(base64_decode($radar[0]['gazalkent']['image']));
                 $im2 = imagecrop($im, ['x' => 180, 'y' => 70, 'width' => 1320, 'height' => 980]);
 
                 if ($im2 !== FALSE) {
