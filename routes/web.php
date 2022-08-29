@@ -126,7 +126,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     // services
     Route::resource('service', ServiceController::class)->middleware('auth');
-    Route::resource('openregister',\App\Http\Controllers\ServiceRestorController ::class);
+    Route::resource('openregister', \App\Http\Controllers\ServiceRestorController ::class);
     Route::get('/openreestr_export', [\App\Http\Controllers\ServiceRestorController::class, 'export'])->name('openreeste_export');
 
 
@@ -186,6 +186,8 @@ Route::group(['middleware' => ['set_locale']], function () {
 
 
 Route::post('/meteo-umb', [\App\Http\Controllers\ApmMeteoUmbController::class, 'GetPost'])->name('aws.apmmeteo');
+Route::get('/meteo-umb/get', [\App\Http\Controllers\ApmMeteoUmbController::class, 'get'])->name('aws.apmmeteo.get');
+Route::get('/meteo-umb/view', [\App\Http\Controllers\ApmMeteoUmbController::class, 'view'])->name('aws.apmmeteo.view');
 
 Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
 
@@ -223,7 +225,6 @@ Route::get('/test123', function () {
 
     dd($bukhara->body());
 });
-
 
 
 Route::get('/dashboard', function () {
