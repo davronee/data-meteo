@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Http;
 class AwdController extends Controller
 {
 //    public $endpoint = 'http://217.30.161.60:8086/';
-    public $endpoint = 'http://192.168.10.249:8086/';
+    public $endpoint = 'http://192.168.21.131:8086/';
 
     public function __construct()
     {
-        $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.10.249:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.21.131:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
     public function getAllStations(Request $request)
