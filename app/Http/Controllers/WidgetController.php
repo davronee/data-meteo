@@ -63,7 +63,7 @@ class WidgetController extends Controller
         if ($request->region) {
             if ($request->region == 1726) {
                 $im = imageCreateFromString(base64_decode($radar[0]['tashkent']['image']));
-                $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
+                $im2 = imagecrop($im, ['x' => 380, 'y' => 70, 'width' => 1320, 'height' => 1030]);
                 if ($im2 !== FALSE) {
                     header("Content-type: image/png");
                     imagepng($im2);
@@ -73,7 +73,7 @@ class WidgetController extends Controller
 
             if ($request->region == 1735) {
                 $im = imageCreateFromString(base64_decode($radar[0]['nukus']['image']));
-                $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
+                $im2 = imagecrop($im, ['x' => 380, 'y' => 70, 'width' => 1320, 'height' => 1030]);
                 if ($im2 !== FALSE) {
                     header("Content-type: image/png");
                     imagepng($im2);
@@ -83,7 +83,16 @@ class WidgetController extends Controller
 
             if ($request->region == 1706) {
                 $im = imageCreateFromString(base64_decode($radar[0]['bukhara']['image']));
-                $im2 = imagecrop($im, ['x' => 280, 'y' => 70, 'width' => 1320, 'height' => 1030]);
+                if ($im !== FALSE) {
+                    header("Content-type: image/png");
+                    imagepng($im);
+//                imagedestroy($im2);
+                }
+            }
+            if ($request->region == 1727) {
+                $im = imageCreateFromString(base64_decode($radar[0]['bukhara']['image']));
+                $im2 = imagecrop($im, ['x' => 180, 'y' => 70, 'width' => 1320, 'height' => 980]);
+
                 if ($im2 !== FALSE) {
                     header("Content-type: image/png");
                     imagepng($im2);
