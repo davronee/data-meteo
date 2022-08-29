@@ -43,5 +43,14 @@ class AddRadars extends Seeder
             $radar->longitude = 59.605660;
             $radar->save();
         }
+        if (!Radar::where(
+            'region_id', 1727
+        )->first()) {
+            $radar = new Radar();
+            $radar->region_id = 1727;
+            $radar->latitude = 41.5659297;
+            $radar->longitude = 69.7703922;
+            $radar->save();
+        }
     }
 }
