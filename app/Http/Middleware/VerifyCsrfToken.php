@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'microstep-receive'
+        'microstep-receive',
+        'meteo-umb'
     ];
 }

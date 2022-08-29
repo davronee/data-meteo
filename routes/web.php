@@ -185,6 +185,8 @@ Route::group(['middleware' => ['set_locale']], function () {
 });
 
 
+Route::post('/meteo-umb', [\App\Http\Controllers\ApmMeteoUmbController::class, 'GetPost'])->name('aws.apmmeteo');
+
 Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
 
 //    \Illuminate\Support\Facades\Log::info([request()->ips()]);
