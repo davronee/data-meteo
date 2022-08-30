@@ -417,12 +417,12 @@
                             var content = '';
                             Object.entries(response.data).forEach(function callback(value, index) {
                                 content += "<tr>" +
-                                    "<td><b>" + value[0] + "</b></td>"
+                                    "<td><b>" + (value[0] == 'date' ? 'Последняя обновление' : value[0]) + "</b></td>"
                                 if (value[0] == 'date')
                                     content += "<td>" + value[1] + " </td>"
                                 else
                                     content += "<td>" + Number(value[1]).toFixed(2) + " </td>" +
-                                    "</tr>"
+                                        "</tr>"
                             })
                             marker.bindPopup("" +
                                 "<table class='table table-bordered'>" +
