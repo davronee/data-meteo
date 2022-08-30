@@ -18,7 +18,25 @@ class ApmMeteoUmbController extends Controller
     {
         $data = json_decode(file_get_contents(asset('storage/apmmeteodata.json')), true);
         $data['date'] = Carbon::parse($data['date'])->subHours(4)->format("d.m.Y H:i:s");
-        return $data;
+
+
+        $telegramUrl = "https://api.telegram.org/bot";
+        $chatId = -1001502437705;
+//        $chatId = 69367740;
+        $token = "1808089370:AAHRYlkMEO8zrah-bv13omilWcDy0f9hrFg";
+
+        $url = $telegramUrl . $token . "/sendMessage?chat_id=" . $chatId;
+
+
+        $text = "&parse_mode=html&text=" . "<b>Янги Ўзбекистон</b>" . PHP_EOL;
+        foreach ($data as $key => $value) {
+            $key != 'date' ? $value = round($value, 2) : $value = $value;
+            $key == 'date' ? $key = 'Последняя обновление' : $key = $key;
+            $text .= "<b>$key</b> :  $value" . PHP_EOL;
+        }
+        Http::withOptions(['verify' => false])->get($url . $text);
+
+
     }
 
     public function view()
