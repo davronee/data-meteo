@@ -417,8 +417,11 @@
                             var content = '';
                             Object.entries(response.data).forEach(function callback(value, index) {
                                 content += "<tr>" +
-                                    "<td><b>" + value[0] + "</b></td>" +
-                                    "<td>" + Math.round(value[1],2) + " </td>" +
+                                    "<td><b>" + value[0] + "</b></td>"
+                                if (value[0] == 'date')
+                                    content += "<td>" + value[1] + " </td>"
+                                else
+                                    content += "<td>" + Number(value[1]).toFixed(2) + " </td>" +
                                     "</tr>"
                             })
                             marker.bindPopup("" +
