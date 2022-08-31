@@ -12,8 +12,8 @@ class ApmMeteoUmbController extends Controller
     public function GetPost(Request $request)
     {
         Storage::disk('public')->put('apmmeteodata.json', $request->getContent());
-
-        $data = json_decode(file_get_contents(asset('storage/apmmeteodata.json')), true);
+		
+		  $data = json_decode(file_get_contents(asset('storage/apmmeteodata.json')), true);
         $data['date'] = Carbon::parse($data['date'])->subHours(3)->format("d.m.Y H:i:s");
         $telegramUrl = "https://api.telegram.org/bot";
         $chatId = -1001502437705;
@@ -37,8 +37,6 @@ class ApmMeteoUmbController extends Controller
         $data = json_decode(file_get_contents(asset('storage/apmmeteodata.json')), true);
         $data['date'] = Carbon::parse($data['date'])->subHours(3)->format("d.m.Y H:i:s");
         return $data;
-
-
     }
 
     public function view()
