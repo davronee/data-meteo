@@ -17,7 +17,7 @@ class ApmMeteoUmbController extends Controller
     public function get()
     {
         $data = json_decode(file_get_contents(asset('storage/apmmeteodata.json')), true);
-        $data['date'] = Carbon::parse($data['date'])->subHours(4)->format("d.m.Y H:i:s");
+        $data['date'] = Carbon::parse($data['date'])->subHours(3)->format("d.m.Y H:i:s");
         return $data;
     }
 
