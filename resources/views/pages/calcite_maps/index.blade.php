@@ -1019,13 +1019,14 @@
                                 marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='200' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
                             }
                         });
+
                         markers_radar.addLayer(marker);
                         marker.fire('click');
                         var circle = L.circle([item.latitude, item.longitude], {
                             color: '#4236E5',
                             fillColor: '#6789E5',
                             fillOpacity: 0.3,
-                            radius: 300000
+                            radius: item.region_id == 1727 ? 120000 :300000,
                         })
                         markers_radar.addLayer(circle)
                     });
