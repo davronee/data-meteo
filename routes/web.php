@@ -100,6 +100,12 @@ Route::group(['middleware' => ['set_locale']], function () {
             Route::post('/getStation', [AwdController::class, 'getStation'])->name('map.awd.getStation');
             Route::get('/getCrams', [AwdController::class, 'GetCrams'])->name('map.awd.GetCrams');
         });
+        Route::prefix('radiation')->group(function () {
+            Route::get('/stations', [\App\Http\Controllers\VariableController::class, 'getStations'])->name('map.radiation.stations');
+            Route::get('/station/{id}/{year?}', [\App\Http\Controllers\VariableController::class, 'getStation'])->name('map.radiation.station');
+            Route::get('/years', [\App\Http\Controllers\VariableController::class, 'years'])->name('map.radiation.years');
+
+        });
 
         Route::prefix('dangerzones')->group(function () {
             Route::post('/', [WidgetController::class, 'dangerzonesLogin'])->name('map.dangerzones.oneid_template');
@@ -211,20 +217,11 @@ Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
 });
 
 
-Route::get('/test123', function () {
-    $bukhara = Http::withOptions([
-        'verify' => false
-    ])->post('http://192.168.21.137/focus-webapp/api/v2/image-export/getImage', [
-        'username' => 'admin',
-        'password' => 'admin123',
-        'widthPx' => 1000,
-        'heightPx' => 700,
-        'savedViewName' => 'bukhara_radar',
-        'time' => '2022-03-25T17:55:23.000Z',
-    ]);
-
-    dd($bukhara->body());
-});
+//Route::get('/test123', function () {
+//
+//    Excel::import(new \App\Imports\StationMultipleSheet(), Sto);
+//
+//});
 
 
 Route::get('/dashboard', function () {
@@ -243,7 +240,6 @@ Route::prefix('bukhara_chines')->group(function () {
 
 Route::prefix('meteobot')->group(function () {
     Route::get('/get/{id}', [\App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
-
 });
 
 

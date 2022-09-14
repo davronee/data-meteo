@@ -310,6 +310,7 @@
                         <option value="fakt">@lang('map.factik')</option>
                         <option value="atmosphere">@lang('map.atmasphera')</option>
                         <option value="forecast">@lang('map.weather')</option>
+                        <option value="radiatsiya">@lang('map.solar_radiation')</option>
                         <option value="locator">@lang('map.locator')</option>
                         <option value="aero">@lang('map.aero')</option>
                         <option value="snow">@lang('map.snow')</option>
@@ -376,19 +377,141 @@
                 <div class="panel-body">
                     <select id="selectStandardBasemap" class="form-control">
                         <option value="Streets">@lang('map.Streets')</option>
-                        <option  value="Imagery">@lang('map.Imagery')</option>
+                        <option value="Imagery">@lang('map.Imagery')</option>
                         <option selected value="NationalGeographic">@lang('map.NationalGeographic')</option>
                         <option value="Topographic">@lang('map.Topographic')</option>
-                        <option  value="Gray">@lang('map.Gray')</option>
+                        <option value="Gray">@lang('map.Gray')</option>
                         <option value="DarkGray">@lang('map.DarkGray')</option>
                         <option value="OpenStreetMap">Open Street Map</option>
                     </select>
                 </div>
             </div>
+
+
         </div>
 
     </div> <!-- /.calcite-panels -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true"
+                    >
+                        &times;
+                    </button>
+                    <h4 class="modal-title">Средние значения солнечной радиации за месяц
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table v-if="radiation_data" class="table">
+                        <tr>
+                            <td colspan="5">
+                                <select @change="getStationSolnichni" class="form-control" v-model="year_r">
+                                    <option v-for="item in years_r">@{{ item.year }}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ой</td>
+                            <td>Прямая солнечная радиация на перпендикулярную поверхность. квт/м² мин</td>
+                            <td>Прямая солнечная радиация на горизонтальную поверхность. квт/м² мин</td>
+                            <td>Суммарная радиация. квт/м² мин</td>
+                            <td>Рассеянная радиация. квт/м² мин</td>
+                        </tr>
+                        <tr>
+                            <td>I</td>
+                            <td>@{{ radiation_data.value.perpendicular_1 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_1 }}</td>
+                            <td>@{{ radiation_data.value.summ_1 }}</td>
+                            <td>@{{ radiation_data.value.scattered_1 }}</td>
+                        </tr>
+                        <tr>
+                            <td>II</td>
+                            <td>@{{ radiation_data.value.perpendicular_2 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_2 }}</td>
+                            <td>@{{ radiation_data.value.summ_2 }}</td>
+                            <td>@{{ radiation_data.value.scattered_2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>III</td>
+                            <td>@{{ radiation_data.value.perpendicular_2 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_2 }}</td>
+                            <td>@{{ radiation_data.value.summ_2 }}</td>
+                            <td>@{{ radiation_data.value.scattered_2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>IV</td>
+                            <td>@{{ radiation_data.value.perpendicular_4 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_4 }}</td>
+                            <td>@{{ radiation_data.value.summ_4 }}</td>
+                            <td>@{{ radiation_data.value.scattered_4 }}</td>
+                        </tr>
+                        <tr>
+                            <td>V</td>
+                            <td>@{{ radiation_data.value.perpendicular_5 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_5 }}</td>
+                            <td>@{{ radiation_data.value.summ_5 }}</td>
+                            <td>@{{ radiation_data.value.scattered_5 }}</td>
+                        </tr>
+                        <tr>
+                            <td>VI</td>
+                            <td>@{{ radiation_data.value.perpendicular_6 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_6 }}</td>
+                            <td>@{{ radiation_data.value.summ_6 }}</td>
+                            <td>@{{ radiation_data.value.scattered_6 }}</td>
+                        </tr>
+                        <tr>
+                            <td>VII</td>
+                            <td>@{{ radiation_data.value.perpendicular_7 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_7 }}</td>
+                            <td>@{{ radiation_data.value.summ_7 }}</td>
+                            <td>@{{ radiation_data.value.scattered_7 }}</td>
+                        </tr>
+                        <tr>
+                            <td>VIII</td>
+                            <td>@{{ radiation_data.value.perpendicular_8 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_8 }}</td>
+                            <td>@{{ radiation_data.value.summ_8 }}</td>
+                            <td>@{{ radiation_data.value.scattered_8 }}</td>
+                        </tr>
+                        <tr>
+                            <td>IX</td>
+                            <td>@{{ radiation_data.value.perpendicular_9 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_9 }}</td>
+                            <td>@{{ radiation_data.value.summ_9 }}</td>
+                            <td>@{{ radiation_data.value.scattered_9 }}</td>
+                        </tr>
+                        <tr>
+                            <td>X</td>
+                            <td>@{{ radiation_data.value.perpendicular_10 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_10 }}</td>
+                            <td>@{{ radiation_data.value.summ_10 }}</td>
+                            <td>@{{ radiation_data.value.scattered_10 }}</td>
+                        </tr>
+                        <tr>
+                            <td>XI</td>
+                            <td>@{{ radiation_data.value.perpendicular_11 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_11 }}</td>
+                            <td>@{{ radiation_data.value.summ_11 }}</td>
+                            <td>@{{ radiation_data.value.scattered_11 }}</td>
+                        </tr>
+                        <tr>
+                            <td>XII</td>
+                            <td>@{{ radiation_data.value.perpendicular_12 }}</td>
+                            <td>@{{ radiation_data.value.horizontal_12 }}</td>
+                            <td>@{{ radiation_data.value.summ_12 }}</td>
+                            <td>@{{ radiation_data.value.scattered_12 }}</td>
+                        </tr>
+                    </table>
+                </div>
 
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="{{asset('assets/js/leaflet.awesome-markers.min.js')}}"></script>
@@ -407,6 +530,7 @@
     var markers_awd = L.featureGroup();
     var markers_agro = L.featureGroup();
     var markers_mini = L.featureGroup();
+    var markers_radiatsiya = L.featureGroup();
     var markers_forecast = L.featureGroup();
     // var markers_atmasfera = L.featureGroup();
     var markers_snow = L.featureGroup();
@@ -428,6 +552,7 @@
             awd: false,
             agro: false,
             mini: false,
+            radiatsiya: false,
             awds:@json($stations),
             ChineStation:@json($chinesstations),
             microstep:@json($microstations),
@@ -516,7 +641,11 @@
                     region_id: 1733
 
                 },
-            ]
+            ],
+            years_r: null,
+            year_r: 2020,
+            radiation_data: null,
+            stationIdr: null,
         },
         methods: {
             InitialMap: function () {
@@ -1026,7 +1155,7 @@
                             color: '#4236E5',
                             fillColor: '#6789E5',
                             fillOpacity: 0.3,
-                            radius: item.region_id == 1727 ? 120000 :250000,
+                            radius: item.region_id == 1727 ? 120000 : 250000,
                         })
                         markers_radar.addLayer(circle)
                     });
@@ -1044,7 +1173,7 @@
             getAtmasfera: function () {
                 var marker;
                 var markerColor, icon;
-                var drujbahoriba,plashadkahoriba;
+                var drujbahoriba, plashadkahoriba;
                 if (this.atmTemp) {
                     axios.get('{{route('map.GetAtmasfera')}}')
                         .then(function (response) {
@@ -1176,8 +1305,7 @@
                                                     console.log(error)
                                                 });
 
-                                        }
-                                        else if (item.id == 109) {
+                                        } else if (item.id == 109) {
 
                                             marker.bindPopup("" +
                                                 "<table class='table table-bordered'>" +
@@ -1188,7 +1316,7 @@
                                                 "</tr>" +
                                                 "</table>" +
                                                 "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" +  "27"  + "</b></div>",
+                                                .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + "27" + "</b></div>",
                                                     {
                                                         permanent: true,
                                                         direction: 'top',
@@ -1196,8 +1324,7 @@
 
                                                     });
 
-                                        }
-                                        else {
+                                        } else {
                                             marker.bindPopup("" +
                                                 "<table class='table table-bordered'>" +
                                                 "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
@@ -1223,13 +1350,13 @@
                                                 "</tr>" +
                                                 "</table>" +
                                                 "<a href='https://monitoring.meteo.uz/' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" +  item.Si  + "</b></div>",
-                                                {
-                                                    permanent: true,
-                                                    direction: 'top',
-                                                    className: 'ownClass'
+                                                .bindTooltip("<div class='pin-info' style='background-color:" + markerColor + "'><b>" + item.Si + "</b></div>",
+                                                    {
+                                                        permanent: true,
+                                                        direction: 'top',
+                                                        className: 'ownClass'
 
-                                                });
+                                                    });
 
                                         }
 
@@ -1653,10 +1780,7 @@
                     );
 
 
-
-
-
-                        this.microstep.forEach(function (item, i, arr) {
+                    this.microstep.forEach(function (item, i, arr) {
                             var meteoIcon1 = L.icon({
                                 iconUrl: '{{asset('images/meteo.png')}}',
                                 iconSize: [28, 28], // size of the icon
@@ -1831,8 +1955,6 @@
                     });
 
 
-
-
                     var meteoIcon = L.icon({
                         iconUrl: '{{asset('images/meteo_china.png')}}',
                         iconSize: [28, 28], // size of the icon
@@ -1840,62 +1962,57 @@
                     });
 
 
+                    var marker = L.marker([parseFloat(41.5659297), parseFloat(69.7703922)], {icon: meteoIcon}).on('click', function () {
+                        axios.get('{{route('map.awd.GetCrams')}}')
+                            .then(function (response) {
 
-                        var marker = L.marker([parseFloat(41.5659297), parseFloat(69.7703922)], {icon: meteoIcon}).on('click', function () {
-                            axios.get('{{route('map.awd.GetCrams')}}')
-                                .then(function (response) {
+                                marker.bindPopup("" +
+                                    "<table class='table table-bordered'>" +
+                                    "<tr ><td class='text-center' colspan='2'><b>Газалкент</b></td></tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.air_temperature')</b></td>" +
+                                    "<td>" + response.data.temp + " °C </td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.relative_humidity')</b></td>" +
+                                    "<td>" + response.data.humadity + " % </td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                    "<td>" + response.data.pressure + " гПа </td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
+                                    "<td>" + response.data.presipation + " мм </td>" +
+                                    "</tr>" +
 
-                                    marker.bindPopup("" +
-                                        "<table class='table table-bordered'>" +
-                                        "<tr ><td class='text-center' colspan='2'><b>Газалкент</b></td></tr>" +
-                                        "<tr>" +
-                                        "<td><b>@lang('map.air_temperature')</b></td>" +
-                                        "<td>" + response.data.temp + " °C </td>" +
-                                        "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>@lang('map.relative_humidity')</b></td>" +
-                                        "<td>" + response.data.humadity + " % </td>" +
-                                        "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>@lang('map.current_pressure')<b/></td>" +
-                                        "<td>" + response.data.pressure + " гПа </td>" +
-                                        "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
-                                        "<td>" + response.data.presipation + " мм </td>" +
-                                        "</tr>" +
-
-                                        "<tr>" +
-                                        "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
-                                        "<td>" + response.data.wind_speed + " м/с </td>" +
-                                        "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
-                                        "<td>" + response.data.wind_direction + " ° </td>" +
-                                        "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>@lang('map.date')</b></td>" +
-                                        "<td>" + response.data.datetime + "</td>" +
-                                        "</tr>" +
-                                        "</table>"
-                                    )
-                                })
-                                .catch(function (error) {
-                                    // handle error
-                                    console.log(error);
-                                })
-                                .then(function () {
-                                    // always executed
-                                });
-                        });
-                        marker.fire('click');
-
-
-                        markers_awd.addLayer(marker);
+                                    "<tr>" +
+                                    "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
+                                    "<td>" + response.data.wind_speed + " м/с </td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
+                                    "<td>" + response.data.wind_direction + " ° </td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td><b>@lang('map.date')</b></td>" +
+                                    "<td>" + response.data.datetime + "</td>" +
+                                    "</tr>" +
+                                    "</table>"
+                                )
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .then(function () {
+                                // always executed
+                            });
+                    });
+                    marker.fire('click');
 
 
-
-
+                    markers_awd.addLayer(marker);
 
 
                     map.addLayer(markers_awd);
@@ -1905,6 +2022,61 @@
                     markers_awd.clearLayers();
 
                 }
+            },
+            getRadiotion: function () {
+                if (this.radiatsiya) {
+                    axios.get('{{route('map.radiation.stations')}}')
+                        .then(function (response) {
+
+                            response.data.forEach(function (item, i, arr) {
+                                var meteoIcon = L.icon({
+                                    iconUrl: '{{asset('images/meteo.png')}}',
+                                    iconSize: [28, 28], // size of the icon
+                                    class: "station"
+                                });
+
+
+                                var marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: meteoIcon}).on('click', function () {
+                                    app.stationIdr = item.id
+                                    app.getStationSolnichni()
+                                });
+
+
+                                markers_radiatsiya.addLayer(marker);
+
+                            })
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+                    map.addLayer(markers_radiatsiya);
+
+
+                }
+            },
+            getStationSolnichni: function () {
+                axios.get('/map/radiation/station/' + this.stationIdr + '/' + this.year_r)
+                    .then(function (response) {
+                        app.radiation_data = response.data;
+
+                        $("#descriptionModal").modal("show");
+                        $(".navbar-collapse.in").collapse("hide");
+                        return false;
+
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error + item.Id);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
             },
             getAgro: function () {
                 if (this.agro) {
@@ -3499,7 +3671,6 @@
                         });
 
 
-
                     axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303333)}}')
                         .then(function (response) {
                             if (response.data[3]) {
@@ -3603,7 +3774,6 @@
 
                 }
             },
-
             getForecast: function () {
                 if (this.forcastTemp) {
 
@@ -4195,6 +4365,7 @@
                     this.currentTemp = true;
                     this.mini = false;
                     this.forcastTemp = false;
+                    this.radiatsiya = false;
                     this.atmTemp = false;
                     this.radar = false;
                     this.awd = false;
@@ -4214,6 +4385,7 @@
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'atmosphere') {
@@ -4223,6 +4395,8 @@
                     this.atmTemp = true;
                     this.radar = false;
                     this.awd = false;
+                    this.radiatsiya = false;
+
                     this.snow = false;
                     this.mini = false;
                     this.aero = false;
@@ -4242,6 +4416,7 @@
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'locator') {
@@ -4251,6 +4426,8 @@
                     this.radar = true;
                     this.awd = false;
                     this.snow = false;
+                    this.radiatsiya = false;
+
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
@@ -4268,6 +4445,7 @@
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'snow') {
@@ -4276,6 +4454,8 @@
                     this.atmTemp = false;
                     this.radar = false;
                     this.awd = false;
+                    this.radiatsiya = false;
+
                     this.snow = true;
                     this.aero = false;
                     this.dangerzones = false;
@@ -4294,6 +4474,7 @@
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'awd') {
@@ -4302,6 +4483,8 @@
                     this.atmTemp = false;
                     this.radar = false;
                     this.awd = true;
+                    this.radiatsiya = false;
+
                     this.snow = false;
                     this.aero = false;
                     this.dangerzones = false;
@@ -4320,6 +4503,7 @@
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'aero') {
@@ -4332,6 +4516,8 @@
                     this.aero = true;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.radiatsiya = false;
+
                     this.mini = false;
 
 
@@ -4346,6 +4532,7 @@
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'forecast') {
@@ -4355,6 +4542,8 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.radiatsiya = false;
+
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
@@ -4372,6 +4561,7 @@
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'meteo_agro') {
@@ -4381,6 +4571,8 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.radiatsiya = false;
+
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = true;
@@ -4398,6 +4590,7 @@
                     markers_dangerzones.clearLayers();
                     markers_forecast.clearLayers();
                     markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
 
 
                 } else if (this.menu == 'mini') {
@@ -4407,6 +4600,8 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.radiatsiya = false;
+
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
@@ -4424,6 +4619,35 @@
                     markers_dangerzones.clearLayers();
                     markers_forecast.clearLayers();
                     markers_agro.clearLayers();
+                    markers_radiatsiya.clearLayers();
+
+
+                } else if (this.menu == 'radiatsiya') {
+                    this.currentTemp = false;
+                    this.forcastTemp = false;
+                    this.atmTemp = false;
+                    this.radar = false;
+                    this.awd = false;
+                    this.snow = false;
+                    this.radiatsiya = true;
+
+                    this.aero = false;
+                    this.dangerzones = false;
+                    this.agro = false;
+                    this.mini = false;
+
+                    this.getRadiotion();
+
+                    markers_radar.clearLayers();
+                    markers_atmasfera.clearLayers();
+                    markers_weather.clearLayers();
+                    markers_snow.clearLayers();
+                    markers_aero.clearLayers();
+                    markers_awd.clearLayers();
+                    markers_dangerzones.clearLayers();
+                    markers_forecast.clearLayers();
+                    markers_agro.clearLayers();
+                    markers_mini.clearLayers();
 
 
                 } else if (this.menu == 'AtmZasuha' ||
@@ -4445,6 +4669,8 @@
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
+                    this.radiatsiya = false;
+
                     this.mini = false;
                     this.aero = false;
                     this.dangerzones = true;
@@ -5213,6 +5439,19 @@
         mounted() {
             this.InitialMap();
             this.menuChange();
+            axios.get('{{route('map.radiation.years')}}')
+                .then(function (response) {
+                    console.log(response.data)
+                    app.years_r = response.data;
+
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error + item.Id);
+                })
+                .then(function () {
+                    // always executed
+                });
         }
     })
 </script>

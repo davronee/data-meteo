@@ -25,6 +25,10 @@ class Station extends Model
     {
         return $this->belongsTo('App\Models\Station');
     }
+    public function variable()
+    {
+        return $this->hasMany(Variable::class, 'variableId');
+    }
 
     public function getFormattedRegionAttribute()
     {

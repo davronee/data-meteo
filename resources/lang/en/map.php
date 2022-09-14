@@ -47,6 +47,7 @@ return [
     'Gray'=>'Кулранг',
     'DarkGray'=>'Тўқ-кулранг',
     'OpenStreetMap'=>'Open Street Map',
+    'solar_radiation'=>'Қуёш радиацияси',
 
 
 
