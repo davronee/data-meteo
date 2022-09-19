@@ -315,7 +315,7 @@
                         <option value="aero">@lang('map.aero')</option>
                         <option value="snow">@lang('map.snow')</option>
                         <option value="sputnik">@lang('map.metep_sputnik')</option>
-                        <option value="water">@lang('map.kadaster_water')</option>
+                        <option value="water_cadastr">@lang('map.kadaster_water')</option>
                         <optgroup label="@lang('map.auto_meteo')">
                             <option value="mini">@lang('map.mini_station')</option>
                             <option value="awd">@lang('map.meteo_auto')</option>
@@ -537,6 +537,7 @@
     var markers_aero = L.featureGroup();
     var markers_dangerzones = L.featureGroup();
     var markers_microstep = L.featureGroup();
+    var markers_watercadastr = L.featureGroup();
 
     let app = new Vue({
         el: "#app",
@@ -552,6 +553,7 @@
             awd: false,
             agro: false,
             mini: false,
+            water_cadastr: false,
             radiatsiya: false,
             awds:@json($stations),
             ChineStation:@json($chinesstations),
@@ -2057,6 +2059,89 @@
 
                     map.addLayer(markers_radiatsiya);
 
+
+                }
+            },
+            getWaterCadastr: function () {
+                if (this.water_cadastr) {
+
+                    axios.get('{{route('map.watercadastr.get')}}')
+                        .then(function (response) {
+
+
+                            response.data.forEach(function (item, i, arr) {
+                                var meteoIcon = L.icon({
+                                    iconUrl: '{{asset('images/meteo.png')}}',
+                                    iconSize: [28, 28], // size of the icon
+                                    class: "station"
+                                });
+                                var marker = L.marker([parseFloat(item.geometry.coordinates[1]), parseFloat(item.geometry.coordinates[0])], {icon: meteoIcon}).on('click', function () {
+
+                                    marker.bindPopup("" +
+                                        "<table class='table table-bordered'>" +
+                                        "<tr ><td class='text-center' colspan='2'><b>" + item.properties.location + "</b></td></tr>" +
+                                        "<tr>" +
+                                        "<td><b>code</b></td>" +
+                                        "<td>" + item.properties.code +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>datetime</b></td>" +
+                                        "<td>" + item.properties.datetime +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>distance</b></td>" +
+                                        "<td>" + item.properties.distance +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>location</b></td>" +
+                                        "<td>" + item.properties.location +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>number</b></td>" +
+                                        "<td>" + item.properties.number +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>number1</b></td>" +
+                                        "<td>" + item.properties.number1 +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>rivers</b></td>" +
+                                        "<td>" + item.properties.rivers +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>square</b></td>" +
+                                        "<td>" + item.properties.square +  "</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "<td><b>type</b></td>" +
+                                        "<td>" + item.properties.type +  "</td>" +
+                                        "</tr>" +
+                                        "</table>"
+                                    )
+
+                                });
+
+
+                                marker.fire('click');
+
+
+                                markers_watercadastr.addLayer(marker);
+
+
+                                map.addLayer(markers_watercadastr);
+
+                            })
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+                    map.addLayer(markers_radiatsiya);
 
                 }
             },
@@ -4373,6 +4458,7 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.water_cadastr = false;
 
                     this.current();
 
@@ -4386,6 +4472,8 @@
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
                     markers_radiatsiya.clearLayers();
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
 
 
                 } else if (this.menu == 'atmosphere') {
@@ -4402,7 +4490,8 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
 
                     this.getAtmasfera();
 
@@ -4432,7 +4521,8 @@
                     this.dangerzones = false;
                     this.agro = false;
                     this.mini = false;
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
 
                     this.getRadars();
 
@@ -4461,7 +4551,8 @@
                     this.dangerzones = false;
                     this.agro = false;
                     this.mini = false;
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
 
                     this.getSnow();
 
@@ -4490,7 +4581,8 @@
                     this.dangerzones = false;
                     this.agro = false;
                     this.mini = false;
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
 
                     this.getawd();
 
@@ -4517,7 +4609,8 @@
                     this.dangerzones = false;
                     this.agro = false;
                     this.radiatsiya = false;
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
                     this.mini = false;
 
 
@@ -4533,7 +4626,8 @@
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
                     markers_radiatsiya.clearLayers();
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
 
                 } else if (this.menu == 'forecast') {
                     this.currentTemp = false;
@@ -4551,7 +4645,8 @@
 
 
                     this.getForecast();
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
                     markers_weather.clearLayers();
@@ -4580,7 +4675,8 @@
 
 
                     this.getAgro();
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
                     markers_weather.clearLayers();
@@ -4601,7 +4697,8 @@
                     this.awd = false;
                     this.snow = false;
                     this.radiatsiya = false;
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
@@ -4620,7 +4717,8 @@
                     markers_forecast.clearLayers();
                     markers_agro.clearLayers();
                     markers_radiatsiya.clearLayers();
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
 
                 } else if (this.menu == 'radiatsiya') {
                     this.currentTemp = false;
@@ -4635,8 +4733,37 @@
                     this.dangerzones = false;
                     this.agro = false;
                     this.mini = false;
-
+                    this.water_cadastr = false;
                     this.getRadiotion();
+
+                    markers_radar.clearLayers();
+                    markers_atmasfera.clearLayers();
+                    markers_weather.clearLayers();
+                    markers_snow.clearLayers();
+                    markers_aero.clearLayers();
+                    markers_awd.clearLayers();
+                    markers_dangerzones.clearLayers();
+                    markers_forecast.clearLayers();
+                    markers_agro.clearLayers();
+                    markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
+
+
+                } else if (this.menu == 'water_cadastr') {
+                    this.currentTemp = false;
+                    this.forcastTemp = false;
+                    this.atmTemp = false;
+                    this.radar = false;
+                    this.awd = false;
+                    this.snow = false;
+                    this.radiatsiya = false;
+
+                    this.aero = false;
+                    this.dangerzones = false;
+                    this.agro = false;
+                    this.mini = false;
+                    this.water_cadastr = true;
+                    this.getWaterCadastr();
 
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
@@ -4678,7 +4805,8 @@
 
 
                     this.getDangerzones(this.menu);
-
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
                     markers_radar.clearLayers();
                     markers_forecast.clearLayers();
                     markers_atmasfera.clearLayers();

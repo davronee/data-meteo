@@ -112,6 +112,10 @@ Route::group(['middleware' => ['set_locale']], function () {
             Route::get('/data', [WidgetController::class, 'dangerzonesData'])->name('map.dangerzones.data');
         });
 
+        Route::prefix('watercadastr')->group(function () {
+            Route::get('/', [\App\Http\Controllers\WaterCadastrController::class, 'getStation'])->name('map.watercadastr.get');
+        });
+
 
         Route::prefix('MicrostepStations')->group(function () {
             Route::get('/get', [\App\Http\Controllers\MicrostepStationsController::class, 'get'])->name('map.MicrostepStations.get');
