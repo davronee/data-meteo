@@ -22,24 +22,22 @@ class WeatherForecastController extends Controller
     public function index()
     {
 
-<<<<<<< HEAD
-=======
+
         $subopenweather = UzHydromet::toBase()
             ->where('region', 'tashkent')
             ->where('datetime', '=', Carbon::now()->format('Y-m-d'))
             ->pluck('id')
             ->toArray();
 
-        $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
-        $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-        $gidromet->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
-        $gidromet->factik = $weather['air_t'];
-        $gidromet->save();
+//        $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
+//        $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=tashkent&language=ru')->json();
+//        $gidromet->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
+//        $gidromet->factik = $weather['air_t'];
+//        $gidromet->save();
 
 
 //        dd(Services::Delta(6,8,7));
 
->>>>>>> ccf099acccfa41456f47887d40d8ddc61d9cb85f
         return view('weathers.weather');
     }
 
@@ -146,30 +144,27 @@ class WeatherForecastController extends Controller
             ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])->get();
 
         $array = [];
-        foreach ($gidromet as $key=>$item)
-        {
-            if($key % 2 == 0)
-            {
-                array_push($array,[
-                    "region"=> $item->region,
-                    "date"=> $item->date,
-                    "air_t_min"=> $item->air_t_min,
-                    "air_t_max"=> $item->air_t_max,
-                    "air_t_min_night"=> $gidromet[$key+1]->air_t_min,
-                    "air_t_max_night"=> $gidromet[$key+1]->air_t_max,
-                    "wind_speed_min"=> $item->wind_speed_min,
-                    "wind_speed_max"=> $item->wind_speed_max,
-                    "wind_direction"=> $item->wind_direction,
-                    "precipitation"=> $item->precipitation,
-                    "temp_precent"=> $item->temp_precent,
-                    "wind_precent"=> $item->region,
-                    "rain_precent"=> $item->region,
-                    "factik"=> $item->factik,
+        foreach ($gidromet as $key => $item) {
+            if ($key % 2 == 0) {
+                array_push($array, [
+                    "region" => $item->region,
+                    "date" => $item->date,
+                    "air_t_min" => $item->air_t_min,
+                    "air_t_max" => $item->air_t_max,
+                    "air_t_min_night" => $gidromet[$key + 1]->air_t_min,
+                    "air_t_max_night" => $gidromet[$key + 1]->air_t_max,
+                    "wind_speed_min" => $item->wind_speed_min,
+                    "wind_speed_max" => $item->wind_speed_max,
+                    "wind_direction" => $item->wind_direction,
+                    "precipitation" => $item->precipitation,
+                    "temp_precent" => $item->temp_precent,
+                    "wind_precent" => $item->region,
+                    "rain_precent" => $item->region,
+                    "factik" => $item->factik,
                 ]);
             }
 
         }
-
 
 
         return $array;
@@ -344,5 +339,11 @@ class WeatherForecastController extends Controller
     public function export()
     {
         return Excel::download(new ExportUzHydromet, 'report.xlsx');
+    }
+
+    public function Vendusky()
+    {
+        return view('vendusky');
+
     }
 }
