@@ -3764,7 +3764,7 @@
                                     iconSize: [32, 32],
                                     className: 'myDivIcon'
                                 });
-                                var marker2 = L.marker([parseFloat(41.32669025595243), parseFloat(69.29328008699598)], {icon: fontAwesomeIcon})
+                                var marker2 = L.marker([parseFloat(41.233787), parseFloat(69.66222)], {icon: fontAwesomeIcon})
                                     .on('click', function () {
                                         marker2.bindPopup("" +
                                             "<table class='table table-bordered'>" +
