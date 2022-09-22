@@ -3768,7 +3768,7 @@
                                     .on('click', function () {
                                         marker2.bindPopup("" +
                                             "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Гидрометцентр - 33</b></td></tr>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>Паркент Самсарак</b></td></tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.date')</b></td>" +
                                             "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
