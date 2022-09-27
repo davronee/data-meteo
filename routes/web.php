@@ -238,7 +238,10 @@ Route::get('/newmap', [\App\Http\Controllers\WeatherForecastController::class, '
 
 Route::prefix('bukhara_chines')->group(function () {
     Route::get('/getRealTimeData', [\App\Http\Controllers\API\StationController::class, 'GetBukharaStationData'])->name('bukhara_chines.getRealTimeData');
+});
 
+Route::prefix('amudar')->group(function () {
+    Route::get('/get', [\App\Http\Controllers\AmudarController::class, 'GetData'])->name('amudar.getRealTimeData');
 });
 
 
