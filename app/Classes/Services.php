@@ -362,7 +362,7 @@ class Services
 
 
             $subopenweather = UzHydromet::toBase()
-                ->where('region', 'tashkent')
+                ->where('region', $region)
                 ->where('datetime', '=', Carbon::now()->format('Y-m-d'))
                 ->pluck('id')
                 ->toArray();

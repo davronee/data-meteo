@@ -338,7 +338,7 @@ class WeatherForecastController extends Controller
 
     public function export()
     {
-        return Excel::download(new ExportUzHydromet, 'report.xlsx');
+        return Excel::download(new ExportUzHydromet, 'report_'. Carbon::now() .'.xlsx');
     }
 
     public function Vendusky()
