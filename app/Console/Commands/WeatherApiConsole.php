@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Classes\Services;
 use Illuminate\Console\Command;
 
-class Aerisweather extends Command
+class WeatherApiConsole extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'weather:forecast';
+    protected $signature = 'meteo:weatherapi';
 
     /**
      * The console command description.
@@ -38,12 +38,6 @@ class Aerisweather extends Command
      */
     public function handle()
     {
-        Services::GetAerisweather();
-//        Services::GetDarkSky();
-        Services::WeatherBit();
-        Services::GetUzhydromet();
-        Services::Accuweather();
-        Services::OpenWeather();
-        Services::GetWeatherApi();
+       Services::GetWeatherApi();
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Aerisweather;
 use App\Models\DarkSky;
 use App\Models\OpenWeather;
 use App\Models\UzHydromet;
+use App\Models\WeatherApi;
 use App\Models\WeatherBit;
 use App\Models\WeatherRegions;
 use Carbon\Carbon;
@@ -85,6 +86,8 @@ class Services
         '42.4530, 59.6102',
     ];
 
+    public static $WeatherApiEnpoint = 'https://api.weather.com/v3/wx/forecast/daily/5day';
+    public static $WeatherApiToken = '1ee695f625b44d48a695f625b41d48b8';
 
     public static function OpenWeather()
     {
@@ -177,7 +180,7 @@ class Services
             foreach ($services as $service) {
 
                 UzHydromet::updateOrCreate(
-                    ['service_id' =>  $service['id']],
+                    ['service_id' => $service['id']],
                     [
                         'region' => $region,
                         'service_id' => $service['id'],
@@ -188,9 +191,9 @@ class Services
                         'wind_direction' => $service['wind_direction'],
                         'wind_speed_min' => round($service['wind_speed_min']),
                         'wind_speed_max' => round($service['wind_speed_max']),
-                        'day_part' =>  $service['day_part'],
-                        'precipitation'=> $service['precipitation'] != 'none' && $service['precipitation'] != 'fog' ? true : false,
-                        ]
+                        'day_part' => $service['day_part'],
+                        'precipitation' => $service['precipitation'] != 'none' && $service['precipitation'] != 'fog' ? true : false,
+                    ]
                 );
 
             }
@@ -368,15 +371,13 @@ class Services
                 ->toArray();
 
             $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
-            foreach ($gidromet as $item)
-            {
+            foreach ($gidromet as $item) {
                 $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $item->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
                 $item->factik = $weather['air_t'];
                 $item->save();
 
             }
-
 
 
             $subopenweather = WeatherBit::toBase()
@@ -754,4 +755,42 @@ class Services
         }
     }
 
+    public static function GetWeatherApi()
+    {
+        foreach (self::$geolocation as $regKey => $item) {
+            $forecasts = Http::withOptions([
+                'verify' => false
+            ])->get(self::$WeatherApiEnpoint, [
+                'geocode' => $item['lat'] . ',' . $item['lon'],
+                'format' => 'json',
+                'units' => 'm',
+                'language' => 'ru-Ru',
+                'apiKey' => '1ee695f625b44d48a695f625b41d48b8',
+            ])->json();
+
+            $index = 2;
+            foreach ($forecasts['validTimeLocal'] as $key => $forecast) {
+                if ($key != 0) {
+                    $weatherApi = new WeatherApi();
+                    $weatherApi->region = self::$regions[$regKey];
+                    $weatherApi->datetime = Carbon::parse($forecast);
+                    $weatherApi->date = Carbon::parse($forecast);
+                    $weatherApi->temp_min = $forecasts['temperatureMin'][$key];
+                    $weatherApi->temp_max = $forecasts['temperatureMax'][$key];
+                    $weatherApi->dayOfWeek = $forecasts['dayOfWeek'][$key];
+                    $weatherApi->precipChance = $forecasts['daypart'][0]['precipChance'][$index];
+                    $weatherApi->precipType = $forecasts['daypart'][0]['precipType'][$index];
+                    $weatherApi->relativeHumidity = $forecasts['daypart'][0]['relativeHumidity'][$index];
+                    $weatherApi->windDirection = $forecasts['daypart'][0]['windDirection'][$index];
+                    $weatherApi->windDirectionCardinal = $forecasts['daypart'][0]['windDirectionCardinal'][$index];
+                    $weatherApi->windSpeed = $forecasts['daypart'][0]['windSpeed'][$index];
+                    $index += 2;
+                    $weatherApi->save();
+                }
+            }
+
+        }
+
+
+    }
 }

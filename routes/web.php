@@ -250,4 +250,6 @@ Route::prefix('meteobot')->group(function () {
 });
 
 
-
+Route::get('/test', function () {
+    \App\Classes\Services::GetWeatherApi();
+});
