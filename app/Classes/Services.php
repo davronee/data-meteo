@@ -326,19 +326,19 @@ class Services
     public static function CheckIsTrue()
     {
         foreach (self::$regions as $region) {
-            $subopenweather = \App\Models\OpenWeather::toBase()
-                ->where('region', $region)
-                ->selectRaw('MAX(id) as id')
-                ->wheretime('datetime', '<=', Carbon::now())
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                ->groupBy('date')
-                ->pluck('id')
-                ->toArray();
-            $openweather = \App\Models\OpenWeather::whereIn('id', $subopenweather)->first();
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
-            $openweather->temp_precent = self::Delta($openweather->temp_min, $openweather->temp_max, $weather['air_t']);
-            $openweather->factik = $weather['air_t'];
-            $openweather->save();
+//            $subopenweather = \App\Models\OpenWeather::toBase()
+//                ->where('region', $region)
+//                ->selectRaw('MAX(id) as id')
+//                ->wheretime('datetime', '<=', Carbon::now())
+//                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+//                ->groupBy('date')
+//                ->pluck('id')
+//                ->toArray();
+//            $openweather = \App\Models\OpenWeather::whereIn('id', $subopenweather)->first();
+//            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+//            $openweather->temp_precent = self::Delta($openweather->temp_min, $openweather->temp_max, $weather['air_t']);
+//            $openweather->factik = $weather['air_t'];
+//            $openweather->save();
 
 
             $subopenweather = Accuweather::toBase()
@@ -378,51 +378,51 @@ class Services
             }
 
 
-            $subopenweather = WeatherBit::toBase()
-                ->selectRaw('MAX(id) as id')
-                ->where('region', $region)
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                ->groupBy('date')
-                ->pluck('id')
-                ->toArray();
-            $weatherbit = \App\Models\WeatherBit::whereIn('id', $subopenweather)->first();
-            if ($weatherbit) {
-                $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
-                $weatherbit->factik = $weather['air_t'];
-                $weatherbit->save();
-            }
-
-
-            $subopenweather = \App\Models\DarkSky::toBase()
-                ->selectRaw('MAX(id) as id')
-                ->where('region', $region)
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                ->groupBy('date')
-                ->pluck('id')
-                ->toArray();;
-            $darksky = \App\Models\DarkSky::whereIn('id', $subopenweather)->first();
-            if ($darksky) {
-                $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
-                $darksky->factik = $weather['air_t'];
-                $darksky->save();
-
-            }
-
-
-            $subopenweather = \App\Models\Aerisweather::toBase()
-                ->selectRaw('MAX(id) as id')
-                ->where('region', $region)
-                ->wheretime('datetime', '<=', Carbon::now())
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
-                ->groupBy('date')
-                ->pluck('id')
-                ->toArray();
-            $aerisweather = \App\Models\Aerisweather::whereIn('id', $subopenweather)->first();
-            if ($aerisweather) {
-                $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
-                $aerisweather->factik = $weather['air_t'];
-                $aerisweather->save();
-            }
+//            $subopenweather = WeatherBit::toBase()
+//                ->selectRaw('MAX(id) as id')
+//                ->where('region', $region)
+//                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+//                ->groupBy('date')
+//                ->pluck('id')
+//                ->toArray();
+//            $weatherbit = \App\Models\WeatherBit::whereIn('id', $subopenweather)->first();
+//            if ($weatherbit) {
+//                $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
+//                $weatherbit->factik = $weather['air_t'];
+//                $weatherbit->save();
+//            }
+//
+//
+//            $subopenweather = \App\Models\DarkSky::toBase()
+//                ->selectRaw('MAX(id) as id')
+//                ->where('region', $region)
+//                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+//                ->groupBy('date')
+//                ->pluck('id')
+//                ->toArray();;
+//            $darksky = \App\Models\DarkSky::whereIn('id', $subopenweather)->first();
+//            if ($darksky) {
+//                $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
+//                $darksky->factik = $weather['air_t'];
+//                $darksky->save();
+//
+//            }
+//
+//
+//            $subopenweather = \App\Models\Aerisweather::toBase()
+//                ->selectRaw('MAX(id) as id')
+//                ->where('region', $region)
+//                ->wheretime('datetime', '<=', Carbon::now())
+//                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+//                ->groupBy('date')
+//                ->pluck('id')
+//                ->toArray();
+//            $aerisweather = \App\Models\Aerisweather::whereIn('id', $subopenweather)->first();
+//            if ($aerisweather) {
+//                $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
+//                $aerisweather->factik = $weather['air_t'];
+//                $aerisweather->save();
+//            }
 
             $weatherApi = WeatherApi::where('region', $region)
                 ->where('date', Carbon::now()->format("Y-m-d"))->first();
