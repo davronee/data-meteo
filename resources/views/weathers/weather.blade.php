@@ -37,14 +37,15 @@
         <div class="col-md-12">
             <form>
                 <div class="row mb-5">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="exampleFormControlSelect1">Регионы</label>
                         <select @change="Changes()" class="form-control" id="exampleFormControlSelect1"
                                 v-model="region_t">
-                            <option v-for="(item, index) in regions_t" :value="index" v-text="item"></option>
+                            <option v-for="(item, index) in regions_t" :value="index"
+                                    v-text="item"></option>
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="exampleFormControlSelect2">Интервал</label>
                         <select @change="Changes()" class="form-control" v-model="interval"
                                 id="exampleFormControlSelect2">
@@ -55,9 +56,20 @@
                             <option value="4">120</option>
                         </select>
                     </div>
+                    <div class="col-md-4">
+                        <div>
+                            <label for="example-datepicker">Выберите дату</label>
+                            <b-form-datepicker  id="example-datepicker" today-button
+                                                reset-button
+                                                close-button v-model="archive_date" class="mb-2"></b-form-datepicker>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="row-md-12">
-                    <p class="font-weight-bold">Сейчас: @{{ Math.round(weatherapi[0].faktik) }}<a
+                    <p v-if="archive_date == ''" class="font-weight-bold">Сейчас: @{{ Math.round(uzhydromet[0].factik) }}<a
+                            class="m-lg-5 text-decoration-none" href="{{route('weather.download')}}">Скачать</a></p>
+                    <p v-else-if="archive_date != ''" class="font-weight-bold">В тот момент был температура: @{{ Math.round(uzhydromet[0].factik) }}<a
                             class="m-lg-5 text-decoration-none" href="{{route('weather.download')}}">Скачать</a></p>
                 </div>
 
@@ -67,8 +79,8 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th v-for="item in weatherapi" scope="col">@{{ item.datetime | moment }}</th>
-                                <th v-if="weatherapi != null" v-for="i in 5-weatherapi.length" class="active">&nbsp;
+                                <th v-for="item in uzhydromet" scope="col">@{{ item.date | moment }}</th>
+                                <th v-if="uzhydromet != null" v-for="i in 5-uzhydromet.length" class="active">&nbsp;
                                 </th>
                             {{--                            <th scope="col">Температура</th>--}}
                             {{--                            <th scope="col">Ветер</th>--}}
@@ -83,7 +95,8 @@
                                 {{--                            </th>--}}
                                 <td v-for="item in uzhydromet" class="active">
 
-                                    <i class="fas fa-moon"></i> @{{ item.air_t_min_night }}° ... <i class="fas fa-sun"></i> @{{ item.air_t_max
+                                    <i class="fas fa-moon"></i> @{{ item.air_t_min_night }}° ... <i
+                                        class="fas fa-sun"></i> @{{ item.air_t_max
                                     }}° <br>
                                     <i class="fas fa-wind"></i> @{{ item.wind_speed_min }} - @{{ item.wind_speed_max }}
                                     м/с<br>
@@ -273,7 +286,9 @@
                 </g>
             </svg>
         </div> --}}
-        <iframe id="test-map" width="100%" height="650" src="https://embed.windy.com/embed2.html?lat=41.192&lon=63.712&detailLat=41.317&detailLon=69.249&width=1024&height=650&zoom=5&level=surface&overlay=clouds&product=ecmwf&menu=&message=true&marker=&calendar=24&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+        <iframe id="test-map" width="100%" height="650"
+                src="https://embed.windy.com/embed2.html?lat=41.192&lon=63.712&detailLat=41.317&detailLon=69.249&width=1024&height=650&zoom=5&level=surface&overlay=clouds&product=ecmwf&menu=&message=true&marker=&calendar=24&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1"
+                frameborder="0"></iframe>
 
         {{-- <iframe id="test-map2" src="{{ route('weather.map') }}" frameborder="0" width="100%" height="600px"
                 class="none"/> --}}

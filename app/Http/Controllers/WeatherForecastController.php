@@ -87,11 +87,18 @@ class WeatherForecastController extends Controller
                 $take = 9;
                 break;
         }
+        $archive_date = Carbon::now()->format("Y-m-d");
+        $archiveAddDays = Carbon::now()->addDays(request('interval', 0))->format("Y-m-d");
+        if ($request->archive_date != '') {
+
+            $archive_date = Carbon::parse($request->archive_date)->format("Y-m-d");
+            $archiveAddDays = Carbon::parse($archive_date)->addDays(request('interval', 0))->format("Y-m-d");
+        }
+
         $subopenweather = Accuweather::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->wheretime('datetime', '<=', Carbon::now())
-            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->whereBetween('date', [$archive_date, $archiveAddDays])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();
@@ -99,6 +106,7 @@ class WeatherForecastController extends Controller
         $accuweather = \App\Models\Accuweather::whereIn('id', $subopenweather)->get();
         return $accuweather;
     }
+
     public function getWeatherApi(Request $request)
     {
         $take = 0;
@@ -113,11 +121,17 @@ class WeatherForecastController extends Controller
                 $take = 9;
                 break;
         }
+        $archive_date = Carbon::now()->format("Y-m-d");
+        $archiveAddDays = Carbon::now()->addDays(request('interval', 0))->format("Y-m-d");
+        if ($request->archive_date != '') {
+
+            $archive_date = Carbon::parse($request->archive_date)->format("Y-m-d");
+            $archiveAddDays = Carbon::parse($archive_date)->addDays(request('interval', 0))->format("Y-m-d");
+        }
         $subopenweather = WeatherApi::toBase()
             ->selectRaw('MAX(id) as id')
             ->where('region', request('region', 'tashkent'))
-            ->wheretime('datetime', '<=', Carbon::now())
-            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->whereBetween('date', [$archive_date, $archiveAddDays])
             ->groupBy('date')
             ->pluck('id')
             ->toArray();
@@ -126,7 +140,7 @@ class WeatherForecastController extends Controller
         return $accuweather;
     }
 
-    public function GetGidromet()
+    public function GetGidromet(Request $request)
     {
         $take = 0;
         switch (request('interval', '0')) {
@@ -167,8 +181,14 @@ class WeatherForecastController extends Controller
 //        }
 //        $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
 
+        $archive_date = Carbon::now()->format("Y-m-d");
+        $archiveAddDays = Carbon::now()->addDays(request('interval', 0))->format("Y-m-d");
+        if ($request->archive_date != '') {
+            $archive_date = Carbon::parse($request->archive_date)->format("Y-m-d");
+            $archiveAddDays = Carbon::parse($archive_date)->addDays(request('interval', 0))->format("Y-m-d");
+        }
         $gidromet = \App\Models\UzHydromet::where('region', request('region', 'tashkent'))
-            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])->get();
+            ->whereBetween('date', [$archive_date, $archiveAddDays])->get();
 
         $array = [];
         foreach ($gidromet as $key => $item) {
@@ -365,7 +385,7 @@ class WeatherForecastController extends Controller
 
     public function export()
     {
-        return Excel::download(new ExportUzHydromet, 'report_'. Carbon::now() .'.xlsx');
+        return Excel::download(new ExportUzHydromet, 'report_' . Carbon::now() . '.xlsx');
     }
 
     public function Vendusky()

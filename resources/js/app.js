@@ -2,7 +2,13 @@ require('./bootstrap');
 
 import Vue from 'vue'
 import moment from 'moment'
+import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 Vue.component('weather-data-uzhydromet', {
     data: function () {
         return {
@@ -316,7 +322,7 @@ const app = new Vue({
             uzhydromet_current: {},
             current_si: {},
             current_all: [],
-
+            archive_date: '',
             aws_factic: {},
             aws_factic_tashkent: {},
             aws_factic_nukus: {},
@@ -354,6 +360,7 @@ const app = new Vue({
                 params: {
                     region: this.region_t,
                     interval: this.interval,
+                    archive_date: this.archive_date,
 
                 }
             })
@@ -369,6 +376,8 @@ const app = new Vue({
                 params: {
                     region: this.region_t,
                     interval: this.interval,
+                    archive_date: this.archive_date,
+
 
                 }
             })
@@ -386,6 +395,7 @@ const app = new Vue({
                 params: {
                     region: this.region_t,
                     interval: this.interval,
+                    archive_date: this.archive_date,
 
                 }
             })
@@ -511,6 +521,12 @@ const app = new Vue({
             this.getregions();
         }
 
+    },
+    watch: {
+        archive_date: function (value) {
+            // If "pageData" ever changes, then we will console log its new value.
+            this.Changes(value);
+        }
     },
     filters: {
         moment: function (date) {
