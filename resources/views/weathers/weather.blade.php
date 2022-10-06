@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="row-md-12">
-                    <p class="font-weight-bold">Сейчас: @{{ Math.round(openweather[0].factik) }}<a
+                    <p class="font-weight-bold">Сейчас: @{{ Math.round(weatherapi[0].faktik) }}<a
                             class="m-lg-5 text-decoration-none" href="{{route('weather.download')}}">Скачать</a></p>
                 </div>
 
@@ -67,8 +67,8 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th v-for="item in openweather" scope="col">@{{ item.datetime | moment }}</th>
-                                <th v-if="openweather != null" v-for="i in 5-openweather.length" class="active">&nbsp;
+                                <th v-for="item in weatherapi" scope="col">@{{ item.datetime | moment }}</th>
+                                <th v-if="weatherapi != null" v-for="i in 5-weatherapi.length" class="active">&nbsp;
                                 </th>
                             {{--                            <th scope="col">Температура</th>--}}
                             {{--                            <th scope="col">Ветер</th>--}}
@@ -78,18 +78,21 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <th>Openweather</th>
+                                <th>UzHydromet</th>
                                 {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
                                 {{--                            </th>--}}
-                                <td v-for="item in openweather" class="active">
-                                    <i class="fas fa-temperature-low"></i> @{{ item.temp_min }}° - @{{ item.temp_max }}°
-                                    <br>
-                                    <i class="fas fa-wind"></i> @{{ item.wind_speed }} м/с @{{ item.wind_deg }}°<br>
-                                    <!-- @{{ item.wind_deg }}° <br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.is_rain ? 'да' : 'n/a' }}<br>
+                                <td v-for="item in uzhydromet" class="active">
+
+                                    <i class="fas fa-moon"></i> @{{ item.air_t_min_night }}° ... <i class="fas fa-sun"></i> @{{ item.air_t_max
+                                    }}° <br>
+                                    <i class="fas fa-wind"></i> @{{ item.wind_speed_min }} - @{{ item.wind_speed_max }}
+                                    м/с<br>
+                                    <!-- @{{ item.wind_direction }}°<br> -->
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipitation ? 'да' : 'n/a' }}<br>
                                     <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
-                                <td v-if="openweather != null" v-for="i in 5-openweather.length" class="active">&nbsp;
+                                <td v-if="typeof uzhydromet == 'object'" v-for="i in 5-uzhydromet.length"
+                                    class="active">&nbsp;
                                 </td>
                             </tr>
                             <tr>
@@ -109,62 +112,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Weatherbit</th>
+                                <th>Weather.com</th>
                                 {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
                                 {{--                            </th>--}}
-                                <td v-for="item in weatherbit" class="active">
-                                    <i class="fas fa-temperature-low"></i> @{{ item.min_temp }}° - @{{ item.max_temp }}°
+                                <td v-for="item in weatherapi" class="active">
+                                    <i class="fas fa-temperature-low"></i> @{{ item.temp_min }}° - @{{ item.temp_max }}°
                                     <br>
-                                    <i class="fas fa-wind"></i> @{{ item.wind_spd }} м/с @{{ item.wind_cdir }} <br>
-                                    <!-- @{{ item.wind_dir }}° @{{ item.wind_cdir }} <br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precip ? 'да' : 'n/a' }}<br>
+                                    <i class="fas fa-wind"></i> @{{ item.windSpeed }} м/с @{{
+                                    item.windDirection}}<br>
+                                    <!-- @{{ item.day_wind_deg }}° @{{ item.day_wind_localized }}<br> -->
+                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipChance ? 'да' : 'n/a' }}<br>
                                     <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
                                 </td>
-                                <td v-if="weatherbit != null" v-for="i in 5-weatherbit.length" class="active">&nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>DarkSky</th>
-                                <td v-for="item in darksky" class="active">
-                                    <i class="fas fa-temperature-low"></i> @{{ item.temperatureMin }}° - @{{
-                                    item.temperatureMax }}° <br>
-                                    <i class="fas fa-wind"></i> @{{ item.windSpeed }} м/с <br>
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipIntensityMax ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
-                                </td>
-                                <td v-if="darksky != null" v-for="i in 5-darksky.length" class="active">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <th>Aerisweather</th>
-                                <td v-if="Aerisweather != null" v-for="item in Aerisweather" class="active">
-                                    <i class="fas fa-temperature-low"></i> @{{ item.minTempC }}° - @{{ item.maxTempC }}°
-                                    <br>
-                                    <i class="fas fa-wind"></i> @{{ item.windSpeedKTS }} м/с @{{ item.windDir }} <br>
-                                    <!-- @{{ item.windDirDEG }} @{{ item.windDir }} <br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipMM ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
-                                </td>
-                                <td v-if="Aerisweather != null" v-for="i in 5-Aerisweather.length" class="active">
-                                    &nbsp;
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>UzHydromet</th>
-                                {{--                            <th v-for="item in openweather"  v-if="moment().isSame(item.dt_txt, 'day')" class="active">@{{ item.dt_txt | moment }}--}}
-                                {{--                            </th>--}}
-                                <td v-for="item in uzhydromet" class="active">
-
-                                   <i class="fas fa-moon"></i> @{{ item.air_t_min_night }}° ... <i class="fas fa-sun"></i> @{{ item.air_t_max
-                                    }}° <br>
-                                    <i class="fas fa-wind"></i> @{{ item.wind_speed_min }} - @{{ item.wind_speed_max }}
-                                    м/с<br>
-                                    <!-- @{{ item.wind_direction }}°<br> -->
-                                    <i class="fas fa-cloud-rain"></i> @{{ item.precipitation ? 'да' : 'n/a' }}<br>
-                                    <span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> @{{ item.temp_precent }} %</span>
-                                </td>
-                                <td v-if="typeof uzhydromet == 'object'" v-for="i in 5-uzhydromet.length"
-                                    class="active">&nbsp;
+                                <td v-if="weatherapi != null" v-for="i in 5-weatherapi.length" class="active">&nbsp;
                                 </td>
                             </tr>
                             </tbody>

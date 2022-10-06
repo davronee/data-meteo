@@ -303,6 +303,7 @@ const app = new Vue({
             region_t: 'tashkent',
             openweather: null,
             accuweather: null,
+            weatherapi: null,
             uzhydromet: null,
             day: [],
             night: [],
@@ -358,6 +359,22 @@ const app = new Vue({
             })
                 .then(response => {
                     this.accuweather = response.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        async getWeatherApi() {
+            axios.get('/weather/weatherapi', {
+                params: {
+                    region: this.region_t,
+                    interval: this.interval,
+
+                }
+            })
+                .then(response => {
+                    this.weatherapi = response.data;
+                    console.log(this.weatherapi);
                 })
                 .catch(error => {
                     console.log(error)
@@ -441,12 +458,13 @@ const app = new Vue({
             return moment();
         },
         Changes() {
-            this.getOpenweather();
+            // this.getOpenweather();
             this.getAccuweather();
+            this.getWeatherApi();
             this.GetUzhydromet();
-            this.GetWeatherbit();
-            this.DarkSky();
-            this.GetAerisweather1();
+            // this.GetWeatherbit();
+            // this.DarkSky();
+            // this.GetAerisweather1();
             // this.GetForecastApi();
         },
         getregions() {
@@ -496,7 +514,7 @@ const app = new Vue({
     },
     filters: {
         moment: function (date) {
-            return moment(date).format('DD.MM.YYYY hh:mm:ss');
+            return moment(date).format('DD.MM.YYYY');
         },
         night: function (date) {
             return moment(date).format('DD.MM.YYYY');

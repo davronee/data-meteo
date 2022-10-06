@@ -19,11 +19,11 @@
     </thead>
     <tbody>
     <tr>
-        <td>Openweather</td>
-        <td>{{ \App\Classes\Services::GetReportAll('open_weather', 12, 72) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('open_weather', 72, 240) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('open_weather', 240, 720) }}</td>
-        <td>Великобритания</td>
+        <td>Uzhydromet</td>
+        <td>{{ \App\Classes\Services::GetReportAll('uz_hydromets', 12, 72) }}</td>
+        <td>{{ \App\Classes\Services::GetReportAll('uz_hydromets', 72, 240) }}</td>
+        <td>{{ \App\Classes\Services::GetReportAll('uz_hydromets', 240, 720) }}</td>
+        <td>Узбекистан</td>
     </tr>
     <tr>
         <td>Accuweather</td>
@@ -33,33 +33,14 @@
         <td>США</td>
     </tr>
     <tr>
-        <td>Weatherbit</td>
-        <td>{{ \App\Classes\Services::GetReportAll('weather_bits', 12, 72) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('weather_bits', 72, 240) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('weather_bits', 240, 720) }}</td>
-        <td>Великобритания</td>
-    </tr>
-    <tr>
-        <td>DarkSky</td>
-        <td>{{ \App\Classes\Services::GetReportAll('dark_skies', 12, 72) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('dark_skies', 72, 240) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('dark_skies', 240, 720) }}</td>
+        <td>Weather.com</td>
+        <td>{{ \App\Classes\Services::GetReportAll('weather_apis', 12, 72) }}</td>
+        <td>{{ \App\Classes\Services::GetReportAll('weather_apis', 72, 240) }}</td>
+        <td>{{ \App\Classes\Services::GetReportAll('weather_apis', 240, 720) }}</td>
         <td>США</td>
     </tr>
-    <tr>
-        <td>Aerisweather</td>
-        <td>{{ \App\Classes\Services::GetReportAll('aerisweathers', 12, 72) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('aerisweathers', 72, 240) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('aerisweathers', 240, 720) }}</td>
-        <td>США</td>
-    </tr>
-    <tr>
-        <td>Uzhydromet</td>
-        <td>{{ \App\Classes\Services::GetReportAll('uz_hydromets', 12, 72) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('uz_hydromets', 72, 240) }}</td>
-        <td>{{ \App\Classes\Services::GetReportAll('uz_hydromets', 240, 720) }}</td>
-        <td>Узбекистан</td>
-    </tr>
+
+
     <tr>
         <td><b>≈ Оправдываемост</b></td>
 

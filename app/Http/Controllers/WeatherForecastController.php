@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ExportUzHydromet;
 use App\Models\Accuweather;
 use App\Models\UzHydromet;
+use App\Models\WeatherApi;
 use App\Models\WeatherBit;
 use App\Models\WeatherForecast;
 use Carbon\Carbon;
@@ -96,6 +97,32 @@ class WeatherForecastController extends Controller
             ->toArray();
 
         $accuweather = \App\Models\Accuweather::whereIn('id', $subopenweather)->get();
+        return $accuweather;
+    }
+    public function getWeatherApi(Request $request)
+    {
+        $take = 0;
+        switch (request('interval', '0')) {
+            case 0:
+                $take = 3;
+                break;
+            case 1:
+                $take = 6;
+                break;
+            case 2:
+                $take = 9;
+                break;
+        }
+        $subopenweather = WeatherApi::toBase()
+            ->selectRaw('MAX(id) as id')
+            ->where('region', request('region', 'tashkent'))
+            ->wheretime('datetime', '<=', Carbon::now())
+            ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+            ->groupBy('date')
+            ->pluck('id')
+            ->toArray();
+
+        $accuweather = \App\Models\WeatherApi::whereIn('id', $subopenweather)->get();
         return $accuweather;
     }
 

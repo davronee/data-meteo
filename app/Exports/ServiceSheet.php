@@ -29,9 +29,9 @@ class ServiceSheet implements FromView, ShouldAutoSize, WithStyles, WithEvents, 
 
     public function styles(Worksheet $sheet)
     {
-        $sheet->setCellValue("B10", "=ROUND(AVERAGE(B4:B9),0)");
-        $sheet->setCellValue("C10", "=ROUND(AVERAGE(C4:C9),0)");
-        $sheet->setCellValue("D10", "=ROUND(AVERAGE(D4:D9),0)");
+        $sheet->setCellValue("B7", "=ROUND(AVERAGE(B4:B6),0)");
+        $sheet->setCellValue("C7", "=ROUND(AVERAGE(C4:C6),0)");
+        $sheet->setCellValue("D7", "=ROUND(AVERAGE(D4:D6),0)");
 
 //
         return [
@@ -65,7 +65,7 @@ class ServiceSheet implements FromView, ShouldAutoSize, WithStyles, WithEvents, 
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-                $event->sheet->getDelegate()->getStyle('A10')
+                $event->sheet->getDelegate()->getStyle('A6')
                     ->getFill()
                     ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
                     ->getStartColor()

@@ -45,6 +45,7 @@ Route::prefix('weather')->group(function () {
     Route::get('/', [\App\Http\Controllers\WeatherForecastController::class, 'index'])->name('weather.index');
     Route::get('/openweather', [\App\Http\Controllers\WeatherForecastController::class, 'getOpenWeather'])->name('weather.openweather');
     Route::get('/accuweather', [\App\Http\Controllers\WeatherForecastController::class, 'getAccuweather'])->name('weather.accuweather');
+    Route::get('/weatherapi', [\App\Http\Controllers\WeatherForecastController::class, 'getWeatherApi'])->name('weather.getWeatherApi');
     Route::get('/uzgidromet', [\App\Http\Controllers\WeatherForecastController::class, 'GetGidromet'])->name('weather.gidromet');
     Route::get('/weatherbit', [\App\Http\Controllers\WeatherForecastController::class, 'GetWeatherBit'])->name('weather.weatherbit');
     Route::get('/darksky', [\App\Http\Controllers\WeatherForecastController::class, 'GetDarkSky'])->name('weather.darksky');
