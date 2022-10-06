@@ -129,7 +129,7 @@ class Services
             ]);
 
             foreach ($services['DailyForecasts'] as $service) {
-                if (!Accuweather::where('day_wind_speed', null)->where('datetime', Carbon::parse($service['Date']))->where('region', self::$regions[$key])->first()) {
+                if (!Accuweather::where('datetime', Carbon::parse($service['Date']))->where('region', self::$regions[$key])->first()) {
                     $accuweather = new Accuweather();
                     $accuweather->datetime = Carbon::parse($service['Date']);
                     $accuweather->date = Carbon::parse($service['Date']);
@@ -352,7 +352,6 @@ class Services
 
             $accuweather = \App\Models\Accuweather::whereIn('id', $subopenweather)->first();
             if ($accuweather) {
-                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $accuweather->temp_precent = self::Delta($accuweather->temp_min, $accuweather->temp_max, $weather['air_t']);
                 $accuweather->factik = $weather['air_t'];
                 $accuweather->save();
@@ -372,7 +371,6 @@ class Services
 
             $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
             foreach ($gidromet as $item) {
-                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $item->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
                 $item->factik = $weather['air_t'];
                 $item->save();
@@ -389,7 +387,6 @@ class Services
                 ->toArray();
             $weatherbit = \App\Models\WeatherBit::whereIn('id', $subopenweather)->first();
             if ($weatherbit) {
-                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $weatherbit->temp_precent = self::Delta($weatherbit->min_temp, $weatherbit->max_temp, $weather['air_t']);
                 $weatherbit->factik = $weather['air_t'];
                 $weatherbit->save();
@@ -405,7 +402,6 @@ class Services
                 ->toArray();;
             $darksky = \App\Models\DarkSky::whereIn('id', $subopenweather)->first();
             if ($darksky) {
-                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $darksky->temp_precent = self::Delta($darksky->temperatureMin, $darksky->temperatureMax, $weather['air_t']);
                 $darksky->factik = $weather['air_t'];
                 $darksky->save();
@@ -423,16 +419,19 @@ class Services
                 ->toArray();
             $aerisweather = \App\Models\Aerisweather::whereIn('id', $subopenweather)->first();
             if ($aerisweather) {
-                $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
                 $aerisweather->temp_precent = self::Delta($aerisweather->minTempC, $aerisweather->maxTempC, $weather['air_t']);
                 $aerisweather->factik = $weather['air_t'];
                 $aerisweather->save();
             }
 
+            $weatherApi = WeatherApi::where('region', $region)
+                ->where('date', Carbon::now()->format("Y-m-d"))->first();
+            if ($weatherApi) {
+                $weatherApi->faktik = $weather['air_t'];
+                $weatherApi->temp_precent = self::Delta($weatherApi->temp_min, $weatherApi->temp_max, $weather['air_t']);
+                $weatherApi->save();
+            }
         }
-
-//        return $openweather;
-
     }
 
     public static function GetRu($region)
@@ -768,13 +767,13 @@ class Services
                 'apiKey' => '1ee695f625b44d48a695f625b41d48b8',
             ])->json();
 
-            $index = 2;
+            $index = 1;
             foreach ($forecasts['validTimeLocal'] as $key => $forecast) {
-                if ($key != 0) {
+                if (!WeatherApi::where('region', self::$regions[$regKey])->where('date', Carbon::parse($forecast)->format('Y-m-d'))->first()) {
                     $weatherApi = new WeatherApi();
                     $weatherApi->region = self::$regions[$regKey];
                     $weatherApi->datetime = Carbon::parse($forecast);
-                    $weatherApi->date = Carbon::parse($forecast);
+                    $weatherApi->date = Carbon::parse($forecast)->format('Y-m-d');
                     $weatherApi->temp_min = $forecasts['temperatureMin'][$key];
                     $weatherApi->temp_max = $forecasts['temperatureMax'][$key];
                     $weatherApi->dayOfWeek = $forecasts['dayOfWeek'][$key];
@@ -787,6 +786,7 @@ class Services
                     $index += 2;
                     $weatherApi->save();
                 }
+
             }
 
         }

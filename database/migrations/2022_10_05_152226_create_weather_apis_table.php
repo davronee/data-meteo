@@ -27,6 +27,8 @@ class CreateWeatherApisTable extends Migration
             $table->integer('windDirection')->nullable();
             $table->string('windDirectionCardinal')->nullable();
             $table->integer('windSpeed')->nullable();
+            $table->float('faktik')->comment('faktik')->default(0);
+            $table->float('temp_precent')->comment('prognoz berilayotgan tempraturaning hozirgi vaqtdagi havo harorati bilan nechi foiz togriligi')->default(0);
             $table->timestamps();
         });
     }
