@@ -340,6 +340,7 @@ class Services
 //            $openweather->factik = $weather['air_t'];
 //            $openweather->save();
 
+            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
 
             $subopenweather = Accuweather::toBase()
                 ->selectRaw('MAX(id) as id')
