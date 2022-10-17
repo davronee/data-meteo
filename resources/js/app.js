@@ -151,8 +151,7 @@ Vue.component('weather-data-uzhydromet', {
             <th class="empty border-right">
                 <div class="form-group mb-2">
                     <div class="form-group mb-2">
-                        <label for="example-datepicker">Выберите дату</label>
-                        <b-form-datepicker  id="example-datepicker" today-button
+                        <b-form-datepicker locale="ru"  placeholder="Выберите дату" id="example-datepicker" today-button
                                             reset-button
                                             close-button v-model="archive_date" class="mb-2"></b-form-datepicker>
                     </div>
