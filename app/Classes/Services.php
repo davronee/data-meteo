@@ -11,6 +11,7 @@ use App\Models\WeatherApi;
 use App\Models\WeatherBit;
 use App\Models\WeatherRegions;
 use Carbon\Carbon;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -541,8 +542,8 @@ class Services
 
     public static function GetAwsByRegion($regionid)
     {
-        $endpoint = env('AWS_ENDPOINT');
-        $endpoint_tradional = env('METEOAPI_ENDPOINT');
+        $endpoint =  config('app.AWS_ENDPOINT'); //env('AWS_ENDPOINT');
+        $endpoint_tradional = config('app.METEOAPI_ENDPOINT');
         switch ($regionid) {
             case 1726:
                 $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/51/O')->json();

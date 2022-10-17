@@ -15,6 +15,9 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'AWS_ENDPOINT'=>'http://aws.meteo.uz/',
+    'METEOAPI_ENDPOINT'=>'https://meteoapi.meteo.uz/',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

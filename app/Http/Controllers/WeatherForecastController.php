@@ -75,6 +75,56 @@ class WeatherForecastController extends Controller
 
     public function getAccuweather(Request $request)
     {
+        $region_code = 1726;
+        if ($request->soato) {
+            switch ($request->region) {
+                case 1726:
+                    $region_code = 'tashkent';
+                    break;
+                case 1735:
+                    $region_code = 'nukus';
+                    break;
+                case 1703:
+                    $region_code = 'andijan';
+                    break;
+                case 1706:
+                    $region_code = 'bukhara';
+                    break;
+                case 1708:
+                    $region_code = 'jizzakh';
+                    break;
+                case 1710:
+                    $region_code = 'qarshi';
+                    break;
+                case 1712:
+                    $region_code = 'navoiy';
+                    break;
+                case 1714:
+                    $region_code = 'namangan';
+                    break;
+                case 1718:
+                    $region_code = 'samarkand';
+                    break;
+                case 1722:
+                    $region_code = 'termez';
+                    break;
+                case 1724:
+                    $region_code = 'gulistan';
+                    break;
+                case 1727:
+                    $region_code = 'nurafshon';
+                    break;
+                case 1730:
+                    $region_code = 'fergana';
+                    break;
+                case 1733:
+                    $region_code = 'urgench';
+                    break;
+
+            }
+        } else
+            $region_code = $request->region;
+
         $take = 0;
         switch (request('interval', '0')) {
             case 0:
@@ -97,7 +147,7 @@ class WeatherForecastController extends Controller
 
         $subopenweather = Accuweather::toBase()
             ->selectRaw('MAX(id) as id')
-            ->where('region', request('region', 'tashkent'))
+            ->where('region', $region_code)
             ->whereBetween('date', [$archive_date, $archiveAddDays])
             ->groupBy('date')
             ->pluck('id')
@@ -110,6 +160,57 @@ class WeatherForecastController extends Controller
     public function getWeatherApi(Request $request)
     {
         $take = 0;
+
+        $region_code = 1726;
+        if ($request->soato) {
+            switch ($request->region) {
+                case 1726:
+                    $region_code = 'tashkent';
+                    break;
+                case 1735:
+                    $region_code = 'nukus';
+                    break;
+                case 1703:
+                    $region_code = 'andijan';
+                    break;
+                case 1706:
+                    $region_code = 'bukhara';
+                    break;
+                case 1708:
+                    $region_code = 'jizzakh';
+                    break;
+                case 1710:
+                    $region_code = 'qarshi';
+                    break;
+                case 1712:
+                    $region_code = 'navoiy';
+                    break;
+                case 1714:
+                    $region_code = 'namangan';
+                    break;
+                case 1718:
+                    $region_code = 'samarkand';
+                    break;
+                case 1722:
+                    $region_code = 'termez';
+                    break;
+                case 1724:
+                    $region_code = 'gulistan';
+                    break;
+                case 1727:
+                    $region_code = 'nurafshon';
+                    break;
+                case 1730:
+                    $region_code = 'fergana';
+                    break;
+                case 1733:
+                    $region_code = 'urgench';
+                    break;
+
+            }
+        } else
+            $region_code = $request->region;
+
         switch (request('interval', '0')) {
             case 0:
                 $take = 3;
@@ -130,7 +231,7 @@ class WeatherForecastController extends Controller
         }
         $subopenweather = WeatherApi::toBase()
             ->selectRaw('MAX(id) as id')
-            ->where('region', request('region', 'tashkent'))
+            ->where('region', $region_code)
             ->whereBetween('date', [$archive_date, $archiveAddDays])
             ->groupBy('date')
             ->pluck('id')
@@ -142,6 +243,56 @@ class WeatherForecastController extends Controller
 
     public function GetGidromet(Request $request)
     {
+        $region_code = 1726;
+        if ($request->soato) {
+            switch ($request->region) {
+                case 1726:
+                    $region_code = 'tashkent';
+                    break;
+                case 1735:
+                    $region_code = 'nukus';
+                    break;
+                case 1703:
+                    $region_code = 'andijan';
+                    break;
+                case 1706:
+                    $region_code = 'bukhara';
+                    break;
+                case 1708:
+                    $region_code = 'jizzakh';
+                    break;
+                case 1710:
+                    $region_code = 'qarshi';
+                    break;
+                case 1712:
+                    $region_code = 'navoiy';
+                    break;
+                case 1714:
+                    $region_code = 'namangan';
+                    break;
+                case 1718:
+                    $region_code = 'samarkand';
+                    break;
+                case 1722:
+                    $region_code = 'termez';
+                    break;
+                case 1724:
+                    $region_code = 'gulistan';
+                    break;
+                case 1727:
+                    $region_code = 'nurafshon';
+                    break;
+                case 1730:
+                    $region_code = 'fergana';
+                    break;
+                case 1733:
+                    $region_code = 'urgench';
+                    break;
+
+            }
+        } else
+            $region_code = $request->region;
+
         $take = 0;
         switch (request('interval', '0')) {
             case 0:
@@ -187,7 +338,7 @@ class WeatherForecastController extends Controller
             $archive_date = Carbon::parse($request->archive_date)->format("Y-m-d");
             $archiveAddDays = Carbon::parse($archive_date)->addDays(request('interval', 0))->format("Y-m-d");
         }
-        $gidromet = \App\Models\UzHydromet::where('region', request('region', 'tashkent'))
+        $gidromet = \App\Models\UzHydromet::where('region', $region_code)
             ->whereBetween('date', [$archive_date, $archiveAddDays])->get();
 
         $array = [];

@@ -3,7 +3,7 @@ require('./bootstrap');
 import Vue from 'vue'
 import moment from 'moment'
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
@@ -18,24 +18,28 @@ Vue.component('weather-data-uzhydromet', {
             gismeteo: [],
             yandex: [],
             accuweather: [],
+            weatherapi: [],
+            archive_date: '',
+
         }
     },
     methods: {
-
         moment: function () {
             return moment();
         },
         foreacasthydromet() {
             this.foreacastgismeto();
-            this.foreacast_yandex();
+            // this.foreacast_yandex();
             this.foreacast_accuweather();
-            axios.get('/api/directory/forecast/uzhydromet/' + this.region + '/' + this.days)
-                .then(response => {
-                    this.uzhydromet = response.data;
-                })
-                .catch(error => {
-                    console.log(error)
-                })
+            this.GetUzhydromet();
+            this.getWeatherApi();
+            // axios.get('/api/directory/forecast/uzhydromet/' + this.region + '/' + this.days)
+            //     .then(response => {
+            //         this.uzhydromet = response.data;
+            //     })
+            //     .catch(error => {
+            //         console.log(error)
+            //     })
 
 
         },
@@ -57,15 +61,15 @@ Vue.component('weather-data-uzhydromet', {
                     console.log(error);
                 })
         },
-        foreacast_accuweather() {
-            axios.get('/api/directory/forecast/accuweather/' + this.region + '/' + this.days)
-                .then(response => {
-                    this.accuweather = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        },
+        // foreacast_accuweather() {
+        //     axios.get('/api/directory/forecast/accuweather/' + this.region + '/' + this.days)
+        //         .then(response => {
+        //             this.accuweather = response.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(error);
+        //         })
+        // },
         aws_current(regionid) {
             axios.get('/api/directory/current/aws/uzhydromet/' + regionid + '/' + this.days)
                 .then(response => {
@@ -76,7 +80,63 @@ Vue.component('weather-data-uzhydromet', {
                 })
 
         },
+        GetUzhydromet() {
+            axios.get('/weather/uzgidromet', {
+                params: {
+                    region: this.region,
+                    interval: 120,
+                    archive_date: this.archive_date,
+                    soato: true,
 
+                }
+            })
+                .then(response => {
+                    this.uzhydromet = response.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        async foreacast_accuweather() {
+            axios.get('/weather/accuweather', {
+                params: {
+                    region: this.region,
+                    interval: 120,
+                    archive_date: this.archive_date,
+                    soato: true,
+
+                }
+            })
+                .then(response => {
+                    this.accuweather = response.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        async getWeatherApi() {
+            axios.get('/weather/weatherapi', {
+                params: {
+                    region: this.region,
+                    interval: 96,
+                    archive_date: this.archive_date,
+                    soato: true,
+                }
+            })
+                .then(response => {
+                    this.weatherapi = response.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+
+    },
+    watch: {
+        archive_date: function (value) {
+            // If "pageData" ever changes, then we will console log its new value.
+            this.foreacasthydromet(value);
+        }
     },
     mounted() {
         this.aws_current();
@@ -86,9 +146,16 @@ Vue.component('weather-data-uzhydromet', {
     template: `
         <table class="table report-table">
         <thead>
+
         <tr>
             <th class="empty border-right">
                 <div class="form-group mb-2">
+                    <div class="form-group mb-2">
+                        <label for="example-datepicker">Выберите дату</label>
+                        <b-form-datepicker  id="example-datepicker" today-button
+                                            reset-button
+                                            close-button v-model="archive_date" class="mb-2"></b-form-datepicker>
+                    </div>
                     <select v-model="region" class="form-select" @change="foreacasthydromet">
                         <option v-for="item in regions" :value="item.regionid">{{
                                 item.name_uz
@@ -97,23 +164,25 @@ Vue.component('weather-data-uzhydromet', {
                     </select>
                 </div>
             </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(1, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(2, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(3, 'days').format("DD.MM.YYYY") }}
-            </th>
-            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"
-                colspan="3">{{ moment().add(4, 'days').format("DD.MM.YYYY") }}
-            </th>
+            <th colspan="4" class="table-title bg-theme border-theme bg-opacity-25 border-right" v-for="item in uzhydromet" scope="col">{{ item.date | moment }}</th>
+<!--            <th -->
+<!--                colspan="4">{{ moment().format("DD.MM.YYYY") }}-->
+<!--            </th>-->
+<!--            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"-->
+<!--                colspan="4">{{ moment().add(1, 'days').format("DD.MM.YYYY") }}-->
+<!--            </th>-->
+<!--            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"-->
+<!--                colspan="4">{{ moment().add(2, 'days').format("DD.MM.YYYY") }}-->
+<!--            </th>-->
+<!--            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"-->
+<!--                colspan="4">{{ moment().add(3, 'days').format("DD.MM.YYYY") }}-->
+<!--            </th>-->
+<!--            <th class="table-title bg-theme border-theme bg-opacity-25 border-right"-->
+<!--                colspan="4">{{ moment().add(4, 'days').format("DD.MM.YYYY") }}-->
+<!--            </th>-->
         </tr>
         <tr>
+
             <th class="empty border-right">
                 <div class="form-group mb-2">
                     <select class="form-select">
@@ -125,114 +194,150 @@ Vue.component('weather-data-uzhydromet', {
                     </select>
                 </div>
             </th>
-            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
-            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
 
             <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
             <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th class="border-right"><i class="fa-2x wi fa-equals me-2"></i></th>
 
             <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
             <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th class="border-right"><i class="fa-2x wi fa-equals me-2"></i></th>
+
 
             <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
             <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th class="border-right"><i class="fa-2x wi fa-equals me-2"></i></th>
+
 
             <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
             <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
-            <th class="border-right"><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th class="border-right"><i class="fa-2x wi fa-equals me-2"></i></th>
+
+            <th><i class="fa-2x wi wi-thermometer me-2"></i></th>
+            <th><i class="fa-2x wi wi-wind towards-45-deg me-2"></i></th>
+            <th><i class="fa-2x wi wi-sleet me-2"></i></th>
+            <th class="border-right"><i class="fa-2x wi fa-equals me-2"></i></th>
+
         </tr>
         </thead>
         <tbody>
         <tr>
-            <th rowspan="2" class="align-middle border-right text-capitalized fw-bold fixed-side"><a
+            <th class="align-middle border-right text-capitalized fw-bold fixed-side"><a
                 href="#" data-bs-toggle="modal" data-bs-target="#modalPosForecast"
                 class="text-warning text-left">O'zgidromet
                 <br><small>(O'zbekiston)</small> </a></th>
             <template v-for="item in uzhydromet">
                 <td><span class="me-1 gradus"
-                          :class="item[0].air_t_min >= 0 ? 'warm' : ''">{{ item[0].air_t_min }}</span><br>
-                    <span class=" gradus" :class="item[0].air_t_max >= 0 ? 'warm' : ''">{{ item[0].air_t_max }}</span>
+                          :class="item.air_t_min >= 0 ? 'warm' : ''">{{ item.air_t_min }}</span><br>
+                    <span class=" gradus" :class="item.air_t_max >= 0 ? 'warm' : ''">{{ item.air_t_max }}</span>
                 </td>
-                <td><span class="m_s">{{ item[0].wind_speed_min }}-{{ item[0].wind_speed_max }}</span></td>
-                <td><span
-                    :class="item[0].precipitation != 'none' && item[0].precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
-                </td>
-            </template>
-            <td><span class="me-1  n_a"></span><span class=""></span></td>
-            <td><span class="n_a"></span></td>
-            <td><span class="n_a"></span></td>
-        </tr>
-        <tr>
-            <template v-for="item in uzhydromet">
-                <td><span class="me-1 gradus"
-                          :class="item[1].air_t_min >= 0 ? 'warm' : ''">{{ item[1].air_t_min }}</span><br><span
-                    class=" gradus" :class="item[1].air_t_max >= 0 ? 'warm' : ''">{{ item[1].air_t_max }}</span>
-                </td>
-                <td><span class="m_s">{{ item[1].wind_speed_min }}-{{ item[1].wind_speed_max }}</span></td>
-                <td><span
-                    :class="item[1].precipitation != 'none' && item[1].precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
-                </td>
-            </template>
-            <td><span class="me-1  n_a"></span><span class=""></span></td>
-            <td><span class="n_a"></span></td>
-            <td><span class="n_a"></span></td>
-        </tr>
-        <tr>
-            <th class="align-middle border-right text-capitalized fw-bold fixed-side"><a
-                href="#" data-bs-toggle="modal" data-bs-target="#modalPosForecast"
-                class="text-warning text-left">GisMeteo <br><small>(Rossiya)</small></a>
-            </th>
-            <template v-for="item in gismeteo">
-                <td><span class="me-1 gradus"
-                          :class="item.temp_min == 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
-                    class=" gradus" :class="item.temp_max == 0 ? 'warm' : ''">{{ item.temp_max }}</span></td>
                 <td><span class="m_s">{{ item.wind_speed_min }}-{{ item.wind_speed_max }}</span></td>
-                <td><span :class="item.precipitation != 0 ?  'rain_yes' : 'rain_no'"></span></td>
+                <td><span
+                    :class="item.precipitation != 'none' && item.precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
+                </td>
+                <td><span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> {{ item.temp_precent }} %</span>
+                </td>
             </template>
-        </tr>
-        <tr>
-            <th rowspan="2" class="align-middle border-right text-capitalized fw-bold fixed-side"><a
-                href="#" data-bs-toggle="modal" data-bs-target="#modalPosForecast"
-                class="text-warning text-left">Yandex <br><small>(Rossiya)</small></a>
-            </th>
-            <template v-for="item in yandex">
-                <td><span class="me-1 gradus"
-                          :class="item.parts.day.temp_min >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_min }}</span><br><span
-                    class=" gradus"
-                    :class="item.parts.day.temp_max >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_max }}</span></td>
-                <td><span class="m_s">{{ item.parts.day.wind_speed }}</span></td>
-                <td><span :class="item.parts.day.prec_mm !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
-            </template>
+            <td><span class="me-1  n_a"></span><span class=""></span></td>
+            <td><span class="n_a"></span></td>
+            <td><span class="n_a"></span></td>
+            <td><i class="fas fa-equals"></i></td>
 
         </tr>
-        <tr>
-            <template v-for="item in yandex">
-                <td><span class="me-1 gradus"
-                          :class="item.parts.night.temp_min >= 0 ? 'warm' : ''">{{ item.parts.night.temp_min }}</span><br><span
-                    class=" gradus"
-                    :class="item.parts.night.temp_max >= 0 ? 'warm' : ''">{{ item.parts.night.temp_max }}</span></td>
-                <td><span class="m_s">{{ item.parts.night.wind_speed }}</span></td>
-                <td><span :class="item.parts.night.prec_mm !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
-            </template>
+        <!--        <tr>-->
+        <!--            <template v-for="item in uzhydromet">-->
+        <!--                <td><span class="me-1 gradus"-->
+        <!--                          :class="item[1].air_t_min >= 0 ? 'warm' : ''">{{ item[1].air_t_min }}</span><br><span-->
+        <!--                    class=" gradus" :class="item[1].air_t_max >= 0 ? 'warm' : ''">{{ item[1].air_t_max }}</span>-->
+        <!--                </td>-->
+        <!--                <td><span class="m_s">{{ item[1].wind_speed_min }}-{{ item[1].wind_speed_max }}</span></td>-->
+        <!--                <td><span-->
+        <!--                    :class="item[1].precipitation != 'none' && item[1].precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>-->
+        <!--                </td>-->
+        <!--            </template>-->
+        <!--            <td><span class="me-1  n_a"></span><span class=""></span></td>-->
+        <!--            <td><span class="n_a"></span></td>-->
+        <!--            <td><span class="n_a"></span></td>-->
+        <!--        </tr>-->
 
-        </tr>
+
+        <!--        <tr>-->
+        <!--            <th class="align-middle border-right text-capitalized fw-bold fixed-side"><a-->
+        <!--                href="#" data-bs-toggle="modal" data-bs-target="#modalPosForecast"-->
+        <!--                class="text-warning text-left">GisMeteo <br><small>(Rossiya)</small></a>-->
+        <!--            </th>-->
+        <!--            <template v-for="item in gismeteo">-->
+        <!--                <td><span class="me-1 gradus"-->
+        <!--                          :class="item.temp_min == 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span-->
+        <!--                    class=" gradus" :class="item.temp_max == 0 ? 'warm' : ''">{{ item.temp_max }}</span></td>-->
+        <!--                <td><span class="m_s">{{ item.wind_speed_min }}-{{ item.wind_speed_max }}</span></td>-->
+        <!--                <td><span :class="item.precipitation != 0 ?  'rain_yes' : 'rain_no'"></span></td>-->
+        <!--            </template>-->
+        <!--        </tr>-->
+
+
+        <!--        <tr>-->
+        <!--            <th rowspan="2" class="align-middle border-right text-capitalized fw-bold fixed-side"><a-->
+        <!--                href="#" data-bs-toggle="modal" data-bs-target="#modalPosForecast"-->
+        <!--                class="text-warning text-left">Yandex <br><small>(Rossiya)</small></a>-->
+        <!--            </th>-->
+        <!--            <template v-for="item in yandex">-->
+        <!--                <td><span class="me-1 gradus"-->
+        <!--                          :class="item.parts.day.temp_min >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_min }}</span><br><span-->
+        <!--                    class=" gradus"-->
+        <!--                    :class="item.parts.day.temp_max >= 0 ? 'warm' : 'cold'">{{ item.parts.day.temp_max }}</span></td>-->
+        <!--                <td><span class="m_s">{{ item.parts.day.wind_speed }}</span></td>-->
+        <!--                <td><span :class="item.parts.day.prec_mm !== 0 ? 'rain_yes' : 'rain_no'"></span></td>-->
+        <!--            </template>-->
+
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--            <template v-for="item in yandex">-->
+        <!--                <td><span class="me-1 gradus"-->
+        <!--                          :class="item.parts.night.temp_min >= 0 ? 'warm' : ''">{{ item.parts.night.temp_min }}</span><br><span-->
+        <!--                    class=" gradus"-->
+        <!--                    :class="item.parts.night.temp_max >= 0 ? 'warm' : ''">{{ item.parts.night.temp_max }}</span></td>-->
+        <!--                <td><span class="m_s">{{ item.parts.night.wind_speed }}</span></td>-->
+        <!--                <td><span :class="item.parts.night.prec_mm !== 0 ? 'rain_yes' : 'rain_no'"></span></td>-->
+        <!--            </template>-->
+
+        <!--        </tr>-->
         <tr>
             <th class="align-middle border-right text-capitalized fw-bold fixed-side"><a
                 href="#" data-bs-toggle="modal" data-bs-target="#modalPosForecast"
                 class="text-warning text-left">Accuweather <br><small>(AQSH)</small></a>
             </th>
             <template v-for="item in accuweather">
-                <td rowspan="2"><span class="me-1 gradus"
-                                      :class="item.Temperature.Minimum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Minimum.Value }}</span><br><span
-                    class=" gradus"
-                    :class="item.Temperature.Maximum.Value >= 0 ? 'warm' : ''">{{ item.Temperature.Maximum.Value }}</span>
+                <td ><span class="me-1 gradus"
+                                      :class="item.temp_min >= 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
+                    class="gradus"
+                    :class="item.temp_max >= 0 ? 'warm' : ''">{{ item.temp_max }}</span>
                 </td>
-                <td><span class="m_s">{{ item.Day.Wind.Speed.Value }}</span></td>
-                <td><span :class="item.Day.Rain.Value !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
+                <td><span class="m_s">{{ item.day_wind_speed }}</span></td>
+                <td><span :class="item.day_rain !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
+                <td><span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> {{ item.temp_precent }} %</span>
+                </td>
+            </template>
+        </tr>
+        <tr>
+            <th class="align-middle border-right text-capitalized fw-bold fixed-side"><a
+                href="#" data-bs-toggle="modal" data-bs-target="#modalPosForecast"
+                class="text-warning text-left">Weather.com <br><small>(AQSH)</small></a>
+            </th>
+            <template v-for="item in weatherapi">
+                <td rowspan="2"><span class="me-1 gradus"
+                                      :class="item.temp_min >= 0 ? 'warm' : ''">{{ item.temp_min }}</span><br><span
+                    class="gradus"
+                    :class="item.temp_max >= 0 ? 'warm' : ''">{{ item.temp_max }}</span>
+                </td>
+                <td><span class="m_s">{{ item.windSpeed }}</span></td>
+                <td><span :class="item.precipChance !== 0 ? 'rain_yes' : 'rain_no'"></span></td>
+                <td><span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> {{ item.temp_precent }} %</span>
+                </td>
             </template>
         </tr>
         </tbody>
@@ -248,7 +353,7 @@ Vue.component('region-weather', {
     },
     methods: {
         aws() {
-            axios.get('/api/directory/current/aws/uzhydromet/' + this.regionid + '/' + this.days)
+            axios.get('/api/directory/current/aws/uzhydromet/' + this.regionid + '/' + 5)
                 .then(response => {
                     this.aws_factics = response.data;
                 })
@@ -259,10 +364,11 @@ Vue.component('region-weather', {
         },
 
     },
+
     mounted() {
         this.aws();
     },
-    props: ['regionid', 'days', 'title'],
+    props: ['regionid', 'title'],
     template: `
         <div class="pos-order">
         <div class="pos-order-product">
