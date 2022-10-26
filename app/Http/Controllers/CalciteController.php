@@ -30,13 +30,18 @@ class CalciteController extends Controller
 
         $microstations = MicrostepStations::get();
 
-        $Chinesstations = Http::get('http://chinese-api.meteo.uz/allStations.php')->json();
+        try {
+            $Chinesstations = Http::get('http://chinese-api.meteo.uz/allStations.php')->json();
+        } catch (\Exception $exception) {
+            $Chinesstations = [];
+        }
+
         return view('pages.calcite_maps.index')->with([
             'radars' => $radars,
             'stations' => $stations->json(),
             'microstations' => $microstations,
             'hydrometstation' => $hydrometStations,
-            'chinesstations' => $Chinesstations ? $Chinesstations : [],
+            'chinesstations' => $Chinesstations,
         ]);
 
     }
