@@ -11,6 +11,7 @@ class MeteoBotService
     protected $stations = [];
     protected $apiToken = "1431648419:AAHns8IHW3T0HJMwOyFWL_pdrtB0CMEZ1rQ";
     protected $ChatId = '-1001426573564';
+
 //    protected $ChatId = '69367740';
 
     public function GetStations()
@@ -62,6 +63,7 @@ class MeteoBotService
                 $text .= "<b>Атмосфера босими:</b> " . $values[6] . PHP_EOL;
             }
 
+            dd($text);
             $http = Http::withOptions(['verify' => false])->get("https://api.telegram.org/bot$this->apiToken/sendMessage?chat_id=" . $this->ChatId . $text);
 
 
