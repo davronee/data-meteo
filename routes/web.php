@@ -247,6 +247,7 @@ Route::prefix('amudar')->group(function () {
 
 
 Route::prefix('meteobot')->group(function () {
+    Route::get('/stations', [\App\Http\Controllers\API\StationController::class, 'GetStations'])->name('meteobot.stations');
     Route::get('/get/{id}', [\App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
 });
 
