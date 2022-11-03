@@ -22,146 +22,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="changes oneid endpoint">
+    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="added meteobot new">
+      <change afterPath="$PROJECT_DIR$/resources/views/pages/meteo/index_old.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/meteo-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meteo-data.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Classes/Services.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Classes/Services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/DirectoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/DirectoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Meteocontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Meteocontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/asset/js/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/asset/js/vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist1/assets/plugins/bootstrap-slider/scripts/build-preview.sh" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist1/assets/plugins/bootstrap-slider/scripts/build-preview.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist1/assets/plugins/jvectormap-next/LICENSE-AGPL" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist1/assets/plugins/jvectormap-next/LICENSE-AGPL" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist1/assets/plugins/photoswipe/src/css/_main-settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist1/assets/plugins/photoswipe/src/css/_main-settings.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist1/assets/plugins/photoswipe/src/css/default-skin/default-skin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist1/assets/plugins/photoswipe/src/css/default-skin/default-skin.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist1/assets/plugins/summernote/config/webpack.production.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist1/assets/plugins/summernote/config/webpack.production.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/StationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/StationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_r1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_r1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_r2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_r2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_r3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_r3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_rs1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_rs1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_rs2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_rs2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_rs3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_rs3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_s1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_s1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_s2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_s2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_s3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_s3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/c3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_r1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_r1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_r2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_r2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_r3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_r3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_rs1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_rs1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_rs2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_rs2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_rs3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_rs3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_s1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_s1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_s2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_s2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_s3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_s3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_r1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_r1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_r2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_r2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_r3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_r3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_rs1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_rs1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_rs2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_rs2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_rs3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_rs3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_s1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_s1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_s2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_s2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_s3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_s3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_c2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/d_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_r1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_r1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_r2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_r2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_r3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_r3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_rs1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_rs1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_rs2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_rs2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_rs3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_rs3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_s1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_s1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_s2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_s2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_s3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_s3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_r1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_r1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_r2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_r2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_r3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_r3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_rs1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_rs1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_rs2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_rs2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_rs3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_rs3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_s1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_s1_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_s2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_s2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_s3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_s3_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_c2_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/n_st.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/r1_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/r1_st_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/r2_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/r2_st_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/r3_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/r3_st_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/s1_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/s1_st_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/s2_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/s2_st_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/s3_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/img/weather/s3_st_mist.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/plugins/bootstrap-slider/scripts/build-preview.sh" beforeDir="false" afterPath="$PROJECT_DIR$/public/new_meteo/assets/plugins/bootstrap-slider/scripts/build-preview.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/plugins/jvectormap-next/LICENSE-AGPL" beforeDir="false" afterPath="$PROJECT_DIR$/public/new_meteo/assets/plugins/jvectormap-next/LICENSE-AGPL" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/plugins/photoswipe/src/css/_main-settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/new_meteo/assets/plugins/photoswipe/src/css/_main-settings.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/plugins/photoswipe/src/css/default-skin/default-skin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/new_meteo/assets/plugins/photoswipe/src/css/default-skin/default-skin.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/new_meteo/assets/plugins/summernote/config/webpack.production.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/new_meteo/assets/plugins/summernote/config/webpack.production.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/assets/js/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/assets/js/vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/lib/prismjs/components/prism-cmake.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/lib/prismjs/components/prism-cmake.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/meteo/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/meteo/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/data/21-01-05-05-00_38149.txt" beforeDir="false" afterPath="$PROJECT_DIR$/storage/data/21-01-05-05-00_38149.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,6 +212,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -353,17 +224,17 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\laragon\www\meteo-data\public" />
       <recent name="E:\laragon\www\meteo-data\resources\views\pages" />
       <recent name="E:\laragon\www\meteo-data\public\login" />
       <recent name="E:\laragon\www\meteo-data\resources\css" />
       <recent name="E:\laragon\www\meteo-data\resources\js" />
-      <recent name="E:\laragon\www\meteo-data\resources\lang\uz_Cyrillic" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -529,352 +400,414 @@
       <workItem from="1643953650104" duration="7923000" />
       <workItem from="1644133316582" duration="57251000" />
       <workItem from="1644523502597" duration="62000" />
-      <workItem from="1644578241372" duration="39789000" />
+      <workItem from="1644578241372" duration="45987000" />
+      <workItem from="1644821418584" duration="907000" />
+      <workItem from="1644918549530" duration="1892000" />
+      <workItem from="1644990870306" duration="764000" />
+      <workItem from="1645088944169" duration="881000" />
+      <workItem from="1646300977244" duration="712000" />
+      <workItem from="1646828435224" duration="4423000" />
+      <workItem from="1646992038592" duration="2071000" />
+      <workItem from="1647184448647" duration="3388000" />
+      <workItem from="1647250374714" duration="377000" />
+      <workItem from="1647254535781" duration="12488000" />
+      <workItem from="1647408067699" duration="3646000" />
+      <workItem from="1647500897270" duration="308000" />
+      <workItem from="1648105893450" duration="1520000" />
+      <workItem from="1648450802957" duration="3501000" />
+      <workItem from="1648618193392" duration="125000" />
+      <workItem from="1652869043156" duration="4955000" />
+      <workItem from="1653633171202" duration="1706000" />
+      <workItem from="1654162341084" duration="59000" />
+      <workItem from="1654455963142" duration="21854000" />
+      <workItem from="1655035575596" duration="13844000" />
+      <workItem from="1655445449247" duration="733000" />
+      <workItem from="1655725299325" duration="7998000" />
+      <workItem from="1656177203224" duration="569000" />
+      <workItem from="1656306832900" duration="4919000" />
+      <workItem from="1656567974770" duration="15736000" />
+      <workItem from="1657012707167" duration="5538000" />
+      <workItem from="1657703475145" duration="31000" />
+      <workItem from="1657703720774" duration="382000" />
+      <workItem from="1658120982825" duration="3810000" />
+      <workItem from="1658211523533" duration="4962000" />
+      <workItem from="1658469552408" duration="680000" />
+      <workItem from="1658730551524" duration="10003000" />
+      <workItem from="1659421132156" duration="2580000" />
+      <workItem from="1659438704783" duration="597000" />
+      <workItem from="1659453745367" duration="2591000" />
+      <workItem from="1659611134910" duration="598000" />
+      <workItem from="1659615372295" duration="268000" />
+      <workItem from="1659615765227" duration="1233000" />
+      <workItem from="1659894598021" duration="78000" />
+      <workItem from="1659894863748" duration="638000" />
+      <workItem from="1659903590567" duration="412000" />
+      <workItem from="1659904330043" duration="26000" />
+      <workItem from="1659904554902" duration="604000" />
+      <workItem from="1661411302677" duration="790000" />
+      <workItem from="1661530012745" duration="102000" />
+      <workItem from="1661708023422" duration="772000" />
+      <workItem from="1661708813516" duration="594000" />
+      <workItem from="1661713178899" duration="13392000" />
+      <workItem from="1661843811268" duration="35000" />
+      <workItem from="1661920099924" duration="3279000" />
+      <workItem from="1662968088556" duration="5609000" />
+      <workItem from="1663171489450" duration="17614000" />
+      <workItem from="1663565911929" duration="9090000" />
+      <workItem from="1664261614316" duration="10852000" />
+      <workItem from="1664865710632" duration="4412000" />
+      <workItem from="1664964660134" duration="17189000" />
+      <workItem from="1665054225707" duration="942000" />
+      <workItem from="1665055430711" duration="67000" />
+      <workItem from="1665055627458" duration="7455000" />
+      <workItem from="1665984662532" duration="16931000" />
+      <workItem from="1666178380159" duration="30000" />
+      <workItem from="1666245721559" duration="25000" />
     </task>
-    <task id="LOCAL-00220" summary="added service">
-      <created>1641534072452</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
+    <task id="LOCAL-00299" summary="added Uchqorgon station">
+      <created>1656310406878</created>
+      <option name="number" value="00299" />
+      <option name="presentableId" value="LOCAL-00299" />
       <option name="project" value="LOCAL" />
-      <updated>1641534072452</updated>
+      <updated>1656310406878</updated>
     </task>
-    <task id="LOCAL-00221" summary="added service">
-      <created>1641534138131</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
+    <task id="LOCAL-00300" summary="added Uchqorgon station">
+      <created>1656394808325</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
       <option name="project" value="LOCAL" />
-      <updated>1641534138131</updated>
+      <updated>1656394808325</updated>
     </task>
-    <task id="LOCAL-00222" summary="added service">
-      <created>1641893125031</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
+    <task id="LOCAL-00301" summary="added Uchqorgon station">
+      <created>1656410352975</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
       <option name="project" value="LOCAL" />
-      <updated>1641893125031</updated>
+      <updated>1656410352975</updated>
     </task>
-    <task id="LOCAL-00223" summary="added service">
-      <created>1641893448526</created>
-      <option name="number" value="00223" />
-      <option name="presentableId" value="LOCAL-00223" />
+    <task id="LOCAL-00302" summary="added Uchqorgon station">
+      <created>1656573455877</created>
+      <option name="number" value="00302" />
+      <option name="presentableId" value="LOCAL-00302" />
       <option name="project" value="LOCAL" />
-      <updated>1641893448526</updated>
+      <updated>1656573455877</updated>
     </task>
-    <task id="LOCAL-00224" summary="added service">
-      <created>1641924522919</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
+    <task id="LOCAL-00303" summary="added Uchqorgon station">
+      <created>1656573618757</created>
+      <option name="number" value="00303" />
+      <option name="presentableId" value="LOCAL-00303" />
       <option name="project" value="LOCAL" />
-      <updated>1641924522920</updated>
+      <updated>1656573618757</updated>
     </task>
-    <task id="LOCAL-00225" summary="added mail to service">
-      <created>1641966813155</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
+    <task id="LOCAL-00304" summary="changed uchqorgon station to ambiaweather">
+      <created>1656759604301</created>
+      <option name="number" value="00304" />
+      <option name="presentableId" value="LOCAL-00304" />
       <option name="project" value="LOCAL" />
-      <updated>1641966813156</updated>
+      <updated>1656759604301</updated>
     </task>
-    <task id="LOCAL-00226" summary="added mail to service">
-      <created>1641968722266</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
+    <task id="LOCAL-00305" summary="changed uchqorgon station to ambiaweather">
+      <created>1656759809945</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
       <option name="project" value="LOCAL" />
-      <updated>1641968722266</updated>
+      <updated>1656759809945</updated>
     </task>
-    <task id="LOCAL-00227" summary="changed service name">
-      <created>1641969084054</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
+    <task id="LOCAL-00306" summary="changed uchqorgon station to ambiaweather">
+      <created>1656930324264</created>
+      <option name="number" value="00306" />
+      <option name="presentableId" value="LOCAL-00306" />
       <option name="project" value="LOCAL" />
-      <updated>1641969084054</updated>
+      <updated>1656930324264</updated>
     </task>
-    <task id="LOCAL-00228" summary="added cors">
-      <created>1642396425681</created>
-      <option name="number" value="00228" />
-      <option name="presentableId" value="LOCAL-00228" />
+    <task id="LOCAL-00307" summary="changed uchqorgon station to ambiaweather">
+      <created>1657600010570</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
       <option name="project" value="LOCAL" />
-      <updated>1642396425682</updated>
+      <updated>1657600010570</updated>
     </task>
-    <task id="LOCAL-00229" summary="added cors">
-      <created>1642396484734</created>
-      <option name="number" value="00229" />
-      <option name="presentableId" value="LOCAL-00229" />
+    <task id="LOCAL-00308" summary="changed uchqorgon station to ambiaweather">
+      <created>1658123931872</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
       <option name="project" value="LOCAL" />
-      <updated>1642396484734</updated>
+      <updated>1658123931873</updated>
     </task>
-    <task id="LOCAL-00230" summary="added cors">
-      <created>1642396489838</created>
-      <option name="number" value="00230" />
-      <option name="presentableId" value="LOCAL-00230" />
+    <task id="LOCAL-00309" summary="changed uchqorgon station to ambiaweather">
+      <created>1658731052840</created>
+      <option name="number" value="00309" />
+      <option name="presentableId" value="LOCAL-00309" />
       <option name="project" value="LOCAL" />
-      <updated>1642396489838</updated>
+      <updated>1658731052840</updated>
     </task>
-    <task id="LOCAL-00231" summary="added cors">
-      <created>1642396782756</created>
-      <option name="number" value="00231" />
-      <option name="presentableId" value="LOCAL-00231" />
+    <task id="LOCAL-00310" summary="changed uchqorgon station to ambiaweather">
+      <created>1658732241026</created>
+      <option name="number" value="00310" />
+      <option name="presentableId" value="LOCAL-00310" />
       <option name="project" value="LOCAL" />
-      <updated>1642396782756</updated>
+      <updated>1658732241026</updated>
     </task>
-    <task id="LOCAL-00232" summary="added cors">
-      <created>1642396973944</created>
-      <option name="number" value="00232" />
-      <option name="presentableId" value="LOCAL-00232" />
+    <task id="LOCAL-00311" summary="add get history">
+      <created>1659610173158</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
       <option name="project" value="LOCAL" />
-      <updated>1642396973944</updated>
+      <updated>1659610173159</updated>
     </task>
-    <task id="LOCAL-00233" summary="added cors">
-      <created>1642397088569</created>
-      <option name="number" value="00233" />
-      <option name="presentableId" value="LOCAL-00233" />
+    <task id="LOCAL-00312" summary="add get history">
+      <created>1661714236611</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
       <option name="project" value="LOCAL" />
-      <updated>1642397088569</updated>
+      <updated>1661714236612</updated>
     </task>
-    <task id="LOCAL-00234" summary="added cors">
-      <created>1642397264322</created>
-      <option name="number" value="00234" />
-      <option name="presentableId" value="LOCAL-00234" />
+    <task id="LOCAL-00313" summary="add get history">
+      <created>1661714349089</created>
+      <option name="number" value="00313" />
+      <option name="presentableId" value="LOCAL-00313" />
       <option name="project" value="LOCAL" />
-      <updated>1642397264322</updated>
+      <updated>1661714349089</updated>
     </task>
-    <task id="LOCAL-00235" summary="added cors">
-      <created>1642397382646</created>
-      <option name="number" value="00235" />
-      <option name="presentableId" value="LOCAL-00235" />
+    <task id="LOCAL-00314" summary="add get history">
+      <created>1661757375634</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
       <option name="project" value="LOCAL" />
-      <updated>1642397382646</updated>
+      <updated>1661757375634</updated>
     </task>
-    <task id="LOCAL-00236" summary="added cors">
-      <created>1642397691389</created>
-      <option name="number" value="00236" />
-      <option name="presentableId" value="LOCAL-00236" />
+    <task id="LOCAL-00315" summary="add get history">
+      <created>1661758136717</created>
+      <option name="number" value="00315" />
+      <option name="presentableId" value="LOCAL-00315" />
       <option name="project" value="LOCAL" />
-      <updated>1642397691389</updated>
+      <updated>1661758136717</updated>
     </task>
-    <task id="LOCAL-00237" summary="added order id for service">
-      <created>1642401819767</created>
-      <option name="number" value="00237" />
-      <option name="presentableId" value="LOCAL-00237" />
+    <task id="LOCAL-00316" summary="add get history">
+      <created>1661758216893</created>
+      <option name="number" value="00316" />
+      <option name="presentableId" value="LOCAL-00316" />
       <option name="project" value="LOCAL" />
-      <updated>1642401819767</updated>
+      <updated>1661758216893</updated>
     </task>
-    <task id="LOCAL-00238" summary="added order id for service">
-      <created>1642401829221</created>
-      <option name="number" value="00238" />
-      <option name="presentableId" value="LOCAL-00238" />
+    <task id="LOCAL-00317" summary="add get history">
+      <created>1661766503809</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
       <option name="project" value="LOCAL" />
-      <updated>1642401829221</updated>
+      <updated>1661766503809</updated>
     </task>
-    <task id="LOCAL-00239" summary="added order id for service">
-      <created>1642402130996</created>
-      <option name="number" value="00239" />
-      <option name="presentableId" value="LOCAL-00239" />
+    <task id="LOCAL-00318" summary="add get history">
+      <created>1661766549875</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
       <option name="project" value="LOCAL" />
-      <updated>1642402130996</updated>
+      <updated>1661766549875</updated>
     </task>
-    <task id="LOCAL-00240" summary="added order id for service">
-      <created>1642402378355</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
+    <task id="LOCAL-00319" summary="add get history">
+      <created>1661767122559</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
       <option name="project" value="LOCAL" />
-      <updated>1642402378355</updated>
+      <updated>1661767122559</updated>
     </task>
-    <task id="LOCAL-00241" summary="added order id for service">
-      <created>1642402594936</created>
-      <option name="number" value="00241" />
-      <option name="presentableId" value="LOCAL-00241" />
+    <task id="LOCAL-00320" summary="add get history">
+      <created>1661767204003</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
       <option name="project" value="LOCAL" />
-      <updated>1642402594936</updated>
+      <updated>1661767204003</updated>
     </task>
-    <task id="LOCAL-00242" summary="added order id for service">
-      <created>1642402772348</created>
-      <option name="number" value="00242" />
-      <option name="presentableId" value="LOCAL-00242" />
+    <task id="LOCAL-00321" summary="add apmmeteoutm">
+      <created>1661782872805</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
       <option name="project" value="LOCAL" />
-      <updated>1642402772348</updated>
+      <updated>1661782872805</updated>
     </task>
-    <task id="LOCAL-00243" summary="added order id for service">
-      <created>1642402979400</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
+    <task id="LOCAL-00322" summary="add apmmeteoutm">
+      <created>1661788491569</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
       <option name="project" value="LOCAL" />
-      <updated>1642402979400</updated>
+      <updated>1661788491569</updated>
     </task>
-    <task id="LOCAL-00244" summary="added order id for service">
-      <created>1642403146321</created>
-      <option name="number" value="00244" />
-      <option name="presentableId" value="LOCAL-00244" />
+    <task id="LOCAL-00323" summary="add apmmeteoutm">
+      <created>1661788658262</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
       <option name="project" value="LOCAL" />
-      <updated>1642403146321</updated>
+      <updated>1661788658262</updated>
     </task>
-    <task id="LOCAL-00245" summary="added order id for service">
-      <created>1642581472991</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
+    <task id="LOCAL-00324" summary="add apmmeteoutm">
+      <created>1661788749188</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
       <option name="project" value="LOCAL" />
-      <updated>1642581472991</updated>
+      <updated>1661788749188</updated>
     </task>
-    <task id="LOCAL-00246" summary="added order id for service">
-      <created>1642660476744</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
+    <task id="LOCAL-00325" summary="add apmmeteoutm">
+      <created>1661837768652</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
       <option name="project" value="LOCAL" />
-      <updated>1642660476744</updated>
+      <updated>1661837768653</updated>
     </task>
-    <task id="LOCAL-00247" summary="added order id for service">
-      <created>1642662169966</created>
-      <option name="number" value="00247" />
-      <option name="presentableId" value="LOCAL-00247" />
+    <task id="LOCAL-00326" summary="add apmmeteoutm">
+      <created>1661838635105</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
       <option name="project" value="LOCAL" />
-      <updated>1642662169966</updated>
+      <updated>1661838635105</updated>
     </task>
-    <task id="LOCAL-00248" summary="added order id for service">
-      <created>1642663278998</created>
-      <option name="number" value="00248" />
-      <option name="presentableId" value="LOCAL-00248" />
+    <task id="LOCAL-00327" summary="add apmmeteoutm">
+      <created>1661920381582</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
       <option name="project" value="LOCAL" />
-      <updated>1642663278999</updated>
+      <updated>1661920381582</updated>
     </task>
-    <task id="LOCAL-00249" summary="added order id for service">
-      <created>1642760175312</created>
-      <option name="number" value="00249" />
-      <option name="presentableId" value="LOCAL-00249" />
+    <task id="LOCAL-00328" summary="add apmmeteoutm">
+      <created>1661921222263</created>
+      <option name="number" value="00328" />
+      <option name="presentableId" value="LOCAL-00328" />
       <option name="project" value="LOCAL" />
-      <updated>1642760175312</updated>
+      <updated>1661921222263</updated>
     </task>
-    <task id="LOCAL-00250" summary="added order id for service">
-      <created>1643178669220</created>
-      <option name="number" value="00250" />
-      <option name="presentableId" value="LOCAL-00250" />
+    <task id="LOCAL-00329" summary="add apmmeteoutm">
+      <created>1661921648999</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
       <option name="project" value="LOCAL" />
-      <updated>1643178669220</updated>
+      <updated>1661921648999</updated>
     </task>
-    <task id="LOCAL-00251" summary="added order id for service">
-      <created>1643179493273</created>
-      <option name="number" value="00251" />
-      <option name="presentableId" value="LOCAL-00251" />
+    <task id="LOCAL-00330" summary="add apmmeteoutm">
+      <created>1661943267784</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
       <option name="project" value="LOCAL" />
-      <updated>1643179493273</updated>
+      <updated>1661943267784</updated>
     </task>
-    <task id="LOCAL-00252" summary="added order id for service">
-      <created>1643179611010</created>
-      <option name="number" value="00252" />
-      <option name="presentableId" value="LOCAL-00252" />
+    <task id="LOCAL-00331" summary="add apmmeteoutm">
+      <created>1661943744700</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
       <option name="project" value="LOCAL" />
-      <updated>1643179611010</updated>
+      <updated>1661943744700</updated>
     </task>
-    <task id="LOCAL-00253" summary="added order id for service">
-      <created>1643187853932</created>
-      <option name="number" value="00253" />
-      <option name="presentableId" value="LOCAL-00253" />
+    <task id="LOCAL-00332" summary="add radiation">
+      <created>1663189967303</created>
+      <option name="number" value="00332" />
+      <option name="presentableId" value="LOCAL-00332" />
       <option name="project" value="LOCAL" />
-      <updated>1643187853932</updated>
+      <updated>1663189967303</updated>
     </task>
-    <task id="LOCAL-00254" summary="added order id for service">
-      <created>1643191992531</created>
-      <option name="number" value="00254" />
-      <option name="presentableId" value="LOCAL-00254" />
+    <task id="LOCAL-00333" summary="add radiation">
+      <created>1663190332470</created>
+      <option name="number" value="00333" />
+      <option name="presentableId" value="LOCAL-00333" />
       <option name="project" value="LOCAL" />
-      <updated>1643191992531</updated>
+      <updated>1663190332470</updated>
     </task>
-    <task id="LOCAL-00255" summary="added order id for service">
-      <created>1643192405301</created>
-      <option name="number" value="00255" />
-      <option name="presentableId" value="LOCAL-00255" />
+    <task id="LOCAL-00334" summary="add radiation">
+      <created>1663587237368</created>
+      <option name="number" value="00334" />
+      <option name="presentableId" value="LOCAL-00334" />
       <option name="project" value="LOCAL" />
-      <updated>1643192405301</updated>
+      <updated>1663587237369</updated>
     </task>
-    <task id="LOCAL-00256" summary="added order id for service">
-      <created>1643192613946</created>
-      <option name="number" value="00256" />
-      <option name="presentableId" value="LOCAL-00256" />
+    <task id="LOCAL-00335" summary="add radiation">
+      <created>1663601633626</created>
+      <option name="number" value="00335" />
+      <option name="presentableId" value="LOCAL-00335" />
       <option name="project" value="LOCAL" />
-      <updated>1643192613946</updated>
+      <updated>1663601633626</updated>
     </task>
-    <task id="LOCAL-00257" summary="added order id for service">
-      <created>1643192855372</created>
-      <option name="number" value="00257" />
-      <option name="presentableId" value="LOCAL-00257" />
+    <task id="LOCAL-00336" summary="add radiation">
+      <created>1663844026318</created>
+      <option name="number" value="00336" />
+      <option name="presentableId" value="LOCAL-00336" />
       <option name="project" value="LOCAL" />
-      <updated>1643192855372</updated>
+      <updated>1663844026318</updated>
     </task>
-    <task id="LOCAL-00258" summary="added order id for service">
-      <created>1643194070755</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
+    <task id="LOCAL-00337" summary="add radiation">
+      <created>1663845107186</created>
+      <option name="number" value="00337" />
+      <option name="presentableId" value="LOCAL-00337" />
       <option name="project" value="LOCAL" />
-      <updated>1643194070755</updated>
+      <updated>1663845107186</updated>
     </task>
-    <task id="LOCAL-00259" summary="added order id for service">
-      <created>1643364106375</created>
-      <option name="number" value="00259" />
-      <option name="presentableId" value="LOCAL-00259" />
+    <task id="LOCAL-00338" summary="add radiation">
+      <created>1664274467978</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
       <option name="project" value="LOCAL" />
-      <updated>1643364106375</updated>
+      <updated>1664274467978</updated>
     </task>
-    <task id="LOCAL-00260" summary="added new disign meteo">
-      <created>1643694697582</created>
-      <option name="number" value="00260" />
-      <option name="presentableId" value="LOCAL-00260" />
+    <task id="LOCAL-00339" summary="added weatherApi">
+      <created>1664971258063</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
       <option name="project" value="LOCAL" />
-      <updated>1643694697582</updated>
+      <updated>1664971258063</updated>
     </task>
-    <task id="LOCAL-00261" summary="added new disign meteo">
-      <created>1643709832916</created>
-      <option name="number" value="00261" />
-      <option name="presentableId" value="LOCAL-00261" />
+    <task id="LOCAL-00340" summary="added weatherApi">
+      <created>1665040620508</created>
+      <option name="number" value="00340" />
+      <option name="presentableId" value="LOCAL-00340" />
       <option name="project" value="LOCAL" />
-      <updated>1643709832916</updated>
+      <updated>1665040620508</updated>
     </task>
-    <task id="LOCAL-00262" summary="added snows">
-      <created>1643830753955</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
+    <task id="LOCAL-00341" summary="added weatherApi">
+      <created>1665047762229</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
       <option name="project" value="LOCAL" />
-      <updated>1643830753955</updated>
+      <updated>1665047762229</updated>
     </task>
-    <task id="LOCAL-00263" summary="added snows">
-      <created>1643830898870</created>
-      <option name="number" value="00263" />
-      <option name="presentableId" value="LOCAL-00263" />
+    <task id="LOCAL-00342" summary="added weatherApi">
+      <created>1665047888629</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
       <option name="project" value="LOCAL" />
-      <updated>1643830898871</updated>
+      <updated>1665047888629</updated>
     </task>
-    <task id="LOCAL-00264" summary="added snows">
-      <created>1643958996171</created>
-      <option name="number" value="00264" />
-      <option name="presentableId" value="LOCAL-00264" />
+    <task id="LOCAL-00343" summary="added weatherApi">
+      <created>1665048141835</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
       <option name="project" value="LOCAL" />
-      <updated>1643958996171</updated>
+      <updated>1665048141836</updated>
     </task>
-    <task id="LOCAL-00265" summary="added snows">
-      <created>1644305174823</created>
-      <option name="number" value="00265" />
-      <option name="presentableId" value="LOCAL-00265" />
+    <task id="LOCAL-00344" summary="added weatherApi">
+      <created>1665081203471</created>
+      <option name="number" value="00344" />
+      <option name="presentableId" value="LOCAL-00344" />
       <option name="project" value="LOCAL" />
-      <updated>1644305174823</updated>
+      <updated>1665081203471</updated>
     </task>
-    <task id="LOCAL-00266" summary="changes oneid endpoint">
-      <created>1644305873591</created>
-      <option name="number" value="00266" />
-      <option name="presentableId" value="LOCAL-00266" />
+    <task id="LOCAL-00345" summary="added weatherApi">
+      <created>1665081334031</created>
+      <option name="number" value="00345" />
+      <option name="presentableId" value="LOCAL-00345" />
       <option name="project" value="LOCAL" />
-      <updated>1644305873591</updated>
+      <updated>1665081334031</updated>
     </task>
-    <task id="LOCAL-00267" summary="changes oneid endpoint">
-      <created>1644523151898</created>
-      <option name="number" value="00267" />
-      <option name="presentableId" value="LOCAL-00267" />
+    <task id="LOCAL-00346" summary="added weatherApi">
+      <created>1666003796207</created>
+      <option name="number" value="00346" />
+      <option name="presentableId" value="LOCAL-00346" />
       <option name="project" value="LOCAL" />
-      <updated>1644523151898</updated>
+      <updated>1666003796209</updated>
     </task>
-    <task id="LOCAL-00268" summary="changes oneid endpoint">
-      <created>1644578522556</created>
-      <option name="number" value="00268" />
-      <option name="presentableId" value="LOCAL-00268" />
+    <task id="LOCAL-00347" summary="added weatherApi">
+      <created>1666004669595</created>
+      <option name="number" value="00347" />
+      <option name="presentableId" value="LOCAL-00347" />
       <option name="project" value="LOCAL" />
-      <updated>1644578522556</updated>
+      <updated>1666004669595</updated>
     </task>
-    <option name="localTasksCounter" value="269" />
+    <option name="localTasksCounter" value="348" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -907,6 +840,15 @@
     <MESSAGE value="added new disign meteo" />
     <MESSAGE value="added snows" />
     <MESSAGE value="changes oneid endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes oneid endpoint" />
+    <MESSAGE value="added new meteo" />
+    <MESSAGE value="added OpenservicesReestr" />
+    <MESSAGE value="added Uchqorgon station" />
+    <MESSAGE value="changed uchqorgon station to ambiaweather" />
+    <MESSAGE value="add get history" />
+    <MESSAGE value="add apmmeteoutm" />
+    <MESSAGE value="add radiation" />
+    <MESSAGE value="added weatherApi" />
+    <MESSAGE value="added meteobot new" />
+    <option name="LAST_COMMIT_MESSAGE" value="added meteobot new" />
   </component>
 </project>
