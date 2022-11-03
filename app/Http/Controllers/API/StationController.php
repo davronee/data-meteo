@@ -57,7 +57,7 @@ class StationController extends Controller
         ])->get('https://export.meteobot.com/v2/Generic/IndexFull',
             [
                 'id' => $id,//'3231343030303336',
-                'startTime' => Carbon::now()->format('Y-m-d') .' 00:00',
+                'startTime' => Carbon::now()->format('Y-m-d') . ' ' . Carbon::now()->format('H') . ':00',
                 'endTime' => Carbon::now()->format('Y-m-d') . ' ' . Carbon::now()->addDays(1)->addHour()->format('H') . ':00',
             ])->body();
 
