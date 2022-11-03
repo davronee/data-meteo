@@ -63,7 +63,6 @@ class MeteoBotService
                 $text .= "<b>Атмосфера босими:</b> " . $values[6] . PHP_EOL;
             }
 
-            dd($text);
             $http = Http::withOptions(['verify' => false])->get("https://api.telegram.org/bot$this->apiToken/sendMessage?chat_id=" . $this->ChatId . $text);
 
 
