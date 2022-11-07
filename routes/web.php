@@ -20,6 +20,7 @@ use App\Http\Controllers\WidgetController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,11 +136,10 @@ Route::group(['middleware' => ['set_locale']], function () {
     });
 
     Route::prefix('neftgaz')->group(function () {
-        Route::post('/', function (\Illuminate\Support\Facades\Request $request) {
-            $this->validate($request, [
+        Route::post('/', function (Request $request) {
+            $request->validate([
                 'airData' => 'required',
             ]);
-
             \Illuminate\Support\Facades\Log::info('neftgaz: ' . print_r(request()->all(), true));
         });
 
