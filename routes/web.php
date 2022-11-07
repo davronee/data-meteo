@@ -135,7 +135,7 @@ Route::group(['middleware' => ['set_locale']], function () {
     });
 
     Route::prefix('neftgaz')->group(function () {
-        Route::get('/', function () {
+        Route::post('/', function () {
             \Illuminate\Support\Facades\Log::info('neftgaz: ' . print_r(request()->all(), true));
         });
 
