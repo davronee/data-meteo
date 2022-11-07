@@ -134,6 +134,14 @@ Route::group(['middleware' => ['set_locale']], function () {
 
     });
 
+    Route::prefix('neftgaz')->group(function () {
+        Route::get('/', function () {
+            \Illuminate\Support\Facades\Log::info('neftgaz: ' . print_r(request()->all(), true));
+        });
+
+
+    });
+
 
     // services
     Route::resource('service', ServiceController::class)->middleware('auth');
