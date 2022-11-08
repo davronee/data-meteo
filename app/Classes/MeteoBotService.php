@@ -40,6 +40,7 @@ class MeteoBotService
                     $values = str_getcsv($item, ';');
             }
 
+
             $text = "&parse_mode=html&text=";
             if (!$station->is_has_aq) {
                 $text .= "<b>Станция:</b> " . $station->name . PHP_EOL;
@@ -49,7 +50,7 @@ class MeteoBotService
                 $text .= "<b>Ёғингарчилик миқдори:</b> " . $values[7] . PHP_EOL;
                 $text .= "<b>Тупроқ намлиги ва ҳарорати(10см):</b> " . $values[9] . "," . $values[12] . PHP_EOL;
                 $text .= "<b>Шамол тезлиги:</b> " . $values[8] . PHP_EOL;
-                $text .= "<b>Атмосфера босими:</b> " . $values[6] . PHP_EOL;
+                $text .= "<b>Атмосфера босими:</b> " . $values[5] . PHP_EOL;
                 $text .= "<a href='https://data.meteo.uz/'>Батафсил</a> " . PHP_EOL;
 
             } else {
@@ -64,7 +65,7 @@ class MeteoBotService
                 $text .= "<b>CO2:</b> " . $values[17] . PHP_EOL;
                 $text .= "<b>Шамол тезлиги:</b> " . $values[8] . PHP_EOL;
                 $text .= "<b>Шамол йўналиши:</b> " . $values[9] . PHP_EOL;
-                $text .= "<b>Атмосфера босими:</b> " . $values[6] . PHP_EOL;
+                $text .= "<b>Атмосфера босими:</b> " . $values[5] . PHP_EOL;
                 $text .= "<a href='https://data.meteo.uz/'>Батафсил</a> " . PHP_EOL;
             }
 
