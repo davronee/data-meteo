@@ -3359,51 +3359,51 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + " гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
+                                            "<td>" + response.data[6] + " </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + " мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + " м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[9] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
+                                            "<td>" + response.data[11] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[12] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[12] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
+                                            "<td>" + response.data[13] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                            "<td>" + response.data[14] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
+                                            "<td>" + response.data[14] + " °C</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3457,51 +3457,51 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + " гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
+                                            "<td>" + response.data[6] + " </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + " мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + " м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[9] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
+                                            "<td>" + response.data[11] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[12] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[12] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
+                                            "<td>" + response.data[13] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                            "<td>" + response.data[14] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
+                                            "<td>" + response.data[14] + " °C</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3557,15 +3557,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -3573,35 +3573,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3656,15 +3656,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -3672,35 +3672,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3756,15 +3756,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -3772,35 +3772,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3856,15 +3856,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -3872,35 +3872,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -3959,15 +3959,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -3975,35 +3975,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -4060,15 +4060,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -4076,35 +4076,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -4157,15 +4157,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -4173,35 +4173,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -4255,15 +4255,15 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
@@ -4271,35 +4271,35 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + "</td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + "</td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -4454,51 +4454,51 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + " гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
+                                            "<td>" + response.data[6] + " </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + " мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + " м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[9] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
+                                            "<td>" + response.data[11] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[12] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[12] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
+                                            "<td>" + response.data[13] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                            "<td>" + response.data[14] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
+                                            "<td>" + response.data[14] + " °C</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -4552,51 +4552,51 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + " гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
+                                            "<td>" + response.data[6] + " </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + " мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + " м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[9] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
+                                            "<td>" + response.data[11] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[12] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[12] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
+                                            "<td>" + response.data[13] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                            "<td>" + response.data[14] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
+                                            "<td>" + response.data[14] + " °C</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
@@ -4650,51 +4650,51 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + "</td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + "</td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "</td>" +
+                                            "<td>" + response.data[5] + " гПа</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
+                                            "<td>" + response.data[6] + " </td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "</td>" +
+                                            "<td>" + response.data[7] + " мм</td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "</td>" +
+                                            "<td>" + response.data[8] + " м/с</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') </b></td>" +
-                                            "<td>" + response.data[9] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[9] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') </b></td>" +
-                                            "<td>" + response.data[10] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') </b></td>" +
-                                            "<td>" + response.data[11] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
+                                            "<td>" + response.data[11] + " %</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') </b></td>" +
-                                            "<td>" + response.data[12] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[12] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') </b></td>" +
-                                            "<td>" + response.data[13] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
+                                            "<td>" + response.data[13] + " °C</td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') </b></td>" +
-                                            "<td>" + response.data[14] + "</td>" +
+                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
+                                            "<td>" + response.data[14] + " °C</td>" +
                                             "</tr>" +
                                             "</table>"
                                         )
