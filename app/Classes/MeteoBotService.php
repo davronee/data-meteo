@@ -45,27 +45,29 @@ class MeteoBotService
             if (!$station->is_has_aq) {
                 $text .= "<b>Станция:</b> " . $station->name . PHP_EOL;
                 $text .= "<b>Сана:</b> " . $values[1] . " " . $values[2] . PHP_EOL;
-                $text .= "<b>Ҳарорат:</b> " . $values[3] . PHP_EOL;
-                $text .= "<b>Ҳаво намлиги:</b> " . $values[4] . PHP_EOL;
-                $text .= "<b>Ёғингарчилик миқдори:</b> " . $values[7] . PHP_EOL;
-                $text .= "<b>Тупроқ намлиги ва ҳарорати(10см):</b> " . $values[9] . "," . $values[12] . PHP_EOL;
-                $text .= "<b>Шамол тезлиги:</b> " . $values[8] . PHP_EOL;
-                $text .= "<b>Атмосфера босими:</b> " . $values[5] . PHP_EOL;
+                $text .= "<b>Ҳарорат:</b> " . $values[3] . ' °C' . PHP_EOL;
+                $text .= "<b>Ҳаво намлиги:</b> " . $values[4] . ' %' . PHP_EOL;
+                $text .= "<b>Ёғингарчилик миқдори:</b> " . $values[7] . ' мм' . PHP_EOL;
+                $text .= "<b>Тупроқ намлиги</b> " . $values[9] . ' %' . PHP_EOL;
+                $text .= "<b>Тупроқ ҳарорати(10см):</b> " . $values[12] . ' °C' . PHP_EOL;
+                $text .= "<b>Шамол тезлиги:</b> " . $values[8] . ' м/с' . PHP_EOL;
+                $text .= "<b>Атмосфера босими:</b> " . $values[5] . ' гПа' . PHP_EOL;
                 $text .= "<a href='https://data.meteo.uz/'>Батафсил</a> " . PHP_EOL;
 
             } else {
                 $text .= "<b>Станция:</b> " . $station->name . PHP_EOL;
                 $text .= "<b>Сана:</b> " . $values[1] . " " . $values[2] . PHP_EOL;
-                $text .= "<b>Ҳарорат:</b> " . $values[3] . PHP_EOL;
-                $text .= "<b>Ҳаво намлиги:</b> " . $values[4] . PHP_EOL;
-                $text .= "<b>Ёғингарчилик миқдори:</b> " . $values[7] . PHP_EOL;
-                $text .= "<b>Тупроқ намлиги ва ҳарорати(10см):</b> " . $values[10] . "/" . $values[11] . PHP_EOL;
-                $text .= "<b>PM2.5:</b> " . $values[13] . ' (соатлик миқдор) ' . PHP_EOL;
-                $text .= "<b>PM10:</b> " . $values[15] . ' (соатлик миқдор) ' . PHP_EOL;
-                $text .= "<b>CO2:</b> " . $values[17] . PHP_EOL;
-                $text .= "<b>Шамол тезлиги:</b> " . $values[8] . PHP_EOL;
-                $text .= "<b>Шамол йўналиши:</b> " . $values[9] . PHP_EOL;
-                $text .= "<b>Атмосфера босими:</b> " . $values[5] . PHP_EOL;
+                $text .= "<b>Ҳарорат:</b> " . $values[3] . ' °C' . PHP_EOL;
+                $text .= "<b>Ҳаво намлиги:</b> " . $values[4] . ' %' . PHP_EOL;
+                $text .= "<b>Ёғингарчилик миқдори:</b> " . $values[7] . ' мм' . PHP_EOL;
+                $text .= "<b>Тупроқ намлиги</b> " . $values[10] . ' %' . PHP_EOL;
+                $text .= "<b>Тупроқ ҳарорати(10см):</b> " . $values[11] . ' °C' . PHP_EOL;
+                $text .= "<b>PM2.5:</b> " . $values[13] . ' (соатлик миқдор) ' . ' µg/m³' . PHP_EOL;
+                $text .= "<b>PM10:</b> " . $values[15] . ' (соатлик миқдор) ' . ' µg/m³' . PHP_EOL;
+                $text .= "<b>CO2:</b> " . $values[17] . ' µg/m³' . PHP_EOL;
+                $text .= "<b>Шамол тезлиги:</b> " . $values[8] . ' м/с' . PHP_EOL;
+                $text .= "<b>Шамол йўналиши:</b> " . $values[9] . ' °' . PHP_EOL;
+                $text .= "<b>Атмосфера босими:</b> " . $values[5]  . ' гПа' . PHP_EOL;
                 $text .= "<a href='https://data.meteo.uz/'>Батафсил</a> " . PHP_EOL;
             }
 
