@@ -5,6 +5,7 @@ namespace App\Classes;
 use App\Models\MeteoBotStations;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class MeteoBotService
 {
@@ -49,6 +50,8 @@ class MeteoBotService
                 $text .= "<b>Тупроқ намлиги ва ҳарорати:</b> " . $values[9] . "," . $values[12] . PHP_EOL;
                 $text .= "<b>Шамол тезлиги ва йўналиши:</b> " . $values[8] . PHP_EOL;
                 $text .= "<b>Атмосфера босими:</b> " . $values[6] . PHP_EOL;
+                $text .= "<a href='https://data.meteo.uz/'>Батафсил</a> " . PHP_EOL;
+
             } else {
                 $text .= "<b>Номи:</b> " . $station->name . PHP_EOL;
                 $text .= "<b>Сана:</b> " . $values[1] . " " . $values[2] . PHP_EOL;
@@ -61,11 +64,57 @@ class MeteoBotService
                 $text .= "<b>Co2:</b> " . $values[17] . PHP_EOL;
                 $text .= "<b>Шамол тезлиги ва йўналиши:</b> " . $values[8] . "," . $values[9] . PHP_EOL;
                 $text .= "<b>Атмосфера босими:</b> " . $values[6] . PHP_EOL;
+                $text .= "<a href='https://data.meteo.uz/'>Батафсил</a> " . PHP_EOL;
             }
 
             $http = Http::withOptions(['verify' => false])->get("https://api.telegram.org/bot$this->apiToken/sendMessage?chat_id=" . $this->ChatId . $text);
 
 
+        }
+    }
+
+    public function SaveCsv()
+    {
+
+        foreach ($this->stations as $station) {
+            $data = Http::withOptions(['verify' => false])->
+            withBasicAuth($station->username, $station->password)->
+            get('https://export.meteobot.com/v2/Generic/Index', [
+                'id' => $station->sn,
+                'startDate' => Carbon::now()->subDays(1)->format('Y-m-d'),
+                'endDate' => Carbon::now()->format('Y-m-d'),
+            ]);
+
+            $filename = storage_path($station->sn . '.csv');
+
+            file_put_contents($filename, $data->body());
+
+        }
+    }
+
+    public function SendFileTelegram()
+    {
+        foreach ($this->stations as $station) {
+            $bot_url = "https://api.telegram.org/bot" . $this->apiToken;
+            $url = $bot_url . "/sendDocument?chat_id=" . $this->ChatId;
+
+            $post_fields = ['chat_id' => $this->ChatId,
+                'document' => new \CURLFile(storage_path($station->sn . '.csv'), 'text/csv', $station->sn . '.csv'),
+                'parse_mode' => "HTML",
+                'caption' => '<b>' . $station->name . '</b>' . PHP_EOL . Carbon::now()->format('d.m.Y'),
+
+            ];
+
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                "Content-Type:multipart/form-data"
+            ));
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+            $output = curl_exec($ch);
         }
     }
 

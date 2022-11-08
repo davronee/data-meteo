@@ -16,7 +16,7 @@ class MeteobotStationsSeed extends Seeder
     public function run()
     {
 
-        $stations = [3231343030303336, 3231343030303337, 22070086, 22070087, 22070078, 22070089, 22070081, 3231343030303334, 3231343030303335, 3231343030303333];
+        $stations = [3231343030303336, 3231343030303337, 22070086, 22070087, 22070078, 22070089, 22070081, 3231343030303334, 3231343030303335, 3231343030303333, 22070084, 22070080, 22070088];
 
         foreach ($stations as $station) {
             $data = Http::withOptions([
@@ -32,11 +32,10 @@ class MeteobotStationsSeed extends Seeder
                     $arr = str_getcsv($item, ';');
             }
 
+            print_r($arr[6].'\n');
             $meteobot = MeteoBotStations::updateOrCreate(
                 [
-                    'name' => $arr[6],
-                    'latitude' => $arr[3],
-                    'longitude' => $arr[4],
+                    'sn' => $station,
                 ],
                 [
                     'name' => $arr[6],

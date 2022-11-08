@@ -37,6 +37,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('meteo:get')->dailyAt('17:15');
         $schedule->command('meteo:get')->dailyAt('20:15');
         $schedule->command('meteo:get')->dailyAt('23:15');
+
+        $schedule->command('meteobot:send')->dailyAt('07:00');
+        $schedule->command('meteobot:send')->dailyAt('17:00');
+        $schedule->command('meteobot:SendFile')->dailyAt('18:00');
+
+
         $schedule->command('weather:forecast')->dailyAt('11:00');
         $schedule->command('weather:check')->hourly();
 
