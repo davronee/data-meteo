@@ -32,7 +32,6 @@ class MeteobotStationsSeed extends Seeder
                     $arr = str_getcsv($item, ';');
             }
 
-            print_r($arr[6].'\n');
             $meteobot = MeteoBotStations::updateOrCreate(
                 [
                     'sn' => $station,
