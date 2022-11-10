@@ -47,7 +47,7 @@ class StationController extends Controller
     }
 
 
-    public function GetMeteoBotInfo($id)
+    public function GetMeteoBotInfo($id = null)
     {
         $data = Http::withBasicAuth(
             '3231343030303336',
@@ -56,7 +56,7 @@ class StationController extends Controller
             'verify' => false
         ])->get('https://export.meteobot.com/v2/Generic/IndexFull',
             [
-                'id' => $id,//'3231343030303336',
+                'id' => ($id != null) ? $id : request()->get('id') ,//'3231343030303336',
                 'startTime' => Carbon::now()->format('Y-m-d') . ' 00:00',
                 'endTime' => Carbon::now()->format('Y-m-d') . ' ' . Carbon::now()->addDays(1)->addHour()->format('H') . ':00',
             ])->body();

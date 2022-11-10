@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HydrometStation;
+use App\Models\MeteoBotStations;
 use App\Models\MicrostepStations;
 use App\Models\Radar;
 use Illuminate\Http\Request;
@@ -30,6 +31,8 @@ class CalciteController extends Controller
 
         $microstations = MicrostepStations::get();
 
+        $meteobots = MeteoBotStations::all();
+
         try {
             $Chinesstations = Http::get('http://chinese-api.meteo.uz/allStations.php')->json();
         } catch (\Exception $exception) {
@@ -42,6 +45,7 @@ class CalciteController extends Controller
             'microstations' => $microstations,
             'hydrometstation' => $hydrometStations,
             'chinesstations' => $Chinesstations,
+            'meteobots' => $meteobots,
         ]);
 
     }
