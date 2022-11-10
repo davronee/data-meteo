@@ -4530,6 +4530,105 @@
 
 
 
+                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070085)}}')
+                        .then(function (response) {
+                            if (response.data[3]) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(40.578156), parseFloat(70.916041)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        marker2.bindPopup("" +
+                                            "<table class='table table-bordered'>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>Дангара</b></td></tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.date')</b></td>" +
+                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.temp') </b></td>" +
+                                            "<td>" + response.data[3] + " °C</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.humidity') </b></td>" +
+                                            "<td>" + response.data[4] + " %</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.current_pressure') </b></td>" +
+                                            "<td>" + response.data[5] + "  гПа</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.dew_point') </b></td>" +
+                                            "<td>" + response.data[6] + "</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                            "<td>" + response.data[7] + "  мм</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_speed') </b></td>" +
+                                            "<td>" + response.data[8] + "  м/с</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.wind_direction') </b></td>" +
+                                            "<td>" + response.data[9] + " °</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                            "<td>" + response.data[10] + " %</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                            "<td>" + response.data[11] + " °C</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>PM2.5</b></td>" +
+                                            "<td>" + response.data[13] + " µg/m³</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>PM10</b></td>" +
+                                            "<td>" + response.data[15] + " µg/m³</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td><b>CO2</b></td>" +
+                                            "<td>" + response.data[17] + " µg/m³</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        )
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMini'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+                            }
+
+
+                            map.addLayer(markers_mini);
+
+                            // handle success
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+
+
+
                     axios.get('{{route('bukhara_chines.getRealTimeData')}}')
                         .then(function (response) {
                             if (response.data.data[3].dataItem[0].registerItem[0].data) {
