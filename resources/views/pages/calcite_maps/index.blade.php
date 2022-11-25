@@ -3112,18 +3112,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3210,18 +3210,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3308,18 +3308,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3406,18 +3406,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3504,18 +3504,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3602,18 +3602,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3699,18 +3699,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3797,18 +3797,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3894,18 +3894,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -3992,18 +3992,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
@@ -4090,18 +4090,18 @@
                                             "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
                                             "<td>" + response.data[11] + " °C</td>" +
                                             "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM2.5</b></td>" +
-                                            "<td>" + response.data[13] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>PM10</b></td>" +
-                                            "<td>" + response.data[15] + " µg/m³</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>CO2</b></td>" +
-                                            "<td>" + response.data[17] + " µg/m³</td>" +
-                                            "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM2.5</b></td>" +
+                                            // "<td>" + response.data[13] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>PM10</b></td>" +
+                                            // "<td>" + response.data[15] + " µg/m³</td>" +
+                                            // "</tr>" +
+                                            // "<tr>" +
+                                            // "<td><b>CO2</b></td>" +
+                                            // "<td>" + response.data[17] + " µg/m³</td>" +
+                                            // "</tr>" +
                                             "</table>"
                                         )
 
