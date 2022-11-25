@@ -13,8 +13,8 @@
 
     $history = new \App\Classes\HistoryServices();
 
-       $begin = new DateTime('2021-01-01');
-       $end = new DateTime('2022-06-31');
+       $begin = new DateTime('2022-11-13');
+       $end = new DateTime('2022-11-31');
 
        $interval = DateInterval::createFromDateString('7 day');
        $period = new DatePeriod($begin, $interval, $end);

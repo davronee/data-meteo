@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Http;
 class Services
 {
 
+    public $endpointhoriba = 'https://ecoweb.meteo.uz/api/database/averages/GetAverages/';
+    public $horibaData = null;
+    public $meteobotData = null;
+    public $dataArray = [];
+
+    protected $apiToken = "1431648419:AAHns8IHW3T0HJMwOyFWL_pdrtB0CMEZ1rQ";
+    protected $ChatId = '-1001426573564';
 
     public static $regions = [
         'tashkent',
@@ -508,41 +515,32 @@ class Services
                 ->get();
         }
 
-
         $summ = 0;
         $total = 0;
         foreach ($objects as $key => $object) {
             $total += $object->temp_precent;
         }
-
         return $total > 0 ? round($total / count($objects)) : 0;
-
     }
 
     public static function GetReportAll($model, $s_hour, $f_hour)
     {
-
-
         $startDate = Carbon::now()->subHour($s_hour);
         $endDate = Carbon::now()->subHour($f_hour);
         $objects = DB::table($model)
             ->whereBetween('datetime', [$endDate, $startDate])
             ->get();
-
-
         $summ = 0;
         $total = 0;
         foreach ($objects as $key => $object) {
             $total += $object->temp_precent;
         }
-
         return $total == 0 ? 0 : round($total / count($objects));
-
     }
 
     public static function GetAwsByRegion($regionid)
     {
-        $endpoint =  config('app.AWS_ENDPOINT'); //env('AWS_ENDPOINT');
+        $endpoint = config('app.AWS_ENDPOINT'); //env('AWS_ENDPOINT');
         $endpoint_tradional = config('app.METEOAPI_ENDPOINT');
         switch ($regionid) {
             case 1726:
@@ -570,7 +568,6 @@ class Services
                     'max_wind' => '-',
                     'regionid' => $regionid,
                     'weathercode' => $current['weather_code'],
-
                 ];
                 return response()->json($cur);
             case 1703:
@@ -585,7 +582,6 @@ class Services
                     'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
                     'weathercode' => $traditional['weather_code'],
                     'regionid' => $regionid
-
                 ];
                 return response()->json($cur);
             case 1706:
@@ -599,9 +595,7 @@ class Services
                     'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
                     'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
                     'weathercode' => $traditional['weather_code'],
-
                     'regionid' => $regionid
-
                 ];
                 return response()->json($cur);
             case 1708:
@@ -615,9 +609,7 @@ class Services
                     'min_wind' => $current->json()['Stations']['Sources']['Variables'][18]['Value']['Value'],
                     'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
                     'weathercode' => $traditional['weather_code'],
-
                     'regionid' => $regionid
-
                 ];
                 return response()->json($cur);
             case 1710:
@@ -632,7 +624,6 @@ class Services
                     'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
                     'weathercode' => $traditional['weather_code'],
                     'regionid' => $regionid
-
                 ];
                 return response()->json($cur);
             case 1712:
@@ -647,7 +638,6 @@ class Services
                     'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
                     'weathercode' => $traditional['weather_code'],
                     'regionid' => $regionid
-
                 ];
                 return response()->json($cur);
             case 1714:
@@ -664,7 +654,6 @@ class Services
                     'max_wind' => '-',
                     'weathercode' => $traditional['weather_code'],
                     'regionid' => $regionid
-
                 ];
                 return response()->json($cur);
             case 1718:
@@ -679,7 +668,6 @@ class Services
                     'max_wind' => $current->json()['Stations']['Sources']['Variables'][19]['Value']['Value'],
                     'weathercode' => $traditional['weather_code'],
                     'regionid' => $regionid
-
                 ];
                 return response()->json($cur);
             case 1722:
@@ -752,7 +740,6 @@ class Services
                     'regionid' => $regionid
                 ];
                 return response()->json($cur);
-
         }
     }
 
@@ -768,7 +755,6 @@ class Services
                 'language' => 'ru-Ru',
                 'apiKey' => '1ee695f625b44d48a695f625b41d48b8',
             ])->json();
-
             $index = 1;
             foreach ($forecasts['validTimeLocal'] as $key => $forecast) {
                 if (!WeatherApi::where('region', self::$regions[$regKey])->where('date', Carbon::parse($forecast)->format('Y-m-d'))->first()) {
@@ -788,11 +774,96 @@ class Services
                     $index += 2;
                     $weatherApi->save();
                 }
+            }
+        }
+    }
 
+    public function GetHoribaAvarage()
+    {
+        $arr = [];
+
+        $data = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'WebOneLocale' => 'ru-RU',
+        ])->withOptions([
+            'verify' => false
+        ])->get($this->endpointhoriba, [
+            'timeZoneId' => 'Pakistan Standard Time',
+            'repositoryName' => 'Main',
+            'rowLimit' => 4000,
+            'beginTime' => Carbon::now()->format('Y-m-d') . 'T00:00:00',
+            'endTime' => Carbon::now()->addDays(1)->format('Y-m-d') . 'T00:00:00',
+            'dateTimeRangeLength' => 1,
+            'dateTimeRangeLengthUnit' => 'Hours',
+            'unit' => 'h',
+            'dateTimeRange' => 'Fixed',
+            'pointId[]' => 1,
+            'type' => 'LongTerm',
+            'stationId[]' => 1,
+            'componentId[]' => '26,28',
+        ]);
+
+        foreach ($data->json() as $item) {
+            if (\Carbon\Carbon::parse($item['EndTime'])->format('i') == '00') {
+                array_push($arr, $item);
+            }
+        }
+        $this->horibaData = $arr;
+
+        return $this->horibaData;
+    }
+
+    public function GetMeteoBot()
+    {
+        $meteobot = Http::withOptions([
+            'verify' => false
+        ])->withBasicAuth(3231343030303336, 'k8hwRivdex7hr_5tc')->
+        get('https://export.meteobot.com/v2/Generic/Index', [
+            'id' => 22070082,//'3231343030303336',
+            'startDate' => Carbon::now()->format('Y-m-d'),
+            'endDate' => Carbon::now()->addDays(1)->format('Y-m-d'),
+        ]);
+        $this->meteobotData = $meteobot->body();
+        $arr = [];
+        $acctArr = explode("\r", $meteobot);
+        foreach ($acctArr as $key => $item) {
+            if ($key != 0) {
+                $value = "";
+                if ($item != "\n") {
+                    $value = str_getcsv($item, ';');
+                    array_push($this->dataArray, [$value[1] . ' ' . $value[2], $value[13], 'PM10']);
+                    array_push($this->dataArray, [$value[1] . ' ' . $value[2], $value[15], 'PM25']);
+
+                }
             }
 
-        }
 
+        }
+        return $this->dataArray;
+    }
+
+    public function SendAirQuality()
+    {
+        $bot_url = "https://api.telegram.org/bot" . $this->apiToken;
+        $url = $bot_url . "/sendDocument?chat_id=" . $this->ChatId;
+
+        $post_fields = ['chat_id' => $this->ChatId,
+            'document' => new \CURLFile(storage_path('app/airquality.xls'), 'application/vnd.ms-excel', 'airquality.xls'),
+            'parse_mode' => "HTML"
+        ];
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type:multipart/form-data"
+        ));
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        $output = curl_exec($ch);
 
     }
+
 }
