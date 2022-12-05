@@ -2863,1567 +2863,213 @@
                     map.addLayer(markers_mini);
 
 
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303336)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(41.32673014429975), parseFloat(69.293103839704)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>MeteoBot-36 / MeteoUz</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + " гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + " </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + " мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + " м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[9] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
-                                            "<td>" + response.data[11] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[12] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
-                                            "<td>" + response.data[13] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
-                                            "<td>" + response.data[14] + " °C</td>" +
-                                            "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
+                    this.meteobots.forEach(function (item, i, arr) {
+                        if (item.is_has_aq) {
+                            axios.get('{{route('meteobot.GetMeteoBotInfo')}}', {
+                                params: {
+                                    id: item.sn
+                                }
+                            })
+                                .then(function (response) {
+                                    if (response.data[3]) {
+                                        const fontAwesomeIcon = L.divIcon({
+                                            html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                            iconSize: [32, 32],
+                                            className: 'myDivIcon'
                                         });
+                                        var marker2 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: fontAwesomeIcon})
+                                            .on('click', function () {
+                                                marker2.bindPopup("" +
+                                                    "<table class='table table-bordered'>" +
+                                                    "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.date')</b></td>" +
+                                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.temp') </b></td>" +
+                                                    "<td>" + response.data[3] + " °C</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.humidity') </b></td>" +
+                                                    "<td>" + response.data[4] + " %</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.current_pressure') </b></td>" +
+                                                    "<td>" + response.data[5] + "  гПа</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.dew_point') </b></td>" +
+                                                    "<td>" + response.data[6] + "</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                                    "<td>" + response.data[7] + "  мм</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.wind_speed') </b></td>" +
+                                                    "<td>" + response.data[8] + "  м/с</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.wind_direction') </b></td>" +
+                                                    "<td>" + response.data[9] + " °</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                                    "<td>" + response.data[10] + " %</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                                    "<td>" + response.data[11] + " °C</td>" +
+                                                    "</tr>" +
+                                                    // "<tr>" +
+                                                    // "<td><b>PM2.5</b></td>" +
+                                                    // "<td>" + response.data[13] + " µg/m³</td>" +
+                                                    // "</tr>" +
+                                                    // "<tr>" +
+                                                    // "<td><b>PM10</b></td>" +
+                                                    // "<td>" + response.data[15] + " µg/m³</td>" +
+                                                    // "</tr>" +
+                                                    // "<tr>" +
+                                                    // "<td><b>CO2</b></td>" +
+                                                    // "<td>" + response.data[17] + " µg/m³</td>" +
+                                                    // "</tr>" +
+                                                    "</table>"
+                                                )
 
-                                marker2.fire('click');
+
+                                            })
+                                            .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
+                                                {
+                                                    permanent: true,
+                                                    direction: 'top',
+                                                    className: 'ownClassMini'
+
+                                                });
+
+                                        marker2.fire('click');
 
 
-                                markers_mini.addLayer(marker2);
-                            }
+                                        markers_mini.addLayer(marker2);
+                                    }
 
 
-                            map.addLayer(markers_mini);
+                                    map.addLayer(markers_mini);
 
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303337)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
+                                    // handle success
+                                })
+                                .catch(function (error) {
+                                    // handle error
+                                    console.log(error);
+                                })
+                                .then(function () {
+                                    // always executed
                                 });
-                                var marker2 = L.marker([parseFloat(41.30336446744657), parseFloat(71.67648466571539)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>MeteoBot-36 / MeteoUz</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + " гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + " </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + " мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + " м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[9] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
-                                            "<td>" + response.data[11] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[12] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
-                                            "<td>" + response.data[13] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
-                                            "<td>" + response.data[14] + " °C</td>" +
-                                            "</tr>" +
-                                            "</table>"
-                                        )
 
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
+                        } else {
+                            axios.get('{{route('meteobot.GetMeteoBotInfo')}}', {
+                                params: {
+                                    id: item.sn
+                                }
+                            })
+                                .then(function (response) {
+                                    if (response.data[3]) {
+                                        const fontAwesomeIcon = L.divIcon({
+                                            html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                            iconSize: [32, 32],
+                                            className: 'myDivIcon'
                                         });
+                                        var marker2 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: fontAwesomeIcon})
+                                            .on('click', function () {
+                                                marker2.bindPopup("" +
+                                                    "<table class='table table-bordered'>" +
+                                                    "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.date')</b></td>" +
+                                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.temp') </b></td>" +
+                                                    "<td>" + response.data[3] + " °C</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.humidity') </b></td>" +
+                                                    "<td>" + response.data[4] + " %</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.current_pressure') </b></td>" +
+                                                    "<td>" + response.data[5] + " гПа</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.dew_point') </b></td>" +
+                                                    "<td>" + response.data[6] + " </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
+                                                    "<td>" + response.data[7] + " мм</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.wind_speed') </b></td>" +
+                                                    "<td>" + response.data[8] + " м/с</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
+                                                    "<td>" + response.data[9] + " %</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
+                                                    "<td>" + response.data[10] + " %</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
+                                                    "<td>" + response.data[11] + " %</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
+                                                    "<td>" + response.data[12] + " °C</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
+                                                    "<td>" + response.data[13] + " °C</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
+                                                    "<td>" + response.data[14] + " °C</td>" +
+                                                    "</tr>" +
+                                                    "</table>"
+                                                )
 
-                                marker2.fire('click');
+
+                                            })
+                                            .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
+                                                {
+                                                    permanent: true,
+                                                    direction: 'top',
+                                                    className: 'ownClassMini'
+
+                                                });
+
+                                        marker2.fire('click');
 
 
-                                markers_mini.addLayer(marker2);
-                            }
+                                        markers_mini.addLayer(marker2);
+                                    }
 
 
-                            map.addLayer(markers_mini);
+                                    map.addLayer(markers_mini);
 
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070086)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
+                                    // handle success
+                                })
+                                .catch(function (error) {
+                                    // handle error
+                                    console.log(error);
+                                })
+                                .then(function () {
+                                    // always executed
                                 });
-                                var marker2 = L.marker([parseFloat(42.423779), parseFloat(59.432347)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Ходжейли</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
 
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070087)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(43.18342), parseFloat(58.601853)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Қўнғирот</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070078)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(42.836645), parseFloat(59.026752)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Канлыкул</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070089)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(42.626903), parseFloat(58.935822)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Шоманай</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070081)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(42.674961), parseFloat(59.189073)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Сары-алтын</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070088)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(42.10687), parseFloat(60.078909)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Мангит</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070080)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(41.490429), parseFloat(61.02961)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Шурохан</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070084)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(41.551874), parseFloat(60.990675)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Турткуль</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070079)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(40.37338), parseFloat(71.797833)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Фаргона шахри</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070083)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(40.37338), parseFloat(71.797833)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Бешарык</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070085)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(40.578156), parseFloat(70.916041)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Дангара</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070144)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(40.578156), parseFloat(70.916041)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Туямўйин</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070157)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(40.578156), parseFloat(70.916041)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Қўшкупир</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',22070162)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(40.578156), parseFloat(70.916041)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Дашяк</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + "  гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + "  мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + "  м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_direction') </b></td>" +
-                                            "<td>" + response.data[9] + " °</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[11] + " °C</td>" +
-                                            "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM2.5</b></td>" +
-                                            // "<td>" + response.data[13] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>PM10</b></td>" +
-                                            // "<td>" + response.data[15] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            // "<tr>" +
-                                            // "<td><b>CO2</b></td>" +
-                                            // "<td>" + response.data[17] + " µg/m³</td>" +
-                                            // "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
+                        }
+                    });
 
 
                     axios.get('{{route('bukhara_chines.getRealTimeData')}}')
@@ -4513,297 +3159,6 @@
 
                             map.addLayer(markers_mini);
 
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303334)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(41.007298), parseFloat(71.832123)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Уйчи тумани - 34</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + " гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + " </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + " мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + " м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[9] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
-                                            "<td>" + response.data[11] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[12] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
-                                            "<td>" + response.data[13] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
-                                            "<td>" + response.data[14] + " °C</td>" +
-                                            "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303335)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(40.872529), parseFloat(71.454138)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Мингбулоқ тумани - 35</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + " гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + " </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + " мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + " м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[9] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
-                                            "<td>" + response.data[11] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[12] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
-                                            "<td>" + response.data[13] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
-                                            "<td>" + response.data[14] + " °C</td>" +
-                                            "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-
-
-                            map.addLayer(markers_mini);
-
-                            // handle success
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            // always executed
-                        });
-
-
-                    axios.get('{{route('meteobot.GetMeteoBotInfo',3231343030303333)}}')
-                        .then(function (response) {
-                            if (response.data[3]) {
-                                const fontAwesomeIcon = L.divIcon({
-                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                    iconSize: [32, 32],
-                                    className: 'myDivIcon'
-                                });
-                                var marker2 = L.marker([parseFloat(41.233787), parseFloat(69.66222)], {icon: fontAwesomeIcon})
-                                    .on('click', function () {
-                                        marker2.bindPopup("" +
-                                            "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Паркент Самсарак</b></td></tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.date')</b></td>" +
-                                            "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.temp') </b></td>" +
-                                            "<td>" + response.data[3] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.humidity') </b></td>" +
-                                            "<td>" + response.data[4] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.current_pressure') </b></td>" +
-                                            "<td>" + response.data[5] + " гПа</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.dew_point') </b></td>" +
-                                            "<td>" + response.data[6] + " </td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.10_the_amount_precipitation_during') </b></td>" +
-                                            "<td>" + response.data[7] + " мм</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.wind_speed') </b></td>" +
-                                            "<td>" + response.data[8] + " м/с</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture1') (-10) </b></td>" +
-                                            "<td>" + response.data[9] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture2') (-20)</b></td>" +
-                                            "<td>" + response.data[10] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Moisture3') (-30)</b></td>" +
-                                            "<td>" + response.data[11] + " %</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp1') (-10) </b></td>" +
-                                            "<td>" + response.data[12] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp2') (-20)</b></td>" +
-                                            "<td>" + response.data[13] + " °C</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "<td><b>@lang('map.Soil.Temp3') (-30)</b></td>" +
-                                            "<td>" + response.data[14] + " °C</td>" +
-                                            "</tr>" +
-                                            "</table>"
-                                        )
-
-
-                                    })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data[3] + '°' + "</b></div>",
-                                        {
-                                            permanent: true,
-                                            direction: 'top',
-                                            className: 'ownClassMini'
-
-                                        });
-
-                                marker2.fire('click');
-
-
-                                markers_mini.addLayer(marker2);
-                            }
-                            map.addLayer(markers_mini);
                             // handle success
                         })
                         .catch(function (error) {

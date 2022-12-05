@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             AddRadars::class,
             AddMicrostepStations::class,
             AddWeatherCode::class,
-            AddStation::class
+            AddStation::class,
+            MeteobotStationsSeed::class
         ]);
     }
 }
