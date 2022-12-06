@@ -23,6 +23,7 @@ class Services
     public $meteobotData = null;
     public $dataArray = [];
 
+
     protected $apiToken = "1431648419:AAHns8IHW3T0HJMwOyFWL_pdrtB0CMEZ1rQ";
     protected $ChatId = '-1001426573564';
 
@@ -118,8 +119,9 @@ class Services
                     $openweather->wind_speed = round($service['wind']['speed']);
                     $openweather->wind_deg = round($service['wind']['deg']);
                     $openweather->wind_gust = round($service['wind']['gust']);
-                    if (isset($service['rain']))
+                    if (isset($service['rain'])) {
                         $openweather->is_rain = true;
+                    }
                     $openweather->save();
                 }
             }
@@ -137,7 +139,10 @@ class Services
             ]);
 
             foreach ($services['DailyForecasts'] as $service) {
-                if (!Accuweather::where('datetime', Carbon::parse($service['Date']))->where('region', self::$regions[$key])->first()) {
+                if (!Accuweather::where('datetime', Carbon::parse($service['Date']))->where(
+                    'region',
+                    self::$regions[$key]
+                )->first()) {
                     $accuweather = new Accuweather();
                     $accuweather->datetime = Carbon::parse($service['Date']);
                     $accuweather->date = Carbon::parse($service['Date']);
@@ -148,8 +153,9 @@ class Services
                     $accuweather->day_wind_deg = $service['Day']['Wind']['Direction']['Degrees'];
                     $accuweather->day_wind_localized = $service['Day']['Wind']['Direction']['Localized'];
                     $accuweather->day_wind_gust = $service['Day']['WindGust']['Speed']['Value'];
-                    if ($service['Day']['Rain']['Value'] > 0)
+                    if ($service['Day']['Rain']['Value'] > 0) {
                         $accuweather->day_rain = true;
+                    }
                     $accuweather->save();
                 }
             }
@@ -172,8 +178,6 @@ class Services
 //            }
 
         }
-
-
     }
 
     public static function GetUzhydromet()
@@ -186,7 +190,6 @@ class Services
             ])->json();
 
             foreach ($services as $service) {
-
                 UzHydromet::updateOrCreate(
                     ['service_id' => $service['id']],
                     [
@@ -203,17 +206,12 @@ class Services
                         'precipitation' => $service['precipitation'] != 'none' && $service['precipitation'] != 'fog' ? true : false,
                     ]
                 );
-
             }
-
         }
-
     }
 
     public static function WeatherBit()
     {
-
-
         foreach (self::$geolocation as $key => $geo) {
             $services = Http::withOptions([
                 'verify' => false
@@ -224,7 +222,10 @@ class Services
 
 
             foreach ($services['data'] as $service) {
-                if (!WeatherBit::where('region', self::$regions[$key])->where('datetime', Carbon::parse($service['ts']))->first()) {
+                if (!WeatherBit::where('region', self::$regions[$key])->where(
+                    'datetime',
+                    Carbon::parse($service['ts'])
+                )->first()) {
                     $weatherbit = new WeatherBit();
                     $weatherbit->region = self::$regions[$key];
                     $weatherbit->datetime = Carbon::parse($service['ts']);
@@ -234,11 +235,11 @@ class Services
                     $weatherbit->wind_dir = round($service['wind_dir']);
                     $weatherbit->wind_spd = round($service['wind_spd']);
                     $weatherbit->wind_cdir = $service['wind_cdir'];
-                    if ($service['precip'] != 0)
+                    if ($service['precip'] != 0) {
                         $weatherbit->precip = true;
+                    }
                     $weatherbit->save();
                 }
-
             }
         }
     }
@@ -246,7 +247,6 @@ class Services
     public static function GetDarkSky()
     {
         foreach (self::$geolocation_str as $key => $geo) {
-
             $services = Http::withOptions([
                 'verify' => false
             ])->withHeaders([
@@ -258,7 +258,10 @@ class Services
             ])->json()['daily']['data'];
 
             foreach ($services as $service) {
-                if (!DarkSky::where('region', self::$regions[$key])->where('datetime', Carbon::parse($service['time']))->first()) {
+                if (!DarkSky::where('region', self::$regions[$key])->where(
+                    'datetime',
+                    Carbon::parse($service['time'])
+                )->first()) {
                     $darksky = new DarkSky();
                     $darksky->region = self::$regions[$key];
                     $darksky->datetime = Carbon::parse($service['time']);
@@ -266,11 +269,11 @@ class Services
                     $darksky->temperatureMin = round($service['temperatureMin']);
                     $darksky->temperatureMax = round($service['temperatureMax']);
                     $darksky->windSpeed = round($service['windSpeed']);
-                    if ($service['precipIntensityMax'] > 0)
+                    if ($service['precipIntensityMax'] > 0) {
                         $darksky->precipIntensityMax = true;
+                    }
                     $darksky->save();
                 }
-
             }
         }
     }
@@ -285,7 +288,10 @@ class Services
                 'x-rapidapi-key' => '6cf743554dmsh3b4a43f2fe721bcp182316jsn234c801f7093'
             ])->get('https://aerisweather1.p.rapidapi.com/forecasts/' . $geo)->json();
             foreach ($services['response'][0]['periods'] as $service) {
-                if (!Aerisweather::where('region', self::$regions[$key])->where('datetime', Carbon::parse($service['timestamp']))->first()) {
+                if (!Aerisweather::where('region', self::$regions[$key])->where(
+                    'datetime',
+                    Carbon::parse($service['timestamp'])
+                )->first()) {
                     $aeriswether = new Aerisweather();
                     $aeriswether->region = self::$regions[$key];
                     $aeriswether->datetime = Carbon::parse($service['timestamp']);
@@ -295,19 +301,18 @@ class Services
                     $aeriswether->windSpeedKTS = round($service['windSpeedKTS']);
                     $aeriswether->windDirDEG = round($service['windDirDEG']);
                     $aeriswether->windDir = $service['windDir'];
-                    if ($service['precipMM'] > 0)
+                    if ($service['precipMM'] > 0) {
                         $aeriswether->precipMM = true;
+                    }
                     $aeriswether->save();
                 }
             }
         }
-
     }
 
     public static function getSumm($temp1, $temp2)
     {
         return ($temp1 + $temp2) / 2;
-
     }
 
     public static function Delta($tem_min, $temp_max, $current)
@@ -317,11 +322,19 @@ class Services
         $current = round($current);
 
         if ($current < $tem_min) {
-            $result_temp = abs(abs(($tem_min - $current) / (self::getSumm($tem_min, $temp_max) - $current)) * 100 - 100);
-        } else if ($current >= $tem_min && $current <= $temp_max) {
-            $result_temp = 100;
-        } else if ($current > $temp_max) {
-            $result_temp = abs(abs(($temp_max - $current) / (self::getSumm($tem_min, $temp_max) - $current)) * 100 - 100);
+            $result_temp = abs(
+                abs(($tem_min - $current) / (self::getSumm($tem_min, $temp_max) - $current)) * 100 - 100
+            );
+        } else {
+            if ($current >= $tem_min && $current <= $temp_max) {
+                $result_temp = 100;
+            } else {
+                if ($current > $temp_max) {
+                    $result_temp = abs(
+                        abs(($temp_max - $current) / (self::getSumm($tem_min, $temp_max) - $current)) * 100 - 100
+                    );
+                }
+            }
         }
 
 //        $psumm = self::getSumm($tem_min, $temp_max);
@@ -348,20 +361,29 @@ class Services
 //            $openweather->factik = $weather['air_t'];
 //            $openweather->save();
 
-            $weather = Http::get('http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru')->json();
+            $weather = Http::get(
+                'http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru'
+            )->json();
 
             $subopenweather = Accuweather::toBase()
                 ->selectRaw('MAX(id) as id')
                 ->where('region', $region)
                 ->wheretime('datetime', '<=', Carbon::now())
-                ->whereBetween('date', [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")])
+                ->whereBetween(
+                    'date',
+                    [Carbon::now()->format("Y-m-d"), Carbon::now()->addDays(request('interval', 0))->format("Y-m-d")]
+                )
                 ->groupBy('date')
                 ->pluck('id')
                 ->toArray();
 
             $accuweather = \App\Models\Accuweather::whereIn('id', $subopenweather)->first();
             if ($accuweather) {
-                $accuweather->temp_precent = self::Delta($accuweather->temp_min, $accuweather->temp_max, $weather['air_t']);
+                $accuweather->temp_precent = self::Delta(
+                    $accuweather->temp_min,
+                    $accuweather->temp_max,
+                    $weather['air_t']
+                );
                 $accuweather->factik = $weather['air_t'];
                 $accuweather->save();
             }
@@ -380,10 +402,13 @@ class Services
 
             $gidromet = \App\Models\UzHydromet::whereIn('id', $subopenweather)->get();
             foreach ($gidromet as $item) {
-                $item->temp_precent = self::Delta($gidromet->min('air_t_min'), $gidromet->max('air_t_max'), $weather['air_t']);
+                $item->temp_precent = self::Delta(
+                    $gidromet->min('air_t_min'),
+                    $gidromet->max('air_t_max'),
+                    $weather['air_t']
+                );
                 $item->factik = $weather['air_t'];
                 $item->save();
-
             }
 
 
@@ -437,7 +462,11 @@ class Services
                 ->where('date', Carbon::now()->format("Y-m-d"))->first();
             if ($weatherApi) {
                 $weatherApi->faktik = $weather['air_t'];
-                $weatherApi->temp_precent = self::Delta($weatherApi->temp_min, $weatherApi->temp_max, $weather['air_t']);
+                $weatherApi->temp_precent = self::Delta(
+                    $weatherApi->temp_min,
+                    $weatherApi->temp_max,
+                    $weather['air_t']
+                );
                 $weatherApi->save();
             }
         }
@@ -492,13 +521,11 @@ class Services
                 return 'Республика Каракалпакстан';
                 break;
         }
-
     }
 
 
     public static function GetReport($model, $s_hour, $f_hour, $region = 'tashkent')
     {
-
         if ($model == 'uz_hydromets') {
             $startDate = Carbon::now()->subHour($s_hour);
             $endDate = Carbon::now()->subHour($f_hour);
@@ -544,7 +571,9 @@ class Services
         $endpoint_tradional = config('app.METEOAPI_ENDPOINT');
         switch ($regionid) {
             case 1726:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/51/O')->json();
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/51/O'
+                )->json();
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -571,7 +600,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1703:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/1/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/1/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -585,7 +616,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1706:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/6/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/6/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -599,7 +632,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1708:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/60/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/60/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -613,7 +648,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1710:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/54/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/54/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -627,7 +664,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1712:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/17/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/17/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -657,7 +696,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1718:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/20/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/20/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -671,7 +712,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1722:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/25/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/25/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -685,7 +728,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1724:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/26/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/26/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -699,7 +744,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1727:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/42/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/42/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -713,7 +760,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1730:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/43/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/43/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -727,7 +776,9 @@ class Services
                 ];
                 return response()->json($cur);
             case 1733:
-                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get($endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/49/O');
+                $current = Http::withBasicAuth('davronee', 'bvlgari1991')->get(
+                    $endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/49/O'
+                );
                 $traditional = Http::withOptions([
                     'verify' => false
                 ])->get($endpoint_tradional . 'api/weather/current/' . $regionid)->json();
@@ -757,7 +808,10 @@ class Services
             ])->json();
             $index = 1;
             foreach ($forecasts['validTimeLocal'] as $key => $forecast) {
-                if (!WeatherApi::where('region', self::$regions[$regKey])->where('date', Carbon::parse($forecast)->format('Y-m-d'))->first()) {
+                if (!WeatherApi::where('region', self::$regions[$regKey])->where(
+                    'date',
+                    Carbon::parse($forecast)->format('Y-m-d')
+                )->first()) {
                     $weatherApi = new WeatherApi();
                     $weatherApi->region = self::$regions[$regKey];
                     $weatherApi->datetime = Carbon::parse($forecast);
@@ -834,11 +888,8 @@ class Services
                     $value = str_getcsv($item, ';');
                     array_push($this->dataArray, [$value[1] . ' ' . $value[2], $value[13], 'PM10']);
                     array_push($this->dataArray, [$value[1] . ' ' . $value[2], $value[15], 'PM25']);
-
                 }
             }
-
-
         }
         return $this->dataArray;
     }
@@ -848,8 +899,11 @@ class Services
         $bot_url = "https://api.telegram.org/bot" . $this->apiToken;
         $url = $bot_url . "/sendDocument?chat_id=" . $this->ChatId;
 
-        $post_fields = ['chat_id' => $this->ChatId,
-            'document' => new \CURLFile(storage_path('app/airquality.xls'), 'application/vnd.ms-excel', 'airquality.xls'),
+        $post_fields = [
+            'chat_id' => $this->ChatId,
+            'document' => new \CURLFile(
+                storage_path('app/airquality.xls'), 'application/vnd.ms-excel', 'airquality.xls'
+            ),
             'parse_mode' => "HTML"
         ];
 
@@ -863,7 +917,31 @@ class Services
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
         $output = curl_exec($ch);
+    }
 
+    public function GetFaktikIms()
+    {
+        $text = "&parse_mode=html&text=";
+        $data = Http::withOptions([
+            'verify' => false
+        ])->withBasicAuth('davronee', 'bvlgari1991')->get(
+            'https://aws.meteo.uz/EnvidbCurrentDataInterface/GetCurrentDataForStationById/63/O'
+        )->json();
+
+        $text .= "<b> Станция : " . $data['Stations']['StationName'] . '</b>' . PHP_EOL;
+        $text .= "<b>Ҳаво Ҳарорат:</b>" . $data['Stations']['Sources']['Variables'][24]['Value']['Value'] . '  °C' . PHP_EOL;
+        $text .= "<b>Ҳаво намлиги:</b>" . $data['Stations']['Sources']['Variables'][7]['Value']['Value'] . '  %' . PHP_EOL;
+        $text .= "<b>Атмосфера босими:</b> " . $data['Stations']['Sources']['Variables'][25]['Value']['Value'] . '  гПа' . PHP_EOL;
+        $text .= "<b>Шамол йўналиши:</b> " . $data['Stations']['Sources']['Variables'][14]['Value']['Value'] . '  °' . PHP_EOL;
+        $text .= "<b>Шамол тезлиги:</b> " . $data['Stations']['Sources']['Variables'][17]['Value']['Value'] . ' м/с' . PHP_EOL;
+        $text .= "<b>Ёғингарчилик миқдори:</b> " . $data['Stations']['Sources']['Variables'][13]['Value']['Value'] . '  мм' . PHP_EOL;
+        $text .= "<b>Сана:</b> " . Carbon::parse(
+                $data['Stations']['Sources']['Variables'][24]['Value']['Meastime']
+            )->addHours(5)->format('d.m.y H:i')  . PHP_EOL;
+
+        $http = Http::withOptions(['verify' => false])->get(
+            "https://api.telegram.org/bot$this->apiToken/sendMessage?chat_id=" . $this->ChatId . $text
+        );
     }
 
 }
