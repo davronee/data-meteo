@@ -56,6 +56,9 @@ class MeteobotStationsSeed extends Seeder
             22070160,
             22070161,
             22070149,
+            22070141,
+            22070142,
+
         ];
 
         foreach ($stations as $station) {
