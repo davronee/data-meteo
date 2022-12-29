@@ -46,7 +46,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('weather:forecast')->dailyAt('11:00');
         $schedule->command('weather:check')->hourly();
-        $schedule->command('ims:faktik')->everyTenMinutes();
+        $schedule->command('ims:faktik')->hourly();
     }
 
     /**
