@@ -236,7 +236,7 @@ Vue.component('weather-data-uzhydromet', {
                 </td>
                 <td><span class="m_s">{{ item.wind_speed_min }}-{{ item.wind_speed_max }}</span></td>
                 <td><span
-                    :class="item.precipitation != 'none' && item.precipitation != 'fog' ? 'rain_yes' : 'rain_no'"></span>
+                    :class="item.precipitation == 1  ? 'rain_yes' : 'rain_no'"></span>
                 </td>
                 <td><span v-if="item.temp_precent > 0"> <i class="fas fa-equals"></i> {{ item.temp_precent }} %</span>
                 </td>
