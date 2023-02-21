@@ -2706,7 +2706,6 @@
                                || item.Metadata.AwsId == 32) {
 
                                 total++;
-                                console.log('kirdi');
                                 var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: fontAwesomeIcon}).on('click', function () {
                                     axios.post('{{route('map.awd.getStation')}}', {
                                         token: '{{@csrf_token()}}',
