@@ -35,7 +35,7 @@ class MicrostepStationsController extends Controller
 
                 $stationid = MicrostepStations::where('stationid', $stationid[0])->first();
 
-                Log::info('count: '.count($data).' statiodid: '.$stationid->stationid);
+//                Log::info('count: '.count($data).' statiodid: '.$stationid->stationid);
 
 
                 $station = new MicrostepStationsValues();

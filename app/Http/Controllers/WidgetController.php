@@ -12,7 +12,7 @@ class WidgetController extends Controller
 {
 //    public $endpoint = 'http://217.30.161.60:8086/';
     public $endpoint = 'http://192.168.21.131:8086/';
-    public $meteoapi = 'http://192.168.10.249:8085/';
+    public $meteoapi = 'http://meteoapi.meteo.uz/';//'http://192.168.10.249:8085/';
 //    public $dangerzonesapi = 'http://10.190.24.134:11082/public/api/';
 //    public $dangerzonesapi = 'http://192.168.0.28:11082/public/api/';
     public $dangerzonesapi = 'http://192.168.20.7:11082/api/';
