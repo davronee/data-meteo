@@ -80,6 +80,7 @@ class MeteobotStationsSeed extends Seeder
             22070218,
             22070219,
             22070209,
+            22070207,
             22070208,
             22070205,
             22070219,
