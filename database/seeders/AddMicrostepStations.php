@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\MicrostepStations;
+use App\Models\Station;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
@@ -15,118 +16,101 @@ class AddMicrostepStations extends Seeder
      */
     public function run()
     {
-        if(!MicrostepStations::where('stationid',38141)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38141;
-            $station->station_name = 'Жаслык';
-            $station->latitude = '43.58';
-            $station->longitude = '57.29';
-            $station->region_id = 1735;
-            $station->l_vis = 128;
-            $station->status = 'МС';
-            $station->save();
-        }
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38141],
+            ['station_name'=>'Жаслык',
+                'latitude'=>'43.58',
+                'longitude'=>'57.29',
+                'region_id'=>1735,
+                'l_vis'=>128,
+                'status'=>'МС',
+            ]
+        );
 
-        if(!MicrostepStations::where('stationid',38146)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38146;
-            $station->station_name = 'Муйнак';
-            $station->latitude = '43.45';
-            $station->longitude = '59.01';
-            $station->region_id = 1735;
-            $station->l_vis = 53.8;
-            $station->status = 'МС';
-            $station->save();
-        }
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38146],
+            ['station_name'=>'Муйнак',
+                'latitude'=>'43.45',
+                'longitude'=>'59.01',
+                'region_id'=>1735,
+                'l_vis'=>53.8,
+                'status'=>'МС',
+            ]
+        );
 
-        if(!MicrostepStations::where('stationid',38149)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38149;
-            $station->station_name = 'Кунград - КАМС';
-            $station->latitude = '43.04';
-            $station->longitude = '58.53';
-            $station->region_id = 1735;
-            $station->l_vis = 64;
-            $station->status = 'МС';
-            $station->save();
-        }
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38149],
+            ['station_name'=>'Кунград - КАМС',
+                'latitude'=>'43.04',
+                'longitude'=>'58.53',
+                'region_id'=>1735,
+                'l_vis'=>64,
+                'status'=>'МС',
+            ]
+        );
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38262],
+            ['station_name'=>'Чимбай',
+                'latitude'=>'42.56',
+                'longitude'=>'59.47',
+                'region_id'=>1735,
+                'l_vis'=>66,
+                'status'=>'МС',
+            ]
+        );
 
-        if(!MicrostepStations::where('stationid',38262)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38262;
-            $station->station_name = 'Чимбай';
-            $station->latitude = '42.56';
-            $station->longitude = '59.47';
-            $station->region_id = 1735;
-            $station->l_vis = 66;
-            $station->status = 'МС';
-            $station->save();
-        }
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38263],
+            ['station_name'=>'Тахтакупыр',
+                'latitude'=>'42.33401067871654',
+                'longitude'=>'59.57905443012308',
+                'region_id'=>1735,
+                'l_vis'=>60.6,
+                'status'=>'МС',
+            ]
+        );
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38264],
+            ['station_name'=>'Нукус',
+                'latitude'=>'42.29',
+                'longitude'=>'59.37',
+                'region_id'=>1735,
+                'l_vis'=>77,
+                'status'=>'АМСГ',
+            ]
+        );
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38265],
+            ['station_name'=>'Тахиаташ',
+                'latitude'=>'43.01',
+                'longitude'=>'60.17',
+                'region_id'=>1735,
+                'l_vis'=>77.9,
+                'status'=>'МС',
+            ]
+        );
 
-        if(!MicrostepStations::where('stationid',38263)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38263;
-            $station->station_name = 'Тахтакупыр';
-            $station->latitude = '43.01';
-            $station->longitude = '60.17';
-            $station->region_id = 1735;
-            $station->l_vis = 60.6;
-            $station->status = 'МС';
-            $station->save();
-        }
-        if(!MicrostepStations::where('stationid',38264)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38264;
-            $station->station_name = 'Нукус';
-            $station->latitude = '42 29';
-            $station->longitude = '59 37';
-            $station->region_id = 1735;
-            $station->l_vis = 77;
-            $station->status = 'АМСГ';
-            $station->save();
-        }
-        if(!MicrostepStations::where('stationid',38265)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38265;
-            $station->station_name = 'Тахиаташ';
-            $station->latitude = '42.29';
-            $station->longitude = '59.37';
-            $station->region_id = 1735;
-            $station->l_vis = 77.9;
-            $station->status = 'МС';
-            $station->save();
-        }
-        if(!MicrostepStations::where('stationid',38393)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38393;
-            $station->station_name = 'Бустон';
-            $station->latitude = '41.50';
-            $station->longitude = '60.56';
-            $station->region_id = 1735;
-            $station->l_vis = 0;
-            $station->status = 'МС';
-            $station->save();
-        }
-        if(!MicrostepStations::where('stationid',38023)->first())
-        {
-            $station = new MicrostepStations();
-            $station->stationid = 38023;
-            $station->station_name = 'Каракалпакия ';
-            $station->latitude = '44.45';
-            $station->longitude = '56.12';
-            $station->region_id = 1735;
-            $station->l_vis = 126;
-            $station->status = 'МС';
-            $station->save();
-        }
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38393],
+            ['station_name'=>'Бустон',
+                'latitude'=>'41.50',
+                'longitude'=>'60.56',
+                'region_id'=>1735,
+                'l_vis'=>0,
+                'status'=>'МС',
+            ]
+        );
+
+        MicrostepStations::updateOrCreate(
+            ['stationid'=>38023],
+            ['station_name'=>'Каракалпакия',
+                'latitude'=>'44.45',
+                'longitude'=>'56.12',
+                'region_id'=>1735,
+                'l_vis'=>126,
+                'status'=>'МС',
+            ]
+        );
 
     }
 }

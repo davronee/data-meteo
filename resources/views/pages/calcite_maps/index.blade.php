@@ -1580,13 +1580,13 @@
                                                     StationName = 'Аякагитма';
                                                     break;
                                                 case "05_Djangeldy":
-                                                    StationName = 'Джангелей';
+                                                    StationName = 'М-II Джангельды';
                                                     break;
                                                 case "06_Karakul":
-                                                    StationName = 'Каракул';
+                                                    StationName = 'М-II Каракул';
                                                     break;
                                                 case "07_Kysyl-Ravat":
-                                                    StationName = 'Кизил-Рават';
+                                                    StationName = 'М-IV Кызыл-Рават';
                                                     break;
                                                 case "08_Akrabat":
                                                     StationName = 'Акрабат';
@@ -1613,7 +1613,7 @@
                                                     StationName = 'Сентоб-Нурата';
                                                     break;
                                                 case "16_Tamdy":
-                                                    StationName = 'Тамди';
+                                                    StationName = 'М-II Тамды';
                                                     break;
                                                 case "17_Uchkuduk":
                                                     StationName = 'Учкудук';
@@ -1634,7 +1634,7 @@
                                                     StationName = 'Байсун';
                                                     break;
                                                 case "23_Saryassiya":
-                                                    StationName = 'Сариассия';
+                                                    StationName = 'М-II Сарыассия';
                                                     break;
                                                 case "24_Shurchi":
                                                     StationName = 'Шурчи';
@@ -1643,7 +1643,7 @@
                                                     StationName = 'Термез';
                                                     break;
                                                 case "26_Syrdarya":
-                                                    StationName = 'Сирдаря';
+                                                    StationName = 'М-II Сырдарья';
                                                     break;
                                                 case "27_Yangier":
                                                     StationName = 'Янгиер';
@@ -1673,7 +1673,7 @@
                                                     StationName = 'Бекабад';
                                                     break;
                                                 case "36_Dalverzin":
-                                                    StationName = '36_Dalverzin';
+                                                    StationName = 'М-II Дальверзин';
                                                     break;
                                                 case "37_Tyuyabuguz":
                                                     StationName = 'Тюябугуз';
@@ -1685,7 +1685,7 @@
                                                     StationName = 'Дукант';
                                                     break;
                                                 case "40_Yangiyul":
-                                                    StationName = 'Янгиюл';
+                                                    StationName = 'М-II Янгиюль';
                                                     break;
                                                 case "41_Sukok":
                                                     StationName = 'Сукок';
@@ -1703,7 +1703,7 @@
                                                     StationName = 'Кува';
                                                     break;
                                                 case "46_Sarykanda":
-                                                    StationName = 'Сарйканда';
+                                                    StationName = 'М-II Сарыканда';
                                                     break;
                                                 case "47_Shahimardan":
                                                     StationName = 'Шаҳимардан';
@@ -1718,7 +1718,46 @@
                                                     StationName = 'Гурлен';
                                                     break;
                                                 case "51_Tashkent-Observatory":
-                                                    StationName = 'Ташкент-Обсерваторй';
+                                                    StationName = 'М-I Ташкент-Обсерватория';
+                                                    break;
+                                                case "108_Gallaaral":
+                                                    StationName = 'АГМС Галляарал';
+                                                    break;
+                                                case "109_Dustlik":
+                                                    StationName = 'М-II Дустлик';
+                                                    break;
+                                                case "110_Lalmikor":
+                                                    StationName = 'Ляльмикор';
+                                                    break;
+                                                case "107_Bakhmal":
+                                                    StationName = 'М-II Бахмал';
+                                                    break;
+                                                case "112_Yangikishlak":
+                                                    StationName = 'М-II Янгикишлак';
+                                                    break;
+                                                case "106_Kashkadarya_GMB":
+                                                    StationName = 'М-II Аркабат';
+                                                    break;
+                                                case "105_Guzar":
+                                                    StationName = 'М-II Гузар';
+                                                    break;
+                                                case "101_Dekhkanabad":
+                                                    StationName = 'М-II Дехканабад';
+                                                    break;
+                                                case "102_Mubarek":
+                                                    StationName = 'М-II Муборек';
+                                                    break;
+                                                case "103_Chimkurgan":
+                                                    StationName = 'О Чимкурган';
+                                                    break;
+                                                case "104_Shakhrisyabz":
+                                                    StationName = 'Г-1 Шахрисябз';
+                                                    break;
+                                                case "18_Navoiy_GMB":
+                                                    StationName = 'М-II Навои';
+                                                    break;
+                                                case "33_Almalik":
+                                                    StationName = 'М-II Алмалык';
                                                     break;
                                                 default :
                                                     StationName = response.data.Stations.StationName;
@@ -2465,13 +2504,13 @@
                                                     StationName = 'Аякагитма';
                                                     break;
                                                 case "05_Djangeldy":
-                                                    StationName = 'Джангелей';
+                                                    StationName = 'М-II Джангельды';
                                                     break;
                                                 case "06_Karakul":
-                                                    StationName = 'Каракул';
+                                                    StationName = 'М-II Каракул';
                                                     break;
                                                 case "07_Kysyl-Ravat":
-                                                    StationName = 'Кизил-Рават';
+                                                    StationName = 'М-IV Кызыл-Рават';
                                                     break;
                                                 case "08_Akrabat":
                                                     StationName = 'Акрабат';
@@ -2498,7 +2537,7 @@
                                                     StationName = 'Сентоб-Нурата';
                                                     break;
                                                 case "16_Tamdy":
-                                                    StationName = 'Тамди';
+                                                    StationName = 'М-II Тамды';
                                                     break;
                                                 case "17_Uchkuduk":
                                                     StationName = 'Учкудук';
@@ -2519,7 +2558,7 @@
                                                     StationName = 'Байсун';
                                                     break;
                                                 case "23_Saryassiya":
-                                                    StationName = 'Сариассия';
+                                                    StationName = 'М-II Сарыассия';
                                                     break;
                                                 case "24_Shurchi":
                                                     StationName = 'Шурчи';
@@ -2528,7 +2567,7 @@
                                                     StationName = 'Термез';
                                                     break;
                                                 case "26_Syrdarya":
-                                                    StationName = 'Сирдаря';
+                                                    StationName = 'М-II Сырдарья';
                                                     break;
                                                 case "27_Yangier":
                                                     StationName = 'Янгиер';
@@ -2558,7 +2597,7 @@
                                                     StationName = 'Бекабад';
                                                     break;
                                                 case "36_Dalverzin":
-                                                    StationName = '36_Dalverzin';
+                                                    StationName = 'М-II Дальверзин';
                                                     break;
                                                 case "37_Tyuyabuguz":
                                                     StationName = 'Тюябугуз';
@@ -2570,7 +2609,7 @@
                                                     StationName = 'Дукант';
                                                     break;
                                                 case "40_Yangiyul":
-                                                    StationName = 'Янгиюл';
+                                                    StationName = 'М-II Янгиюль';
                                                     break;
                                                 case "41_Sukok":
                                                     StationName = 'Сукок';
@@ -2588,7 +2627,7 @@
                                                     StationName = 'Кува';
                                                     break;
                                                 case "46_Sarykanda":
-                                                    StationName = 'Сарйканда';
+                                                    StationName = 'М-II Сарыканда';
                                                     break;
                                                 case "47_Shahimardan":
                                                     StationName = 'Шаҳимардан';
@@ -2603,7 +2642,46 @@
                                                     StationName = 'Гурлен';
                                                     break;
                                                 case "51_Tashkent-Observatory":
-                                                    StationName = 'Ташкент-Обсерваторй';
+                                                    StationName = 'М-I Ташкент-Обсерватория';
+                                                    break;
+                                                case "108_Gallaaral":
+                                                    StationName = 'АГМС Галляарал';
+                                                    break;
+                                                case "109_Dustlik":
+                                                    StationName = 'М-II Дустлик';
+                                                    break;
+                                                case "110_Lalmikor":
+                                                    StationName = 'Ляльмикор';
+                                                    break;
+                                                case "107_Bakhmal":
+                                                    StationName = 'М-II Бахмал';
+                                                    break;
+                                                case "112_Yangikishlak":
+                                                    StationName = 'М-II Янгикишлак';
+                                                    break;
+                                                case "106_Kashkadarya_GMB":
+                                                    StationName = 'М-II Аркабат';
+                                                    break;
+                                                case "105_Guzar":
+                                                    StationName = 'М-II Гузар';
+                                                    break;
+                                                case "101_Dekhkanabad":
+                                                    StationName = 'М-II Дехканабад';
+                                                    break;
+                                                case "102_Mubarek":
+                                                    StationName = 'М-II Муборек';
+                                                    break;
+                                                case "103_Chimkurgan":
+                                                    StationName = 'О Чимкурган';
+                                                    break;
+                                                case "104_Shakhrisyabz":
+                                                    StationName = 'Г-1 Шахрисябз';
+                                                    break;
+                                                case "18_Navoiy_GMB":
+                                                    StationName = 'М-II Навои';
+                                                    break;
+                                                case "33_Almalik":
+                                                    StationName = 'М-II Алмалык';
                                                     break;
                                                 default :
                                                     StationName = response.data.Stations.StationName;
@@ -2728,13 +2806,13 @@
                                                     StationName = 'Аякагитма';
                                                     break;
                                                 case "05_Djangeldy":
-                                                    StationName = 'Джангелей';
+                                                    StationName = 'М-II Джангельды';
                                                     break;
                                                 case "06_Karakul":
-                                                    StationName = 'Каракул';
+                                                    StationName = 'М-II Каракул';
                                                     break;
                                                 case "07_Kysyl-Ravat":
-                                                    StationName = 'Кизил-Рават';
+                                                    StationName = 'М-IV Кызыл-Рават';
                                                     break;
                                                 case "08_Akrabat":
                                                     StationName = 'Акрабат';
@@ -2761,7 +2839,7 @@
                                                     StationName = 'Сентоб-Нурата';
                                                     break;
                                                 case "16_Tamdy":
-                                                    StationName = 'Тамди';
+                                                    StationName = 'М-II Тамды';
                                                     break;
                                                 case "17_Uchkuduk":
                                                     StationName = 'Учкудук';
@@ -2782,7 +2860,7 @@
                                                     StationName = 'Байсун';
                                                     break;
                                                 case "23_Saryassiya":
-                                                    StationName = 'Сариассия';
+                                                    StationName = 'М-II Сарыассия';
                                                     break;
                                                 case "24_Shurchi":
                                                     StationName = 'Шурчи';
@@ -2791,7 +2869,7 @@
                                                     StationName = 'Термез';
                                                     break;
                                                 case "26_Syrdarya":
-                                                    StationName = 'Сирдаря';
+                                                    StationName = 'М-II Сырдарья';
                                                     break;
                                                 case "27_Yangier":
                                                     StationName = 'Янгиер';
@@ -2821,7 +2899,7 @@
                                                     StationName = 'Бекабад';
                                                     break;
                                                 case "36_Dalverzin":
-                                                    StationName = '36_Dalverzin';
+                                                    StationName = 'М-II Дальверзин';
                                                     break;
                                                 case "37_Tyuyabuguz":
                                                     StationName = 'Тюябугуз';
@@ -2833,7 +2911,7 @@
                                                     StationName = 'Дукант';
                                                     break;
                                                 case "40_Yangiyul":
-                                                    StationName = 'Янгиюл';
+                                                    StationName = 'М-II Янгиюль';
                                                     break;
                                                 case "41_Sukok":
                                                     StationName = 'Сукок';
@@ -2851,7 +2929,7 @@
                                                     StationName = 'Кува';
                                                     break;
                                                 case "46_Sarykanda":
-                                                    StationName = 'Сарйканда';
+                                                    StationName = 'М-II Сарыканда';
                                                     break;
                                                 case "47_Shahimardan":
                                                     StationName = 'Шаҳимардан';
@@ -2866,7 +2944,46 @@
                                                     StationName = 'Гурлен';
                                                     break;
                                                 case "51_Tashkent-Observatory":
-                                                    StationName = 'Ташкент-Обсерваторй';
+                                                    StationName = 'М-I Ташкент-Обсерватория';
+                                                    break;
+                                                case "108_Gallaaral":
+                                                    StationName = 'АГМС Галляарал';
+                                                    break;
+                                                case "109_Dustlik":
+                                                    StationName = 'М-II Дустлик';
+                                                    break;
+                                                case "110_Lalmikor":
+                                                    StationName = 'Ляльмикор';
+                                                    break;
+                                                case "107_Bakhmal":
+                                                    StationName = 'М-II Бахмал';
+                                                    break;
+                                                case "112_Yangikishlak":
+                                                    StationName = 'М-II Янгикишлак';
+                                                    break;
+                                                case "106_Kashkadarya_GMB":
+                                                    StationName = 'М-II Аркабат';
+                                                    break;
+                                                case "105_Guzar":
+                                                    StationName = 'М-II Гузар';
+                                                    break;
+                                                case "101_Dekhkanabad":
+                                                    StationName = 'М-II Дехканабад';
+                                                    break;
+                                                case "102_Mubarek":
+                                                    StationName = 'М-II Муборек';
+                                                    break;
+                                                case "103_Chimkurgan":
+                                                    StationName = 'О Чимкурган';
+                                                    break;
+                                                case "104_Shakhrisyabz":
+                                                    StationName = 'Г-1 Шахрисябз';
+                                                    break;
+                                                case "18_Navoiy_GMB":
+                                                    StationName = 'М-II Навои';
+                                                    break;
+                                                case "33_Almalik":
+                                                    StationName = 'М-II Алмалык';
                                                     break;
                                                 default :
                                                     StationName = response.data.Stations.StationName;
