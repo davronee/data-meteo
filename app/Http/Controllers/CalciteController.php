@@ -50,6 +50,13 @@ class CalciteController extends Controller
 
     }
 
+    public function GetStations()
+    {
+        $stations = MeteoBotStations::all();
+
+        return response()->json($stations);
+    }
+
     public function HydrometMap(Request $request)
     {
         $hydrometStations = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
