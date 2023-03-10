@@ -15,6 +15,6 @@ class VerifyCsrfToken extends Middleware
         'microstep-receive',
         'meteo-umb',
         'neftgaz',
-        'map',
+        'map/awd/*',
     ];
 }
