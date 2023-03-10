@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\MeteoBotStations;
 use App\Models\Station;
 use App\Models\User;
 use Carbon\Carbon;
@@ -72,5 +73,12 @@ class StationController extends Controller
         return response()->json($arr[count($arr)-1]);
 
 
+    }
+
+    public function GetStations()
+    {
+        $stations = MeteoBotStations::all();
+
+        return response()->json($stations);
     }
 }
