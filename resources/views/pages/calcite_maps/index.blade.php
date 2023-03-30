@@ -164,7 +164,7 @@
         <div class="calcite-title calcite-overflow-hidden">
             <span class="calcite-title-main">@lang('map.main_title')</span>
             <span class="calcite-title-divider hidden-xs"></span>
-            <span class="calcite-title-sub hidden-xs">@lang('map.beta_version') | Предназначено только для просмотра</span>
+            <span class="calcite-title-sub hidden-xs">@lang('map.beta_version') | <span style="color: yellow">Предназначено только для просмотра</span></span>
         </div>
         <!-- Nav -->
         <ul class="calcite-nav nav navbar-nav">
