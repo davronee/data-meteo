@@ -21,6 +21,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\MtrkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -261,6 +262,12 @@ Route::prefix('amudar')->group(function () {
 Route::prefix('meteobot')->group(function () {
     Route::get('/stations', [\App\Http\Controllers\API\StationController::class, 'GetStations'])->name('meteobot.stations');
     Route::get('/get/{id?}', [\App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
+});
+
+
+Route::prefix('mtrk')->group(function () {
+    Route::get('/report/get', [MtrkController::class, 'getReport'])->name('mtrk.get');
+    Route::get('/report/offset', [MtrkController::class, 'offset'])->name('mtrk.offset');
 });
 
 
