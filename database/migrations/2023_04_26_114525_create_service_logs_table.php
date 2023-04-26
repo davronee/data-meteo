@@ -17,9 +17,9 @@ class CreateServiceLogsTable extends Migration
             $table->id();
             $table->string('flag')->nullable();
             $table->json('request')->nullable();
-            $table->string('response')->nullable();
+            $table->json('response')->nullable();
             $table->string('errors')->nullable();
-            $table->string('response_id')->nullable();
+            $table->integer('response_id')->nullable();
             $table->timestamps();
         });
     }

@@ -36,14 +36,12 @@
                                     <input type="text" name="fio" id="fio" class="form-control email-field"
                                            value="{{ \Illuminate\Support\Facades\Auth::user()->full_name }}" required>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Auth::user()->user_type == 'I')
-                                    <div class="form-group col-md-12">
-                                        <label for="fio">Пинфл</label>
-                                        <input disabled type="text" name="pinfl" id="pinfl"
-                                               class="form-control email-field"
-                                               value="{{ \Illuminate\Support\Facades\Auth::user()->pin }}" required>
-                                    </div>
-                                @endif
+                                <div class="form-group col-md-12">
+                                    <label for="fio">Пинфл</label>
+                                    <input type="text" name="pinfl" id="pinfl"
+                                           class="form-control email-field readonly" readonly
+                                           value="{{ \Illuminate\Support\Facades\Auth::user()->pin }}" required>
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label for="tin">@lang('messages.tin')</label>
                                     <input type="text" name="tin" id="tin" class="form-control email-field"
@@ -83,7 +81,13 @@
 
                                     <button type="submit" class="btn btn-sm btn-info"><i
                                                 class="fa fa-check"></i> @lang('messages.send')</button>
-                                    <a href="https://hydromet.uz" type="button" class="btn btn-primary">перейти на главную страницу</a>
+                                    <a href="https://hydromet.uz" type="button" class="btn btn-primary">перейти на
+                                        главную страницу</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                        Проверить приложения
+                                    </button>
+
 
                                 </div>
                             </form>
@@ -93,4 +97,55 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Отслеживание заявки</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <divs>
+                        <div class="form-group">
+                            <input type="text" v-model="service_id" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp"
+                                   placeholder="номер заявления">
+                        </div>
+                        <p v-if="result">Ваша заявка в статусе : @{{ result }}</p>
+                        <button @click="GetResponse()" class="btn btn-primary">Отправить</button>
+                    </divs>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        var app = new Vue({
+            el: '#exampleModal',
+            data: {
+                service_id: null,
+                result: null
+            },
+            methods: {
+                GetResponse: function () {
+                    axios
+                        .get('https://devback-ijro.meteo.uz/correspondence/open/application/' + this.service_id)
+                        .then(response => (this.result = response.data.content ? response.data.content.status : response.data.result.code))
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+
+                }
+            }
+        });
+
+
+    </script>
 @endsection

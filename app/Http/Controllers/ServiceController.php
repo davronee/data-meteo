@@ -104,39 +104,51 @@ class ServiceController extends Controller
 //        Mail::to('services@meteo.uz')->send(new \App\Mail\ServiceMail($details));
 //        Mail::to($request->email)->send(new \App\Mail\ClientMail($details));
 
-        $entitiy = '';
         try {
+
+
             $entitiy = Http::withOptions([
                 'verify' => false
             ])->post('https://devback-ijro.meteo.uz/correspondence/open/application', [
                 "full_name" => $request->fio ?? '',
                 "email" => $request->email ?? '',
-                "pinfl" => $request->pinfl ?? '',
+                "pinfl" => strval($request->pinfl) ?? '',
                 "tin" => $request->tin ?? '',
                 "phone_number" => $request->phone ?? '',
-                "region_code" => strval($request->regionid) ?? '',
+                "region_code" => $request->regionid ?? '',
                 "service_id" => $request->type_service ?? '',
                 "user_type_id" => $request->user_type
             ]);
 
-//            Log::info('ACCEPT', $entitiy->json());
-//            ServiceLogs::create([
-//                'flag' => 'ACCEPT',
-//                'request' => json_encode($request->all()),
-//                'response' => $entitiy->json()['content'],
-//                'response_id' => $entitiy->json()['content']['id'],
-//            ]);
+            $entitiy = $entitiy->json();
+
+
+            if (isset($entitiy['content'])) {
+                ServiceLogs::create([
+                    'flag' => 'ACCEPT',
+                    'request' => json_encode($request->all()),
+                    'response' => json_encode($entitiy['content']),
+                    'response_id' => $entitiy['content']['id'],
+                ]);
+            } else {
+                ServiceLogs::create([
+                    'flag' => 'ERROR',
+                    'request' => json_encode($request->all()),
+                    'response' => json_encode($entitiy['content']),
+                    'response_id' => $entitiy['content']['id'],
+                ]);
+            }
+
 
         } catch (\Exception $exception) {
-//            dd(json_encode($request->all()));
-//            ServiceLogs::create([
-//                'flag' => 'ERROR',
-//                'request' => json_encode($request->all()),
-//                'errors' => 'line: : ' . $exception->getLine() . ' - ' . ' meesage: ' . $exception->getMessage(),
-//            ]);
+            ServiceLogs::create([
+                'flag' => 'ERROR',
+                'request' => json_encode($request->all()),
+                'errors' => 'line: : ' . $exception->getLine() . ' - ' . ' meesage: ' . $exception->getMessage(),
+            ]);
         }
 
-        return redirect()->route('service.index')->with('status', 'Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время! Номер вашей заявки: ' . $entitiy->json()['content']['id'] . '. Статус заявки можно узнать по телефону 78 1508650.');
+        return redirect()->route('service.index')->with('status', 'Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время! Номер вашей заявки: ' . $entitiy['content']['id'] . '. Статус заявки можно узнать по телефону 78 1508650.');
     }
 
     /**
