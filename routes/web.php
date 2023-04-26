@@ -213,26 +213,6 @@ Route::post('/meteo-umb', [\App\Http\Controllers\ApmMeteoUmbController::class, '
 Route::get('/meteo-umb/get', [\App\Http\Controllers\ApmMeteoUmbController::class, 'get'])->name('aws.apmmeteo.get');
 Route::get('/meteo-umb/view', [\App\Http\Controllers\ApmMeteoUmbController::class, 'view'])->name('aws.apmmeteo.view');
 
-Route::get('restest', function (\Illuminate\Support\Facades\Request $request) {
-
-//    \Illuminate\Support\Facades\Log::info([request()->ips()]);
-    $telegramUrl = "https://api.telegram.org/bot";
-    $chatId = -1001729729483;
-
-    $token = "2145533401:AAEhqjGkVZUcIk_LJaMtqnQPLshoK092D0c";
-    $url = $telegramUrl . $token . "/sendMessage?chat_id=" . $chatId;
-    $text = "&parse_mode=html&text=" . "<b>" . Carbon::now()->format('d.m.y H:i:s') . " </b>" . PHP_EOL . PHP_EOL;
-
-
-    foreach (request()->ips() as $ips) {
-        $text .= "<b>IP: </b>" . $ips . PHP_EOL;
-    }
-
-
-    $res = Http::withOptions(['verify' => false])->get($url . $text);
-
-    return $res->json();
-});
 
 
 //Route::get('/test123', function () {

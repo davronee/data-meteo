@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\OrdersService;
 use App\Models\Region;
+use App\Models\ServiceLogs;
 use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ServiceController extends Controller
@@ -18,13 +21,30 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $regions = Region::orderBy('regionid', 'asc')
-            ->whereUserRegion(auth()->user()->region_id)
-            ->pluck('nameRu', 'regionid')
-            ->toArray();
-        $services = Services::where('isActive', true)->get();
+        $endpoint = 'https://devback-ijro.meteo.uz/correspondence/open/application';
+        $regions = Http::withOptions([
+            'verify' => false
+        ])->get($endpoint . '/classifier/region/list')->json();
+
+        $services = Http::withOptions([
+            'verify' => false
+        ])->get($endpoint . '/classifier/service-type')->json();
+
+        $user_types = Http::withOptions([
+            'verify' => false
+        ])->get($endpoint . '/classifier/user-type')->json();
+
+        $regions = $regions['content'];
+        $services = $services['content'];
+        $user_types = $user_types['content'];
+
+//        $regions = Region::orderBy('regionid', 'asc')
+//            ->whereUserRegion(auth()->user()->region_id)
+//            ->pluck('nameRu', 'regionid')
+//            ->toArray();
+//        $services = Services::where('isActive', true)->get();
         return view('pages.service.service',
-            compact('regions', 'services')
+            compact('regions', 'services', 'user_types')
         );
     }
 
@@ -42,7 +62,7 @@ class ServiceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -53,7 +73,7 @@ class ServiceController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'type_service' => 'required',
-            'region' => 'required',
+            'regionid' => 'required',
         ]);
 
         $orders = new OrdersService();
@@ -67,27 +87,56 @@ class ServiceController extends Controller
         $orders->user_type = $request->user_type;
         $orders->save();
 
-        $serv = Services::find($request->type_service);
-        $region = Region::where('regionid',$request->region)->first();
-        $details = [
-            'user_type' => Auth::user()->user_type,
-            'fio' => $request->fio,
-            'id_order'=>$orders->id,
-            'pinfl' => Auth::user()->pin,
-            'tin' => $request->tin,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'service' => $serv->name,
-            'region' => $region->nameUz,
-        ];
+//        $serv = Services::find($request->type_service);
+//        $region = Region::where('regionid', $request->region)->first();
+//        $details = [
+//            'user_type' => Auth::user()->user_type,
+//            'fio' => $request->fio,
+//            'id_order' => $orders->id,
+//            'pinfl' => Auth::user()->pin,
+//            'tin' => $request->tin,
+//            'email' => $request->email,
+//            'phone' => $request->phone,
+//            'service' => $serv->name,
+//            'region' => $region->nameUz,
+//        ];
 
-        Mail::to('services@meteo.uz')->send(new \App\Mail\ServiceMail($details));
-        Mail::to($request->email)->send(new \App\Mail\ClientMail($details));
+//        Mail::to('services@meteo.uz')->send(new \App\Mail\ServiceMail($details));
+//        Mail::to($request->email)->send(new \App\Mail\ClientMail($details));
 
+        $entitiy = '';
+        try {
+            $entitiy = Http::withOptions([
+                'verify' => false
+            ])->post('https://devback-ijro.meteo.uz/correspondence/open/application', [
+                "full_name" => $request->fio ?? '',
+                "email" => $request->email ?? '',
+                "pinfl" => $request->pinfl ?? '',
+                "tin" => $request->tin ?? '',
+                "phone_number" => $request->phone ?? '',
+                "region_code" => strval($request->regionid) ?? '',
+                "service_id" => $request->type_service ?? '',
+                "user_type_id" => $request->user_type
+            ]);
 
-        return redirect()->route('service.index')->with('status', 'Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время! Номер вашей заявки: '. $orders->id .'. Статус заявки можно узнать по телефону 78 1508650.');
+//            Log::info('ACCEPT', $entitiy->json());
+//            ServiceLogs::create([
+//                'flag' => 'ACCEPT',
+//                'request' => json_encode($request->all()),
+//                'response' => $entitiy->json()['content'],
+//                'response_id' => $entitiy->json()['content']['id'],
+//            ]);
 
+        } catch (\Exception $exception) {
+//            dd(json_encode($request->all()));
+//            ServiceLogs::create([
+//                'flag' => 'ERROR',
+//                'request' => json_encode($request->all()),
+//                'errors' => 'line: : ' . $exception->getLine() . ' - ' . ' meesage: ' . $exception->getMessage(),
+//            ]);
+        }
 
+        return redirect()->route('service.index')->with('status', 'Ваше сообщение отправлено и мы свяжемся с вами в ближайшее время! Номер вашей заявки: ' . $entitiy->json()['content']['id'] . '. Статус заявки можно узнать по телефону 78 1508650.');
     }
 
     /**

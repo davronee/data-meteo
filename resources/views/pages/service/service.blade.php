@@ -26,10 +26,9 @@
                                 <div class="form-group col-md-12">
                                     <label for="user_type">@lang('messages.applicant')</label>
                                     <select name="user_type" id="user_type" class="form-control station_id">
-                                        <option
-                                            value="L" {{\Illuminate\Support\Facades\Auth::user()->user_type == 'L' ? 'selected' : ''}}>@lang('messages.yuridik')</option>
-                                        <option
-                                            value="I" {{\Illuminate\Support\Facades\Auth::user()->user_type == 'I' ? 'selected' : ''}}>@lang('messages.jismoniy')</option>
+                                        @foreach($user_types as $user_type)
+                                            <option value="{{ $user_type['id'] }}"> {{$user_type['name_ru']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -66,16 +65,16 @@
                                     <select name="type_service" class="form-control type_service">
                                         <option value="" selected="selected">- Выберите -</option>
                                         @foreach ($services as  $service)
-                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            <option value="{{ $service['id'] }}">{{ $service['name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="region">@lang('messages.choose_region')</label>
-                                    <select name="region" id="region" class="form-control station_id">
+                                    <select name="regionid" id="region" class="form-control station_id">
                                         <option value="" selected="selected">- Выберите -</option>
                                         @foreach ($regions as $id => $region)
-                                            <option value="{{ $id }}">{{ $region }}</option>
+                                            <option value="{{ $region['code']}}">{{ $region['name_ru'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -83,7 +82,7 @@
                                     <hr>
 
                                     <button type="submit" class="btn btn-sm btn-info"><i
-                                            class="fa fa-check"></i> @lang('messages.send')</button>
+                                                class="fa fa-check"></i> @lang('messages.send')</button>
                                     <a href="https://hydromet.uz" type="button" class="btn btn-primary">перейти на главную страницу</a>
 
                                 </div>
