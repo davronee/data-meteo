@@ -90,5 +90,9 @@ class CalciteController extends Controller
         return response()->json($weather[0]);
     }
 
+    public function Crams(){
+        return view('pages.crams');
+    }
+
 
 }

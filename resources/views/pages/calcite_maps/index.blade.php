@@ -147,17 +147,17 @@
             </a>
             <ul class="dropdown-menu calcite-bgcolor-dark-blue">
                 <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
+                                class="glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
+                                class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
+                                class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
+                                class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
-                            class="fa fa-code"></span> Метео API</a></li>
+                                class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-info-sign"></span> @lang('map.portal_info')</a></li>
+                                class="glyphicon glyphicon-info-sign"></span> @lang('map.portal_info')</a></li>
             </ul>
         </div>
         <!-- Title -->
@@ -174,11 +174,11 @@
                 </div>
             </li> -->
             <li><a class="calcite-navbar-search" href="{{route('index.oneid')}}">Авторизация <span
-                        class="glyphicon glyphicon-log-out"></span></a>
+                            class="glyphicon glyphicon-log-out"></span></a>
             </li>
             <!-- <li><a class="calcite-navbar-search" href="#">Мой кабинет <span class="glyphicon glyphicon-user"></span></a></li> -->
             <li><a class="calcite-navbar-search hidden-xs" href="#"><span
-                        class="calcite-title-divider hidden-xs"></span></a></li>
+                            class="calcite-title-divider hidden-xs"></span></a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">Ўзбекча</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">Русский</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">English</a></li>
@@ -202,8 +202,8 @@
     <!-- Panel -->
 
     <div
-        class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
-        role="tablist" aria-multiselectable="true">
+            class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
+            role="tablist" aria-multiselectable="true">
 
 
         <!-- API Panel -->
@@ -214,9 +214,9 @@
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseApi"
                        aria-expanded="true" aria-controls="collapseApi"><span class="fa fa-code"
                                                                               aria-hidden="true"></span><span
-                            class="panel-label">Метео API</span></a>
+                                class="panel-label">Метео API</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelApi"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseApi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApi">
@@ -249,9 +249,9 @@
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo"
                        aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign"
                                                                                aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.portal_info')</span></a>
+                                class="panel-label">@lang('map.portal_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
@@ -277,9 +277,9 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"
                        aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search"
                                                                                   aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.search')</span></a>
+                                class="panel-label">@lang('map.search')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseSearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSearch">
@@ -296,8 +296,8 @@
                 <div class="panel-title">
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata"
                        aria-expanded="false" aria-controls="collapseMeteodata"><span
-                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.meteologik_info')</span></a>
+                                class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span
+                                class="panel-label">@lang('map.meteologik_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0"
                        href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -368,9 +368,9 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps"
                        aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large"
                                                                                     aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.geografik_map_type')</span></a>
+                                class="panel-label">@lang('map.geografik_map_type')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel"
@@ -397,10 +397,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-hidden="true"
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-hidden="true"
                     >
                         &times;
                     </button>
@@ -1555,9 +1555,9 @@
                                 iconSize: [28, 28], // size of the icon
                                 class: "station"
                             });
-
-                            if ((item.Metadata.Latitude !== null && item.Metadata.Longitude !== null) && item.Id != 52 && (item.Metadata.AwsId <= 55 || item.Metadata.AwsId >= 100)) {
-
+                            // (item.Metadata.AwsId <= 55 || item.Metadata.AwsId >= 100)
+                            console.log('nan ? ' + isNaN(item.Metadata.Latitude) + ' station_id : ' + item.Id)
+                            if (typeof item.Metadata !== 'undefined') {
                                 var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
                                     axios.post('{{route('map.awd.getStation')}}', {
                                         token: '{{@csrf_token()}}',
@@ -2773,15 +2773,15 @@
                             });
 
                             if (item.Metadata.AwsId == 6
-                               || item.Metadata.AwsId == 55
-                               || item.Metadata.AwsId == 5
-                               || item.Metadata.AwsId == 17
-                               || item.Metadata.AwsId == 16
-                               || item.Metadata.AwsId == 14
-                               || item.Metadata.AwsId == 44
-                               || item.Metadata.AwsId == 2
-                               || item.Metadata.AwsId == 31
-                               || item.Metadata.AwsId == 32) {
+                                || item.Metadata.AwsId == 55
+                                || item.Metadata.AwsId == 5
+                                || item.Metadata.AwsId == 17
+                                || item.Metadata.AwsId == 16
+                                || item.Metadata.AwsId == 14
+                                || item.Metadata.AwsId == 44
+                                || item.Metadata.AwsId == 2
+                                || item.Metadata.AwsId == 31
+                                || item.Metadata.AwsId == 32) {
 
                                 total++;
                                 var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: fontAwesomeIcon}).on('click', function () {
@@ -3639,10 +3639,10 @@
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
                                 {{--var meteoIcon = L.icon({--}}
-                                    {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
-                                    {{--    iconSize: [28, 28], // size of the icon--}}
-                                    {{--    className: "station",--}}
-                                    {{--});--}}
+                                        {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
+                                        {{--    iconSize: [28, 28], // size of the icon--}}
+                                        {{--    className: "station",--}}
+                                        {{--});--}}
 
                                 if (item.weather_code == 'clear') {
                                     var marker = L.marker([item.city.latitude, item.city.longitude], {
