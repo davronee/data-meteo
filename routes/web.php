@@ -146,6 +146,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
 
     });
+    Route::get('/crams', [\App\Http\Controllers\CalciteController::class, 'Crams'])->name('map.crams.index');
 
 
     // services

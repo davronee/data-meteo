@@ -147,17 +147,17 @@
             </a>
             <ul class="dropdown-menu calcite-bgcolor-dark-blue">
                 <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
+                                class="glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
+                                class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
+                                class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
+                                class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
-                            class="fa fa-code"></span> Метео API</a></li>
+                                class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-info-sign"></span> @lang('map.portal_info')</a></li>
+                                class="glyphicon glyphicon-info-sign"></span> @lang('map.portal_info')</a></li>
             </ul>
         </div>
         <!-- Title -->
@@ -174,11 +174,11 @@
                 </div>
             </li> -->
             <li><a class="calcite-navbar-search" href="{{route('index.oneid')}}">Авторизация <span
-                        class="glyphicon glyphicon-log-out"></span></a>
+                            class="glyphicon glyphicon-log-out"></span></a>
             </li>
             <!-- <li><a class="calcite-navbar-search" href="#">Мой кабинет <span class="glyphicon glyphicon-user"></span></a></li> -->
             <li><a class="calcite-navbar-search hidden-xs" href="#"><span
-                        class="calcite-title-divider hidden-xs"></span></a></li>
+                            class="calcite-title-divider hidden-xs"></span></a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','uz_Cyrillic')}}">Ўзбекча</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">Русский</a></li>
             <li><a class="calcite-navbar-search hidden-xs" href="{{route('locale','ru')}}">English</a></li>
@@ -202,8 +202,8 @@
     <!-- Panel -->
 
     <div
-        class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
-        role="tablist" aria-multiselectable="true">
+            class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
+            role="tablist" aria-multiselectable="true">
 
 
         <!-- API Panel -->
@@ -214,9 +214,9 @@
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseApi"
                        aria-expanded="true" aria-controls="collapseApi"><span class="fa fa-code"
                                                                               aria-hidden="true"></span><span
-                            class="panel-label">Метео API</span></a>
+                                class="panel-label">Метео API</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelApi"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseApi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApi">
@@ -249,9 +249,9 @@
                     <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo"
                        aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign"
                                                                                aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.portal_info')</span></a>
+                                class="panel-label">@lang('map.portal_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
@@ -277,9 +277,9 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"
                        aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search"
                                                                                   aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.search')</span></a>
+                                class="panel-label">@lang('map.search')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseSearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSearch">
@@ -296,8 +296,8 @@
                 <div class="panel-title">
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata"
                        aria-expanded="false" aria-controls="collapseMeteodata"><span
-                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.meteologik_info')</span></a>
+                                class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span
+                                class="panel-label">@lang('map.meteologik_info')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0"
                        href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
@@ -368,9 +368,9 @@
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps"
                        aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large"
                                                                                     aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.geografik_map_type')</span></a>
+                                class="panel-label">@lang('map.geografik_map_type')</span></a>
                     <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                                class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                 </div>
             </div>
             <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel"
@@ -397,10 +397,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-hidden="true"
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-hidden="true"
                     >
                         &times;
                     </button>
@@ -1555,281 +1555,304 @@
                                 iconSize: [28, 28], // size of the icon
                                 class: "station"
                             });
-
-                            if ((item.Metadata.Latitude !== null && item.Metadata.Longitude !== null) && item.Id != 52 && (item.Metadata.AwsId <= 55 || item.Metadata.AwsId >= 100)) {
-
-                                var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
-                                    axios.post('{{route('map.awd.getStation')}}', {
-                                        token: '{{@csrf_token()}}',
-                                        id: item.Id
-                                    })
-                                        .then(function (response) {
-                                            var StationName = '';
-
-                                            switch (response.data.Stations.StationName) {
-                                                case "01_Boz":
-                                                    StationName = 'Боз';
-                                                    break;
-                                                case "02_Kurgantepa":
-                                                    StationName = 'Кургантепа';
-                                                    break;
-                                                case "03_Ulugnar":
-                                                    StationName = 'Улугнар';
-                                                    break;
-                                                case "04_Ayakagitma":
-                                                    StationName = 'Аякагитма';
-                                                    break;
-                                                case "05_Djangeldy":
-                                                    StationName = 'М-II Джангельды';
-                                                    break;
-                                                case "06_Karakul":
-                                                    StationName = 'М-II Каракул';
-                                                    break;
-                                                case "07_Kysyl-Ravat":
-                                                    StationName = 'М-IV Кызыл-Рават';
-                                                    break;
-                                                case "08_Akrabat":
-                                                    StationName = 'Акрабат';
-                                                    break;
-                                                case "09_Minchukur":
-                                                    StationName = 'Минчукур';
-                                                    break;
-                                                case "10_Kul":
-                                                    StationName = 'Кул';
-                                                    break;
-                                                case "11_Akbaytal":
-                                                    StationName = 'Акбайтал';
-                                                    break;
-                                                case "12_Buzaubay":
-                                                    StationName = 'Бузаубай';
-                                                    break;
-                                                case "13_Mashikuduk":
-                                                    StationName = 'Машикудук';
-                                                    break;
-                                                case "14_Nurata":
-                                                    StationName = 'Нурата';
-                                                    break;
-                                                case "15_Sentob-Nurata":
-                                                    StationName = 'Сентоб-Нурата';
-                                                    break;
-                                                case "16_Tamdy":
-                                                    StationName = 'М-II Тамды';
-                                                    break;
-                                                case "17_Uchkuduk":
-                                                    StationName = 'Учкудук';
-                                                    break;
-                                                case "18_UGM_Navoiy":
-                                                    StationName = 'УГМ_Навоий';
-                                                    break;
-                                                case "19_Hanabad":
-                                                    StationName = 'Ҳанабад';
-                                                    break;
-                                                case "20_Payshanba":
-                                                    StationName = 'Пайшанба';
-                                                    break;
-                                                case "21_Kushrabad":
-                                                    StationName = 'Кушрабад';
-                                                    break;
-                                                case "22_Baysun":
-                                                    StationName = 'Байсун';
-                                                    break;
-                                                case "23_Saryassiya":
-                                                    StationName = 'М-II Сарыассия';
-                                                    break;
-                                                case "24_Shurchi":
-                                                    StationName = 'Шурчи';
-                                                    break;
-                                                case "25_Termez":
-                                                    StationName = 'Термез';
-                                                    break;
-                                                case "26_Syrdarya":
-                                                    StationName = 'М-II Сырдарья';
-                                                    break;
-                                                case "27_Yangier":
-                                                    StationName = 'Янгиер';
-                                                    break;
-                                                case "28_Gulistan":
-                                                    StationName = 'Гулистан';
-                                                    break;
-                                                case "29_Chimgan":
-                                                    StationName = 'Чимган';
-                                                    break;
-                                                case "30_Oygaing":
-                                                    StationName = 'Ойгаинг';
-                                                    break;
-                                                case "31_Pskem":
-                                                    StationName = 'Пскем';
-                                                    break;
-                                                case "32_Charvak":
-                                                    StationName = 'Чарвак';
-                                                    break;
-                                                case "33_Almalyk":
-                                                    StationName = 'Алмалик';
-                                                    break;
-                                                case "34_Angren":
-                                                    StationName = 'Ангрен';
-                                                    break;
-                                                case "35_Bekabad":
-                                                    StationName = 'Бекабад';
-                                                    break;
-                                                case "36_Dalverzin":
-                                                    StationName = 'М-II Дальверзин';
-                                                    break;
-                                                case "37_Tyuyabuguz":
-                                                    StationName = 'Тюябугуз';
-                                                    break;
-                                                case "38_Kokaral":
-                                                    StationName = 'Кокарал';
-                                                    break;
-                                                case "39_Dukant":
-                                                    StationName = 'Дукант';
-                                                    break;
-                                                case "40_Yangiyul":
-                                                    StationName = 'М-II Янгиюль';
-                                                    break;
-                                                case "41_Sukok":
-                                                    StationName = 'Сукок';
-                                                    break;
-                                                case "42_Nurafshon":
-                                                    StationName = 'Нурафшон';
-                                                    break;
-                                                case "43_Fergana":
-                                                    StationName = 'Фергана';
-                                                    break;
-                                                case "44_Kokand":
-                                                    StationName = 'Коканд';
-                                                    break;
-                                                case "45_Kuva":
-                                                    StationName = 'Кува';
-                                                    break;
-                                                case "46_Sarykanda":
-                                                    StationName = 'М-II Сарыканда';
-                                                    break;
-                                                case "47_Shahimardan":
-                                                    StationName = 'Шаҳимардан';
-                                                    break;
-                                                case "48_Tuyamuyun":
-                                                    StationName = 'Туямуюн';
-                                                    break;
-                                                case "49_Khiva":
-                                                    StationName = 'Ҳива';
-                                                    break;
-                                                case "50_Gurlen":
-                                                    StationName = 'Гурлен';
-                                                    break;
-                                                case "51_Tashkent-Observatory":
-                                                    StationName = 'М-I Ташкент-Обсерватория';
-                                                    break;
-                                                case "108_Gallaaral":
-                                                    StationName = 'АГМС Галляарал';
-                                                    break;
-                                                case "109_Dustlik":
-                                                    StationName = 'М-II Дустлик';
-                                                    break;
-                                                case "110_Lalmikor":
-                                                    StationName = 'Ляльмикор';
-                                                    break;
-                                                case "107_Bakhmal":
-                                                    StationName = 'М-II Бахмал';
-                                                    break;
-                                                case "112_Yangikishlak":
-                                                    StationName = 'М-II Янгикишлак';
-                                                    break;
-                                                case "106_Kashkadarya_GMB":
-                                                    StationName = 'М-II Аркабат';
-                                                    break;
-                                                case "105_Guzar":
-                                                    StationName = 'М-II Гузар';
-                                                    break;
-                                                case "101_Dekhkanabad":
-                                                    StationName = 'М-II Дехканабад';
-                                                    break;
-                                                case "102_Mubarek":
-                                                    StationName = 'М-II Муборек';
-                                                    break;
-                                                case "103_Chimkurgan":
-                                                    StationName = 'О Чимкурган';
-                                                    break;
-                                                case "104_Shakhrisyabz":
-                                                    StationName = 'Г-1 Шахрисябз';
-                                                    break;
-                                                case "18_Navoiy_GMB":
-                                                    StationName = 'М-II Навои';
-                                                    break;
-                                                case "33_Almalik":
-                                                    StationName = 'М-II Алмалык';
-                                                    break;
-                                                default :
-                                                    StationName = response.data.Stations.StationName;
-                                                    break;
-                                            }
-
-
-                                            marker.bindPopup("" +
-                                                "<table class='table table-bordered'>" +
-                                                "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.air_temperature')</b></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.dew_point')</b></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.relative_humidity')</b></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.current_pressure')<b/></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[25].Value['Value'] + " гПа </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[25].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.10_during_sea_level_pressure')<b/></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.10_the_amount_precipitation_during')</b></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " ° </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.10_average_wind_speed_during')</b></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.10_the_average_amount_solar_radiation_during')</b></td>" +
-                                                "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
-                                                "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
-                                                "</tr>" +
-                                                "</table>"
-                                            )
+                            try{
+                                if (item.Metadata.AwsId !== null) {
+                                        var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
+                                        axios.post('{{route('map.awd.getStation')}}', {
+                                            token: '{{@csrf_token()}}',
+                                            id: item.Id
                                         })
-                                        .catch(function (error) {
-                                            // handle error
-                                            console.log(error + item.Id);
-                                        })
-                                        .then(function () {
-                                            // always executed
-                                        });
-                                });
-                                marker.fire('click');
+                                            .then(function (response) {
+                                                var StationName = '';
+
+                                                switch (response.data.Stations.StationName) {
+                                                    case "01_Boz":
+                                                        StationName = 'Боз';
+                                                        break;
+                                                    case "02_Kurgantepa":
+                                                        StationName = 'Кургантепа';
+                                                        break;
+                                                    case "03_Ulugnar":
+                                                        StationName = 'Улугнар';
+                                                        break;
+                                                    case "04_Ayakagitma":
+                                                        StationName = 'Аякагитма';
+                                                        break;
+                                                    case "05_Djangeldy":
+                                                        StationName = 'М-II Джангельды';
+                                                        break;
+                                                    case "06_Karakul":
+                                                        StationName = 'М-II Каракул';
+                                                        break;
+                                                    case "07_Kysyl-Ravat":
+                                                        StationName = 'М-IV Кызыл-Рават';
+                                                        break;
+                                                    case "08_Akrabat":
+                                                        StationName = 'Акрабат';
+                                                        break;
+                                                    case "09_Minchukur":
+                                                        StationName = 'Минчукур';
+                                                        break;
+                                                    case "10_Kul":
+                                                        StationName = 'Кул';
+                                                        break;
+                                                    case "11_Akbaytal":
+                                                        StationName = 'Акбайтал';
+                                                        break;
+                                                    case "12_Buzaubay":
+                                                        StationName = 'Бузаубай';
+                                                        break;
+                                                    case "13_Mashikuduk":
+                                                        StationName = 'Машикудук';
+                                                        break;
+                                                    case "14_Nurata":
+                                                        StationName = 'Нурата';
+                                                        break;
+                                                    case "15_Sentob-Nurata":
+                                                        StationName = 'Сентоб-Нурата';
+                                                        break;
+                                                    case "16_Tamdy":
+                                                        StationName = 'М-II Тамды';
+                                                        break;
+                                                    case "17_Uchkuduk":
+                                                        StationName = 'Учкудук';
+                                                        break;
+                                                    case "18_UGM_Navoiy":
+                                                        StationName = 'УГМ_Навоий';
+                                                        break;
+                                                    case "19_Hanabad":
+                                                        StationName = 'Ҳанабад';
+                                                        break;
+                                                    case "20_Payshanba":
+                                                        StationName = 'Пайшанба';
+                                                        break;
+                                                    case "21_Kushrabad":
+                                                        StationName = 'Кушрабад';
+                                                        break;
+                                                    case "22_Baysun":
+                                                        StationName = 'Байсун';
+                                                        break;
+                                                    case "23_Saryassiya":
+                                                        StationName = 'М-II Сарыассия';
+                                                        break;
+                                                    case "24_Shurchi":
+                                                        StationName = 'Шурчи';
+                                                        break;
+                                                    case "25_Termez":
+                                                        StationName = 'Термез';
+                                                        break;
+                                                    case "26_Syrdarya":
+                                                        StationName = 'М-II Сырдарья';
+                                                        break;
+                                                    case "27_Yangier":
+                                                        StationName = 'Янгиер';
+                                                        break;
+                                                    case "28_Gulistan":
+                                                        StationName = 'Гулистан';
+                                                        break;
+                                                    case "29_Chimgan":
+                                                        StationName = 'Чимган';
+                                                        break;
+                                                    case "30_Oygaing":
+                                                        StationName = 'Ойгаинг';
+                                                        break;
+                                                    case "31_Pskem":
+                                                        StationName = 'Пскем';
+                                                        break;
+                                                    case "32_Charvak":
+                                                        StationName = 'Чарвак';
+                                                        break;
+                                                    case "33_Almalyk":
+                                                        StationName = 'Алмалик';
+                                                        break;
+                                                    case "34_Angren":
+                                                        StationName = 'Ангрен';
+                                                        break;
+                                                    case "35_Bekabad":
+                                                        StationName = 'Бекабад';
+                                                        break;
+                                                    case "36_Dalverzin":
+                                                        StationName = 'М-II Дальверзин';
+                                                        break;
+                                                    case "37_Tyuyabuguz":
+                                                        StationName = 'Тюябугуз';
+                                                        break;
+                                                    case "38_Kokaral":
+                                                        StationName = 'Кокарал';
+                                                        break;
+                                                    case "39_Dukant":
+                                                        StationName = 'Дукант';
+                                                        break;
+                                                    case "40_Yangiyul":
+                                                        StationName = 'М-II Янгиюль';
+                                                        break;
+                                                    case "41_Sukok":
+                                                        StationName = 'Сукок';
+                                                        break;
+                                                    case "42_Nurafshon":
+                                                        StationName = 'Нурафшон';
+                                                        break;
+                                                    case "43_Fergana":
+                                                        StationName = 'Фергана';
+                                                        break;
+                                                    case "44_Kokand":
+                                                        StationName = 'Коканд';
+                                                        break;
+                                                    case "45_Kuva":
+                                                        StationName = 'Кува';
+                                                        break;
+                                                    case "46_Sarykanda":
+                                                        StationName = 'М-II Сарыканда';
+                                                        break;
+                                                    case "47_Shahimardan":
+                                                        StationName = 'Шаҳимардан';
+                                                        break;
+                                                    case "48_Tuyamuyun":
+                                                        StationName = 'Туямуюн';
+                                                        break;
+                                                    case "49_Khiva":
+                                                        StationName = 'Ҳива';
+                                                        break;
+                                                    case "50_Gurlen":
+                                                        StationName = 'Гурлен';
+                                                        break;
+                                                    case "51_Tashkent-Observatory":
+                                                        StationName = 'М-I Ташкент-Обсерватория';
+                                                        break;
+                                                    case "108_Gallaaral":
+                                                        StationName = 'АГМС Галляарал';
+                                                        break;
+                                                    case "109_Dustlik":
+                                                        StationName = 'М-II Дустлик';
+                                                        break;
+                                                    case "110_Lalmikor":
+                                                        StationName = 'Ляльмикор';
+                                                        break;
+                                                    case "107_Bakhmal":
+                                                        StationName = 'М-II Бахмал';
+                                                        break;
+                                                    case "112_Yangikishlak":
+                                                        StationName = 'М-II Янгикишлак';
+                                                        break;
+                                                    case "106_Kashkadarya_GMB":
+                                                        StationName = 'М-II Аркабат';
+                                                        break;
+                                                    case "105_Guzar":
+                                                        StationName = 'М-II Гузар';
+                                                        break;
+                                                    case "101_Dekhkanabad":
+                                                        StationName = 'М-II Дехканабад';
+                                                        break;
+                                                    case "102_Mubarek":
+                                                        StationName = 'М-II Муборек';
+                                                        break;
+                                                    case "103_Chimkurgan":
+                                                        StationName = 'О Чимкурган';
+                                                        break;
+                                                    case "104_Shakhrisyabz":
+                                                        StationName = 'Г-1 Шахрисябз';
+                                                        break;
+                                                    case "18_Navoiy_GMB":
+                                                        StationName = 'М-II Навои';
+                                                        break;
+                                                    case "33_Almalik":
+                                                        StationName = 'М-II Алмалык';
+                                                        break;
+                                                    default :
+                                                        StationName = response.data.Stations.StationName;
+                                                        break;
+                                                }
 
 
-                                markers_awd.addLayer(marker);
+                                                if(response.data.Stations.Sources.Variables[24].Value['Value'] !== null)
+                                                {
+                                                    marker.bindPopup("" +
+                                                        "<table class='table table-bordered'>" +
+                                                        "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.air_temperature')</b></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.dew_point')</b></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.relative_humidity')</b></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[25].Value['Value'] + " гПа </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[25].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.10_during_sea_level_pressure')<b/></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.10_the_amount_precipitation_during')</b></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " ° </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.10_average_wind_speed_during')</b></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "<tr>" +
+                                                        "<td><b>@lang('map.10_the_average_amount_solar_radiation_during')</b></td>" +
+                                                        "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
+                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
+                                                        "</tr>" +
+                                                        "</table>"
+                                                    )
+                                                }
+                                                else
+                                                {
+                                                    marker.bindPopup("" +
+                                                        "<table class='table table-bordered'>" +
+                                                        "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
+                                                        "<tr ><td class='text-center text-danger' ><b>Проблемы с поставщиком сети!</b></td></tr>" +
+                                                        "</table>"
+                                                    )
+                                                }
+
+                                            })
+                                            .catch(function (error) {
+                                                marker.bindPopup("" +
+                                                    "<table class='table table-bordered'>" +
+                                                    "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
+                                                    "<tr ><td class='text-center text-danger' ><b>Проблемы с поставщиком сети!</b></td></tr>" +
+                                                    "</table>"
+                                                )
+                                                // handle error
+                                                console.log(error)
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                    });
+                                    marker.fire('click');
+
+
+                                    markers_awd.addLayer(marker);
+                                }
                             }
-
+                            catch(e)
+                            {
+                                console.log('item: ' + item.Id)
+                                console.log(e)
+                            }
                         }
                     );
 
@@ -2773,15 +2796,15 @@
                             });
 
                             if (item.Metadata.AwsId == 6
-                               || item.Metadata.AwsId == 55
-                               || item.Metadata.AwsId == 5
-                               || item.Metadata.AwsId == 17
-                               || item.Metadata.AwsId == 16
-                               || item.Metadata.AwsId == 14
-                               || item.Metadata.AwsId == 44
-                               || item.Metadata.AwsId == 2
-                               || item.Metadata.AwsId == 31
-                               || item.Metadata.AwsId == 32) {
+                                || item.Metadata.AwsId == 55
+                                || item.Metadata.AwsId == 5
+                                || item.Metadata.AwsId == 17
+                                || item.Metadata.AwsId == 16
+                                || item.Metadata.AwsId == 14
+                                || item.Metadata.AwsId == 44
+                                || item.Metadata.AwsId == 2
+                                || item.Metadata.AwsId == 31
+                                || item.Metadata.AwsId == 32) {
 
                                 total++;
                                 var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: fontAwesomeIcon}).on('click', function () {
@@ -3639,10 +3662,10 @@
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
                                 {{--var meteoIcon = L.icon({--}}
-                                    {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
-                                    {{--    iconSize: [28, 28], // size of the icon--}}
-                                    {{--    className: "station",--}}
-                                    {{--});--}}
+                                        {{--    iconUrl: '{{asset('images/meteo_full.png')}}',--}}
+                                        {{--    iconSize: [28, 28], // size of the icon--}}
+                                        {{--    className: "station",--}}
+                                        {{--});--}}
 
                                 if (item.weather_code == 'clear') {
                                     var marker = L.marker([item.city.latitude, item.city.longitude], {
@@ -5384,7 +5407,6 @@
             this.menuChange();
             axios.get('{{route('map.radiation.years')}}')
                 .then(function (response) {
-                    console.log(response.data)
                     app.years_r = response.data;
 
                 })

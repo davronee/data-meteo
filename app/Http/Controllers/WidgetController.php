@@ -441,7 +441,7 @@ class WidgetController extends Controller
 
     public function dangerzonesData(Request $request)
     {
-        $data = Http::withBasicAuth('info@ygk.uz','X25G-y8nvQ8Tq_2D')->get($this->dangerzonesapi . 'hydromet/' . $request->endpoint);
+        $data = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get($this->dangerzonesapi . 'hydromet/' . $request->endpoint);
         return $data->json();
     }
 
@@ -467,24 +467,24 @@ class WidgetController extends Controller
 
     public function ChineStationCurrent(Request $request)
     {
-        $stations = Http::get('http://chinese-api.meteo.uz',[
-            'station_id'=>$request->station_id,
-            'year'=>Carbon::now()->year,
-            'month'=>Carbon::now()->month,
+        $stations = Http::get('http://chinese-api.meteo.uz', [
+            'station_id' => $request->station_id,
+            'year' => Carbon::now()->year,
+            'month' => Carbon::now()->month,
         ])->json();
 
-
-        $date = date_create($stations[1]);
+        if ($stations[1] != null)
+            $date = date_create($stations[1]);
 
         return [
-            'station_id'=>$request->station_id,
-            'datetime'=>date_format($date, 'd.m.Y H:i:s'),
-            'ws'=>number_format($stations[2] / 10,1),
-            'wd'=>number_format($stations[3],1),
-            'prsp'=> number_format($stations[4],1),
-            'temp'=>number_format($stations[5] / 10,1),
-            'hr'=>number_format($stations[6],1),
-            'stp'=>number_format($stations[13],1),
+            'station_id' => $request->station_id,
+            'datetime' => date_format($date, 'd.m.Y H:i:s'),
+            'ws' => number_format($stations[2] / 10, 1),
+            'wd' => number_format($stations[3], 1),
+            'prsp' => number_format($stations[4], 1),
+            'temp' => number_format($stations[5] / 10, 1),
+            'hr' => number_format($stations[6], 1),
+            'stp' => number_format($stations[13], 1),
         ];
     }
 }
