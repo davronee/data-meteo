@@ -1279,111 +1279,76 @@
                                 });
                                 var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
                                     .on('click', function () {
-                                        if (item.id == 108) {
+                                        if (item.id == 107 || item.id == 108 ||
+                                            item.id == 714 || item.id == 715 ||
+                                            item.id == 716 || item.id == 717 ||
+                                            item.id == 718 || item.id == 719) {
 
-                                            axios.get('{{route('map.horiba.drujba')}}')
+                                            axios.get('{{route('map.horiba.plashadka')}}', {
+                                                params: {
+                                                    point: item.id
+                                                }
+                                            })
                                                 .then(function (response) {
-                                                    drujbahoriba = parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit;
+                                                    // drujbahoriba = parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit;
+                                                    try {
+                                                        if (response.data.length > 0) {
+                                                            marker.bindPopup("" +
+                                                            "<table class='table table-bordered'>" +
+                                                            "<tr ><td class='text-center' colspan='2'><b>"+ item.unserialize_category_title.ru +"</b></td></tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>" + response.data[0].Name + ":</b></td>" +
+                                                            "<td>" + parseFloat(response.data[0].Value).toFixed(2) + " " + response.data[0].Unit + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>" + response.data[1].Name + ":</b></td>" +
+                                                            "<td>" + parseFloat(response.data[1].Value).toFixed(2) + " " + response.data[1].Unit + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>" + response.data[2].Name + ":</b></td>" +
+                                                            "<td>" + parseFloat(response.data[2].Value).toFixed(2) + " " + response.data[2].Unit + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>" + response.data[3].Name + ":</b></td>" +
+                                                            "<td>" + parseFloat(response.data[3].Value).toFixed(2) + " " + response.data[3].Unit + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>" + response.data[4].Name + ":</b></td>" +
+                                                            "<td>" + parseFloat(response.data[4].Value).toFixed(2) + " " + response.data[4].Unit + "</td>" +
+                                                            "</tr>" +
+                                                            "</table>" +
+                                                                "<a href='https://monitoring.meteo.uz/ru/map/view/"+ item.id +"' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
+                                                                .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>Авто</b></div>",
+                                                                    {
+                                                                        permanent: true,
+                                                                        direction: 'top',
+                                                                        className: 'ownClass'
 
-                                                    marker.bindPopup("" +
-                                                        "<table class='table table-bordered'>" +
-                                                        "<tr ><td class='text-center' colspan='2'><b>Чиланзарский р-он, проспект Бунёдкор (ориентир: Дворец Дружбы народов)</b></td></tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[0].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[0].Value).toFixed(2) + " " + response.data[0].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[1].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[1].Value).toFixed(2) + " " + response.data[1].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[2].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[2].Value).toFixed(2) + " " + response.data[2].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[3].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[3].Value).toFixed(2) + " " + response.data[3].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[4].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[4].Value).toFixed(2) + " " + response.data[4].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[5].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[5].Value).toFixed(2) + " " + response.data[5].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[6].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[7].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[7].Value).toFixed(2) + " " + response.data[7].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "</table>" +
-                                                        "<a href='https://monitoring.meteo.uz/ru/map/view/108' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
-                                                            {
-                                                                permanent: true,
-                                                                direction: 'top',
-                                                                className: 'ownClass'
+                                                                    });
+                                                        }
+                                                        else
+                                                        {
+                                                            marker.bindPopup("" +
+                                                                "<table class='table table-bordered'>" +
+                                                                "<tr ><td class='text-center' colspan='2'><b>"+ item.unserialize_category_title.ru +"</b></td></tr>" +
+                                                                "<tr>" +
+                                                                "<td class='text-center text-danger'><b>профилактический работы</b></td>" +
+                                                                "</tr>" +
+                                                                "</table>" +
+                                                                "<a href='https://monitoring.meteo.uz/ru/map/view/" + item.id + "' target='_blank' style='color:#000;'>@lang('map.more')....</a>")
+                                                                .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>Авто</b></div>",
+                                                                    {
+                                                                        permanent: true,
+                                                                        direction: 'top',
+                                                                        className: 'ownClass'
 
-                                                            });
-                                                })
-                                                .catch(error => {
-                                                    console.log(error)
-                                                });
+                                                                    });
+                                                        }
 
-                                        } else if (item.id == 107) {
+                                                    } catch (e) {
+                                                        console.log(e)
+                                                    }
 
-                                            axios.get('{{route('map.horiba.plashadka')}}')
-                                                .then(function (response) {
-                                                    plashadkahoriba = parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit;
-
-                                                    marker.bindPopup("" +
-                                                        "<table class='table table-bordered'>" +
-                                                        "<tr ><td class='text-center' colspan='2'><b>Юнус-Абадский р-он, Узгидромет (ориентир: Метеоплощадка, обсерватория) </b></td></tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[0].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[0].Value).toFixed(2) + " " + response.data[0].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[1].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[1].Value).toFixed(2) + " " + response.data[1].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[2].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[2].Value).toFixed(2) + " " + response.data[2].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[3].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[3].Value).toFixed(2) + " " + response.data[3].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[4].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[4].Value).toFixed(2) + " " + response.data[4].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[5].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[5].Value).toFixed(2) + " " + response.data[5].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[6].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>" + response.data[7].Name + ":</b></td>" +
-                                                        "<td>" + parseFloat(response.data[7].Value).toFixed(2) + " " + response.data[7].Unit + "</td>" +
-                                                        "</tr>" +
-                                                        "</table>" +
-                                                        "<a href='https://monitoring.meteo.uz/ru/map/view/107' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>" + parseFloat(response.data[6].Value).toFixed(2) + "</b></div>",
-                                                            {
-                                                                permanent: true,
-                                                                direction: 'top',
-                                                                className: 'ownClass'
-
-                                                            });
                                                 })
                                                 .catch(error => {
                                                     console.log(error)
@@ -1555,9 +1520,9 @@
                                 iconSize: [28, 28], // size of the icon
                                 class: "station"
                             });
-                            try{
+                            try {
                                 if (item.Metadata.AwsId !== null) {
-                                        var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
+                                    var marker = L.marker([parseFloat(item.Metadata.Latitude), parseFloat(item.Metadata.Longitude)], {icon: meteoIcon}).on('click', function () {
                                         axios.post('{{route('map.awd.getStation')}}', {
                                             token: '{{@csrf_token()}}',
                                             id: item.Id
@@ -1764,8 +1729,7 @@
                                                 }
 
 
-                                                if(response.data.Stations.Sources.Variables[24].Value['Value'] !== null)
-                                                {
+                                                if (response.data.Stations.Sources.Variables[24].Value['Value'] !== null) {
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
                                                         "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
@@ -1816,9 +1780,7 @@
                                                         "</tr>" +
                                                         "</table>"
                                                     )
-                                                }
-                                                else
-                                                {
+                                                } else {
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
                                                         "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
@@ -1847,9 +1809,7 @@
 
                                     markers_awd.addLayer(marker);
                                 }
-                            }
-                            catch(e)
-                            {
+                            } catch (e) {
                                 console.log('item: ' + item.Id)
                                 console.log(e)
                             }

@@ -452,9 +452,36 @@ class WidgetController extends Controller
         return $horiba;
     }
 
-    public function GetHoribaPlashadka()
+    public function GetHoribaPlashadka(Request $request)
     {
-        $horiba = Http::get('http://ecoweb-api.meteo.uz?point=1')->json();
+
+        switch ($request->point)
+        {
+            case 107:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=1')->json();
+                break;
+            case 108:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=2')->json();
+                break;
+            case 714:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=3')->json();
+                break;
+            case 715:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=4')->json();
+                break;
+            case 716:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=5')->json();
+                break;
+            case 717:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=6')->json();
+                break;
+            case 718:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=7')->json();
+                break;
+            case 719:
+                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=8')->json();
+                break;
+        }
 
         return $horiba;
     }
