@@ -5623,9 +5623,9 @@
                                             "<td  class='text-center'><b>фактические данные</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +"</td>" +
-                                            "<td  class='text-center'>"+ parseFloat(feature.properties.H3).toFixed(2) +"</td>" +
-                                            "<td  class='text-center'>0</td>" +
+                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +" м³/с</td>" +
+                                            "<td  class='text-center'>"+ parseFloat(feature.properties.H3).toFixed(2) +" м³/с</td>" +
+                                            "<td  class='text-center'>0 м³/с</td>" +
                                             "</tr>" +
                                             "</table>"
                                         ).openOn(map);
@@ -5673,9 +5673,9 @@
                                             "<td  class='text-center'><b>фактические данные</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +"</td>" +
-                                            "<td  class='text-center'>"+ parseFloat(feature.properties.H3).toFixed(2) +"</td>" +
-                                            "<td  class='text-center'>0</td>" +
+                                            "<td  class='text-center'>"+ parseInt(app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3])) +" см </td>" +
+                                            "<td  class='text-center'>"+ parseInt(feature.properties.H3) +"  см</td>" +
+                                            "<td  class='text-center'>0 см</td>" +
                                             "</tr>" +
                                             "</table>"
                                         ).openOn(map);

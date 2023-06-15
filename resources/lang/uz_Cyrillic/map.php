@@ -146,7 +146,7 @@ return [
     'ra'=>'Қуёш радиацияси',
     'leaf_temp'=>'Япроқ ҳарорати',
     'wetness'=>'Намлик',
-    'hydroposts'=>'Гидропостлар',
+    'hydroposts'=>'Гидропосты (в тестовом режиме)',
     'water_consumption'=>'Сув сарфи',
     'water_level'=>'Сув сатҳи',
     'autohydrostations'=>'Автоматик гидропостлар',

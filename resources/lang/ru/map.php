@@ -146,7 +146,7 @@ return [
     'leaf_temp'=>'Температура листа',
     'wetness'=>'Сырость',
     'solar_radiation'=>'Солнечная радиация',
-    'hydroposts'=>'Гидропосты',
+    'hydroposts'=>'Гидропосты (в тестовом режиме)',
     'water_consumption'=>'Расход воды',
     'water_level'=>'Уровень воды',
     'autohydrostations'=>'Автоматические гидропосты',
