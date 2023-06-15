@@ -5618,14 +5618,14 @@
                                             "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'><b>Среднее за квартал</b></td>" +
-                                            "<td  class='text-center'><b>Среднее за месяц</b></td>" +
-                                            "<td  class='text-center'><b>Фактический</b></td>" +
+                                            "<td  class='text-center'><b>Среднее за квартал (м3/с) </b></td>" +
+                                            "<td  class='text-center'><b>Среднее за месяц (м3/с)</b></td>" +
+                                            "<td  class='text-center'><b>Фактический (м3/с)</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +" м³/с</td>" +
-                                            "<td  class='text-center'>"+ parseFloat(feature.properties.H3).toFixed(2) +" м³/с</td>" +
-                                            "<td  class='text-center'>0 м³/с</td>" +
+                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +"</td>" +
+                                            "<td  class='text-center'>"+ parseFloat(feature.properties.H3).toFixed(2) +" </td>" +
+                                            "<td  class='text-center'>0 </td>" +
                                             "</tr>" +
                                             "</table>"
                                         ).openOn(map);
@@ -5668,14 +5668,14 @@
                                             "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'><b>Среднее за квартал</b></td>" +
-                                            "<td  class='text-center'><b>Среднее за месяц</b></td>" +
-                                            "<td  class='text-center'><b>Фактический</b></td>" +
+                                            "<td  class='text-center'><b>Среднее за квартал (см)</b></td>" +
+                                            "<td  class='text-center'><b>Среднее за месяц (см)</b></td>" +
+                                            "<td  class='text-center'><b>Фактический (см)</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'>"+ parseInt(app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3])) +" см </td>" +
-                                            "<td  class='text-center'>"+ parseInt(feature.properties.H3) +"  см</td>" +
-                                            "<td  class='text-center'>0 см</td>" +
+                                            "<td  class='text-center'>"+ parseInt(app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3])) +"</td>" +
+                                            "<td  class='text-center'>"+ parseInt(feature.properties.H3) +"</td>" +
+                                            "<td  class='text-center'>0</td>" +
                                             "</tr>" +
                                             "</table>"
                                         ).openOn(map);
