@@ -82,6 +82,7 @@
     <script src="{{asset('calcite/js/jquery/esri-leaflet-geocoder-debug.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
+
     <style>
         html, body {
             margin: 0;
@@ -5589,18 +5590,28 @@
                 return C.toFixed(1);
             },
             getWaterConsuption: function () {
+                var markers = '';
                 var square;
                 axios.get('{{route('map.watercadastr.GetWaterConsumption')}}')
                     .then(function (response) {
                         response.data.forEach(function (item, i, arr) {
                             var geoojson = L.geoJson(item, {
                                 pointToLayer: function (feature, latlng) {
-                                    square = L.shapeMarker(latlng, {
-                                        shape: "circle",
-                                        radius: 5,
-                                        fillOpacity: 0.5,
-                                        color: '#202AE7'
-                                    }).on('click', function () {
+
+                                    // square = L.shapeMarker(latlng, {
+                                    //     shape: "circle",
+                                    //     radius: 5,
+                                    //     fillOpacity: 0.5,
+                                    //     color: '#202AE7'
+                                    // })
+
+                                    var meteoIcon = L.icon({
+                                        iconUrl: '{{asset('images/drop-ulchov-01.svg')}}',
+                                        iconSize: [30, 30],
+                                        className: 'selectedMarker'
+                                    });
+
+                                    markers = L.marker(latlng, {icon: meteoIcon}).on('click', function () {
                                         var pop = L.popup().setLatLng(this._latlng).setContent(
                                             "<table class='table table-bordered'>" +
                                             "<tr>" +
@@ -5622,7 +5633,7 @@
                                     })
                                 },
                             });
-                            marker_waterconsuption.addLayer(square);
+                            marker_waterconsuption.addLayer(markers);
                         })
 
                         map.addLayer(marker_waterconsuption);
@@ -5636,18 +5647,21 @@
             },
             getWaterLevel: function () {
                 var square;
+                var markers = '';
+
                 axios.get('{{route('map.watercadastr.GetWaterLevel')}}')
                     .then(function (response) {
                         response.data.forEach(function (item, i, arr) {
 
                             var geoojson = L.geoJson(item, {
                                 pointToLayer: function (feature, latlng) {
-                                    square = L.shapeMarker(latlng, {
-                                        shape: "circle",
-                                        radius: 5,
-                                        fillOpacity: 0.5,
-                                        color: 'green'
-                                    }).on('click', function () {
+                                    var meteoIcon = L.icon({
+                                        iconUrl: '{{asset('images/drop-satxi.svg')}}',
+                                        iconSize: [30, 30],
+                                        className: 'selectedMarker'
+                                    });
+
+                                    markers = L.marker(latlng, {icon: meteoIcon}).on('click', function () {
                                         var pop = L.popup().setLatLng(this._latlng).setContent(
                                             "<table class='table table-bordered'>" +
                                             "<tr>" +
@@ -5671,7 +5685,7 @@
                                 },
                             });
 
-                            marker_waterlevel.addLayer(square);
+                            marker_waterlevel.addLayer(markers);
                         })
 
                         map.addLayer(marker_waterlevel);
@@ -5685,15 +5699,18 @@
             },
             getAutoHydroStations: function () {
                 var square;
+                var markers = '';
                 axios.get('{{route('map.watercadastr.GetAutostationHydro')}}')
                     .then(function (response) {
+                        var meteoIcon = L.icon({
+                            iconUrl: '{{asset('images/drop-avto-01.svg')}}',
+                            iconSize: [30, 30],
+                            className: 'selectedMarker'
+                        });
                         response.data.forEach(function (item, i, arr) {
-                            square = L.shapeMarker([item.latitute, item.longitute], {
-                                shape: "circle",
-                                radius: 5,
-                                fillOpacity: 0.5,
-                                color: 'yellow'
-                            }).on('click', function () {
+
+
+                            markers = L.marker([item.latitute, item.longitute], {icon: meteoIcon}).on('click', function () {
 
                                 var pop = L.popup().setLatLng(this._latlng).setContent(
                                     "<table class='table table-bordered'>" +
@@ -5704,7 +5721,7 @@
                                 ).openOn(map);
 
                             })
-                            marker_audtohydropost.addLayer(square);
+                            marker_audtohydropost.addLayer(markers);
                         })
 
                         map.addLayer(marker_audtohydropost);
