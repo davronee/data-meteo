@@ -5618,9 +5618,9 @@
                                             "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'><b>квартальные данные</b></td>" +
-                                            "<td  class='text-center'><b>оперативные данные</b></td>" +
-                                            "<td  class='text-center'><b>фактические данные</b></td>" +
+                                            "<td  class='text-center'><b>Среднее за квартал</b></td>" +
+                                            "<td  class='text-center'><b>Среднее за месяц</b></td>" +
+                                            "<td  class='text-center'><b>Фактический</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +" м³/с</td>" +
@@ -5668,9 +5668,9 @@
                                             "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'><b>квартальные данные</b></td>" +
-                                            "<td  class='text-center'><b>оперативные данные</b></td>" +
-                                            "<td  class='text-center'><b>фактические данные</b></td>" +
+                                            "<td  class='text-center'><b>Среднее за квартал</b></td>" +
+                                            "<td  class='text-center'><b>Среднее за месяц</b></td>" +
+                                            "<td  class='text-center'><b>Фактический</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td  class='text-center'>"+ parseInt(app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3])) +" см </td>" +
