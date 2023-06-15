@@ -149,7 +149,7 @@ return [
     'hydroposts'=>'Гидропосты (в тестовом режиме)',
     'water_consumption'=>'Сув сарфи',
     'water_level'=>'Сув сатҳи',
-    'autohydrostations'=>'Автоматик гидропостлар',
+    'autohydrostations'=>'Автоматик гидропостлар (запланированные станции)',
 
 
 ];
