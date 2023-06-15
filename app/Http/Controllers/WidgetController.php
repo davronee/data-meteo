@@ -455,8 +455,7 @@ class WidgetController extends Controller
     public function GetHoribaPlashadka(Request $request)
     {
 
-        switch ($request->point)
-        {
+        switch ($request->point) {
             case 107:
                 $horiba = Http::get('http://ecoweb-api.meteo.uz?point=1')->json();
                 break;

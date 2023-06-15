@@ -117,6 +117,9 @@ Route::group(['middleware' => ['set_locale']], function () {
 
         Route::prefix('watercadastr')->group(function () {
             Route::get('/', [\App\Http\Controllers\WaterCadastrController::class, 'getStation'])->name('map.watercadastr.get');
+            Route::get('/water-consuption', [\App\Http\Controllers\WaterCadastrController::class, 'GetWaterConsumption'])->name('map.watercadastr.GetWaterConsumption');
+            Route::get('/water-level', [\App\Http\Controllers\WaterCadastrController::class, 'GetWaterLevel'])->name('map.watercadastr.GetWaterLevel');
+            Route::get('/water-automat-hydrostation', [\App\Http\Controllers\WaterCadastrController::class, 'GetAutostationHydro'])->name('map.watercadastr.GetAutostationHydro');
         });
 
 

@@ -145,7 +145,11 @@ return [
     'cumulative_rainfall'=>'Ёғингарчилик миқдори',
     'ra'=>'Қуёш радиацияси',
     'leaf_temp'=>'Япроқ ҳарорати',
-    'wetness'=>'Намлик'
+    'wetness'=>'Намлик',
+    'hydroposts'=>'Гидропостлар',
+    'water_consumption'=>'Сув сарфи',
+    'water_level'=>'Сув сатҳи',
+    'autohydrostations'=>'Автоматик гидропостлар',
 
 
 ];

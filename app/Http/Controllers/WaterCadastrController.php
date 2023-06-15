@@ -13,4 +13,39 @@ class WaterCadastrController extends Controller
 
         return $stations;
     }
+
+    public function GetWaterConsumption(Request $request)
+    {
+        try {
+            $water_consumption = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get('http://10.190.24.134:11082/api/hydromet/water_consumptions')->json();
+            return $water_consumption;
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
+    public function GetWaterLevel()
+    {
+        try {
+            $water_consumption = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get('http://10.190.24.134:11082/api/hydromet/water_level')->json();
+            return $water_consumption;
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+    public function GetAutostationHydro()
+    {
+        try {
+            $water_consumption = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get('http://10.190.24.134:11082/api/hydromet/GetAutoStaions')->json();
+            return $water_consumption;
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
 }
