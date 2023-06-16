@@ -354,12 +354,8 @@
                                    </option>
                                    <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option> -->
                         </optgroup>
-                        <optgroup label="@lang('map.hydroposts')">
-                            <option value="water_consumption">@lang('map.water_consumption')</option>
-                            <option value="water_level">@lang('map.water_level')</option>
+                            <option value="water_consumption">@lang('map.hydroposts')</option>
                             <option value="water_autohyrostation">@lang('map.autohydrostations')</option>
-                        </optgroup>
-
                     </select>
                 </div>
             </div>
@@ -5618,13 +5614,13 @@
                                             "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'><b>Среднее за квартал (м3/с) </b></td>" +
-                                            "<td  class='text-center'><b>Среднее за месяц (м3/с)</b></td>" +
-                                            "<td  class='text-center'><b>Фактический (м3/с)</b></td>" +
+                                            "<td  class='text-center'><b>Расход воды (Среднее за квартал м3/с) </b></td>" +
+                                            "<td  class='text-center'><b>Уровень воды (Среднее за месяц см)</b></td>" +
+                                            "<td  class='text-center'><b>Фактический</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
                                             "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +"</td>" +
-                                            "<td  class='text-center'>"+ parseFloat(feature.properties.H3).toFixed(2) +" </td>" +
+                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.water_level.H1,feature.properties.water_level.H2,feature.properties.water_level.H3]) +"</td>" +
                                             "<td  class='text-center'>0 </td>" +
                                             "</tr>" +
                                             "</table>"
