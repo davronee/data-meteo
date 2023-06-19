@@ -34,6 +34,7 @@
     margin-top: -3px;
     margin-left: -10px;
 }
+
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
     background: white;
     color: #000;
@@ -68,5 +69,11 @@
     background-color: #2f3ead;
 }
 
+.modal-body.krams-airport {
+    position: relative;
+    padding: 0px;
+}
 
-
+.with120 {
+    width: 41rem;
+}

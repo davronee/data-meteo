@@ -354,8 +354,8 @@
                                    </option>
                                    <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option> -->
                         </optgroup>
-                            <option value="water_consumption">@lang('map.hydroposts')</option>
-                            <option value="water_autohyrostation">@lang('map.autohydrostations')</option>
+                        <option value="water_consumption">@lang('map.hydroposts')</option>
+{{--                        <option value="water_autohyrostation">@lang('map.autohydrostations')</option>--}}
                     </select>
                 </div>
             </div>
@@ -4755,8 +4755,7 @@
                     this.water_autohyrostation = false;
 
 
-                }
-                else if (this.menu == 'water_level') {
+                } else if (this.menu == 'water_level') {
 
                     this.currentTemp = false;
                     this.mini = false;
@@ -4798,8 +4797,7 @@
                     this.water_autohyrostation = false;
 
 
-                }
-                else if (this.menu == 'water_autohyrostation') {
+                } else if (this.menu == 'water_autohyrostation') {
 
                     this.currentTemp = false;
                     this.mini = false;
@@ -5600,28 +5598,66 @@
                                     //     fillOpacity: 0.5,
                                     //     color: '#202AE7'
                                     // })
+                                    var meteoIcon = null;
+                                    switch (feature.properties.type) {
+                                        case 1:
+                                            meteoIcon = L.icon({
+                                                iconUrl: '{{asset('images/1.svg')}}',
+                                                iconSize: [30, 30],
+                                                className: 'selectedMarker'
+                                            });
+                                            break;
+                                        case 2:
+                                            meteoIcon = L.icon({
+                                                iconUrl: '{{asset('images/2.svg')}}',
+                                                iconSize: [30, 30],
+                                                className: 'selectedMarker'
+                                            });
+                                            break;
+                                        case 3:
+                                            meteoIcon = L.icon({
+                                                iconUrl: '{{asset('images/3.svg')}}',
+                                                iconSize: [30, 30],
+                                                className: 'selectedMarker'
+                                            });
+                                            break;
+                                        case 4:
+                                            meteoIcon = L.icon({
+                                                iconUrl: '{{asset('images/4.svg')}}',
+                                                iconSize: [30, 30],
+                                                className: 'selectedMarker'
+                                            });
+                                            break;
+                                            defualt:
+                                                meteoIcon = L.icon({
+                                                    iconUrl: '{{asset('images/1.svg')}}',
+                                                    iconSize: [30, 30],
+                                                    className: 'selectedMarker'
+                                                });
+                                            break;
 
-                                    var meteoIcon = L.icon({
-                                        iconUrl: '{{asset('images/drop-ulchov-01.svg')}}',
-                                        iconSize: [30, 30],
-                                        className: 'selectedMarker'
-                                    });
+                                    }
+
 
                                     markers = L.marker(latlng, {icon: meteoIcon}).on('click', function () {
-                                        var pop = L.popup().setLatLng(this._latlng).setContent(
+                                        var pop = L.popup({className:'with120'}).setLatLng(this._latlng).setContent(
                                             "<table class='table table-bordered'>" +
                                             "<tr>" +
-                                            "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
+                                            "<td colspan='5' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'><b>Расход воды (Среднее за квартал м3/с) </b></td>" +
-                                            "<td  class='text-center'><b>Уровень воды (Среднее за месяц см)</b></td>" +
-                                            "<td  class='text-center'><b>Фактический</b></td>" +
+                                            "<td  class='text-center'><b>Suv iste'moli (O'rtacha choraklik м3/с) </b></td>" +
+                                            "<td  class='text-center'><b>Suv darajasi (O'rtacha choraklik см)</b></td>" +
+                                            "<td  class='text-center'><b>Joriy ma'lumotlar</b></td>" +
+                                            "<td  class='text-center'><b>Uskunalar soni</b></td>" +
+                                            "<td  class='text-center'><b>O'rnatilish yili</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3]) +"</td>" +
-                                            "<td  class='text-center'>"+ app.CalculateAverage([feature.properties.water_level.H1,feature.properties.water_level.H2,feature.properties.water_level.H3]) +"</td>" +
+                                            "<td  class='text-center'>" + app.CalculateAverage([feature.properties.H1, feature.properties.H2, feature.properties.H3]) + "</td>" +
+                                            "<td  class='text-center'>" + Math.floor(app.CalculateAverage([feature.properties.water_level.H1, feature.properties.water_level.H2, feature.properties.water_level.H3])) + "</td>" +
                                             "<td  class='text-center'>0 </td>" +
+                                            "<td  class='text-center'>" + feature.properties.count + "</td>" +
+                                            "<td  class='text-center'>" + feature.properties.start_year + "</td>" +
                                             "</tr>" +
                                             "</table>"
                                         ).openOn(map);
@@ -5640,6 +5676,8 @@
                     .then(function () {
                         // always executed
                     });
+
+                this.getAutoHydroStations();
             },
             getWaterLevel: function () {
                 var square;
@@ -5658,7 +5696,7 @@
                                     });
 
                                     markers = L.marker(latlng, {icon: meteoIcon}).on('click', function () {
-                                        var pop = L.popup().setLatLng(this._latlng).setContent(
+                                        var pop = L.popup( {className: "with150"}).setLatLng(this._latlng).setContent(
                                             "<table class='table table-bordered'>" +
                                             "<tr>" +
                                             "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
@@ -5669,8 +5707,8 @@
                                             "<td  class='text-center'><b>Фактический (см)</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'>"+ parseInt(app.CalculateAverage([feature.properties.H1,feature.properties.H2,feature.properties.H3])) +"</td>" +
-                                            "<td  class='text-center'>"+ parseInt(feature.properties.H3) +"</td>" +
+                                            "<td  class='text-center'>" + parseInt(app.CalculateAverage([feature.properties.H1, feature.properties.H2, feature.properties.H3])) + "</td>" +
+                                            "<td  class='text-center'>" + parseInt(feature.properties.H3) + "</td>" +
                                             "<td  class='text-center'>0</td>" +
                                             "</tr>" +
                                             "</table>"
@@ -5696,22 +5734,63 @@
             getAutoHydroStations: function () {
                 var square;
                 var markers = '';
+                var meteoIcon = null;
                 axios.get('{{route('map.watercadastr.GetAutostationHydro')}}')
                     .then(function (response) {
-                        var meteoIcon = L.icon({
-                            iconUrl: '{{asset('images/drop-avto-01.svg')}}',
-                            iconSize: [30, 30],
-                            className: 'selectedMarker'
-                        });
+                        var meteoIcon = null;
+
                         response.data.forEach(function (item, i, arr) {
 
+                            switch (item.type) {
+                                case 1:
+                                    meteoIcon = L.icon({
+                                        iconUrl: '{{asset('images/1.svg')}}',
+                                        iconSize: [30, 30],
+                                        className: 'selectedMarker'
+                                    });
+                                    break;
+                                case 2:
+                                    meteoIcon = L.icon({
+                                        iconUrl: '{{asset('images/2.svg')}}',
+                                        iconSize: [30, 30],
+                                        className: 'selectedMarker'
+                                    });
+                                    break;
+                                case 3:
+                                    meteoIcon = L.icon({
+                                        iconUrl: '{{asset('images/3.svg')}}',
+                                        iconSize: [30, 30],
+                                        className: 'selectedMarker'
+                                    });
+                                    break;
+                                case 4:
+                                    meteoIcon = L.icon({
+                                        iconUrl: '{{asset('images/4.svg')}}',
+                                        iconSize: [30, 30],
+                                        className: 'selectedMarker'
+                                    });
+                                    break;
+                                    defualt:
+                                        meteoIcon = L.icon({
+                                            iconUrl: '{{asset('images/1.svg')}}',
+                                            iconSize: [30, 30],
+                                            className: 'selectedMarker'
+                                        });
+                                    break;
 
+                            }
                             markers = L.marker([item.latitute, item.longitute], {icon: meteoIcon}).on('click', function () {
 
                                 var pop = L.popup().setLatLng(this._latlng).setContent(
                                     "<table class='table table-bordered'>" +
                                     "<tr>" +
-                                    "<td colspan='2' class='text-center'><b>" + item.name + "</b></td>" +
+                                    "<td colspan='2' rowspan='2' class='text-center'><b>" + item.name + "</b></td>" +
+                                    "<td  class='text-center'><b>Uskunalar soni</b></td>" +
+                                    "<td  class='text-center'><b>O'rnatilish yili</b></td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td  class='text-center'>" + item.count + "</td>" +
+                                    "<td  class='text-center'>" + item.start_year + "</td>" +
                                     "</tr>" +
                                     "</table>"
                                 ).openOn(map);
