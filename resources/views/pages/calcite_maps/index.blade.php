@@ -5646,8 +5646,8 @@
                                             "<td colspan='5' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                            "<td  class='text-center'><b>Suv iste'moli (O'rtacha choraklik м3/с) </b></td>" +
-                                            "<td  class='text-center'><b>Suv darajasi (O'rtacha choraklik см)</b></td>" +
+                                            "<td  class='text-center'><b>Suv sarfi (O'rtacha choraklik м3/с) </b></td>" +
+                                            "<td  class='text-center'><b>Suv sathi (O'rtacha choraklik см)</b></td>" +
                                             "<td  class='text-center'><b>Joriy ma'lumotlar</b></td>" +
                                             "<td  class='text-center'><b>Uskunalar soni</b></td>" +
                                             "<td  class='text-center'><b>O'rnatilish yili</b></td>" +
