@@ -22,23 +22,36 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="added meteobot new">
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/meteo/index_old.blade.php" afterDir="false" />
+    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="added service with endpoint">
       <change beforePath="$PROJECT_DIR$/.idea/meteo-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meteo-data.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/StationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/StationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/data/21-01-05-05-00_38149.txt" beforeDir="false" afterPath="$PROJECT_DIR$/storage/data/21-01-05-05-00_38149.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerConfigs">
+    <option name="configs">
+      <option value="$PROJECT_DIR$/public/dist1/assets/plugins/bootstrap-slider/composer.json" />
+      <option value="$PROJECT_DIR$/public/dist1/assets/plugins/bootstrap-3-typeahead/composer.json" />
+      <option value="$PROJECT_DIR$/public/new_meteo/assets/plugins/bootstrap-slider/composer.json" />
+      <option value="$PROJECT_DIR$/public/dist/assets/plugins/bootstrap-slider/composer.json" />
+      <option value="$PROJECT_DIR$/public/dist1/assets/plugins/bootstrap-table/composer.json" />
+      <option value="$PROJECT_DIR$/public/template/lib/inputmask/composer.json" />
+      <option value="$PROJECT_DIR$/public/meteo_asset/assets/plugins/bootstrap-3-typeahead/composer.json" />
+      <option value="$PROJECT_DIR$/public/meteo_asset/assets/plugins/bootstrap-table/composer.json" />
+      <option value="$PROJECT_DIR$/public/dist/assets/plugins/bootstrap-table/composer.json" />
+      <option value="$PROJECT_DIR$/public/new_meteo/assets/plugins/bootstrap-table/composer.json" />
+      <option value="$PROJECT_DIR$/public/meteo_asset/assets/plugins/bootstrap-slider/composer.json" />
+      <option value="$PROJECT_DIR$/public/template/lib/bootstrap-datetimepicker/composer.json" />
+      <option value="$PROJECT_DIR$/public/new_meteo/assets/plugins/bootstrap-3-typeahead/composer.json" />
+      <option value="$PROJECT_DIR$/public/dist/assets/plugins/bootstrap-3-typeahead/composer.json" />
+    </option>
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="DONT_SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -64,7 +77,10 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
@@ -210,31 +226,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/laragon/www/antenna",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "E:\\laragon\\www\\meteo-data\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "Configurable.PHP.Twig",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\laragon\www\meteo-data\public\js" />
       <recent name="E:\laragon\www\meteo-data\public" />
       <recent name="E:\laragon\www\meteo-data\resources\views\pages" />
       <recent name="E:\laragon\www\meteo-data\public\login" />
       <recent name="E:\laragon\www\meteo-data\resources\css" />
-      <recent name="E:\laragon\www\meteo-data\resources\js" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -463,209 +480,51 @@
       <workItem from="1665984662532" duration="16931000" />
       <workItem from="1666178380159" duration="30000" />
       <workItem from="1666245721559" duration="25000" />
-    </task>
-    <task id="LOCAL-00299" summary="added Uchqorgon station">
-      <created>1656310406878</created>
-      <option name="number" value="00299" />
-      <option name="presentableId" value="LOCAL-00299" />
-      <option name="project" value="LOCAL" />
-      <updated>1656310406878</updated>
-    </task>
-    <task id="LOCAL-00300" summary="added Uchqorgon station">
-      <created>1656394808325</created>
-      <option name="number" value="00300" />
-      <option name="presentableId" value="LOCAL-00300" />
-      <option name="project" value="LOCAL" />
-      <updated>1656394808325</updated>
-    </task>
-    <task id="LOCAL-00301" summary="added Uchqorgon station">
-      <created>1656410352975</created>
-      <option name="number" value="00301" />
-      <option name="presentableId" value="LOCAL-00301" />
-      <option name="project" value="LOCAL" />
-      <updated>1656410352975</updated>
-    </task>
-    <task id="LOCAL-00302" summary="added Uchqorgon station">
-      <created>1656573455877</created>
-      <option name="number" value="00302" />
-      <option name="presentableId" value="LOCAL-00302" />
-      <option name="project" value="LOCAL" />
-      <updated>1656573455877</updated>
-    </task>
-    <task id="LOCAL-00303" summary="added Uchqorgon station">
-      <created>1656573618757</created>
-      <option name="number" value="00303" />
-      <option name="presentableId" value="LOCAL-00303" />
-      <option name="project" value="LOCAL" />
-      <updated>1656573618757</updated>
-    </task>
-    <task id="LOCAL-00304" summary="changed uchqorgon station to ambiaweather">
-      <created>1656759604301</created>
-      <option name="number" value="00304" />
-      <option name="presentableId" value="LOCAL-00304" />
-      <option name="project" value="LOCAL" />
-      <updated>1656759604301</updated>
-    </task>
-    <task id="LOCAL-00305" summary="changed uchqorgon station to ambiaweather">
-      <created>1656759809945</created>
-      <option name="number" value="00305" />
-      <option name="presentableId" value="LOCAL-00305" />
-      <option name="project" value="LOCAL" />
-      <updated>1656759809945</updated>
-    </task>
-    <task id="LOCAL-00306" summary="changed uchqorgon station to ambiaweather">
-      <created>1656930324264</created>
-      <option name="number" value="00306" />
-      <option name="presentableId" value="LOCAL-00306" />
-      <option name="project" value="LOCAL" />
-      <updated>1656930324264</updated>
-    </task>
-    <task id="LOCAL-00307" summary="changed uchqorgon station to ambiaweather">
-      <created>1657600010570</created>
-      <option name="number" value="00307" />
-      <option name="presentableId" value="LOCAL-00307" />
-      <option name="project" value="LOCAL" />
-      <updated>1657600010570</updated>
-    </task>
-    <task id="LOCAL-00308" summary="changed uchqorgon station to ambiaweather">
-      <created>1658123931872</created>
-      <option name="number" value="00308" />
-      <option name="presentableId" value="LOCAL-00308" />
-      <option name="project" value="LOCAL" />
-      <updated>1658123931873</updated>
-    </task>
-    <task id="LOCAL-00309" summary="changed uchqorgon station to ambiaweather">
-      <created>1658731052840</created>
-      <option name="number" value="00309" />
-      <option name="presentableId" value="LOCAL-00309" />
-      <option name="project" value="LOCAL" />
-      <updated>1658731052840</updated>
-    </task>
-    <task id="LOCAL-00310" summary="changed uchqorgon station to ambiaweather">
-      <created>1658732241026</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1658732241026</updated>
-    </task>
-    <task id="LOCAL-00311" summary="add get history">
-      <created>1659610173158</created>
-      <option name="number" value="00311" />
-      <option name="presentableId" value="LOCAL-00311" />
-      <option name="project" value="LOCAL" />
-      <updated>1659610173159</updated>
-    </task>
-    <task id="LOCAL-00312" summary="add get history">
-      <created>1661714236611</created>
-      <option name="number" value="00312" />
-      <option name="presentableId" value="LOCAL-00312" />
-      <option name="project" value="LOCAL" />
-      <updated>1661714236612</updated>
-    </task>
-    <task id="LOCAL-00313" summary="add get history">
-      <created>1661714349089</created>
-      <option name="number" value="00313" />
-      <option name="presentableId" value="LOCAL-00313" />
-      <option name="project" value="LOCAL" />
-      <updated>1661714349089</updated>
-    </task>
-    <task id="LOCAL-00314" summary="add get history">
-      <created>1661757375634</created>
-      <option name="number" value="00314" />
-      <option name="presentableId" value="LOCAL-00314" />
-      <option name="project" value="LOCAL" />
-      <updated>1661757375634</updated>
-    </task>
-    <task id="LOCAL-00315" summary="add get history">
-      <created>1661758136717</created>
-      <option name="number" value="00315" />
-      <option name="presentableId" value="LOCAL-00315" />
-      <option name="project" value="LOCAL" />
-      <updated>1661758136717</updated>
-    </task>
-    <task id="LOCAL-00316" summary="add get history">
-      <created>1661758216893</created>
-      <option name="number" value="00316" />
-      <option name="presentableId" value="LOCAL-00316" />
-      <option name="project" value="LOCAL" />
-      <updated>1661758216893</updated>
-    </task>
-    <task id="LOCAL-00317" summary="add get history">
-      <created>1661766503809</created>
-      <option name="number" value="00317" />
-      <option name="presentableId" value="LOCAL-00317" />
-      <option name="project" value="LOCAL" />
-      <updated>1661766503809</updated>
-    </task>
-    <task id="LOCAL-00318" summary="add get history">
-      <created>1661766549875</created>
-      <option name="number" value="00318" />
-      <option name="presentableId" value="LOCAL-00318" />
-      <option name="project" value="LOCAL" />
-      <updated>1661766549875</updated>
-    </task>
-    <task id="LOCAL-00319" summary="add get history">
-      <created>1661767122559</created>
-      <option name="number" value="00319" />
-      <option name="presentableId" value="LOCAL-00319" />
-      <option name="project" value="LOCAL" />
-      <updated>1661767122559</updated>
-    </task>
-    <task id="LOCAL-00320" summary="add get history">
-      <created>1661767204003</created>
-      <option name="number" value="00320" />
-      <option name="presentableId" value="LOCAL-00320" />
-      <option name="project" value="LOCAL" />
-      <updated>1661767204003</updated>
-    </task>
-    <task id="LOCAL-00321" summary="add apmmeteoutm">
-      <created>1661782872805</created>
-      <option name="number" value="00321" />
-      <option name="presentableId" value="LOCAL-00321" />
-      <option name="project" value="LOCAL" />
-      <updated>1661782872805</updated>
-    </task>
-    <task id="LOCAL-00322" summary="add apmmeteoutm">
-      <created>1661788491569</created>
-      <option name="number" value="00322" />
-      <option name="presentableId" value="LOCAL-00322" />
-      <option name="project" value="LOCAL" />
-      <updated>1661788491569</updated>
-    </task>
-    <task id="LOCAL-00323" summary="add apmmeteoutm">
-      <created>1661788658262</created>
-      <option name="number" value="00323" />
-      <option name="presentableId" value="LOCAL-00323" />
-      <option name="project" value="LOCAL" />
-      <updated>1661788658262</updated>
-    </task>
-    <task id="LOCAL-00324" summary="add apmmeteoutm">
-      <created>1661788749188</created>
-      <option name="number" value="00324" />
-      <option name="presentableId" value="LOCAL-00324" />
-      <option name="project" value="LOCAL" />
-      <updated>1661788749188</updated>
-    </task>
-    <task id="LOCAL-00325" summary="add apmmeteoutm">
-      <created>1661837768652</created>
-      <option name="number" value="00325" />
-      <option name="presentableId" value="LOCAL-00325" />
-      <option name="project" value="LOCAL" />
-      <updated>1661837768653</updated>
-    </task>
-    <task id="LOCAL-00326" summary="add apmmeteoutm">
-      <created>1661838635105</created>
-      <option name="number" value="00326" />
-      <option name="presentableId" value="LOCAL-00326" />
-      <option name="project" value="LOCAL" />
-      <updated>1661838635105</updated>
-    </task>
-    <task id="LOCAL-00327" summary="add apmmeteoutm">
-      <created>1661920381582</created>
-      <option name="number" value="00327" />
-      <option name="presentableId" value="LOCAL-00327" />
-      <option name="project" value="LOCAL" />
-      <updated>1661920381582</updated>
+      <workItem from="1673440931367" duration="160000" />
+      <workItem from="1673501959391" duration="752000" />
+      <workItem from="1673612152907" duration="1097000" />
+      <workItem from="1673986599600" duration="3152000" />
+      <workItem from="1674108791842" duration="468000" />
+      <workItem from="1674123600378" duration="115000" />
+      <workItem from="1674712376044" duration="1292000" />
+      <workItem from="1675056961817" duration="149000" />
+      <workItem from="1675661337698" duration="1624000" />
+      <workItem from="1676278971349" duration="621000" />
+      <workItem from="1676377255262" duration="37000" />
+      <workItem from="1677006909796" duration="29000" />
+      <workItem from="1677007044880" duration="8524000" />
+      <workItem from="1677475660942" duration="7152000" />
+      <workItem from="1677564118764" duration="1965000" />
+      <workItem from="1678361119373" duration="8562000" />
+      <workItem from="1678859516160" duration="1177000" />
+      <workItem from="1679895865105" duration="2566000" />
+      <workItem from="1682016957662" duration="47000" />
+      <workItem from="1682073873173" duration="36000" />
+      <workItem from="1682073937530" duration="187000" />
+      <workItem from="1682074269918" duration="601000" />
+      <workItem from="1682259665618" duration="497000" />
+      <workItem from="1682490311336" duration="12794000" />
+      <workItem from="1682574904954" duration="84000" />
+      <workItem from="1684871782607" duration="17433000" />
+      <workItem from="1685431929758" duration="1530000" />
+      <workItem from="1685524055836" duration="304000" />
+      <workItem from="1686304858606" duration="6551000" />
+      <workItem from="1686635953177" duration="7704000" />
+      <workItem from="1686654068298" duration="5719000" />
+      <workItem from="1686726843383" duration="3000" />
+      <workItem from="1686736395946" duration="206000" />
+      <workItem from="1686760648964" duration="10835000" />
+      <workItem from="1686806162103" duration="2900000" />
+      <workItem from="1686810520677" duration="4056000" />
+      <workItem from="1686825956169" duration="145000" />
+      <workItem from="1686899405534" duration="3309000" />
+      <workItem from="1686916810902" duration="3000" />
+      <workItem from="1686916834533" duration="43000" />
+      <workItem from="1687177898256" duration="1933000" />
+      <workItem from="1687207358391" duration="1705000" />
+      <workItem from="1687210450879" duration="2187000" />
+      <workItem from="1687237029543" duration="127000" />
+      <workItem from="1687240954164" duration="26000" />
     </task>
     <task id="LOCAL-00328" summary="add apmmeteoutm">
       <created>1661921222263</created>
@@ -807,7 +666,210 @@
       <option name="project" value="LOCAL" />
       <updated>1666004669595</updated>
     </task>
-    <option name="localTasksCounter" value="348" />
+    <task id="LOCAL-00348" summary="fix bug prepisation">
+      <created>1674712882580</created>
+      <option name="number" value="00348" />
+      <option name="presentableId" value="LOCAL-00348" />
+      <option name="project" value="LOCAL" />
+      <updated>1674712882581</updated>
+    </task>
+    <task id="LOCAL-00349" summary="fix bug prepisation">
+      <created>1677014792905</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1677014792905</updated>
+    </task>
+    <task id="LOCAL-00350" summary="fix bug prepisation">
+      <created>1677016837102</created>
+      <option name="number" value="00350" />
+      <option name="presentableId" value="LOCAL-00350" />
+      <option name="project" value="LOCAL" />
+      <updated>1677016837102</updated>
+    </task>
+    <task id="LOCAL-00351" summary="fix bug prepisation">
+      <created>1677018739300</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
+      <option name="project" value="LOCAL" />
+      <updated>1677018739300</updated>
+    </task>
+    <task id="LOCAL-00352" summary="fix bug prepisation">
+      <created>1677018854924</created>
+      <option name="number" value="00352" />
+      <option name="presentableId" value="LOCAL-00352" />
+      <option name="project" value="LOCAL" />
+      <updated>1677018854924</updated>
+    </task>
+    <task id="LOCAL-00353" summary="added new meteobotstations">
+      <created>1677475829743</created>
+      <option name="number" value="00353" />
+      <option name="presentableId" value="LOCAL-00353" />
+      <option name="project" value="LOCAL" />
+      <updated>1677475829743</updated>
+    </task>
+    <task id="LOCAL-00354" summary="added new meteobotstations">
+      <created>1677476645132</created>
+      <option name="number" value="00354" />
+      <option name="presentableId" value="LOCAL-00354" />
+      <option name="project" value="LOCAL" />
+      <updated>1677476645132</updated>
+    </task>
+    <task id="LOCAL-00355" summary="added new meteobotstations">
+      <created>1677476848689</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1677476848689</updated>
+    </task>
+    <task id="LOCAL-00356" summary="added new meteobotstations">
+      <created>1677489987397</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
+      <option name="project" value="LOCAL" />
+      <updated>1677489987397</updated>
+    </task>
+    <task id="LOCAL-00357" summary="changed kalalpak station location and ims names">
+      <created>1678364129079</created>
+      <option name="number" value="00357" />
+      <option name="presentableId" value="LOCAL-00357" />
+      <option name="project" value="LOCAL" />
+      <updated>1678364129079</updated>
+    </task>
+    <task id="LOCAL-00358" summary="added meteostation lists">
+      <created>1678428202518</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
+      <option name="project" value="LOCAL" />
+      <updated>1678428202518</updated>
+    </task>
+    <task id="LOCAL-00359" summary="added meteostation lists">
+      <created>1678428355170</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1678428355170</updated>
+    </task>
+    <task id="LOCAL-00360" summary="added meteostation lists">
+      <created>1678429358190</created>
+      <option name="number" value="00360" />
+      <option name="presentableId" value="LOCAL-00360" />
+      <option name="project" value="LOCAL" />
+      <updated>1678429358190</updated>
+    </task>
+    <task id="LOCAL-00361" summary="added meteostation lists">
+      <created>1678429566071</created>
+      <option name="number" value="00361" />
+      <option name="presentableId" value="LOCAL-00361" />
+      <option name="project" value="LOCAL" />
+      <updated>1678429566071</updated>
+    </task>
+    <task id="LOCAL-00362" summary="added meteostation lists">
+      <created>1680158914481</created>
+      <option name="number" value="00362" />
+      <option name="presentableId" value="LOCAL-00362" />
+      <option name="project" value="LOCAL" />
+      <updated>1680158914481</updated>
+    </task>
+    <task id="LOCAL-00363" summary="added mtrk module">
+      <created>1682074578261</created>
+      <option name="number" value="00363" />
+      <option name="presentableId" value="LOCAL-00363" />
+      <option name="project" value="LOCAL" />
+      <updated>1682074578262</updated>
+    </task>
+    <task id="LOCAL-00364" summary="added service with endpoint">
+      <created>1682511293790</created>
+      <option name="number" value="00364" />
+      <option name="presentableId" value="LOCAL-00364" />
+      <option name="project" value="LOCAL" />
+      <updated>1682511293790</updated>
+    </task>
+    <task id="LOCAL-00365" summary="added service with endpoint">
+      <created>1685433018435</created>
+      <option name="number" value="00365" />
+      <option name="presentableId" value="LOCAL-00365" />
+      <option name="project" value="LOCAL" />
+      <updated>1685433018436</updated>
+    </task>
+    <task id="LOCAL-00366" summary="added service with endpoint">
+      <created>1686312618790</created>
+      <option name="number" value="00366" />
+      <option name="presentableId" value="LOCAL-00366" />
+      <option name="project" value="LOCAL" />
+      <updated>1686312618791</updated>
+    </task>
+    <task id="LOCAL-00367" summary="added service with endpoint">
+      <created>1686313564942</created>
+      <option name="number" value="00367" />
+      <option name="presentableId" value="LOCAL-00367" />
+      <option name="project" value="LOCAL" />
+      <updated>1686313564942</updated>
+    </task>
+    <task id="LOCAL-00368" summary="added service with endpoint">
+      <created>1686313625014</created>
+      <option name="number" value="00368" />
+      <option name="presentableId" value="LOCAL-00368" />
+      <option name="project" value="LOCAL" />
+      <updated>1686313625014</updated>
+    </task>
+    <task id="LOCAL-00369" summary="added service with endpoint">
+      <created>1686659214614</created>
+      <option name="number" value="00369" />
+      <option name="presentableId" value="LOCAL-00369" />
+      <option name="project" value="LOCAL" />
+      <updated>1686659214615</updated>
+    </task>
+    <task id="LOCAL-00370" summary="added service with endpoint">
+      <created>1686812522722</created>
+      <option name="number" value="00370" />
+      <option name="presentableId" value="LOCAL-00370" />
+      <option name="project" value="LOCAL" />
+      <updated>1686812522722</updated>
+    </task>
+    <task id="LOCAL-00371" summary="added service with endpoint">
+      <created>1686812930574</created>
+      <option name="number" value="00371" />
+      <option name="presentableId" value="LOCAL-00371" />
+      <option name="project" value="LOCAL" />
+      <updated>1686812930574</updated>
+    </task>
+    <task id="LOCAL-00372" summary="added service with endpoint">
+      <created>1686821791336</created>
+      <option name="number" value="00372" />
+      <option name="presentableId" value="LOCAL-00372" />
+      <option name="project" value="LOCAL" />
+      <updated>1686821791336</updated>
+    </task>
+    <task id="LOCAL-00373" summary="added service with endpoint">
+      <created>1686825995447</created>
+      <option name="number" value="00373" />
+      <option name="presentableId" value="LOCAL-00373" />
+      <option name="project" value="LOCAL" />
+      <updated>1686825995447</updated>
+    </task>
+    <task id="LOCAL-00374" summary="added service with endpoint">
+      <created>1686910598562</created>
+      <option name="number" value="00374" />
+      <option name="presentableId" value="LOCAL-00374" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910598562</updated>
+    </task>
+    <task id="LOCAL-00375" summary="added service with endpoint">
+      <created>1687212534018</created>
+      <option name="number" value="00375" />
+      <option name="presentableId" value="LOCAL-00375" />
+      <option name="project" value="LOCAL" />
+      <updated>1687212534018</updated>
+    </task>
+    <task id="LOCAL-00376" summary="added service with endpoint">
+      <created>1687237145001</created>
+      <option name="number" value="00376" />
+      <option name="presentableId" value="LOCAL-00376" />
+      <option name="project" value="LOCAL" />
+      <updated>1687237145122</updated>
+    </task>
+    <option name="localTasksCounter" value="377" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -823,13 +885,8 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added widget" />
-    <MESSAGE value="widthet changed" />
-    <MESSAGE value="Karakalpak stations added" />
-    <MESSAGE value="Meteoinfocom Television  stations added" />
     <MESSAGE value="commit" />
     <MESSAGE value="fixed login page" />
     <MESSAGE value="added service" />
@@ -849,6 +906,16 @@
     <MESSAGE value="add radiation" />
     <MESSAGE value="added weatherApi" />
     <MESSAGE value="added meteobot new" />
-    <option name="LAST_COMMIT_MESSAGE" value="added meteobot new" />
+    <MESSAGE value="fix bug prepisation" />
+    <MESSAGE value="added new meteobotstations" />
+    <MESSAGE value="changed kalalpak station location and ims names" />
+    <MESSAGE value="added meteostation lists" />
+    <MESSAGE value="added mtrk module" />
+    <MESSAGE value="added service with endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="added service with endpoint" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
