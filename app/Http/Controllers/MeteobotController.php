@@ -17,7 +17,7 @@ class MeteobotController extends Controller
 
     public function GetOnlyAirQualityStationsList()
     {
-        $stations = MeteoBotStations::select(['id', 'name', 'latitude', 'longitude', 'is_has_aq'])->where('is_has_aq', 1)->get();
+        $stations = MeteoBotStations::select(['id', 'name', 'latitude', 'longitude'])->where('is_has_aq', 1)->get();
         return response()->json($stations);
     }
 
