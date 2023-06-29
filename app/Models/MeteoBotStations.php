@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MeteoBotStations extends Model
 {
     use HasFactory;
+
+    protected $table = 'meteo_bot_stations';
 }

@@ -1,21 +1,32 @@
 <?php
 
+use App\Http\Controllers\AmudarController;
+use App\Http\Controllers\ApmMeteoUmbController;
 use App\Http\Controllers\AwdController;
+use App\Http\Controllers\CalciteController;
 use App\Http\Controllers\DailyStationInfoController;
 use App\Http\Controllers\DailyStationInfoExportController;
 use App\Http\Controllers\DailyStationInfoSendController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HourlyInfoSentController;
 use App\Http\Controllers\HourlyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoExportController;
 use App\Http\Controllers\HourlyStationInfoSendController;
+use App\Http\Controllers\MeteobotController;
+use App\Http\Controllers\MicrostepStationsController;
+use App\Http\Controllers\OneIdController;
 use App\Http\Controllers\QuickInfoController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceRestorController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\StationMonitoringController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserProfilePasswordController;
+use App\Http\Controllers\VariableController;
+use App\Http\Controllers\WaterCadastrController;
+use App\Http\Controllers\WeatherForecastController;
 use App\Http\Controllers\WidgetController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
@@ -39,21 +50,21 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
-Route::get('/oneid', [\App\Http\Controllers\OneIdController::class, 'login'])->name('index.oneid');
-Route::get('/oneidlogin', [\App\Http\Controllers\OneIdController::class, 'OneIdLogin'])->name('oneidlogin');
-Route::get('/oneidlogged', [\App\Http\Controllers\OneIdController::class, 'Oneid_get_logged'])->name('oneidlogged');
+Route::get('/oneid', [OneIdController::class, 'login'])->name('index.oneid');
+Route::get('/oneidlogin', [OneIdController::class, 'OneIdLogin'])->name('oneidlogin');
+Route::get('/oneidlogged', [OneIdController::class, 'Oneid_get_logged'])->name('oneidlogged');
 
 Route::prefix('weather')->group(function () {
-    Route::get('/', [\App\Http\Controllers\WeatherForecastController::class, 'index'])->name('weather.index');
-    Route::get('/openweather', [\App\Http\Controllers\WeatherForecastController::class, 'getOpenWeather'])->name('weather.openweather');
-    Route::get('/accuweather', [\App\Http\Controllers\WeatherForecastController::class, 'getAccuweather'])->name('weather.accuweather');
-    Route::get('/weatherapi', [\App\Http\Controllers\WeatherForecastController::class, 'getWeatherApi'])->name('weather.getWeatherApi');
-    Route::get('/uzgidromet', [\App\Http\Controllers\WeatherForecastController::class, 'GetGidromet'])->name('weather.gidromet');
-    Route::get('/weatherbit', [\App\Http\Controllers\WeatherForecastController::class, 'GetWeatherBit'])->name('weather.weatherbit');
-    Route::get('/darksky', [\App\Http\Controllers\WeatherForecastController::class, 'GetDarkSky'])->name('weather.darksky');
-    Route::get('/Aerisweather1', [\App\Http\Controllers\WeatherForecastController::class, 'GetAerisweather1'])->name('weather.Aerisweather1');
-    Route::get('/ForecastApi', [\App\Http\Controllers\WeatherForecastController::class, 'ForecastApi'])->name('weather.ForecastApi');
-    Route::get('/download', [\App\Http\Controllers\WeatherForecastController::class, 'export'])->name('weather.download');
+    Route::get('/', [WeatherForecastController::class, 'index'])->name('weather.index');
+    Route::get('/openweather', [WeatherForecastController::class, 'getOpenWeather'])->name('weather.openweather');
+    Route::get('/accuweather', [WeatherForecastController::class, 'getAccuweather'])->name('weather.accuweather');
+    Route::get('/weatherapi', [WeatherForecastController::class, 'getWeatherApi'])->name('weather.getWeatherApi');
+    Route::get('/uzgidromet', [WeatherForecastController::class, 'GetGidromet'])->name('weather.gidromet');
+    Route::get('/weatherbit', [WeatherForecastController::class, 'GetWeatherBit'])->name('weather.weatherbit');
+    Route::get('/darksky', [WeatherForecastController::class, 'GetDarkSky'])->name('weather.darksky');
+    Route::get('/Aerisweather1', [WeatherForecastController::class, 'GetAerisweather1'])->name('weather.Aerisweather1');
+    Route::get('/ForecastApi', [WeatherForecastController::class, 'ForecastApi'])->name('weather.ForecastApi');
+    Route::get('/download', [WeatherForecastController::class, 'export'])->name('weather.download');
 });
 
 Route::prefix('meteo')->group(function () {
@@ -84,11 +95,11 @@ Route::group(['middleware' => ['set_locale']], function () {
 
 
 //    Route::get('/', [WidgetController::class, 'index'])->name('home');
-    Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map');
+    Route::get('/', [CalciteController::class, 'index'])->name('map');
 
     Route::prefix('map')->group(function () {
 //        Route::get('/', [WidgetController::class, 'map'])->name('map');
-        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.index');
+        Route::get('/', [CalciteController::class, 'index'])->name('map.index');
 
         Route::get('/getcurrent', [WidgetController::class, 'getCurrent'])->name('map.getCurrent');
         Route::get('/forecast', [WidgetController::class, 'forecast'])->name('map.forecast');
@@ -97,16 +108,16 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
         Route::get('/GetHoribadrujba', [WidgetController::class, 'GetHoribaDrujba'])->name('map.horiba.drujba');
         Route::get('/GetHoribaPlashadka', [WidgetController::class, 'GetHoribaPlashadka'])->name('map.horiba.plashadka');
-        Route::get('/GetAmbientweather', [\App\Http\Controllers\CalciteController::class, 'GetAmbientweather'])->name('map.GetAmbientweather');
+        Route::get('/GetAmbientweather', [CalciteController::class, 'GetAmbientweather'])->name('map.GetAmbientweather');
         Route::prefix('awd')->group(function () {
             Route::get('/getallstations', [AwdController::class, 'getAllStations'])->name('map.awd.getallstations');
             Route::post('/getStation', [AwdController::class, 'getStation'])->name('map.awd.getStation');
             Route::get('/getCrams', [AwdController::class, 'GetCrams'])->name('map.awd.GetCrams');
         });
         Route::prefix('radiation')->group(function () {
-            Route::get('/stations', [\App\Http\Controllers\VariableController::class, 'getStations'])->name('map.radiation.stations');
-            Route::get('/station/{id}/{year?}', [\App\Http\Controllers\VariableController::class, 'getStation'])->name('map.radiation.station');
-            Route::get('/years', [\App\Http\Controllers\VariableController::class, 'years'])->name('map.radiation.years');
+            Route::get('/stations', [VariableController::class, 'getStations'])->name('map.radiation.stations');
+            Route::get('/station/{id}/{year?}', [VariableController::class, 'getStation'])->name('map.radiation.station');
+            Route::get('/years', [VariableController::class, 'years'])->name('map.radiation.years');
 
         });
 
@@ -116,26 +127,26 @@ Route::group(['middleware' => ['set_locale']], function () {
         });
 
         Route::prefix('watercadastr')->group(function () {
-            Route::get('/', [\App\Http\Controllers\WaterCadastrController::class, 'getStation'])->name('map.watercadastr.get');
-            Route::get('/water-consuption', [\App\Http\Controllers\WaterCadastrController::class, 'GetWaterConsumption'])->name('map.watercadastr.GetWaterConsumption');
-            Route::get('/water-level', [\App\Http\Controllers\WaterCadastrController::class, 'GetWaterLevel'])->name('map.watercadastr.GetWaterLevel');
-            Route::get('/water-automat-hydrostation', [\App\Http\Controllers\WaterCadastrController::class, 'GetAutostationHydro'])->name('map.watercadastr.GetAutostationHydro');
+            Route::get('/', [WaterCadastrController::class, 'getStation'])->name('map.watercadastr.get');
+            Route::get('/water-consuption', [WaterCadastrController::class, 'GetWaterConsumption'])->name('map.watercadastr.GetWaterConsumption');
+            Route::get('/water-level', [WaterCadastrController::class, 'GetWaterLevel'])->name('map.watercadastr.GetWaterLevel');
+            Route::get('/water-automat-hydrostation', [WaterCadastrController::class, 'GetAutostationHydro'])->name('map.watercadastr.GetAutostationHydro');
         });
 
 
         Route::prefix('MicrostepStations')->group(function () {
-            Route::get('/get', [\App\Http\Controllers\MicrostepStationsController::class, 'get'])->name('map.MicrostepStations.get');
+            Route::get('/get', [MicrostepStationsController::class, 'get'])->name('map.MicrostepStations.get');
         });
 
         Route::prefix('MeteoinfocomStationData')->group(function () {
-            Route::get('/get', [\App\Http\Controllers\AwdController::class, 'GetMeteoinfocomStationData'])->name('map.MeteoinfocomStationData.get');
-            Route::get('/avgan', [\App\Http\Controllers\AwdController::class, 'GetAvganData'])->name('map.GetAvganData.get');
+            Route::get('/get', [AwdController::class, 'GetMeteoinfocomStationData'])->name('map.MeteoinfocomStationData.get');
+            Route::get('/avgan', [AwdController::class, 'GetAvganData'])->name('map.GetAvganData.get');
         });
 
     });
 
     Route::prefix('map2')->group(function () {
-        Route::get('/', [\App\Http\Controllers\CalciteController::class, 'index'])->name('map.calcilate.index');
+        Route::get('/', [CalciteController::class, 'index'])->name('map.calcilate.index');
 
     });
 
@@ -149,13 +160,13 @@ Route::group(['middleware' => ['set_locale']], function () {
 
 
     });
-    Route::get('/crams', [\App\Http\Controllers\CalciteController::class, 'Crams'])->name('map.crams.index');
+    Route::get('/crams', [CalciteController::class, 'Crams'])->name('map.crams.index');
 
 
     // services
     Route::resource('service', ServiceController::class)->middleware('auth');
-    Route::resource('openregister', \App\Http\Controllers\ServiceRestorController ::class);
-    Route::get('/openreestr_export', [\App\Http\Controllers\ServiceRestorController::class, 'export'])->name('openreeste_export');
+    Route::resource('openregister', ServiceRestorController ::class);
+    Route::get('/openreestr_export', [ServiceRestorController::class, 'export'])->name('openreeste_export');
 
 
     Route::group(['middleware' => ['auth', 'role:superadmin admin control viewer worker shift-agent-station central-agent-station station-status-admin station-status-tracker station-status-viewer quick-info-editor']], function () {
@@ -198,25 +209,24 @@ Route::group(['middleware' => ['set_locale']], function () {
     Route::post('/aws-monitoring/save', [StationMonitoringController::class, 'save'])->name('aws-monitoring.save');
 
 
-    Route::post('/microstep-receive', [\App\Http\Controllers\MicrostepStationsController::class, 'getinfo'])->name('microstep.getinfo');
+    Route::post('/microstep-receive', [MicrostepStationsController::class, 'getinfo'])->name('microstep.getinfo');
 
 
-    Route::get('/hydrometmap', [\App\Http\Controllers\CalciteController::class, 'HydrometMap'])->name('hydromet.map');
-    Route::get('/autostations', [\App\Http\Controllers\CalciteController::class, 'AutoStations'])->name('hydromet.autostations');
-    Route::get('/weathermap', [\App\Http\Controllers\WeatherForecastController::class, 'maploader'])->name('weather.map');
+    Route::get('/hydrometmap', [CalciteController::class, 'HydrometMap'])->name('hydromet.map');
+    Route::get('/autostations', [CalciteController::class, 'AutoStations'])->name('hydromet.autostations');
+    Route::get('/weathermap', [WeatherForecastController::class, 'maploader'])->name('weather.map');
 
 
     Route::prefix('chines')->group(function () {
-        Route::get('/stations', [\App\Http\Controllers\WidgetController::class, 'ChineStations'])->name('weather.chine.station');
-        Route::get('/ChineStationCurrent', [\App\Http\Controllers\WidgetController::class, 'ChineStationCurrent'])->name('weather.chine.ChineStationCurrent');
+        Route::get('/stations', [WidgetController::class, 'ChineStations'])->name('weather.chine.station');
+        Route::get('/ChineStationCurrent', [WidgetController::class, 'ChineStationCurrent'])->name('weather.chine.ChineStationCurrent');
     });
 });
 
 
-Route::post('/meteo-umb', [\App\Http\Controllers\ApmMeteoUmbController::class, 'GetPost'])->name('aws.apmmeteo');
-Route::get('/meteo-umb/get', [\App\Http\Controllers\ApmMeteoUmbController::class, 'get'])->name('aws.apmmeteo.get');
-Route::get('/meteo-umb/view', [\App\Http\Controllers\ApmMeteoUmbController::class, 'view'])->name('aws.apmmeteo.view');
-
+Route::post('/meteo-umb', [ApmMeteoUmbController::class, 'GetPost'])->name('aws.apmmeteo');
+Route::get('/meteo-umb/get', [ApmMeteoUmbController::class, 'get'])->name('aws.apmmeteo.get');
+Route::get('/meteo-umb/view', [ApmMeteoUmbController::class, 'view'])->name('aws.apmmeteo.view');
 
 
 //Route::get('/test123', function () {
@@ -230,22 +240,24 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'ByStationAndInterval'])->name('history');
+Route::get('/history', [HistoryController::class, 'ByStationAndInterval'])->name('history');
 
-Route::get('/newmap', [\App\Http\Controllers\WeatherForecastController::class, 'Vendusky'])->name('map.Vendusky');
+Route::get('/newmap', [WeatherForecastController::class, 'Vendusky'])->name('map.Vendusky');
 
 Route::prefix('bukhara_chines')->group(function () {
-    Route::get('/getRealTimeData', [\App\Http\Controllers\API\StationController::class, 'GetBukharaStationData'])->name('bukhara_chines.getRealTimeData');
+    Route::get('/getRealTimeData', [App\Http\Controllers\API\StationController::class, 'GetBukharaStationData'])->name('bukhara_chines.getRealTimeData');
 });
 
 Route::prefix('amudar')->group(function () {
-    Route::get('/get', [\App\Http\Controllers\AmudarController::class, 'GetData'])->name('amudar.getRealTimeData');
+    Route::get('/get', [AmudarController::class, 'GetData'])->name('amudar.getRealTimeData');
 });
 
 
 Route::prefix('meteobot')->group(function () {
-    Route::get('/stations', [\App\Http\Controllers\API\StationController::class, 'GetStations'])->name('meteobot.stations');
-    Route::get('/get/{id?}', [\App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
+    Route::get('/stations', [MeteobotController::class, 'GetStations'])->name('meteobot.stations');
+    Route::get('/get/{id?}', [App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
+    Route::get('/air-quality/list', [MeteobotController::class, 'GetOnlyAirQualityStationsList'])->name('meteobot.stations.air-quality.list');
+    Route::get('/air-quality/{id}', [MeteobotController::class, 'GetOnlyAirQualityStation'])->name('meteobot.stations.air-quality.list');
 });
 
 
