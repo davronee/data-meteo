@@ -49,6 +49,7 @@ class MeteobotController extends Controller
                 }
                 return response()->json(
                     [
+                        'id'=> $id->id,
                         'PM2.5' => $arr[count($arr) - 1][13],
                         'PM10' => $arr[count($arr) - 1][15],
                         'CO' => $arr[count($arr) - 1][17],
