@@ -19,10 +19,10 @@ class AddMicrostepStations extends Seeder
         MicrostepStations::updateOrCreate(
             ['stationid'=>38141],
             ['station_name'=>'Жаслык',
-                'latitude'=>'43.58',
-                'longitude'=>'57.29',
+                'latitude'=>'44.10000000',
+                'longitude'=>'57.50000000',
                 'region_id'=>1735,
-                'l_vis'=>128,
+                'l_vis'=>127,
                 'status'=>'МС',
             ]
         );
@@ -30,10 +30,10 @@ class AddMicrostepStations extends Seeder
         MicrostepStations::updateOrCreate(
             ['stationid'=>38146],
             ['station_name'=>'Муйнак',
-                'latitude'=>'43.45',
-                'longitude'=>'59.01',
+                'latitude'=>'43.77222222',
+                'longitude'=>'59.02388889',
                 'region_id'=>1735,
-                'l_vis'=>53.8,
+                'l_vis'=>55,
                 'status'=>'МС',
             ]
         );
@@ -41,18 +41,18 @@ class AddMicrostepStations extends Seeder
         MicrostepStations::updateOrCreate(
             ['stationid'=>38149],
             ['station_name'=>'Кунград - КАМС',
-                'latitude'=>'43.04',
-                'longitude'=>'58.53',
+                'latitude'=>'43.07611111',
+                'longitude'=>'58.88972222',
                 'region_id'=>1735,
-                'l_vis'=>64,
+                'l_vis'=>62,
                 'status'=>'МС',
             ]
         );
         MicrostepStations::updateOrCreate(
             ['stationid'=>38262],
             ['station_name'=>'Чимбай',
-                'latitude'=>'42.56',
-                'longitude'=>'59.47',
+                'latitude'=>'42.93805556',
+                'longitude'=>'59.79777778',
                 'region_id'=>1735,
                 'l_vis'=>66,
                 'status'=>'МС',
@@ -62,30 +62,30 @@ class AddMicrostepStations extends Seeder
         MicrostepStations::updateOrCreate(
             ['stationid'=>38263],
             ['station_name'=>'Тахтакупыр',
-                'latitude'=>'42.33401067871654',
-                'longitude'=>'59.57905443012308',
+                'latitude'=>'43.03222222',
+                'longitude'=>'60.29694444',
                 'region_id'=>1735,
-                'l_vis'=>60.6,
+                'l_vis'=>59,
                 'status'=>'МС',
             ]
         );
         MicrostepStations::updateOrCreate(
             ['stationid'=>38264],
             ['station_name'=>'Нукус',
-                'latitude'=>'42.29',
-                'longitude'=>'59.37',
+                'latitude'=>'42.44555556',
+                'longitude'=>'59.60361111',
                 'region_id'=>1735,
-                'l_vis'=>77,
+                'l_vis'=>75,
                 'status'=>'АМСГ',
             ]
         );
         MicrostepStations::updateOrCreate(
             ['stationid'=>38265],
             ['station_name'=>'Тахиаташ',
-                'latitude'=>'43.01',
-                'longitude'=>'60.17',
+                'latitude'=>'42.33361111',
+                'longitude'=>'59.56694444',
                 'region_id'=>1735,
-                'l_vis'=>77.9,
+                'l_vis'=>77,
                 'status'=>'МС',
             ]
         );
@@ -93,10 +93,10 @@ class AddMicrostepStations extends Seeder
         MicrostepStations::updateOrCreate(
             ['stationid'=>38393],
             ['station_name'=>'Бустон',
-                'latitude'=>'41.50',
-                'longitude'=>'60.56',
+                'latitude'=>'41.84722222',
+                'longitude'=>'60.93416667',
                 'region_id'=>1735,
-                'l_vis'=>0,
+                'l_vis'=>95,
                 'status'=>'МС',
             ]
         );
@@ -104,8 +104,8 @@ class AddMicrostepStations extends Seeder
         MicrostepStations::updateOrCreate(
             ['stationid'=>38023],
             ['station_name'=>'Каракалпакия',
-                'latitude'=>'44.45',
-                'longitude'=>'56.12',
+                'latitude'=>'44.95027778',
+                'longitude'=>'56.83361111',
                 'region_id'=>1735,
                 'l_vis'=>126,
                 'status'=>'МС',
