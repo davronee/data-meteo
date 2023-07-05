@@ -48,29 +48,34 @@ class StationController extends Controller
     }
 
 
-    public function GetMeteoBotInfo($id = null)
+    public function GetMeteoBotInfo(Request $request, $id = null)
     {
-        $data = Http::withBasicAuth(
-            '3231343030303336',
-            'k8hwRivdex7hr_5tc'
-        )->withOptions([
-            'verify' => false
-        ])->get('https://export.meteobot.com/v2/Generic/IndexFull',
-            [
-                'id' => ($id != null) ? $id : request()->get('id') ,//'3231343030303336',
-                'startTime' => Carbon::now()->format('Y-m-d') . ' 00:00',
-                'endTime' => Carbon::now()->format('Y-m-d') . ' ' . Carbon::now()->addDays(1)->addHour()->format('H') . ':00',
-            ])->body();
+        try {
+            $meteobot = MeteoBotStations::where('sn', $request->id)->first();
+            $data = Http::withBasicAuth(
+                $meteobot->username,
+                $meteobot->password
+            )->withOptions([
+                'verify' => false
+            ])->get('https://export.meteobot.com/v2/Generic/IndexFull',
+                [
+                    'id' => ($id != null) ? $id : request()->get('id'),//'3231343030303336',
+                    'startTime' => Carbon::now()->format('Y-m-d') . ' 00:00',
+                    'endTime' => Carbon::now()->format('Y-m-d') . ' ' . Carbon::now()->addDays(1)->addHour()->format('H') . ':00',
+                ])->body();
 
 //        return $data;
 
-        $acctArr = explode("\r", $data);
-        $arr = [];
-        foreach ($acctArr as $item) {
-            if ($item != "\n")
-                array_push($arr, str_getcsv($item, ';'));
+            $acctArr = explode("\r", $data);
+            $arr = [];
+            foreach ($acctArr as $item) {
+                if ($item != "\n")
+                    array_push($arr, str_getcsv($item, ';'));
+            }
+            return response()->json($arr[count($arr) - 1]);
+        } catch (\Exception $exception) {
+            return response()->json($exception->getMessage());
         }
-        return response()->json($arr[count($arr)-1]);
 
 
     }
