@@ -96,45 +96,45 @@ class MeteobotStationsSeed extends Seeder
 
         ];
 
-//        foreach ($stations as $station) {
-//            $data = Http::withOptions([
-//                'verify' => false
-//            ])->withBasicAuth('3231343030303336', 'k8hwRivdex7hr_5tc')->get(
-//                'https://export.meteobot.com/v2/Generic/Locate',
-//                [
-//                    'id' => $station
-//                ]
-//            );
-//
-//            $acctArr = explode("\r", $data->body());
-//            $arr = [];
-//            foreach ($acctArr as $item) {
-//                if ($item != "\n") {
-//                    $arr = str_getcsv($item, ';');
-//                }
-//            }
-//
-//            try {
-//                if ($data->successful()) {
-//                    $meteobot = MeteoBotStations::updateOrCreate(
-//                        [
-//                            'sn' => $station,
-//                        ],
-//                        [
-//                            'name' => $arr[6],
-//                            'sn' => $station,
-//                            'username' => 3231343030303336,
-//                            'password' => 'k8hwRivdex7hr_5tc',
-//                            'latitude' => $arr[3],
-//                            'longitude' => $arr[4],
-//                            'is_has_aq' => (strlen($station) == 8) ? true : false,
-//                        ]
-//                    );
-//                }
-//            } catch (\Exception $ex) {
-//                Log::error('ERROR', [$data->status()]);
-//            }
-//        }
+        foreach ($stations as $station) {
+            $data = Http::withOptions([
+                'verify' => false
+            ])->withBasicAuth('3231343030303336', 'k8hwRivdex7hr_5tc')->get(
+                'https://export.meteobot.com/v2/Generic/Locate',
+                [
+                    'id' => $station
+                ]
+            );
+
+            $acctArr = explode("\r", $data->body());
+            $arr = [];
+            foreach ($acctArr as $item) {
+                if ($item != "\n") {
+                    $arr = str_getcsv($item, ';');
+                }
+            }
+
+            try {
+                if ($data->successful()) {
+                    $meteobot = MeteoBotStations::updateOrCreate(
+                        [
+                            'sn' => $station,
+                        ],
+                        [
+                            'name' => $arr[6],
+                            'sn' => $station,
+                            'username' => 3231343030303336,
+                            'password' => 'k8hwRivdex7hr_5tc',
+                            'latitude' => $arr[3],
+                            'longitude' => $arr[4],
+                            'is_has_aq' => (strlen($station) == 8) ? true : false,
+                        ]
+                    );
+                }
+            } catch (\Exception $ex) {
+                Log::error('ERROR', [$data->status()]);
+            }
+        }
 
         Excel::import(new MeteoBotImport(), storage_path('app/public/generic-20230704.xlsx'));
 
