@@ -10,4 +10,12 @@ class MeteoBotStations extends Model
     use HasFactory;
 
     protected $table = 'meteo_bot_stations';
+
+    protected $fillable = [
+        'id',
+        'stationid',
+        'sn',
+        'username',
+        'password',
+    ];
 }

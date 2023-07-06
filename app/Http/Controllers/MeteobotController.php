@@ -24,17 +24,17 @@ class MeteobotController extends Controller
     public function GetOnlyAirQualityStation($id)
     {
         try {
-            $id = MeteoBotStations::find($id)->first();
-            if (!isset($id->id))
+            $meteobot = MeteoBotStations::where('id', $id)->first();
+            if (!isset($meteobot->id))
                 return response()->json('Not found', 404);
             $data = Http::withBasicAuth(
-                $id->username,
-                $id->password
+                $meteobot->username,
+                $meteobot->password
             )->withOptions([
                 'verify' => false
             ])->get('https://export.meteobot.com/v2/Generic/IndexFull',
                 [
-                    'id' => intval($id->sn),
+                    'id' => intval($meteobot->sn),
                     'startTime' => Carbon::now()->format('Y-m-d') . ' 00:00',
                     'endTime' => Carbon::now()->format('Y-m-d') . ' ' . Carbon::now()->addDays(1)->addHour()->format('H') . ':00',
                 ])->body();
@@ -47,7 +47,7 @@ class MeteobotController extends Controller
                 }
                 return response()->json(
                     [
-                        'id' => $id->id,
+                        'id' => $meteobot->id,
                         'PM2.5' => $arr[count($arr) - 1][13],
                         'PM10' => $arr[count($arr) - 1][15],
                         'CO' => $arr[count($arr) - 1][17],
