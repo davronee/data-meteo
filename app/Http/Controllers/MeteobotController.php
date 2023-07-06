@@ -24,7 +24,7 @@ class MeteobotController extends Controller
     public function GetOnlyAirQualityStation($id)
     {
         try {
-            $meteobot = MeteoBotStations::where('id', $id)->first();
+            $meteobot = MeteoBotStations::where('is_has_aq', 1)->where('id', $id)->first();
             if (!isset($meteobot->id))
                 return response()->json('Not found', 404);
             $data = Http::withBasicAuth(
