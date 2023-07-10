@@ -99,6 +99,14 @@ class WidgetController extends Controller
 //                imagedestroy($im2);
                 }
             }
+            if ($request->region == 1714) {
+                $im = imageCreateFromString(base64_decode($radar[0]['namangan']['image']));
+                if ($im !== FALSE) {
+                    header("Content-type: image/png");
+                    imagepng($im);
+//                imagedestroy($im2);
+                }
+            }
         }
 
     }

@@ -1159,7 +1159,7 @@
                         // console.log( i + ": " + item.latitude + " (массив:" + item.region_id + ")" );
                         var marker = L.marker([item.latitude, item.longitude]).on('click', function () {
 
-                            if (item.region_id == 1726 || item.region_id == 1735 || item.region_id == 1706 || item.region_id == 1727) {
+                            if (item.region_id == 1726 || item.region_id == 1735 || item.region_id == 1706 || item.region_id == 1727 || item.region_id == 1714) {
                                 marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='200' data-lightbox='/map/getRadars?region=" + item.region_id + "' data-title='My caption' src='/map/getRadars?region=" + item.region_id + "' /></label>")
                             }
                         });
