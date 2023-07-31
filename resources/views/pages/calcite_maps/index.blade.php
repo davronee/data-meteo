@@ -1738,7 +1738,7 @@
                                                 if (response.data.Stations.Sources.Variables[24].Value['Value'] !== null) {
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
-                                                        "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
+                                                        "<tr ><td class='text-center' colspan='3'><b>" + typeof StationName !== 'undefined' ? StationName : ''  + "</b></td></tr>" +
                                                         "<tr>" +
                                                         "<td><b>@lang('map.air_temperature')</b></td>" +
                                                         "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
@@ -1789,7 +1789,7 @@
                                                 } else {
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
-                                                        "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
+                                                        "<tr ><td class='text-center' colspan='3'><b>" + typeof StationName !== 'undefined' ? StationName : ''  + "</b></td></tr>" +
                                                         "<tr ><td class='text-center text-danger' ><b>Проблемы с поставщиком сети!</b></td></tr>" +
                                                         "</table>"
                                                     )
@@ -1799,7 +1799,7 @@
                                             .catch(function (error) {
                                                 marker.bindPopup("" +
                                                     "<table class='table table-bordered'>" +
-                                                    "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
+                                                    "<tr ><td class='text-center' colspan='3'><b>Проблемы с поставщиком сети!</b></td></tr>" +
                                                     "<tr ><td class='text-center text-danger' ><b>Проблемы с поставщиком сети!</b></td></tr>" +
                                                     "</table>"
                                                 )
@@ -1823,74 +1823,75 @@
                     );
 
 
-                    this.ChineStation.forEach(function (item, i, arr) {
-                            var meteoIcon = L.icon({
-                                iconUrl: '{{asset('images/meteo_china.png')}}',
-                                iconSize: [28, 28], // size of the icon
-                                class: "station china"
-                            });
-
-                            if (item.Latitude !== null && item.Longitude !== null) {
-
-                                var marker = L.marker([parseFloat(item.Latitude), parseFloat(item.Longitude)], {icon: meteoIcon}).on('click', function () {
-                                    axios.get('{{route('weather.chine.ChineStationCurrent')}}', {
-                                        params: {
-                                            station_id: item.WeatherStationId
-                                        }
-                                    })
-                                        .then(function (response) {
-
-                                            marker.bindPopup("" +
-                                                "<table class='table table-bordered'>" +
-                                                "<tr ><td class='text-center' colspan='2'><b>" + item.WeatherStationName + "</b></td></tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.air_temperature')</b></td>" +
-                                                "<td>" + response.data.temp + " °C </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.relative_humidity')</b></td>" +
-                                                "<td>" + response.data.hr + " % </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.current_pressure')<b/></td>" +
-                                                "<td>" + response.data.stp + " гПа </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
-                                                "<td>" + response.data.prsp + " мм </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map_chine.10_the_average_direction_wind_during')</b></td>" +
-                                                "<td>" + response.data.wd + " ° </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
-                                                "<td>" + response.data.ws + " м/с </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.date')</b></td>" +
-                                                "<td>" + response.data.datetime + "</td>" +
-                                                "</tr>" +
-                                                "</table>"
-                                            )
-                                        })
-                                        .catch(function (error) {
-                                            // handle error
-                                            console.log(error + item.Id);
-                                        })
-                                        .then(function () {
-                                            // always executed
-                                        });
+                    if(this.ChineStation != null){
+                        this.ChineStation.forEach(function (item, i, arr) {
+                                var meteoIcon = L.icon({
+                                    iconUrl: '{{asset('images/meteo_china.png')}}',
+                                    iconSize: [28, 28], // size of the icon
+                                    class: "station china"
                                 });
-                                marker.fire('click');
+
+                                if (item.Latitude !== null && item.Longitude !== null) {
+
+                                    var marker = L.marker([parseFloat(item.Latitude), parseFloat(item.Longitude)], {icon: meteoIcon}).on('click', function () {
+                                        axios.get('{{route('weather.chine.ChineStationCurrent')}}', {
+                                            params: {
+                                                station_id: item.WeatherStationId
+                                            }
+                                        })
+                                            .then(function (response) {
+
+                                                marker.bindPopup("" +
+                                                    "<table class='table table-bordered'>" +
+                                                    "<tr ><td class='text-center' colspan='2'><b>" + item.WeatherStationName + "</b></td></tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.air_temperature')</b></td>" +
+                                                    "<td>" + response.data.temp + " °C </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.relative_humidity')</b></td>" +
+                                                    "<td>" + response.data.hr + " % </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                                    "<td>" + response.data.stp + " гПа </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
+                                                    "<td>" + response.data.prsp + " мм </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map_chine.10_the_average_direction_wind_during')</b></td>" +
+                                                    "<td>" + response.data.wd + " ° </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
+                                                    "<td>" + response.data.ws + " м/с </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.date')</b></td>" +
+                                                    "<td>" + response.data.datetime + "</td>" +
+                                                    "</tr>" +
+                                                    "</table>"
+                                                )
+                                            })
+                                            .catch(function (error) {
+                                                // handle error
+                                                console.log(error + item.Id);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                    });
+                                    marker.fire('click');
 
 
-                                markers_awd.addLayer(marker);
+                                    markers_awd.addLayer(marker);
+                                }
+
                             }
-
-                        }
-                    );
-
+                        );
+                    }
 
                     this.microstep.forEach(function (item, i, arr) {
                             var meteoIcon1 = L.icon({
@@ -2980,7 +2981,7 @@
                                             }
                                             marker.bindPopup("" +
                                                 "<table class='table table-bordered'>" +
-                                                "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
+                                                "<tr ><td class='text-center' colspan='3'><b>" + typeof StationName !== 'undefined' ? StationName : ''  + "</b></td></tr>" +
                                                 "<tr>" +
                                                 "<td><b>@lang('map.air_temperature')</b></td>" +
                                                 "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
@@ -3051,80 +3052,82 @@
                         }
                     );
 
+                    if(this.ChineStation != null){
+                        this.ChineStation.forEach(function (item, i, arr) {
 
-                    this.ChineStation.forEach(function (item, i, arr) {
-
-                            const fontAwesomeIcon = L.divIcon({
-                                html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                iconSize: [32, 32],
-                                className: 'myDivIcon'
-                            });
-
-                            if (item.Latitude !== null && item.Longitude !== null) {
-                                total++;
-                                var marker = L.marker([parseFloat(item.Latitude), parseFloat(item.Longitude)], {icon: fontAwesomeIcon}).on('click', function () {
-                                    axios.get('{{route('weather.chine.ChineStationCurrent')}}', {
-                                        params: {
-                                            station_id: item.WeatherStationId
-                                        }
-                                    })
-                                        .then(function (response) {
-                                            marker.bindPopup("" +
-                                                "<table class='table table-bordered'>" +
-                                                "<tr ><td class='text-center' colspan='2'><b>" + item.WeatherStationName + "</b></td></tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.air_temperature')</b></td>" +
-                                                "<td>" + response.data.temp + " °C </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.relative_humidity')</b></td>" +
-                                                "<td>" + response.data.hr + " % </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.current_pressure')<b/></td>" +
-                                                "<td>" + response.data.stp + " гПа </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
-                                                "<td>" + response.data.prsp + " мм </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map_chine.10_the_average_direction_wind_during')</b></td>" +
-                                                "<td>" + response.data.wd + " ° </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
-                                                "<td>" + response.data.ws + " м/с </td>" +
-                                                "</tr>" +
-                                                "<tr>" +
-                                                "<td><b>@lang('map.date')</b></td>" +
-                                                "<td>" + response.data.datetime + "</td>" +
-                                                "</tr>" +
-                                                "</table>"
-                                            ).bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data.temp + "</b></div>",
-                                                {
-                                                    permanent: true,
-                                                    direction: 'top',
-                                                    className: 'ownClassMini'
-
-                                                });
-                                        })
-                                        .catch(function (error) {
-                                            // handle error
-                                            console.log(error + item.Id);
-                                        })
-                                        .then(function () {
-                                            // always executed
-                                        });
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#23D41E"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
                                 });
-                                marker.fire('click');
+
+                                if (item.Latitude !== null && item.Longitude !== null) {
+                                    total++;
+                                    var marker = L.marker([parseFloat(item.Latitude), parseFloat(item.Longitude)], {icon: fontAwesomeIcon}).on('click', function () {
+                                        axios.get('{{route('weather.chine.ChineStationCurrent')}}', {
+                                            params: {
+                                                station_id: item.WeatherStationId
+                                            }
+                                        })
+                                            .then(function (response) {
+                                                marker.bindPopup("" +
+                                                    "<table class='table table-bordered'>" +
+                                                    "<tr ><td class='text-center' colspan='2'><b>" + item.WeatherStationName + "</b></td></tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.air_temperature')</b></td>" +
+                                                    "<td>" + response.data.temp + " °C </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.relative_humidity')</b></td>" +
+                                                    "<td>" + response.data.hr + " % </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                                    "<td>" + response.data.stp + " гПа </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map_chine.10_the_amount_precipitation_during')</b></td>" +
+                                                    "<td>" + response.data.prsp + " мм </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map_chine.10_the_average_direction_wind_during')</b></td>" +
+                                                    "<td>" + response.data.wd + " ° </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map_chine.10_average_wind_speed_during')</b></td>" +
+                                                    "<td>" + response.data.ws + " м/с </td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.date')</b></td>" +
+                                                    "<td>" + response.data.datetime + "</td>" +
+                                                    "</tr>" +
+                                                    "</table>"
+                                                ).bindTooltip("<div class='pin-info' style='background-color:#099E35'><b>" + response.data.temp + "</b></div>",
+                                                    {
+                                                        permanent: true,
+                                                        direction: 'top',
+                                                        className: 'ownClassMini'
+
+                                                    });
+                                            })
+                                            .catch(function (error) {
+                                                // handle error
+                                                console.log(error + item.Id);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                    });
+                                    marker.fire('click');
 
 
-                                markers_mini.addLayer(marker);
+                                    markers_mini.addLayer(marker);
+                                }
+
                             }
+                        );
+                    }
 
-                        }
-                    );
 
 
                     axios.get('{{route('map.GetAmbientweather')}}')
@@ -3619,7 +3622,6 @@
                     markers_mini.clearLayers();
 
                 }
-                console.log(total);
             },
             getForecast: function () {
                 if (this.forcastTemp) {

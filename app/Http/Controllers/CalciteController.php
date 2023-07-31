@@ -36,7 +36,7 @@ class CalciteController extends Controller
         try {
             $Chinesstations = Http::get('http://chinese-api.meteo.uz/allStations.php')->json();
         } catch (\Exception $exception) {
-            $Chinesstations = [];
+            $Chinesstations = null;
         }
 
         return view('pages.calcite_maps.index')->with([
