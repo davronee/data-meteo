@@ -1738,7 +1738,7 @@
                                                 if (response.data.Stations.Sources.Variables[24].Value['Value'] !== null) {
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
-                                                        "<tr ><td class='text-center' colspan='3'><b>" + typeof StationName !== 'undefined' ? StationName : ''  + "</b></td></tr>" +
+                                                        "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                                         "<tr>" +
                                                         "<td><b>@lang('map.air_temperature')</b></td>" +
                                                         "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
@@ -1789,7 +1789,7 @@
                                                 } else {
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
-                                                        "<tr ><td class='text-center' colspan='3'><b>" + typeof StationName !== 'undefined' ? StationName : ''  + "</b></td></tr>" +
+                                                        "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                                         "<tr ><td class='text-center text-danger' ><b>Проблемы с поставщиком сети!</b></td></tr>" +
                                                         "</table>"
                                                     )
@@ -1799,7 +1799,7 @@
                                             .catch(function (error) {
                                                 marker.bindPopup("" +
                                                     "<table class='table table-bordered'>" +
-                                                    "<tr ><td class='text-center' colspan='3'><b>Проблемы с поставщиком сети!</b></td></tr>" +
+                                                    "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                                     "<tr ><td class='text-center text-danger' ><b>Проблемы с поставщиком сети!</b></td></tr>" +
                                                     "</table>"
                                                 )
@@ -2981,7 +2981,7 @@
                                             }
                                             marker.bindPopup("" +
                                                 "<table class='table table-bordered'>" +
-                                                "<tr ><td class='text-center' colspan='3'><b>" + typeof StationName !== 'undefined' ? StationName : ''  + "</b></td></tr>" +
+                                                "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                                 "<tr>" +
                                                 "<td><b>@lang('map.air_temperature')</b></td>" +
                                                 "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
@@ -3622,6 +3622,7 @@
                     markers_mini.clearLayers();
 
                 }
+                console.log(total);
             },
             getForecast: function () {
                 if (this.forcastTemp) {
