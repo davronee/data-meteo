@@ -1170,7 +1170,7 @@
                             color: '#4236E5',
                             fillColor: '#6789E5',
                             fillOpacity: 0.3,
-                            radius: item.region_id == 1727 || item.region_id == 1714 ? 120000 : 250000,
+                            radius: item.region_id == 1727  ? 120000 : 250000,
                         })
                         markers_radar.addLayer(circle)
                     });
