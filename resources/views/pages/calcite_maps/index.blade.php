@@ -355,7 +355,7 @@
                                    <option value="veter15s">Кол-во суток с ветром со скоростью 15 м/с и более</option> -->
                         </optgroup>
                         <option value="water_consumption">@lang('map.hydroposts')</option>
-{{--                        <option value="water_autohyrostation">@lang('map.autohydrostations')</option>--}}
+                        {{--                        <option value="water_autohyrostation">@lang('map.autohydrostations')</option>--}}
                     </select>
                 </div>
             </div>
@@ -1170,7 +1170,7 @@
                             color: '#4236E5',
                             fillColor: '#6789E5',
                             fillOpacity: 0.3,
-                            radius: item.region_id == 1727  ? 120000 : 250000,
+                            radius: item.region_id == 1727 ? 120000 : 250000,
                         })
                         markers_radar.addLayer(circle)
                     });
@@ -1734,57 +1734,56 @@
                                                         break;
                                                 }
 
-
-                                                if (response.data.Stations.Sources.Variables[24].Value['Value'] !== null) {
+                                                if ((response.data.Stations.Sources.Variables[24] !== undefined && response.data.Stations.Sources.Variables[24].Value['Value'] !== null) || (response.data.Stations.Sources.Variables[5] !== undefined && response.data.Stations.Sources.Variables[5].Value['Value'] !== null)) {
                                                     marker.bindPopup("" +
                                                         "<table class='table table-bordered'>" +
                                                         "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
                                                         "<tr>" +
                                                         "<td><b>@lang('map.air_temperature')</b></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[24].Value['Value'] + " °C </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.dew_point')</b></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.relative_humidity')</b></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.current_pressure')<b/></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[25].Value['Value'] + " гПа </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[25].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.10_during_sea_level_pressure')<b/></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.10_the_amount_precipitation_during')</b></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " ° </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.10_average_wind_speed_during')</b></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.10_the_average_amount_solar_radiation_during')</b></td>" +
-                                                        "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
-                                                        "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
-                                                        "</tr>" +
-                                                        "</table>"
+                                                        "<td>" + response.data.Stations.Sources.Variables[24] ? response.data.Stations.Sources.Variables[24].Value['Value'] : response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[2].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.dew_point')</b></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[5].Value['Value'] + " °C </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[5].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.relative_humidity')</b></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[7].Value['Value'] + " % </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[7].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.current_pressure')<b/></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[25].Value['Value'] + " гПа </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[25].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.10_during_sea_level_pressure')<b/></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[10].Value['Value'] + " гПа </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[10].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.10_the_amount_precipitation_during')</b></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[13].Value['Value'] + " мм </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[13].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.10_the_average_direction_wind_during')</b></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[14].Value['Value'] + " ° </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[14].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.10_average_wind_speed_during')</b></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[17].Value['Value'] + " м/с </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[17].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "<tr>" +
+                                                            "<td><b>@lang('map.10_the_average_amount_solar_radiation_during')</b></td>" +
+                                                            "<td>" + response.data.Stations.Sources.Variables[21].Value['Value'] + " Вт/м2 </td>" +
+                                                            "<td>" + new Date(response.data.Stations.Sources.Variables[21].Value['Meastime']).toLocaleString() + "</td>" +
+                                                            "</tr>" +
+                                                            "</table>"
                                                     )
                                                 } else {
                                                     marker.bindPopup("" +
@@ -1797,6 +1796,7 @@
 
                                             })
                                             .catch(function (error) {
+                                                console.log(error)
                                                 marker.bindPopup("" +
                                                     "<table class='table table-bordered'>" +
                                                     "<tr ><td class='text-center' colspan='3'><b>" + StationName + "</b></td></tr>" +
@@ -1823,7 +1823,7 @@
                     );
 
 
-                    if(this.ChineStation != null){
+                    if (this.ChineStation != null) {
                         this.ChineStation.forEach(function (item, i, arr) {
                                 var meteoIcon = L.icon({
                                     iconUrl: '{{asset('images/meteo_china.png')}}',
@@ -3052,7 +3052,7 @@
                         }
                     );
 
-                    if(this.ChineStation != null){
+                    if (this.ChineStation != null) {
                         this.ChineStation.forEach(function (item, i, arr) {
 
                                 const fontAwesomeIcon = L.divIcon({
@@ -3127,7 +3127,6 @@
                             }
                         );
                     }
-
 
 
                     axios.get('{{route('map.GetAmbientweather')}}')
@@ -5643,7 +5642,7 @@
 
 
                                     markers = L.marker(latlng, {icon: meteoIcon}).on('click', function () {
-                                        var pop = L.popup({className:'with120'}).setLatLng(this._latlng).setContent(
+                                        var pop = L.popup({className: 'with120'}).setLatLng(this._latlng).setContent(
                                             "<table class='table table-bordered'>" +
                                             "<tr>" +
                                             "<td colspan='5' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
@@ -5699,7 +5698,7 @@
                                     });
 
                                     markers = L.marker(latlng, {icon: meteoIcon}).on('click', function () {
-                                        var pop = L.popup( {className: "with150"}).setLatLng(this._latlng).setContent(
+                                        var pop = L.popup({className: "with150"}).setLatLng(this._latlng).setContent(
                                             "<table class='table table-bordered'>" +
                                             "<tr>" +
                                             "<td colspan='3' class='text-center'><b>" + feature.properties.RIVERS + "</b></td>" +
