@@ -38,7 +38,7 @@ class ImsGetFacticConsole extends Command
      */
     public function handle()
     {
-        $service = new Services();
-        $service->GetFaktikIms();
+//        $service = new Services();
+//        $service->GetFaktikIms();
     }
 }
