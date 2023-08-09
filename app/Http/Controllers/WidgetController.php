@@ -428,13 +428,23 @@ class WidgetController extends Controller
 
     }
 
-    public function GetAtmasfera()
+    public function GetAtmasfera(Request $request)
     {
-//        $atmasfera = Http::get('http://217.30.161.60:8085/api/atmosphere/monitoring/');
-        $atmasfera = Http::withOptions([
-            'verify' => false
-        ])->get($this->meteoapi . 'api/atmosphere/monitoring/');
-        return $atmasfera->json();
+        if ($request->regionid != null)
+        {
+            $atmasfera = Http::withOptions([
+                'verify' => false
+            ])->get($this->meteoapi . 'api/atmosphere/monitoring/regions/' . $request->regionid);
+            return $atmasfera->json();
+        }
+        else
+        {
+            $atmasfera = Http::withOptions([
+                'verify' => false
+            ])->get($this->meteoapi . 'api/atmosphere/monitoring/');
+            return $atmasfera->json();
+        }
+
     }
 
     public function dangerzonesLogin()

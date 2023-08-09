@@ -6,6 +6,7 @@ use App\Models\HydrometStation;
 use App\Models\MeteoBotStations;
 use App\Models\MicrostepStations;
 use App\Models\Radar;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -90,9 +91,32 @@ class CalciteController extends Controller
         return response()->json($weather[0]);
     }
 
-    public function Crams(){
+    public function Crams()
+    {
         return view('pages.crams');
     }
 
+
+    public function GetRegions()
+    {
+        $regions = Region::select('nameRu', 'regionid')->get();
+        return response()->json($regions);
+
+    }
+
+    public function GetMeteobotStations(Request $request)
+    {
+        if($request->regionid == 1700)
+        {
+            $meteobots = MeteoBotStations::all();
+            return response()->json($meteobots);
+        }
+        else
+        {
+            $meteobots = MeteoBotStations::where('region_id', $request->regionid)->get();
+            return response()->json($meteobots);
+        }
+
+    }
 
 }

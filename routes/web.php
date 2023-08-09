@@ -105,6 +105,7 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/forecast', [WidgetController::class, 'forecast'])->name('map.forecast');
 //        Route::post('/getcurrentAll', [WidgetController::class, 'getForecastAll'])->name('map.forecast');
         Route::get('/getRadars', [WidgetController::class, 'getRadars'])->name('map.getRadars');
+        Route::get('/getMeteobotsStations', [CalciteController::class, 'GetMeteobotStations'])->name('map.meteobotstations');
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
         Route::get('/GetHoribadrujba', [WidgetController::class, 'GetHoribaDrujba'])->name('map.horiba.drujba');
         Route::get('/GetHoribaPlashadka', [WidgetController::class, 'GetHoribaPlashadka'])->name('map.horiba.plashadka');
@@ -142,6 +143,9 @@ Route::group(['middleware' => ['set_locale']], function () {
             Route::get('/get', [AwdController::class, 'GetMeteoinfocomStationData'])->name('map.MeteoinfocomStationData.get');
             Route::get('/avgan', [AwdController::class, 'GetAvganData'])->name('map.GetAvganData.get');
         });
+
+        Route::get('/regions', [CalciteController::class, 'GetRegions'])->name('map.regions');
+
 
     });
 

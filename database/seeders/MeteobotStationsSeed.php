@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 use App\Imports\MeteoBotImport;
+use App\Models\District;
+use App\Models\Districts;
 use App\Models\MeteoBotStations;
+use App\Models\Region;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
@@ -135,8 +139,42 @@ class MeteobotStationsSeed extends Seeder
                 Log::error('ERROR', [$data->status()]);
             }
         }
+//
+//        Excel::import(new MeteoBotImport(), storage_path('app/public/generic-20230704.xlsx'));
 
-        Excel::import(new MeteoBotImport(), storage_path('app/public/generic-20230704.xlsx'));
+
+        foreach (MeteoBotStations::all() as $station) {
+            try {
+                $adress = Http::get('https://nominatim.openstreetmap.org/reverse',
+                    [
+                        'lat' => $station->latitude,
+                        'lon' => $station->longitude,
+                        'format' => 'jsonv2',
+                        'accept-language' => 'ru',
+                    ]
+                )->json();
+
+                $display_name = '';
+                if (isset($adress['address']['county']) && District::Where('nameRu', 'like', "%{$adress['address']['county']}%")->whereNotIn('areacode', [200, 400])->count() > 0) {
+                    $display_name = $adress['address']['county'];
+                    $district = District::Where('nameRu', 'like', "%{$display_name}%")->whereNotIn('areacode', [200, 400])->first();
+                } elseif (isset($adress['address']['town']) && District::Where('nameRu', 'like', "%{$adress['address']['town']}%")->whereNotIn('areacode', [200, 400])->count() > 0) {
+                    $display_name = $adress['address']['town'];
+                    $district = District::Where('nameRu', 'like', "%{$display_name}%")->whereNotIn('areacode', [200, 400])->first();
+                } else if (isset($adress['address']['city']) && District::Where('nameRu', 'like', "%{$adress['address']['city']}%")->whereNotIn('areacode', [200, 400])->count() > 0) {
+                    $display_name = $adress['address']['city'];
+                    $district = District::Where('nameRu', 'like', "%{$display_name}%")->whereNotIn('areacode', [200, 400])->first();
+                }
+
+                $station->district_id = $district->areaid ?? null;
+                $station->region_id = $district->regionid ?? null;
+                $station->save();
+            } catch (\Exception $ex) {
+                Log::error('ERROR', [$ex->getMessage()]);
+            }
+
+
+        }
 
     }
 }
