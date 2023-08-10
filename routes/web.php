@@ -260,8 +260,8 @@ Route::prefix('amudar')->group(function () {
 Route::prefix('meteobot')->group(function () {
     Route::get('/stations', [MeteobotController::class, 'GetStations'])->name('meteobot.stations');
     Route::get('/get/{id?}', [App\Http\Controllers\API\StationController::class, 'GetMeteoBotInfo'])->name('meteobot.GetMeteoBotInfo');
-    Route::get('/air-quality/list', [MeteobotController::class, 'GetOnlyAirQualityStationsList'])->middleware(['horiba'])->name('meteobot.stations.air-quality.list');
-    Route::get('/air-quality/{id}', [MeteobotController::class, 'GetOnlyAirQualityStation'])->middleware(['horiba'])->name('meteobot.stations.air-quality.object');
+//    Route::get('/air-quality/list', [MeteobotController::class, 'GetOnlyAirQualityStationsList'])->middleware(['horiba'])->name('meteobot.stations.air-quality.list');
+//    Route::get('/air-quality/{id}', [MeteobotController::class, 'GetOnlyAirQualityStation'])->middleware(['horiba'])->name('meteobot.stations.air-quality.object');
 });
 
 

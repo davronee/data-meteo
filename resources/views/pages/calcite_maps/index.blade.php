@@ -1309,6 +1309,7 @@
                                                 .then(function (response) {
                                                     // drujbahoriba = parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit;
                                                     try {
+                                                        console.log(response.data);
                                                         if (response.data.length > 0) {
                                                             marker.bindPopup("" +
                                                                 "<table class='table table-bordered'>" +
