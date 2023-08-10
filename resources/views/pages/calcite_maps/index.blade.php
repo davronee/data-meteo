@@ -1191,83 +1191,83 @@
                 var markerColor, icon;
                 var drujbahoriba, plashadkahoriba;
                 if (this.atmTemp) {
-                    axios.get('{{route('map.meteobotstations')}}', {
-                        params: {
-                            regionid: this.regionid
-                        }
-                    })
-                        .then(function (response) {
-                            response.data.forEach(function (item, i, arr) {
-                                if (item.is_has_aq) {
-                                    const fontAwesomeIcon = L.divIcon({
-                                        html: '<div style="color:green"><i class="fa fa-map-marker fa-2x"></i></div>',
-                                        iconSize: [36, 36],
-                                        className: 'myDivIcon'
-                                    });
-                                    axios.get('{{route('meteobot.GetMeteoBotInfo')}}', {
-                                        params: {
-                                            id: item.sn
-                                        }
-                                    })
-                                        .then(function (response) {
-                                            var marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: fontAwesomeIcon})
-                                                .on('click', function () {
-                                                    marker.bindPopup("" +
-                                                        "<table class='table table-bordered'>" +
-                                                        "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>@lang('map.date')</b></td>" +
-                                                        "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>PM2.5</b></td>" +
-                                                        "<td>" + response.data[13] + " µg/m³</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>PM10</b></td>" +
-                                                        "<td>" + response.data[15] + " µg/m³</td>" +
-                                                        "</tr>" +
-                                                        "<tr>" +
-                                                        "<td><b>CO2</b></td>" +
-                                                        "<td>" + response.data[17] + " µg/m³</td>" +
-                                                        "</tr>" +
-                                                        "</table>" +
-                                                        "<a href='https://monitoring.meteo.uz/ru/map/view/107' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                        .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>" + response.data[13] + "</b></div>",
-                                                            {
-                                                                permanent: true,
-                                                                direction: 'top',
-                                                                className: 'ownClass'
+                    {{--axios.get('{{route('map.meteobotstations')}}', {--}}
+                    {{--    params: {--}}
+                    {{--        regionid: this.regionid--}}
+                    {{--    }--}}
+                    {{--})--}}
+                    {{--    .then(function (response) {--}}
+                    {{--        response.data.forEach(function (item, i, arr) {--}}
+                    {{--            if (item.is_has_aq) {--}}
+                    {{--                const fontAwesomeIcon = L.divIcon({--}}
+                    {{--                    html: '<div style="color:green"><i class="fa fa-map-marker fa-2x"></i></div>',--}}
+                    {{--                    iconSize: [36, 36],--}}
+                    {{--                    className: 'myDivIcon'--}}
+                    {{--                });--}}
+                    {{--                axios.get('{{route('meteobot.GetMeteoBotInfo')}}', {--}}
+                    {{--                    params: {--}}
+                    {{--                        id: item.sn--}}
+                    {{--                    }--}}
+                    {{--                })--}}
+                    {{--                    .then(function (response) {--}}
+                    {{--                        var marker = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: fontAwesomeIcon})--}}
+                    {{--                            .on('click', function () {--}}
+                    {{--                                marker.bindPopup("" +--}}
+                    {{--                                    "<table class='table table-bordered'>" +--}}
+                    {{--                                    "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>" +--}}
+                    {{--                                    "<tr>" +--}}
+                    {{--                                    "<td><b>@lang('map.date')</b></td>" +--}}
+                    {{--                                    "<td>" + response.data[1] + " " + response.data[2] + "</td>" +--}}
+                    {{--                                    "</tr>" +--}}
+                    {{--                                    "<tr>" +--}}
+                    {{--                                    "<td><b>PM2.5</b></td>" +--}}
+                    {{--                                    "<td>" + response.data[13] + " µg/m³</td>" +--}}
+                    {{--                                    "</tr>" +--}}
+                    {{--                                    "<tr>" +--}}
+                    {{--                                    "<td><b>PM10</b></td>" +--}}
+                    {{--                                    "<td>" + response.data[15] + " µg/m³</td>" +--}}
+                    {{--                                    "</tr>" +--}}
+                    {{--                                    "<tr>" +--}}
+                    {{--                                    "<td><b>CO2</b></td>" +--}}
+                    {{--                                    "<td>" + response.data[17] + " µg/m³</td>" +--}}
+                    {{--                                    "</tr>" +--}}
+                    {{--                                    "</table>" +--}}
+                    {{--                                    "<a href='https://monitoring.meteo.uz/ru/map/view/107' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")--}}
+                    {{--                                    .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>" + response.data[13] + "</b></div>",--}}
+                    {{--                                        {--}}
+                    {{--                                            permanent: true,--}}
+                    {{--                                            direction: 'top',--}}
+                    {{--                                            className: 'ownClass'--}}
 
-                                                            });
-
-
-                                                })
+                    {{--                                        });--}}
 
 
-                                            marker.fire('click');
-
-                                            marker.ind = item.id;//j+"_"+i;
-
-                                            markers_atmasfera.addLayer(marker);
-
-                                            let bounds = markers_atmasfera.getBounds();
-                                            map.fitBounds(bounds);
-
-                                        })
-                                        .catch(function (error) {
-                                            // handle error
-                                            console.log(error);
-                                        })
-                                        .then(function () {
-                                            // always executed
-                                        });
-                                }
-                            });
-                        })
+                    {{--                            })--}}
 
 
-                    map.addLayer(markers_atmasfera);
+                    {{--                        marker.fire('click');--}}
+
+                    {{--                        marker.ind = item.id;//j+"_"+i;--}}
+
+                    {{--                        markers_atmasfera.addLayer(marker);--}}
+
+                    {{--                        let bounds = markers_atmasfera.getBounds();--}}
+                    {{--                        map.fitBounds(bounds);--}}
+
+                    {{--                    })--}}
+                    {{--                    .catch(function (error) {--}}
+                    {{--                        // handle error--}}
+                    {{--                        console.log(error);--}}
+                    {{--                    })--}}
+                    {{--                    .then(function () {--}}
+                    {{--                        // always executed--}}
+                    {{--                    });--}}
+                    {{--            }--}}
+                    {{--        });--}}
+                    {{--    })--}}
+
+
+                    {{--map.addLayer(markers_atmasfera);--}}
 
 
                     axios.get('{{route('map.GetAtmasfera')}}', {

@@ -430,7 +430,7 @@ class WidgetController extends Controller
 
     public function GetAtmasfera(Request $request)
     {
-        if ($request->regionid != null)
+        if ($request->regionid != 1700)
         {
             $atmasfera = Http::withOptions([
                 'verify' => false
