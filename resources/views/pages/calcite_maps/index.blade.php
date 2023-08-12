@@ -4895,6 +4895,10 @@
 
 
                 }
+                else if(this.menu == 'sensitive_data')
+                {
+                    window.open('{{route('map.sensitive')}}', '_blank');
+                }
 
             },
             getAeroport: function () {

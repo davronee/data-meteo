@@ -145,6 +145,7 @@ Route::group(['middleware' => ['set_locale']], function () {
         });
 
         Route::get('/regions', [CalciteController::class, 'GetRegions'])->name('map.regions');
+        Route::get('/sensitive', [\App\Http\Controllers\SensitiveController::class, 'index'])->name('map.sensitive');
 
 
     });

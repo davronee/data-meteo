@@ -113,6 +113,7 @@
                         <option value="snow">@lang('map.snow')</option>
                         <option value="sputnik">@lang('map.metep_sputnik')</option>
                         <option value="water_cadastr">@lang('map.kadaster_water')</option>
+                        <option value="sensitive_data">@lang('map.sensitive_data')</option>
                         <optgroup label="@lang('map.auto_meteo')">
                             <option value="mini">@lang('map.mini_station')</option>
                             <option value="awd">@lang('map.meteo_auto')</option>

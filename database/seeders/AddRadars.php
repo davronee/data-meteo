@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Imports\SensitiveDataImport;
 use App\Models\Radar;
 use Illuminate\Database\Seeder;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AddRadars extends Seeder
 {
@@ -61,5 +63,9 @@ class AddRadars extends Seeder
             $radar->longitude = 71.515203;
             $radar->save();
         }
+
+
+
+
     }
 }

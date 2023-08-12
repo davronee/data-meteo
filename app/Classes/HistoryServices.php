@@ -11,6 +11,7 @@ class HistoryServices
     private $getallvariablesendpoint = 'EnvidbMetadataInterface/GetAllVariables/';
     private $getallstationsendpoint = 'EnvidbMetadataInterface/GetAllStations/';
 
+
     public  function GetAllAwstations()
     {
         $stations = Http::withOptions([
@@ -39,9 +40,6 @@ class HistoryServices
 
     public function GetHistoricalDataBySourceStationIdVarsInterval($stationId,$variablesId,$from,$To)
     {
-
-
-
         $history = Http::withOptions([
             'verify' => false
         ])->withBasicAuth(
@@ -52,6 +50,8 @@ class HistoryServices
         return $history;
 
     }
+
+
 
 
 }

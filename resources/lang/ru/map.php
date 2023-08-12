@@ -150,6 +150,7 @@ return [
     'water_consumption'=>'Расход воды',
     'water_level'=>'Уровень воды',
     'autohydrostations'=>'Автоматические гидропосты (запланированные станции)',
+    'sensitive_data'=>'Чувствительные данные',
 
 
 ];

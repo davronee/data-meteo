@@ -47,6 +47,7 @@ return [
     'Gray'=>'Кулранг',
     'DarkGray'=>'Тўқ-кулранг',
     'OpenStreetMap'=>'Open Street Map',
+    'sensitive_data'=>'Сезувчанлик маълумотлар',
 
 
 ];
