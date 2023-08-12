@@ -121,7 +121,7 @@
                 </tr>
                 <tr>
                     <th scope="row">10</th>
-                    <td>Магним бўрон</td>
+                    <td>Магнит бўрон</td>
                     @for($i=0;$i<12;$i++)
                         <td></td>
                     @endfor
