@@ -15,18 +15,18 @@ class AddSensitiveData extends Seeder
      */
     public function run()
     {
-        Excel::import(new SensitiveDataImport(1703), storage_path('sensitive/andijan.xls'));
-        Excel::import(new SensitiveDataImport(1706), storage_path('sensitive/bukhara.xls'));
-        Excel::import(new SensitiveDataImport(1708), storage_path('sensitive/jizzakh.xls'));
-        Excel::import(new SensitiveDataImport(1710), storage_path('sensitive/kashkadarya.xls'));
-        Excel::import(new SensitiveDataImport(1733), storage_path('sensitive/khorezm.xls'));
-        Excel::import(new SensitiveDataImport(1714), storage_path('sensitive/namangan.xls'));
-        Excel::import(new SensitiveDataImport(1712), storage_path('sensitive/navoiy.xls'));
-        Excel::import(new SensitiveDataImport(1718), storage_path('sensitive/samarkand.xls'));
-        Excel::import(new SensitiveDataImport(1724), storage_path('sensitive/sirdarya.xls'));
-        Excel::import(new SensitiveDataImport(1722), storage_path('sensitive/surkhandarya.xls'));
-        Excel::import(new SensitiveDataImport(1726), storage_path('sensitive/tashkent_city.xls'));
-        Excel::import(new SensitiveDataImport(1727), storage_path('sensitive/tashkent_region.xls'));
-        Excel::import(new SensitiveDataImport(1700), storage_path('sensitive/Report.xlsx'));
+        Excel::import(new SensitiveDataImport(1703), storage_path('app/public/sensitive/andijan.xls'));
+        Excel::import(new SensitiveDataImport(1706), storage_path('app/public/sensitive/bukhara.xls'));
+        Excel::import(new SensitiveDataImport(1708), storage_path('app/public/sensitive/jizzakh.xls'));
+        Excel::import(new SensitiveDataImport(1710), storage_path('app/public/sensitive/kashkadarya.xls'));
+        Excel::import(new SensitiveDataImport(1733), storage_path('app/public/sensitive/khorezm.xls'));
+        Excel::import(new SensitiveDataImport(1714), storage_path('app/public/sensitive/namangan.xls'));
+        Excel::import(new SensitiveDataImport(1712), storage_path('app/public/sensitive/navoiy.xls'));
+        Excel::import(new SensitiveDataImport(1718), storage_path('app/public/sensitive/samarkand.xls'));
+        Excel::import(new SensitiveDataImport(1724), storage_path('app/public/sensitive/sirdarya.xls'));
+        Excel::import(new SensitiveDataImport(1722), storage_path('app/public/sensitive/surkhandarya.xls'));
+        Excel::import(new SensitiveDataImport(1726), storage_path('app/public/sensitive/tashkent_city.xls'));
+        Excel::import(new SensitiveDataImport(1727), storage_path('app/public/sensitive/tashkent_region.xls'));
+        Excel::import(new SensitiveDataImport(1700), storage_path('app/public/sensitive/Report.xlsx'));
     }
 }
