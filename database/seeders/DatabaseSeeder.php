@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             AddMicrostepStations::class,
             AddWeatherCode::class,
             AddStation::class,
-            MeteobotStationsSeed::class
+            MeteobotStationsSeed::class,
+            AddSensitiveData::class,
         ]);
     }
 }
