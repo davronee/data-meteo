@@ -128,6 +128,48 @@
                 </tr>
                 </tbody>
             </table>
+            <br>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th rowspan="2" scope="col">Т/Р</th>
+                    <th rowspan="2" scope="col">Ҳудуд</th>
+                    <th scope="col" colspan="6">Касалликлар тури</th>
+                    <th scope="col" colspan="4">Йил фасллари</th>
+                </tr>
+                <tr>
+                    <th scope="col">Қон айланиш тизими</th>
+                    <th scope="col">Ревматоид касалликлар</th>
+                    <th scope="col">Қон томир касалликлари</th>
+                    <th scope="col">Нафас йўли касалликлари</th>
+                    <th scope="col">Инфекцион паразиторы</th>
+                    <th scope="col">Жароҳатдан кегин тикланиш даври</th>
+                    <th>Баҳор</th>
+                    <th>Ёз</th>
+                    <th>Куз</th>
+                    <th>Қуш</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($regions as $key=>$region)
+                    <tr>
+                        <th scope="row">{{$key+1}}</th>
+                        <td>{{$region->nameRu}}</td>
+                        <td class="table-primary"></td>
+                        <td class="table-active"></td>
+                        <td class="table-danger"></td>
+                        <td class="table-info"></td>
+                        <td class="table-secondary"></td>
+                        <td class="table-success"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

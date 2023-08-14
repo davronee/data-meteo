@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Region;
 use App\Models\SensitiveData;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class SensitiveController extends Controller
             return $row->avg('air_quality');
         })->toArray();
 
-
-        return view('pages.sensitive.index', compact('temp_avarage','precipitation_avarage','solar_radiation_avarage','wind_speed_avarage','humidity_avarage','pressure_avarage','air_quality_avarage'));
+        $regions = Region::all();
+        return view('pages.sensitive.index', compact('temp_avarage','precipitation_avarage','solar_radiation_avarage','wind_speed_avarage','humidity_avarage','pressure_avarage','air_quality_avarage','regions'));
     }
 }
