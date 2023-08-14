@@ -156,12 +156,12 @@
                     <tr>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$region->nameRu}}</td>
-                        <td class="table-primary"></td>
-                        <td class="table-active"></td>
-                        <td class="table-danger"></td>
-                        <td class="table-info"></td>
-                        <td class="table-secondary"></td>
-                        <td class="table-success"></td>
+                        <td class="bg-primary"></td>
+                        <td class="bg-warning"></td>
+                        <td class="bg-danger"></td>
+                        <td class="bg-info"></td>
+                        <td class="bg-secondary"></td>
+                        <td class="bg-success"></td>
                         <td></td>
                         <td></td>
                         <td></td>
