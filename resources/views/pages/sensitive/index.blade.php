@@ -12,8 +12,8 @@
 <div class="container">
     <div class="row">
         <div class="form-group">
-            <h1 class="text-center">Ўзбекистон Республикаси аҳолисининг об-ҳавога сезувчанлиги тўғрисидаги маълумотлар
-                базаси (2020-{{ \Carbon\Carbon::now()->year}})</h1>
+            <h2 class="text-center ht-2 h2">Ўзбекистон Республикаси аҳолисининг об-ҳавога сезувчанлиги тўғрисидаги маълумотлар
+                базаси (2020-{{ \Carbon\Carbon::now()->year}})</h2>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -74,14 +74,13 @@
                         <td></td>
                     @endfor
                 </tr>
-
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Булутлилик</td>
-                    @for($i=0;$i<12;$i++)
-                        <td></td>
-                    @endfor
-                </tr>
+{{--                <tr>--}}
+{{--                    <th scope="row">5</th>--}}
+{{--                    <td>Булутлилик</td>--}}
+{{--                    @for($i=0;$i<12;$i++)--}}
+{{--                        <td></td>--}}
+{{--                    @endfor--}}
+{{--                </tr>--}}
                 <tr>
                     <th scope="row">6</th>
                     <td>Қуёш радиацияси</td>
@@ -112,20 +111,20 @@
                         <td></td>
                     @endfor
                 </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td>УФ</td>
-                    @for($i=0;$i<12;$i++)
-                        <td></td>
-                    @endfor
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td>Магнит бўрон</td>
-                    @for($i=0;$i<12;$i++)
-                        <td></td>
-                    @endfor
-                </tr>
+{{--                <tr>--}}
+{{--                    <th scope="row">9</th>--}}
+{{--                    <td>УФ</td>--}}
+{{--                    @for($i=0;$i<12;$i++)--}}
+{{--                        <td></td>--}}
+{{--                    @endfor--}}
+{{--                </tr>--}}
+{{--                <tr>--}}
+{{--                    <th scope="row">10</th>--}}
+{{--                    <td>Магнит бўрон</td>--}}
+{{--                    @for($i=0;$i<12;$i++)--}}
+{{--                        <td></td>--}}
+{{--                    @endfor--}}
+{{--                </tr>--}}
                 </tbody>
             </table>
             <br>
@@ -139,12 +138,12 @@
                     <th scope="col" colspan="4">Йил фасллари</th>
                 </tr>
                 <tr>
-                    <th scope="col">Қон айланиш тизими</th>
-                    <th scope="col">Ревматоид касалликлар</th>
-                    <th scope="col">Қон томир касалликлари</th>
-                    <th scope="col">Нафас йўли касалликлари</th>
-                    <th scope="col">Инфекцион паразиторы</th>
-                    <th scope="col">Жароҳатдан кегин тикланиш даври</th>
+                    <th scope="col" class="table-primary">Қон айланиш тизими</th>
+                    <th scope="col" class="table-warning">Ревматоид касалликлар</th>
+                    <th scope="col" class="table-danger">Қон томир касалликлари</th>
+                    <th scope="col" class="table-info">Нафас йўли касалликлари</th>
+                    <th scope="col" class="table-success">Инфекцион паразиторы</th>
+                    <th scope="col" class="table-active">Жароҳатдан кегин тикланиш даври</th>
                     <th>Баҳор</th>
                     <th>Ёз</th>
                     <th>Куз</th>
@@ -156,12 +155,12 @@
                     <tr>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$region->nameRu}}</td>
-                        <td class="bg-primary"></td>
-                        <td class="bg-warning"></td>
-                        <td class="bg-danger"></td>
-                        <td class="bg-info"></td>
-                        <td class="bg-secondary"></td>
-                        <td class="bg-success"></td>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
                         <td></td>
                         <td></td>
                         <td></td>

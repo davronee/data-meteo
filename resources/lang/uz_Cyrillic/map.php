@@ -150,7 +150,7 @@ return [
     'water_consumption'=>'Сув сарфи',
     'water_level'=>'Сув сатҳи',
     'autohydrostations'=>'Автоматик гидропостлар (запланированные станции)',
-    'sensitive_data'=>'Сезусчванлик маълумотлари',
+    'sensitive_data'=>'Об-ҳаво сезгирлиги',
 
 
 
