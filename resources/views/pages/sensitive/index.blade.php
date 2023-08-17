@@ -13,7 +13,7 @@
     <div class="row">
         <div class="form-group">
             <h2 class="text-center ht-2 h2">Ўзбекистон Республикаси аҳолисининг об-ҳавога сезувчанлиги тўғрисидаги маълумотлар
-                базаси (2020-{{ \Carbon\Carbon::now()->year}})</h2>
+                базаси ({{ \Carbon\Carbon::now()->year}})</h2>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -142,12 +142,12 @@
                     <th scope="col" class="table-warning">Ревматоид касалликлар</th>
                     <th scope="col" class="table-danger">Қон томир касалликлари</th>
                     <th scope="col" class="table-info">Нафас йўли касалликлари</th>
-                    <th scope="col" class="table-success">Инфекцион паразиторы</th>
+                    <th scope="col" class="table-success">Инфекцион-паразитар касалликлар</th>
                     <th scope="col" class="table-active">Жароҳатдан кегин тикланиш даври</th>
                     <th>Баҳор</th>
                     <th>Ёз</th>
                     <th>Куз</th>
-                    <th>Қуш</th>
+                    <th>Қиш</th>
                 </tr>
                 </thead>
                 <tbody>
