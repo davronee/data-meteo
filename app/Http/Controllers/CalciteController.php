@@ -28,7 +28,7 @@ class CalciteController extends Controller
 
         try {
 
-            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations');
+            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
         }
         catch (\Exception $exception)
         {
@@ -49,7 +49,7 @@ class CalciteController extends Controller
 
         return view('pages.calcite_maps.index')->with([
             'radars' => $radars,
-            'stations' => $stations->json() ?? [],
+            'stations' => $stations,
             'microstations' => $microstations,
             'hydrometstation' => $hydrometStations,
             'chinesstations' => $Chinesstations,
