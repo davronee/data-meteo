@@ -26,7 +26,14 @@ class CalciteController extends Controller
     {
         $radars = Radar::all();
 
-        $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations');
+        try {
+
+            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations');
+        }
+        catch (\Exception $exception)
+        {
+            $stations = [];
+        }
 
         $hydrometStations = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
 
