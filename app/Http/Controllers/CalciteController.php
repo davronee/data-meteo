@@ -49,7 +49,7 @@ class CalciteController extends Controller
 
         return view('pages.calcite_maps.index')->with([
             'radars' => $radars,
-            'stations' => $stations->json(),
+            'stations' => $stations->json() ?? [],
             'microstations' => $microstations,
             'hydrometstation' => $hydrometStations,
             'chinesstations' => $Chinesstations,
