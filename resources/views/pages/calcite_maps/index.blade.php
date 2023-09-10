@@ -80,7 +80,11 @@
     <link rel="stylesheet" href="{{asset('calcite/css/esri-leaflet-geocoder.css')}}">
     <link rel="stylesheet" href="{{asset('calcite/css/style.css')}}">
     <script src="{{asset('calcite/js/jquery/esri-leaflet-geocoder-debug.js')}}"></script>
+    <script src="{{asset('js/georaster.min.js')}}"></script>
+    <script src="{{asset('js/georaster-layer-for-leaflet.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://unpkg.com/chroma-js"></script>
+
 
 
     <style>
@@ -352,6 +356,7 @@
     var marker_waterconsuption = L.featureGroup();
     var marker_waterlevel = L.featureGroup();
     var marker_audtohydropost = L.featureGroup();
+    var marker_comfort_zones = L.featureGroup();
 
     let app = new Vue({
         el: "#app",
@@ -370,6 +375,7 @@
             water_cadastr: false,
             radiatsiya: false,
             irrigation: false,
+            comfort_zones:false,
             awds:@json($stations),
             ChineStation:@json($chinesstations),
             microstep:@json($microstations),
@@ -760,8 +766,6 @@
                     });
 
                 }(window.calciteMaps = window.calciteMaps || {}, jQuery));
-
-
             },
             current: function () {
                 markers_weather.clearLayers();
@@ -4266,6 +4270,7 @@
 
                     this.currentTemp = true;
                     this.mini = false;
+                    this.comfort_zones = false;
                     this.forcastTemp = false;
                     this.radiatsiya = false;
                     this.atmTemp = false;
@@ -4279,6 +4284,7 @@
                     this.irrigation = false;
                     this.current();
                     markers_irrigation.clearLayers();
+                    marker_comfort_zones.clearLayers();
 
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
@@ -4307,6 +4313,7 @@
                     this.forcastTemp = false;
                     this.atmTemp = true;
                     this.radar = false;
+                    this.comfort_zones = false;
                     this.awd = false;
                     this.radiatsiya = false;
 
@@ -4319,6 +4326,7 @@
                     markers_watercadastr.clearLayers();
                     this.waterposts = false;
                     markers_irrigation.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     this.getAtmasfera();
                     this.irrigation = false;
                     markers_irrigation.clearLayers();
@@ -4345,6 +4353,7 @@
                     this.currentTemp = false;
                     this.forcastTemp = false;
                     this.atmTemp = false;
+                    this.comfort_zones = false;
                     this.radar = true;
                     this.awd = false;
                     this.snow = false;
@@ -4362,6 +4371,7 @@
                     this.getRadars();
 
                     markers_atmasfera.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
@@ -4382,6 +4392,7 @@
                 } else if (this.menu == 'snow') {
                     this.currentTemp = false;
                     this.forcastTemp = false;
+                    this.comfort_zones = false;
                     this.atmTemp = false;
                     this.radar = false;
                     this.awd = false;
@@ -4404,6 +4415,7 @@
                     markers_awd.clearLayers();
                     markers_weather.clearLayers();
                     markers_aero.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
                     markers_agro.clearLayers();
@@ -4421,6 +4433,7 @@
                     this.currentTemp = false;
                     this.forcastTemp = false;
                     this.atmTemp = false;
+                    this.comfort_zones = false;
                     this.radar = false;
                     this.awd = true;
                     this.radiatsiya = false;
@@ -4433,6 +4446,7 @@
                     this.water_cadastr = false;
                     markers_watercadastr.clearLayers();
                     this.waterposts = false;
+                    marker_comfort_zones.clearLayers();
                     markers_irrigation.clearLayers();
                     this.getawd();
                     this.irrigation = false;
@@ -4459,6 +4473,7 @@
                     this.currentTemp = false;
                     this.forcastTemp = false;
                     this.atmTemp = false;
+                    this.comfort_zones = false;
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
@@ -4479,6 +4494,7 @@
                     markers_atmasfera.clearLayers();
                     markers_weather.clearLayers();
                     markers_snow.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_awd.clearLayers();
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
@@ -4500,6 +4516,7 @@
                     this.atmTemp = false;
                     this.radar = false;
                     this.awd = false;
+                    this.comfort_zones = false;
                     this.snow = false;
                     this.radiatsiya = false;
                     this.waterposts = false;
@@ -4516,6 +4533,7 @@
                     markers_watercadastr.clearLayers();
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_weather.clearLayers();
                     markers_snow.clearLayers();
                     markers_aero.clearLayers();
@@ -4537,6 +4555,7 @@
                     this.forcastTemp = false;
                     this.atmTemp = false;
                     this.radar = false;
+                    this.comfort_zones = false;
                     this.awd = false;
                     this.snow = false;
                     this.radiatsiya = false;
@@ -4552,6 +4571,7 @@
                     this.getAgro();
                     this.water_cadastr = false;
                     markers_watercadastr.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
                     markers_weather.clearLayers();
@@ -4584,6 +4604,8 @@
                     this.dangerzones = false;
                     this.agro = false;
                     this.mini = true;
+                    this.comfort_zones = false;
+                    marker_comfort_zones.clearLayers();
                     this.waterposts = false;
                     markers_irrigation.clearLayers();
                     this.irrigation = false;
@@ -4617,11 +4639,13 @@
                     this.awd = false;
                     this.snow = false;
                     this.radiatsiya = true;
+                    this.comfort_zones = false;
                     this.irrigation = false;
                     markers_irrigation.clearLayers();
                     this.aero = false;
                     this.waterposts = false;
                     markers_irrigation.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     this.dangerzones = false;
                     this.agro = false;
                     this.mini = false;
@@ -4652,6 +4676,7 @@
                     this.forcastTemp = false;
                     this.atmTemp = false;
                     this.radar = false;
+                    this.comfort_zones = false;
                     this.awd = false;
                     this.snow = false;
                     this.waterposts = false;
@@ -4672,6 +4697,7 @@
                     markers_aero.clearLayers();
                     markers_awd.clearLayers();
                     markers_dangerzones.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_forecast.clearLayers();
                     markers_agro.clearLayers();
                     markers_mini.clearLayers();
@@ -4689,6 +4715,7 @@
                     this.forcastTemp = false;
                     this.atmTemp = false;
                     this.radar = false;
+                    this.comfort_zones = false;
                     this.awd = false;
                     this.snow = false;
                     this.radiatsiya = false;
@@ -4699,6 +4726,7 @@
                     this.agro = false;
                     this.mini = false;
                     this.water_cadastr = true;
+                    marker_comfort_zones.clearLayers();
                     this.getWaterCadastr();
                     this.irrigation = false;
                     markers_irrigation.clearLayers();
@@ -4738,6 +4766,7 @@
                     this.atmTemp = false;
                     this.radar = false;
                     this.awd = false;
+                    this.comfort_zones = false;
                     this.snow = false;
                     this.radiatsiya = false;
                     markers_irrigation.clearLayers();
@@ -4750,6 +4779,7 @@
                     markers_irrigation.clearLayers();
                     this.getDangerzones(this.menu);
                     this.water_cadastr = false;
+                    marker_comfort_zones.clearLayers();
                     markers_watercadastr.clearLayers();
                     markers_radar.clearLayers();
                     markers_forecast.clearLayers();
@@ -4775,6 +4805,7 @@
                     this.mini = false;
                     this.forcastTemp = false;
                     this.radiatsiya = false;
+                    this.comfort_zones = false;
                     this.atmTemp = false;
                     this.radar = false;
                     this.awd = false;
@@ -4791,6 +4822,7 @@
 
                     markers_radar.clearLayers();
                     markers_atmasfera.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
                     markers_aero.clearLayers();
@@ -4817,6 +4849,7 @@
                     this.forcastTemp = false;
                     this.radiatsiya = false;
                     this.atmTemp = false;
+                    this.comfort_zones = false;
                     this.radar = false;
                     this.awd = false;
                     this.snow = false;
@@ -4835,6 +4868,7 @@
                     markers_atmasfera.clearLayers();
                     markers_snow.clearLayers();
                     markers_awd.clearLayers();
+                    marker_comfort_zones.clearLayers();
                     markers_aero.clearLayers();
                     markers_forecast.clearLayers();
                     markers_dangerzones.clearLayers();
@@ -4865,9 +4899,55 @@
                     this.aero = false;
                     this.dangerzones = false;
                     this.agro = false;
+                    this.comfort_zones = false;
                     this.water_cadastr = false;
                     this.irrigation = false;
                     this.getAutoHydroStations();
+
+
+                    markers_irrigation.clearLayers();
+
+
+                    markers_radar.clearLayers();
+                    markers_atmasfera.clearLayers();
+                    markers_snow.clearLayers();
+                    markers_awd.clearLayers();
+                    markers_aero.clearLayers();
+                    markers_forecast.clearLayers();
+                    markers_dangerzones.clearLayers();
+                    markers_agro.clearLayers();
+                    marker_comfort_zones.clearLayers();
+                    markers_mini.clearLayers();
+                    markers_radiatsiya.clearLayers();
+                    this.water_cadastr = false;
+                    markers_watercadastr.clearLayers();
+
+                    markers_weather.clearLayers();
+                    marker_waterconsuption.clearLayers();
+                    marker_waterlevel.clearLayers();
+                    this.water_consumption = false;
+                    this.water_level = false;
+                    this.water_autohyrostation = true;
+
+
+                }
+                else if (this.menu == 'comfort_zones') {
+
+                    this.currentTemp = false;
+                    this.mini = false;
+                    this.forcastTemp = false;
+                    this.radiatsiya = false;
+                    this.atmTemp = false;
+                    this.radar = false;
+                    this.awd = false;
+                    this.snow = false;
+                    this.aero = false;
+                    this.dangerzones = false;
+                    this.agro = false;
+                    this.comfort_zones = true;
+                    this.water_cadastr = false;
+                    this.irrigation = false;
+                    this.ComfortZones();
 
 
                     markers_irrigation.clearLayers();
@@ -4891,7 +4971,7 @@
                     marker_waterlevel.clearLayers();
                     this.water_consumption = false;
                     this.water_level = false;
-                    this.water_autohyrostation = true;
+                    this.water_autohyrostation = false;
 
 
                 }
@@ -5887,6 +5967,36 @@
                         // always executed
                     });
 
+            },
+            ComfortZones:function(){
+                marker_comfort_zones.clearLayers();
+                var url_to_geotiff_file = "{{ asset('Idw_interpol.tif')  }}";
+                fetch(url_to_geotiff_file)
+                    .then(response => response.arrayBuffer())
+                    .then(arrayBuffer => {
+                        parseGeoraster(arrayBuffer).then(georaster => {
+                            var layer = new GeoRasterLayer({
+                                georaster: georaster,
+                                opacity: 0.7,
+                                resolution: 64, // optional parameter for adjusting display resolution
+                                pixelValuesToColorFn: function (values) {
+                                    const elevation = values[0];
+                                    if (elevation == 0) return "transparent";
+                                    else if (elevation > 1 && elevation < 2) return "#C82500";
+                                    else if (elevation > 2 && elevation < 3) return "#BFC81B";
+                                    else if (elevation > 3 && elevation < 4) return "#10B53E";
+                                    else if (elevation > 4 && elevation < 5) return "#63B512";
+                                    else if (elevation > 5 && elevation < 6) return "#B5893C";
+                                    else if (elevation => 6) return "#B51204";
+                                },
+                            });
+                            marker_comfort_zones.addLayer(layer)
+                            map.addLayer(marker_comfort_zones);
+
+                            map.fitBounds(layer.getBounds());
+
+                        });
+                    });
             }
         },
         mounted() {

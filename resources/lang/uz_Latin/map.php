@@ -48,6 +48,7 @@ return [
     'DarkGray'=>'Тўқ-кулранг',
     'OpenStreetMap'=>'Open Street Map',
     'sensitive_data'=>'Об-ҳаво сезгирлиги',
+    'comfort_zones'=>'Комфорт зоналари',
 
 
 ];

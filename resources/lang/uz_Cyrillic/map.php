@@ -151,6 +151,7 @@ return [
     'water_level'=>'Сув сатҳи',
     'autohydrostations'=>'Автоматик гидропостлар (запланированные станции)',
     'sensitive_data'=>'Об-ҳаво сезгирлиги',
+    'comfort_zones'=>'Комфорт зоналари',
 
 
 

@@ -49,6 +49,7 @@ return [
     'OpenStreetMap'=>'Open Street Map',
     'solar_radiation'=>'Қуёш радиацияси',
     'sensitive_data'=>'Об-ҳаво сезгирлиги',
+    'comfort_zones'=>'Комфорт зоналари',
 
 
 
