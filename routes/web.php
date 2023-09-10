@@ -137,6 +137,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
         Route::prefix('MicrostepStations')->group(function () {
             Route::get('/get', [MicrostepStationsController::class, 'get'])->name('map.MicrostepStations.get');
+            Route::get('/data', [MicrostepStationsController::class, 'getStations'])->name('map.MicrostepStations.getStations');
         });
 
         Route::prefix('MeteoinfocomStationData')->group(function () {
@@ -273,5 +274,8 @@ Route::prefix('mtrk')->group(function () {
 
 
 Route::get('/test', function () {
-    \App\Classes\Services::GetWeatherApi();
+//    \App\Classes\Services::GetWeatherApi();
+
+    return Excel::download(new \App\Exports\ImsExport(), 'stations.xlsx');
+
 });

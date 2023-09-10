@@ -100,4 +100,18 @@ class MicrostepStationsController extends Controller
     {
         return isset($data[$index]) ? (double) str_replace(" ", null, trim($data[$index])) : null;
     }
+
+    public function getStations(Request $request)
+    {
+        $stations = MicrostepStations::select('latitude','longitude','id','station_name')->get();
+        $all_data = [];
+
+        foreach ($stations as $station)
+        {
+            $station->last_data = MicrostepStationsValues::where('station_id',$station->id)->latest()->select('Td','Ta')->first();
+            array_push($all_data,$station);
+        }
+
+        return $all_data;
+    }
 }
