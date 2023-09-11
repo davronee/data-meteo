@@ -86,7 +86,6 @@
     <script src="https://unpkg.com/chroma-js"></script>
 
 
-
     <style>
         html, body {
             margin: 0;
@@ -357,6 +356,7 @@
     var marker_waterlevel = L.featureGroup();
     var marker_audtohydropost = L.featureGroup();
     var marker_comfort_zones = L.featureGroup();
+    var legend_marker = L.featureGroup();
 
     let app = new Vue({
         el: "#app",
@@ -375,7 +375,7 @@
             water_cadastr: false,
             radiatsiya: false,
             irrigation: false,
-            comfort_zones:false,
+            comfort_zones: false,
             awds:@json($stations),
             ChineStation:@json($chinesstations),
             microstep:@json($microstations),
@@ -4930,8 +4930,7 @@
                     this.water_autohyrostation = true;
 
 
-                }
-                else if (this.menu == 'comfort_zones') {
+                } else if (this.menu == 'comfort_zones') {
 
                     this.currentTemp = false;
                     this.mini = false;
@@ -4974,10 +4973,28 @@
                     this.water_autohyrostation = false;
 
 
-                }
-                else if(this.menu == 'sensitive_data')
-                {
+                } else if (this.menu == 'sensitive_data') {
                     window.open('{{route('map.sensitive')}}', '_blank');
+                }
+
+                var legend = L.control({position: "bottomleft"});
+
+                legend.onAdd = function (map) {
+                    var div = L.DomUtil.create("div", "legend");
+                    div.innerHTML += "<h4>@lang('map.comfort_zones')</h4>";
+                    div.innerHTML += '<i style="background: #C82500"></i><span>1</span><br>';
+                    div.innerHTML += '<i style="background: #BFC81B"></i><span>2</span><br>';
+                    div.innerHTML += '<i style="background: #10B53E"></i><span>3</span><br>';
+                    div.innerHTML += '<i style="background: #63B512"></i><span>4</span><br>';
+                    div.innerHTML += '<i style="background: #B5893C"></i><span>5</span><br>';
+                    div.innerHTML += '<i style="background: #B51204"></i><span>6</span><br>';
+                    return div;
+                };
+
+                if (this.comfort_zones) {
+                    map.addControl(legend);
+                } else {
+                    map.removeControl('legend');
                 }
 
             },
@@ -5968,9 +5985,11 @@
                     });
 
             },
-            ComfortZones:function(){
+            ComfortZones: function () {
                 marker_comfort_zones.clearLayers();
-                var url_to_geotiff_file = "{{ asset('Idw_interpol.tif')  }}";
+
+
+                var url_to_geotiff_file = "{{ asset('Idw_interpol_2.tif')  }}";
                 fetch(url_to_geotiff_file)
                     .then(response => response.arrayBuffer())
                     .then(arrayBuffer => {
@@ -5981,13 +6000,44 @@
                                 resolution: 64, // optional parameter for adjusting display resolution
                                 pixelValuesToColorFn: function (values) {
                                     const elevation = values[0];
+                                    console.log(elevation);
                                     if (elevation == 0) return "transparent";
-                                    else if (elevation > 1 && elevation < 2) return "#C82500";
-                                    else if (elevation > 2 && elevation < 3) return "#BFC81B";
-                                    else if (elevation > 3 && elevation < 4) return "#10B53E";
-                                    else if (elevation > 4 && elevation < 5) return "#63B512";
-                                    else if (elevation > 5 && elevation < 6) return "#B5893C";
-                                    else if (elevation => 6) return "#B51204";
+                                    else if (elevation > 1 && elevation < 2) {
+                                        var r = 255 * (2-elevation);
+                                        var g = 0 * (2-elevation);
+                                        var b = 0 * (2-elevation);
+                                        return "rgb(" + r + ", " + g + ", " + b + ")";
+                                    }
+                                    else if (elevation > 2 && elevation < 3) {
+                                        var r = 191 * (3-elevation);
+                                        var g = 200 * (3-elevation);
+                                        var b = 27 * (3-elevation);
+                                        return "rgb(" + r + ", " + g + ", " + b + ")";
+                                    }
+                                    else if (elevation > 3 && elevation < 4) {
+                                        var r = 16 * (4-elevation);
+                                        var g = 181 * (4-elevation);
+                                        var b = 62 * (4-elevation);
+                                        return "rgb(" + r + ", " + g + ", " + b + ")";
+                                    }
+                                    else if (elevation > 4 && elevation < 5) {
+                                        var r = 99 * (5-elevation);
+                                        var g = 181 * (5-elevation);
+                                        var b = 18 * (5-elevation);
+                                        return "rgb(" + r + ", " + g + ", " + b + ")";
+                                    }
+                                    else if (elevation > 5 && elevation < 6) {
+                                        var r = 181 * (6-elevation);
+                                        var g = 137 * (6-elevation);
+                                        var b = 60 * (6-elevation);
+                                        return "rgb(" + r + ", " + g + ", " + b + ")";
+                                    }
+                                    else if (elevation => 6) {
+                                        var r = 255 * (7-elevation);
+                                        var g = 0 * (7-elevation);
+                                        var b = 0 * (7-elevation);
+                                        return "rgb(" + r + ", " + g + ", " + b + ")";
+                                    }
                                 },
                             });
                             marker_comfort_zones.addLayer(layer)
@@ -6002,6 +6052,7 @@
         mounted() {
             this.InitialMap();
             this.menuChange();
+
             axios.get('{{route('map.radiation.years')}}')
                 .then(function (response) {
                     app.years_r = response.data;
@@ -6015,6 +6066,8 @@
                     // always executed
                 });
             this.GetRegions();
+
+
         }
     })
 </script>
