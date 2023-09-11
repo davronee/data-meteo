@@ -5989,7 +5989,7 @@
                 marker_comfort_zones.clearLayers();
 
 
-                var url_to_geotiff_file = "{{ asset('Idw_interpol_2.tif')  }}";
+                var url_to_geotiff_file = "{{ asset('Idw_interpol.tif')  }}";
                 fetch(url_to_geotiff_file)
                     .then(response => response.arrayBuffer())
                     .then(arrayBuffer => {
