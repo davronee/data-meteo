@@ -6000,7 +6000,6 @@
                                 resolution: 64, // optional parameter for adjusting display resolution
                                 pixelValuesToColorFn: function (values) {
                                     const elevation = values[0];
-                                    console.log(elevation);
                                     if (elevation == 0) return "transparent";
                                     else if (elevation > 1 && elevation < 2) {
                                         var r = 255 * (2-elevation);

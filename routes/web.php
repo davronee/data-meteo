@@ -267,10 +267,10 @@ Route::prefix('meteobot')->group(function () {
 });
 
 
-Route::prefix('mtrk')->group(function () {
-    Route::get('/report/get', [MtrkController::class, 'getReport'])->name('mtrk.get');
-    Route::get('/report/offset', [MtrkController::class, 'offset'])->name('mtrk.offset');
-});
+//Route::prefix('mtrk')->group(function () {
+//    Route::get('/report/get', [MtrkController::class, 'getReport'])->name('mtrk.get');
+//    Route::get('/report/offset', [MtrkController::class, 'offset'])->name('mtrk.offset');
+//});
 
 
 Route::get('/test', function () {
