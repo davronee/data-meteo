@@ -34,9 +34,9 @@ class ServiceController extends Controller
             'verify' => false
         ])->get($endpoint . '/classifier/user-type')->json();
 
-        $regions = $regions['content'];
-        $services = $services['content'];
-        $user_types = $user_types['content'];
+        $regions = $regions['content'] ?? [];
+        $services = $services['content'] ?? [];
+        $user_types = $user_types['content'] ?? [];
 
 //        $regions = Region::orderBy('regionid', 'asc')
 //            ->whereUserRegion(auth()->user()->region_id)
