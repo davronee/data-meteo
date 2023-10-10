@@ -15,4 +15,9 @@ class   OrdersService extends Model
         return $this->belongsTo(Services::class);
     }
 
+    public function region()
+    {
+        return $this->belongsTo('App\Models\Region', 'region_id', 'regionid');
+    }
+
 }
