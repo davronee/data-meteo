@@ -21,7 +21,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $endpoint = 'https://devback-ijro.meteo.uz/correspondence/open/application';
+        $endpoint = 'https://back-ijro.meteo.uz/correspondence/open/application';
         $regions = Http::withOptions([
             'verify' => false
         ])->get($endpoint . '/classifier/region/list')->json();
@@ -106,10 +106,10 @@ class ServiceController extends Controller
 
         try {
 
-
+//https://devback-ijro.meteo.uz/correspondence/open/application
             $entitiy = Http::withOptions([
                 'verify' => false
-            ])->post('https://devback-ijro.meteo.uz/correspondence/open/application', [
+            ])->post('https://back-ijro.meteo.uz/correspondence/open/application', [
                 "full_name" => $request->fio ?? '',
                 "email" => $request->email ?? '',
                 "pinfl" => strval($request->pinfl) ?? '',
