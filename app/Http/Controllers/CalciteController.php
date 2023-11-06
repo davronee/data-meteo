@@ -29,9 +29,7 @@ class CalciteController extends Controller
         try {
 
             $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
-        }
-        catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             $stations = [];
         }
 
@@ -113,13 +111,10 @@ class CalciteController extends Controller
 
     public function GetMeteobotStations(Request $request)
     {
-        if($request->regionid == 1700)
-        {
+        if ($request->regionid == 1700) {
             $meteobots = MeteoBotStations::all();
             return response()->json($meteobots);
-        }
-        else
-        {
+        } else {
             $meteobots = MeteoBotStations::where('region_id', $request->regionid)->get();
             return response()->json($meteobots);
         }

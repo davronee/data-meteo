@@ -2424,7 +2424,7 @@
 
                                         marker.bindPopup("" +
                                             "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>Ходжейли</b></td></tr>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>"+ item.name +"</b></td></tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.date')</b></td>" +
                                             "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
@@ -4977,25 +4977,25 @@
                     window.open('{{route('map.sensitive')}}', '_blank');
                 }
 
-                var legend = L.control({position: "bottomleft"});
+                {{--var legend = L.control({position: "bottomleft"});--}}
 
-                legend.onAdd = function (map) {
-                    var div = L.DomUtil.create("div", "legend");
-                    div.innerHTML += "<h4>@lang('map.comfort_zones')</h4>";
-                    div.innerHTML += '<i style="background: #C82500"></i><span>1</span><br>';
-                    div.innerHTML += '<i style="background: #BFC81B"></i><span>2</span><br>';
-                    div.innerHTML += '<i style="background: #10B53E"></i><span>3</span><br>';
-                    div.innerHTML += '<i style="background: #63B512"></i><span>4</span><br>';
-                    div.innerHTML += '<i style="background: #B5893C"></i><span>5</span><br>';
-                    div.innerHTML += '<i style="background: #B51204"></i><span>6</span><br>';
-                    return div;
-                };
+                {{--legend.onAdd = function (map) {--}}
+                {{--    var div = L.DomUtil.create("div", "legend");--}}
+                {{--    div.innerHTML += "<h4>@lang('map.comfort_zones')</h4>";--}}
+                {{--    div.innerHTML += '<i style="background: #C82500"></i><span>1</span><br>';--}}
+                {{--    div.innerHTML += '<i style="background: #BFC81B"></i><span>2</span><br>';--}}
+                {{--    div.innerHTML += '<i style="background: #10B53E"></i><span>3</span><br>';--}}
+                {{--    div.innerHTML += '<i style="background: #63B512"></i><span>4</span><br>';--}}
+                {{--    div.innerHTML += '<i style="background: #B5893C"></i><span>5</span><br>';--}}
+                {{--    div.innerHTML += '<i style="background: #B51204"></i><span>6</span><br>';--}}
+                {{--    return div;--}}
+                {{--};--}}
 
-                if (this.comfort_zones) {
-                    map.addControl(legend);
-                } else {
-                    map.removeControl('legend');
-                }
+                {{--if (this.comfort_zones) {--}}
+                {{--    map.addControl(legend);--}}
+                {{--} else {--}}
+                {{--    map.removeControl('legend');--}}
+                {{--}--}}
 
             },
             getAeroport: function () {
@@ -6002,37 +6002,37 @@
                                     const elevation = values[0];
                                     if (elevation == 0) return "transparent";
                                     else if (elevation > 1 && elevation < 2) {
-                                        var r = 255 * (2-elevation);
-                                        var g = 0 * (2-elevation);
-                                        var b = 0 * (2-elevation);
+                                        var r = 0 * (2-elevation);
+                                        var g = 60 * (2-elevation);
+                                        var b = 110 * (2-elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
                                     }
                                     else if (elevation > 2 && elevation < 3) {
-                                        var r = 191 * (3-elevation);
-                                        var g = 200 * (3-elevation);
-                                        var b = 27 * (3-elevation);
+                                        var r = 87 * (3-elevation);
+                                        var g = 147 * (3-elevation);
+                                        var b = 222 * (3-elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
                                     }
                                     else if (elevation > 3 && elevation < 4) {
-                                        var r = 16 * (4-elevation);
-                                        var g = 181 * (4-elevation);
-                                        var b = 62 * (4-elevation);
+                                        var r = 4 * (4-elevation);
+                                        var g = 207 * (4-elevation);
+                                        var b = 105 * (4-elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
                                     }
                                     else if (elevation > 4 && elevation < 5) {
-                                        var r = 99 * (5-elevation);
-                                        var g = 181 * (5-elevation);
-                                        var b = 18 * (5-elevation);
+                                        var r = 149 * (5-elevation);
+                                        var g = 212 * (5-elevation);
+                                        var b = 61 * (5-elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
                                     }
                                     else if (elevation > 5 && elevation < 6) {
-                                        var r = 181 * (6-elevation);
-                                        var g = 137 * (6-elevation);
-                                        var b = 60 * (6-elevation);
+                                        var r = 250 * (6-elevation);
+                                        var g = 155 * (6-elevation);
+                                        var b = 77 * (6-elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
                                     }
                                     else if (elevation => 6) {
-                                        var r = 255 * (7-elevation);
+                                        var r = 214 * (7-elevation);
                                         var g = 0 * (7-elevation);
                                         var b = 0 * (7-elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
