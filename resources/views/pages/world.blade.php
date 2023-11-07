@@ -284,7 +284,7 @@
                 var icon;
                 this.forecastsortday = [];
                 this.forecastsort = [];
-                axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
+                axios.get('https://www.meteo.uz/api/v2/weather/current.json', {
                     params: {
                         city: city,
                         language: 'ru',

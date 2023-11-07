@@ -388,7 +388,7 @@
         methods: {
 
             getCurrent: function () {
-                axios.get('http://www.meteo.uz/api/v2/weather/current.json', {
+                axios.get('https://www.meteo.uz/api/v2/weather/current.json', {
                     params: {
                         city: this.city,
                         language: 'ru',

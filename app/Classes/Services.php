@@ -362,7 +362,7 @@ class Services
 //            $openweather->save();
 
             $weather = Http::get(
-                'http://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru'
+                'https://www.meteo.uz/api/v2/weather/current.json?city=' . $region . '&language=ru'
             )->json();
 
             $subopenweather = Accuweather::toBase()
