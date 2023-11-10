@@ -47,7 +47,7 @@ class WidgetController extends Controller
 
     public function getRadars(Request $request)
     {
-        $radar = Http::get('https://meteo.uz/new/index.php?r=restricted/radarimage/listAjax');
+        $radar = Http::withOptions(['verify' => false])->get('https://meteo.uz/new/index.php?r=restricted/radarimage/listAjax');
         header('Content-type:image/png');
 
 //        if($request->region)
