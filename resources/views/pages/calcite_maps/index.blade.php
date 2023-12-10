@@ -5919,7 +5919,7 @@
                                             "</tr>" +
                                             "<tr>" +
                                             "<td  class='text-center'>" + response.data.avg_surface_velocity + " м/с</td>" +
-                                            "<td  class='text-center'>" + response.data.avg_water_level + " + м</td>" +
+                                            "<td  class='text-center'>" + response.data.avg_water_level + "  м</td>" +
                                             "<td  class='text-center'>" + response.data.datetime + "</td>" +
                                             "</tr>" +
                                             "</table>"
