@@ -39,6 +39,7 @@ class CalciteController extends Controller
 
         $meteobots = MeteoBotStations::all();
 
+
         try {
             $Chinesstations = Http::get('http://chinese-api.meteo.uz/allStations.php')->json();
         } catch (\Exception $exception) {

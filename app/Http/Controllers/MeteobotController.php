@@ -61,7 +61,27 @@ class MeteobotController extends Controller
         } catch (\Exception $exception) {
             return response()->json($exception->getMessage());
         }
+    }
 
+    public function GetNotWorkingStations()
+    {
+        $stations = MeteoBotStations::get();
+        $data = [];
+        foreach ($stations as $station) {
 
+            $response = Http::withBasicAuth(
+                $station->username,
+                $station->password
+            )->withOptions([
+                'verify' => false
+            ])->get('https://export.meteobot.com/v2/Generic/Locate',
+                [
+                    'id' => intval($station->sn),
+                ])->status();;
+            if ($response != 200) {
+                array_push($data, $station->sn);
+            }
+        }
+        return response()->json($data);
     }
 }

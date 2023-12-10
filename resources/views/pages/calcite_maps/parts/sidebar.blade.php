@@ -137,7 +137,8 @@
                             </option>
                             <option value="veter15s">@lang('map.veter15s')</option>
                         </optgroup>
-                        <option value="water_consumption">@lang('map.hydroposts')</option>
+                        <option value="water_autohyrostation">@lang('map.hydroposts')</option>
+{{--                        <option value="water_consumption">@lang('map.hydroposts')</option>--}}
                         <option value="comfort_zones">@lang('map.comfort_zones')</option>
                     </select>
                 </div>

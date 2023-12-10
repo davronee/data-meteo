@@ -13,6 +13,7 @@ use App\Http\Controllers\HourlyInfoSentController;
 use App\Http\Controllers\HourlyStationInfoController;
 use App\Http\Controllers\HourlyStationInfoExportController;
 use App\Http\Controllers\HourlyStationInfoSendController;
+use App\Http\Controllers\HydrostationsController;
 use App\Http\Controllers\MeteobotController;
 use App\Http\Controllers\MicrostepStationsController;
 use App\Http\Controllers\OneIdController;
@@ -69,6 +70,13 @@ Route::prefix('weather')->group(function () {
 
 Route::prefix('meteo')->group(function () {
     Route::get('/', [\App\Http\Controllers\Meteocontroller::class, 'index'])->name('meteo.index');
+
+});
+
+
+Route::prefix('hydrostations')->group(function () {
+    Route::get('/', [HydrostationsController::class, 'list'])->name('hydrostations.list');
+    Route::get('/get', [HydrostationsController::class, 'get'])->name('hydrostations.get');
 
 });
 

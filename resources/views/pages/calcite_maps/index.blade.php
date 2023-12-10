@@ -2424,7 +2424,7 @@
 
                                         marker.bindPopup("" +
                                             "<table class='table table-bordered'>" +
-                                            "<tr ><td colspan='2' class='text-center'><b>"+ item.name +"</b></td></tr>" +
+                                            "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>" +
                                             "<tr>" +
                                             "<td><b>@lang('map.date')</b></td>" +
                                             "<td>" + response.data[1] + " " + response.data[2] + "</td>" +
@@ -5888,73 +5888,54 @@
                     });
             },
             getAutoHydroStations: function () {
-                var square;
-                var markers = '';
-                var meteoIcon = null;
-                axios.get('{{route('map.watercadastr.GetAutostationHydro')}}')
+
+                var markers = null;
+                var hydroicon = null;
+                axios.get('{{ route('hydrostations.list') }}')
                     .then(function (response) {
-                        var meteoIcon = null;
 
                         response.data.forEach(function (item, i, arr) {
+                            hydroicon = L.icon({
+                                iconUrl: '{{asset('images/2.svg')}}',
+                                iconSize: [30, 30],
+                            });
 
-                            switch (item.type) {
-                                case 1:
-                                    meteoIcon = L.icon({
-                                        iconUrl: '{{asset('images/1.svg')}}',
-                                        iconSize: [30, 30],
-                                        className: 'selectedMarker'
-                                    });
-                                    break;
-                                case 2:
-                                    meteoIcon = L.icon({
-                                        iconUrl: '{{asset('images/2.svg')}}',
-                                        iconSize: [30, 30],
-                                        className: 'selectedMarker'
-                                    });
-                                    break;
-                                case 3:
-                                    meteoIcon = L.icon({
-                                        iconUrl: '{{asset('images/3.svg')}}',
-                                        iconSize: [30, 30],
-                                        className: 'selectedMarker'
-                                    });
-                                    break;
-                                case 4:
-                                    meteoIcon = L.icon({
-                                        iconUrl: '{{asset('images/4.svg')}}',
-                                        iconSize: [30, 30],
-                                        className: 'selectedMarker'
-                                    });
-                                    break;
-                                    defualt:
-                                        meteoIcon = L.icon({
-                                            iconUrl: '{{asset('images/1.svg')}}',
-                                            iconSize: [30, 30],
-                                            className: 'selectedMarker'
-                                        });
-                                    break;
+                            markers = L.marker([item.latitude, item.longitude], {icon: hydroicon}).on('click', function () {
+                                axios.get('{{route('hydrostations.get')}}', {
+                                    params: {
+                                        id: item.station_id
+                                    }
+                                })
+                                    .then(function (response) {
+                                        var pop = L.popup().setLatLng([item.latitude, item.longitude]).setContent(
+                                            "<table class='table table-bordered'>" +
+                                            "<tr>" +
+                                            "<td colspan='3' class='text-center'><b>" + item.name + "</b></td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td  class='text-center'><b>Скорость поверхности</b></td>" +
+                                            "<td  class='text-center'><b>Уровень воды</b></td>" +
+                                            "<td  class='text-center'><b>Дата</b></td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td  class='text-center'>" + response.data.avg_surface_velocity + "</td>" +
+                                            "<td  class='text-center'>" + response.data.avg_water_level + "</td>" +
+                                            "<td  class='text-center'>" + response.data.datetime + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        ).openOn(map);
 
-                            }
-                            markers = L.marker([item.latitute, item.longitute], {icon: meteoIcon}).on('click', function () {
-
-                                var pop = L.popup().setLatLng(this._latlng).setContent(
-                                    "<table class='table table-bordered'>" +
-                                    "<tr>" +
-                                    "<td colspan='2' rowspan='2' class='text-center'><b>" + item.name + "</b></td>" +
-                                    "<td  class='text-center'><b>Uskunalar soni</b></td>" +
-                                    "<td  class='text-center'><b>O'rnatilish yili</b></td>" +
-                                    "</tr>" +
-                                    "<tr>" +
-                                    "<td  class='text-center'>" + item.count + "</td>" +
-                                    "<td  class='text-center'>" + item.start_year + "</td>" +
-                                    "</tr>" +
-                                    "</table>"
-                                ).openOn(map);
+                                    })
+                                    .catch(function (error) {
+                                        console.log(error);
+                                    })
+                                    .then(function () {
+                                        // always executed
+                                    });
 
                             })
                             marker_audtohydropost.addLayer(markers);
                         })
-
                         map.addLayer(marker_audtohydropost);
                     })
                     .catch(function (error) {
@@ -5963,6 +5944,84 @@
                     .then(function () {
                         // always executed
                     });
+
+
+
+                {{--var square;--}}
+                {{--var markers = '';--}}
+                {{--var meteoIcon = null;--}}
+                {{--axios.get('{{route('map.watercadastr.GetAutostationHydro')}}')--}}
+                {{--    .then(function (response) {--}}
+                {{--        var meteoIcon = null;--}}
+
+                {{--        response.data.forEach(function (item, i, arr) {--}}
+
+                {{--            switch (item.type) {--}}
+                {{--                case 1:--}}
+                {{--                    meteoIcon = L.icon({--}}
+                {{--                        iconUrl: '{{asset('images/1.svg')}}',--}}
+                {{--                        iconSize: [30, 30],--}}
+                {{--                        className: 'selectedMarker'--}}
+                {{--                    });--}}
+                {{--                    break;--}}
+                {{--                case 2:--}}
+                {{--                    meteoIcon = L.icon({--}}
+                {{--                        iconUrl: '{{asset('images/2.svg')}}',--}}
+                {{--                        iconSize: [30, 30],--}}
+                {{--                        className: 'selectedMarker'--}}
+                {{--                    });--}}
+                {{--                    break;--}}
+                {{--                case 3:--}}
+                {{--                    meteoIcon = L.icon({--}}
+                {{--                        iconUrl: '{{asset('images/3.svg')}}',--}}
+                {{--                        iconSize: [30, 30],--}}
+                {{--                        className: 'selectedMarker'--}}
+                {{--                    });--}}
+                {{--                    break;--}}
+                {{--                case 4:--}}
+                {{--                    meteoIcon = L.icon({--}}
+                {{--                        iconUrl: '{{asset('images/4.svg')}}',--}}
+                {{--                        iconSize: [30, 30],--}}
+                {{--                        className: 'selectedMarker'--}}
+                {{--                    });--}}
+                {{--                    break;--}}
+                {{--                    defualt:--}}
+                {{--                        meteoIcon = L.icon({--}}
+                {{--                            iconUrl: '{{asset('images/1.svg')}}',--}}
+                {{--                            iconSize: [30, 30],--}}
+                {{--                            className: 'selectedMarker'--}}
+                {{--                        });--}}
+                {{--                    break;--}}
+
+                {{--            }--}}
+                {{--            markers = L.marker([item.latitute, item.longitute], {icon: meteoIcon}).on('click', function () {--}}
+
+                {{--                var pop = L.popup().setLatLng(this._latlng).setContent(--}}
+                {{--                    "<table class='table table-bordered'>" +--}}
+                {{--                    "<tr>" +--}}
+                {{--                    "<td colspan='2' rowspan='2' class='text-center'><b>" + item.name + "</b></td>" +--}}
+                {{--                    "<td  class='text-center'><b>Uskunalar soni</b></td>" +--}}
+                {{--                    "<td  class='text-center'><b>O'rnatilish yili</b></td>" +--}}
+                {{--                    "</tr>" +--}}
+                {{--                    "<tr>" +--}}
+                {{--                    "<td  class='text-center'>" + item.count + "</td>" +--}}
+                {{--                    "<td  class='text-center'>" + item.start_year + "</td>" +--}}
+                {{--                    "</tr>" +--}}
+                {{--                    "</table>"--}}
+                {{--                ).openOn(map);--}}
+
+                {{--            })--}}
+                {{--            marker_audtohydropost.addLayer(markers);--}}
+                {{--        })--}}
+
+                {{--        map.addLayer(marker_audtohydropost);--}}
+                {{--    })--}}
+                {{--    .catch(function (error) {--}}
+                {{--        console.log(error);--}}
+                {{--    })--}}
+                {{--    .then(function () {--}}
+                {{--        // always executed--}}
+                {{--    });--}}
             },
             CalculateAverage: function (arr) {
                 var sum = 0;
@@ -6002,39 +6061,34 @@
                                     const elevation = values[0];
                                     if (elevation == 0) return "transparent";
                                     else if (elevation > 1 && elevation < 2) {
-                                        var r = 0 * (2-elevation);
-                                        var g = 60 * (2-elevation);
-                                        var b = 110 * (2-elevation);
+                                        var r = 0 * (2 - elevation);
+                                        var g = 60 * (2 - elevation);
+                                        var b = 110 * (2 - elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
-                                    }
-                                    else if (elevation > 2 && elevation < 3) {
-                                        var r = 87 * (3-elevation);
-                                        var g = 147 * (3-elevation);
-                                        var b = 222 * (3-elevation);
+                                    } else if (elevation > 2 && elevation < 3) {
+                                        var r = 87 * (3 - elevation);
+                                        var g = 147 * (3 - elevation);
+                                        var b = 222 * (3 - elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
-                                    }
-                                    else if (elevation > 3 && elevation < 4) {
-                                        var r = 4 * (4-elevation);
-                                        var g = 207 * (4-elevation);
-                                        var b = 105 * (4-elevation);
+                                    } else if (elevation > 3 && elevation < 4) {
+                                        var r = 4 * (4 - elevation);
+                                        var g = 207 * (4 - elevation);
+                                        var b = 105 * (4 - elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
-                                    }
-                                    else if (elevation > 4 && elevation < 5) {
-                                        var r = 149 * (5-elevation);
-                                        var g = 212 * (5-elevation);
-                                        var b = 61 * (5-elevation);
+                                    } else if (elevation > 4 && elevation < 5) {
+                                        var r = 149 * (5 - elevation);
+                                        var g = 212 * (5 - elevation);
+                                        var b = 61 * (5 - elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
-                                    }
-                                    else if (elevation > 5 && elevation < 6) {
-                                        var r = 250 * (6-elevation);
-                                        var g = 155 * (6-elevation);
-                                        var b = 77 * (6-elevation);
+                                    } else if (elevation > 5 && elevation < 6) {
+                                        var r = 250 * (6 - elevation);
+                                        var g = 155 * (6 - elevation);
+                                        var b = 77 * (6 - elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
-                                    }
-                                    else if (elevation => 6) {
-                                        var r = 214 * (7-elevation);
-                                        var g = 0 * (7-elevation);
-                                        var b = 0 * (7-elevation);
+                                    } else if (elevation => 6) {
+                                        var r = 214 * (7 - elevation);
+                                        var g = 0 * (7 - elevation);
+                                        var b = 0 * (7 - elevation);
                                         return "rgb(" + r + ", " + g + ", " + b + ")";
                                     }
                                 },
