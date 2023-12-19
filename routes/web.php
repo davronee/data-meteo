@@ -70,7 +70,7 @@ Route::prefix('weather')->group(function () {
 
 Route::prefix('meteo')->group(function () {
     Route::get('/', [\App\Http\Controllers\Meteocontroller::class, 'index'])->name('meteo.index');
-    Route::get('/notworking', [CalciteController::class, 'GetNotWorkingStations'])->name('meteo.notworking');
+    Route::get('/notworking', [MeteobotController::class, 'GetNotWorkingStations'])->name('meteo.notworking');
 });
 
 
