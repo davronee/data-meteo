@@ -3573,6 +3573,95 @@
 
                         }
                     });
+var temp = null;
+                    axios.get('https://meteoapi.meteo.uz/api/aws/amudario')
+                        .then(function (response) {
+                            response.data.forEach(function (item, i, arr) {
+                                const fontAwesomeIcon = L.divIcon({
+                                    html: '<div style="color:#8E24AA"><i class="fa fa-map-marker fa-2x"></i></div>',
+                                    iconSize: [32, 32],
+                                    className: 'myDivIcon'
+                                });
+                                var marker2 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: fontAwesomeIcon})
+                                    .on('click', function () {
+                                        axios.get('https://meteoapi.meteo.uz/api/aws/amudario/' + item.id)
+                                            .then(function (response) {
+                                                temp = response.data['AirT']
+                                                marker2.bindPopup("" +
+                                                    "<table class='table table-bordered'>" +
+                                                    "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.date')</b></td>" +
+                                                    "<td>" + response.data['Time'] + "</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>@lang('map.temp') </b></td>" +
+                                                    "<td>" + response.data['AirT'] + " °C</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Относительная влажность воздуха</b></td>" +
+                                                    "<td>" + response.data['AirH'] + " %</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Уровень осадков</b></td>" +
+                                                    "<td>" + response.data['Rain'] + " мм</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Скорость порыва ветра</b></td>" +
+                                                    "<td>" + response.data['WindMax'] + " м/с</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Концентрация CO2</b></td>" +
+                                                    "<td>" + response.data['CO2'] + " ppm</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Концентрация мелкодисперсных частиц (PM2.5</b></td>" +
+                                                    "<td>" + response.data['PM2.5'] + " μg/m³</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Концентрация крупных частиц (PM10)</b></td>" +
+                                                    "<td>" + response.data['PM10'] + " μg/m³</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Температура почвы (30см)</b></td>" +
+                                                    "<td>" + response.data['SoilT'] + " °C</td>" +
+                                                    "</tr>" +
+                                                    "<tr>" +
+                                                    "<td><b>Влажность почвы (30см)</b></td>" +
+                                                    "<td>" + response.data['SoilVWC'] + " %</td>" +
+                                                    "</tr>" +
+                                                    "</table>"
+                                                )
+                                            })
+                                            .catch(function (error) {
+                                                // handle error
+                                                console.log(error);
+                                            })
+
+
+                                    })
+                                    .bindTooltip("<div class='pin-info' style='background-color:#8E24AA'><b></b></div>",
+                                        {
+                                            permanent: true,
+                                            direction: 'top',
+                                            className: 'ownClassMiniAmu'
+
+                                        });
+
+                                marker2.fire('click');
+
+
+                                markers_mini.addLayer(marker2);
+
+
+                                map.addLayer(markers_mini);
+
+                                // handle success
+                            });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
 
 
                     axios.get('{{route('bukhara_chines.getRealTimeData')}}')
