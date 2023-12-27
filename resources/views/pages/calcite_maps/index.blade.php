@@ -3573,7 +3573,7 @@
 
                         }
                     });
-var temp = null;
+                    var temp = null;
                     axios.get('https://meteoapi.meteo.uz/api/aws/amudario')
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
@@ -3584,52 +3584,133 @@ var temp = null;
                                 });
                                 var marker2 = L.marker([parseFloat(item.latitude), parseFloat(item.longitude)], {icon: fontAwesomeIcon})
                                     .on('click', function () {
-                                        axios.get('https://meteoapi.meteo.uz/api/aws/amudario/' + item.id)
+                                        axios.get('https://meteoapi.meteo.uz/api/aws/amudario/' + item.station_id)
                                             .then(function (response) {
-                                                temp = response.data['AirT']
+                                                var content = "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>";
+
+                                                if (response.data['Time'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>@lang('map.date')</b></td>" +
+                                                        "<td>" + moment(response.data['Time']).format('YYYY.MM.DD HH:mm:ss') + "</td>" +
+                                                        "</tr>";
+                                                if (response.data['AirT'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>@lang('map.temp') </b></td>" +
+                                                        "<td>" + response.data['AirT'] + " °C</td>" +
+                                                        "</tr>";
+                                                if (response.data['AirH'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Относительная влажность воздуха</b></td>" +
+                                                        "<td>" + response.data['AirH'] + " %</td>" +
+                                                        "</tr>";
+                                                if (response.data['WindD'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Направление ветра относительно севера</b></td>" +
+                                                        "<td>" + response.data['WindD'] + " °</td>" +
+                                                        "</tr>";
+                                                if (response.data['WindS'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Средняя скорость ветра</b></td>" +
+                                                        "<td>" + response.data['WindS'] + " m/s</td>" +
+                                                        "</tr>";
+                                                if (response.data['WindMax'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Скорость порыва ветра</b></td>" +
+                                                        "<td>" + response.data['WindMax'] + " m/s</td>" +
+                                                        "</tr>";
+                                                if (response.data['AirP'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Атмосферное давление</b></td>" +
+                                                        "<td>" + response.data['AirP'] + " hPa</td>" +
+                                                        "</tr>";
+                                                if (response.data['LeafT'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Температура лепестка</b></td>" +
+                                                        "<td>" + response.data['LeafT'] + " °C</td>" +
+                                                        "</tr>";
+                                                if (response.data['LeafW'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Влажность лепестка</b></td>" +
+                                                        "<td>" + response.data['LeafW'] + " %</td>" +
+                                                        "</tr>";
+                                                if (response.data['PAR'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Фотосинтетически активная радиация</b></td>" +
+                                                        "<td>" + response.data['PAR'] + " μmol/m²s</td>" +
+                                                        "</tr>";
+                                                if (response.data['Rain'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Уровень осадков</b></td>" +
+                                                        "<td>" + response.data['Rain'] + " мм</td>" +
+                                                        "</tr>";
+                                                if (response.data['CO2'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Концентрация CO2</b></td>" +
+                                                        "<td>" + response.data['CO2'] + " ppm</td>" +
+                                                        "</tr>";
+                                                if (response.data['PM2.5'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Концентрация мелкодисперсных частиц (PM2.5</b></td>" +
+                                                        "<td>" + response.data['PM2.5'] + " μg/m³</td>" +
+                                                        "</tr>";
+                                                if (response.data['PM10'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Концентрация крупных частиц (PM10)</b></td>" +
+                                                        "<td>" + response.data['PM10'] + " μg/m³</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilT'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Температура почвы (30см)</b></td>" +
+                                                        "<td>" + response.data['SoilT'] + " °C</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilT_1'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Температура почвы (60см)</b></td>" +
+                                                        "<td>" + response.data['SoilT_1'] + " °C</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilT_2'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Температура почвы (90см)</b></td>" +
+                                                        "<td>" + response.data['SoilT_2'] + " °C</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilT_3'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Температура почвы (120см)</b></td>" +
+                                                        "<td>" + response.data['SoilT_3'] + " °C</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilVWC'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Влажность почвы (30см)</b></td>" +
+                                                        "<td>" + response.data['SoilVWC'] + " %</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilVWC_1'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Влажность почвы (60см)</b></td>" +
+                                                        "<td>" + response.data['SoilVWC_1'] + " %</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilVWC_2'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Влажность почвы (90см)</b></td>" +
+                                                        "<td>" + response.data['SoilVWC_2'] + " %</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilVWC_3'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Влажность почвы (120см)</b></td>" +
+                                                        "<td>" + response.data['SoilVWC_3'] + " %</td>" +
+                                                        "</tr>";
+                                                if (response.data['SoilEC'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>Электропроводимость почвы</b></td>" +
+                                                        "<td>" + response.data['SoilEC'] + " dS/m</td>" +
+                                                        "</tr>";
+                                                if (response.data['UV'] != undefined)
+                                                    content += "<tr>" +
+                                                        "<td><b>УФ-индекс</b></td>" +
+                                                        "<td>" + response.data['UV'] + "</td>" +
+                                                        "</tr>";
                                                 marker2.bindPopup("" +
                                                     "<table class='table table-bordered'>" +
-                                                    "<tr ><td colspan='2' class='text-center'><b>" + item.name + "</b></td></tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>@lang('map.date')</b></td>" +
-                                                    "<td>" + response.data['Time'] + "</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>@lang('map.temp') </b></td>" +
-                                                    "<td>" + response.data['AirT'] + " °C</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Относительная влажность воздуха</b></td>" +
-                                                    "<td>" + response.data['AirH'] + " %</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Уровень осадков</b></td>" +
-                                                    "<td>" + response.data['Rain'] + " мм</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Скорость порыва ветра</b></td>" +
-                                                    "<td>" + response.data['WindMax'] + " м/с</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Концентрация CO2</b></td>" +
-                                                    "<td>" + response.data['CO2'] + " ppm</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Концентрация мелкодисперсных частиц (PM2.5</b></td>" +
-                                                    "<td>" + response.data['PM2.5'] + " μg/m³</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Концентрация крупных частиц (PM10)</b></td>" +
-                                                    "<td>" + response.data['PM10'] + " μg/m³</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Температура почвы (30см)</b></td>" +
-                                                    "<td>" + response.data['SoilT'] + " °C</td>" +
-                                                    "</tr>" +
-                                                    "<tr>" +
-                                                    "<td><b>Влажность почвы (30см)</b></td>" +
-                                                    "<td>" + response.data['SoilVWC'] + " %</td>" +
-                                                    "</tr>" +
+                                                    content +
                                                     "</table>"
                                                 )
                                             })
@@ -3640,7 +3721,7 @@ var temp = null;
 
 
                                     })
-                                    .bindTooltip("<div class='pin-info' style='background-color:#8E24AA'><b></b></div>",
+                                    .bindTooltip('<div class=\'pin-info\' style=\'background-color:#8E24AA\'><b></b></div>',
                                         {
                                             permanent: true,
                                             direction: 'top',
