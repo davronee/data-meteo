@@ -22,10 +22,10 @@ class HydrostationsController extends Controller
     public function get(Request $request)
     {
         try {
-            $station = Http::get('http://meteoapi.meteo.uz/api/hydroposts/' . $request->id)->json();
-            return response()->json($station);
+            $station = Http::get('https://meteoapi.meteo.uz/api/hydroposts/' . $request->id)->json();
+            return $station;
         } catch (Exception $exception) {
-            $station = null;
+            return "No data found";
         }
     }
 }
