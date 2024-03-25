@@ -932,6 +932,24 @@
                                         markers_weather.addLayer(marker)
 
 
+                                    }
+                                    else if (item.weather_code == 'partly_cloudy') {
+                                        marker = L.marker([item.city.latitude, item.city.longitude], {
+
+                                            icon: L.AwesomeMarkers.icon({
+                                                icon: 'wi-day-cloudy-high',
+                                                prefix: 'wi',
+                                                markerColor: 'cadetblue',
+                                                spin: false
+                                            })
+                                        }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                            {
+                                                permanent: true,
+                                                direction: 'center'
+                                            });
+                                        markers_weather.addLayer(marker)
+
+
                                     } else {
                                         marker = L.marker([item.city.latitude, item.city.longitude], {
                                             icon: L.AwesomeMarkers.icon({
@@ -3852,7 +3870,6 @@
             },
             getForecast: function () {
                 if (this.forcastTemp) {
-
                     axios.get('{{route('map.getCurrent')}}')
                         .then(function (response) {
                             response.data.forEach(function (item, i, arr) {
@@ -4357,7 +4374,64 @@
                                     markers_forecast.addLayer(marker)
                                     marker.fire('click');
 
-                                } else {
+                                }
+                                else if (item.weather_code == 'partly_cloudy') {
+                                    var marker = L.marker([item.city.latitude, item.city.longitude], {
+                                        icon: L.AwesomeMarkers.icon({
+                                            icon: 'wi-day-cloudy-high',
+                                            prefix: 'wi',
+                                            markerColor: 'cadetblue',
+                                            spin: false
+                                        })
+                                    }).on('click', function () {
+                                        var head;
+                                        axios.get('{{route('map.forecast')}}', {
+                                            params: {
+                                                regionid: item.region_id
+                                            }
+                                        })
+                                            .then(function (response2) {
+                                                head = "<table class='table table-bordered'>" +
+                                                    "<tr>" +
+                                                    "<td class='text-center' colspan='3'><b>@lang('map.3days_weather') - " + response2.data[0].region_name + "</b></td></tr>" +
+                                                    "<tr><td><b>@lang('map.date')</b></td><td><b>@lang('map.day')</b></td><td><b>@lang('map.night')</b></td></tr>";
+
+                                                response2.data.forEach(function (item, i, arr) {
+                                                    if (i % 2 == 0) {
+                                                        head += "<tr>" +
+                                                            "<td>" + item.date + "</td>" +
+                                                            "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td>";
+                                                    } else {
+                                                        head += "<td>" + item.air_t_min + "°C" + " - " + item.air_t_max + "°C" + "</td></tr>";
+                                                    }
+
+
+                                                });
+
+                                                head += "</table>"
+
+                                                marker.bindPopup(head);
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            })
+                                            .then(function () {
+                                                // always executed
+                                            });
+                                        // marker.bindPopup('sds');
+
+
+                                    }).bindTooltip(item.air_t > 0 ? '+' + Math.round(item.air_t).toString() + ' °C' : Math.round(item.air_t).toString(),
+                                        {
+                                            permanent: true,
+                                            direction: 'center'
+                                        });
+
+                                    markers_forecast.addLayer(marker)
+                                    marker.fire('click');
+
+                                }
+                                else {
                                     var marker = L.marker([item.city.latitude, item.city.longitude], {
                                         icon: L.AwesomeMarkers.icon({
                                             icon: 'wi-snow',
