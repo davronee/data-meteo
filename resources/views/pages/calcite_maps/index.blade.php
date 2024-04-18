@@ -1298,7 +1298,7 @@
                         }
                     })
                         .then(function (response) {
-                            this.atmasfera_stations = response.data.data[0].stations;
+                            this.atmasfera_stations = response.data;
 
 
                             this.atmasfera_stations.forEach(function (item, i, arr) {
@@ -1322,43 +1322,58 @@
                                             item.id == 714 || item.id == 715 ||
                                             item.id == 716 || item.id == 717 ||
                                             item.id == 718 || item.id == 719) {
-
                                             axios.get('{{route('map.horiba.plashadka')}}', {
                                                 params: {
                                                     point: item.id
                                                 }
                                             })
                                                 .then(function (response) {
-                                                    // drujbahoriba = parseFloat(response.data[6].Value).toFixed(2) + " " + response.data[6].Unit;
                                                     try {
-                                                        console.log(response.data);
-                                                        if (response.data.length > 0) {
+                                                        if (response.data.data) {
                                                             marker.bindPopup("" +
                                                                 "<table class='table table-bordered'>" +
-                                                                "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
+                                                                "<tr ><td class='text-center' colspan='2'><b>" + item.category_title + "</b></td></tr>" +
                                                                 "<tr>" +
-                                                                "<td><b>" + response.data[0].Name + ":</b></td>" +
-                                                                "<td>" + parseFloat(response.data[0].Value).toFixed(2) + " " + response.data[0].Unit + "</td>" +
+                                                                "<td><b>" + response.data.data[0].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[0].value) + " " + response.data.data[0].unit + "</td>" +
                                                                 "</tr>" +
                                                                 "<tr>" +
-                                                                "<td><b>" + response.data[1].Name + ":</b></td>" +
-                                                                "<td>" + parseFloat(response.data[1].Value).toFixed(2) + " " + response.data[1].Unit + "</td>" +
+                                                                "<td><b>" + response.data.data[1].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[1].value) + " " + response.data.data[1].unit + "</td>" +
                                                                 "</tr>" +
                                                                 "<tr>" +
-                                                                "<td><b>" + response.data[2].Name + ":</b></td>" +
-                                                                "<td>" + parseFloat(response.data[2].Value).toFixed(2) + " " + response.data[2].Unit + "</td>" +
+                                                                "<td><b>" + response.data.data[2].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[2].value) + " " + response.data.data[2].unit + "</td>" +
                                                                 "</tr>" +
                                                                 "<tr>" +
-                                                                "<td><b>" + response.data[3].Name + ":</b></td>" +
-                                                                "<td>" + parseFloat(response.data[3].Value).toFixed(2) + " " + response.data[3].Unit + "</td>" +
+                                                                "<td><b>" + response.data.data[3].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[3].value) + " " + response.data.data[3].unit + "</td>" +
                                                                 "</tr>" +
                                                                 "<tr>" +
-                                                                "<td><b>" + response.data[4].Name + ":</b></td>" +
-                                                                "<td>" + parseFloat(response.data[4].Value).toFixed(2) + " " + response.data[4].Unit + "</td>" +
+                                                                "<td><b>" + response.data.data[4].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[4].value) + " " + response.data.data[4].unit + "</td>" +
                                                                 "</tr>" +
-                                                                "</table>" +
-                                                                "<a href='https://monitoring.meteo.uz/ru/map/view/" + item.id + "' target='_blank' style='color:#fff;'>@lang('map.more')....</a>")
-                                                                .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>Авто</b></div>",
+                                                                "<tr>" +
+                                                                "<td><b>" + response.data.data[5].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[5].value) + " " + response.data.data[5].unit + "</td>" +
+                                                                "</tr>" +
+                                                                "<tr>" +
+                                                                "<td><b>" + response.data.data[6].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[6].value) + " " + response.data.data[6].unit + "</td>" +
+                                                                "</tr>" +
+                                                                "<tr>" +
+                                                                "<td><b>" + response.data.data[7].name + ":</b></td>" +
+                                                                "<td>" + parseFloat(response.data.data[7].value) + " " + response.data.data[7].unit + "</td>" +
+                                                                "</tr>" +
+                                                                "<tr>" +
+                                                                "<td><b>@lang('map.date'):</b></td>" +
+                                                                "<td>" + response.data.datetime + "</td>" +
+                                                                "</tr>" +
+                                                                "<tr>" +
+                                                                "<td colspan='2'><a href='https://monitoring.meteo.uz/ru/map/view/" + item.id + "' target='_blank' style='color:#000;'>@lang('map.more')....</a></td>" +
+                                                                "</tr>" +
+                                                                "</table>")
+                                                                .bindTooltip("<div class='pin-info' style='background-color:#8c2b8c;color:#fff'><b>Авто</b></div>",
                                                                     {
                                                                         permanent: true,
                                                                         direction: 'top',
@@ -1368,13 +1383,13 @@
                                                         } else {
                                                             marker.bindPopup("" +
                                                                 "<table class='table table-bordered'>" +
-                                                                "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
+                                                                "<tr ><td class='text-center' colspan='2'><b>" + item.category_title + "</b></td></tr>" +
                                                                 "<tr>" +
                                                                 "<td class='text-center text-danger'><b>профилактический работы</b></td>" +
                                                                 "</tr>" +
                                                                 "</table>" +
                                                                 "<a href='https://monitoring.meteo.uz/ru/map/view/" + item.id + "' target='_blank' style='color:#000;'>@lang('map.more')....</a>")
-                                                                .bindTooltip("<div class='pin-info' style='background-color:" + "cyan" + "'><b>Авто</b></div>",
+                                                                .bindTooltip("<div class='pin-info' style='background-color:#8c2b8c;color:#fff'><b>Авто</b></div>",
                                                                     {
                                                                         permanent: true,
                                                                         direction: 'top',
@@ -1392,11 +1407,12 @@
                                                     console.log(error)
                                                 });
 
-                                        } else if (item.id == 109) {
+                                        }
+                                        else if (item.id == 109) {
 
                                             marker.bindPopup("" +
                                                 "<table class='table table-bordered'>" +
-                                                "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
+                                                "<tr ><td class='text-center' colspan='2'><b>" + item.category_title + "</b></td></tr>" +
                                                 "<tr>" +
                                                 "<td><b>@lang('map.NO') (NO):</b></td>" +
                                                 "<td>27µg/m³</td>" +
@@ -1414,7 +1430,7 @@
                                         } else {
                                             marker.bindPopup("" +
                                                 "<table class='table table-bordered'>" +
-                                                "<tr ><td class='text-center' colspan='2'><b>" + item.unserialize_category_title.ru + "</b></td></tr>" +
+                                                "<tr ><td class='text-center' colspan='2'><b>" + item.category_title + "</b></td></tr>" +
                                                 "<tr>" +
                                                 "<td><b>@lang('map.NO') (NO):</b></td>" +
                                                 "<td>" + item.NO + "</td>" +

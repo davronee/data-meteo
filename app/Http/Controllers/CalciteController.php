@@ -28,7 +28,7 @@ class CalciteController extends Controller
 
         try {
 
-            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
+            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->timeout(3)->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
         } catch (\Exception $exception) {
             $stations = [];
         }
@@ -41,7 +41,7 @@ class CalciteController extends Controller
 
 
         try {
-            $Chinesstations = Http::get('http://chinese-api.meteo.uz/allStations.php')->json();
+            $Chinesstations = Http::timeout(3)->get('http://chinese-api.meteo.uz/allStations.php')->json();
         } catch (\Exception $exception) {
             $Chinesstations = null;
         }
