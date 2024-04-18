@@ -57,7 +57,7 @@
                 <p>@lang('map.moduls'):</p>
                 <li>@lang('map.factik')</li>
                 <li>@lang('map.atmasphera')</li>
-                <li>@lang('map.locator')</li>
+                <!-- <li>@lang('map.locator')</li> -->
                 <li>@lang('map.aero')</li>
                 <li>@lang('map.sputnik')</li>
                 <li>@lang('map.water_kadster')</li>
@@ -108,7 +108,7 @@
                         <option value="atmosphere">@lang('map.atmasphera')</option>
                         <option value="forecast">@lang('map.weather')</option>
                         <option value="radiatsiya">@lang('map.solar_radiation')</option>
-                        <option value="locator">@lang('map.locator')</option>
+                        <!-- <option value="locator">@lang('map.locator')</option> -->
                         <option value="aero">@lang('map.aero')</option>
                         <option value="snow">@lang('map.snow')</option>
                         <option value="sputnik">@lang('map.metep_sputnik')</option>
