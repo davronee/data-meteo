@@ -475,28 +475,55 @@ class WidgetController extends Controller
 
         switch ($request->point) {
             case 107:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=1')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/1')->json();
                 break;
             case 108:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=2')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/2')->json();
                 break;
             case 714:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=3')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/3')->json();
                 break;
             case 715:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=4')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/4')->json();
                 break;
             case 716:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=5')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/5')->json();
                 break;
             case 717:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=6')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/6')->json();
                 break;
             case 718:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=7')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/7')->json();
                 break;
             case 719:
-                $horiba = Http::get('http://ecoweb-api.meteo.uz?point=8')->json();
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/8')->json();
+                break;
+            case 719:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/8')->json();
+                break;
+            case 720:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/9')->json();
+                break;
+            case 721:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/10')->json();
+                break;
+            case 722:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/11')->json();
+                break;
+            case 723:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/12')->json();
+                break;
+            case 724:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/13')->json();
+                break;
+            case 725:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/14')->json();
+                break;
+            case 726:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/15')->json();
+                break;
+            case 727:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/16')->json();
                 break;
         }
 
