@@ -127,6 +127,7 @@ class MeteobotStationsSeed extends Seeder
                         [
                             'name' => $arr[6],
                             'sn' => $station,
+                            'station_id' => $arr[0],
                             'username' => 3231343030303336,
                             'password' => 'k8hwRivdex7hr_5tc',
                             'latitude' => $arr[3],

@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3||^8.2",
         "barryvdh/laravel-cors": "^2.0",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "doctrine/dbal": "^3.0",
@@ -16,7 +16,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
         "imangazaliev/didom": "^1.18",
-        "infureal/artisan-gui": "^1.4",
+        "infureal/artisan-gui": "^2.0",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
@@ -71,7 +71,9 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "php -r \"copy('.env.example', '.env');\"",
+            "php artisan key:generate"
         ]
     }
 }
