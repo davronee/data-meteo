@@ -1319,9 +1319,7 @@
                                 var marker = L.marker([parseFloat(item.lat), parseFloat(item.lon)], {icon: fontAwesomeIcon})
                                     .on('click', function () {
                                         if (item.id == 107 || item.id == 108 ||
-                                            item.id == 714 || item.id == 715 ||
-                                            item.id == 716 || item.id == 717 ||
-                                            item.id == 718 || item.id == 719) {
+                                            (item.id >= 714  && item.id <=727)) {
                                             axios.get('{{route('map.horiba.plashadka')}}', {
                                                 params: {
                                                     point: item.id
