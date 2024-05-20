@@ -85,7 +85,7 @@ class HoribaController extends Controller
         $lastRow = $data->last();
 
         // dd/mm/YYYY HH:mm:ss format to YYYY-mm-dd HH:mm:ss
-        $lastRow['date_time'] = date('d.m.Y H:i:s', strtotime(str_replace('/', '-', $lastRow['date_time'])));
+        $lastRow['date_time'] = date('d.m.Y H:i', strtotime(str_replace('/', '-', $lastRow['date_time'])));
 
         return  response()->json([
             'PM2.5' => $lastRow['pm25'],
