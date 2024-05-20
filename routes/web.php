@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MtrkController;
+use App\Http\Controllers\HoribaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -286,4 +287,11 @@ Route::get('/test', function () {
 
     return Excel::download(new \App\Exports\ImsExport(), 'stations.xlsx');
 
+});
+
+
+Route::prefix('horiba')->middleware('vodiy')->group(function () {
+    Route::get('/{station}', [HoribaController::class, 'index'])->name('horiba.index');
+    Route::get('show/{station}', [HoribaController::class, 'show'])->name('horiba.show');
+    Route::post('/{station}', [HoribaController::class, 'store'])->name('horiba.store');
 });

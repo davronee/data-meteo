@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\cors;
 use App\Http\Middleware\MiddlewereHoriba;
+use App\Http\Middleware\VodiyMiddleWare;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -75,6 +76,7 @@ class Kernel extends HttpKernel
         'HourlyStationWorkHour' => \App\Http\Middleware\HourlyStationWorkHour::class,
         'AllowAwsStatusTracker' => \App\Http\Middleware\AllowAwsStatusTracker::class,
         'QuickInfoMiddleware' => \App\Http\Middleware\QuickInfoMiddleware::class,
-        'horiba' => MiddlewereHoriba::class
+        'horiba' => MiddlewereHoriba::class,
+        'vodiy'=>VodiyMiddleWare::class
     ];
 }
