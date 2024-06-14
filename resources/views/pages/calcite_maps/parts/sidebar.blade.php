@@ -114,11 +114,14 @@
                         <option value="sputnik">@lang('map.metep_sputnik')</option>
                         <option value="water_cadastr">@lang('map.kadaster_water')</option>
                         <option value="sensitive_data">@lang('map.sensitive_data')</option>
+                        <option value="camera1">Видео-фиксация 1</option>
+                        <option value="camera2">Видео-фиксация 2</option>
                         <optgroup label="@lang('map.auto_meteo')">
                             <option value="mini">@lang('map.mini_station')</option>
                             <option value="awd">@lang('map.meteo_auto')</option>
                             <option value="meteo_agro">@lang('map.agro_auto')</option>
                             <option value="meteo_irrigation">Ирригация</option>
+
                         </optgroup>
                         <optgroup label="@lang('map.danger_zones_kadaster')">
 

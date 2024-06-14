@@ -325,6 +325,21 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="camera1" tabindex="-1" role="dialog" aria-labelledby="Camera1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <iframe src="https://cam2.meteo.uz/" frameborder="0" width="100%" height="640px"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="camera2" tabindex="-1" role="dialog" aria-labelledby="Camera2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <iframe src="https://cam3.meteo.uz/" frameborder="0" width="100%" height="640px"></iframe>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="{{asset('assets/js/leaflet.awesome-markers.min.js')}}"></script>
@@ -5233,6 +5248,14 @@
 
                 } else if (this.menu == 'sensitive_data') {
                     window.open('{{route('map.sensitive')}}', '_blank');
+                }
+                else if(this.menu == 'camera1')
+                {
+                    $('#camera1').modal('show')
+                }
+                else if(this.menu == 'camera2')
+                {
+                    $('#camera2').modal('show')
                 }
 
                 {{--var legend = L.control({position: "bottomleft"});--}}
