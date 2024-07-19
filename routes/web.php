@@ -105,6 +105,7 @@ Route::group(['middleware' => ['set_locale']], function () {
 
 //    Route::get('/', [WidgetController::class, 'index'])->name('home');
     Route::get('/', [CalciteController::class, 'index'])->name('map');
+    Route::get('/meteo-alert', \App\Http\Controllers\MeteoAlertController::class)->name('meteo_alert');
 
     Route::prefix('map')->group(function () {
 //        Route::get('/', [WidgetController::class, 'map'])->name('map');

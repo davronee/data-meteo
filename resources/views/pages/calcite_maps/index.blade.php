@@ -132,6 +132,8 @@
         }
     </style>
 
+
+
 </head>
 <body class="calcite-maps calcite-nav-top calcite-layout-small-title">
 
@@ -162,6 +164,8 @@
                                 class="fa fa-code"></span> Метео API</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelInfo" aria-haspopup="true"><span
                                 class="glyphicon glyphicon-info-sign"></span> @lang('map.portal_info')</a></li>
+                <li><a href="/meteo-alert" target="_blank" role="menuitem"><span
+                            class="glyphicon glyphicon-info-sign"></span>MeteoAlert</a></li>
             </ul>
         </div>
         <!-- Title -->
