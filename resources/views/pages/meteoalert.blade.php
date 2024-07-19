@@ -139,7 +139,7 @@
         window.smamainvaria.push({
             renderTo: 'meteo_alert_main_div',
             maxWidth: '100%',
-            maxHeight: '600px',
+            maxHeight: '900px',
             bounds: [[37.275966074272695, 55.554553785930665],[45.608033973900746, 73.00084177577672]]
         });
     </script>
@@ -206,7 +206,7 @@
     <!-- Map Container  -->
     <br>
     <br>
-    <div id="meteo_alert_main_div"></div>
+    <div id="meteo_alert_main_div" style="position: absolute; left: 0; right: 0; bottom: 0; top: 0;"></div>
 
 {{--    @include('pages.calcite_maps.parts.sidebar')--}}
 
@@ -220,22 +220,6 @@
 <!-- Include all plugins or individual files as needed -->
 <script src="{{asset('calcite/js/bootstrap.min.js')}}"></script>
 
-<script>
-    var map;
-
-
-    let app = new Vue({
-        el: "#app",
-        data: {
-
-        },
-        methods: {
-
-        },
-        mounted() {
-        }
-    })
-</script>
 {{--<script src="{{asset('calcite/js/jquery/calcitemaps-v0.10.js')}}"/>--}}
 
 
