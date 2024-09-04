@@ -108,7 +108,7 @@
                         <option value="atmosphere">@lang('map.atmasphera')</option>
                         <option value="forecast">@lang('map.weather')</option>
                         <option value="radiatsiya">@lang('map.solar_radiation')</option>
-                        <!-- <option value="locator">@lang('map.locator')</option> -->
+                      <option value="locator">@lang('map.locator')</option>
                         <option value="aero">@lang('map.aero')</option>
                         <option value="snow">@lang('map.snow')</option>
                         <option value="sputnik">@lang('map.metep_sputnik')</option>
