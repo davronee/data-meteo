@@ -57,7 +57,7 @@
                 <p>@lang('map.moduls'):</p>
                 <li>@lang('map.factik')</li>
                 <li>@lang('map.atmasphera')</li>
-                <!-- <li>@lang('map.locator')</li> -->
+                <li>@lang('map.locator')</li>
                 <li>@lang('map.aero')</li>
                 <li>@lang('map.sputnik')</li>
                 <li>@lang('map.water_kadster')</li>
