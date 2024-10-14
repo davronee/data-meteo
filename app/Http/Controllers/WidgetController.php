@@ -15,13 +15,13 @@ class WidgetController extends Controller
     public $meteoapi = 'http://meteoapi.meteo.uz/';//'http://192.168.10.249:8085/';
 //    public $dangerzonesapi = 'http://10.190.24.134:11082/public/api/';
 //    public $dangerzonesapi = 'http://192.168.0.28:11082/public/api/';
-    public $dangerzonesapi = 'http://192.168.20.7:11082/api/';
+    public $dangerzonesapi = 'http://192.168.20.158:11082/api/';
 
     public function __construct()
     {
         $this->endpoint = env('AWS_ENDPOINT', 'http://192.168.21.131:8086/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
         $this->meteoapi = env('METEOAPI_ENDPOINT', 'http://meteoapi.meteo.uz/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
-        $this->dangerzonesapi = env('DANGERZONES_ENDPOINT', 'http://192.168.20.7:11082/api/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->dangerzonesapi = env('DANGERZONES_ENDPOINT', 'http://192.168.20.158:11082/api/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
     public function index(Request $request)
@@ -116,7 +116,6 @@ class WidgetController extends Controller
         $current = Http::withOptions([
             'verify' => false
         ])->get($this->meteoapi . 'api/weather/current/' . $request->regionid);
-//        $current = Http::get('http://217.30.161.60:8085/api/weather/current/' . $request->regionid);
         return $current->json();
     }
 
