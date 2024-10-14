@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class AmudarController extends Controller
 {
-    private $endporint = 'http://oxus.amudar.io/api/';
+    private $endporint = 'https://oxus.amudar.io/api/';
     private $email = 'irrigatsiya@amudar.io';
     private $password = 'irrigatsiya-1';
 
