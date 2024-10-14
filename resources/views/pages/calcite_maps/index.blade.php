@@ -2299,43 +2299,43 @@
 
                                     marker.bindPopup("" +
                                         "<table class='table table-bordered'>" +
-                                        "<tr ><td class='text-center' colspan='2'><b>" + item.properties.location + "</b></td></tr>" +
+                                        "<tr ><td class='text-center' colspan='2'><b>" + item.properties.post_nomi + "</b></td></tr>" +
                                         "<tr>" +
                                         "<td><b>code</b></td>" +
-                                        "<td>" + item.properties.code + "</td>" +
+                                        "<td>" + item.properties.post_kodi + "</td>" +
                                         "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>datetime</b></td>" +
-                                        "<td>" + item.properties.datetime + "</td>" +
-                                        "</tr>" +
+                                        // "<tr>" +
+                                        // "<td><b>datetime</b></td>" +
+                                        // "<td>" + item.properties.datetime + "</td>" +
+                                        // "</tr>" +
                                         "<tr>" +
                                         "<td><b>distance</b></td>" +
-                                        "<td>" + item.properties.distance + "</td>" +
+                                        "<td>" + item.properties.masofa + "</td>" +
                                         "</tr>" +
                                         "<tr>" +
                                         "<td><b>location</b></td>" +
-                                        "<td>" + item.properties.location + "</td>" +
+                                        "<td>" + item.properties.post_joylashuvi + "</td>" +
                                         "</tr>" +
                                         "<tr>" +
                                         "<td><b>number</b></td>" +
-                                        "<td>" + item.properties.number + "</td>" +
+                                        "<td>" + item.properties.id_raqam + "</td>" +
                                         "</tr>" +
                                         "<tr>" +
                                         "<td><b>number1</b></td>" +
-                                        "<td>" + item.properties.number1 + "</td>" +
+                                        "<td>" + item.properties.t_r + "</td>" +
                                         "</tr>" +
                                         "<tr>" +
                                         "<td><b>rivers</b></td>" +
-                                        "<td>" + item.properties.rivers + "</td>" +
+                                        "<td>" + item.properties.obj_tip + "</td>" +
                                         "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>square</b></td>" +
-                                        "<td>" + item.properties.square + "</td>" +
-                                        "</tr>" +
-                                        "<tr>" +
-                                        "<td><b>type</b></td>" +
-                                        "<td>" + item.properties.type + "</td>" +
-                                        "</tr>" +
+                                        // "<tr>" +
+                                        // "<td><b>square</b></td>" +
+                                        // "<td>" + item.properties.square + "</td>" +
+                                        // "</tr>" +
+                                        // "<tr>" +
+                                        // "<td><b>type</b></td>" +
+                                        // "<td>" + item.properties.type + "</td>" +
+                                        // "</tr>" +
                                         "</table>"
                                     )
 
