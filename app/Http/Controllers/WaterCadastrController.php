@@ -7,9 +7,12 @@ use Illuminate\Support\Facades\Http;
 
 class WaterCadastrController extends Controller
 {
+
+    public $dangerzonesapi = 'http://192.168.20.158:11082/api/';
+
     public function getStation()
     {
-        $stations = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get('http://10.190.24.134:11082/api/hydromet/water_objects')->body();
+        $stations = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get($this->dangerzonesapi . 'hydromet/water_objects')->body();
 
         return $stations;
     }
@@ -17,7 +20,7 @@ class WaterCadastrController extends Controller
     public function GetWaterConsumption(Request $request)
     {
         try {
-            $water_consumption = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get('http://10.190.24.134:11082/api/hydromet/water_consumptions')->json();
+            $water_consumption = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get($this->dangerzonesapi . 'hydromet/water_consumptions')->json();
             return $water_consumption;
         }
         catch (\Exception $e) {
@@ -29,7 +32,7 @@ class WaterCadastrController extends Controller
     public function GetWaterLevel()
     {
         try {
-            $water_consumption = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get('http://10.190.24.134:11082/api/hydromet/water_level')->json();
+            $water_consumption = Http::withBasicAuth('info@ygk.uz', 'X25G-y8nvQ8Tq_2D')->get($this->dangerzonesapi . 'hydromet/water_level')->json();
             return $water_consumption;
         }
         catch (\Exception $e) {
