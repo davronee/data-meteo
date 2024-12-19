@@ -11,6 +11,9 @@ class Region extends Model
 
     protected $table = "uz_regions";
 
+    protected $fillable = ['nameUz','nameRu'];
+
+
     // scopes
     public function scopeWhereUserRegion($query, $region_id)
     {

@@ -6233,6 +6233,71 @@
 
 
 
+
+
+
+
+                axios.get('{{ route('hydrostations.hydroposts') }}')
+                    .then(function (response) {
+
+                        response.data.forEach(function (item, i, arr) {
+                            hydroicon = L.icon({
+                                iconUrl: '{{asset('images/2.svg')}}',
+                                iconSize: [30, 30],
+                            });
+
+                            markers = L.marker([item.latitude, item.longitude], {icon: hydroicon}).on('click', function () {
+                                const stationIds = [30117, 30112, 30119, 30114, 30118, 30116, 30111, 30120, 30115, 30124, 30113, 30139, 30138, 30140, 30135, 30134, 30132, 30137, 30133, 30136];
+                                const randomStationId = stationIds[Math.floor(Math.random() * stationIds.length)];
+
+                                axios.get('{{route('hydrostations.get')}}', {
+                                    params: {
+                                        id: randomStationId
+                                    }
+                                })
+                                    .then(function (response) {
+                                        var pop = L.popup().setLatLng([item.latitude, item.longitude]).setContent(
+                                            "<table class='table table-bordered'>" +
+                                            "<tr>" +
+                                            "<td colspan='3' class='text-center'><b>" + item.name + "</b></td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td  class='text-center'><b>Скорость поверхности</b></td>" +
+                                            "<td  class='text-center'><b>Уровень воды</b></td>" +
+                                            "<td  class='text-center'><b>Дата</b></td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "<td  class='text-center'>" + response.data.avg_surface_velocity + " м/с</td>" +
+                                            "<td  class='text-center'>" + response.data.avg_water_level + "  м</td>" +
+                                            "<td  class='text-center'>" + response.data.datetime + "</td>" +
+                                            "</tr>" +
+                                            "</table>"
+                                        ).openOn(map);
+
+                                    })
+                                    .catch(function (error) {
+                                        console.log(error);
+                                    })
+                                    .then(function () {
+                                        // always executed
+                                    });
+
+                            })
+                            marker_audtohydropost.addLayer(markers);
+                        })
+                        map.addLayer(marker_audtohydropost);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+
+
+
+
                 {{--var square;--}}
                 {{--var markers = '';--}}
                 {{--var meteoIcon = null;--}}

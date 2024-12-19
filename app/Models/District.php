@@ -11,6 +11,9 @@ class District extends Model
 
     protected $table = "uz_districts";
 
+    protected $fillable = ['nameUz','nameRu'];
+
+
     public function scopeByRegion($query, $user)
     {
         if(!is_null($user->region_id))

@@ -78,6 +78,8 @@ Route::prefix('meteo')->group(function () {
 Route::prefix('hydrostations')->group(function () {
     Route::get('/', [HydrostationsController::class, 'list'])->name('hydrostations.list');
     Route::get('/get', [HydrostationsController::class, 'get'])->name('hydrostations.get');
+    Route::get('/hydroposts', [HydrostationsController::class, 'hydroposts'])->name('hydrostations.hydroposts');
+
 
 });
 
