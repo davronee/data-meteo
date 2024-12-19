@@ -1220,7 +1220,7 @@
 
                     var marker = L.marker([37.224170, 67.278330]).on('click', function () {
 
-                            marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='200' data-lightbox='/map/getRadars?region=1706' data-title='My caption' src='/map/getRadars?region=1722' /></label>")
+                            marker.bindPopup(" <input type='checkbox' id='zoomCheck'><label for='zoomCheck'><img style='cursor: zoom-in' class='zoom' width='200' data-lightbox='/map/getRadars?region=1706' data-title='My caption' src='/map/getRadars?region=1706' /></label>")
 
                     });
 
