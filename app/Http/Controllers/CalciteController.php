@@ -24,36 +24,38 @@ class CalciteController extends Controller
 //
     public function index(Request $request)
     {
-        $radars = Radar::all();
+//        $radars = Radar::all();
+//
+//        try {
+//
+//            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->timeout(3)->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
+//        } catch (\Exception $exception) {
+//            $stations = [];
+//        }
+//
+//        $hydrometStations = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
+//
+//        $microstations = MicrostepStations::get();
+//
+//        $meteobots = MeteoBotStations::all();
+//
+//
+//        try {
+//            $Chinesstations = Http::timeout(3)->get('http://chinese-api.meteo.uz/allStations.php')->json();
+//        } catch (\Exception $exception) {
+//            $Chinesstations = null;
+//        }
+//
+//        return view('pages.calcite_maps.index')->with([
+//            'radars' => $radars,
+//            'stations' => $stations ?? [],
+//            'microstations' => $microstations,
+//            'hydrometstation' => $hydrometStations,
+//            'chinesstations' => $Chinesstations,
+//            'meteobots' => $meteobots,
+//        ]);
 
-        try {
-
-            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->timeout(3)->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
-        } catch (\Exception $exception) {
-            $stations = [];
-        }
-
-        $hydrometStations = HydrometStation::where('is_active', true)->with('hydromet_sensor_data')->get();
-
-        $microstations = MicrostepStations::get();
-
-        $meteobots = MeteoBotStations::all();
-
-
-        try {
-            $Chinesstations = Http::timeout(3)->get('http://chinese-api.meteo.uz/allStations.php')->json();
-        } catch (\Exception $exception) {
-            $Chinesstations = null;
-        }
-
-        return view('pages.calcite_maps.index')->with([
-            'radars' => $radars,
-            'stations' => $stations ?? [],
-            'microstations' => $microstations,
-            'hydrometstation' => $hydrometStations,
-            'chinesstations' => $Chinesstations,
-            'meteobots' => $meteobots,
-        ]);
+        return view('pages.calcite_maps.profilact');
 
     }
 
