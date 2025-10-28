@@ -16,7 +16,7 @@ class ServiceRestorController extends Controller
      */
     public function index()
     {
-        $offers = OrdersService::with('service')->paginate(10);
+        $offers = OrdersService::with('service')->orderByDesc('id')->paginate(10);
 
         return view('pages.service.service_register', [
             'offers' => $offers
