@@ -14,10 +14,12 @@ class MeteoAlertController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+
+
+    public function prognoz()
     {
         $radars = Radar::all();
 
@@ -49,5 +51,13 @@ class MeteoAlertController extends Controller
             'chinesstations' => $Chinesstations,
             'meteobots' => $meteobots,
         ]);
+
+    }
+
+    public function zagrazneniya()
+    {
+        $param = request()->query('param');
+        return view('pages.meteoalert_zagrazneniya', compact('param'));
+
     }
 }

@@ -140,6 +140,7 @@
             renderTo: 'meteo_alert_main_div',
             maxWidth: '100%',
             maxHeight: '900px',
+            lang:'uz',
             bounds: [[37.275966074272695, 55.554553785930665],[45.608033973900746, 73.00084177577672]]
         });
     </script>

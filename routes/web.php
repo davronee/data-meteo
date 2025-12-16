@@ -107,7 +107,8 @@ Route::group(['middleware' => ['set_locale']], function () {
 
 //    Route::get('/', [WidgetController::class, 'index'])->name('home');
     Route::get('/', [CalciteController::class, 'index'])->name('map');
-    Route::get('/meteo-alert', \App\Http\Controllers\MeteoAlertController::class)->name('meteo_alert');
+    Route::get('/meteo-alert', [\App\Http\Controllers\MeteoAlertController::class,'prognoz'])->name('meteo_alert');
+    Route::get('/meteo-alert-airquality', [\App\Http\Controllers\MeteoAlertController::class,'zagrazneniya'])->name('meteo_alert-zagrazneniya');
 
     Route::prefix('map')->group(function () {
 //        Route::get('/', [WidgetController::class, 'map'])->name('map');

@@ -26,7 +26,9 @@ class AwdController extends Controller
 
     public function getStation(Request $request)
     {
-        $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/' . $request->id . '/O');
+        $stations = Http::withOptions([
+            'verify' => false,
+        ])->withBasicAuth('davronee', 'bvlgari1991')->get($this->endpoint . '/EnvidbCurrentDataInterface/GetCurrentDataForStationById/' . $request->id . '/O');
 
         return $stations->json();
     }

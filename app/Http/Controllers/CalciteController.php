@@ -18,7 +18,7 @@ class CalciteController extends Controller
 
     public function __construct()
     {
-        $this->endpoint = env('AWS_ENDPOINT', 'http://aws.meteo.uz/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
+        $this->endpoint = env('AWS_ENDPOINT', 'https://aws.meteo.uz/');  //config('endpoints.AWS_ENDPOINT','http://192.168.10.249:8086/');
     }
 
 //
@@ -28,7 +28,9 @@ class CalciteController extends Controller
 
         try {
 
-            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->timeout(3)->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
+            $stations = Http::withBasicAuth('davronee', 'bvlgari1991')->withOptions([
+                'verify' => false,
+            ])->timeout(3)->get($this->endpoint . 'EnvidbMetadataInterface/GetAllStations')->json();
         } catch (\Exception $exception) {
             $stations = [];
         }

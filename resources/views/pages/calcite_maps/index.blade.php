@@ -152,13 +152,15 @@
             </a>
             <ul class="dropdown-menu calcite-bgcolor-dark-blue">
                 <li><a class="visible-xs" role="button" data-target="#panelSearch" aria-haspopup="true"><span
-                            class="glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
+                            class=  "glyphicon glyphicon-search"></span> @lang('map.search')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelBasemaps" aria-haspopup="true"><span
                             class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
                             class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
                 <li><a href="/meteo-alert" target="_blank" role="menuitem"><span
-                            class="glyphicon glyphicon-warning-sign"></span>MeteoAlert</a></li>
+                            class="glyphicon glyphicon-warning-sign"></span>MeteoAlert (прогноз)</a></li>
+                <li><a href="/meteo-alert-airquality" target="_blank" role="menuitem"><span
+                            class="glyphicon glyphicon-warning-sign"></span>MeteoAlert (загрязнение)</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
                             class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
@@ -1210,10 +1212,11 @@
                             color: '#4236E5',
                             fillColor: '#6789E5',
                             fillOpacity: 0.3,
-                            radius: item.region_id == 1727 ? 120000 : 250000,
+                            radius: (item.region_id == 1727 || item.region_id == 1708) ? 120000 : 250000,
                         })
                         markers_radar.addLayer(circle)
                     });
+
 
 
                     var marker = L.marker([37.224170, 67.278330]).on('click', function () {
@@ -1239,6 +1242,15 @@
                     markers_radar.clearLayers();
 
                 }
+
+                var popup = L.popup()
+                    .setLatLng([39.758340, 66.915391])
+                    .setContent("Dag’bit")
+                    .openOn(map);
+
+                setTimeout(function () {
+                    map.closePopup(popup);
+                }, 10000);
 
 
             },

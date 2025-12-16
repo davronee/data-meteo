@@ -39,7 +39,7 @@
                                             <td>{!! $offer->service->name !!}</td>
                                             <td>{!! $offer->created_at->format('d.m.Y') !!}</td>
                                             <td>{!! $offer->fio !!}</td>
-                                            <td>Д. Қориев</td>
+                                            <td>К. Бахромов</td>
                                             <td>99871-235-85-49</td>
                                               <td>Шартнома имзоланмади <br> (бекор қилинди)</td>
                                         </tr>
