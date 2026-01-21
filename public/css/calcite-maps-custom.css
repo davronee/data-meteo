@@ -1,0 +1,359 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body.calcite-maps {
+    height: 100vh !important;
+    width: 100% !important;
+    overflow: hidden !important;
+}
+
+#app {
+    height: 100vh !important;
+    width: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.calcite-nav-bottom .calcite-map .leaflet-control-zoom {
+    margin-top: 28px;
+}
+
+.calcite-navbar-search {
+    margin-top: 0;
+    margin-right: 5px;
+    padding: 5px 0;
+}
+
+.calcite-nav-bottom .panel-body .geocoder-control-suggestions.leaflet-bar {
+    top: 25px;
+    bottom: auto;
+}
+
+.calcite-maps .esri-truncated-attribution {
+    max-width: 100% !important;
+    width: 100%;
+}
+
+.leaflet-touch .leaflet-bar {
+    border: none;
+}
+
+div#footer-fluid {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    height: 50px;
+    text-align: right;
+}
+
+.china {
+    filter: hue-rotate(45deg);
+}
+
+/* Toggle Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #4CAF50;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Toggle label text color */
+.panel-body .form-group label span {
+    color: #000 !important;
+}
+
+/* Auto Station Icon Styles */
+.auto-station-icon {
+    background: transparent !important;
+    border: none !important;
+}
+
+.auto-station-tooltip {
+    pointer-events: none;
+}
+
+/* Legend Styles */
+.calcite-map {
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.navbar-fixed-top {
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 1030 !important;
+}
+
+#map {
+    width: 100% !important;
+    height: calc(100vh - 40px) !important;
+    position: fixed !important;
+    /*top: 10px !important;*/
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 1 !important;
+    background-color: #f0f0f0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.calcite-map-absolute {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+}
+
+.air-quality-legend-control {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.95) 100%) !important;
+    padding: 8px 12px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1) !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
+    font-size: 10px !important;
+    width: calc(100% - 40px) !important;
+    max-width: none !important;
+    margin: 8px 20px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    backdrop-filter: blur(10px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    overflow: hidden !important;
+}
+
+.air-quality-legend-control::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff00 0%, #ffff00 25%, #ffa500 50%, #ff0000 75%, #8c2b8c 100%);
+    opacity: 0.6;
+}
+
+/* Full width at bottom center */
+.leaflet-bottom.leaflet-left {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    pointer-events: none !important;
+    z-index: 1000 !important;
+}
+
+.leaflet-bottom.leaflet-left .air-quality-legend-control {
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    margin: 8px auto !important;
+    width: calc(100% - 40px) !important;
+    max-width: none !important;
+    pointer-events: auto !important;
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+}
+
+.leaflet-control.air-quality-legend-control {
+    margin: 8px auto !important;
+    clear: both !important;
+    float: none !important;
+}
+
+.air-quality-legend-header {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 6px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.air-quality-legend-items-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 6px;
+    width: 100%;
+}
+
+.air-quality-legend-item-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    border: 1px solid rgba(224, 224, 224, 0.6);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.5);
+    cursor: pointer;
+}
+
+.air-quality-legend-item-horizontal:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.6);
+    border-color: rgba(200, 200, 200, 0.8);
+}
+
+.air-quality-legend h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.air-quality-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 4px 0;
+}
+
+.air-quality-legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25), inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -1px 2px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    display: inline-block;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.air-quality-legend-item-horizontal:hover .air-quality-legend-color {
+    transform: scale(1.1);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.air-quality-legend-text {
+    color: #2c3e50;
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+}
+
+/* PM2.5 Tooltip Popup Styles */
+.pm25-tooltip-popup .leaflet-popup-content-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+}
+
+.pm25-tooltip-popup .leaflet-popup-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: 150px !important;
+}
+
+.pm25-tooltip-popup .leaflet-popup-tip {
+    display: none !important;
+}
+
+.pm25-tooltip-popup .leaflet-popup-close-button {
+    display: none !important;
+}
