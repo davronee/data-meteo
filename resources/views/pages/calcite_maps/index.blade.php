@@ -1396,7 +1396,10 @@
                     }
                     // console.log('Esri Leaflet loaded:', typeof L.esri);
 
-                    map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6);
+                    map = L.map('map', {
+                        zoomControl: false,
+                        maxBounds: [[35, 45], [55, 80]] // O'rta Osiyo hududi chegarasi
+                    }).setView([41.315514, 69.246097], 6);
                     // console.log('Map created:', map);
 
                     layer = L.esri.basemapLayer('NationalGeographic').addTo(map);
