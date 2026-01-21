@@ -315,4 +315,122 @@ class MeteobotController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Get latest IndexFull record for a station by stationid (or sn fallback).
+     * URL: /api/meteobot/{stationid}
+     * Uses Meteobot credentials stored on the station model.
+     */
+    public function GetLatestIndexFull($stationid)
+    {
+        try {
+            // Avval stationid bo'yicha qidirish, bo'lmasa sn bo'yicha
+            $meteobot = MeteoBotStations::where('stationid', $stationid)->first();
+            if (!$meteobot) {
+                $meteobot = MeteoBotStations::where('sn', $stationid)->first();
+            }
+
+            if (!$meteobot) {
+                return response()->json([
+                    'error' => 'Station not found'
+                ], 404);
+            }
+
+            if (!$meteobot->username || !$meteobot->password) {
+                return response()->json([
+                    'error' => 'Station credentials not found'
+                ], 404);
+            }
+
+            // Oxirgi 48 soat oralig'ida so'rov yuboramiz, oxirgi qatorni olamiz
+            $endTime = Carbon::now()->addHour()->format('Y-m-d H:i');
+            $startTime = Carbon::now()->subHours(48)->format('Y-m-d H:i');
+
+            $response = Http::withBasicAuth(
+                $meteobot->username,
+                $meteobot->password
+            )->withOptions([
+                'verify' => false
+            ])->get('https://export.meteobot.com/v2/Generic/IndexFull', [
+                'id' => $stationid,
+                'startTime' => $startTime,
+                'endTime' => $endTime
+            ]);
+
+            if (!$response->successful()) {
+                return response()->json([
+                    'error' => 'Failed to fetch data from Meteobot API',
+                    'status' => $response->status()
+                ], $response->status());
+            }
+
+            $body = $response->body();
+            // Qatorlarga ajratish (\r, \n yoki ikkalasi)
+            $lines = preg_split("/\r\n|\n|\r/", $body);
+            $lines = array_filter($lines, function ($line) {
+                return trim($line) !== '';
+            });
+
+            if (empty($lines)) {
+                return response()->json([
+                    'error' => 'No data returned from Meteobot API'
+                ], 503);
+            }
+
+            // Headerni olish
+            $headers = str_getcsv(array_shift($lines), ';');
+            $headers = array_map('trim', $headers);
+
+            $parsedRows = [];
+            foreach ($lines as $line) {
+                $rowData = str_getcsv($line, ';');
+                $rowObject = [];
+                foreach ($headers as $index => $header) {
+                    $key = $header ?: 'column_' . ($index + 1);
+                    $rowObject[$key] = $rowData[$index] ?? null;
+                }
+                // Bo'sh qatorlarni tashlab ketamiz
+                if (!empty(array_filter($rowObject, function ($value) {
+                    return $value !== null && $value !== '';
+                }))) {
+                    $parsedRows[] = $rowObject;
+                }
+            }
+
+            if (empty($parsedRows)) {
+                return response()->json([
+                    'error' => 'No data rows parsed from Meteobot API'
+                ], 503);
+            }
+
+            $lastRow = end($parsedRows);
+
+            // Agar headerlarda date/time bo'lsa, timestamp yasaymiz
+            $timestamp = null;
+            $datetime = null;
+            if (isset($lastRow['date']) && isset($lastRow['time'])) {
+                try {
+                    $dt = Carbon::parse(trim($lastRow['date']) . ' ' . trim($lastRow['time']))->setTimezone('UTC');
+                    $timestamp = $dt->timestamp;
+                    $datetime = $dt->format('Y-m-d H:i:s');
+                } catch (\Exception $e) {
+                    // parsing failed, skip
+                }
+            }
+
+            return response()->json([
+                'stationId' => $stationid,
+                'region_id' => $meteobot->region_id,
+                'district_id' => $meteobot->district_id,
+                'count' => count($parsedRows),
+                'last_record' => $lastRow,
+                'timestamp' => $timestamp,
+                'datetime' => $datetime,
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'error' => $exception->getMessage()
+            ], 500);
+        }
+    }
 }

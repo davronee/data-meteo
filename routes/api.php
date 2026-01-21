@@ -60,4 +60,5 @@ Route::prefix('meteobot')->middleware('basic.auth')->group(function () {
     Route::get('/air-quality/{stationid}', [MeteobotController::class, 'GetOnlyAirQualityStation'])->name('api.meteobot.air-quality.station');
     Route::get('/locate', [MeteobotController::class, 'GetStationLocation'])->name('api.meteobot.locate');
     Route::get('/index-full', [MeteobotController::class, 'GetStationIndexFull'])->name('api.meteobot.index-full');
+    Route::get('/{stationid}', [MeteobotController::class, 'GetLatestIndexFull'])->name('api.meteobot.latest');
 });
