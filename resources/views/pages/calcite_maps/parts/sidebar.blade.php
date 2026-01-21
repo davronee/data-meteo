@@ -161,7 +161,7 @@
                 </div>
                 <div v-if="menu == 'atmosphere'" class="form-group" style="margin-top: 15px;">
                     <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
-                        <span style="color: #000 !important; font-size: 14px; font-weight: normal;">автоматический станции</span>
+                        <span style="color: #000 !important; font-size: 14px; font-weight: normal;">Автоматический станции</span>
                         <label class="switch" style="margin: 0;">
                             <input type="checkbox" v-model="showAutoStations" @change="toggleAutoStations">
                             <span class="slider"></span>
