@@ -858,12 +858,12 @@
             hidePM25Tooltip();
         });
 
-        console.log('PM2.5 hover event qo\'shildi');
+        // console.log('PM2.5 hover event qo\'shildi');
     }
 
     function createInterpolationCanvasLayer(gridPoints, bounds) {
-        console.log('Creating canvas layer with', gridPoints.length, 'grid points');
-        console.log('Bounds:', bounds);
+        // console.log('Creating canvas layer with', gridPoints.length, 'grid points');
+        // console.log('Bounds:', bounds);
 
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
@@ -878,8 +878,8 @@
         var latRange = ne.lat - sw.lat;
         var lonRange = ne.lng - sw.lng;
 
-        console.log('SW:', sw, 'NE:', ne);
-        console.log('Lat range:', latRange, 'Lon range:', lonRange);
+        // console.log('SW:', sw, 'NE:', ne);
+        // console.log('Lat range:', latRange, 'Lon range:', lonRange);
 
         // Canvas'ni tozalash
         ctx.clearRect(0, 0, width, height);
@@ -912,14 +912,14 @@
             }
         }
 
-        console.log('Points drawn on canvas:', pointsDrawn, 'out of', gridPoints.length);
+        // console.log('Points drawn on canvas:', pointsDrawn, 'out of', gridPoints.length);
 
         // Canvas'ni data URL'ga o'tkazish
         var dataUrl = canvas.toDataURL('image/png');
-        console.log('Canvas data URL created, length:', dataUrl.length);
+        // console.log('Canvas data URL created, length:', dataUrl.length);
 
         var imageBounds = [[sw.lat, sw.lng], [ne.lat, ne.lng]];
-        console.log('Image bounds:', imageBounds);
+        // console.log('Image bounds:', imageBounds);
 
         var imageOverlay = L.imageOverlay(dataUrl, imageBounds, {
             opacity: 0.85,
@@ -939,13 +939,13 @@
             // ignore
         }
 
-        console.log('Image overlay created:', imageOverlay);
+        // console.log('Image overlay created:', imageOverlay);
 
         return imageOverlay;
     }
 
     function createPM25InterpolationMap(stations) {
-        console.log('createPM25InterpolationMap called with', stations.length, 'stations');
+        // console.log('createPM25InterpolationMap called with', stations.length, 'stations');
 
         if (pm25InterpolationLayer) {
             map.removeLayer(pm25InterpolationLayer);
@@ -978,7 +978,7 @@
             return s !== null;
         });
 
-        console.log('PM2.5 stansiyalar ma\'lumotlari saqlandi (hover uchun):', pm25StationsData.length);
+        // console.log('PM2.5 stansiyalar ma\'lumotlari saqlandi (hover uchun):', pm25StationsData.length);
 
         // Stansiyalar ma'lumotlarini formatlash
         var formattedStations = stations.map(function(s) {
@@ -1001,7 +1001,7 @@
             return s !== null;
         });
 
-        console.log('Formatted stations:', formattedStations);
+        // console.log('Formatted stations:', formattedStations);
 
         // Agar barcha stansiyalar noto'g'ri bo'lsa, chiqish
         if (formattedStations.length === 0) {
@@ -1023,7 +1023,7 @@
                         [bbox[1], bbox[0]], // SW: [minLat, minLng]
                         [bbox[3], bbox[2]]  // NE: [maxLat, maxLng]
                     );
-                    console.log('O\'zbekiston polygon bounding box olingan:', bounds);
+                    // console.log('O\'zbekiston polygon bounding box olingan:', bounds);
                 } catch (e) {
                     console.warn('Turf.js bbox xatolik:', e);
                     // Fallback: stansiyalar bounding box'i
@@ -1032,7 +1032,7 @@
                     });
                     bounds = L.latLngBounds(latlngs);
                     bounds = bounds.pad(0.3);
-                    console.log('Fallback: Stansiyalar bounding box ishlatilmoqda');
+                    // console.log('Fallback: Stansiyalar bounding box ishlatilmoqda');
                 }
             } else {
                 // Agar Turf.js mavjud bo'lmasa, stansiyalar bounding box'i
@@ -1053,13 +1053,13 @@
             // Bounds'ni biroz kengaytirish (pixel perfect uchun)
             bounds = bounds.pad(0.05);
 
-            console.log('Final bounds for interpolation:', bounds);
-            console.log('Bounds SW:', bounds.getSouthWest());
-            console.log('Bounds NE:', bounds.getNorthEast());
+            // console.log('Final bounds for interpolation:', bounds);
+            // console.log('Bounds SW:', bounds.getSouthWest());
+            // console.log('Bounds NE:', bounds.getNorthEast());
 
             // Grid yaratish - O'zbekiston polygon bounding box'i bo'yicha
             var gridPoints = idwInterpolation(formattedStations, bounds, 120, 2, 500);
-            console.log('Grid points created:', gridPoints.length);
+            // console.log('Grid points created:', gridPoints.length);
 
             if (gridPoints.length === 0) {
                 console.error('Grid points bo\'sh!');
@@ -1070,8 +1070,8 @@
             var filteredGridPoints = [];
 
             if (uzbekistanBoundary && typeof turf !== 'undefined' && turf.booleanPointInPolygon) {
-                console.log('Turf.js bilan chegarani tekshirish...');
-                console.log('Jami grid nuqtalar:', gridPoints.length);
+                // console.log('Turf.js bilan chegarani tekshirish...');
+                // console.log('Jami grid nuqtalar:', gridPoints.length);
 
                 filteredGridPoints = gridPoints.filter(function(point) {
                     var pt = turf.point([point.lon, point.lat]);
@@ -1133,7 +1133,7 @@
                 });
             }
 
-            console.log('Filtered grid points (inside Uzbekistan):', filteredGridPoints.length, 'out of', gridPoints.length);
+            // console.log('Filtered grid points (inside Uzbekistan):', filteredGridPoints.length, 'out of', gridPoints.length);
 
             if (filteredGridPoints.length === 0) {
                 console.error('Chegaralar ichida nuqta topilmadi!');
@@ -1145,9 +1145,9 @@
             // console.log('PM25 interpolation layer created:', pm25InterpolationLayer);
 
             if (showInterpolation) {
-                console.log('Adding interpolation layer to map');
+                // console.log('Adding interpolation layer to map');
                 map.addLayer(pm25InterpolationLayer);
-                console.log('Interpolation layer added to map');
+                // console.log('Interpolation layer added to map');
 
                 // Hover event'ni setup qilish
                 setupPM25Hover();
@@ -1155,24 +1155,24 @@
                 console.log('showInterpolation is false, layer not added');
             }
 
-            console.log('PM2.5 interpolatsiya xaritasi yaratildi:', filteredGridPoints.length, 'nuqta');
+            // console.log('PM2.5 interpolatsiya xaritasi yaratildi:', filteredGridPoints.length, 'nuqta');
         }
 
         // Agar uzbekistanBoundary mavjud bo'lmasa, yuklash
         if (!uzbekistanBoundary) {
-            console.log('Yuklanmoqda tuman.geojson...');
+            // console.log('Yuklanmoqda tuman.geojson...');
             fetch('{{asset('asset/geojson/tuman.geojson')}}')
                 .then(function(response) {
                     return response.json();
                 })
                 .then(function(geojsonData) {
-                    console.log('tuman.geojson yuklandi');
+                    // console.log('tuman.geojson yuklandi');
 
                     // Barcha tumanlarni birlashtirish - O'zbekiston chegarasini yaratish
                     if (geojsonData.type === 'FeatureCollection' && geojsonData.features && geojsonData.features.length > 0) {
                         // Turf.js union yordamida barcha tumanlarni birlashtirish
                         if (typeof turf !== 'undefined' && turf.union) {
-                            console.log('Turf.js union ishlatilmoqda...');
+                            // console.log('Turf.js union ishlatilmoqda...');
                             var mergedPolygon = geojsonData.features[0];
 
                             for (var i = 1; i < geojsonData.features.length; i++) {
@@ -1184,7 +1184,7 @@
                             }
 
                             uzbekistanBoundary = mergedPolygon;
-                            console.log('O\'zbekiston chegarasi yaratildi (union)');
+                            // console.log('O\'zbekiston chegarasi yaratildi (union)');
                         } else {
                             // Agar union mavjud bo'lmasa, barcha feature'larni saqlash
                             console.log('Union mavjud emas, barcha feature\'lar saqlanmoqda...');
@@ -1369,7 +1369,7 @@
         methods: {
             InitialMap: function () {
                 try {
-                    console.log('InitialMap called');
+                    // console.log('InitialMap called');
                 // ============
                 // Esri-Leaflet
                 // ============
@@ -1380,38 +1380,38 @@
                         console.error('Map element with id "map" not found!');
                         return;
                     }
-                    console.log('Map element found:', mapElement);
+                    // console.log('Map element found:', mapElement);
 
                     // Check if Leaflet is loaded
                     if (typeof L === 'undefined') {
                         console.error('Leaflet (L) is not defined!');
                         return;
                     }
-                    console.log('Leaflet loaded:', typeof L);
+                    // console.log('Leaflet loaded:', typeof L);
 
                     // Check if Esri Leaflet is loaded
                     if (typeof L.esri === 'undefined') {
                         console.error('Esri Leaflet is not defined!');
                         return;
                     }
-                    console.log('Esri Leaflet loaded:', typeof L.esri);
+                    // console.log('Esri Leaflet loaded:', typeof L.esri);
 
                     map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6);
-                    console.log('Map created:', map);
+                    // console.log('Map created:', map);
 
                     layer = L.esri.basemapLayer('NationalGeographic').addTo(map);
-                    console.log('Layer added:', layer);
+                    // console.log('Layer added:', layer);
 
                     // layerLabels = L.esri.basemapLayer('xxxLabels').addTo(map);
                     layerLabels = null;
                     worldTransportation = L.esri.basemapLayer('ImageryTransportation');
-                    console.log('InitialMap completed successfully');
+                    // console.log('InitialMap completed successfully');
 
                     // Force map to resize and invalidate size
                     setTimeout(function() {
                         if (map) {
                             map.invalidateSize();
-                            console.log('Map invalidateSize called');
+                            // console.log('Map invalidateSize called');
                         }
                     }, 100);
 
@@ -2215,13 +2215,13 @@
             },
             toggleOtherStations: function () {
                 // Boshqa stansiyalarni ko'rsatish/yashirish
-                console.log('Toggle Other Stations:', this.showOtherStations);
+                // console.log('Toggle Other Stations:', this.showOtherStations);
                 this.getAtmasfera();
             },
             toggleInterpolation: function () {
                 // PM2.5 interpolatsiya xaritasini ko'rsatish/yashirish
                 showInterpolation = this.showInterpolation;
-                console.log('Toggle Interpolation:', showInterpolation);
+                // console.log('Toggle Interpolation:', showInterpolation);
                 // loader
                 if (showInterpolation) {
                     this.isInterpolationLoading = true;
@@ -2231,7 +2231,7 @@
 
                 if (pm25InterpolationLayer) {
                     if (showInterpolation) {
-                        console.log('Showing interpolation layer');
+                        // console.log('Showing interpolation layer');
                         map.addLayer(pm25InterpolationLayer);
                         // give the browser a tick to paint
                         var self = this;
@@ -2241,12 +2241,12 @@
                             }, 50);
                         });
                     } else {
-                        console.log('Hiding interpolation layer');
+                        // console.log('Hiding interpolation layer');
                         map.removeLayer(pm25InterpolationLayer);
                     }
                 } else if (showInterpolation) {
                     // Agar layer mavjud bo'lmasa, yaratish
-                    console.log('Layer mavjud emas, yaratilmoqda...');
+                    // console.log('Layer mavjud emas, yaratilmoqda...');
                     this.loadPM25Interpolation();
                 }
             },
@@ -2258,7 +2258,7 @@
 
                 // Agar atmasfera_stations mavjud bo'lmasa, avval yuklash kerak
                 if (!this.atmasfera_stations || this.atmasfera_stations.length === 0) {
-                    console.log('Stansiyalar ma\'lumotlari mavjud emas, avval yuklanmoqda...');
+                    // console.log('Stansiyalar ma\'lumotlari mavjud emas, avval yuklanmoqda...');
                     // getAtmasfera ni chaqirish va keyin interpolatsiya qilish
                     axios.get('{{route('map.GetAtmasfera')}}', {
                         params: {
@@ -2307,7 +2307,7 @@
                     });
                 }
 
-                console.log('Topilgan "Авто" stansiyalar soni:', autoStations.length);
+                // console.log('Topilgan "Авто" stansiyalar soni:', autoStations.length);
 
                 if (autoStations.length === 0) {
                     console.log('"Авто" stansiyalar topilmadi');
@@ -2382,32 +2382,32 @@
 
                 // Barcha promiselar tugagach, interpolatsiya qilish
                 Promise.all(autoStationPromises).then(function() {
-                    console.log('PM2.5 stansiyalar soni:', pm25Stations.length);
-                    console.log('PM2.5 stansiyalar:', pm25Stations);
+                    // console.log('PM2.5 stansiyalar soni:', pm25Stations.length);
+                    // console.log('PM2.5 stansiyalar:', pm25Stations);
                     if (pm25Stations.length > 0) {
                         createPM25InterpolationMap(pm25Stations);
                         if (self.showInterpolation) {
                             showInterpolation = true;
                             if (pm25InterpolationLayer) {
-                                console.log('Adding interpolation layer to map (from Promise.all)');
+                                // console.log('Adding interpolation layer to map (from Promise.all)');
                                 map.addLayer(pm25InterpolationLayer);
-                                console.log('Interpolation layer added, checking if visible...');
+                                // console.log('Interpolation layer added, checking if visible...');
 
                                 // Hover event'ni setup qilish
                                 setupPM25Hover();
 
                                 setTimeout(function() {
                                     if (pm25InterpolationLayer._map) {
-                                        console.log('Layer successfully added to map');
+                                        // console.log('Layer successfully added to map');
                                     } else {
-                                        console.error('Layer not added to map!');
+                                        // console.error('Layer not added to map!');
                                     }
                                 }, 100);
                             } else {
                                 console.error('pm25InterpolationLayer is null!');
                             }
                         } else {
-                            console.log('showInterpolation is false, layer not added');
+                            // console.log('showInterpolation is false, layer not added');
                         }
                     } else {
                         console.log('PM2.5 ma\'lumotlari topilmadi');
@@ -2440,12 +2440,12 @@
                         if (airQualityLegend._container) {
                             airQualityLegend._container.style.display = 'block';
                         }
-                        console.log('Legend shown in getAtmasfera');
+                        // console.log('Legend shown in getAtmasfera');
                     } else {
                         if (airQualityLegend._container) {
                             airQualityLegend._container.style.display = 'none';
                         }
-                        console.log('Legend hidden in getAtmasfera');
+                        // console.log('Legend hidden in getAtmasfera');
                     }
                 }
 
@@ -2546,8 +2546,8 @@
                                 this.showOtherStations = true;
                             }
 
-                            console.log('showAutoStations:', this.showAutoStations, 'showOtherStations:', this.showOtherStations);
-                            console.log('Total stations:', this.atmasfera_stations.length);
+                            // console.log('showAutoStations:', this.showAutoStations, 'showOtherStations:', this.showOtherStations);
+                            // console.log('Total stations:', this.atmasfera_stations.length);
 
                             // Очистить данные для интерполяции перед новой загрузкой
                             autoStationsData = [];
@@ -3289,7 +3289,7 @@
                                     markers_awd.addLayer(marker);
                                 }
                             } catch (e) {
-                                console.log('item: ' + item.Id)
+                                // console.log('item: ' + item.Id)
                                 console.log(e)
                             }
                         }
@@ -5264,7 +5264,7 @@
                     markers_mini.clearLayers();
 
                 }
-                console.log(total);
+                // console.log(total);
             },
             getForecast: function () {
                 if (this.forcastTemp) {
@@ -5968,12 +5968,12 @@
                         if (airQualityLegend._container) {
                             airQualityLegend._container.style.display = 'block';
                         }
-                        console.log('Legend shown');
+                        // console.log('Legend shown');
                     } else {
                         if (airQualityLegend._container) {
                             airQualityLegend._container.style.display = 'none';
                         }
-                        console.log('Legend hidden');
+                        // console.log('Legend hidden');
                     }
                 }
 
@@ -8061,7 +8061,7 @@
                 // Stations API chaqiruv
                 axios.get('https://meteoapi.meteo.uz/api/enggenv/stations')
                     .then(function (response) {
-                        console.log('Tashkent Stations API Response:', response.data);
+                        // console.log('Tashkent Stations API Response:', response.data);
                         var stations = response.data;
 
                         // Agar data ichida array bo'lsa
@@ -8075,7 +8075,7 @@
                         }
 
                         if (stations && Array.isArray(stations)) {
-                            console.log('Found stations:', stations.length);
+                            // console.log('Found stations:', stations.length);
                             var markersCount = 0;
 
                             stations.forEach(function (station) {
@@ -8089,7 +8089,7 @@
                                     lon = parseFloat(lon);
 
                                     if (!isNaN(lat) && !isNaN(lon)) {
-                                        console.log('Creating marker at:', lat, lon, 'Device:', deviceId);
+                                        // console.log('Creating marker at:', lat, lon, 'Device:', deviceId);
                                         markersCount++;
 
                                         // Marker yaratish
@@ -8117,7 +8117,7 @@
                                             })
                                             .then(function (dataResponse) {
                                                 var responseData = dataResponse.data;
-                                                console.log('Tashkent Data API Response:', responseData);
+                                                // console.log('Tashkent Data API Response:', responseData);
 
                                                 var content = '<div style="max-width: 550px; max-height: 650px; overflow-y: auto; padding: 15px; font-family: Arial, sans-serif; background-color: #ffffff;">';
 
@@ -8311,14 +8311,14 @@
                                 }
                             });
 
-                            console.log('Total markers added:', markersCount);
+                            // console.log('Total markers added:', markersCount);
 
                             if (markers_atmosphere_tashkent.getLayers().length > 0) {
                                 map.addLayer(markers_atmosphere_tashkent);
                                 map.fitBounds(markers_atmosphere_tashkent.getBounds());
-                                console.log('Markers added to map, bounds:', markers_atmosphere_tashkent.getBounds());
+                                // console.log('Markers added to map, bounds:', markers_atmosphere_tashkent.getBounds());
                             } else {
-                                console.warn('No markers to add to map');
+                                // console.warn('No markers to add to map');
                             }
                         } else {
                             console.warn('Stations is not an array:', stations);
@@ -8395,7 +8395,7 @@
             }
         },
         mounted() {
-            console.log('Vue mounted() called');
+            // console.log('Vue mounted() called');
             try {
             this.InitialMap();
             } catch (e) {
