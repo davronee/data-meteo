@@ -423,7 +423,6 @@ class MeteobotController extends Controller
                 'region_id' => $meteobot->region_id,
                 'district_id' => $meteobot->district_id,
                 'is_has_aq' => $meteobot->is_has_aq,
-                'count' => count($parsedRows),
                 'data' => $lastRow,
                 'timestamp' => $timestamp,
                 'datetime' => $datetime,
