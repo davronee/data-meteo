@@ -157,6 +157,13 @@
     <!-- Map Container  -->
 
     <div class="calcite-map">
+        <!-- PM2.5 interpolation loader overlay -->
+        <div v-if="isInterpolationLoading" class="pm25-loader-overlay" aria-live="polite" aria-busy="true">
+            <div class="pm25-loader-card">
+                <div class="pm25-loader-spinner" aria-hidden="true"></div>
+                <div class="pm25-loader-text">Интерполяция PM2.5…</div>
+            </div>
+        </div>
         <div id="map" class="calcite-map-absolute"></div>
         <div class="container-fluid" id="footer-fluid">
             <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">
@@ -375,11 +382,22 @@
             timeout = setTimeout(later, wait);
         };
     }
-    
+
+    // PM2.5 interpolation loader helper (safe even if Vue isn't ready yet)
+    function setInterpolationLoading(isLoading) {
+        try {
+            if (typeof app !== 'undefined' && app) {
+                app.isInterpolationLoading = !!isLoading;
+            }
+        } catch (e) {
+            // noop
+        }
+    }
+
     /**
      * Throttle function - funksiyani ma'lum vaqt oralig'ida bir marta chaqiradi
      * Performance optimizatsiya uchun
-     * 
+     *
      * @param {Function} func - Throttle qilinadigan funksiya
      * @param {number} limit - Vaqt oralig'i (millisekundlarda)
      * @returns {Function} - Throttled funksiya
@@ -449,54 +467,54 @@
         power = power || 2;
         maxDistance = maxDistance || 500;
         gridSize = gridSize || 50;
-        
+
         var gridPoints = [];
         var sw = bounds.getSouthWest();
         var ne = bounds.getNorthEast();
-        
+
         var latStep = (ne.lat - sw.lat) / gridSize;
         var lonStep = (ne.lng - sw.lng) / gridSize;
-        
+
         for (var i = 0; i <= gridSize; i++) {
             for (var j = 0; j <= gridSize; j++) {
                 var lat = sw.lat + (i * latStep);
                 var lon = sw.lng + (j * lonStep);
-                
+
                 var numerator = 0;
                 var denominator = 0;
-                
+
                 for (var k = 0; k < stations.length; k++) {
                     var station = stations[k];
                     // Ikkala formatni ham qo'llab-quvvatlash (lat/lon yoki latitude/longitude)
                     var stationLat = parseFloat(station.latitude || station.lat);
                     var stationLon = parseFloat(station.longitude || station.lon);
                     var stationPm25 = parseFloat(station.pm25);
-                    
+
                     // NaN tekshiruvi
                     if (isNaN(stationLat) || isNaN(stationLon) || isNaN(stationPm25)) {
                         console.warn('Invalid station data:', station);
                         continue;
                     }
-                    
+
                     var distance = L.latLng(lat, lon).distanceTo(L.latLng(stationLat, stationLon)) / 1000;
-                    
+
                     if (distance < 0.1) {
                         numerator = stationPm25;
                         denominator = 1;
                         break;
                     }
-                    
+
                     if (distance <= maxDistance) {
                         var weight = 1 / Math.pow(distance, power);
                         numerator += weight * stationPm25;
                         denominator += weight;
                     }
                 }
-                
+
                 if (denominator > 0) {
                     var interpolatedValue = numerator / denominator;
                     var color = getPM25Color(interpolatedValue);
-                    
+
                     gridPoints.push({
                         lat: lat,
                         lon: lon,
@@ -506,21 +524,21 @@
                 }
             }
         }
-        
+
         return gridPoints;
     }
 
     /**
      * PM2.5 qiymatiga asoslangan silliq gradient rang olish funksiyasi
      * 5 ta anchor color stop orasida linear interpolation qiladi
-     * 
+     *
      * @param {number} pm25 - PM2.5 qiymati (µg/m³)
      * @returns {string} - Hex rang (#rrggbb formatida)
      */
     function getPM25Color(pm25) {
         // PM2.5 qiymatini tozalash va cheklash
         pm25 = Math.max(0, Math.min(300, pm25 || 0));
-        
+
         // Anchor color stops (PM2.5 qiymati → rang)
         var colorStops = [
             { value: 0, color: '#00e400' },      // Yashil - juda yaxshi
@@ -529,7 +547,7 @@
             { value: 180, color: '#ff0000' },    // Qizil - xavfli
             { value: 300, color: '#8f3f97' }     // Binafsha - juda xavfli
         ];
-        
+
         // Agar Chroma.js mavjud bo'lsa, undan foydalanish
         if (typeof chroma !== 'undefined' && chroma.scale) {
             try {
@@ -543,7 +561,7 @@
                 ])
                 .domain([0, 60, 120, 180, 300])  // Domain - PM2.5 qiymatlari
                 .mode('rgb');  // RGB color space - silliq o'tish uchun
-                
+
                 return scale(pm25).hex();
             } catch (e) {
                 console.warn('Chroma.js interpolation xatolik:', e);
@@ -555,11 +573,11 @@
             return getPM25ColorFallback(pm25, colorStops);
         }
     }
-    
+
     /**
      * Custom linear interpolation funksiyasi (Chroma.js mavjud bo'lmaganda)
      * Ikki rang orasida linear interpolation qiladi
-     * 
+     *
      * @param {number} pm25 - PM2.5 qiymati
      * @param {Array} colorStops - Anchor color stops
      * @returns {string} - Hex rang
@@ -568,7 +586,7 @@
         // Qaysi ikkita anchor orasida ekanligini topish
         var lowerStop = colorStops[0];
         var upperStop = colorStops[colorStops.length - 1];
-        
+
         for (var i = 0; i < colorStops.length - 1; i++) {
             if (pm25 >= colorStops[i].value && pm25 <= colorStops[i + 1].value) {
                 lowerStop = colorStops[i];
@@ -576,36 +594,36 @@
                 break;
             }
         }
-        
+
         // Agar eng yuqori chegaradan oshib ketsa
         if (pm25 > colorStops[colorStops.length - 1].value) {
             return colorStops[colorStops.length - 1].color;
         }
-        
+
         // Agar eng past chegaradan past bo'lsa
         if (pm25 < colorStops[0].value) {
             return colorStops[0].color;
         }
-        
+
         // Ikki rang orasidagi masofani hisoblash
         var range = upperStop.value - lowerStop.value;
         var position = (pm25 - lowerStop.value) / range; // 0 dan 1 gacha
-        
+
         // Linear interpolation qilish
         var lowerRgb = hexToRgb(lowerStop.color);
         var upperRgb = hexToRgb(upperStop.color);
-        
+
         var r = Math.round(lowerRgb.r + (upperRgb.r - lowerRgb.r) * position);
         var g = Math.round(lowerRgb.g + (upperRgb.g - lowerRgb.g) * position);
         var b = Math.round(lowerRgb.b + (upperRgb.b - lowerRgb.b) * position);
-        
+
         // RGB ni hex ga o'tkazish
         return rgbToHex(r, g, b);
     }
-    
+
     /**
      * RGB qiymatlarini hex formatiga o'tkazish
-     * 
+     *
      * @param {number} r - Red (0-255)
      * @param {number} g - Green (0-255)
      * @param {number} b - Blue (0-255)
@@ -630,7 +648,7 @@
     /**
      * Real-time IDW hisoblash funksiyasi
      * Berilgan koordinata uchun PM2.5 qiymatini hisoblaydi
-     * 
+     *
      * @param {number} lat - Latitude
      * @param {number} lng - Longitude
      * @param {Array} stations - PM2.5 stansiyalar ma'lumotlari
@@ -641,28 +659,28 @@
     function calculateIDWValue(lat, lng, stations, power, maxDistance) {
         power = power || 2;
         maxDistance = maxDistance || 500;
-        
+
         if (!stations || stations.length === 0) {
             return null;
         }
-        
+
         var numerator = 0;
         var denominator = 0;
-        
+
         for (var i = 0; i < stations.length; i++) {
             var station = stations[i];
             var stationLat = parseFloat(station.latitude);
             var stationLng = parseFloat(station.longitude);
             var stationPm25 = parseFloat(station.pm25);
-            
+
             // Masofani hisoblash (km)
             var distance = L.latLng(lat, lng).distanceTo(L.latLng(stationLat, stationLng)) / 1000;
-            
+
             // Agar juda yaqin bo'lsa, to'g'ridan-to'g'ri qiymatni qaytarish
             if (distance < 0.1) {
                 return stationPm25;
             }
-            
+
             // Agar maksimal masofadan kichik bo'lsa, IDW hisoblash
             if (distance <= maxDistance) {
                 var weight = 1 / Math.pow(distance, power);
@@ -670,18 +688,18 @@
                 denominator += weight;
             }
         }
-        
+
         // Agar denominator 0 bo'lsa, null qaytarish
         if (denominator > 0) {
             return numerator / denominator;
         }
-        
+
         return null;
     }
-    
+
     /**
      * Nuqta O'zbekiston polygon ichida ekanligini tekshirish
-     * 
+     *
      * @param {number} lat - Latitude
      * @param {number} lng - Longitude
      * @returns {boolean} - true agar polygon ichida bo'lsa
@@ -690,11 +708,11 @@
         if (!uzbekistanBoundary) {
             return false;
         }
-        
+
         // Turf.js ishlatish
         if (typeof turf !== 'undefined' && turf.booleanPointInPolygon) {
             var pt = turf.point([lng, lat]);
-            
+
             // FeatureCollection uchun
             if (uzbekistanBoundary.type === 'FeatureCollection' && uzbekistanBoundary.features) {
                 for (var f = 0; f < uzbekistanBoundary.features.length; f++) {
@@ -726,13 +744,13 @@
                 }
             }
         }
-        
+
         return false;
     }
-    
+
     /**
      * PM2.5 tooltip'ni ko'rsatish yoki yashirish
-     * 
+     *
      * @param {number} lat - Latitude
      * @param {number} lng - Longitude
      * @param {number} pm25 - PM2.5 qiymati
@@ -742,14 +760,14 @@
             hidePM25Tooltip();
             return;
         }
-        
+
         // PM2.5 qiymatini formatlash (1 xona kasr bilan)
         var pm25Formatted = pm25.toFixed(1);
-        
+
         // Rang olish
         var color = getPM25Color(pm25);
         var rgb = hexToRgb(color);
-        
+
         // Tooltip HTML yaratish - kichikroq va chiroyli
         var tooltipHtml = '<div style="' +
             'background: rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.92); ' +
@@ -768,7 +786,7 @@
             '">' +
             'PM<sub style="font-size: 9px;">2.5</sub>: ' + pm25Formatted + ' µg/m³' +
             '</div>';
-        
+
         // Agar tooltip mavjud bo'lmasa, yaratish
         if (!pm25Tooltip) {
             pm25Tooltip = L.popup({
@@ -779,18 +797,18 @@
                 maxWidth: 150
             });
         }
-        
+
         // Tooltip'ni yangilash
         pm25Tooltip
             .setLatLng([lat, lng])
             .setContent(tooltipHtml);
-        
+
         // Agar map'ga qo'shilmagan bo'lsa, qo'shish
         if (!pm25Tooltip._map) {
             pm25Tooltip.openOn(map);
         }
     }
-    
+
     /**
      * PM2.5 tooltip'ni yashirish
      */
@@ -799,7 +817,7 @@
             map.closePopup(pm25Tooltip);
         }
     }
-    
+
     /**
      * Map'ga mousemove event qo'shish (PM2.5 hover uchun)
      */
@@ -811,19 +829,19 @@
                 hidePM25Tooltip();
                 return;
             }
-            
+
             var lat = e.latlng.lat;
             var lng = e.latlng.lng;
-            
+
             // O'zbekiston polygon ichida ekanligini tekshirish
             if (!isPointInUzbekistan(lat, lng)) {
                 hidePM25Tooltip();
                 return;
             }
-            
+
             // IDW bilan PM2.5 qiymatini hisoblash
             var pm25 = calculateIDWValue(lat, lng, pm25StationsData, 2, 500);
-            
+
             // Tooltip ko'rsatish
             if (pm25 !== null && !isNaN(pm25)) {
                 showPM25Tooltip(lat, lng, pm25);
@@ -831,114 +849,126 @@
                 hidePM25Tooltip();
             }
         }, 50); // 50ms throttling - juda tez-tez hisob bo'lmasligi uchun
-        
+
         // Map'ga mousemove event qo'shish
         map.on('mousemove', handleMouseMove);
-        
+
         // Map'dan chiqib ketganda tooltip'ni yashirish
         map.on('mouseout', function() {
             hidePM25Tooltip();
         });
-        
+
         console.log('PM2.5 hover event qo\'shildi');
     }
 
     function createInterpolationCanvasLayer(gridPoints, bounds) {
         console.log('Creating canvas layer with', gridPoints.length, 'grid points');
         console.log('Bounds:', bounds);
-        
+
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
         var width = 1200; // Kattalashtirildi
         var height = 1000; // Kattalashtirildi
-        
+
         canvas.width = width;
         canvas.height = height;
-        
+
         var sw = bounds.getSouthWest();
         var ne = bounds.getNorthEast();
         var latRange = ne.lat - sw.lat;
         var lonRange = ne.lng - sw.lng;
-        
+
         console.log('SW:', sw, 'NE:', ne);
         console.log('Lat range:', latRange, 'Lon range:', lonRange);
-        
+
         // Canvas'ni tozalash
         ctx.clearRect(0, 0, width, height);
-        
+
         var pointsDrawn = 0;
         var radius = 6; // Har bir nuqta uchun radius (pixel) - kattalashtirildi
-        
+
         // Har bir grid nuqtasini chizish - gradient fill bilan
         for (var i = 0; i < gridPoints.length; i++) {
             var point = gridPoints[i];
             var x = Math.floor(((point.lon - sw.lng) / lonRange) * width);
             var y = Math.floor(((ne.lat - point.lat) / latRange) * height);
-            
+
             if (x >= 0 && x < width && y >= 0 && y < height) {
                 var rgb = hexToRgb(point.color);
-                
+
                 // Gradient yaratish
                 var gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
                 gradient.addColorStop(0, 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.95)');
                 gradient.addColorStop(0.5, 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.8)');
                 gradient.addColorStop(1, 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.4)');
-                
+
                 // Nuqta chizish (circle with gradient)
                 ctx.beginPath();
                 ctx.arc(x, y, radius, 0, 2 * Math.PI);
                 ctx.fillStyle = gradient;
                 ctx.fill();
-                
+
                 pointsDrawn++;
             }
         }
-        
+
         console.log('Points drawn on canvas:', pointsDrawn, 'out of', gridPoints.length);
-        
+
         // Canvas'ni data URL'ga o'tkazish
         var dataUrl = canvas.toDataURL('image/png');
         console.log('Canvas data URL created, length:', dataUrl.length);
-        
+
         var imageBounds = [[sw.lat, sw.lng], [ne.lat, ne.lng]];
         console.log('Image bounds:', imageBounds);
-        
+
         var imageOverlay = L.imageOverlay(dataUrl, imageBounds, {
             opacity: 0.85,
             interactive: false,
             zIndex: 100
         });
-        
+
+        // Loader: wait until image overlay is actually ready
+        // (even for dataURL, decode/paint can be async)
+        try {
+            imageOverlay.once('load', function () {
+                if (typeof setInterpolationLoading === 'function') {
+                    setInterpolationLoading(false);
+                }
+            });
+        } catch (e) {
+            // ignore
+        }
+
         console.log('Image overlay created:', imageOverlay);
-        
+
         return imageOverlay;
     }
 
     function createPM25InterpolationMap(stations) {
         console.log('createPM25InterpolationMap called with', stations.length, 'stations');
-        
+
         if (pm25InterpolationLayer) {
             map.removeLayer(pm25InterpolationLayer);
             pm25InterpolationLayer = null;
         }
-        
+
         if (!stations || stations.length === 0) {
             console.log('PM2.5 stansiyalar ma\'lumotlari topilmadi');
             return;
         }
-        
+
         // PM2.5 stansiyalar ma'lumotlarini global o'zgaruvchiga saqlash (hover uchun)
         pm25StationsData = stations.map(function(s) {
             var lat = parseFloat(s.latitude);
             var lon = parseFloat(s.longitude);
             var pm25 = parseFloat(s.pm25);
-            
+
             // NaN tekshiruvi
             if (isNaN(lat) || isNaN(lon) || isNaN(pm25)) {
                 console.warn('Invalid station data (hover):', s);
                 return null;
             }
-            
+
             return {
                 latitude: lat,
                 longitude: lon,
@@ -947,21 +977,21 @@
         }).filter(function(s) {
             return s !== null;
         });
-        
+
         console.log('PM2.5 stansiyalar ma\'lumotlari saqlandi (hover uchun):', pm25StationsData.length);
-        
+
         // Stansiyalar ma'lumotlarini formatlash
         var formattedStations = stations.map(function(s) {
             var lat = parseFloat(s.latitude);
             var lon = parseFloat(s.longitude);
             var pm25 = parseFloat(s.pm25);
-            
+
             // NaN tekshiruvi
             if (isNaN(lat) || isNaN(lon) || isNaN(pm25)) {
                 console.warn('Invalid station data (interpolation):', s);
                 return null;
             }
-            
+
             return {
                 lat: lat,
                 lon: lon,
@@ -970,20 +1000,20 @@
         }).filter(function(s) {
             return s !== null;
         });
-        
+
         console.log('Formatted stations:', formattedStations);
-        
+
         // Agar barcha stansiyalar noto'g'ri bo'lsa, chiqish
         if (formattedStations.length === 0) {
             console.error('Barcha stansiyalar noto\'g\'ri ma\'lumotlarga ega!');
             return;
         }
-        
+
         // O'zbekiston chegarasini tuman.geojson dan yuklash
         function processInterpolation(formattedStations) {
             // O'zbekiston GeoJSON polygon bounding box'ini olish
             var bounds = null;
-            
+
             if (uzbekistanBoundary && typeof turf !== 'undefined' && turf.bbox) {
                 // Turf.js bbox funksiyasidan foydalanish
                 try {
@@ -1013,39 +1043,39 @@
                 bounds = bounds.pad(0.3);
                 console.log('Turf.js mavjud emas, stansiyalar bounding box ishlatilmoqda');
             }
-            
+
             // Bounds yaratishdan oldin tekshirish
             if (!bounds || !bounds.isValid()) {
                 console.error('Invalid bounds!', bounds);
                 return;
             }
-            
+
             // Bounds'ni biroz kengaytirish (pixel perfect uchun)
             bounds = bounds.pad(0.05);
-            
+
             console.log('Final bounds for interpolation:', bounds);
             console.log('Bounds SW:', bounds.getSouthWest());
             console.log('Bounds NE:', bounds.getNorthEast());
-            
+
             // Grid yaratish - O'zbekiston polygon bounding box'i bo'yicha
             var gridPoints = idwInterpolation(formattedStations, bounds, 120, 2, 500);
             console.log('Grid points created:', gridPoints.length);
-            
+
             if (gridPoints.length === 0) {
                 console.error('Grid points bo\'sh!');
                 return;
             }
-            
+
             // Faqat O'zbekiston chegarasi ichidagi nuqtalarni qoldirish
             var filteredGridPoints = [];
-            
+
             if (uzbekistanBoundary && typeof turf !== 'undefined' && turf.booleanPointInPolygon) {
                 console.log('Turf.js bilan chegarani tekshirish...');
                 console.log('Jami grid nuqtalar:', gridPoints.length);
-                
+
                 filteredGridPoints = gridPoints.filter(function(point) {
                     var pt = turf.point([point.lon, point.lat]);
-                    
+
                     // FeatureCollection uchun har bir feature ni tekshirish
                     if (uzbekistanBoundary.type === 'FeatureCollection' && uzbekistanBoundary.features) {
                         for (var f = 0; f < uzbekistanBoundary.features.length; f++) {
@@ -1102,32 +1132,32 @@
                     return bounds.contains([point.lat, point.lon]);
                 });
             }
-            
+
             console.log('Filtered grid points (inside Uzbekistan):', filteredGridPoints.length, 'out of', gridPoints.length);
-            
+
             if (filteredGridPoints.length === 0) {
                 console.error('Chegaralar ichida nuqta topilmadi!');
                 return;
             }
-            
+
             pm25InterpolationLayer = createInterpolationCanvasLayer(filteredGridPoints, bounds);
-            
-            console.log('PM25 interpolation layer created:', pm25InterpolationLayer);
-            
+
+            // console.log('PM25 interpolation layer created:', pm25InterpolationLayer);
+
             if (showInterpolation) {
                 console.log('Adding interpolation layer to map');
                 map.addLayer(pm25InterpolationLayer);
                 console.log('Interpolation layer added to map');
-                
+
                 // Hover event'ni setup qilish
                 setupPM25Hover();
             } else {
                 console.log('showInterpolation is false, layer not added');
             }
-            
+
             console.log('PM2.5 interpolatsiya xaritasi yaratildi:', filteredGridPoints.length, 'nuqta');
         }
-        
+
         // Agar uzbekistanBoundary mavjud bo'lmasa, yuklash
         if (!uzbekistanBoundary) {
             console.log('Yuklanmoqda tuman.geojson...');
@@ -1137,14 +1167,14 @@
                 })
                 .then(function(geojsonData) {
                     console.log('tuman.geojson yuklandi');
-                    
+
                     // Barcha tumanlarni birlashtirish - O'zbekiston chegarasini yaratish
                     if (geojsonData.type === 'FeatureCollection' && geojsonData.features && geojsonData.features.length > 0) {
                         // Turf.js union yordamida barcha tumanlarni birlashtirish
                         if (typeof turf !== 'undefined' && turf.union) {
                             console.log('Turf.js union ishlatilmoqda...');
                             var mergedPolygon = geojsonData.features[0];
-                            
+
                             for (var i = 1; i < geojsonData.features.length; i++) {
                                 try {
                                     mergedPolygon = turf.union(mergedPolygon, geojsonData.features[i]);
@@ -1152,7 +1182,7 @@
                                     console.warn('Union xatolik (feature ' + i + '):', e);
                                 }
                             }
-                            
+
                             uzbekistanBoundary = mergedPolygon;
                             console.log('O\'zbekiston chegarasi yaratildi (union)');
                         } else {
@@ -1166,7 +1196,7 @@
                         console.warn('Noma\'lum GeoJSON format');
                         uzbekistanBoundary = null;
                     }
-                    
+
                     // Endi interpolatsiyani yaratish
                     processInterpolation(formattedStations);
                 })
@@ -1231,8 +1261,9 @@
             organization_stations: false,
             atmosphere_tashkent: false,
             showAutoStations: true,
-            showOtherStations: true,
+            showOtherStations: false,
             showInterpolation: false, // PM2.5 interpolatsiya ko'rsatish flag'i
+            isInterpolationLoading: false, // Loader while interpolation is being built
             awds:@json($stations),
             ChineStation:@json($chinesstations),
             microstep:@json($microstations),
@@ -1367,15 +1398,15 @@
 
                     map = L.map('map', {zoomControl: false}).setView([41.315514, 69.246097], 6);
                     console.log('Map created:', map);
-                    
+
                     layer = L.esri.basemapLayer('NationalGeographic').addTo(map);
                     console.log('Layer added:', layer);
-                    
+
                     // layerLabels = L.esri.basemapLayer('xxxLabels').addTo(map);
                     layerLabels = null;
                     worldTransportation = L.esri.basemapLayer('ImageryTransportation');
                     console.log('InitialMap completed successfully');
-                    
+
                     // Force map to resize and invalidate size
                     setTimeout(function() {
                         if (map) {
@@ -1383,7 +1414,7 @@
                             console.log('Map invalidateSize called');
                         }
                     }, 100);
-                
+
                 // Create Air Quality Legend Control - Horizontal layout at bottom
                 // Legend will be created after map is fully initialized
                 setTimeout(function() {
@@ -1392,27 +1423,23 @@
                             var AirQualityLegend = L.Control.extend({
                                 onAdd: function(map) {
                                     var div = L.DomUtil.create('div', 'air-quality-legend-control');
+                                    // Legend items: full background color + readable text (contrast)
                                     div.innerHTML = '<div class="air-quality-legend-header" style="font-size: 11px; margin-bottom: 6px; padding-bottom: 5px;">PM2.5 (µg/m³)</div>' +
                                         '<div class="air-quality-legend-items-horizontal" style="gap: 6px;">' +
-                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 8px; gap: 5px;">' +
-                                        '<div class="air-quality-legend-color" style="background-color: #00ff00; width: 20px; height: 20px;"></div>' +
-                                        '<div class="air-quality-legend-text" style="font-size: 9px;">Зелёный: 0–60</div>' +
+                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 10px; gap: 6px; background-color:#00e400; border-color: rgba(255,255,255,0.55);">' +
+                                        '<div class="air-quality-legend-text" style="font-size: 9px; color:#0b1a0b; font-weight:700;">0–60</div>' +
                                         '</div>' +
-                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 8px; gap: 5px;">' +
-                                        '<div class="air-quality-legend-color" style="background-color: #ffff00; width: 20px; height: 20px;"></div>' +
-                                        '<div class="air-quality-legend-text" style="font-size: 9px;">Жёлтый: 60.1–120</div>' +
+                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 10px; gap: 6px; background-color:#ffff00; border-color: rgba(255,255,255,0.55);">' +
+                                        '<div class="air-quality-legend-text" style="font-size: 9px; color:#1a1a00; font-weight:700;">60.1–120</div>' +
                                         '</div>' +
-                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 8px; gap: 5px;">' +
-                                        '<div class="air-quality-legend-color" style="background-color: #ffa500; width: 20px; height: 20px;"></div>' +
-                                        '<div class="air-quality-legend-text" style="font-size: 9px;">Оранжевый: 120.1–180</div>' +
+                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 10px; gap: 6px; background-color:#ff7e00; border-color: rgba(255,255,255,0.55);">' +
+                                        '<div class="air-quality-legend-text" style="font-size: 9px; color:#1a0f00; font-weight:700;">120.1–180</div>' +
                                         '</div>' +
-                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 8px; gap: 5px;">' +
-                                        '<div class="air-quality-legend-color" style="background-color: #ff0000; width: 20px; height: 20px;"></div>' +
-                                        '<div class="air-quality-legend-text" style="font-size: 9px;">Красный: 180.1–300</div>' +
+                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 10px; gap: 6px; background-color:#ff0000; border-color: rgba(255,255,255,0.45);">' +
+                                        '<div class="air-quality-legend-text" style="font-size: 9px; color:#ffffff; font-weight:700; text-shadow:0 1px 2px rgba(0,0,0,0.35);">180.1–300</div>' +
                                         '</div>' +
-                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 8px; gap: 5px;">' +
-                                        '<div class="air-quality-legend-color" style="background-color: #8c2b8c; width: 20px; height: 20px;"></div>' +
-                                        '<div class="air-quality-legend-text" style="font-size: 9px;">Фиолетовый: 300.1+</div>' +
+                                        '<div class="air-quality-legend-item-horizontal" style="padding: 4px 10px; gap: 6px; background-color:#8f3f97; border-color: rgba(255,255,255,0.45);">' +
+                                        '<div class="air-quality-legend-text" style="font-size: 9px; color:#ffffff; font-weight:700; text-shadow:0 1px 2px rgba(0,0,0,0.35);">300.1+</div>' +
                                         '</div>' +
                                         '</div>';
                                     div.style.display = 'none';
@@ -2175,7 +2202,7 @@
             },
             toggleAutoStations: function () {
                 // "Авто" stansiyalarni ko'rsatish/yashirish
-                console.log('Toggle Auto Stations:', this.showAutoStations);
+                // console.log('Toggle Auto Stations:', this.showAutoStations);
                 // Показать/скрыть heatmap layer
                 if (heatmapLayer) {
                     if (this.showAutoStations) {
@@ -2195,11 +2222,24 @@
                 // PM2.5 interpolatsiya xaritasini ko'rsatish/yashirish
                 showInterpolation = this.showInterpolation;
                 console.log('Toggle Interpolation:', showInterpolation);
-                
+                // loader
+                if (showInterpolation) {
+                    this.isInterpolationLoading = true;
+                } else {
+                    this.isInterpolationLoading = false;
+                }
+
                 if (pm25InterpolationLayer) {
                     if (showInterpolation) {
                         console.log('Showing interpolation layer');
                         map.addLayer(pm25InterpolationLayer);
+                        // give the browser a tick to paint
+                        var self = this;
+                        requestAnimationFrame(function () {
+                            setTimeout(function () {
+                                self.isInterpolationLoading = false;
+                            }, 50);
+                        });
                     } else {
                         console.log('Hiding interpolation layer');
                         map.removeLayer(pm25InterpolationLayer);
@@ -2214,7 +2254,8 @@
                 // PM2.5 stansiyalar ma'lumotlarini yuklash va interpolatsiya qilish
                 // Mavjud "Авто" stansiyalardan GetHoribaPlashadka orqali ma'lumotlarni olish
                 var self = this;
-                
+                self.isInterpolationLoading = true;
+
                 // Agar atmasfera_stations mavjud bo'lmasa, avval yuklash kerak
                 if (!this.atmasfera_stations || this.atmasfera_stations.length === 0) {
                     console.log('Stansiyalar ma\'lumotlari mavjud emas, avval yuklanmoqda...');
@@ -2230,6 +2271,7 @@
                     })
                     .catch(function (error) {
                         console.error('Stansiyalar ma\'lumotlarini yuklashda xatolik:', error);
+                        self.isInterpolationLoading = false;
                     });
                 } else {
                     this.processPM25Interpolation();
@@ -2238,9 +2280,10 @@
             processPM25Interpolation: function () {
                 // "Авто" stansiyalarni topish va PM2.5 ma'lumotlarini olish
                 var self = this;
+                self.isInterpolationLoading = true;
                 var pm25Stations = [];
                 var autoStationPromises = [];
-                
+
                 // "Авто" stansiyalarni topish
                 var autoStations = [];
                 if (Array.isArray(this.atmasfera_stations)) {
@@ -2263,14 +2306,15 @@
                         }
                     });
                 }
-                
+
                 console.log('Topilgan "Авто" stansiyalar soni:', autoStations.length);
-                
+
                 if (autoStations.length === 0) {
                     console.log('"Авто" stansiyalar topilmadi');
+                    self.isInterpolationLoading = false;
                     return;
                 }
-                
+
                 // Har bir "Авто" stansiya uchun GetHoribaPlashadka API'sini chaqirish
                 autoStations.forEach(function(station) {
                     var promise = axios.get('{{route('map.horiba.plashadka')}}', {
@@ -2281,7 +2325,7 @@
                     .then(function(response) {
                         try {
                             var pm25Value = null;
-                            
+
                             // Response strukturani tekshirish
                             var dataArray = null;
                             if (response.data && response.data.data && Array.isArray(response.data.data)) {
@@ -2289,14 +2333,14 @@
                             } else if (Array.isArray(response.data)) {
                                 dataArray = response.data;
                             }
-                            
+
                             if (dataArray && dataArray.length > 0) {
                                 // PM2.5 ni qidirish
                                 for (var j = 0; j < dataArray.length; j++) {
                                     var dataItem = dataArray[j];
                                     var itemName = (dataItem.name || dataItem.Name || dataItem.parameter || '').toString().toLowerCase();
                                     var itemValue = dataItem.value || dataItem.Value || dataItem.value_num || null;
-                                    
+
                                     if (itemName && (
                                         itemName.includes('pm2.5') ||
                                         itemName.includes('pm2_5') ||
@@ -2310,7 +2354,7 @@
                                     }
                                 }
                             }
-                            
+
                             // Agar PM2.5 qiymati topilsa, qo'shish
                             if (pm25Value !== null && !isNaN(pm25Value) && pm25Value >= 0) {
                                 pm25Stations.push({
@@ -2321,7 +2365,7 @@
                                     pm25: pm25Value
                                 });
                             }
-                            
+
                             return pm25Value;
                         } catch (e) {
                             console.error('PM2.5 ma\'lumotlarini olishda xatolik (stansiya ' + station.id + '):', e);
@@ -2332,10 +2376,10 @@
                         console.error('GetHoribaPlashadka API xatolik (stansiya ' + station.id + '):', error);
                         return null;
                     });
-                    
+
                     autoStationPromises.push(promise);
                 });
-                
+
                 // Barcha promiselar tugagach, interpolatsiya qilish
                 Promise.all(autoStationPromises).then(function() {
                     console.log('PM2.5 stansiyalar soni:', pm25Stations.length);
@@ -2348,10 +2392,10 @@
                                 console.log('Adding interpolation layer to map (from Promise.all)');
                                 map.addLayer(pm25InterpolationLayer);
                                 console.log('Interpolation layer added, checking if visible...');
-                                
+
                                 // Hover event'ni setup qilish
                                 setupPM25Hover();
-                                
+
                                 setTimeout(function() {
                                     if (pm25InterpolationLayer._map) {
                                         console.log('Layer successfully added to map');
@@ -2367,7 +2411,11 @@
                         }
                     } else {
                         console.log('PM2.5 ma\'lumotlari topilmadi');
+                        self.isInterpolationLoading = false;
                     }
+                }).catch(function(err) {
+                    console.error('PM2.5 interpolation Promise.all error:', err);
+                    self.isInterpolationLoading = false;
                 });
             },
             getAtmasfera: function () {
@@ -2375,14 +2423,14 @@
                 var marker;
                 var markerColor, icon;
                 var drujbahoriba, plashadkahoriba;
-                
+
                 // Очистить heatmap layer
                 if (heatmapLayer) {
                     map.removeLayer(heatmapLayer);
                     heatmapLayer = null;
                 }
                 autoStationsData = []; // Очистить данные для интерполяции
-                
+
                 // Show/hide legend when atmosphere menu is active
                 if (airQualityLegend) {
                 if (this.atmTemp) {
@@ -2400,7 +2448,7 @@
                         console.log('Legend hidden in getAtmasfera');
                     }
                 }
-                
+
                 if (this.atmTemp) {
 
                     {{--axios.get('{{route('map.meteobotstations')}}', {--}}
@@ -2500,10 +2548,10 @@
 
                             console.log('showAutoStations:', this.showAutoStations, 'showOtherStations:', this.showOtherStations);
                             console.log('Total stations:', this.atmasfera_stations.length);
-                            
+
                             // Очистить данные для интерполяции перед новой загрузкой
                             autoStationsData = [];
-                            
+
                             // Собрать все промисы для "Авто" станций
                             var autoStationPromises = [];
 
@@ -2515,18 +2563,18 @@
                                 // Agar "Авто" stansiya bo'lsa va showAutoStations false bo'lsa, skip qilish
                                 if (isAutoStation) {
                                     if (!this.showAutoStations) {
-                                        console.log('Skipping Auto Station:', item.id);
+                                        // console.log('Skipping Auto Station:', item.id);
                                         return; // "Авто" stansiyalar yashirilgan
                                     }
                                 } else {
                                     // Agar "Авто" stansiya bo'lmasa va showOtherStations false bo'lsa, skip qilish
                                     if (!this.showOtherStations) {
-                                        console.log('Skipping Other Station:', item.id);
+                                        // console.log('Skipping Other Station:', item.id);
                                         return; // Boshqa stansiyalar yashirilgan
                                     }
                                 }
 
-                                console.log('Adding Station:', item.id, 'isAuto:', isAutoStation);
+                                // console.log('Adding Station:', item.id, 'isAuto:', isAutoStation);
 
                                 var SI = (item.Si == '-') ? '-' : parseFloat(item.Si);
 
@@ -2552,11 +2600,11 @@
                                     // Boshqa stansiyalar uchun - Si qiymatini ko'rsatish
                                     displayText = (item.Si && item.Si !== '-') ? item.Si : '';
                                     bgColor = markerColor;
-                                    
+
                                     // Yashil rangni birlashtirish - "Авто станции" bilan bir xil yashil rang
                                     var bgColorLower = (bgColor || '').toString().toLowerCase();
-                                    if (bgColorLower === '#00ff00' || 
-                                        bgColorLower === '#23d41e' || 
+                                    if (bgColorLower === '#00ff00' ||
+                                        bgColorLower === '#23d41e' ||
                                         bgColorLower === 'green' ||
                                         bgColorLower.includes('green') ||
                                         (bgColorLower.startsWith('#') && (
@@ -2565,19 +2613,19 @@
                                         ))) {
                                         bgColor = '#00ff00'; // "Авто станции" bilan bir xil yashil rang
                                     }
-                                    
+
                                     // Text rangini aniqlash - yorug' ranglar uchun qora, qorong'i ranglar uchun oq
                                     var textColor = '#fff';
                                     if (bgColor === '#00ff00' || bgColor === '#ffff00' || bgColor === '#ffa500' || bgColor.toLowerCase().includes('yellow') || bgColor.toLowerCase().includes('green')) {
                                         textColor = '#000';
                                     }
-                                    
+
                                     // Chiroyli yumaloq icon dizayn
                                     iconHtml = '<div style="background-color:' + bgColor + '; width: 45px; height: 45px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; color: ' + textColor + '; font-weight: bold; font-size: 14px; line-height: 1; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">' + displayText + '</div>';
                                     iconSize = [45, 45];
                                     iconClass = 'auto-station-icon';
                                     iconAnchor = [22, 22];
-                                    
+
                                     // api.india.data ga murojat qilayotgan stansiyani "Другие станции" ga qo'shish
                                     // Bu stansiya "Другие станции" ichida bo'lishi kerak
                                     // Koordinatalar: lat = 42.77667, lon = 59.60778, device = "ENE04451"
@@ -2840,7 +2888,7 @@
                                                             markerIconColor = '#8c2b8c'; // Фиолетовый
                                                             tooltipColor = '#8c2b8c';
                                                         }
-                                                        
+
                                                         // Добавить данные для интерполяции
                                                         autoStationsData.push([
                                                             parseFloat(item.lat),
@@ -2868,7 +2916,7 @@
 
                                                 // Tooltip olib tashlanadi - faqat marker icon'da PM2.5 ko'rsatiladi
                                                 marker.unbindTooltip();
-                                                
+
                                                 return pm25Value; // Вернуть значение для Promise.all
 
                                             } catch (e) {
@@ -2880,7 +2928,7 @@
                                             console.log('Error fetching PM2.5 data:', error);
                                             return null;
                                         });
-                                    
+
                                     autoStationPromises.push(pm25Promise);
                                 }
 
@@ -2923,16 +2971,16 @@
                                 var displayText = device;
                                 var bgColor = '#00ff00'; // Default yashil rang
                                 var textColor = '#000';
-                                
+
                                 var iconHtml = '<div style="background-color:' + bgColor + '; width: 45px; height: 45px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; color: ' + textColor + '; font-weight: bold; font-size: 12px; line-height: 1; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">' + displayText.substring(0, 3) + '</div>';
-                                
+
                                 const indiaIcon = L.divIcon({
                                     html: iconHtml,
                                     iconSize: [45, 45],
                                     className: 'auto-station-icon',
                                     iconAnchor: [22, 22]
                                 });
-                                
+
                                 const indiaMarker = L.marker([lat, lon], {icon: indiaIcon})
                                     .on('click', async function () {
                                         indiaMarker.openPopup();
@@ -2971,7 +3019,7 @@
                             map.addLayer(markers_atmasfera);
                             let bounds = markers_atmasfera.getBounds();
                             map.fitBounds(bounds);
-                            
+
                             // Agar interpolatsiya yoqilgan bo'lsa, uni yangilash
                             if (this.showInterpolation) {
                                 this.loadPM25Interpolation();
