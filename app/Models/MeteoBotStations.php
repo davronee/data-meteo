@@ -14,8 +14,16 @@ class MeteoBotStations extends Model
     protected $fillable = [
         'id',
         'stationid',
+        'station_id',
         'sn',
+        'name',
         'username',
         'password',
+        'latitude',
+        'longitude',
+        'is_has_aq',
+        'phone_number',
+        'region_id',
+        'district_id',
     ];
 }

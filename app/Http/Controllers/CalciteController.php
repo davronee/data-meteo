@@ -126,4 +126,57 @@ class CalciteController extends Controller
 
     }
 
+    public function IndiaAirQualityStationGetLastData(Request $request)
+    {
+
+        $action = $request->query('action');
+        $device = $request->query('device');
+
+        // Minimal validatsiya
+        if ($action !== 'getLatestData') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid action',
+            ], 400);
+        }
+
+        if (!$device) {
+            return response()->json([
+                'success' => false,
+                'message' => 'device parameter is required',
+            ], 422);
+        }
+
+        $endpoint = rtrim(config('services.device_api.endpoint'), '/');
+
+        try {
+            $resp = Http::timeout(10)
+                ->acceptJson()
+                ->get($endpoint . '/api/v1/uz/data', [
+                    'action' => $action,
+                    'device' => $device,
+                ]);
+
+            // Tashqi API xato qaytarsa ham statusini saqlab qaytaramiz
+            if (!$resp->successful()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Upstream API error',
+                    'status' => $resp->status(),
+                    'body' => $resp->json() ?? $resp->body(),
+                ], 502);
+            }
+
+            // Asl JSON'ni to‘g‘ridan-to‘g‘ri qaytarish
+            return response()->json($resp->json(), 200);
+
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Upstream API unavailable',
+                'error' => $e->getMessage(),
+            ], 504);
+        }
+    }
+
 }

@@ -77,6 +77,7 @@ class Kernel extends HttpKernel
         'AllowAwsStatusTracker' => \App\Http\Middleware\AllowAwsStatusTracker::class,
         'QuickInfoMiddleware' => \App\Http\Middleware\QuickInfoMiddleware::class,
         'horiba' => MiddlewereHoriba::class,
-        'vodiy'=>VodiyMiddleWare::class
+        'vodiy'=>VodiyMiddleWare::class,
+        'basic.auth' => \App\Http\Middleware\BasicAuthMiddleware::class
     ];
 }

@@ -446,6 +446,84 @@ class WidgetController extends Controller
 
     }
 
+    /**
+     * PM2.5 interpolatsiya uchun stansiyalar ma'lumotlarini qaytaradi
+     * Faqat "Авто" stansiyalar (id: 107, 108, 714-734) va horiba stansiyalar
+     * 
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function GetPM25StationsForInterpolation(Request $request)
+    {
+        try {
+            // Barcha stansiyalarni olish
+            $atmasfera = Http::withOptions([
+                'verify' => false
+            ])->get($this->meteoapi . 'api/atmosphere/monitoring/');
+            
+            $stations = $atmasfera->json();
+            
+            if (!isset($stations['data']) || !is_array($stations['data'])) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Stansiyalar ma\'lumotlari topilmadi',
+                    'data' => []
+                ], 404);
+            }
+            
+            $pm25Stations = [];
+            
+            foreach ($stations['data'] as $region) {
+                if (isset($region['stations']) && is_array($region['stations'])) {
+                    foreach ($region['stations'] as $station) {
+                        // Faqat "Авто" stansiyalar va horiba stansiyalar
+                        $isAutoStation = ($station['id'] == 107 || 
+                                         $station['id'] == 108 || 
+                                         ($station['id'] >= 714 && $station['id'] <= 734));
+                        
+                        $isHoriba = (isset($station['category_title']) && 
+                                    stripos($station['category_title'], 'horiba') !== false) ||
+                                   (isset($station['Si']) && stripos($station['Si'], 'horiba') !== false);
+                        
+                        if ($isAutoStation || $isHoriba) {
+                            // PM2.5 qiymatini olish
+                            $pm25Value = null;
+                            
+                            // Agar Si qiymati bo'lsa va u raqam bo'lsa
+                            if (isset($station['Si']) && $station['Si'] !== '-' && is_numeric($station['Si'])) {
+                                $pm25Value = floatval($station['Si']);
+                            }
+                            
+                            // Agar PM2.5 qiymati mavjud bo'lsa
+                            if ($pm25Value !== null && $pm25Value >= 0) {
+                                $pm25Stations[] = [
+                                    'id' => $station['id'],
+                                    'name' => $station['category_title'] ?? 'Stansiya ' . $station['id'],
+                                    'latitude' => floatval($station['lat']),
+                                    'longitude' => floatval($station['lon']),
+                                    'pm25' => $pm25Value
+                                ];
+                            }
+                        }
+                    }
+                }
+            }
+            
+            return response()->json([
+                'success' => true,
+                'count' => count($pm25Stations),
+                'data' => $pm25Stations
+            ]);
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Xatolik yuz berdi: ' . $e->getMessage(),
+                'data' => []
+            ], 500);
+        }
+    }
+
     public function dangerzonesLogin()
     {
         $response = Http::post($this->dangerzonesapi . 'oneid_template', [
@@ -523,6 +601,27 @@ class WidgetController extends Controller
                 break;
             case 727:
                 $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/16')->json();
+                break;
+            case 728:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/20')->json();
+                break;
+            case 729:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/22')->json();
+                break;
+            case 730:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/23')->json();
+                break;
+            case 731:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/21')->json();
+                break;
+            case 732:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/17')->json();
+                break;
+            case 733:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/18')->json();
+                break;
+            case 734:
+                $horiba = Http::withOptions(['verify'=>false])->withBasicAuth('data_meteo','cda7q14r')->get('https://meteoapi.meteo.uz/api/atmosphere/horiba/19')->json();
                 break;
         }
 

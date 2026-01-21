@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalciteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\StationController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\API\HydrometSensorController;
 use App\Http\Controllers\API\DirectoryController;
 use App\Http\Controllers\ArmController;
 use App\Http\Controllers\Meteocontroller;
+use App\Http\Controllers\MeteobotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,15 @@ Route::get('/districts', [DistrictController::class, 'index'])->name('api.distri
 Route::get('/stations', [StationController::class, 'index'])->name('api.station.index');
 
 Route::get('/sensor/receive', [HydrometSensorController::class, 'store'])->name('api.hydromer.sensor.store');
+
+
+Route::get('/v1/uz/data', [CalciteController::class, 'IndiaAirQualityStationGetLastData'])->name('api.india.data');
+
+// Meteobot API routes with Basic Auth
+Route::prefix('meteobot')->middleware('basic.auth')->group(function () {
+    Route::get('/stations', [MeteobotController::class, 'GetStations'])->name('api.meteobot.stations');
+    Route::get('/air-quality/list', [MeteobotController::class, 'GetOnlyAirQualityStationsList'])->name('api.meteobot.air-quality.list');
+    Route::get('/air-quality/{stationid}', [MeteobotController::class, 'GetOnlyAirQualityStation'])->name('api.meteobot.air-quality.station');
+    Route::get('/locate', [MeteobotController::class, 'GetStationLocation'])->name('api.meteobot.locate');
+    Route::get('/index-full', [MeteobotController::class, 'GetStationIndexFull'])->name('api.meteobot.index-full');
+});

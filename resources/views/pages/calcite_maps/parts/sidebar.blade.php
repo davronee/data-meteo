@@ -1,6 +1,6 @@
 <div
-        class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
-        role="tablist" aria-multiselectable="true">
+    class="calcite-panels calcite-panels-left calcite-bg-custom calcite-text-light panel-group calcite-bgcolor-dark-blue"
+    role="tablist" aria-multiselectable="true">
 
 
     <!-- API Panel -->
@@ -11,9 +11,9 @@
                 <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseApi"
                    aria-expanded="true" aria-controls="collapseApi"><span class="fa fa-code"
                                                                           aria-hidden="true"></span><span
-                            class="panel-label">Метео API</span></a>
+                        class="panel-label">Метео API</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelApi"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                        class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
         <div id="collapseApi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApi">
@@ -46,9 +46,9 @@
                 <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo"
                    aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign"
                                                                            aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.portal_info')</span></a>
+                        class="panel-label">@lang('map.portal_info')</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelInfo"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                        class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
         <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
@@ -74,9 +74,9 @@
                 <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch"
                    aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search"
                                                                               aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.search')</span></a>
+                        class="panel-label">@lang('map.search')</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelSearch"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                        class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
         <div id="collapseSearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSearch">
@@ -93,8 +93,8 @@
             <div class="panel-title">
                 <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseMeteodata"
                    aria-expanded="false" aria-controls="collapseMeteodata"><span
-                            class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.meteologik_info')</span></a>
+                        class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span
+                        class="panel-label">@lang('map.meteologik_info')</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0"
                    href="#panelMeteodata"><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
@@ -106,9 +106,10 @@
                     <select id="selectStandardMeteodata" class="form-control" @change="menuChange()" v-model="menu">
                         <option value="fakt">@lang('map.factik')</option>
                         <option value="atmosphere">@lang('map.atmasphera')</option>
+                        <option value="atmosphere_tashkent">Загрязнение атмосферы(Ташкент)</option>
                         <option value="forecast">@lang('map.weather')</option>
                         <option value="radiatsiya">@lang('map.solar_radiation')</option>
-                      <option value="locator">@lang('map.locator')</option>
+                        <option value="locator">@lang('map.locator')</option>
                         <option value="aero">@lang('map.aero')</option>
                         <option value="snow">@lang('map.snow')</option>
                         <option value="sputnik">@lang('map.metep_sputnik')</option>
@@ -141,8 +142,9 @@
                             <option value="veter15s">@lang('map.veter15s')</option>
                         </optgroup>
                         <option value="water_autohyrostation">@lang('map.hydroposts')</option>
-{{--                        <option value="water_consumption">@lang('map.hydroposts')</option>--}}
+                        {{--                        <option value="water_consumption">@lang('map.hydroposts')</option>--}}
                         <option value="comfort_zones">@lang('map.comfort_zones')</option>
+                        <option value="organization_stations">Саноат зоналари</option>
                     </select>
                 </div>
                 <div v-if="menu == 'fakt'" class="form-group">
@@ -157,6 +159,33 @@
                         <option v-for="item in regions" :value="item.regionid">@{{ item.nameRu }}</option>
                     </select>
                 </div>
+                <div v-if="menu == 'atmosphere'" class="form-group" style="margin-top: 15px;">
+                    <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                        <span style="color: #000 !important; font-size: 14px; font-weight: normal;">Авто станции</span>
+                        <label class="switch" style="margin: 0;">
+                            <input type="checkbox" v-model="showAutoStations" @change="toggleAutoStations">
+                            <span class="slider"></span>
+                        </label>
+                    </label>
+                </div>
+                <div v-if="menu == 'atmosphere'" class="form-group" style="margin-top: 10px;">
+                    <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                        <span style="color: #000 !important; font-size: 14px; font-weight: normal;">Другие станции</span>
+                        <label class="switch" style="margin: 0;">
+                            <input type="checkbox" v-model="showOtherStations" @change="toggleOtherStations">
+                            <span class="slider"></span>
+                        </label>
+                    </label>
+                </div>
+                <div v-if="menu == 'atmosphere'" class="form-group" style="margin-top: 10px;">
+                    <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                        <span style="color: #000 !important; font-size: 14px; font-weight: normal;">Интерполяция PM2.5</span>
+                        <label class="switch" style="margin: 0;">
+                            <input type="checkbox" v-model="showInterpolation" @change="toggleInterpolation">
+                            <span class="slider"></span>
+                        </label>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
@@ -169,9 +198,9 @@
                 <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps"
                    aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large"
                                                                                 aria-hidden="true"></span><span
-                            class="panel-label">@lang('map.geografik_map_type')</span></a>
+                        class="panel-label">@lang('map.geografik_map_type')</span></a>
                 <a class="panel-close" role="button" data-toggle="collapse" tabindex="0" href="#panelBasemaps"><span
-                            class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                        class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
             </div>
         </div>
         <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel"

@@ -22,15 +22,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="adde new meteobot stations">
-      <change afterPath="$PROJECT_DIR$/data_meteo_backup.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor.zip" afterDir="false" />
+    <list default="true" id="e93ff192-e49c-48fb-a954-ca66b211d045" name="Default Changelist" comment="changed К. Бахромов">
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HydrostationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HydrostationsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/District.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/District.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Region.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Region.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CalciteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CalciteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HoribaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HoribaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MeteoAlertController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MeteoAlertController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MeteobotController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MeteobotController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WidgetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WidgetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VodiyMiddleWare.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VodiyMiddleWare.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/HoribaImportJson.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/HoribaImportJson.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/MeteoBotImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/MeteoBotImport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Hydropost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Hydropost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/MeteoBotStations.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/MeteoBotStations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_meteo_backup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data_meteo_backup.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_12_19_233348_create_hydroposts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_12_19_233348_create_hydroposts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/HydropostSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/HydropostSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/MeteobotStationsSeed.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/MeteobotStationsSeed.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/calcite_maps/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/calcite_maps/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/calcite_maps/parts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/calcite_maps/parts/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/calcite_maps/profilact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/calcite_maps/profilact.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/horiba/files.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/horiba/files.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/meteoalert.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/meteoalert.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor.zip" beforeDir="false" afterPath="$PROJECT_DIR$/vendor.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +106,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../Cellar/php/8.3.2/bin/php">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
@@ -239,37 +258,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/opt/homebrew/var/www/meteo-data/storage/app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "E:\\laragon\\www\\meteo-data\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Applications/PhpStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/opt/homebrew/var/www/meteo-data&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;E:\\laragon\\www\\meteo-data\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/PhpStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/storage/data" />
+      <recent name="$PROJECT_DIR$/resources/views/pages" />
       <recent name="$PROJECT_DIR$/storage/app" />
       <recent name="$PROJECT_DIR$" />
       <recent name="E:\laragon\www\meteo-data\node_modules" />
-      <recent name="E:\laragon\www\meteo-data\public\js" />
-      <recent name="E:\laragon\www\meteo-data\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/pages" />
@@ -278,7 +299,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-php-predefined-ba97393d7c68-6f8e3395a2b4-com.jetbrains.php.sharedIndexes-PS-233.15619.9" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
+        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
       </set>
     </attachedChunks>
   </component>
@@ -596,6 +618,39 @@
       <workItem from="1732095980542" duration="12000" />
       <workItem from="1732519154752" duration="961000" />
       <workItem from="1734633108283" duration="6006000" />
+      <workItem from="1745304873001" duration="129000" />
+      <workItem from="1747391167154" duration="1184000" />
+      <workItem from="1747725602630" duration="7586000" />
+      <workItem from="1747893935564" duration="46000" />
+      <workItem from="1749633995156" duration="787000" />
+      <workItem from="1750160486743" duration="1360000" />
+      <workItem from="1751360677544" duration="2227000" />
+      <workItem from="1751613024105" duration="2810000" />
+      <workItem from="1751968035118" duration="656000" />
+      <workItem from="1752516443130" duration="814000" />
+      <workItem from="1753698919734" duration="4523000" />
+      <workItem from="1753768179869" duration="4866000" />
+      <workItem from="1753942113884" duration="271000" />
+      <workItem from="1753946146297" duration="1356000" />
+      <workItem from="1761649700656" duration="267000" />
+      <workItem from="1762495243830" duration="919000" />
+      <workItem from="1762928127653" duration="641000" />
+      <workItem from="1764305558563" duration="3359000" />
+      <workItem from="1765451525482" duration="2326000" />
+      <workItem from="1765544814934" duration="15000" />
+      <workItem from="1765544864911" duration="767000" />
+      <workItem from="1765827025242" duration="24000" />
+      <workItem from="1765861377623" duration="9245000" />
+      <workItem from="1766005434969" duration="2061000" />
+      <workItem from="1766039633990" duration="5622000" />
+      <workItem from="1766568376768" duration="3790000" />
+      <workItem from="1766649411799" duration="22000" />
+      <workItem from="1766649447674" duration="699000" />
+      <workItem from="1766942330442" duration="2205000" />
+      <workItem from="1766990747955" duration="302000" />
+      <workItem from="1768554823279" duration="3145000" />
+      <workItem from="1768733835888" duration="3005000" />
+      <workItem from="1768820499587" duration="14659000" />
     </task>
     <task id="LOCAL-00331" summary="add apmmeteoutm">
       <created>1661943744700</created>
@@ -940,7 +995,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688216574314</updated>
     </task>
-    <option name="localTasksCounter" value="410" />
+    <option name="localTasksCounter" value="415" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -958,8 +1013,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added new disign meteo" />
-    <MESSAGE value="added snows" />
     <MESSAGE value="changes oneid endpoint" />
     <MESSAGE value="added new meteo" />
     <MESSAGE value="added OpenservicesReestr" />
@@ -983,7 +1036,9 @@
     <MESSAGE value="horiba manual add data" />
     <MESSAGE value="Horiba added Camera" />
     <MESSAGE value="adde new meteobot stations" />
-    <option name="LAST_COMMIT_MESSAGE" value="adde new meteobot stations" />
+    <MESSAGE value="remove profilactic" />
+    <MESSAGE value="changed К. Бахромов" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed К. Бахромов" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

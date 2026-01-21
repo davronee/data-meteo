@@ -120,6 +120,7 @@ Route::group(['middleware' => ['set_locale']], function () {
         Route::get('/getRadars', [WidgetController::class, 'getRadars'])->name('map.getRadars');
         Route::get('/getMeteobotsStations', [CalciteController::class, 'GetMeteobotStations'])->name('map.meteobotstations');
         Route::get('/GetAtmasfera', [WidgetController::class, 'GetAtmasfera'])->name('map.GetAtmasfera');
+        Route::get('/GetPM25StationsForInterpolation', [WidgetController::class, 'GetPM25StationsForInterpolation'])->name('map.GetPM25StationsForInterpolation');
         Route::get('/GetHoribadrujba', [WidgetController::class, 'GetHoribaDrujba'])->name('map.horiba.drujba');
         Route::get('/GetHoribaPlashadka', [WidgetController::class, 'GetHoribaPlashadka'])->name('map.horiba.plashadka');
         Route::get('/GetAmbientweather', [CalciteController::class, 'GetAmbientweather'])->name('map.GetAmbientweather');
