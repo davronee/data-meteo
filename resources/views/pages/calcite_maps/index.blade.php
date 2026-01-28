@@ -114,10 +114,12 @@
                             class="glyphicon glyphicon-globe"></span> @lang('map.type_map')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelMeteodata" aria-haspopup="true"><span
                             class="glyphicon glyphicon-th-list"></span> @lang('map.info')</a></li>
+                <li><a href="https://alert.meteo.uz" target="_blank" role="menuitem"><span
+                            class="glyphicon glyphicon-warning-sign"></span>MeteoAlert (SmartMet)</a></li>
                 <li><a href="/meteo-alert" target="_blank" role="menuitem"><span
                             class="glyphicon glyphicon-warning-sign"></span>MeteoAlert (прогноз)</a></li>
                 <li><a href="/meteo-alert-airquality" target="_blank" role="menuitem"><span
-                            class="glyphicon glyphicon-warning-sign"></span>SILAM</a></li>
+                            class="glyphicon glyphicon-warning-sign"></span>SILAM (прогноз)</a></li>
                 <li><a role="menuitem" tabindex="0" id="calciteToggleNavbar" aria-haspopup="true"><span
                             class="glyphicon glyphicon-fullscreen"></span> @lang('map.full_view')</a></li>
                 <li><a role="menuitem" tabindex="0" data-target="#panelApi" aria-haspopup="true"><span
